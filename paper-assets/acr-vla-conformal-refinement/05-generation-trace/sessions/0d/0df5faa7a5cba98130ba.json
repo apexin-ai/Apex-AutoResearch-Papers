@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0df5faa7a5cba98130ba",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb1 32546 object status",
+  "task_key": "worker_check_bjb1-32546-object-status_20260515T044311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb1-32546-object-status_20260515T044311_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "af9bcfefd3a6a6b5bdc172c80d4c331e71650006bac28130937ef3c69514558c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 remaining processes alive. Here's the full status:\n\n## bjb1-32546 Object Eval Status (2026-05-15 ~12:40)\n\n| GPU | exp_id | mode | tasks_done | current_task | SR so far | pid | alive |\n|-----|--------|------|------------|--------------|-----------|-----|-------|\n| cuda:0 | eval-reconvla-object | reconvla (K=10) | 1/10 | task 2 | 0% (0/10) | 9659 | YES |\n| cuda:1 | eval-acr-object-v4-perdof | crm_perdof (K=10) | 1/10 | task 2 | 0% (0/10) | 11116 | YES |\n| cuda:2 | eval-acr-object-v4-obs-only | crm_obs_only (K=10) | 1/10 | task 2 | 0% (0/10) | 13806 | YES |\n| cuda:3 | eval-acr-object-v4-scalar | crm_scalar (K=10) | 1/10 | task 2 | 0% (0/10) | 14003 | YES |\n| cuda:4 | eval-vla-only-object | vla_only (K=1) | **10/10** | — | **12% (12/100)** | — | **DONE** |\n| cuda:5 | eval-vla-mean-object | vla_only mean (K=10) | 1/10 | task 2 | 0% (0/10) | 18808 | YES |\n\n## eval-vla-only-object 诊断\n\n- **不是 crash，是正常完成。** 进程跑完了全部 10 tasks × 10 rollouts 后正常退出。\n- Overall SR: **12.0% (12/100)**\n- Per-task breakdown:\n\n| task | SR |\n|------|----|\n| alphabet_soup | 0% |\n| cream_cheese | 10% |\n| salad_dressing | 20% |\n| bbq_sauce | 20% |\n| ketchup | 0% |\n| tomato_sauce | 10% |\n| butter | 0% |\n| milk | 10% |\n| chocolate_pudding | 20% |\n| orange_juice | 30% |\n\n- JSON 结果已保存: `logs/eval_object_vla_only.json`\n- **无需重启** — GPU 4 空闲可复用\n\n其余 5 个实验均在 task 1/10 (alphabet_soup 完成, 全部 0%)，正在跑 task 2。K=10 比 K=1 慢约 10 倍，预计还需较长时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-32546-object-status.md"
+}

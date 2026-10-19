@@ -1,0 +1,1536 @@
+{
+  "schema_version": "1.0",
+  "id": "085b4c190a5208bb6120",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analyze fmvd calibration phase1",
+  "task_key": "worker_analyze_fmvd-calibration-phase1_20260519T190320",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_fmvd-calibration-phase1_20260519T190320.log",
+    "occurrence": 1,
+    "bytes": 159768,
+    "sha256": "6ed81c5b24a6f999d3fb9affc12f6a54c3271685ad803a1d6fe987e982d605bf"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "170ad3bc-26fa-40e4-a7a7-24f4c9f4fe9c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779223200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "befaeeb5-3dfa-493a-9a5f-868a9b8219c4",
+                "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll analyze the FMVD calibration Phase 1 experiment results. Let me start by reading the logs and output files from the server."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "d44f7822-acc9-478f-8e07-b2d24db955a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LLossD93BQs6cpavRBFvAK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11828,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11828
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016gCNH4Hq8q1zZRK7GnjDzT",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "fbdc1dc9-be81-46ad-b2d6-acaafd44e203",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LLossD93BQs6cpavRBFvAK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11828,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11828
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T19:03:30.771Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016gCNH4Hq8q1zZRK7GnjDzT",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "0e94f13e-3c60-4008-845a-62e0beee303a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the logs and find the output JSON in parallel.",
+              "signature": "EvUBClkIDRgCKkCI+rKr2Tu/NTis1mIrtvjwLZ43a047Z7YmQNkAHA+9bpylC+IQaSwIl1Xw5n2GXJ1q6+0/54kO8Q12Cm77qs7sMg9jbGF1ZGUtb3B1cy00LTY4ABIMnrZr/SDmRe5RDMljGgwRfYXqF/Fjys+ZqAwiMBwgPzllAcvFzO2G2t2BAjG4/aFKS6/fTpoqpiaUUw1DthEz+M/qjcCX43NgoOlomipKuf+yUiydNjDGqD0R4xNH5ZS5fGWLqYmsjoozdLsGl5NW/DR/7IdN7RjX+7OHryM/TNGqvxhVA/EUwWoXVYycZ9qLTI7adnNpqXIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "e210a563-475d-457d-8ecf-0af3cf8a33af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ATk6KT3e1FJu7CiYx6XpCe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 23669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1911
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AsjWVv1fTgXVmgn4sHgjht",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-28827",
+                "command": "cat ~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "bb39b64a-e07b-41bc-bc38-4b892dd6b45e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ATk6KT3e1FJu7CiYx6XpCe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 23669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1911
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019VhUh5kD84f5KzdS7PKCgU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-28827",
+                "command": "find ~/acr-vla-conformal-refinement/ -name \"fmvd_calibration.json\" 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "1e5e25cf-d7f2-4736-a101-8d0fe0f07722",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ATk6KT3e1FJu7CiYx6XpCe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 23669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1911
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T19:03:35.973Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AsjWVv1fTgXVmgn4sHgjht",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[fmvd] args: {'benchmark': 'object', 'n_episodes': 5, 'max_steps': 300, 'seed': 42, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'output': 'logs/fmvd_calibration.json'}\\\\n[fmvd] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:   6%|▌         | 29/489 [00:00<00:01, 280.64it/s]\\\\rLoading weights:  12%|█▏        | 58/489 [00:00<00:01, 232.08it/s]\\\\rLoading weights:  18%|█▊        | 90/489 [00:00<00:01, 267.33it/s]\\\\rLoading weights:  24%|██▍       | 118/489 [00:00<00:01, 256.57it/s]\\\\rLoading weights:  30%|██▉       | 145/489 [00:00<00:01, 228.12it/s]\\\\rLoading weights:  35%|███▍      | 169/489 [00:00<00:01, 222.19it/s]\\\\rLoading weights:  39%|███▉      | 192/489 [00:00<00:01, 217.46it/s]\\\\rLoading weights:  44%|████▍     | 214/489 [00:00<00:01, 186.15it/s]\\\\rLoading weights:  48%|████▊     | 237/489 [00:01<00:01, 194.08it/s]\\\\rLoading weights:  53%|█████▎    | 258/489 [00:01<00:01, 177.98it/s]\\\\rLoading weights:  65%|██████▍   | 316/489 [00:01<00:00, 279.55it/s]\\\\rLoading weights:  78%|███████▊  | 380/489 [00:01<00:00, 370.97it/s]\\\\rLoading weights:  89%|████████▊ | 433/489 [00:01<00:00, 414.21it/s]\\\\rLoading weights:  98%|█████████▊| 477/489 [00:01<00:00, 416.13it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:01<00:00, 295.90it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[fmvd] num_steps=10, chunk_size=50\\\\n[fmvd] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[fmvd] 10 tasks loaded.\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=300 | 141s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=600 | 282s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=900 | 422s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=1200 | 562s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=1500 | 702s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=1800 | 842s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=2100 | 982s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=2400 | 1122s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=2700 | 1263s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=3000 | 1403s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=3300 | 1543s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=3600 | 1685s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=3900 | 1827s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 4/5: OK (137 steps) | total=4037 | 1893s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=4337 | 2034s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=4637 | 2175s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=4937 | 2317s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=5237 | 2458s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=5537 | 2601s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=5837 | 2742s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=6137 | 2883s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=6437 | 3024s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=6737 | 3165s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=7037 | 3307s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=7337 | 3449s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=7637 | 3591s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=7937 | 3732s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=8237 | 3873s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 4/5: OK (120 steps) | total=8357 | 3931s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=8657 | 4073s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=8957 | 4215s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=9257 | 4356s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=9557 | 4498s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=9857 | 4638s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=10157 | 4777s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=10457 | 4916s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=10757 | 5057s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=11057 | 5197s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=11357 | 5336s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=11657 | 5477s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 1/5: OK (155 steps) | total=11812 | 5550s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=12112 | 5690s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=12412 | 5829s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=12712 | 5969s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=13012 | 6107s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=13312 | 6248s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=13612 | 6387s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=13912 | 6525s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=14212 | 6664s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=14512 | 6801s\\\\n\\\\n=== FMVD Calibration Results ===\\\\nSteps collected: 14512\\\\nFMVD: mean=0.0549 std=0.0403 [P25=0.0277 P50=0.0467 P75=0.0709 P90=0.0938]\\\\nK=10 Variance: mean=0.0049 std=0.0056\\\\nSpearman rho(FMVD, K10_var) = 0.0825 (p=2.33e-23)\\\\nGO/NO-GO: NO-GO (threshold: rho > 0.3)\\\\n[fmvd] Results saved to logs/fmvd_calibration.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "849d41b3-fd8b-4fc1-aecd-d2d34b4b9fc2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[fmvd] args: {'benchmark': 'object', 'n_episodes': 5, 'max_steps': 300, 'seed': 42, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'output': 'logs/fmvd_calibration.json'}\\\\n[fmvd] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:   6%|▌         | 29/489 [00:00<00:01, 280.64it/s]\\\\rLoading weights:  12%|█▏        | 58/489 [00:00<00:01, 232.08it/s]\\\\rLoading weights:  18%|█▊        | 90/489 [00:00<00:01, 267.33it/s]\\\\rLoading weights:  24%|██▍       | 118/489 [00:00<00:01, 256.57it/s]\\\\rLoading weights:  30%|██▉       | 145/489 [00:00<00:01, 228.12it/s]\\\\rLoading weights:  35%|███▍      | 169/489 [00:00<00:01, 222.19it/s]\\\\rLoading weights:  39%|███▉      | 192/489 [00:00<00:01, 217.46it/s]\\\\rLoading weights:  44%|████▍     | 214/489 [00:00<00:01, 186.15it/s]\\\\rLoading weights:  48%|████▊     | 237/489 [00:01<00:01, 194.08it/s]\\\\rLoading weights:  53%|█████▎    | 258/489 [00:01<00:01, 177.98it/s]\\\\rLoading weights:  65%|██████▍   | 316/489 [00:01<00:00, 279.55it/s]\\\\rLoading weights:  78%|███████▊  | 380/489 [00:01<00:00, 370.97it/s]\\\\rLoading weights:  89%|████████▊ | 433/489 [00:01<00:00, 414.21it/s]\\\\rLoading weights:  98%|█████████▊| 477/489 [00:01<00:00, 416.13it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:01<00:00, 295.90it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[fmvd] num_steps=10, chunk_size=50\\\\n[fmvd] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[fmvd] 10 tasks loaded.\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=300 | 141s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=600 | 282s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=900 | 422s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=1200 | 562s\\\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=1500 | 702s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=1800 | 842s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=2100 | 982s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=2400 | 1122s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=2700 | 1263s\\\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=3000 | 1403s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=3300 | 1543s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=3600 | 1685s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=3900 | 1827s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 4/5: OK (137 steps) | total=4037 | 1893s\\\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=4337 | 2034s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=4637 | 2175s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=4937 | 2317s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=5237 | 2458s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=5537 | 2601s\\\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=5837 | 2742s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=6137 | 2883s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=6437 | 3024s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=6737 | 3165s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=7037 | 3307s\\\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=7337 | 3449s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=7637 | 3591s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=7937 | 3732s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=8237 | 3873s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 4/5: OK (120 steps) | total=8357 | 3931s\\\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=8657 | 4073s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=8957 | 4215s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=9257 | 4356s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=9557 | 4498s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=9857 | 4638s\\\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=10157 | 4777s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=10457 | 4916s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=10757 | 5057s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=11057 | 5197s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=11357 | 5336s\\\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=11657 | 5477s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 1/5: OK (155 steps) | total=11812 | 5550s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=12112 | 5690s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=12412 | 5829s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=12712 | 5969s\\\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=13012 | 6107s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=13312 | 6248s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=13612 | 6387s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=13912 | 6525s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=14212 | 6664s\\\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=14512 | 6801s\\\\n\\\\n=== FMVD Calibration Results ===\\\\nSteps collected: 14512\\\\nFMVD: mean=0.0549 std=0.0403 [P25=0.0277 P50=0.0467 P75=0.0709 P90=0.0938]\\\\nK=10 Variance: mean=0.0049 std=0.0056\\\\nSpearman rho(FMVD, K10_var) = 0.0825 (p=2.33e-23)\\\\nGO/NO-GO: NO-GO (threshold: rho > 0.3)\\\\n[fmvd] Results saved to logs/fmvd_calibration.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[fmvd] args: {'benchmark': 'object', 'n_episodes': 5, 'max_steps': 300, 'seed': 42, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'output': 'logs/fmvd_calibration.json'}\\n[fmvd] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:   6%|▌         | 29/489 [00:00<00:01, 280.64it/s]\\rLoading weights:  12%|█▏        | 58/489 [00:00<00:01, 232.08it/s]\\rLoading weights:  18%|█▊        | 90/489 [00:00<00:01, 267.33it/s]\\rLoading weights:  24%|██▍       | 118/489 [00:00<00:01, 256.57it/s]\\rLoading weights:  30%|██▉       | 145/489 [00:00<00:01, 228.12it/s]\\rLoading weights:  35%|███▍      | 169/489 [00:00<00:01, 222.19it/s]\\rLoading weights:  39%|███▉      | 192/489 [00:00<00:01, 217.46it/s]\\rLoading weights:  44%|████▍     | 214/489 [00:00<00:01, 186.15it/s]\\rLoading weights:  48%|████▊     | 237/489 [00:01<00:01, 194.08it/s]\\rLoading weights:  53%|█████▎    | 258/489 [00:01<00:01, 177.98it/s]\\rLoading weights:  65%|██████▍   | 316/489 [00:01<00:00, 279.55it/s]\\rLoading weights:  78%|███████▊  | 380/489 [00:01<00:00, 370.97it/s]\\rLoading weights:  89%|████████▊ | 433/489 [00:01<00:00, 414.21it/s]\\rLoading weights:  98%|█████████▊| 477/489 [00:01<00:00, 416.13it/s]\\rLoading weights: 100%|██████████| 489/489 [00:01<00:00, 295.90it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[fmvd] num_steps=10, chunk_size=50\\n[fmvd] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[fmvd] 10 tasks loaded.\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=300 | 141s\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=600 | 282s\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=900 | 422s\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=1200 | 562s\\n  [pick_up_the_alphabet_soup_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=1500 | 702s\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=1800 | 842s\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=2100 | 982s\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=2400 | 1122s\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=2700 | 1263s\\n  [pick_up_the_cream_cheese_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=3000 | 1403s\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=3300 | 1543s\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=3600 | 1685s\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=3900 | 1827s\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 4/5: OK (137 steps) | total=4037 | 1893s\\n  [pick_up_the_salad_dressing_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=4337 | 2034s\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=4637 | 2175s\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=4937 | 2317s\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=5237 | 2458s\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=5537 | 2601s\\n  [pick_up_the_bbq_sauce_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=5837 | 2742s\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=6137 | 2883s\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=6437 | 3024s\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=6737 | 3165s\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=7037 | 3307s\\n  [pick_up_the_ketchup_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=7337 | 3449s\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=7637 | 3591s\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=7937 | 3732s\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=8237 | 3873s\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 4/5: OK (120 steps) | total=8357 | 3931s\\n  [pick_up_the_tomato_sauce_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=8657 | 4073s\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=8957 | 4215s\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=9257 | 4356s\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=9557 | 4498s\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=9857 | 4638s\\n  [pick_up_the_butter_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=10157 | 4777s\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=10457 | 4916s\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=10757 | 5057s\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=11057 | 5197s\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=11357 | 5336s\\n  [pick_up_the_milk_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=11657 | 5477s\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 1/5: OK (155 steps) | total=11812 | 5550s\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=12112 | 5690s\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=12412 | 5829s\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=12712 | 5969s\\n  [pick_up_the_chocolate_pudding_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=13012 | 6107s\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 1/5: FAIL (300 steps) | total=13312 | 6248s\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 2/5: FAIL (300 steps) | total=13612 | 6387s\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 3/5: FAIL (300 steps) | total=13912 | 6525s\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 4/5: FAIL (300 steps) | total=14212 | 6664s\\n  [pick_up_the_orange_juice_and_place_it_in_the_basket] ep 5/5: FAIL (300 steps) | total=14512 | 6801s\\n\\n=== FMVD Calibration Results ===\\nSteps collected: 14512\\nFMVD: mean=0.0549 std=0.0403 [P25=0.0277 P50=0.0467 P75=0.0709 P90=0.0938]\\nK=10 Variance: mean=0.0049 std=0.0056\\nSpearman rho(FMVD, K10_var) = 0.0825 (p=2.33e-23)\\nGO/NO-GO: NO-GO (threshold: rho > 0.3)\\n[fmvd] Results saved to logs/fmvd_calibration.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T19:03:35.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019VhUh5kD84f5KzdS7PKCgU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "736e2c0f-70ea-408d-908d-ada0ca00eee8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LupohSmLweHmp8ZgWySKAm",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "filters": {
+                  "exp_id": "fmvd-calibration-phase1"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "7a7f7d17-f9bd-44fc-b384-a2ef73f2ea4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ATk6KT3e1FJu7CiYx6XpCe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 23669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1911
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T19:03:37.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LupohSmLweHmp8ZgWySKAm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9384}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "da808e35-9073-45ca-a26e-e8d0f94baa9b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9384}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9384}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The find command was blocked because of the `2>/dev/null` redirect. Let me fix that and also read the JSON output. I already have the log output which shows the key results. Let me now get the JSON file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "138385a3-9342-4b9e-8f72-6d77e3a5f4f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Du38cx94iQRQLwsXFNviV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4287,
+                "cache_read_input_tokens": 25580,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4287
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got the log. Now let me read the output JSON."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "232b27c0-b06f-41b2-8e47-6e713484958a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Du38cx94iQRQLwsXFNviV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4287,
+                "cache_read_input_tokens": 25580,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4287
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018LjHj4tkE7jCRn8cq1vFdn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-28827",
+                "command": "find ~/acr-vla-conformal-refinement/ -name \"fmvd_calibration.json\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "770eb35a-882b-4d3a-b021-26b5431814cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Du38cx94iQRQLwsXFNviV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4287,
+                "cache_read_input_tokens": 25580,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4287
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T19:03:43.074Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018LjHj4tkE7jCRn8cq1vFdn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "90a17d59-47b5-465b-83e7-a8e29d84c905",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HpQXR9rdWXQmGQn6ybm1Gb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-28827",
+                "command": "cat /root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "e80f422d-9623-4a5c-86d9-f187e8125927",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NR23u8YPeTBehds4NhFe9w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 306,
+                "cache_read_input_tokens": 29867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 306
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T19:03:49.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HpQXR9rdWXQmGQn6ybm1Gb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_steps_collected\\\\\\\": 14512,\\\\n    \\\\\\\"num_ode_steps\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"statistics\\\\\\\": {\\\\n    \\\\\\\"fmvd_mean\\\\\\\": 0.054867,\\\\n    \\\\\\\"fmvd_std\\\\\\\": 0.040291,\\\\n    \\\\\\\"fmvd_percentiles\\\\\\\": {\\\\n      \\\\\\\"P25\\\\\\\": 0.027738,\\\\n      \\\\\\\"P50\\\\\\\": 0.046693,\\\\n      \\\\\\\"P75\\\\\\\": 0.070899,\\\\n      \\\\\\\"P90\\\\\\\": 0.093805\\\\n    },\\\\n    \\\\\\\"k10_variance_mean\\\\\\\": 0.004888,\\\\n    \\\\\\\"k10_variance_std\\\\\\\": 0.005635,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.082528,\\\\n    \\\\\\\"spearman_pvalue\\\\\\\": 2.3276188581837622e-23\\\\n  },\\\\n  \\\\\\\"per_step_data\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 0,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 0,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.035418,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.006771,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 1,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 1,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.04047,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.013842,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 2,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 2,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.053366,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005597,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 3,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 3,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.080012,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.007209,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 4,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 4,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.055463,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00453,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 5,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 5,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.045602,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.003994,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 6,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 6,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.057073,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.007955,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 7,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 7,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.055695,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00382,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 8,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 8,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.057416,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.012315,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 9,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 9,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.051594,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005676,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 10,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 10,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.075598,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.006945,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 11,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 11,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.052067,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.01097,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 12,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 12,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.056369,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.009767,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 13,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 13,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.064521,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.011518,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 14,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.060853,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005684,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 15,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_an\\\\n\\\\n... [截断: 输出过长，省略 3331497 字符] ...\\\\n\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14495,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 283,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.019037,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000766,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14496,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 284,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.012573,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000865,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14497,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 285,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.013772,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000503,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14498,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 286,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.01821,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000511,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14499,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 287,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.012134,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00074,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14500,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 288,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.011599,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000975,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14501,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 289,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.013746,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000829,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14502,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 290,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.019072,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000671,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14503,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 291,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.01717,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000508,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14504,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 292,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.015908,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000581,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14505,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 293,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.018164,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000429,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14506,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 294,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.014182,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000514,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14507,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 295,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.015239,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000267,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14508,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 296,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.017881,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000467,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14509,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 297,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.011941,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000965,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14510,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 298,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.022637,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000556,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14511,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 299,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.014696,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000475,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "30f8c4a4-39a1-4467-9f44-cce621d72841",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n    \\\\\\\"n_episodes\\\\\\\": 5,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"n_steps_collected\\\\\\\": 14512,\\\\n    \\\\\\\"num_ode_steps\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"statistics\\\\\\\": {\\\\n    \\\\\\\"fmvd_mean\\\\\\\": 0.054867,\\\\n    \\\\\\\"fmvd_std\\\\\\\": 0.040291,\\\\n    \\\\\\\"fmvd_percentiles\\\\\\\": {\\\\n      \\\\\\\"P25\\\\\\\": 0.027738,\\\\n      \\\\\\\"P50\\\\\\\": 0.046693,\\\\n      \\\\\\\"P75\\\\\\\": 0.070899,\\\\n      \\\\\\\"P90\\\\\\\": 0.093805\\\\n    },\\\\n    \\\\\\\"k10_variance_mean\\\\\\\": 0.004888,\\\\n    \\\\\\\"k10_variance_std\\\\\\\": 0.005635,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.082528,\\\\n    \\\\\\\"spearman_pvalue\\\\\\\": 2.3276188581837622e-23\\\\n  },\\\\n  \\\\\\\"per_step_data\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 0,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 0,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.035418,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.006771,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 1,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 1,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.04047,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.013842,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 2,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 2,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.053366,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005597,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 3,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 3,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.080012,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.007209,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 4,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 4,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.055463,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00453,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 5,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 5,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.045602,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.003994,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 6,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 6,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.057073,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.007955,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 7,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 7,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.055695,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00382,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 8,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 8,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.057416,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.012315,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 9,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 9,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.051594,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005676,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 10,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 10,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.075598,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.006945,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 11,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 11,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.052067,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.01097,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 12,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 12,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.056369,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.009767,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 13,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 13,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.064521,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.011518,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 0,\\\\n      \\\\\\\"env_step\\\\\\\": 14,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.060853,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.005684,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 15,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_alphabet_soup_an\\\\n\\\\n... [截断: 输出过长，省略 3331497 字符] ...\\\\n\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14495,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 283,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.019037,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000766,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14496,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 284,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.012573,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000865,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14497,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 285,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.013772,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000503,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14498,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 286,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.01821,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000511,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14499,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 287,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.012134,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.00074,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14500,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 288,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.011599,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000975,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14501,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 289,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.013746,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000829,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14502,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 290,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.019072,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000671,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14503,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 291,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.01717,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000508,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14504,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 292,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.015908,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000581,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14505,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 293,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.018164,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000429,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14506,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 294,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.014182,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000514,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14507,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 295,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.015239,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000267,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14508,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 296,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.017881,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000467,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14509,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 297,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.011941,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000965,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14510,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 298,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.022637,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000556,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"step\\\\\\\": 14511,\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\",\\\\n      \\\\\\\"episode\\\\\\\": 4,\\\\n      \\\\\\\"env_step\\\\\\\": 299,\\\\n      \\\\\\\"fmvd\\\\\\\": 0.014696,\\\\n      \\\\\\\"k10_variance\\\\\\\": 0.000475,\\\\n      \\\\\\\"episode_success\\\\\\\": false\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"benchmark\\\": \\\"object\\\",\\n    \\\"n_episodes\\\": 5,\\n    \\\"seed\\\": 42,\\n    \\\"n_steps_collected\\\": 14512,\\n    \\\"num_ode_steps\\\": 10\\n  },\\n  \\\"statistics\\\": {\\n    \\\"fmvd_mean\\\": 0.054867,\\n    \\\"fmvd_std\\\": 0.040291,\\n    \\\"fmvd_percentiles\\\": {\\n      \\\"P25\\\": 0.027738,\\n      \\\"P50\\\": 0.046693,\\n      \\\"P75\\\": 0.070899,\\n      \\\"P90\\\": 0.093805\\n    },\\n    \\\"k10_variance_mean\\\": 0.004888,\\n    \\\"k10_variance_std\\\": 0.005635,\\n    \\\"spearman_rho\\\": 0.082528,\\n    \\\"spearman_pvalue\\\": 2.3276188581837622e-23\\n  },\\n  \\\"per_step_data\\\": [\\n    {\\n      \\\"step\\\": 0,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 0,\\n      \\\"fmvd\\\": 0.035418,\\n      \\\"k10_variance\\\": 0.006771,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 1,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 1,\\n      \\\"fmvd\\\": 0.04047,\\n      \\\"k10_variance\\\": 0.013842,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 2,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 2,\\n      \\\"fmvd\\\": 0.053366,\\n      \\\"k10_variance\\\": 0.005597,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 3,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 3,\\n      \\\"fmvd\\\": 0.080012,\\n      \\\"k10_variance\\\": 0.007209,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 4,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 4,\\n      \\\"fmvd\\\": 0.055463,\\n      \\\"k10_variance\\\": 0.00453,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 5,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 5,\\n      \\\"fmvd\\\": 0.045602,\\n      \\\"k10_variance\\\": 0.003994,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 6,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 6,\\n      \\\"fmvd\\\": 0.057073,\\n      \\\"k10_variance\\\": 0.007955,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 7,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 7,\\n      \\\"fmvd\\\": 0.055695,\\n      \\\"k10_variance\\\": 0.00382,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 8,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 8,\\n      \\\"fmvd\\\": 0.057416,\\n      \\\"k10_variance\\\": 0.012315,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 9,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 9,\\n      \\\"fmvd\\\": 0.051594,\\n      \\\"k10_variance\\\": 0.005676,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 10,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 10,\\n      \\\"fmvd\\\": 0.075598,\\n      \\\"k10_variance\\\": 0.006945,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 11,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 11,\\n      \\\"fmvd\\\": 0.052067,\\n      \\\"k10_variance\\\": 0.01097,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 12,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 12,\\n      \\\"fmvd\\\": 0.056369,\\n      \\\"k10_variance\\\": 0.009767,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 13,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 13,\\n      \\\"fmvd\\\": 0.064521,\\n      \\\"k10_variance\\\": 0.011518,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 0,\\n      \\\"env_step\\\": 14,\\n      \\\"fmvd\\\": 0.060853,\\n      \\\"k10_variance\\\": 0.005684,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 15,\\n      \\\"task\\\": \\\"pick_up_the_alphabet_soup_an\\n\\n... [截断: 输出过长，省略 3331497 字符] ...\\n\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14495,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 283,\\n      \\\"fmvd\\\": 0.019037,\\n      \\\"k10_variance\\\": 0.000766,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14496,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 284,\\n      \\\"fmvd\\\": 0.012573,\\n      \\\"k10_variance\\\": 0.000865,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14497,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 285,\\n      \\\"fmvd\\\": 0.013772,\\n      \\\"k10_variance\\\": 0.000503,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14498,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 286,\\n      \\\"fmvd\\\": 0.01821,\\n      \\\"k10_variance\\\": 0.000511,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14499,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 287,\\n      \\\"fmvd\\\": 0.012134,\\n      \\\"k10_variance\\\": 0.00074,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14500,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 288,\\n      \\\"fmvd\\\": 0.011599,\\n      \\\"k10_variance\\\": 0.000975,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14501,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 289,\\n      \\\"fmvd\\\": 0.013746,\\n      \\\"k10_variance\\\": 0.000829,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14502,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 290,\\n      \\\"fmvd\\\": 0.019072,\\n      \\\"k10_variance\\\": 0.000671,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14503,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 291,\\n      \\\"fmvd\\\": 0.01717,\\n      \\\"k10_variance\\\": 0.000508,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14504,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 292,\\n      \\\"fmvd\\\": 0.015908,\\n      \\\"k10_variance\\\": 0.000581,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14505,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 293,\\n      \\\"fmvd\\\": 0.018164,\\n      \\\"k10_variance\\\": 0.000429,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14506,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 294,\\n      \\\"fmvd\\\": 0.014182,\\n      \\\"k10_variance\\\": 0.000514,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14507,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 295,\\n      \\\"fmvd\\\": 0.015239,\\n      \\\"k10_variance\\\": 0.000267,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14508,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 296,\\n      \\\"fmvd\\\": 0.017881,\\n      \\\"k10_variance\\\": 0.000467,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14509,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 297,\\n      \\\"fmvd\\\": 0.011941,\\n      \\\"k10_variance\\\": 0.000965,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14510,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 298,\\n      \\\"fmvd\\\": 0.022637,\\n      \\\"k10_variance\\\": 0.000556,\\n      \\\"episode_success\\\": false\\n    },\\n    {\\n      \\\"step\\\": 14511,\\n      \\\"task\\\": \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\",\\n      \\\"episode\\\": 4,\\n      \\\"env_step\\\": 299,\\n      \\\"fmvd\\\": 0.014696,\\n      \\\"k10_variance\\\": 0.000475,\\n      \\\"episode_success\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have all the data I need. Let me also check the registry - it returned 0 experiments, meaning the experiment might be registered under a different name or the filter format is different. Let me check.\n\nActually, the registry returned 0 results with the filter `{\"exp_id\": \"fmvd-calibration-phase1\"}`. The `read_registry` filters by field→value, and `exp_id` is probably the key, not a field. Let me try without filters.\n\nLet me now summarize the results:\n\n**Key Metrics from the log:**\n- Steps collected: 14,512\n\n\n- FMVD: mean=0.0549, std=0.0403, P25=0.0277, P50=0.0467, P75=0.0709, P90=0.0938\n- K=10 Variance: mean=0.0049, std=0.0056\n- **Spearman ρ(FMVD, K10_var) = 0.0825 (p=2.33e-23)**\n- **GO/NO-GO: NO-GO** (threshold: ρ > 0.3)\n\nThe correlation between FMVD and K=10 variance is extremely weak at 0.0825, well below the 0.3 threshold needed to pass, so this experiment fails the go/no-go criteria despite the highly significant p-value.\n\nAcross 50 total episodes, only 3 succeeded (6% success rate), with the model hitting the 300-step limit and failing on most runs. The weak correlation combined with the poor success rate indicates the model is struggling to learn a meaningful relationship between these variables.\n\nThe logs show no errors, just a minor deprecation warning. Since the registry query returned no results, the experiment likely hasn't been registered yet, so I'll update it directly—the tool will create it if needed. I need to mark the conclusion as \"negative\" since the correlation falls well below the 0.3 threshold, then populate the metrics, paths, and status fields.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "19ecdff8-448c-41cb-87df-1750a2877d80",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Je8GH1J5VVc1XgEqDZHes1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5041,
+                "cache_read_input_tokens": 30173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5041
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the registry for existing experiment entries."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "3b4348a7-ed2f-4de5-a2de-2a3c16497fac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Je8GH1J5VVc1XgEqDZHes1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5041,
+                "cache_read_input_tokens": 30173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5041
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018R1VLLA7zKWTTKXSg3d7sH",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "fields": [
+                  "*"
+                ],
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "31d194c5-d519-469e-87ac-56713847e113",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Je8GH1J5VVc1XgEqDZHes1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5041,
+                "cache_read_input_tokens": 30173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5041
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T19:04:09.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018R1VLLA7zKWTTKXSg3d7sH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-perdof-object-norm003-seed47\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:56:24.175Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:06.660Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_perdof_norm003_seed47.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"990503\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-seed47.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:56:23.526Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof\\\", \\\"seed\\\": 47}, \\\"hypothesis\\\": \\\"perdof CRM with ε=0.03 (max_correction_norm) on LIBERO-Object seed47 tests whether a smaller correction magnitude improves or degrades task success rate compared to ε=0.05\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:45:55.645Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:46:06.068016+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.15, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.2, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0.1, \\\"butter\\\": 0.2, \\\"milk\\\": 0.1, \\\"chocolate_pudding\\\": 0.3, \\\"orange_juice\\\": 0.3}}}, \\\"eval-perdof-object-norm005-seed47\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:56:21.800Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:05.152Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_perdof_norm005_seed47.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"990235\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm005-seed47.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:56:21.094Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof\\\", \\\"seed\\\": 47}, \\\"hypothesis\\\": \\\"perdof CRM with ε=0.05 (max_correction_norm) on LIBERO-Object seed47 provides per-DOF conformal refinement; this run supplements the magnitude curve at ε=0.05 (currently n=4)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:18.825Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:34.362696+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.1, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.1, \\\"bbq_sauce\\\": 0.2, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0.1, \\\"milk\\\": 0, \\\"chocolate_pudding\\\": 0.4, \\\"orange_juice\\\": 0.2}}}, \\\"fmvd-calibration-phase1\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:01:24.394Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}}, \\\"eval-vla-only-goal-seed45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:31:14.902Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:58:07.307Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed45.log\\\", \\\"command\\\": \\\"python -u src/evaluate.py --mode vla_only --benchmark goal --n_rollouts 10 --seed 45 --K 1 --output_file logs/eval_goal_vla_only_seed45.json\\\", \\\"server\\\": \\\"bjb2-28827\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed45. 补齐 Goal suite 第 4 个 seed (n=4)，与 seed42/43/44-r2 配套。LIBERO-Goal 目标条件泛化 baseline。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:55:39.155Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:55:47.453692+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.63, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 0.9, \\\"put_the_bowl_on_the_stove\\\": 0.9, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.3, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.4, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.3, \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.9, \\\"put_the_cream_cheese_in_the_bowl\\\": 0.1, \\\"turn_on_the_stove\\\": 0.8, \\\"put_the_bowl_on_the_plate\\\": 0.9, \\\"put_the_wine_bottle_on_the_rack\\\": 0.8}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T18:58:07.307Z\\\"}, \\\"eval-vla-only-spatial-seed47\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:39.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:16.645Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed47. 额外 seed 增加统计稳健性，与 CRM Spatial seed47 配对。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_spatial_vla_only_seed47.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"47706\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed47.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T18:50:43Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA\\\", \\\"seed\\\": 47}}, \\\"eval-vla-only-spatial-seed46\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:37.036Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:10.660Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed46. 补齐 Spatial VLA-only n=5，与 seed42/43/44/45 配套。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 46 --K 1 --output_file logs/eval_spatial_vla_only_seed46.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"47637\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T18:50:42Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA\\\", \\\"seed\\\": 46}}, \\\"eval-obs-only-spatial-norm02-seed46-r2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:04:55.082Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:07.960Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.2, K=10) on LIBERO-Spatial seed46. 重跑：原实验被 SIGKILL（M023）。补充 Spatial K=10 cross-benchmark 数据。\\\", \\\"parent\\\": \\\"eval-obs-only-spatial-norm02-seed46\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_spatial_obs_only_norm02_seed46_r2.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"901980\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-spatial-norm02-seed46-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:17.649Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial (10 tasks x 10 rollouts)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:52:06.543Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:52:25.091547+00:00\\\"}]}}, \\\"eval-vla-only-long-seed47\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:41.106Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:51:59.511Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-10 seed47. 额外 seed 增加 Long baseline 统计稳健性。\\\"}, \\\"eval-obs-only-object-norm005-seed48\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:56:19.347Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:51:43.987Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_obs_only_norm005_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"989965\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:56:18.699Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only\\\", \\\"seed\\\": 48}, \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.05) seed48 on LIBERO-Object. 补 magnitude curve obs_only ε=0.05 (当前 n=5)。timeout=16h。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:51:42.490Z\\\"}}, \\\"eval-vla-only-long-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:39:55.593Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:38:52.937Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-10 seed44. 扩展到新 benchmark suite 验证 CRM 泛化性的前提——先建立 baseline。\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"N/A (eval-only)\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed44.log\\\", \\\"wall_clock_seconds\\\": 6848.4, \\\"gpu_hours\\\": 1.9}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:34:31.522Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:34:43.640067+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.12, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce_basket\\\": 0, \\\"LIVING_ROOM_SCENE2_cream_cheese_butter_basket\\\": 0, \\\"KITCHEN_SCENE3_stove_moka_pot\\\": 0.8, \\\"KITCHEN_SCENE4_black_bowl_drawer\\\": 0, \\\"LIVING_ROOM_SCENE5_white_mug_left_yellow_mug_right\\\": 0.2, \\\"STUDY_SCENE1_book_caddy\\\": 0.1, \\\"LIVING_ROOM_SCENE6_white_mug_plate_chocolate_pudding\\\": 0, \\\"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese_basket\\\": 0, \\\"KITCHEN_SCENE8_both_moka_pots_stove\\\": 0, \\\"KITCHEN_SCENE6_yellow_white_mug_microwave\\\": 0.1}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T18:38:52.937Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 341, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8645}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "73436aae-2e5d-4ee4-963e-7475664a59af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-perdof-object-norm003-seed47\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:56:24.175Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:06.660Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_perdof_norm003_seed47.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"990503\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-seed47.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:56:23.526Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof\\\", \\\"seed\\\": 47}, \\\"hypothesis\\\": \\\"perdof CRM with ε=0.03 (max_correction_norm) on LIBERO-Object seed47 tests whether a smaller correction magnitude improves or degrades task success rate compared to ε=0.05\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:45:55.645Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:46:06.068016+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.15, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.2, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0.1, \\\"butter\\\": 0.2, \\\"milk\\\": 0.1, \\\"chocolate_pudding\\\": 0.3, \\\"orange_juice\\\": 0.3}}}, \\\"eval-perdof-object-norm005-seed47\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:56:21.800Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:05.152Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_perdof_norm005_seed47.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"990235\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm005-seed47.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:56:21.094Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof\\\", \\\"seed\\\": 47}, \\\"hypothesis\\\": \\\"perdof CRM with ε=0.05 (max_correction_norm) on LIBERO-Object seed47 provides per-DOF conformal refinement; this run supplements the magnitude curve at ε=0.05 (currently n=4)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:18.825Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:34.362696+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.1, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.1, \\\"bbq_sauce\\\": 0.2, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0.1, \\\"milk\\\": 0, \\\"chocolate_pudding\\\": 0.4, \\\"orange_juice\\\": 0.2}}}, \\\"fmvd-calibration-phase1\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:01:24.394Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}}, \\\"eval-vla-only-goal-seed45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:31:14.902Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:58:07.307Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed45.log\\\", \\\"command\\\": \\\"python -u src/evaluate.py --mode vla_only --benchmark goal --n_rollouts 10 --seed 45 --K 1 --output_file logs/eval_goal_vla_only_seed45.json\\\", \\\"server\\\": \\\"bjb2-28827\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed45. 补齐 Goal suite 第 4 个 seed (n=4)，与 seed42/43/44-r2 配套。LIBERO-Goal 目标条件泛化 baseline。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:55:39.155Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:55:47.453692+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.63, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"open_the_middle_drawer_of_the_cabinet\\\": 0.9, \\\"put_the_bowl_on_the_stove\\\": 0.9, \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": 0.3, \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": 0.4, \\\"put_the_bowl_on_top_of_the_cabinet\\\": 0.3, \\\"push_the_plate_to_the_front_of_the_stove\\\": 0.9, \\\"put_the_cream_cheese_in_the_bowl\\\": 0.1, \\\"turn_on_the_stove\\\": 0.8, \\\"put_the_bowl_on_the_plate\\\": 0.9, \\\"put_the_wine_bottle_on_the_rack\\\": 0.8}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T18:58:07.307Z\\\"}, \\\"eval-vla-only-spatial-seed47\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:39.170Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:16.645Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed47. 额外 seed 增加统计稳健性，与 CRM Spatial seed47 配对。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_spatial_vla_only_seed47.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"47706\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed47.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T18:50:43Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA\\\", \\\"seed\\\": 47}}, \\\"eval-vla-only-spatial-seed46\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:37.036Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:10.660Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial seed46. 补齐 Spatial VLA-only n=5，与 seed42/43/44/45 配套。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 46 --K 1 --output_file logs/eval_spatial_vla_only_seed46.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"47637\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T18:50:42Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA\\\", \\\"seed\\\": 46}}, \\\"eval-obs-only-spatial-norm02-seed46-r2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:04:55.082Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:07.960Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.2, K=10) on LIBERO-Spatial seed46. 重跑：原实验被 SIGKILL（M023）。补充 Spatial K=10 cross-benchmark 数据。\\\", \\\"parent\\\": \\\"eval-obs-only-spatial-norm02-seed46\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_spatial_obs_only_norm02_seed46_r2.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"901980\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-spatial-norm02-seed46-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:17.649Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial (10 tasks x 10 rollouts)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:52:06.543Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:52:25.091547+00:00\\\"}]}}, \\\"eval-vla-only-long-seed47\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:41.106Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:51:59.511Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-10 seed47. 额外 seed 增加 Long baseline 统计稳健性。\\\"}, \\\"eval-obs-only-object-norm005-seed48\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:56:19.347Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:51:43.987Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_obs_only_norm005_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"989965\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:56:18.699Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only\\\", \\\"seed\\\": 48}, \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.05) seed48 on LIBERO-Object. 补 magnitude curve obs_only ε=0.05 (当前 n=5)。timeout=16h。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:51:42.490Z\\\"}}, \\\"eval-vla-only-long-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:39:55.593Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:38:52.937Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-10 seed44. 扩展到新 benchmark suite 验证 CRM 泛化性的前提——先建立 baseline。\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"N/A (eval-only)\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed44.log\\\", \\\"wall_clock_seconds\\\": 6848.4, \\\"gpu_hours\\\": 1.9}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:34:31.522Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:34:43.640067+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.12, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"per_task\\\": {\\\"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce_basket\\\": 0, \\\"LIVING_ROOM_SCENE2_cream_cheese_butter_basket\\\": 0, \\\"KITCHEN_SCENE3_stove_moka_pot\\\": 0.8, \\\"KITCHEN_SCENE4_black_bowl_drawer\\\": 0, \\\"LIVING_ROOM_SCENE5_white_mug_left_yellow_mug_right\\\": 0.2, \\\"STUDY_SCENE1_book_caddy\\\": 0.1, \\\"LIVING_ROOM_SCENE6_white_mug_plate_chocolate_pudding\\\": 0, \\\"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese_basket\\\": 0, \\\"KITCHEN_SCENE8_both_moka_pots_stove\\\": 0, \\\"KITCHEN_SCENE6_yellow_white_mug_microwave\\\": 0.1}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T18:38:52.937Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 341, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8645}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval-perdof-object-norm003-seed47\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:56:24.175Z\", \"updated_at\": \"2026-05-19T19:04:06.660Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_perdof_norm003_seed47.json\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:3\"], \"pid\": \"990503\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm003-seed47.log\", \"submitted_at\": \"2026-05-19T05:56:23.526Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_perdof\", \"seed\": 47}, \"hypothesis\": \"perdof CRM with ε=0.03 (max_correction_norm) on LIBERO-Object seed47 tests whether a smaller correction magnitude improves or degrades task success rate compared to ε=0.05\", \"reproduce\": {\"finished_at\": \"2026-05-19T18:45:55.645Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:46:06.068016+00:00\"}]}, \"metrics\": {\"overall_success_rate\": 0.15, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.2, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-perdof-object-norm005-seed47\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:56:21.800Z\", \"updated_at\": \"2026-05-19T19:04:05.152Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_perdof_norm005_seed47.json\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"990235\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm005-seed47.log\", \"submitted_at\": \"2026-05-19T05:56:21.094Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_perdof\", \"seed\": 47}, \"hypothesis\": \"perdof CRM with ε=0.05 (max_correction_norm) on LIBERO-Object seed47 provides per-DOF conformal refinement; this run supplements the magnitude curve at ε=0.05 (currently n=4)\", \"reproduce\": {\"finished_at\": \"2026-05-19T19:01:18.825Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:01:34.362696+00:00\"}]}, \"metrics\": {\"overall_success_rate\": 0.1, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"fmvd-calibration-phase1\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:57:05.859Z\", \"updated_at\": \"2026-05-19T19:01:24.394Z\", \"hypothesis\": \"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\", \"spec\": {\"command\": \"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:5\"], \"pid\": \"901435\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\", \"submitted_at\": \"2026-05-19T17:05:13.349Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/libero_data/libero_object/\", \"data_count\": 50, \"model_name\": \"smolvla_libero\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-19T19:01:21.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:01:39.128507+00:00\"}]}}, \"eval-vla-only-goal-seed45\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:31:14.902Z\", \"updated_at\": \"2026-05-19T18:58:07.307Z\", \"spec\": {\"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed45.log\", \"command\": \"python -u src/evaluate.py --mode vla_only --benchmark goal --n_rollouts 10 --seed 45 --K 1 --output_file logs/eval_goal_vla_only_seed45.json\", \"server\": \"bjb2-28827\"}, \"hypothesis\": \"VLA-only baseline on LIBERO-Goal seed45. 补齐 Goal suite 第 4 个 seed (n=4)，与 seed42/43/44-r2 配套。LIBERO-Goal 目标条件泛化 baseline。\", \"reproduce\": {\"finished_at\": \"2026-05-19T18:55:39.155Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:55:47.453692+00:00\"}]}, \"metrics\": {\"success_rate\": 0.63, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.9, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.3, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.4, \"put_the_bowl_on_top_of_the_cabinet\": 0.3, \"push_the_plate_to_the_front_of_the_stove\": 0.9, \"put_the_cream_cheese_in_the_bowl\": 0.1, \"turn_on_the_stove\": 0.8, \"put_the_bowl_on_the_plate\": 0.9, \"put_the_wine_bottle_on_the_rack\": 0.8}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:58:07.307Z\"}, \"eval-vla-only-spatial-seed47\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:51:39.170Z\", \"updated_at\": \"2026-05-19T18:52:16.645Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed47. 额外 seed 增加统计稳健性，与 CRM Spatial seed47 配对。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_spatial_vla_only_seed47.json\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:2\"], \"pid\": \"47706\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed47.log\", \"submitted_at\": \"2026-05-19T18:50:43Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 100, \"model_name\": \"SmolVLA\", \"seed\": 47}}, \"eval-vla-only-spatial-seed46\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:51:37.036Z\", \"updated_at\": \"2026-05-19T18:52:10.660Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-Spatial seed46. 补齐 Spatial VLA-only n=5，与 seed42/43/44/45 配套。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 46 --K 1 --output_file logs/eval_spatial_vla_only_seed46.json\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:0\"], \"pid\": \"47637\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed46.log\", \"submitted_at\": \"2026-05-19T18:50:42Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 100, \"model_name\": \"SmolVLA\", \"seed\": 46}}, \"eval-obs-only-spatial-norm02-seed46-r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:04:55.082Z\", \"updated_at\": \"2026-05-19T18:52:07.960Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=10) on LIBERO-Spatial seed46. 重跑：原实验被 SIGKILL（M023）。补充 Spatial K=10 cross-benchmark 数据。\", \"parent\": \"eval-obs-only-spatial-norm02-seed46\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_spatial_obs_only_norm02_seed46_r2.json\\\"\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:3\"], \"pid\": \"901980\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-obs-only-spatial-norm02-seed46-r2.log\", \"submitted_at\": \"2026-05-19T17:05:17.649Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 46, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Spatial (10 tasks x 10 rollouts)\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T18:52:06.543Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:52:25.091547+00:00\"}]}}, \"eval-vla-only-long-seed47\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:51:41.106Z\", \"updated_at\": \"2026-05-19T18:51:59.511Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-10 seed47. 额外 seed 增加 Long baseline 统计稳健性。\"}, \"eval-obs-only-object-norm005-seed48\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:56:19.347Z\", \"updated_at\": \"2026-05-19T18:51:43.987Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_obs_only_norm005_seed48.json\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:0\"], \"pid\": \"989965\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed48.log\", \"submitted_at\": \"2026-05-19T05:56:18.699Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 48}, \"hypothesis\": \"obs_only CRM (ε=0.05) seed48 on LIBERO-Object. 补 magnitude curve obs_only ε=0.05 (当前 n=5)。timeout=16h。\", \"reproduce\": {\"finished_at\": \"2026-05-19T18:51:42.490Z\"}}, \"eval-vla-only-long-seed44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:39:55.593Z\", \"updated_at\": \"2026-05-19T18:38:52.937Z\", \"hypothesis\": \"VLA-only baseline on LIBERO-10 seed44. 扩展到新 benchmark suite 验证 CRM 泛化性的前提——先建立 baseline。\", \"spec\": {\"checkpoint_path\": \"N/A (eval-only)\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed44.log\", \"wall_clock_seconds\": 6848.4, \"gpu_hours\": 1.9}, \"reproduce\": {\"finished_at\": \"2026-05-19T18:34:31.522Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:34:43.640067+00:00\"}]}, \"metrics\": {\"overall_success_rate\": 0.12, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce_basket\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter_basket\": 0, \"KITCHEN_SCENE3_stove_moka_pot\": 0.8, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE5_white_mug_left_yellow_mug_right\": 0.2, \"STUDY_SCENE1_book_caddy\": 0.1, \"LIVING_ROOM_SCENE6_white_mug_plate_chocolate_pudding\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese_basket\": 0, \"KITCHEN_SCENE8_both_moka_pots_stove\": 0, \"KITCHEN_SCENE6_yellow_white_mug_microwave\": 0.1}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:38:52.937Z\"}}, \"count\": 10, \"total\": 341, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8645}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the experiment `fmvd-calibration-phase1` in the registry with status `ANALYZING`. Now I need to update it with the results.\n\nKey data:\n- Spearman ρ = 0.0825 (far below 0.3 threshold)\n- p-value = 2.33e-23 (statistically significant but practically irrelevant)\n- n_samples = 14,512\n- FMVD mean = 0.0549, std = 0.0403\n- K10 variance mean = 0.0049, std = 0.0056\n\n\n- Success rate: 3/50 = 6% with a NO-GO verdict\n\nNow I'm updating the registry with the metrics, checkpoint and log paths, marking the conclusion as negative, and setting the status to DONE.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "0462a27b-fded-4c96-91c3-30661c99f1e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gXUbRj2DfLokVPiRKtArC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6301,
+                "cache_read_input_tokens": 35214,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6301
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment found in registry (status: ANALYZING). Now updating with results."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "87c00b2a-dd2b-48e1-bf6a-c4b73191e950",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gXUbRj2DfLokVPiRKtArC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6301,
+                "cache_read_input_tokens": 35214,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6301
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NnzePfpSFUSrF25MUYteFo",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "fmvd-calibration-phase1",
+                "field": "metrics",
+                "value": {
+                  "spearman_rho": 0.082528,
+                  "spearman_pvalue": 2.33e-23,
+                  "n_samples": 14512,
+                  "go_nogo": "NO-GO",
+                  "threshold": 0.3,
+                  "fmvd_mean": 0.054867,
+                  "fmvd_std": 0.040291,
+                  "fmvd_P25": 0.027738,
+                  "fmvd_P50": 0.046693,
+                  "fmvd_P75": 0.070899,
+                  "fmvd_P90": 0.093805,
+                  "k10_variance_mean": 0.004888,
+                  "k10_variance_std": 0.005635,
+                  "task_success_rate": 0.06,
+                  "n_tasks": 10,
+                  "n_episodes": 50,
+                  "n_successes": 3
+                },
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "dc3929e0-11c9-42b8-9cdf-5fa041c0a1ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gXUbRj2DfLokVPiRKtArC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6301,
+                "cache_read_input_tokens": 35214,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6301
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6LifAi1kCyNtv38ejU8E1",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "fmvd-calibration-phase1",
+                "field": "checkpoint_path",
+                "value": "/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "f2643cfa-5b19-4115-859b-05cf2f703312",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015gXUbRj2DfLokVPiRKtArC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6301,
+                "cache_read_input_tokens": 35214,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6301
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T19:04:28.838Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NnzePfpSFUSrF25MUYteFo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:27.718Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1709}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "d125ff1e-3daf-4c5c-aa0b-ba002fb1dda4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:27.718Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1709}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"fmvd-calibration-phase1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:57:05.859Z\", \"updated_at\": \"2026-05-19T19:04:27.718Z\", \"hypothesis\": \"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\", \"spec\": {\"command\": \"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:5\"], \"pid\": \"901435\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\", \"submitted_at\": \"2026-05-19T17:05:13.349Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/libero_data/libero_object/\", \"data_count\": 50, \"model_name\": \"smolvla_libero\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-19T19:01:21.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:01:39.128507+00:00\"}]}, \"metrics\": {\"spearman_rho\": 0.082528, \"spearman_pvalue\": 2.33e-23, \"n_samples\": 14512, \"go_nogo\": \"NO-GO\", \"threshold\": 0.3, \"fmvd_mean\": 0.054867, \"fmvd_std\": 0.040291, \"fmvd_P25\": 0.027738, \"fmvd_P50\": 0.046693, \"fmvd_P75\": 0.070899, \"fmvd_P90\": 0.093805, \"k10_variance_mean\": 0.004888, \"k10_variance_std\": 0.005635, \"task_success_rate\": 0.06, \"n_tasks\": 10, \"n_episodes\": 50, \"n_successes\": 3}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.1709}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T19:04:31.823Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6LifAi1kCyNtv38ejU8E1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:31.232Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9636}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "be79ed5b-6bbb-4b04-bb9f-766c6a999188",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:31.232Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9636}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"fmvd-calibration-phase1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:57:05.859Z\", \"updated_at\": \"2026-05-19T19:04:31.232Z\", \"hypothesis\": \"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\", \"spec\": {\"command\": \"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:5\"], \"pid\": \"901435\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\", \"submitted_at\": \"2026-05-19T17:05:13.349Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/libero_data/libero_object/\", \"data_count\": 50, \"model_name\": \"smolvla_libero\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-19T19:01:21.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:01:39.128507+00:00\"}]}, \"metrics\": {\"spearman_rho\": 0.082528, \"spearman_pvalue\": 2.33e-23, \"n_samples\": 14512, \"go_nogo\": \"NO-GO\", \"threshold\": 0.3, \"fmvd_mean\": 0.054867, \"fmvd_std\": 0.040291, \"fmvd_P25\": 0.027738, \"fmvd_P50\": 0.046693, \"fmvd_P75\": 0.070899, \"fmvd_P90\": 0.093805, \"k10_variance_mean\": 0.004888, \"k10_variance_std\": 0.005635, \"task_success_rate\": 0.06, \"n_tasks\": 10, \"n_episodes\": 50, \"n_successes\": 3}, \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9636}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SZw1vnuRGAZBPZsGxvnWBB",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "fmvd-calibration-phase1",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "f68da7a0-5fa7-472b-90a6-2aa609df3c58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KSG3tmRCLr99dvUTbhyckE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2379,
+                "cache_read_input_tokens": 41515,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2379
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T19:04:37.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SZw1vnuRGAZBPZsGxvnWBB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:36.570Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8107}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "eef8b689-858e-466f-9a0d-bb10e9cc4e55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:36.570Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8107}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"fmvd-calibration-phase1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:57:05.859Z\", \"updated_at\": \"2026-05-19T19:04:36.570Z\", \"hypothesis\": \"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\", \"spec\": {\"command\": \"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:5\"], \"pid\": \"901435\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\", \"submitted_at\": \"2026-05-19T17:05:13.349Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/libero_data/libero_object/\", \"data_count\": 50, \"model_name\": \"smolvla_libero\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-19T19:01:21.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:01:39.128507+00:00\"}]}, \"metrics\": {\"spearman_rho\": 0.082528, \"spearman_pvalue\": 2.33e-23, \"n_samples\": 14512, \"go_nogo\": \"NO-GO\", \"threshold\": 0.3, \"fmvd_mean\": 0.054867, \"fmvd_std\": 0.040291, \"fmvd_P25\": 0.027738, \"fmvd_P50\": 0.046693, \"fmvd_P75\": 0.070899, \"fmvd_P90\": 0.093805, \"k10_variance_mean\": 0.004888, \"k10_variance_std\": 0.005635, \"task_success_rate\": 0.06, \"n_tasks\": 10, \"n_episodes\": 50, \"n_successes\": 3}, \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\", \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8107}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BJWUUM9xTxGQ78XQj9eYNx",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "fmvd-calibration-phase1",
+                "field": "status",
+                "value": "DONE",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "3efbda99-a313-4ecf-97d7-88f351d832ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XkwmZuVGV6ngsWggkiVsNd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 948,
+                "cache_read_input_tokens": 43894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 948
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T19:04:46.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BJWUUM9xTxGQ78XQj9eYNx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:43.573Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7170.2, \\\"gpu_hours\\\": 1.99}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-19T19:04:43.573Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.1843}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "a9f4fe56-5a1b-402f-9b04-86215dcdb216",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"fmvd-calibration-phase1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:57:05.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T19:04:43.573Z\\\", \\\"hypothesis\\\": \\\"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"901435\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:05:13.349Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_object/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7170.2, \\\"gpu_hours\\\": 1.99}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T19:01:21.318Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T19:01:39.128507+00:00\\\"}]}, \\\"metrics\\\": {\\\"spearman_rho\\\": 0.082528, \\\"spearman_pvalue\\\": 2.33e-23, \\\"n_samples\\\": 14512, \\\"go_nogo\\\": \\\"NO-GO\\\", \\\"threshold\\\": 0.3, \\\"fmvd_mean\\\": 0.054867, \\\"fmvd_std\\\": 0.040291, \\\"fmvd_P25\\\": 0.027738, \\\"fmvd_P50\\\": 0.046693, \\\"fmvd_P75\\\": 0.070899, \\\"fmvd_P90\\\": 0.093805, \\\"k10_variance_mean\\\": 0.004888, \\\"k10_variance_std\\\": 0.005635, \\\"task_success_rate\\\": 0.06, \\\"n_tasks\\\": 10, \\\"n_episodes\\\": 50, \\\"n_successes\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-19T19:04:43.573Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.1843}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"fmvd-calibration-phase1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:57:05.859Z\", \"updated_at\": \"2026-05-19T19:04:43.573Z\", \"hypothesis\": \"FMVD (Flow Velocity Dispersion) signal validation: verify correlation between ODE velocity dispersion during K=1 denoising and K=10 action variance. Go/no-go gate for Adaptive K mechanism (Spearman ρ > 0.3).\", \"spec\": {\"command\": \"python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/fmvd_calibration.json\", \"server\": \"bjb2-28827\", \"gpu\": [\"cuda:5\"], \"pid\": \"901435\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log\", \"submitted_at\": \"2026-05-19T17:05:13.349Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/libero_data/libero_object/\", \"data_count\": 50, \"model_name\": \"smolvla_libero\", \"seed\": 42, \"wall_clock_seconds\": 7170.2, \"gpu_hours\": 1.99}, \"reproduce\": {\"finished_at\": \"2026-05-19T19:01:21.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:01:39.128507+00:00\"}]}, \"metrics\": {\"spearman_rho\": 0.082528, \"spearman_pvalue\": 2.33e-23, \"n_samples\": 14512, \"go_nogo\": \"NO-GO\", \"threshold\": 0.3, \"fmvd_mean\": 0.054867, \"fmvd_std\": 0.040291, \"fmvd_P25\": 0.027738, \"fmvd_P50\": 0.046693, \"fmvd_P75\": 0.070899, \"fmvd_P90\": 0.093805, \"k10_variance_mean\": 0.004888, \"k10_variance_std\": 0.005635, \"task_success_rate\": 0.06, \"n_tasks\": 10, \"n_episodes\": 50, \"n_successes\": 3}, \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T19:04:43.573Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.1843}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## FMVD Calibration Phase 1 — 结果汇总\n\n### 判定: **NO-GO** ❌\n\n| 指标 | 值 |\n|------|-----|\n| **Spearman ρ** | **0.0825** (阈值 0.3) |\n| p-value | 2.33e-23 |\n| 样本量 | 14,512 steps |\n| FMVD | mean=0.055, std=0.040 |\n| K10 variance | mean=0.005, std=0.006 |\n| 任务成功率 | 3/50 episodes (6%) |\n\n### 关键观察\n\n1. **相关性极弱**: ρ=0.083 远低于 0.3 阈值，FMVD 信号无法有效预测 K=10 action variance。虽然 p-value 极小（统计显著），但这仅因样本量大——实际效应量可忽略不计。\n\n2. **FMVD 信号本身有变化**: 分布有合理 spread（P25=0.028, P90=0.094），说明 ODE 轨迹湍流度确实在不同 step 有差异，但这个差异与多推理 variance 不对应。\n\n3. **模型在 Object 上表现很差**: 仅 3 个 episode 成功（salad_dressing、tomato_sauce、chocolate_pudding 各 1 次），大部分跑满 300 步超时。低成功率意味着模型大部分时间处于失败状态，可能掩盖了 FMVD 在成功/接近成功 episode 上的信号。\n\n4. **无 error/warning**: 日志干净，仅有一个无关的 `DeprecationWarning: swigvarlink`。\n\n### 结论\n\nFMVD（单次推理 ODE 速度离散度）不能作为 Adaptive K 的触发信号。Adaptive K 机制需要寻找其他不确定性代理指标，或者放弃单次推理预测多推理 variance 的路线。\n\n- **log_path**: `~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log`\n- **checkpoint_path**: `/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json`\n- **Registry**: status=DONE, conclusion=negative"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "uuid": "a4d2d007-7767-42ce-b23e-e0aad9056fb0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UPqrEAV77dPZqM8skeQLKc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1979,
+                "cache_read_input_tokens": 43894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1979
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## FMVD Calibration Phase 1 — 结果汇总\n\n### 判定: **NO-GO** ❌\n\n| 指标 | 值 |\n|------|-----|\n| **Spearman ρ** | **0.0825** (阈值 0.3) |\n| p-value | 2.33e-23 |\n| 样本量 | 14,512 steps |\n| FMVD | mean=0.055, std=0.040 |\n| K10 variance | mean=0.005, std=0.006 |\n| 任务成功率 | 3/50 episodes (6%) |\n\n### 关键观察\n\n1. **相关性极弱**: ρ=0.083 远低于 0.3 阈值，FMVD 信号无法有效预测 K=10 action variance。虽然 p-value 极小（统计显著），但这仅因样本量大——实际效应量可忽略不计。\n\n2. **FMVD 信号本身有变化**: 分布有合理 spread（P25=0.028, P90=0.094），说明 ODE 轨迹湍流度确实在不同 step 有差异，但这个差异与多推理 variance 不对应。\n\n3. **模型在 Object 上表现很差**: 仅 3 个 episode 成功（salad_dressing、tomato_sauce、chocolate_pudding 各 1 次），大部分跑满 300 步超时。低成功率意味着模型大部分时间处于失败状态，可能掩盖了 FMVD 在成功/接近成功 episode 上的信号。\n\n4. **无 error/warning**: 日志干净，仅有一个无关的 `DeprecationWarning: swigvarlink`。\n\n### 结论\n\nFMVD（单次推理 ODE 速度离散度）不能作为 Adaptive K 的触发信号。Adaptive K 机制需要寻找其他不确定性代理指标，或者放弃单次推理预测多推理 variance 的路线。\n\n- **log_path**: `~/runs/acr-vla-conformal-refinement/fmvd-calibration-phase1.log`\n- **checkpoint_path**: `/root/acr-vla-conformal-refinement/logs/fmvd_calibration.json`\n- **Registry**: status=DONE, conclusion=negative"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 94827,
+            "duration_api_ms": 76893,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "1d5d89f2-0b73-4caa-9d30-053e5125a732",
+            "total_cost_usd": 0.4493555,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 34980,
+              "cache_read_input_tokens": 285647,
+              "output_tokens": 3449,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 34980,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 686,
+                  "cache_read_input_tokens": 43894,
+                  "cache_creation_input_tokens": 1979,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1979
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1507,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016170000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 3449,
+                "cacheReadInputTokens": 285647,
+                "cacheCreationInputTokens": 34980,
+                "webSearchRequests": 0,
+                "costUSD": 0.44773850000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "102b191b-3750-40b3-aed3-2a8eed029d16"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-fmvd-calibration-phase1.md"
+}

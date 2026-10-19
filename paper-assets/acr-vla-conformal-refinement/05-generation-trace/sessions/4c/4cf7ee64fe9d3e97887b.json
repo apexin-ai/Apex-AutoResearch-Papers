@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4cf7ee64fe9d3e97887b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code pi05 wrapper adaptation",
+  "task_key": "worker_code_pi05-wrapper-adaptation_20260521T010617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pi05-wrapper-adaptation_20260521T010617.log",
+    "occurrence": 1,
+    "bytes": 705270,
+    "sha256": "5bf20026778dbaf7e867b452cf4bb403f31de06061272f3cdda358a41a98efa1"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 0,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 43,
+      "tool_call": 62,
+      "tool_result": 62,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "4cf7ee64fe9d3e97887b-part-0001.json",
+          "message_count": 124
+        },
+        {
+          "path": "4cf7ee64fe9d3e97887b-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-pi05-wrapper-adaptation.md"
+}

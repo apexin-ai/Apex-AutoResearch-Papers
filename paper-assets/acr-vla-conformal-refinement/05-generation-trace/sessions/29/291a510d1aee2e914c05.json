@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "291a510d1aee2e914c05",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check server process audit",
+  "task_key": "worker_check_server-process-audit_20260521T165332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_server-process-audit_20260521T165332.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "fb489445bf7c71514d5214a8a8aa02468aa701358fe3ed4231da004b9d2d67c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T16:53:39.327167+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_server-process-audit_20260521T165332"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-server-process-audit.md"
+}

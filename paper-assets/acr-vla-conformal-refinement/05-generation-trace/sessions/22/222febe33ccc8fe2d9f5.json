@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "222febe33ccc8fe2d9f5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep bjb1 32546 pi05 readiness",
+  "task_key": "worker_prep_bjb1-32546-pi05-readiness_20260526T033800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_bjb1-32546-pi05-readiness_20260526T033800_result.json",
+    "occurrence": 1,
+    "bytes": 2541,
+    "sha256": "dfd53215a7281f210632ef2a4f87794375c0db36cc34ab220315f475ea01e2d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LIBERO 和 PyTorch 都就绪。现在写报告。\n\n---\n\n## bjb1-32546 π0.5 CRM K=2 Long 实验就绪检查报告\n\n### 依赖状态\n\n| # | 依赖项 | 状态 | 详情 |\n|---|--------|------|------|\n| 1 | π0.5 模型权重 | ✅ 就绪 | `/root/autodl-tmp/models/pi05_libero_finetuned/model.safetensors` (7.0GB) |\n| 2 | π0.5 CRM checkpoint | ✅ 就绪 | `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` (2.5MB, 2026-05-25) |\n| 3 | Long precompute 数据 | ⚠️ 不存在，但**评估不需要** | `crm_cache_pi05_2048/` 整个目录不存在。但 `evaluate.py` 跑的是**在线 LIBERO 环境 rollout**，不读 precompute 数据。Precompute 数据仅用于 CRM 训练。 |\n| 4 | 代码 | ✅ 存在 | `src/evaluate.py` 存在 (36KB, 2026-05-26 更新)。**无 .git 目录**，无法确认是否最新版本。 |\n| 5 | LIBERO 环境 | ✅ 就绪 | libero 已安装 (conda python3.12) |\n| 6 | PyTorch + CUDA | ✅ 就绪 | torch=2.10.0+cu128, CUDA=True, 6 GPU |\n| 7 | 磁盘空间 | ✅ 充足 | 根分区 20GB 可用 (34% 已用)，数据盘 151GB 可用 (40% 已用) |\n\n### 问题项\n\n**1. 无 Git 仓库** — 代码目录 `/root/acr-vla-conformal-refinement/` 没有 `.git`，无法确认代码版本是否与 bjb1-18228 一致。建议在 SmolVLA 实验完成后用 `rsync` 或 `git clone` 同步最新代码。\n\n**2. `crm_cache_pi05_2048/long/` 不存在** — 虽然评估命令不需要，但如果后续需要在 bjb1-32546 上做 CRM 训练，需要从 bjb1-18228 传输：\n```bash\n# 仅 long/ 子目录: 2.5GB，传输约 1-3 分钟（内网）\nscp -r connect.bjb1.seetacloud.com:/root/autodl-tmp/crm_cache_pi05_2048/long/ /root/autodl-tmp/crm_cache_pi05_2048/long/\n\n# 全部 4 个 benchmark: 5.9GB\nscp -r connect.bjb1.seetacloud.com:/root/autodl-tmp/crm_cache_pi05_2048/ /root/autodl-tmp/crm_cache_pi05_2048/\n```\n\n### 结论\n\n**bjb1-32546 基本具备运行条件。** 模型、CRM checkpoint、LIBERO 环境、PyTorch 全部就绪。唯一不确定项是代码版本——建议在 SmolVLA 完成后先同步代码再启动实验。\n\n参考运行命令（6 GPU 可并行跑 6 个 seed）：\n```bash\nCUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_crm_obs_only_norm0.05_seed42_pi05_K2.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-bjb1-32546-pi05-readiness.md"
+}

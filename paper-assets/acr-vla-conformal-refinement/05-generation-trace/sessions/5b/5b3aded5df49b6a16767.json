@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3aded5df49b6a16767",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval smolvla libero validation",
+  "task_key": "worker_eval_smolvla-libero-validation_20260513T110809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smolvla-libero-validation_20260513T110809_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "e867901b320fddbeb7b2fa33bf72f2844c5179bf6364f861afcb481bab38f36a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整评估已后台启动 (PID=43809)。\n\n## 当前进展汇报\n\n### Step 1: HF_OFFLINE ✅\n- 在 evaluate.py 第 27-28 行添加了 `os.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")` 和 `os.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")`\n- 同时添加了 `flush=True` 全局 print patch\n\n### Step 2: 模型下载 ✅\n- smolvla_libero → `/root/autodl-tmp/models/smolvla_libero/` (model.safetensors 865MB)\n- SmolVLM2-500M-Video-Instruct → `/root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct/` (model.safetensors 1.9GB)\n- 修改了 smolvla_libero/config.json 中 `vlm_model_name` 指向本地路径\n\n### Step 3: 模型加载验证 ✅\n- SmolVLAWrapper 成功加载: chunk_size=50, vlm_hidden_size=960, max_action_dim=32\n- 全离线模式，无需联网\n\n### Step 4: 快速评估验证 ✅\n- 1 task, 50 steps, 运行成功\n- 每步约 1.95 秒（K=10 flow matching samples）\n- 流水线完全跑通\n\n### Step 4b: 完整评估 🔄\n- 已后台启动完整 spatial benchmark（10 tasks × 3 rollouts × 300 steps）\n- 预计需要约 **5 小时**\n- 结果会保存到 `/tmp/eval_spatial_results.json`\n- 可用以下命令检查进度：\n  - `tail -20 /tmp/eval_spatial_full.log`\n  - `cat /tmp/eval_spatial_results.json`（完成后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-smolvla-libero-validation.md"
+}

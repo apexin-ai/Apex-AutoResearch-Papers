@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05338f221a73ee6bcfd4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis s42 adaptive cross run",
+  "task_key": "worker_analysis_s42-adaptive-cross-run_20260524T222048",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_s42-adaptive-cross-run_20260524T222048_result.json",
+    "occurrence": 1,
+    "bytes": 2514,
+    "sha256": "85ac6df62e27f12e7b79cf77c5cec00fbea01371c37c75a6ca878ed9e0c36aab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# 调查结果\n\n两个数字 **不是** 同一配置的两次独立 run — 它们的 **K 值不同**：\n\n## Run 1: SR=82.0%\n- **exp_id**: `eval-supp-adapt-tau025-spatial-s42-r2`\n- **server/GPU**: bjb1-32546 / cuda:2\n- **创建**: 2026-05-23T04:11:39 → 完成 06:12:07 (wall=7232s)\n- **参数**: τ=0.25, **K=10 (默认，未显式传)**, max_correction_norm=0.2\n- **metrics**: SR=82.0% (164/200), trigger_rate=19.4%, mean_unc=0.1847\n- **command**:\n  ```\n  python -u src/evaluate.py --mode adaptive_conformal_crm \\\n    --crm_checkpoint .../crm_smolvla_3suite_v1/crm_best.pt \\\n    --benchmark spatial --seed 42 --n_rollouts 20 \\\n    --conformal_threshold 0.25 --max_correction_norm 0.2\n  ```\n\n## Run 2: SR=79.5%\n- **exp_id**: `eval-adaptive-k1-spatial-tau025-s42`\n- **server/GPU**: bjb1-32546 / cuda:5\n- **创建**: 2026-05-24T15:11:16\n- **参数**: τ=0.25, **K=1 (显式 --K 1)**, max_correction_norm=0.2\n- **metrics**: SR=79.5%, trigger_rate=19.7%\n- **command**: 同上但末尾加 `--K 1`，被论文 `experiments.tex:95` 用作 K=1 ablation\n\n## 差异原因\n**K 不同 (10 vs 1)**，不是随机性。`src/evaluate.py:76` 的 `--K` 默认值是 10。Δ=2.5pp 正是多样本 argmin-to-centroid 选择带来的增益，与 `experiments.tex:95` 主张「K=1=79.5% vs K=2=80.8%, Δ=+1.3pp」方向一致（K=10 比 K=2 多 1.2pp 进一步合理）。\n\n## Table 1 使用：**Run 1 (82.0%)**\n- 证据：`registry.yaml:31441` 明示「**Table 1 canonical** is `eval-supp-adapt-tau025-spatial-s47` (3-suite, **K=10**, norm=0.2)」——Table 1 canonical 配置就是 K=10\n- s42 行对应 `eval-supp-adapt-tau025-spatial-s42-r2` (K=10)，SR=82.0%\n\n## ⚠️ 发现的文档错误\n`report.md:11` 的 τ-sweep 表里 τ=0.25 行写的是 **79.5% / 19.6%**——但这是 **K=1** 的数值，错填进了「默认 K=10」的 τ-sweep 表（其他 τ 值 0.10/0.20/0.30 都是 K=10：来自 `eval-tau-sweep-spatial-tau020-s42` 等，SR 81%/79%/80.5%）。正确的 τ=0.25 K=10 应为 **82.0% / 19.4%**。\n\n## 建议\n1. **Table 1 保留 82.0%** — 已锁定为 K=10 canonical，无需变更。\n2. **修正 `report.md:11`**：τ=0.25 行改为 `82.0% / 19.4%`（引用 `eval-supp-adapt-tau025-spatial-s42-r2`）。\n3. **不要取平均** — 这两个数字属于不同消融条件（K=10 vs K=1），平均没有物理意义。\n4. 已提交的 `eval-k2-tau025-spatial-s42` (PREPARING, K=2) 完成后可补上 K=2 在该 seed 上的数值，让 K-sweep 完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s42-adaptive-cross-run.md"
+}

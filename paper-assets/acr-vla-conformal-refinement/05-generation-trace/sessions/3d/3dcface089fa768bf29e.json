@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dcface089fa768bf29e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops p0 final harvest v2",
+  "task_key": "worker_ops_p0-final-harvest-v2_20260516T121238",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_p0-final-harvest-v2_20260516T121238_result.json",
+    "occurrence": 1,
+    "bytes": 1730,
+    "sha256": "5cef37e0984a0159b9935298f5a1e671e8fbaa0070a22bed08da1c269fe4f955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== P0 FINAL RESULT ===\nobs_only seed44: RUNNING (8/10 tasks done, partial 10/80 successes = 12.5%)\nargmin seed44:   RUNNING (7/10 tasks done, partial 5/70 successes = 7.1%)\n\nFisher test: BLOCKED — 等两个实验完成\n\n=== P0 PARTIAL (seed44 interim) ===\n| task                  | obs_only | argmin |\n|-----------------------|----------|--------|\n| alphabet_soup         | 0/10     | 0/10   |\n| cream_cheese          | 1/10     | 0/10   |\n| salad_dressing        | 2/10     | 1/10   |\n| bbq_sauce             | 2/10     | 2/10   |\n| ketchup               | 1/10     | 1/10   |\n| tomato_sauce          | 1/10     | 1/10   |\n| butter                | 2/10     | 0/10   |\n| milk                  | 1/10     | —      |\n| subtotal (completed)  | 10/80    | 5/70   |\n\n估计剩余时间:\n- obs_only: ~2 tasks → ~2.5h\n- argmin: ~3 tasks → ~4.5h\n\n=== 3-SEED PARTIAL TABLE ===\n| seed | obs_only | argmin | Δ      |\n|------|----------|--------|--------|\n| 42   | 22/100   | 12/100 | +10pp  |\n| 43   | 16/100   | 17/100 | -1pp   |\n| 44   | ~12-13%? | ~7%?   | TBD    |\n\n=== SERVER STATUS ===\nbjb1-18228: 2 GPUs — P0 obs_only_norm02_seed44 + argmin_seed44 (both ~10.5h elapsed)\nbjb1-32546: 6 GPUs — vla_mean_s44, obs_only_norm03_s44, scalar_s44, obs_only_norm01_s44, obs_only_default_s44, obs_only_norm02_s45\nbjb2-28827: 6 GPUs — argmin_s45, vla_only_s45, perdof_norm02_s45, scalar_s45, obs_only_default_s45, vla_mean_s45 (4 new JSONs completed)\nbjb2-40593: 1 GPU  — perdof_default_seed44\n```\n\nP0 两个实验都在正常推进，没有 error/hang。argmin 比 obs_only 慢一个 task（7 vs 8/10）。预计 argmin 最后完成约 4-5 小时后可跑 Fisher test。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-final-harvest-v2.md"
+}

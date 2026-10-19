@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04bc918ab852fbffc399",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy bjb1 32546 cuda0 norm005 seed45",
+  "task_key": "worker_ops_deploy-bjb1-32546-cuda0-norm005-seed45_20260518T004352",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-bjb1-32546-cuda0-norm005-seed45_20260518T004352_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "bc2b3fe6a444c94923d9fff8aaec816bfa979f4573372d05f70e720ea0cb6b8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署并运行：\n\n- **Session**: `eval-obs-only-object-norm005-seed45` on bjb1-32546 cuda:0\n- **GPU**: 3646MiB 已占用，PID 565173\n- **Config**: obs_only CRM, ε=0.05, LIBERO-Object, seed45, K=10, n_rollouts=10\n- **Hypothesis**: Third seed for low-norm magnitude curve point (seed42=13%, seed43=14%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-bjb1-32546-cuda0-norm005-seed45.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24deac05906ad944091f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit cqa1 32758 preparing fix",
+  "task_key": "worker_audit_cqa1-32758-preparing-fix_20260523T121452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_cqa1-32758-preparing-fix_20260523T121452_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "a5bcaa72e2254314b69755cb5b564f2a10df5c7694689f0924c3475c5a517d7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cqa1-32758 审计完成。汇总：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| **eval-supp-obj-reconvla-s44** | cuda:0 | 180869 | PREPARING → **RUNNING** ✓ |\n| **eval-supp-k2mean-object-s44** | cuda:3 | 177864 | PREPARING → **RUNNING** ✓ |\n| **eval-supp-spatial-vla-only-s43** | cuda:5 | 181173 | PREPARING → **RUNNING** ✓ |\n| eval-supp-k2mean-spatial-s44 | cuda:1 | 174449 | RUNNING ✓ |\n| eval-supp-long-k2mean-s42 | cuda:4 | 172251 | RUNNING ✓ |\n| eval-supp-long-vla-only-s43 | cuda:2 | 199664 | RUNNING ✓ |\n\n所有 6 个实验进程均为 `Rl`（running）状态，显存正常占用（4.8-6.5 GB/卡）。3 个 PREPARING 已通过 QUEUED → RUNNING 转换修复，已注册每小时 cron 监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-cqa1-32758-preparing-fix.md"
+}

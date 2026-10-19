@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "075b3334d782d92230d8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_2_1778744620.md",
+  "task_key": "loop_2_1778744620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_2_1778744620.md",
+    "occurrence": 1,
+    "bytes": 4733,
+    "sha256": "4db1442ce63f74e56186954d53aad17661c739b0705a86091bbbd52e5aad4cf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-14T07:43:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1 GPU 白名单: cuda:0/1/2/3。bjb2 GPU 白名单: cuda:0。不得用白名单外 GPU\n- 当前 5 个 eval 正在跑，**不要 kill eval-reconvla-spatial-v3 和 eval-vla-mean-spatial**（Director D016 明确指示，它们不用 CRM，结果有效）\n- eval-acr-spatial-v2 / eval-k5-spatial / eval-scalar-unc-spatial 跑完后标记 \"pre-fix baseline\"，不可当正式结果用\n- Phase 2 (precompute → retrain → re-eval) 必须等 **两个 fix Worker 都完成且验证通过** 后才能启动，不能只完成一半就开跑\n- bjb2 缺 CRM checkpoint，object eval 只能在 bjb1 跑（或先 scp checkpoint 过去）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1** (autodl-4090x4): `connect.bjb1.seetacloud.com:18228`, 工作目录 `/root/acr-vla-conformal-refinement/`\n  - Python: `/root/miniconda3/bin/python`, 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 模型: `/root/autodl-tmp/models/smolvla_libero/`\n  - CRM checkpoints: `/root/autodl-tmp/checkpoints/crm/` (full/obs_only/scalar_unc/k5)\n  - 数据: `/root/autodl-tmp/libero_data/` (spatial + object)\n  - Precompute cache: `/root/autodl-tmp/crm_cache/` (K=10), `/root/autodl-tmp/crm_cache_k5/` (K=5)\n  - Eval results: `/root/autodl-tmp/eval_results/`\n- **bjb2** (autodl-4090 D): `connect.bjb2.seetacloud.com:40593`, 同样目录结构但缺 CRM checkpoints\n- **活跃进程**:\n  - bjb1:0 — eval-k5-spatial PID 154189 (ACR-VLA K=5, ~5/10 tasks done)\n  - bjb1:1 — eval-acr-spatial-v2 PID 117814 (ACR-VLA K=10, ~6/10 tasks done)\n  - bjb1:2 — eval-reconvla-spatial-v3 PID 118108 (SampleConsensus, ~7/10 tasks done)\n  - bjb1:3 — eval-scalar-unc-spatial PID 143206 (scalar CRM, ~4.5/10 tasks done)\n  - bjb2:0 — eval-vla-mean-spatial PID 143106 (VLA mean K=10, ~2.5/10 tasks done, ~24h remaining)\n- 5 个 cron 对应上述 5 个实验，reconcile 已确认全部活跃\n\n### 3. 📊 当前状态\n**刚做完**: D016 批准四项修复，已派 2 个 fix Worker 并行修改 bjb1 代码：\n- `worker_code_fix-c1-w3-training-pipeline_20260514T074015` — 修 C1 (6D→8D state in precompute) + W3 (alpha 0.1→0.5)\n- `worker_code_fix-w2-w4-eval-pipeline_20260514T074040` — 修 W2 (mean→argmin base action) + W4 (L2 norm clipping)\n\n**等待中**:\n- 上述 2 个 fix Worker 回调 → 验证代码改动 → 启动 Phase 2\n- 5 个 eval 的 cron 完成回调（reconvla 最快，~5h；vla-mean 最慢，~24h）\n- `worker_prep_fix-plan-code-sketch` 已完成但产出未读取（低优先级，fix Worker 已直接开工）\n\n**Registry RUNNING**: eval-acr-spatial-v2, eval-reconvla-spatial-v3, eval-scalar-unc-spatial, eval-k5-spatial, eval-vla-mean-spatial\n\n### 4. 📋 待办（条件触发式）\n- 两个 fix Worker 都完成 → 验证 4 项改动 (import check + 逻辑审查) → 同步代码到 bjb2 → 启动 Phase 2: precompute 3 shard 并行 (bjb1:1/2/3)\n- Precompute 完成 → CRM retrain (bjb1:0) → 30min 训练完成 → 启动 re-eval-acr-spatial-v3\n- eval-reconvla-spatial-v3 cron 回调 → 记录最终 SampleConsensus success rate → update registry + report.md\n- eval-acr-spatial-v2 / eval-k5-spatial / eval-scalar-unc-spatial 完成 → 标记 conclusion_note=\"pre-fix baseline, C1 bug affected\" → 不触发 framing 调整（等 post-fix 结果）\n- eval-vla-mean-spatial 完成 → 记录 K=10 mean baseline → 隔离 multi-sampling averaging 贡献\n- Phase 2 re-eval 完成 → 产出完整 spatial 四路对比表 (用 `artifacts/spatial_comparison_template.md` 模板) → 向 Director 汇报 claim 判定\n\n### 5. 🎯 战略上下文\n- **核心发现**: C1 bug (6D/8D state mismatch) 导致 CRM 在错误分布上训练，这是 ACR-VLA < baseline 的根因。修复后结果可能翻转\n- **决策链**: D011(放弃CoRL→ICLR2027) → D015(30% SFT gate通过) → D016(批准四项修复，立即Phase 1)\n- **W1 (ACI 死代码) 未修**: Director 说不紧急，Phase 1 不涉及。但论文若 claim online adaptation 需要后续补\n- **竞品定位**: ReconVLA 最直接竞争者（同用 CP + frozen VLA），ACoT-VLA LIBERO SOTA 84.1% 但不同赛道。详见 `artifacts/_project/report/competitor_analysis.md`\n- **易踩的坑**:\n  - Phase 2 precompute 不能用正在跑 eval 的 GPU（cuda:1/2/3 有 eval），需要等 eval 完成或用 cuda:0（eval-k5 完成后）\n  - train_crm.py 的 argmin base 改动必须和 evaluate.py 一致，否则又是 train/eval mismatch\n  - bjb2 代码改动后必须显式同步（上次 sync 是 bjb1→bjb2，这次修完也要再 sync）\n  - eval-vla-mean-spatial 跑 24h，bjb2 可能因 AutoDL 到期/网络中断而挂，需要关注\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778744620.md"
+}

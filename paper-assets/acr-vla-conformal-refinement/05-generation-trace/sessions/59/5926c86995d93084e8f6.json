@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5926c86995d93084e8f6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnosis eval perdof object norm005 seed45 r2",
+  "task_key": "worker_diagnosis_eval-perdof-object-norm005-seed45-r2_20260519T152913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_eval-perdof-object-norm005-seed45-r2_20260519T152913_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "52e5edfe82b7ebbf18b18e9e27b4f0344f438ef86337da25848e3224243d9ce9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：实验已正常完成，非异常退出。**\n\n- 进程消失原因：评估运行完毕后进程自然退出，cron 在 sentinel 文件写入前检测到进程消失，产生误报\n- 结果文件 `eval_object_perdof_norm005_seed45.json` 于 23:20 写入，内容完整\n- **overall_success_rate = 0.10**（10 tasks × 10 rollouts，共 10/100 成功）\n- Registry 已更新为 DONE (conclusion=success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-eval-perdof-object-norm005-seed45-r2.md"
+}

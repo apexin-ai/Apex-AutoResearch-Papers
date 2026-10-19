@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "432ad32b1c3a62ce9bac",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval random selection object seed43",
+  "task_key": "worker_analyze_eval-random-selection-object-seed43_20260518T154919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-random-selection-object-seed43_20260518T154919_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "d4a3ab16a6467153d052592309741b00a720b16f095e96353683d99d41d3146b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## 结果摘要\n\n**eval-random-selection-object-seed43** — LIBERO-Object, K=10 random selection\n\n| 指标 | 值 |\n|---|---|\n| **overall success_rate** | **9%** (9/100) |\n| n_tasks | 10 |\n| n_rollouts | 10/task |\n| total_rollouts | 100 |\n\n**per_task_sr:**\n\n| Task | seed43 | seed42 |\n|---|---|---|\n| alphabet_soup | 0.0 | 0.0 |\n| cream_cheese | 0.0 | 0.0 |\n| salad_dressing | 0.1 | 0.1 |\n| bbq_sauce | 0.1 | 0.1 |\n| ketchup | 0.0 | 0.4 |\n| tomato_sauce | 0.1 | 0.0 |\n| butter | 0.0 | 0.2 |\n| milk | 0.1 | 0.0 |\n| chocolate_pudding | 0.2 | 0.1 |\n| orange_juice | 0.3 | 0.2 |\n\nseed43 overall 9% vs seed42 13%，两个 seed 都很低，符合 random baseline 预期。Task 间方差较大（ketchup seed42=0.4 vs seed43=0.0），说明随机选择结果不稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-random-selection-object-seed43.md"
+}

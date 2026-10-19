@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c5817ffd29708ca3336",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval pi05 official lerobot last attempt",
+  "task_key": "worker_eval_pi05-official-lerobot-last-attempt_20260521T060804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_pi05-official-lerobot-last-attempt_20260521T060804_result.json",
+    "occurrence": 1,
+    "bytes": 1709,
+    "sha256": "e5e00bb716ad39528c3c7106aad13f99d31c13986ad7a68d5ade12f8b1f8a96a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 诊断报告\n\n### 方案：方案 A — 官方 lerobot-eval（patched）\n\n### 结果\n\n| 指标 | 值 |\n|------|------|\n| **Overall SR** | **100.0% (3/3)** |\n| Task | libero_object, task_id=0 |\n| Episode 0 | ✅ 成功 (reward=1.0) |\n| Episode 1 | ✅ 成功 (reward=1.0) |\n| Episode 2 | ✅ 成功 (reward=1.0) |\n| 每 episode 成功步数 | ~140-143 步 |\n| Eval 总耗时 | 50.95s |\n\n### 根因分析\n\n**我们 wrapper 的 5 轮 0% SR 全部因同一个 bug：vision tower key mismatch。**\n\n1. **问题**：checkpoint 的 safetensors key 含 `vision_tower.vision_model.encoder.layers.X`，但 transformers 5.8.0 的 `SiglipVisionModel` 期望 `vision_tower.encoder.layers.X`（无 `vision_model` 中间层）\n2. **lerobot 0.5.2 的 `_fix_pytorch_state_dict_keys` 缺少此映射**，导致 `load_state_dict(strict=True)` 整体失败\n3. 错误被 `try/except` 静默捕获，模型以**随机初始化权重**运行 → 0% SR\n4. 官方 lerobot-eval **同样有此 bug**，不是我们 wrapper 独有\n\n### 修复内容\n\n1. **Vision tower key remapping**：在 `_fix_pytorch_state_dict_keys` 中添加 `vision_tower.vision_model.` → `vision_tower.` 映射（437 个 key 全部重映射成功）\n2. **PaliGemma tokenizer**：`google/paligemma-3b-pt-224` 是 gated repo，改用 ModelScope 镜像下载 tokenizer\n\n### 结论\n\n**SR > 0% → wrapper 有隐藏 bug，继续 debug。** π0.5 模型有效，根因是 vision tower 权重未正确加载。需要在我们的 wrapper 中应用相同的 key remapping fix。\n\n### Gripper 维度\n所有 3 个 episode 在 ~140 步时完成任务，说明 gripper 控制正常（能抓取和放置物体）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pi05-official-lerobot-last-attempt.md"
+}

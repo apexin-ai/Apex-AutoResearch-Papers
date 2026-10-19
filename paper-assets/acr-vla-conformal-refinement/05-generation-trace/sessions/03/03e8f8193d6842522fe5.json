@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "03e8f8193d6842522fe5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code lto bjb1 18228 full",
+  "task_key": "worker_code_lto-bjb1-18228-full_20260519T030408",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_lto-bjb1-18228-full_20260519T030408.log",
+    "occurrence": 1,
+    "bytes": 668191,
+    "sha256": "586dde1991e8ac1285dd4f1fc1d0d3891feee0c3085694269cf56c573ba250c2"
+  },
+  "statistics": {
+    "messages": 258,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 258,
+      "chunks": [
+        {
+          "path": "03e8f8193d6842522fe5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "03e8f8193d6842522fe5-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-lto-bjb1-18228-full.md"
+}

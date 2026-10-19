@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42ea87604b91d008c947",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "investigate eval vla mean object seed43",
+  "task_key": "worker_investigate_eval-vla-mean-object-seed43_20260515T155443",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_eval-vla-mean-object-seed43_20260515T155443_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "9f07bbedd96d42bcd037e8585de7d7b7698d78d62f9db46588948951d9e9212d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n**eval-vla-mean-object-seed43 确认在 bjb1-32546 cuda:1 运行。**\n\n| 字段 | 值 |\n|------|------|\n| 服务器 | bjb1-32546 |\n| GPU | cuda:1, 5609MiB |\n| tmux PID | 111709 |\n| Python PID | 111718 |\n| 状态 | R (running), 419 threads |\n| 启动时间 | 15:47 UTC (~8h 前) |\n\n**Registry 已有完整 metadata**（server、pid、gpu 均已记录），无需补充。\n\n**异常信号：日志只有 11 行，模型和环境加载完成后零 rollout 输出。** 命令带 `-u`（unbuffered），8 小时无进度输出不正常。对比 seed=42 同一时间段已完成 7.5/10 tasks。GPU 内存也异常高（seed43: 5609MiB vs seed42: 1887MiB）。可能挂死或卡在第一个 rollout。\n\n**bjb1-32546 cuda:1 被此进程占用，不可用。**\n\n**需要处理：**\n1. 需要注册 cron 监控\n2. 建议检查进程是否 hang（看 GPU util 是否有波动，或 strace 查系统调用），8h 零 rollout 输出大概率有问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-eval-vla-mean-object-seed43.md"
+}

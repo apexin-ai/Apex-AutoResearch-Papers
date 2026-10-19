@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "4ac3d9ce528d46806b4a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "figure norm sweep magnitude",
+  "task_key": "worker_figure_norm-sweep-magnitude_20260521T043856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_figure_norm-sweep-magnitude_20260521T043856.jsonl",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "b23fdc520553b04f0193f030b79e842094a95e6fdcc2e397e1e584758af2217a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T04:39:05.389725+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_figure_norm-sweep-magnitude_20260521T043856"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/figure-norm-sweep-magnitude.md"
+}

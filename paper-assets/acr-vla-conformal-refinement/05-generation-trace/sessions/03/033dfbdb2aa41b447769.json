@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "033dfbdb2aa41b447769",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "scan harvest cqa1 32758 status",
+  "task_key": "worker_scan-harvest_cqa1-32758-status_20260523T172001",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_scan-harvest_cqa1-32758-status_20260523T172001_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "4c8791c520e7ca43f797869b4aa0337fc678e6853f466f71bf89d35cb5e7f3bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个新实验已启动，模型正在加载。\n\n## 汇报\n\n### cqa1-32758 全 6 GPU 状态\n\n| GPU | exp_id | 状态 | SR / 进度 |\n|-----|--------|------|-----------|\n| cuda:0 | ~~eval-supp-obj-reconvla-s44~~ → **eval-supp-long-k2mean-s44** | ✅ DONE → 🆕 刚启动 | **76.0%** (已收割) → 加载中 |\n| cuda:1 | eval-supp-long-adapt-tau025-s44 | 🔄 运行中 | 4/10 tasks |\n| cuda:2 | eval-supp-long-vla-only-s43 | 🔄 运行中 | 8/10 tasks |\n| cuda:3 | ~~eval-supp-k2mean-object-s44~~ → **eval-supp-long-reconvla-s44** | ✅ DONE → 🆕 刚启动 | **75.0%** (已收割) → 加载中 |\n| cuda:4 | eval-supp-long-k2mean-s42 | 🔄 运行中 | 9/10 tasks (即将完成) |\n| cuda:5 | eval-supp-long-crm-norm005-s44 | 🔄 运行中 | 4/10 tasks |\n\n### 收割结果\n\n| exp_id | SR | 3-seed 汇总 |\n|--------|-----|-------------|\n| eval-supp-obj-reconvla-s44 | **76.0%** | Object Reconvla 3-seed: 79.0 / 77.0 / 76.0 → **77.3±1.5%** |\n| eval-supp-k2mean-object-s44 | **75.0%** | Object K2mean 3-seed: 79.5 / 78.0 / 75.0 → **77.5±2.3%** |\n\n### 新部署\n\n| GPU | 新 exp_id | 命令 |\n|-----|-----------|------|\n| cuda:0 | eval-supp-long-k2mean-s44 | `--mode vla_only --baseline_mode mean --K 2 --benchmark long --seed 44` |\n| cuda:3 | eval-supp-long-reconvla-s44 | `--mode reconvla --K 10 --benchmark long --seed 44` |\n\n填补 Long suite 最后两个 s44 缺口（K2mean + Reconvla），Long suite 5×3=15 全部实验现已覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scan-harvest-cqa1-32758-status.md"
+}

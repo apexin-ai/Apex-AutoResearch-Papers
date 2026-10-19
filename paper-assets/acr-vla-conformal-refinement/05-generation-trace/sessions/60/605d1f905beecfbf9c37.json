@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "605d1f905beecfbf9c37",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy crm wave1 bjb1 32546 remaining3",
+  "task_key": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "218a4f5aa1d784d7f2105bfc579b1457ba4ed6a62d60d806e54925f46e9adda0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 报告\n\n**6 GPU 全部占用，6 个 tmux session 运行中：**\n\n| exp_id | benchmark | seed | GPU | PID | mem |\n|--------|-----------|------|-----|-----|-----|\n| eval-crm-goal-s43-d149 | goal | 43 | 0 | 93006 | 5.2GB |\n| eval-crm-goal-s44-d149 | goal | 44 | 1 | 93268 | 5.2GB |\n| eval-crm-object-s42-d149 | object | 42 | 2 | 93531 | 5.3GB |\n| eval-crm-object-s43-d149 | object | 43 | 3 | 101566 | 5.7GB |\n| eval-crm-object-s44-d149 | object | 44 | 4 | 101835 | 5.7GB |\n| eval-crm-spatial-s48-d149 | spatial | 48 | 5 | 102039 | 6.3GB |\n\nRegistry: 全 6 条状态 RUNNING（PREPARING → QUEUED → RUNNING，spec 已写入）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-crm-wave1-bjb1-32546-remaining3.md"
+}

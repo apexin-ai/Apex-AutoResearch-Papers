@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f81426a419491cad20c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "collect goal r4 std 3seeds",
+  "task_key": "worker_collect_goal-r4-std-3seeds_20260522T164911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_goal-r4-std-3seeds_20260522T164911_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "6974d8c9c2843ede82ea51f76adca1a8f45108bda0af671df8b5796a7ce95aaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个 seed 结果已收集，均为 n_rollouts=20。\n\n## Per-Seed Results\n\n| Task | Seed42 | Seed43 | Seed44 |\n|------|--------|--------|--------|\n| open_middle_drawer | 0.95 | 1.00 | 0.90 |\n| put_bowl_on_stove | 1.00 | 1.00 | 1.00 |\n| put_wine_bottle_on_cabinet | 0.95 | 0.95 | 1.00 |\n| open_top_drawer_put_bowl | 1.00 | 0.90 | 0.85 |\n| put_bowl_on_cabinet | 1.00 | 1.00 | 1.00 |\n| push_plate_to_front_stove | 0.90 | 1.00 | 1.00 |\n| put_cream_cheese_in_bowl | 1.00 | 1.00 | 1.00 |\n| turn_on_stove | 1.00 | 1.00 | 1.00 |\n| put_bowl_on_plate | 1.00 | 0.95 | 1.00 |\n| put_wine_bottle_on_rack | 1.00 | 1.00 | 1.00 |\n| **Overall SR** | **0.980** | **0.980** | **0.975** |\n\n## 3-Seed Summary (Mean ± Std)\n\n| Task | Mean | Std |\n|------|------|-----|\n| open_middle_drawer | 0.950 | 0.050 |\n| put_bowl_on_stove | 1.000 | 0.000 |\n| put_wine_bottle_on_cabinet | 0.967 | 0.029 |\n| open_top_drawer_put_bowl | 0.917 | 0.076 |\n| put_bowl_on_cabinet | 1.000 | 0.000 |\n| push_plate_to_front_stove | 0.967 | 0.058 |\n| put_cream_cheese_in_bowl | 1.000 | 0.000 |\n| turn_on_stove | 1.000 | 0.000 |\n| put_bowl_on_plate | 0.983 | 0.029 |\n| put_wine_bottle_on_rack | 1.000 | 0.000 |\n| **Overall SR** | **0.978 ± 0.003** | |\n\n最弱任务是 `open_top_drawer_and_put_the_bowl_inside`（0.917 ± 0.076），其余 9 个任务均 ≥ 0.95。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-goal-r4-std-3seeds.md"
+}

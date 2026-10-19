@@ -1,0 +1,381 @@
+{
+  "schema_version": "1.0",
+  "id": "13b38b6f2e114d73bf79",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook precompute k5 20260514T014331 955245",
+  "task_key": "cron_hook_precompute-k5_20260514T014331_955245",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_precompute-k5_20260514T014331_955245.jsonl",
+    "occurrence": 1,
+    "bytes": 21733,
+    "sha256": "cb9952d9c7e0147cf9fcaf57f2875ba0f03c265b3c9fc11c5533e0872d8f512b"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 2,
+    "tool_calls": 7,
+    "roles": {
+      "user": 2,
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T22:09:34.431008+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: precompute-k5\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: ~/runs/acr-vla-conformal-refinement/precompute-k5.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T22:09:45.741462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T22:09:45.842351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T22:09:49.959421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T22:09:49.959814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T22:09:50.512741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"precompute-k5\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:15:37.603Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:09:33.521Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/train_crm.py --precompute --benchmark spatial object --K 5 --cache_dir /root/autodl-tmp/crm_cache_k5/\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"79517\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-k5.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/\\\", \\\"data_count\\\": 26737, \\\"model_name\\\": \\\"smolvla_libero\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"K=5 precompute for K sensitivity ablation (plan_015)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T22:09:33.445Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T22:09:34.396952+00:00\\\"}]}}, \\\"mvp-point-reaching\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:22:10.415Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:06:11.073Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Per-DOF uncertainty features carry more actionable information than scalar uncertainty summaries, enabling dimension-selective correction\\\", \\\"description\\\": \\\"3D point-reaching MVP: 3 MLP variants (scalar/per-DOF/no uncertainty) x 6 groups (3 anisotropy ratios x 2 uncertainty sources)\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"CorrectionMLP(2-layer, 64-hidden)\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"python -u run_mvp.py\\\", \\\"data_path\\\": \\\"synthetic (generated in-script)\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/mvp/\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/mvp/mvp_results.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T01:44:00.055Z\\\", \\\"metrics\\\": {\\\"group1_oracle\\\": {\\\"A_scalar\\\": {\\\"mse_x\\\": 0.180218, \\\"mse_y\\\": 0.02497, \\\"mse_z\\\": 0.024232, \\\"total\\\": 0.076473}, \\\"B_perDOF\\\": {\\\"mse_x\\\": 0.172652, \\\n…[truncated 25284 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T22:09:50.513096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T22:09:50.714002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T22:09:56.086479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 5, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-object-v4-full\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=103768)\\\"]}, {\\\"exp_id\\\": \\\"eval-spatial-v5-full\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=73756)\\\"]}, {\\\"exp_id\\\": \\\"crm-train-v1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=78520)\\\"]}, {\\\"exp_id\\\": \\\"eval-reconvla-spatial-v1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=87787)\\\"]}, {\\\"exp_id\\\": \\\"eval-reconvla-spatial-v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=87787)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 6126
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T22:09:56.087130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-13T22:09:33Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 25 个实验 — ANALYZING 1, DONE 9, PREPARING 11, RUNNING 4\\\\n**DONE 分布**: failed 3, killed 2, success 4\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 4 张 — bjb2-40593:cuda:0(eval-object-v4-full), bjb1-18228:cuda:0(eval-spatial-v5-full), bjb1-18228:cuda:1(crm-train-v1), bjb1-18228:cuda:2(eval-reconvla-spatial-v2)\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-object-v4-full` | bjb2-40593 | cuda:0 | 103768 | `~/runs/acr-vla-conformal-refinement/eval-object-v4-full.log` |\\\\n| `eval-spatial-v5-full` | bjb1-18228 | cuda:0 | 73756 | `~/runs/acr-vla-conformal-refinement/eval-spatial-v5-full.log` |\\\\n| `crm-train-v1` | bjb1-18228 | cuda:1 | 78520 | `/root/runs/acr-vla-conformal-refinement/crm-train-v1.log` |\\\\n| `eval-reconvla-spatial-v2` | bjb1-18228 | cuda:2 | 87787 | `…s/acr-vla-conformal-refinement/eval-reconvla-spatial-v1.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `mvp-point-reaching` [success] — 2026-05-13T22:06:11\\\\n- `eval-spatial-v3-full` [killed] — 2026-05-13T19:09:00\\\\n- `eval-spatial-reeval-v2` [killed] — 2026-05-13T16:14:40\\\\n- `eval-smolvla-libero-spatial` [failed] — 2026-05-13T15:45:51\\\\n- `precompute-shard2` [success] — 2026-05-13T15:26:07\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `eval-spatial-v3-full`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `eval-spatial-reeval-v2`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `eval-smolvla-libero-spatial`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-13\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval-reconv\n…[truncated 1182 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 5574
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T22:09:56.137862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 19:10 UTC | 更新原因: D014: wrapper+evaluate.py 部署到服务器，v4 实验已启动\\\\n\\\\n## 核心方向\\\\nPer-DOF conformal statistics from multivariate CP on flow-matching VLA samples enable dimension-selective action correction. 详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**ICLR 2027**（预计 DDL Sep-Oct 2026）。CoRL 2026 已放弃（D011）。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 1 — Eval + Precompute（修复版代码已部署验证）\\\\n- **MVP**: PASS（plan_000, per-DOF > scalar > none 确认）\\\\n- **D014**: wrapper+evaluate.py 修复版已部署到 bjb1-18228，grep 验证通过，v4 实验已启动\\\\n- **Wrapper 重构**: 完成，281 行，对齐 lerobot SmolVLAPolicy（flip+resize_with_pad+normalize[-1,1]+8D state+MEAN_STD+unnormalize）\\\\n- **Paper**: references.bib (31 entries) + related_work.tex (870 words) 已完成\\\\n\\\\n## 近期任务\\\\n- [x] ~~诊断 smolvla_libero 0% 根因~~ → 7 个 wrapper bug\\\\n- [x] ~~部分修复 + re-eval~~ → 55.6% 但不可靠（D013）\\\\n- [x] ~~Kill ghost 进程~~ → 多次清理完成\\\\n- [x] ~~Wrapper 重构~~ → 对齐 lerobot SmolVLAPolicy，Phase 4 验证 33%/67%\\\\n- [x] ~~部署修复版代码到服务器~~ → D014 wrapper+evaluate.py 部署验证通过\\\\n- [x] ~~Paper: bibliography + Related Work~~ → 完成\\\\n- [ ] **eval-spatial-v4-full** 运行中（cuda:0, PID 69379, ~2h）\\\\n- [ ] **precompute-v4-shard0/1/2** 运行中（cuda:1/2/3, ~35min）\\\\n- [ ] Precompute 完成后验证 cache 数据 + CRM 训练\\\\n- [ ] Full eval 完成后确认 SFT gate\\\\n- [ ] autodl-4090 部署 + object eval\\\\n\\\\n## SFT Gate（待重新评估）\\\\nD014: wrapper+evaluate.py 修复版已部署。等 eval-spatial-v4-full 结果（10 tasks × 10 rollouts）。\\\\n- ≥80% → 按计划推进\\\\n- 50-80% → 可继续，调低期望\\\\n- <30% → 换模型\\\\n\\\\n## GPU 预算\\\\n- autodl-4090x4 (bjb1-18228): 4× RTX 4090 → eval-spatial-v4(cuda:0) + precompute-v4(cuda:1/2/3)\\\\n- autodl-4090 (bjb2-40593): 1× RTX 4090 D → 代码部署中，待启动 object eval\\\\n- 总预算 ~200 GPU·h, 已用 ~25h, 剩余 ~175h\\\\n\\\\n## 关键路径\\\\n~~Wrapper 重构~~ → **Eval v4 (~2h)** + **Precompute v4 (~35min)** → CRM 训练 (4-6h) → ACR-VLA Eval (8-10h)\\\\nplan_\n…[truncated 1261 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 5423
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T22:10:09.940890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T22:10:10.042224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T22:10:26.863464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:precompute-k5",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：分析 precompute-k5 实验结果\n\n### 背景\nprecompute-k5 是 K=5 的 precompute 任务（K sensitivity ablation, plan_015）。命令：\n```\npython -u src/train_crm.py --precompute --benchmark spatial object --K 5 --cache_dir /root/autodl-tmp/crm_cache_k5/\n```\n服务器：bjb1-18228，GPU：cuda:3，已正常退出（进程 PID 79517）。\n\n### 你需要做\n1. SSH 到 bjb1-18228，读取日志 `~/runs/acr-vla-conformal-refinement/precompute-k5.log`（tail 最后 100 行，了解完成情况）\n2. 检查 cache 输出目录 `/root/autodl-tmp/crm_cache_k5/`：\n   - `ls -la` 看有哪些文件\n   - 检查 spatial 和 object benchmark 的 cache 文件是否都生成了\n   - 统计总样本数（如果日志里有打印）\n   - 检查文件大小是否合理（与 K=10 的 cache `/root/autodl-tmp/crm_cache/` 对比大小）\n3. 确认是否有错误或警告\n\n### 产出\n用 save_project_file 写一个简短分析到 `artifacts/precompute-k5-analysis.md`，包含：\n- 完成状态（success/failed）\n- 总样本数\n- cache 文件列表和大小\n- 与 K=10 cache 的大小对比\n- 任何异常或警告\n\n最后用 update_registry 更新 precompute-k5：\n- 如果成功：status=DONE, conclusion=success, 设置 checkpoint_path=/root/autodl-tmp/crm_cache_k5/\n- 如果失败：status=DONE, conclusion=failed, 设置 failure_reason\n",
+              "tool_groups": "['ssh', 'registry', 'knowledge']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T22:10:29.427548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_precompute-k5_20260513T221027\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analyze_precompute-k5_20260513T221027.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_precompute-k5_20260513T221027 started. Use get_worker_status('worker_analyze_precompute-k5_20260513T221027') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2564
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T22:10:49.249257+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发分析 precompute-k5 日志和 cache 输出。\n\n当前状态概览：\n- **RUNNING**: eval-spatial-v5-full (cuda:0), crm-train-v1 (cuda:1), eval-reconvla-spatial-v2 (cuda:2), eval-object-v4-full (bjb2 cuda:0)\n- **ANALYZING**: precompute-k5 (cuda:3, 刚完成)\n- **bjb1-18228:cuda:3 已空闲** — Worker 分析完成后需要安排下一个任务\n\n等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T01:42:41.155908+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T01:43:31.953553+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- bjb1-18228 分配 GPU: cuda:0/1/2/3（4× RTX 4090）；bjb2-40593 分配 GPU: cuda:0（1× RTX 4090 D）\n- precompute/CRM 训练的 cache 目录必须在 `/root/autodl-tmp/`（根分区只有 ~30GB）\n- smolvla_libero 模型路径: `/root/autodl-tmp/models/smolvla_libero/`，已设 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- eval 命令必须带 `MUJOCO_GL=egl`，否则 headless 渲染失败\n- eval-reconvla-spatial-v2 和 eval-reconvla-spatial-v1 共享 PID 87787（v1 已 failed，v2 是重启版，cron 绑定在 v1 名下但实际监控 v2）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4× RTX 4090, 工作目录 `/root/acr-vla-conformal-refinement/`, Python `/root/miniconda3/bin/python`, conda base 环境, HF cache `/root/autodl-tmp/.hf_cache`\n- **bjb2-40593**: 1× RTX 4090 D, 同样的目录结构和 conda 环境\n- 数据集: `/root/autodl-tmp/libero_data/` (spatial + object)\n- K=10 cache: `/root/autodl-tmp/crm_cache/` (spatial: 12167 + object: 14570 = 26737 samples)\n- K=5 cache: `/root/autodl-tmp/crm_cache_k5/` (precompute-k5 刚完成)\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm/` (crm-train-v1 正在写入)\n- 活跃进程:\n  - eval-spatial-v5-full: PID 73756, bjb1-18228:cuda:0\n  - crm-train-v1: PID 78520, bjb1-18228:cuda:1\n  - eval-reconvla-spatial-v2: PID 87787, bjb1-18228:cuda:2\n  - eval-object-v4-full: PID 103768, bjb2-40593:cuda:0\n- bjb1-18228:cuda:3 刚空出来（precompute-k5 完成）\n\n### 3. 📊 当前状态\n**刚做完**: 收到 precompute-k5 (K=5 for K sensitivity ablation) CRON 完成回调，已 spawn worker `analyze:precompute-k5` 去查日志和验证 cache 完整性。该 Worker 尚未回调。\n\n**RUNNING (4)**:\n- `eval-spatial-v5-full` — SmolVLA baseline spatial eval（修复版 wrapper，双摄像头）\n- `crm-train-v1` — CRM MLP 训练（K=10, 26737 samples, 50 epochs）\n- `eval-reconvla-spatial-v2` — ReconVLA baseline spatial eval\n- `eval-object-v4-full` — SmolVLA baseline object eval\n\n**ANALYZING (1)**:\n- `precompute-k5` — K=5 precompute，Worker 正在分析\n\n**等待中**:\n- Worker `analyze:precompute-k5` 回调 → 更新 registry + 汇报 Director\n- 4 个 RUNNING 实验的 cron 完成回调\n- bjb1-18228:cuda:3 空闲，可以接新任务\n\n### 4. 📋 待办（条件触发式）\n- `analyze:precompute-k5` Worker 回调 → 读产出，更新 registry (DONE/success 或 failed)，汇报 Director，cuda:3 空闲可启动 CRM K=5 训练\n- precompute-k5 成功 → 启动 `crm-train-k5`（K=5 CRM 训练，用 cache_k5，cuda:3），这是 K sensitivity ablation 的关键一步\n- crm-train-v1 完成 → 分析 metrics，与 MVP 对比（MVP perDOF vs scalar: 6.75%），启动 ACR-VLA eval\n- eval-spatial-v5-full 完成 → 确认 SFT gate（≥80% 按计划推进，50-80% 调低期望，<30% 换模型）\n- eval-object-v4-full 完成 → 记录 object baseline 成功率\n- eval-reconvla-spatial-v2 完成 → 记录 ReconVLA baseline，作为 ACR-VLA 对比基准\n- 所有 baseline eval 完成 + CRM 训练完成 → 可以启动 ACR-VLA 全流程 eval（关键路径上最终实验）\n\n### 5. 🎯 战略上下文\n- **核心方法**: Per-DOF conformal statistics from multivariate CP on flow-matching VLA samples → dimension-selective action correction (ACR-VLA)\n- **MVP 已验证** (mvp-point-reaching, success): perDOF vs scalar +6.75%, perDOF vs none +16.71%，per-axis y/z 改进 22-24%\n- **投稿目标**: ICLR 2027 (DDL Sep-Oct 2026)，CoRL 2026 已放弃 (D011)\n- **关键路径**: Eval baseline → CRM 训练 → ACR-VLA Eval。当前处于 Phase 1 (Eval + Precompute)\n- **决策链**: D008→D009 选 smolvla_libero community checkpoint → D010/D012/D013 发现 wrapper bug → D014 完整重构 wrapper 对齐 lerobot → 当前 v4/v5 实验验证修复版\n- **Wrapper 历史教训**: 经过 7 个 bug 修复 + 完整重构才对齐 lerobot pipeline（flip+resize_with_pad+normalize[-1,1]+8D state+MEAN_STD+unnormalize）。v3 及之前的所有 eval 结果无效（已 killed）\n- **易错点**: \n  - 不要信任 v3 及之前的 eval 数据，全部 killed/invalidated\n  - eval-reconvla-spatial-v1 和 v2 共享 PID（v1 是 failed 的旧版，v2 才是有效的）\n  - precompute cache 的 K 值必须匹配训练时的 K（K=10 cache 不能给 K=5 训练用，反之亦然）\n  - Paper references.bib (31 entries) + related_work.tex (870 words) 已完成，写 paper 前必须读 red-section skill\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:precompute-k5"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-precompute-k5-20260514t014331-955245.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29b136a4a1bdbca486a7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor backfill all servers r1",
+  "task_key": "worker_monitor_backfill-all-servers-r1_20260528T110527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_backfill-all-servers-r1_20260528T110527_result.json",
+    "occurrence": 1,
+    "bytes": 3422,
+    "sha256": "44dfe6d39c3c18932dac2161fb4d0e3a4a72f353e66316f0525bca85f5d1ead4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有工作完成。汇总如下：\n\n---\n\n## 汇总报告\n\n### 一、各服务器 GPU 状态（全部 22 GPU 均已占用）\n\n**bjb1-18228**（4 GPU）\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | eval-supp-long-adapt-tau025-s44 | 🆕 刚部署 |\n| 1 | eval-supp-long-adapt-tau025-s45 | 🆕 刚部署 |\n| 2 | pi05-crm-always-on-long-s44 | 运行中 |\n| 3 | eval-supp-long-adapt-tau025-s46 | 🆕 刚部署 |\n\n**bjb1-32546**（6 GPU）\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | eval-supp-long-adapt-tau025-s42 | 🆕 刚部署 |\n| 1 | eval-supp-long-adapt-tau025-s43 | 🆕 刚部署 |\n| 2 | eval-obs-only-object-norm003-seed65 | 运行中 |\n| 3 | eval-obs-only-object-norm005-seed64 | 运行中 |\n| 4 | eval-obs-only-object-norm01-seed74 | 运行中 |\n| 5 | eval-obs-only-object-norm003-seed73 | 运行中 |\n\n**bjb2-28827**（6 GPU）\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | **pi05-adaptive-goal-s44-backfill** (P0) | 🆕 刚部署 |\n| 1 | eval-supp-long-adapt-tau025-s47-r2 | 运行中 |\n| 2 | **pi05-crm-k2-long-s42-backfill** (P1) | 🆕 刚部署 |\n| 3 | **pi05-crm-k2-long-s43-backfill** (P2) | 🆕 刚部署 |\n| 4 | eval-obs-only-object-norm01-seed66 | 运行中 |\n| 5 | eval-supp-long-vla-only-s46 | 运行中 |\n\n**cqa1-32758**（6 GPU）— 全部忙碌，无空闲 GPU\n\n### 二、已收割完成实验（14 条 → DONE）\n\n| 实验 | SR | 服务器 |\n|------|-----|--------|\n| pi05-crm-always-on-goal-s43 | **82.5%** | bjb1-32546 |\n| pi05-crm-always-on-goal-s44 | **83.5%** | bjb1-32546 |\n| pi05-crm-always-on-object-s44 | **89.5%** | bjb1-32546 |\n| pi05-crm-always-on-long-s43 | **79.5%** | bjb1-18228 |\n| eval-random-selection-object-s43-v2 | **77.0%** | bjb1-32546 |\n| eval-ksweep-k20-obs-object-s44 | **71.0%** | bjb1-32546 |\n| eval-ksweep-k20-obs-obj-s43 | **77.0%** | bjb1-32546 |\n| eval-supp-long-vla-only-s44 | **60.5%** | bjb1-18228 |\n| eval-supp-long-vla-only-s42 | **59.5%** | bjb1-18228 |\n| smolvla-adapt-tau015-object-s42 | **79.0%** | cqa1-32758 |\n| smolvla-adapt-tau015-object-s43 | **78.0%** | cqa1-32758 |\n| smolvla-adapt-tau015-object-s44 | **73.5%** | cqa1-32758 |\n| eval-supp-spatial-k2mean-s47 | **82.0%** | cqa1-32758 |\n| eval-supp-spatial-adapt-tau025-s47 | **79.5%** | cqa1-32758 |\n\n### 三、新部署实验（8 个）\n\n| 优先级 | exp_id | 服务器 | GPU |\n|--------|--------|--------|-----|\n| **P0** | pi05-adaptive-goal-s44-backfill | bjb2-28827 | 0 |\n| **P1** | pi05-crm-k2-long-s42-backfill | bjb2-28827 | 2 |\n| **P2** | pi05-crm-k2-long-s43-backfill | bjb2-28827 | 3 |\n| **P3** | eval-supp-long-adapt-tau025-s42 | bjb1-32546 | 0 |\n| **P3** | eval-supp-long-adapt-tau025-s43 | bjb1-32546 | 1 |\n| **P3** | eval-supp-long-adapt-tau025-s44 | bjb1-18228 | 0 |\n| **P3** | eval-supp-long-adapt-tau025-s45 | bjb1-18228 | 1 |\n| **P3** | eval-supp-long-adapt-tau025-s46 | bjb1-18228 | 3 |\n\n### 四、空闲 GPU\n\n**无** — 全部 22 张 GPU 均已占满。P4（SmolVLA supplementary 短实验）需等待 GPU 释放后部署。\n\n### 五、备注\n\n- Pi05 checkpoint 在全部 4 台服务器上均可用\n- eval-supp-long-adapt-tau025-s42/s43/s44/s45/s46 的 registry 条目因是旧 exp_id 的重跑，状态显示异常（DEPLOYED/DONE），但实验实际已在服务器上运行\n- P1/P2（Pi05 Long CRM）预计 ~9h，无法在 DDL 前完成但已启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-backfill-all-servers-r1.md"
+}

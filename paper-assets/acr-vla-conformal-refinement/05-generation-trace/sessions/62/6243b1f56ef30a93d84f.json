@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6243b1f56ef30a93d84f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "prep plan a eval commands",
+  "task_key": "worker_prep_plan-a-eval-commands_20260521T173642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_prep_plan-a-eval-commands_20260521T173642.jsonl",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "58bd533af9c0b1df98911e25056be4b35c65bf7a59d06d08dd2e4825db4782dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:36:50.671244+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_plan-a-eval-commands_20260521T173642"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/prep-plan-a-eval-commands.md"
+}

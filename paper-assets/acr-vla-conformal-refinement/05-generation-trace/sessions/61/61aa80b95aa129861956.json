@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61aa80b95aa129861956",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "collect smolvla long reseed results",
+  "task_key": "worker_collect_smolvla-long-reseed-results_20260522T153712",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_smolvla-long-reseed-results_20260522T153712_result.json",
+    "occurrence": 1,
+    "bytes": 1488,
+    "sha256": "cb0ae28670af1429e38ed1b3a25254ccf5c5825b6699f01093bb3fb7277b9c60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete picture:\n\n## Status: ALL 3 SEEDS INCOMPLETE\n\nAll 3 processes died at 23:41 (started 23:05, ran ~36 min). No OOM, no error, no traceback — likely killed externally or AutoDL resource limit. Disk was fine (44% root, 29% data).\n\n## Completed Tasks (5/10 per seed, 20 episodes each)\n\n| Task ID | Seed 0 | Seed 1 | Seed 2 |\n|---------|--------|--------|--------|\n| 0 | 25.0% | 10.0% | 10.0% |\n| 1 | 40.0% | 45.0% | 55.0% |\n| 2 | 85.0% | 70.0% | 80.0% |\n| 3 | 70.0% | 85.0% | 85.0% |\n| 4 | 45.0% | 35.0% | 35.0% |\n| **Partial avg (5/10)** | **53.0%** | **49.0%** | **53.0%** |\n| 5 (in progress) | ~75-82% | ~73% | ~62-67% |\n| 6-9 | not started | not started | not started |\n\n## Eval Method\n\n- **Lerobot-native eval** via our wrapper `figs/eval.py` → `bot_eval.py`\n- Config: `n_episodes=20`, `batch_size=1`, `max_steps=520`, task suite `libero_10`\n- Model: SmolVLA from `/root/autodl-tmp/models/smolvla_libero/`\n- Output dirs: `outputs/eval/2026-05-22/23-05-{56,59,01}_libero_smolvla/` (videos only, no JSON — only written after completion)\n\n## Earlier vla-only eval (also incomplete)\n\nThe `eval-vla-only-long-seed{0,1,2}` logs ran our custom wrapper with `n_rollouts=10`, but only completed 2 tasks each before being replaced by the lerobot eval.\n\n## Next Steps Needed\n\nAll 3 seeds need to be **restarted** — tasks 5-9 have no results, and no JSON was generated. The processes died silently (no crash signals in dmesg)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-smolvla-long-reseed-results.md"
+}

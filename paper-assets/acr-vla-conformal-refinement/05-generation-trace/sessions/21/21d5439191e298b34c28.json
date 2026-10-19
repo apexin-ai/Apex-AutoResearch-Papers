@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21d5439191e298b34c28",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_24_1779506569.md",
+  "task_key": "loop_24_1779506569",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_24_1779506569.md",
+    "occurrence": 1,
+    "bytes": 4483,
+    "sha256": "c2eb5ecdf32a79b47b65edf741f7eaf56cd893c889995ace9ed961d7391825ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-23T03:22:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前项目有 4 台服务器共 17 张卡，但每台的可用 GPU 编号不同——提交前必须查\n- bjb1-18228 的 `/root/autodl-tmp/` 是数据盘，根分区小，checkpoint/数据只放 autodl-tmp\n- π0.5 eval 用 lerobot 官方评估，必须带 `--n_action_steps=10 --max_steps=280`，dummy steps 10 + gripper-open（D105 锁定的设置）\n- Loss 变体实验（Track 2）全部 negative（D110），**不要再跑新 loss 变体**——Director 已判定受 mode 混杂限制，结论锁定\n- SmolVLA Plan A 结果 LOCKED（Object 18.3%±2.1%, Spatial 35.0%±1.0%），不要重跑或质疑\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（4 GPU）：工作目录 `/root/autodl-tmp/acr-vla-conformal-refinement/`，Python `/root/miniconda3/bin/python`，conda base 环境。CRM checkpoint 目录 `/root/autodl-tmp/checkpoints/`，loss 变体 checkpoint `/root/autodl-tmp/checkpoints/crm_loss_variants/`\n- **bjb1-32546**（6 GPU）：π0.5 CRM Object eval ×3 RUNNING（cuda:0-2），π0.5 lerobot 在此部署\n- **bjb2-28827**（6 GPU）：π0.5 CRM Spatial eval ×3 RUNNING（cuda:0-2），precompute Goal+Long RUNNING\n- **bjb2-40593**（1 GPU）：状态不明，无活跃进程\n- W&B project: 按实验自动上传，W&B data available 标记在 cron 回调中\n- precompute 数据路径：`/root/autodl-tmp/precomputed/` 各服务器\n\n### 3. 📊 当前状态\n本次 session 收到 eval-loss-perdof-object-seed42 的 cron 回调，但该实验**已在上一 session 处理完毕**（DONE/negative, SR=4%, D110 已记录）。这是重复回调，无需再处理。\n\n**RUNNING 实验（6 个 cron 监控中）**：\n- eval-pi05-crm-object-seed42/43/44 — bjb1-32546, π0.5 CRM on Object（Track 1 核心）\n- eval-pi05-crm-spatial-seed42/43/44 — bjb2-28827, π0.5 CRM on Spatial（Track 1 核心）\n- train-crm-unified-4suite — 统一 4 套件 CRM 训练（Track 3）\n- precompute-smolvla-goal-bjb2-28827 / precompute-smolvla-long-bjb2-28827 / precompute-smolvla-long-k2 — Goal+Long precompute（Track 3 前置）\n- eval-smolvla-lerobot-official-object — SmolVLA 官方 lerobot eval\n- precompute-smolvla-long-bjb1-32546 — conclusion=failed，需要关注\n\n**活跃 Worker（2 个）**：\n- worker_code_oft-official-reproduce-r3 — OpenVLA-OFT 官方复现（Track 4）\n- worker_code_smolvla-lerobot-eval — SmolVLA lerobot 评估\n\n**等待中**：\n- π0.5 CRM eval ×6 的 cron 回调（预计数小时内完成）\n- OpenVLA-OFT Worker 回调\n- SmolVLA lerobot eval Worker 回调\n\n### 4. 📋 待办（条件触发式）\n- π0.5 CRM eval ×6 cron 回调到达 → 汇总 3-seed 均值±标准差，对比 VLA-only baseline（Object 81.5%±0.5%, Spatial 84.2%±1.0%），写入论文。**预期 ceiling effect**：baseline 已 80%+，framing 是 \"no-harm + selective improvement\"\n- OpenVLA-OFT Worker 完成 → 拿到 baseline eval 结果 → 部署 CRM pipeline（Track 4）\n- precompute-smolvla-long-bjb1-32546 failed → 检查原因，可能需要在 bjb2 重跑或用其他服务器\n- train-crm-unified-4suite 完成 → eval 全 4 benchmarks（Object/Spatial/Goal/Long）\n- 全部 Track 1-4 结果到手 → 写入论文 + final review，**DDL 2026-05-29**\n\n### 5. 🎯 战略上下文\n- **投稿 CoRL 2026，DDL 5/29，剩 6 天**。Method paper 定位（D106 用户最高权限）\n- **核心 story**：ACR-VLA = CRM + Adaptive K，跨模型（SmolVLA/π0.5/OpenVLA-OFT）跨任务泛化\n- **SmolVLA 结果 LOCKED**：Plan A K=2 Object 18.3%, Spatial 35.0%，显著优于 VLA-only（+7.5pp, +5.6pp）\n- **π0.5 baseline LOCKED（D105）**：Object 81.5%, Spatial 84.2%——极高，CRM 提升空间小。Framing 已预判 \"no-harm + selective improvement\"\n- **Loss 变体全部 negative（D110）**：per-DOF 4%, conformal 6%, MSE 7%, combined 9%，均低于 VLA-only 10.8%。原因是 mode 混杂——**不要再试 loss 变体，结论已锁定**\n- **易错点**：\n  - π0.5 CRM 结果如果也 negative（比 baseline 差），不要慌——ceiling effect 是预期的，framing 已有 \"no-harm\" 叙事准备\n  - OpenVLA-OFT 是 D109 用户覆盖 D108 的结果——即使 diversity gap 存在也必须跑完全 pipeline\n  - precompute-smolvla-long-bjb1-32546 已 failed 但 status 还是 RUNNING——reconcile 可能未清理干净，需要手动检查\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779506569.md"
+}

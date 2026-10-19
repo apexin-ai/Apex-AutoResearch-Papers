@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb63a4316307900424c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_28_1779859009.md",
+  "task_key": "loop_28_1779859009",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_28_1779859009.md",
+    "occurrence": 1,
+    "bytes": 4593,
+    "sha256": "041a96ea89a7e5bd16f0b2b963c932c1200493cdd6faf32b1c9c0ace49f93b1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 28\nreason: idle_timeout\nupdated: '2026-05-27T05:16:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-49937 (RTX PRO 6000 Blackwell) 存在 ~3pp 系统性偏差**（D158）：Table 2 必须 same-server paired comparison，不能和 4090 服务器数据混用\n- **evaluate.py 必须用 commit a594db5**（D163）：所有补跑用旧代码，确保 Table 一致性。不要 git pull 到新版本\n- **GPU 脚本内 `--gpu 0` 起始**：框架自动注入 CUDA_VISIBLE_DEVICES，脚本内永远从 0 开始编号\n- **pi05-crm-k2-long-s42-r2 (bjb1-18228:cuda:0)**：reconcile 报 \"Process gone, no sentinel, no W&B — miss 2/5\"，可能需要重启或标记 failed\n- **cqa1-32758 /autodl-pub 已用 94%**：提交新实验到 cqa1 前必须先清理磁盘\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4×4090): 工作目录 `/root/acr-vla-conformal-refinement`, conda base, 3 RUNNING (long-s42-r2 cuda:0, long-s43-r2 cuda:1, adaptive-long-s42-r2 cuda:3) + adaptive-goal-s44-bjb1 cuda:2\n- **bjb1-32546** (6×4090): 同上路径, 6 RUNNING — CRM K=2 goal s42-44 (cuda:0-2) + CRM K=2 object s42-44 (cuda:3-5)\n- **bjb2-28827** (6×4090): 6 RUNNING — CRM K=2 spatial s42-44 (cuda:0-2) + Adaptive spatial s42-44 (cuda:3-5)\n- **cqa1-32758** (6×4090D): CRM K=2 long-s44 (cuda:0), adaptive-object-s43-r3 (cuda:2), adaptive-object-s44-r3 (cuda:3), adaptive-long-s43-r3 (cuda:4), adaptive-long-s44-r3 (cuda:5). cuda:1 空闲\n- **westd-49937** (6×RTX PRO 6000): VLA-only Object s42/43/44 paired 刚完成 (ANALYZING)。全 6 卡即将空闲\n- Python 路径统一: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 代码 commit: a594db578dee (D163 锁定版本)\n\n### 3. 📊 当前状态\n**刚做完**: 收到 westd-pi05-vla-only-object-s43-paired 完成回调（连续收到 4 次相同 CRON），已派 Worker `worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819` 去读取 3 个 Object VLA-only paired 实验结果（s42/s43/s44 全部 ANALYZING）。**Worker 回调尚未返回。**\n\n**RUNNING 实验 (21 张卡)**:\n- bjb1-18228: pi05-crm-k2-long-s42-r2, s43-r2, adaptive-long-s42-r2, adaptive-goal-s44-bjb1\n- bjb1-32546: pi05-crm-k2-goal-s42/43/44-bjb1-r2, pi05-crm-k2-object-s42/43/44-bjb1-r2\n- bjb2-28827: pi05-crm-k2-spatial-s42/43/44-bjb2-r2, pi05-adaptive-spatial-s42/43/44-bjb2-r2\n- cqa1-32758: pi05-crm-k2-long-s44-cqa1, adaptive-object-s43/s44-cqa1-r3, adaptive-long-s43/s44-cqa1-r3\n\n**等待中**:\n- Worker 回调: `worker_analyze_westd-pi05-vla-only-object-paired` — 读取 westd Object VLA-only 结果\n- pi05-crm-k2-long-s42-r2 可能已死（cron miss 2/5），需要诊断\n- 167 个 PREPARING 实验排队（大部分是 Table 2 补跑）\n- **未向 Director 汇报本轮状态**（session 启动后 MCP 断连，无法 post_to_director）\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_analyze_westd-pi05-vla-only-object-paired` 回调 → 读取 3 seed success_rate → update_registry DONE → 计算均值±std → 对比 Table 2 其他 VLA-only baseline → 汇报 Director\n- westd 6 卡空闲 → 部署下一批 π0.5 实验（但注意 Blackwell 偏差，只能跑 same-server paired 对比）\n- pi05-crm-k2-long-s42-r2 miss 达 5 → 标记 failed，用空出的 bjb1-18228:cuda:0 重跑\n- 各服务器 CRM/Adaptive 实验陆续完成 → 按 on-experiment-done 流程分析 + 填 Table 2 格子\n- Table 2 全部 4 suite × 3 mode × 3 seed 完成 → 汇报 Director + 触发 Paper Agent 更新 experiments.tex\n- CoRL DDL 2026-05-29（还剩 ~2.5 天）→ 所有实验必须在 ~24h 内完成才有时间写论文\n\n### 5. 🎯 战略上下文\n**CoRL 2026 DDL = 2026-05-29，仅剩 ~2.5 天。**\n\n**核心 claim 策略**:\n- MC1 (Consistency): Adaptive ≥ CRM on ALL 4 suites → gating 消除 CRM 退化（n=3 p≈0.27 n.s.，改为 consistency claim 而非 magnitude claim）\n- MC2 (Mechanism): trigger_rate ↔ Δ 单调正相关\n- MC3 (Cross-VLA): π0.5 负向 → D155 reframe 为\"模型能力依赖性分析\"，不 claim cross-model generalization\n\n**关键决策链**: D158 Blackwell 偏差 → D159 Spatial VLA-only 修正 79.3±0.8 → D162 CRM K=10 reframe → D163 evaluate.py 锁版本 a594db5\n\n**易踩坑**:\n- 不要把 westd (Blackwell) 和 bjb/cqa (4090) 的数据直接对比——硬件偏差 ~3pp\n- Table 1 是 SmolVLA (K=10, 已完成 36/36)，Table 2 是 π0.5 (K=2, 进行中)——不要混淆\n- π0.5 的 K=2 argmin 选择本身对强 VLA 有害（τ=0.90 时 SR=89% vs VLA-only 96%），这不是 CRM 的问题\n- cqa1 磁盘紧张（94%），新实验优先放其他服务器\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-28-1779859009.md"
+}

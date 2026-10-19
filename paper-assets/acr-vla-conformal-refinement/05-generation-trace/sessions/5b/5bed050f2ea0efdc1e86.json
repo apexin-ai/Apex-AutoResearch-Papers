@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bed050f2ea0efdc1e86",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm train scalar unc result",
+  "task_key": "worker_diagnose_crm-train-scalar-unc-result_20260514T220502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-train-scalar-unc-result_20260514T220502_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "e3384698439f6f7fdd52afa0b3798df1312de095ef161f1c9335faf0c2e71f98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**crm-train-v3-norm-scalar-unc** 训练成功完成，registry 已更新为 DONE。\n\n| 指标 | 值 |\n|------|-----|\n| Best epoch | 46/50 |\n| Best val_loss | 0.037354 |\n| Final train_loss | 0.053422 |\n| Checkpoint | `/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-train-scalar-unc-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d110fcae37ff53af4f0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest cqa1 32758",
+  "task_key": "worker_harvest_cqa1-32758_20260524T032346",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_cqa1-32758_20260524T032346_result.json",
+    "occurrence": 1,
+    "bytes": 3008,
+    "sha256": "4601eeb837f7bbcd35807e1e7072c3c6085dfbe9a0d2dd7d69f1429ebeaf663d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有重点实验的 registry 已是 DONE 状态，无需额外更新。汇总如下：\n\n---\n\n## cqa1-32758 扫描汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 0% | 1/24564 MiB | 空闲 |\n| 1 | 0% | 1/24564 MiB | 空闲 |\n| 2 | 0% | 1/24564 MiB | 空闲 |\n| 3 | 40% | 3710/24564 MiB | **eval-supp-long-vla-only-s46 运行中** |\n| 4 | 0% | 1/24564 MiB | 空闲 |\n| 5 | 0% | 1/24564 MiB | 空闲 |\n\n### 2 个 RUNNING 实验状态\n| 实验 | PID | 状态 | 说明 |\n|------|-----|------|------|\n| eval-supp-spatial-vla-only-s46 | 604290 | **已完成** | 进程已退出，JSON 已生成 (SR=0.805)，Registry 已为 DONE |\n| eval-supp-long-vla-only-s46 | 601530 | **仍在运行** | 已跑 2h51m，当前在 STUDY_SCENE1 任务 (5/20 rollout) |\n\n### 重点关注实验（被 cron 误标 failed → 实际均已完成）\n| 实验 ID | JSON 文件 | SR | Registry 状态 |\n|---------|-----------|-----|---------------|\n| eval-supp-spatial-crm-norm005-s46 | eval_spatial_crm_obs_only_norm0.05_seed46.json | **0.81** | DONE/success ✓ |\n| eval-supp-spatial-reconvla-s46 | eval_spatial_reconvla_seed46.json | **0.80** | DONE/success ✓ |\n| eval-supp-spatial-adapt-tau025-s46 | eval_spatial_adaptive_...seed46.json | **0.80** | DONE/success ✓ |\n| eval-supp-spatial-adapt-tau025-s45-r3 | eval_spatial_adaptive_...seed45.json | **0.80** | DONE/success ✓ |\n| eval-supp-spatial-vla-only-s46 | eval_spatial_vla_only_seed46.json | **0.805** | DONE/success ✓ |\n\n### 今日 (May 24) 生成的全部 JSON\n| 文件名 | overall_SR | 时间 |\n|--------|-----------|------|\n| eval_spatial_vla_only_seed46 | 0.805 | 11:09 |\n| eval_spatial_reconvla_seed46 | 0.800 | 11:01 |\n| eval_spatial_crm_obs_only_norm0.05_seed46 | 0.810 | 10:59 |\n| eval_spatial_adaptive_crm_...seed46 | 0.800 | 10:38 |\n| eval_spatial_adaptive_crm_...seed45 | 0.800 | 09:14 |\n| eval_spatial_vla_only_seed45 | 0.770 | 08:27 |\n| eval_spatial_crm_obs_only_norm0.05_seed45 | 0.780 | 08:24 |\n| eval_goal_k2mean_seed45 | 0.810 | 08:16 |\n| eval_spatial_reconvla_seed45 | 0.795 | 08:14 |\n| eval_object_reconvla_seed46 | 0.800 | 05:59 |\n| eval_object_reconvla_seed45 | 0.740 | 05:57 |\n| eval_object_vla_only_seed45 | 0.775 | 05:20 |\n| eval_object_vla_only_seed46 | 0.765 | 05:15 |\n| eval_long_crm_obs_only_norm0.05_seed44 | 0.565 | 05:11 |\n| eval_long_adaptive_crm_...seed44 | 0.560 | 05:00 |\n| eval_long_vla_only_seed43 | 0.595 | 02:07 |\n| eval_long_vla_only_seed42 | 0.570 | 01:43 |\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / | 30G | 4.9G | 26G | 17% |\n| /root/autodl-tmp | 230G | 876M | 230G | 1% |\n\n### 结论\n- Registry 已全部更新到位，5 个误标实验均已修正为 DONE/success\n- 唯一在跑的 eval-supp-long-vla-only-s46 预计还需 1-2 小时完成（当前在第 7/10 个 long-horizon 任务左右）\n- 5 个 GPU 空闲，磁盘充裕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-cqa1-32758.md"
+}

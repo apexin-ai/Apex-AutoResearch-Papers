@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67244d14a155e8eb2fcf",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix bjb2 gpu3 double occupy",
+  "task_key": "worker_ops_fix-bjb2-gpu3-double-occupy_20260515T172859",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-bjb2-gpu3-double-occupy_20260515T172859_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "248fa6277af21a8fa83d4878bb770de2887265e5ea2213098a47eac1c8f009af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新 gpu=cuda:2, pid=115384（状态留在 DEPLOYED，状态机不允许直接回 RUNNING）。\n\n**结果汇总：**\n\n| GPU | 之前 | 之后 |\n|-----|------|------|\n| GPU 2 | PID 13737 僵尸进程 (1987 MiB) | PID 115384 eval-mag-perdof-norm03-object (3132 MiB，加载中) |\n| GPU 3 | PID 107658 + PID 113552 双占 | 仅 PID 107658 (v4-default) |\n\n- 僵尸进程已清除\n- GPU 3 双占已解除\n- eval-mag-perdof-norm03-object 已迁移到 GPU 2 运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bjb2-gpu3-double-occupy.md"
+}

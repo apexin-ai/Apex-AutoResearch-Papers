@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "57a217b60baba8cd9f78",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy openvla oft baseline",
+  "task_key": "worker_deploy_openvla-oft-baseline_20260522T053417",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_openvla-oft-baseline_20260522T053417.jsonl",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "0676ae9a6edd1e02042a44e92a7899bf853d781669e702c052a7cb7d52e2e79d"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T05:34:25.687460+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_openvla-oft-baseline_20260522T053417"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T05:34:34.507088+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 24, 1am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_openvla-oft-baseline_20260522T053417"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-openvla-oft-baseline.md"
+}

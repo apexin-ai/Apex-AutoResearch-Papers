@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f7059db85c7b874cca3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy d088 eval unc head seed44",
+  "task_key": "worker_deploy_d088-eval-unc-head-seed44_20260520T165125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_d088-eval-unc-head-seed44_20260520T165125_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "79ec2ff8feb5468291190ed0d88bcc6307f0e4f07d3b14e8df6678807d3a5a5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇总：\n\n**eval-adaptive-unc-head-object-seed44** 已在 bjb2-28827 cuda:5 启动 (PID 728278)\n- Mode: `adaptive_unc_head` (新增模式，已 patch 到 evaluate.py)\n- UncertaintyHead: 15,665 params, τ=0.42 (F1=0.767)\n- CRM: obs_only, 327,198 params, max_correction_norm=0.2\n- K=1, 10 tasks × 10 rollouts = 100 episodes\n- Registry: RUNNING\n\n**seed42 (PID 401372) 和 seed43 (PID 401666) 状态**：两个进程均已终止，cuda:0 和 cuda:1 空闲。但 logs 目录中没有 `adaptive-unc-head` 相关的日志文件——这两个 PID 可能是其他实验（最近的日志是 `eval-obs-only-spatial-norm02-seed42-r2.log` 和 `eval-crm-k1-object-seed43-plan702.log`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-d088-eval-unc-head-seed44.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "2abf7fca5b25ca79a168",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy bjb2 28827 6gpu goal obj s47",
+  "task_key": "worker_deploy_bjb2-28827-6gpu-goal-obj-s47_20260524T094131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_bjb2-28827-6gpu-goal-obj-s47_20260524T094131.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "ef8e2e35dcec9ff9da9fff2beb130d25eaff2adba6a2e6d745e121c6d6bb538d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T09:41:46.246338+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb2-28827-6gpu-goal-obj-s47_20260524T094131"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-bjb2-28827-6gpu-goal-obj-s47.md"
+}

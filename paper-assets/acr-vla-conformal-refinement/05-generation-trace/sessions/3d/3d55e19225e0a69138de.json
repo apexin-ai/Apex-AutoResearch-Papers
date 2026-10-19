@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d55e19225e0a69138de",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "cleanup kill s47 retry bjb1 32546",
+  "task_key": "worker_cleanup_kill-s47-retry-bjb1-32546_20260524T113506",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cleanup_kill-s47-retry-bjb1-32546_20260524T113506_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "5e4aaac47363820074d84206148669c7d19ce86f63957425e91b19ea0105ba1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已 Kill 的进程**（4 个 Object s47 重试，全部释放）：\n- `eval-obj-vla-s47-r2` (cuda:0 实际 device 1) — PID 423228\n- `eval-obj-crm-s47-r2` (cuda:2) — PID 424705\n- `eval-obj-adapt-s47-r2` (cuda:3) — PID 426329\n- `eval-obj-k2mean-s47-r2` (cuda:0) — PID 428027\n\n**GPU 状态**：\n- cuda:0/1/2/3 全部释放至 2 MiB ✓\n- cuda:4 仍有 1932 MiB — Long s47 reconvla 正常运行（PID 316673，已跑 ~5h）\n- cuda:5 空闲（2 MiB）\n\n**与任务描述的差异**：\n- 任务描述说 Long s47 CRM 在 cuda:5，实际是 Long s47 **reconvla** 在 **cuda:4**（CUDA_VISIBLE_DEVICES=4）。保留无误。\n- 任务描述说 cuda:0 有 A1 baseline，实际 cuda:0 跑的是 Object k2mean s47 重试（属于要 kill 的范围，已 kill）。**未发现任何 A1 baseline 进程**。\n- 残留：PID 102924 是 5/24 04:11 的旧 `eval-crm-obj-s46` tmux 父进程僵尸（无对应 python 子进程，不占 GPU），未处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-kill-s47-retry-bjb1-32546.md"
+}

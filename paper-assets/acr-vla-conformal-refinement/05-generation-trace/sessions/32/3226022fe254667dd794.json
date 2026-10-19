@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "3226022fe254667dd794",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check bjb2 28827 data",
+  "task_key": "worker_check_bjb2-28827-data_20260521T132709",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_bjb2-28827-data_20260521T132709.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "722dd5aebfb2a51a4bd137877182f2bfbb933d5f7a05c992a5b2c5e2cf097258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T13:27:17.997876+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_bjb2-28827-data_20260521T132709"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-bjb2-28827-data.md"
+}

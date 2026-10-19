@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fd61063c6541ccd7839",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops verify libero proprio dims",
+  "task_key": "worker_ops_verify-libero-proprio-dims_20260518T101631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_verify-libero-proprio-dims_20260518T101631_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "832fa037ee8f5621f32c3cf7c944a881c1f982e3fcdd99c930dfe87fae8c0039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 维度 | 值 | 组成 |\n|---|---|---|\n| **LIBERO 原始 proprio state** | **8D** | eef_pos(3) + eef_axisangle(3) + gripper_qpos(2) |\n| **SmolVLA 输入 state** | **8D → pad 32D** | 8D 经 MEAN_STD 归一化后 zero-pad 到 max_state_dim=32 |\n| **VLA 单步 action 输出** | **7D** | 6D pose + 1D gripper (`FULL_ACTION_DIM=7`) |\n| **CRM 用的 action_dim** | **6D** | `CORRECTION_DIM=6`，仅修正 pose，不修正 gripper |\n| **H_eff** | **5** | 从 chunk_size=50 截断 |\n| **CRM correction 维度** | **30D** | = CORRECTION_DIM(6) × H_EFF(5) |\n| **Uncertainty dim** (Gated CRM) | **40D** | = 6×5 + 5 + 5 (pose_var + entropy + norms) |\n\n关键细节：\n- Gripper 不经过 CRM 修正，evaluate.py 中取 K 个 sample 的 gripper 均值直接拼接\n- `obs_dim=960` 是 VLM hidden_size，不是 proprio\n- 论文 Method 写 `d=6` 对应的是 `CORRECTION_DIM`（仅 pose），论文 Experiments 写 \"8D proprioceptive state\" 是 SmolVLA 的输入 state，两者不矛盾"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-libero-proprio-dims.md"
+}

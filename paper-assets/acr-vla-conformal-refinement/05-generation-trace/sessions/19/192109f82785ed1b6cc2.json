@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "192109f82785ed1b6cc2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only object default seed44",
+  "task_key": "worker_analyze_eval-obs-only-object-default-seed44_20260516T203820",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-object-default-seed44_20260516T203820_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "cb8ad5d061dcc0cd5e4413914cc09a8a6126dc7587517015268e991f8a4fd130"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**overall_sr = 16%, conclusion = success**\n\nseed44 结果（16%）与 seed42（17%）一致，均高于 argmin baseline（13%），确认 obs_only CRM 在默认 norm 下有正向效果。无 W&B run，无 CRM correction 指标记录。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-object-default-seed44.md"
+}

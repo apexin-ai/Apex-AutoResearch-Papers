@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "243a50c5bbebc16bafc4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose spatial obs only seed45",
+  "task_key": "worker_diagnose_spatial-obs-only-seed45_20260521T114948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_spatial-obs-only-seed45_20260521T114948_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "b6dc25363d88a0539ef74362b01eddc5bfbfb8fe216237604f21a3ccbaeb4398"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修正。总结：\n\n- **状态**：实验正常完成，cron 误判（eval 脚本不写 sentinel/W&B，进程退出后 cron 无法确认）\n- **结果**：LIBERO-Spatial crm_obs_only seed45, **SR = 34.0%** (34/100)\n- **Per-task**：between_plate_ramekin 90%, next_to_ramekin 90%, next_to_cookie_box 80%, on_cookie_box 40%, next_to_plate 30%, in_top_drawer 10%, table_center/on_ramekin/on_stove/on_wooden_cabinet 均 0%\n- **Registry**：conclusion 从 \"failed\" 修正为 \"success\"，metrics/log_path/checkpoint_path 此前已正确设置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-spatial-obs-only-seed45.md"
+}

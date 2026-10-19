@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cb4eaa46944c775759d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 adaptive spatial tau035 bjb2",
+  "task_key": "worker_analyze_pi05-adaptive-spatial-tau035-bjb2_20260526T174012",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-adaptive-spatial-tau035-bjb2_20260526T174012_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "ca5076048f96b3b3ed8cadb26ae69507c1601bb7aae956773421e5badeec6d35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报：\n\n**pi05-adaptive-spatial-s42-tau035-bjb2 结果**\n\n| 指标 | 值 |\n|------|-----|\n| **SR** | **96.5%** (193/200) |\n| **trigger_rate** | 2.55% (567/22218 steps) |\n| **mean_correction_norm** | 0.200 |\n| **mean_uncertainty** | 0.1055 |\n\n**Per-task SR**: 8/10 tasks 100%，cookie_box 95%，ramekin 75%（唯一低分 task）。\n\n**与 tau=0.25 对比**: tau=0.25 三种子均值 97.2±0.8%，tau=0.35 单种子 96.5%——略低但在 1σ 范围内。trigger_rate 从 ~5-6%（tau=0.25）降到 2.55%，符合预期（更高阈值 → 更少触发）。\n\n**GPU**: cuda:1 已释放（1 MiB / 24564 MiB）。\n\n**日志检查**: 无 OOM、无 CUDA error、无 SR=0% task，EXIT_CODE=0，结果可信。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-adaptive-spatial-tau035-bjb2.md"
+}

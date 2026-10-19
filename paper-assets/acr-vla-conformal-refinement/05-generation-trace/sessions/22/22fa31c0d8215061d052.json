@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22fa31c0d8215061d052",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_3_1778793802.md",
+  "task_key": "loop_3_1778793802",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_3_1778793802.md",
+    "occurrence": 1,
+    "bytes": 5443,
+    "sha256": "702d91a9444338de65b301e5608ca5b8988242213e13ebd698b45e773b68b55e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T21:23:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 两台服务器：bjb1-18228（4×GPU, cuda:0-3）和 bjb2-40593（GPU 未知数量）。**必须先 `get_project_status` 查 gpu_ids 白名单再派任务**\n- SmolVLA 预处理有 7 个已修复的 bug（D013），改 wrapper 代码时必须保留：`torch.flip(dims=[2,3])`、512×512 resize with padding、[-1,1] normalization、8D state（含 gripper）、camera names=[\"agentview\",\"robot0_eye_in_hand\"]\n- CRM v3-norm checkpoint 内嵌了 per-feature mean/std 标准化参数（D018），**切勿用旧 checkpoint（v1/v2）做 eval**——它们没有标准化，1500x scale imbalance 会导致 correction 无意义\n- eval 初始化顺序不可改：`env.reset()` → `env.set_init_state()` → 5 步 zero action 稳定。乱序导致物理状态错误\n- AutoDL 实例用前必须 `source /etc/network_turbo` + 设 `HF_HUB_OFFLINE=1`（或 `HF_HUB_DISABLE_XET=1` + SSL cert 环境变量）\n- K=1 推理（不是 K=10）用于 eval，否则 2-3h 变 40-80h\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**：主力服务器，4×4090\n  - 工作目录：`/root/autodl-tmp/` 下（代码 `~/runs/acr-vla-conformal-refinement/`）\n  - Python：推测 conda（aml-train 镜像），需 `detect_image` 确认\n  - CRM checkpoint：`/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/`\n  - CRM cache：`/root/autodl-tmp/crm_cache_v5/spatial/`（12167 samples）\n  - eval 日志：`/root/autodl-tmp/logs/` 和 `~/runs/acr-vla-conformal-refinement/`\n  - 活跃进程：\n    - eval-argmin-only-spatial: PID 231421, cuda:1\n    - eval-tiny-correction-spatial: PID 232815, cuda:2（**早期信号：task1 4/5 success，极其关键**）\n    - eval-acr-spatial-v4-default: cuda:0\n    - eval-acr-spatial-v4-small: PID 253085, cuda:3\n    - crm-train-v3-norm-obs-only: training on server\n    - crm-train-v3-norm-scalar-unc: training on server\n- **bjb2-40593**：\n  - eval-vla-mean-spatial: PID 143106, cuda:0（K=10 mean baseline）\n\n### 3. 📊 当前状态\n**刚做完**：D018 CRM 输入标准化修复 → 重训 v3-norm（best_val_loss=0.03578）→ 派出 v4 系列 eval 和 ablation 训练\n\n**7 个实验 RUNNING**：\n1. `eval-vla-mean-spatial`（bjb2, K=10 mean baseline）\n2. `eval-argmin-only-spatial`（bjb1:1, 隔离 argmin 选择 vs CRM correction）\n3. `eval-tiny-correction-spatial`（bjb1:2, max_norm=0.05 极小修正，**task1 已 4/5 success = 强信号**）\n4. `eval-acr-spatial-v4-default`（bjb1:0, v3-norm + 默认 correction=1.42）\n5. `eval-acr-spatial-v4-small`（bjb1:3, v3-norm + correction=0.1）\n6. `crm-train-v3-norm-obs-only`（bjb1, obs-only ablation 训练）\n7. `crm-train-v3-norm-scalar-unc`（bjb1, scalar-unc ablation 训练）\n\n**11 个 PREPARING**（大部分 killed 旧 shard 或待排队 eval）\n\n**等待**：7 个 RUNNING 实验的 cron 回调；无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- eval-tiny-correction-spatial 完成 → **最高优先级分析**：如果 overall ≥ 30% → correction magnitude 是核心问题（不是 CRM 本身），framing 转向 \"conformally-calibrated correction magnitude\"；如果 < 30% → argmin selection 也有问题\n- eval-argmin-only-spatial 完成 → 与 vla-mean (40%?) 对比：argmin ≈ mean → CRM delta 是唯一问题；argmin << mean → argmin 选择本身有害\n- eval-acr-spatial-v4-default vs v4-small 完成 → 判断 normalization 是否足够修复，还是仍需 magnitude control\n- crm-train-v3-norm-{obs-only, scalar-unc} 完成 → eval 对比 per-DOF vs scalar vs obs-only，填 Claim 1 ablation 格\n- 所有 spatial eval 完成 → 4-way 对比表（ACR-VLA / SampleConsensus / Scalar-CRM / VLA-mean）→ 汇报 Director\n- 如果 v4-small + normalization > 30% baseline → 立即推进 object benchmark（eval-object-v6）\n- 如果所有 correction 方案仍 < 30% → 准备 Gated CRM framing pivot 提案（D017 已预备）\n\n### 5. 🎯 战略上下文\n- **核心发现链**：SmolVLA 30% baseline（bimodal: next_to 90%+ / precise 0%）→ CRM 初版 correction 过大（23-26% < 30%）→ D018 发现 1500x feature scale imbalance → v3-norm 修复 → **现在等 eval 结果确认**\n- **关键拐点**：eval-tiny-correction-spatial 的 task1 早期信号（4/5 success with max_norm=0.05）是 **整个项目最重要的正向信号**——如果全 10 tasks 持续，说明 CRM 学到了有用的 correction，只是 magnitude 需要校准。这直接支持 Claim 1（per-DOF conformal features enable dimension-selective correction）\n- **易错点**：\n  - 不要混淆 v2 checkpoint（无标准化）和 v3-norm checkpoint（有标准化）\n  - eval-tiny-correction 用的是旧 v2 checkpoint + clip=0.05；v4-small 用 v3-norm + clip=0.1——两者不可直接对比，因为 checkpoint 不同\n  - GC4-par / GC4-seq 类比：这里 \"tiny correction on old CRM\" vs \"normal correction on normalized CRM\" 是不同实验条件\n- **决策链关键节点**：D015（30% baseline 继续不换模型）→ D017（correction 过大，需 magnitude control）→ D018（root cause 是 normalization）→ 当前等验证\n- **竞争对手**：ReconVLA 是直接对手（scalar CQR），我们需要 per-DOF > scalar 的 margin。D018 前 median dream 只有 +2.1%，normalization 修复后可能改善\n- **目标 venue**：ICLR 2027（DDL 充足），CoRL 2026 已放弃（D011）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778793802.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15075a040df853f313bf",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_14_1778942760.md",
+  "task_key": "loop_14_1778942760",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1778942760.md",
+    "occurrence": 1,
+    "bytes": 4222,
+    "sha256": "ee0042ea83809de5cc2c1a2b8acb6ddc5746c35b55aea9a0045d917742046979"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T14:44:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_resource_usage` 实时获取，不能凭记忆假设。当前 4 台服务器（bjb1-18228/bjb1-32546/bjb2-28827/bjb2-40593）共 17 卡，全部满载\n- perdof CRM checkpoint 固定路径：`/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt`；obs_only checkpoint：`/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- 所有 eval 必须带 `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl`\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- Negative 结果禁止默默跑下一个实验——必须先产 Framing 提案给 Director\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4 GPU): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`\n- **bjb1-32546** (6 GPU): 同上路径结构\n- **bjb2-28827** (6 GPU): 同上路径结构\n- **bjb2-40593** (1 GPU): 同上路径结构\n- 模型：`/root/autodl-tmp/.hf_cache` (HF cache)，checkpoints 在 `/root/autodl-tmp/checkpoints/crm_v3_norm/`\n- W&B：项目内有 wandb 目录，但大部分 eval 实验无 wandb_run_id，结果主要看 `logs/eval_*.json`\n- Cron 活跃 6 个：eval-mag-perdof-norm03-object-r3, eval-argmin-object-seed44-r2, eval-obs-only-object-norm02-seed44-r2, eval-perdof-object-seed44, eval-vla-mean-object-seed44, eval-obs-only-object-norm03-seed44\n\n### 3. 📊 当前状态\n**刚收到 cron 回调**：`eval-mag-perdof-norm02-seed43-object-r3`（perdof norm=0.2 seed=43 object）进程正常退出，状态 ANALYZING。已派 Worker `worker_analysis_eval-mag-perdof-norm02-seed43-object-r3_20260516T104054` 去 SSH 读结果文件并更新 registry，**尚未收到 Worker 回调**。\n\n**RUNNING 实验（16 个）**：\n- **Seed44 P0 组**：obs-only-norm02-seed44-r2, argmin-seed44-r2, perdof-seed44, scalar-seed44-r2, vla-mean-seed44, obs-only-norm03/01/default-seed44（8 个）\n- **Seed45 组**：argmin-seed45, scalar-seed45, obs-only-norm02-seed45, obs-only-norm01-seed45, vla-only-seed45, perdof-norm02-seed45（6 个）\n- **Magnitude sweep**：mag-perdof-norm03-object-r3（perdof norm=0.3 最后一格）（1 个）\n- **其他**：perdof-object-default-seed44（1 个）\n\n**ANALYZING**：eval-mag-perdof-norm02-seed43-object-r3（Worker 正在处理）\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析回调到达 → 更新 registry 为 DONE，根据 conclusion 走 on-experiment-done 流程。若 perdof norm=0.2 seed=43 结果与 seed=42 (11%) 一致 → 更新 ROADMAP magnitude table\n- eval-mag-perdof-norm03-object-r3 完成 → perdof magnitude curve 6/6 完整（最后一格 norm=0.3），汇报 Director 完整的 perdof fragility 数据\n- Seed44 P0（obs-only-norm02-seed44-r2 + argmin-seed44-r2）完成 → 立即 3-seed Fisher exact test，决定最终 narrative（p<0.05 → dual claim，p>0.05 → robustness-only Narrative B）\n- 全部 seed44/45 eval 完成 → 4-seed pooled analysis + paper figures 制作\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D030(spatial CRM dead) → D033(object obs_only +7pp) → D035(seed43 kill criterion) → D037(零纠正=CRM效果弱非bug) → D038(ε=0.2 唯一可辩护配置，pooled 2-seed +4.5pp p≈0.12) → D039(perdof default=0% catastrophic，robustness narrative 强化)\n- **投稿目标**：CoRL 2026，abstract DDL ~May 26（~10 天），full paper ~Jun 2\n- **论文双 claim**：(1) obs_only correction 优于 selection baseline（待 seed44 统计确认）；(2) obs_only 全 norm 范围安全 vs perdof catastrophic collapse（robustness）\n- **易错点**：seed43 obs_only 只有 16%（vs seed42 的 22%），variance 大。如果 seed44 也偏低，p 值可能不够 → 不要慌，robustness claim 不依赖 p<0.05，Narrative B 已就绪\n- **易错点2**：registry 里很多 killed/failed 实验是历史遗留（早期 spatial 阶段），不要试图重跑它们\n- **当前这个 Worker** 正在分析 perdof norm=0.2 seed=43 结果，这不是 P0（P0 是 seed44 obs_only），但对 perdof magnitude table 补充有价值\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778942760.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4081e1074948da0952c0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh training loss analysis",
+  "task_key": "worker_ssh_training-loss-analysis_20260517T011458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_training-loss-analysis_20260517T011458_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "707e7fea974bf5972ff5a37e4aaa8a4495bbd076843cec4c2a541295d92bce2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析已写入 `artifacts/training_loss_analysis.md`。\n\n核心发现与任务预期的\"disconnect\"假设相反：**训练 MSE 和闭环 SR 是正相关的**（低 MSE → 高 SR），排序完全一致。真正的 insight 不是\"离线指标预测失败\"，而是：\n\n1. **obs_only 在两个指标上都最优**（val MSE=0.0165, Object SR=19%）\n2. **conformal features 同时伤害了训练和部署**（perdof val MSE 2.2x worse, Object SR -8pp）\n3. 论文叙事应聚焦\"observation-conditioned correction is sufficient; conformal features are an honest negative result\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-loss-analysis.md"
+}

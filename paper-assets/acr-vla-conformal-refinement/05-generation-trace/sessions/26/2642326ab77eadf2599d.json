@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2642326ab77eadf2599d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_19_1779057481.md",
+  "task_key": "loop_19_1779057481",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_19_1779057481.md",
+    "occurrence": 1,
+    "bytes": 4855,
+    "sha256": "53abbbb040109a419e81e1d8d0c2daab9bdf0aad3a8e8c6320a4a966747c7fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: max_wall_time\nupdated: '2026-05-17T22:10:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5 (共 17 张)\n- bjb1-18228 上 OpenVLA eval 必须用独立 conda env `/root/autodl-tmp/conda_envs/openvla` (transformers 4.40.1)，**不能用系统 Python** (transformers 5.8 会导致 0% SR)\n- SmolVLA K=10 eval 用系统 Python `/root/miniconda3/bin/python`，两套环境不能混\n- `crm_k1_best.pt` 和 `crm_k1_best_multiscale.pt` 是同一个文件（1,347,854 bytes），不要误以为有两个不同 checkpoint\n- eval-perdof-object-norm02-seed43-r3 同时在 bjb2-28827 cuda:5 和 bjb1-32546 cuda:4 上跑（重复部署），结果以先完成的为准\n- mag_ 前缀和 eval- 前缀的实验存在重复（同一实验两个 exp_id），cron 注册在 eval- 版本上\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-28827** (6×4090): `/root/acr-vla-conformal-refinement`, Python=`/root/miniconda3/bin/python`, SmolVLA model in `/root/autodl-tmp/.hf_cache`, CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof}/crm_best.pt`, K=1 checkpoint: `/root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt`\n- **bjb1-32546** (6×4090): 同上路径结构，multiscale checkpoint 额外有 `crm_k1_best_multiscale.pt`\n- **bjb1-18228** (4×4090): SmolVLA eval 同上；OpenVLA 专用: conda env `/root/autodl-tmp/conda_envs/openvla`, 官方 repo `/root/autodl-tmp/openvla`, 模型 `/root/autodl-tmp/models/openvla-libero-object` (4×safetensors ~14.1GB)\n- **bjb2-40593** (1×4090): `/root/acr-vla-conformal-refinement`\n- Cron 活跃 (reconcile 确认 13 个): perdof-norm02-seed46/47, norm01-seed47-bjb1, norm03-seed46, default-seed46(×2), norm005-seed43-r2, random-selection-seed42, norm01-seed46, norm02-seed43-r3(×2), norm02-seed45-r3, norm005-seed43\n- **Worker 在跑**: `worker_survey_full-gpu-status-and-results_20260517T220756` — 全服务器 GPU 摸底 + 结果收集，**这个 Worker 的回调必须处理**\n\n### 3. 📊 当前状态\n刚处理完 Director 紧急摸底指令，派了全服务器 survey Worker（等回调）。\n\n**关键实验状态**:\n- **Multi-scale K=1 CRM**: 全部 5 seed DONE/negative (seed42=12%, 43=9%, 44=10%, 均值 10.3% < VLA-only 10.8%)。**Scenario B 已确认**。\n- **OpenVLA eval** (eval-openvla-object-vla-only-seed42-v2): bjb1-18228 cuda:1 RUNNING，上次检查 50% (5/10 tasks)。**这是当前最高优先结果**。\n- **K=5 sweep**: bjb1-18228 cuda:0 RUNNING\n- **K=20 sweep**: bjb1-18228 cuda:2 RUNNING (Director 说不 kill，K=20 是 bonus)\n- **Random selection baseline**: bjb2-40593 cuda:0 RUNNING (跑了很久，可能已完成)\n- **Magnitude sweep**: 8+ 实验分布在 bjb2-28827/bjb1-32546，补 Figure 2 error bars\n- **Latency profiling**: DONE, plan_602-latency-profile in registry (CRM 0.3ms, CGS 6.2ms, ACR overhead 0.34%)\n\n**Registry 需要清理**: eval-k1-crm-multiscale-object-seed42/43 仍标 RUNNING（conclusion=negative 已设但 status 未转 DONE，需要补 checkpoint_path/log_path 才能转）\n\n### 4. 📋 待办\n- survey Worker 回调到达 → 收集所有已完成实验 SR，更新 registry + report.md，向 Director 汇报完整数据表\n- OpenVLA eval 完成（cron 回调或 survey 发现）→ 读 JSON 提取 10-task SR → update_registry → 向 Director 汇报（预期 ~80-90%，如果合理则 plan_802 OpenVLA+CRM 可启动）\n- K=5 eval 完成 → 读 SR → 与 K=10 (17.5%) 对比 → 画 K-value tradeoff curve（配合 latency data）\n- random-selection 完成 → 读 SR → 这是 D048 必补 baseline，预期显著低于 obs_only\n- 空闲 GPU 出现 → 部署优先级: magnitude 补 seed > OpenVLA 额外 seed > K=5 额外 seed\n- Director 批准 Framing 调整后 → Read framing-reaudit skill → 全文 re-audit\n\n### 5. 🎯 战略上下文\n- **投稿目标**: CoRL 2026, abstract DDL ~May 26 (~9 天), full paper DDL ~Jun 2 (~16 天)\n- **Narrative B+ (D049)**: obs_only CRM 单步纠正 frozen VLA。核心贡献: (1) K=10 selection 有效 (obs_only 17.5% vs argmin 12.3%, p=0.0074), (2) conditioning-magnitude interaction insight, (3) 跨 VLA 验证 (SmolVLA + OpenVLA)\n- **K=1 路径已关闭**: fallback 10.0%, multi-scale 10.3%, 均 ≈ VLA-only 10.8%。K=1 结果作 ablation (\"CRM 的价值在于 selection 而非 correction\")\n- **Scenario B 已触发**: Claim 1 从 \"K=1 单采样纠正\" 改为 \"mechanism insight\"，但 Director 尚未正式批准 Framing 调整\n- **易错点**: (1) 不要混淆 K=1 和 K=10 结果做对比 (2) OpenVLA 必须用独立 conda env (3) mag_ 和 eval- 是重复 exp_id 不要再创建新的 (4) eval 是 deterministic 的（同 seed 同 checkpoint 跨服务器结果完全一致）(5) perdof seed45 原始结果已在 bjb2-28827 上存在 (SR=9%, 20 rollouts)，不要把 r3 当首次\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1779057481.md"
+}

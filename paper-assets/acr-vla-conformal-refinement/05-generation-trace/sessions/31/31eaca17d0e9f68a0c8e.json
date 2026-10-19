@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31eaca17d0e9f68a0c8e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3422,
+    "sha256": "bcf118bc00f5c23d4f72ae769f0ea758577cc2e6091e68371576c1f40527e3dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-17T01:26:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须核对 `execution.gpu_ids`——之前未发现越界但每次新实验部署必查\n- perdof/scalar CRM checkpoint 路径在 bjb1-18228: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n- 论文数据引用必须交叉验证 registry + `artifacts/magnitude_curve_data.json`，不信 Worker 自述数字\n- method_draft 中\"30-D rank-deficient covariance\"是已证伪的错误描述——实际是 per-step 6×6 + Ledoit-Wolf shrinkage，任何论文章节重复此错误 → critical\n\n### 2. 🖥️ 基础设施快照\n- 4 台服务器：bjb2-40593(root) / bjb1-18228(root) / bjb1-32546(root) / bjb2-28827(root)\n- 代码根目录（远程）：`/root/acr-vla-conformal-refinement`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/`\n- 17× RTX 4090 跨 4 台服务器全部在线\n- 无 W&B 配置（不检查 wandb）\n- 活跃实验：seed46/47 pairs + perdof multi-seed magnitude sweep + multi-variant seed45（具体 PID/tmux 需 ssh 确认，每台服务器多个 eval session）\n\n### 3. 📊 当前状态\n刚完成两项审查并已 post to Director：\n1. **Training loss analysis 审查**：Worker 证明 val MSE 与 SR 正相关（无 disconnect），conformal features 同时伤害训练和部署。已建议 paper narrative 调整方向。\n2. **ROADMAP 审查**：标注 paper_framing.md Claim 3 root cause 需更新（rank-deficiency → optimization noise），P1 diagnostic 任务描述过时。\n\n等待中：\n- seed46/47 完成回调（将扩大 pooled 统计到 6-seed）\n- perdof seed44/45 magnitude sweep 多点完成（支撑 collapse curve error bar）\n- Director 对我两份审查报告的回应 / 决策\n\n### 4. 📋 待办\n- seed46/47 cron 回调 → 独立核实数据 + 重算 6-seed pooled Fisher p-value\n- 论文任何 section 重新提交审查 → 验证 method 中 covariance 描述已修正为 per-step 6×6\n- experiments_draft 重写提交 → 验证 p=0.048 已删除 + \"no reversal\" 已修正 + training loss correlation 证据已融入\n- paper_framing.md 更新通知 → 确认 Claim 3 root cause 改为 optimization noise 解释\n- 任何新部署实验 → ssh nvidia-smi 核对 GPU 设备号是否在白名单内\n\n### 5. 🎯 战略上下文\n- **Narrative B 已锁定 (D043)**：核心贡献是 conditioning-magnitude interaction mechanism insight，不是 SR improvement significance\n- **4-seed pooled**: obs_only 17.5% vs argmin 13.5%, +4pp, Fisher p=0.118（不显著，论文不 claim significance）\n- **关键证据链**：magnitude curve (seed42) 展示 obs_only 稳定 vs perdof 崩溃 → 多 seed 确认 obs_only 一致性 → training loss 证明 conformal features 是噪声\n- **下一个\"我\"最易判断错的事**：\n  1. 不要被\"rank-deficient covariance in 30-D\"说法误导——代码实现是 per-step 6×6（H=5步，每步 d=6 DOF），不是 30-D joint\n  2. 不要假设 training loss 与 SR 之间存在 disconnect——它们是正相关的\n  3. seed43 存在 obs_only < argmin 的 reversal（16% vs 17%），论文不能说\"no seed reversal\"\n  4. CRM 输入维度：obs_only=990 (960 obs + 30 action), perdof=1030 (+40 uncertainty), scalar=993 (+3 uncertainty)\n  5. Fisher p=0.118 是正确的（不是之前错算的 0.048 或 0.091）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-3.md"
+}

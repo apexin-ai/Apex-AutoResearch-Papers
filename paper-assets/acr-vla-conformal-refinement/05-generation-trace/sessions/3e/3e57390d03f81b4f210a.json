@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e57390d03f81b4f210a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb1 18228 gpu recovery",
+  "task_key": "worker_ops_bjb1-18228-gpu-recovery_20260515T051701",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb1-18228-gpu-recovery_20260515T051701_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "d9932cf6b468b338743e969112192d9f83cba83e6004c2c46b4b63d33374f94e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验**已经在运行中**，无需重新提交。\n\n当前状态（所有 session 创建于今天 13:14）：\n\n| tmux session | GPU | 进程状态 |\n|---|---|---|\n| eval-argmin-only-spatial-r2 | cuda:0 | `evaluate.py --mode reconvla --start_task 9` 运行中 |\n| eval-acr-spatial-v4-scalar-r2 | cuda:1 | `evaluate.py --mode crm_scalar --start_task 3` 运行中 |\n| eval-acr-spatial-v4-small-r2 | cuda:2 | `evaluate.py --mode acr_vla --start_task 7` 运行中 |\n| eval-acr-spatial-v4-obs-only-r3 | cuda:3 | `evaluate.py --mode crm_obs_only --start_task 6` 运行中 |\n\nGPU 内存占用 2-4.6 GB，utilization 20-24%，4 个 evaluate.py 进程均活跃。磁盘空间充足（根分区 34%，数据盘 46%）。\n\n与任务描述的唯一差异：output_file 路径用的是 `~/runs/` 下的 log 路径而非 `logs/eval_spatial_*` 路径，GPU 分配顺序略有不同，但实验参数完全一致。\n\n这些实验看起来是刚被提交不久（~3 分钟前），已经在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-18228-gpu-recovery.md"
+}

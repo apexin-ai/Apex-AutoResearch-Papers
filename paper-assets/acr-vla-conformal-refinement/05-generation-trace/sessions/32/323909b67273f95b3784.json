@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "323909b67273f95b3784",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy obs only norm03 seed45",
+  "task_key": "worker_ssh_deploy-obs-only-norm03-seed45_20260516T153635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-obs-only-norm03-seed45_20260516T153635_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "c9a44739db57527bcc9d61a380ba961de4284818d5cb82e48d4f3cddb13fd4c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 上正在运行 `eval-object-perdof-norm03-seed44`（12分钟前启动）。\n\n**停下来报告：cuda:2 被占用，不执行部署。**\n\n当前 cuda:2 进程详情：\n- **PID**: 505419\n- **实验**: `eval_object_perdof_norm03_seed44` (CRM perdof mode, object benchmark, norm=0.3, seed=44)\n- **启动时间**: 23:24:10（约12分钟前）\n- **显存占用**: 5645MiB / 24564MiB\n\n需要等该实验完成后再部署，或者指定其他空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-obs-only-norm03-seed45.md"
+}

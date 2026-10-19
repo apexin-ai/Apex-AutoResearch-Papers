@@ -1,0 +1,3608 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5ce660ea2772b0c4cb51",
+  "rounds": [
+    {
+      "number": 761,
+      "messages": [
+        {
+          "source_line": 10441,
+          "timestamp": "2026-05-20T23:24:43.210805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWarning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\n2\tPID=599925\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010441"
+        },
+        {
+          "source_line": 10442,
+          "timestamp": "2026-05-20T23:24:47.647077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-plan-a-object-seed43",
+              "field": "metrics",
+              "value": "{'success_rate': 0.16, 'sr_pct': '16.0%', 'n_tasks': 10, 'n_rollouts': 10, 'total_rollouts': 100, 'mean_uncertainty': 0.1457, 'trigger_rate': 0.84}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010442"
+        },
+        {
+          "source_line": 10443,
+          "timestamp": "2026-05-20T23:24:49.029202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-plan-a-object-seed44",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010443"
+        },
+        {
+          "source_line": 10444,
+          "timestamp": "2026-05-20T23:24:50.115590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed59",
+              "server": "bjb1-18228",
+              "pid": "599925",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm003_seed59.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010444"
+        },
+        {
+          "source_line": 10445,
+          "timestamp": "2026-05-20T23:24:51.524623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-plan-a-object-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:32:51.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:24:49.886Z\\\", \\\"hypothesis\\\": \\\"D090 Plan A: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM obs_only correction; else: argmin-to-centroid only. 测试 adaptive conformal CRM 在 LIBERO-Object seed43 上的表现。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark object --seed 43 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"560444\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only(adaptive_conformal_crm)\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_a_object_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.16, \\\"sr_pct\\\": \\\"16.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100, \\\"mean_uncertainty\\\": 0.1457, \\\"trigger_rate\\\": 0.84}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.8301}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3877
+          },
+          "id": "event-010445"
+        },
+        {
+          "source_line": 10446,
+          "timestamp": "2026-05-20T23:24:58.624998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-plan-a-object-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:37:28.279Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:24:53.378Z\\\", \\\"hypothesis\\\": \\\"D090 Plan A: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM obs_only correction; else: argmin-to-centroid only. 测试 adaptive conformal CRM 在 LIBERO-Object seed44 上的表现。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark object --seed 44 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"563761\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only(adaptive_conformal_crm)\\\", \\\"seed\\\": 44, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_a_object_seed44.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.2, \\\"sr_pct\\\": \\\"20.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100, \\\"mean_uncertainty\\\": 0.1448, \\\"trigger_rate\\\": 0.832}, \\\"completed_at\\\": \\\"2026-05-20T23:22:26.795Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.0838}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9595
+          },
+          "id": "event-010446"
+        },
+        {
+          "source_line": 10447,
+          "timestamp": "2026-05-20T23:24:58.897377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"pid\\\": \\\"599925\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm003_seed59.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-20T23:24:58.706Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 8781
+          },
+          "id": "event-010447"
+        },
+        {
+          "source_line": 10448,
+          "timestamp": "2026-05-20T23:25:03.622962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-plan-a-object-seed43",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010448"
+        },
+        {
+          "source_line": 10449,
+          "timestamp": "2026-05-20T23:25:11.356334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-plan-a-object-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:32:51.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:25:05.891Z\\\", \\\"hypothesis\\\": \\\"D090 Plan A: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM obs_only correction; else: argmin-to-centroid only. 测试 adaptive conformal CRM 在 LIBERO-Object seed43 上的表现。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark object --seed 43 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"560444\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only(adaptive_conformal_crm)\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_a_object_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.16, \\\"sr_pct\\\": \\\"16.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100, \\\"mean_uncertainty\\\": 0.1457, \\\"trigger_rate\\\": 0.84}, \\\"completed_at\\\": \\\"2026-05-20T23:25:05.891Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.6777}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 7733
+          },
+          "id": "event-010449"
+        },
+        {
+          "source_line": 10450,
+          "timestamp": "2026-05-20T23:25:15.733174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19210",
+              "limit": "10"
+            }
+          },
+          "id": "event-010450"
+        },
+        {
+          "source_line": 10451,
+          "timestamp": "2026-05-20T23:25:15.839656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19210\t      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19211\t      log_path: /root/autodl-tmp/logs/obs_only_object_norm01_seed57.log\n19212\t  eval-obs-only-object-norm005-seed58:\n19213\t    status: RUNNING\n19214\t    retry_count: 0\n19215\t    created_at: '2026-05-20T23:18:18.450Z'\n19216\t    updated_at: '2026-05-20T23:18:30.000Z'\n19217\t    hypothesis: CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed58. Norm sweep seed\n19218\t      balance for ε=0.05.\n19219\t    spec:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 106
+          },
+          "id": "event-010451"
+        },
+        {
+          "source_line": 10452,
+          "timestamp": "2026-05-20T23:25:19.102500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-obs-only-object-norm003-seed59:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010452"
+        },
+        {
+          "source_line": 10453,
+          "timestamp": "2026-05-20T23:25:19.158188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 55
+          },
+          "id": "event-010453"
+        },
+        {
+          "source_line": 10454,
+          "timestamp": "2026-05-20T23:25:25.721173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed59",
+              "field": "hypothesis",
+              "value": "CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed balance for ε=0.03.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010454"
+        },
+        {
+          "source_line": 10455,
+          "timestamp": "2026-05-20T23:25:27.778437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T23:25:26.898Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:25:26.898Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed balance for ε=0.03.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0165}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2057
+          },
+          "id": "event-010455"
+        },
+        {
+          "source_line": 10456,
+          "timestamp": "2026-05-20T23:25:32.295568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-obs-only-object-norm003-seed59:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-010456"
+        },
+        {
+          "source_line": 10457,
+          "timestamp": "2026-05-20T23:25:32.346234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19233:  eval-obs-only-object-norm003-seed59:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010457"
+        },
+        {
+          "source_line": 10458,
+          "timestamp": "2026-05-20T23:25:36.914352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19233",
+              "limit": "7"
+            }
+          },
+          "id": "event-010458"
+        },
+        {
+          "source_line": 10459,
+          "timestamp": "2026-05-20T23:25:36.914796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19233\t  eval-obs-only-object-norm003-seed59:\n19234\t    status: PREPARING\n19235\t    retry_count: 0\n19236\t    created_at: '2026-05-20T23:25:26.898Z'\n19237\t    updated_at: '2026-05-20T23:25:26.898Z'\n19238\t    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed\n19239\t      balance for ε=0.03."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010459"
+        },
+        {
+          "source_line": 10460,
+          "timestamp": "2026-05-20T23:25:46.810541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "old_string": "  eval-obs-only-object-norm003-seed59:\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-20T23:25:26.898Z'\n    updated_at: '2026-05-20T23:25:26.898Z'\n    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed\n      balance for ε=0.03.",
+              "new_string": "  eval-obs-only-object-norm003-seed59:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-20T23:25:26.898Z'\n    updated_at: '2026-05-20T23:25:30.000Z'\n    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed\n      balance for ε=0.03.\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 59 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed59.json\n      server: bjb1-18228\n      gpu: [cuda:3]\n      pid: '599925'\n      seed: 59\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm003_seed59.log"
+            }
+          },
+          "id": "event-010460"
+        },
+        {
+          "source_line": 10461,
+          "timestamp": "2026-05-20T23:25:46.955390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Edit",
+            "elapsed_ms": 144
+          },
+          "id": "event-010461"
+        },
+        {
+          "source_line": 10462,
+          "timestamp": "2026-05-20T23:26:03.606081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 | Worker 0\n\n**✅ Plan A Object 3/3 seeds 全部完成！**\n\n| Seed | Plan A (K=2) | K=10 CRM | trigger_rate | mean_unc |\n|------|-------------|----------|--------------|----------|\n| seed42 | 19% | 20%* | 83.8% | 0.1468 |\n| seed43 | 16% | 17% | 84.0% | 0.1457 |\n| seed44 | 20% | 15% | 83.2% | 0.1448 |\n| **mean** | **18.3%±2.1%** | **16.8%±1.8%** (n=7) | **83.7%** | **0.1458** |\n\n*seed42 K=10 被 D084 排除\n\n**结论：Plan A (K=2 conformal + selective CRM) 以 80% less compute 超过 K=10 CRM +1.5pp。**\n\n关键发现：\n- trigger_rate 极稳定 (~83-84%)：P50 threshold 下绝大多数 step 被判 uncertain → 触发 CRM\n- 如果目标是降低 compute，可以尝试更高 threshold（P75/P90）来降低 trigger_rate\n- 3 seed 都高于 VLA-only (11.0%) 和 Adaptive K P50 (15.3%)\n\n**Plan A Spatial ×3 正在 bjb1-32546 上跑（cuda:0/1/2），等待结果。**\n\n释放 GPU：bjb1-18228 cuda:3 → norm003-seed59 (PID=599925) 已部署。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010462"
+        },
+        {
+          "source_line": 10463,
+          "timestamp": "2026-05-20T23:26:07.169257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3563
+          },
+          "id": "event-010463"
+        },
+        {
+          "source_line": 10464,
+          "timestamp": "2026-05-20T23:26:12.608473+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan A Object 全部完成。3 seeds: 19%/16%/20%, mean=18.3%±2.1%，超过 K=10 CRM 1.5pp with 80% less compute。等待 Plan A Spatial 和 OpenVLA CRM 结果。17/17 GPU 持续满载。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010464"
+        }
+      ]
+    },
+    {
+      "number": 762,
+      "messages": [
+        {
+          "source_line": 10465,
+          "timestamp": "2026-05-20T23:26:12.620877+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-openvla-crm-object-seed42** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb2-28827 检查日志 `/root/autodl-tmp/logs/openvla_crm_eval_seed42.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-openvla-crm-object-seed42')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010465"
+        },
+        {
+          "source_line": 10466,
+          "timestamp": "2026-05-20T23:26:26.020588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 'tail -8 /root/autodl-tmp/logs/openvla_crm_eval_seed42.log && source /root/miniconda3/bin/activate base && python3 -c \"\nimport json, glob, os\nfor f in sorted(glob.glob(\\\"/root/acr-vla-conformal-refinement/logs/*openvla*crm*seed42*.json\\\") + glob.glob(\\\"/root/autodl-tmp/logs/*openvla*crm*seed42*.json\\\")):\n    try:\n        d = json.load(open(f))\n        sr = d.get(\\\"success_rate\\\", d.get(\\\"overall_success_rate\\\", \\\"N/A\\\"))\n        print(f\\\"OK {os.path.basename(f)}: sr={sr}\\\")\n    except Exception as e:\n        print(f\\\"ERR {os.path.basename(f)}: {e}\\\")\n\"' 2>&1",
+              "description": "Check OpenVLA CRM eval seed42 result",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010466"
+        },
+        {
+          "source_line": 10467,
+          "timestamp": "2026-05-20T23:26:27.364617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/10)\n\n============================================================\nOverall success rate (crm_obs_only): 0.0% (0/100)\n============================================================\n[eval] Results saved to /root/autodl-tmp/logs/openvla_crm_eval_seed42.json\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\nOK openvla_crm_eval_seed42.json: sr=0.0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1344
+          },
+          "id": "event-010467"
+        },
+        {
+          "source_line": 10468,
+          "timestamp": "2026-05-20T23:26:46.901326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-crm-object-seed42",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010468"
+        },
+        {
+          "source_line": 10469,
+          "timestamp": "2026-05-20T23:26:49.262495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-crm-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:32:47.109Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:26:48.181Z\\\", \\\"hypothesis\\\": \\\"OpenVLA CRM obs_only eval: 测试 CRM correction 在 OpenVLA (7B, near-deterministic T=0.5) 上的效果。OpenVLA v2 baseline=69%，但 T=0.5 产生近乎相同的 actions (8/10 identical)。关键问题：CRM correction 在低 action diversity 条件下是否仍有效？解决 3 个 review criticals: M1 narrow scope, R2-W1-new low absolute perf, R1-W3-new single VLA。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --openvla --mode crm_obs_only --benchmark object --seed 42 --n_rollouts 10 --K 10 --obs_dim 4096 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt --max_correction_norm 0.2 --output_file /root/autodl-tmp/logs/openvla_crm_eval_seed42.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": 842052, \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"OpenVLA-7B+CRM_obs_only\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/openvla_crm_eval_seed42.log\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3711}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2361
+          },
+          "id": "event-010469"
+        },
+        {
+          "source_line": 10470,
+          "timestamp": "2026-05-20T23:26:53.025983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-crm-object-seed42",
+              "field": "metrics",
+              "value": "{'success_rate': 0, 'sr_pct': '0.0%', 'n_tasks': 10, 'n_rollouts': 10, 'total_rollouts': 100}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010470"
+        },
+        {
+          "source_line": 10471,
+          "timestamp": "2026-05-20T23:26:56.304230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-crm-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:32:47.109Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:26:54.252Z\\\", \\\"hypothesis\\\": \\\"OpenVLA CRM obs_only eval: 测试 CRM correction 在 OpenVLA (7B, near-deterministic T=0.5) 上的效果。OpenVLA v2 baseline=69%，但 T=0.5 产生近乎相同的 actions (8/10 identical)。关键问题：CRM correction 在低 action diversity 条件下是否仍有效？解决 3 个 review criticals: M1 narrow scope, R2-W1-new low absolute perf, R1-W3-new single VLA。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --openvla --mode crm_obs_only --benchmark object --seed 42 --n_rollouts 10 --K 10 --obs_dim 4096 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt --max_correction_norm 0.2 --output_file /root/autodl-tmp/logs/openvla_crm_eval_seed42.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": 842052, \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"OpenVLA-7B+CRM_obs_only\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/openvla_crm_eval_seed42.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"sr_pct\\\": \\\"0.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0713}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3278
+          },
+          "id": "event-010471"
+        },
+        {
+          "source_line": 10472,
+          "timestamp": "2026-05-20T23:26:56.806425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 'source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=5 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 60 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed60.json > /root/autodl-tmp/logs/obs_only_object_norm01_seed60.log 2>&1 & echo PID=$!' 2>&1",
+              "description": "Deploy norm01-seed60 on bjb2-28827 cuda:5",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010472"
+        },
+        {
+          "source_line": 10473,
+          "timestamp": "2026-05-20T23:27:11.837522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: bnafrlws5. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/12f53ab8-a386-4fb7-8f93-8487b50f881a/tasks/bnafrlws5.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 15031
+          },
+          "id": "event-010473"
+        },
+        {
+          "source_line": 10474,
+          "timestamp": "2026-05-20T23:27:15.034518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/12f53ab8-a386-4fb7-8f93-8487b50f881a/tasks/bnafrlws5.output"
+            }
+          },
+          "id": "event-010474"
+        },
+        {
+          "source_line": 10475,
+          "timestamp": "2026-05-20T23:27:15.034952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWarning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\n2\tPID=890012\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010475"
+        },
+        {
+          "source_line": 10476,
+          "timestamp": "2026-05-20T23:27:18.826443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-crm-object-seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010476"
+        },
+        {
+          "source_line": 10477,
+          "timestamp": "2026-05-20T23:27:20.384817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed60",
+              "server": "bjb2-28827",
+              "pid": "890012",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm01_seed60.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010477"
+        },
+        {
+          "source_line": 10478,
+          "timestamp": "2026-05-20T23:27:22.944641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-crm-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:32:47.109Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:27:20.030Z\\\", \\\"hypothesis\\\": \\\"OpenVLA CRM obs_only eval: 测试 CRM correction 在 OpenVLA (7B, near-deterministic T=0.5) 上的效果。OpenVLA v2 baseline=69%，但 T=0.5 产生近乎相同的 actions (8/10 identical)。关键问题：CRM correction 在低 action diversity 条件下是否仍有效？解决 3 个 review criticals: M1 narrow scope, R2-W1-new low absolute perf, R1-W3-new single VLA。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --openvla --mode crm_obs_only --benchmark object --seed 42 --n_rollouts 10 --K 10 --obs_dim 4096 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt --max_correction_norm 0.2 --output_file /root/autodl-tmp/logs/openvla_crm_eval_seed42.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": 842052, \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"OpenVLA-7B+CRM_obs_only\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/openvla_crm_eval_seed42.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"sr_pct\\\": \\\"0.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100}, \\\"completed_at\\\": \\\"2026-05-20T23:27:20.030Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1136}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4118
+          },
+          "id": "event-010478"
+        },
+        {
+          "source_line": 10479,
+          "timestamp": "2026-05-20T23:27:23.145746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed60\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"890012\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm01_seed60.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-20T23:27:23.000Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 2760
+          },
+          "id": "event-010479"
+        },
+        {
+          "source_line": 10480,
+          "timestamp": "2026-05-20T23:27:41.783684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 | Worker 0\n\n**[负向结果] eval-openvla-crm-object-seed42**\n\n被证伪的 hypothesis：CRM obs_only correction 在 OpenVLA (7B, near-deterministic T=0.5) 上能提升 LIBERO-Object 表现。\n\n结果：**SR=0%**（100 rollouts, 10 tasks ×10, 全部失败）vs OpenVLA v2 baseline=69%\n\n证伪粒度：**完全失败** — 10 个 task 无一成功，CRM correction 彻底破坏 actions。\n\n推导：\n- OpenVLA T=0.5 产生近乎相同的 K=10 samples (8/10 identical)\n- CRM 接收的 obs_feat 是 4096D（vs SmolVLA 960D），训练数据可能不足以学到正确的 correction mapping\n- CRM 训练的 val_loss=0.077260 看似正常但 50 epochs flat，可能已经 underfit\n- 根本问题：CRM 是在 SmolVLA action space 上训练的概念，直接移植到 OpenVLA 的 7D action space 时，correction 幅度/方向可能完全错误\n\n建议：\n1. **不追加 seed43/44** — 0% 已充分证伪，节省 GPU\n2. **在论文中 frame 为 applicability boundary** — CRM correction 依赖 action diversity (K samples 间的差异)；near-deterministic VLA 不产生足够 diversity → CRM 无用。这反而加强了 \"correction works because of action diversity\" 的 story\n3. 释放 standing queue P2（OpenVLA CRM ×3），改为 norm sweep 补种\n\n**GPU 已回收：** bjb2-28827 cuda:5 → norm01-seed60 (PID=890012)",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010480"
+        },
+        {
+          "source_line": 10481,
+          "timestamp": "2026-05-20T23:27:47.607676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 5823
+          },
+          "id": "event-010481"
+        },
+        {
+          "source_line": 10482,
+          "timestamp": "2026-05-20T23:27:53.291460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/project_gpu_deploy_queue.md"
+            }
+          },
+          "id": "event-010482"
+        },
+        {
+          "source_line": 10483,
+          "timestamp": "2026-05-20T23:27:53.344480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: GPU Deploy Queue (D090)\n3\tdescription: Standing deployment orders — deploy immediately when GPUs free up, no Director approval needed\n4\ttype: project\n5\toriginSessionId: 12f53ab8-a386-4fb7-8f93-8487b50f881a\n6\t---\n7\t## GPU 释放部署队列（Director 已审批，2026-05-20）\n8\t\n9\t**Priority 1: Plan A eval (adaptive_conformal_crm) — 3 seeds on any server**\n10\t```bash\n11\tpython src/evaluate.py --mode adaptive_conformal_crm --benchmark object --seed {42,43,44} --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --conformal_threshold 0.074855 --max_correction_norm 0.2 --output_file logs/eval_plan_a_object_seed{SEED}.json\n12\t```\n13\t~5 GB VRAM, any server OK. Registry name: `eval-plan-a-object-seed{42,43,44}`. Note: --K 10 per Director's updated command (was K=2 in original D090 spec).\n14\t\n15\t**Priority 2: OpenVLA CRM eval — 3 seeds on bjb2-28827 ONLY**\n16\t```bash\n17\tpython src/evaluate.py --openvla --mode crm_obs_only --benchmark object --seed {42,43,44} --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt --max_correction_norm 0.2\n18\t```\n19\t~18 GB VRAM, must be bjb2-28827 (model only there).\n20\t\n21\t**Remaining GPUs: norm sweep / seed balance experiments.**\n22\t\n23\t**Why:** D090 Plan A is the fallback after D088 NO-GO. OpenVLA CRM resolves 3 review criticals. DDL 2026-05-29.\n24\t**How to apply:** When cron callback arrives for completed experiment, immediately deploy from this queue on the freed GPU. No need to ask Director.\n25\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 53
+          },
+          "id": "event-010483"
+        },
+        {
+          "source_line": 10484,
+          "timestamp": "2026-05-20T23:28:04.159183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/project_gpu_deploy_queue.md",
+              "content": "---\nname: GPU Deploy Queue (D090)\ndescription: Standing deployment orders — deploy immediately when GPUs free up, no Director approval needed\ntype: project\noriginSessionId: 12f53ab8-a386-4fb7-8f93-8487b50f881a\n---\n## GPU 释放部署队列（Director 已审批，2026-05-20）\n\n**Priority 1: Plan A eval — ✅ COMPLETED**\n- Object ×3: seed42=19%, seed43=16%, seed44=20% → mean=18.3%±2.1%\n- Spatial ×3: RUNNING on bjb1-32546 cuda:0/1/2\n\n**~~Priority 2: OpenVLA CRM eval~~ — ❌ CANCELLED (seed42=0%, 证伪)**\nOpenVLA CRM SR=0% vs baseline 69%. CRM correction 彻底破坏 near-deterministic VLA actions. 不追加 seed43/44.\n\n**Remaining GPUs: norm sweep / seed balance experiments.**\n- ε=0.1 (norm01): 优先填充，ROADMAP 标 TBD\n- ε=0.05 (norm005): 次优先\n- ε=0.03 (norm003): 补种\n\n**Why:** D090 Plan A is the fallback after D088 NO-GO. DDL 2026-05-29.\n**How to apply:** When cron callback arrives for completed experiment, immediately deploy norm sweep on the freed GPU. No need to ask Director.\n"
+            }
+          },
+          "id": "event-010484"
+        },
+        {
+          "source_line": 10485,
+          "timestamp": "2026-05-20T23:28:04.229229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/project_gpu_deploy_queue.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Write",
+            "elapsed_ms": 70
+          },
+          "id": "event-010485"
+        },
+        {
+          "source_line": 10486,
+          "timestamp": "2026-05-20T23:28:08.582319+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan A Object 3/3 完成（mean 18.3%），OpenVLA CRM 证伪（0%）。Plan A Spatial ×3 和 17 个 norm sweep 实验继续运行中。等待 cron 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010486"
+        }
+      ]
+    },
+    {
+      "number": 763,
+      "messages": [
+        {
+          "source_line": 10487,
+          "timestamp": "2026-05-20T23:28:08.594887+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-openvla-crm-object-seed42** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb2-28827 检查日志 `/root/autodl-tmp/logs/openvla_crm_eval_seed42.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-openvla-crm-object-seed42')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010487"
+        },
+        {
+          "source_line": 10488,
+          "timestamp": "2026-05-20T23:28:22.140427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-crm-object-seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010488"
+        },
+        {
+          "source_line": 10489,
+          "timestamp": "2026-05-20T23:28:26.422565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-crm-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:32:47.109Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:28:23.498Z\\\", \\\"hypothesis\\\": \\\"OpenVLA CRM obs_only eval: 测试 CRM correction 在 OpenVLA (7B, near-deterministic T=0.5) 上的效果。OpenVLA v2 baseline=69%，但 T=0.5 产生近乎相同的 actions (8/10 identical)。关键问题：CRM correction 在低 action diversity 条件下是否仍有效？解决 3 个 review criticals: M1 narrow scope, R2-W1-new low absolute perf, R1-W3-new single VLA。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --openvla --mode crm_obs_only --benchmark object --seed 42 --n_rollouts 10 --K 10 --obs_dim 4096 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt --max_correction_norm 0.2 --output_file /root/autodl-tmp/logs/openvla_crm_eval_seed42.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": 842052, \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"OpenVLA-7B+CRM_obs_only\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/openvla_crm_eval_seed42.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"sr_pct\\\": \\\"0.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100}, \\\"completed_at\\\": \\\"2026-05-20T23:27:20.030Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2403}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4282
+          },
+          "id": "event-010489"
+        },
+        {
+          "source_line": 10490,
+          "timestamp": "2026-05-20T23:28:29.318069+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "重复回调。已处理（SR=0%, negative）。关闭状态到 DONE 停止 cron。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010490"
+        }
+      ]
+    },
+    {
+      "number": 764,
+      "messages": [
+        {
+          "source_line": 10491,
+          "timestamp": "2026-05-20T23:48:54.574251+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-plan-a-spatial-seed44** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-32546 检查日志 `/root/autodl-tmp/logs/plan_a_spatial_seed44.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-plan-a-spatial-seed44')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010491"
+        },
+        {
+          "source_line": 10492,
+          "timestamp": "2026-05-20T23:49:05.579450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'tail -5 /root/autodl-tmp/logs/plan_a_spatial_seed44.log && source /root/miniconda3/bin/activate base && python3 -c \"\nimport json, glob\nfor f in sorted(glob.glob(\\\"/root/acr-vla-conformal-refinement/logs/*plan_a*spatial*seed44*.json\\\")):\n    d = json.load(open(f))\n    sr = d.get(\\\"success_rate\\\", d.get(\\\"overall_success_rate\\\"))\n    print(f\\\"sr={sr}\\\")\n\"' 2>&1",
+              "description": "Check Plan A Spatial seed44 result",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010492"
+        },
+        {
+          "source_line": 10493,
+          "timestamp": "2026-05-20T23:49:06.999449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nOverall success rate (adaptive_conformal_crm): 36.0% (36/100)\n============================================================\n[eval] Conformal CRM stats: mean_unc=0.2661, trigger_rate=97.8%\n[eval] Results saved to logs/eval_plan_a_spatial_seed44.json\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\nsr=0.36"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1419
+          },
+          "id": "event-010493"
+        },
+        {
+          "source_line": 10494,
+          "timestamp": "2026-05-20T23:49:19.298897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-plan-a-spatial-seed44",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010494"
+        },
+        {
+          "source_line": 10495,
+          "timestamp": "2026-05-20T23:49:21.607194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-plan-a-spatial-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:17:17.907Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:49:20.535Z\\\", \\\"hypothesis\\\": \\\"D090 Plan A Spatial: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM correction; else: argmin-to-centroid only. Tests adaptive conformal CRM on LIBERO-Spatial (ID benchmark) seed44.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark spatial --seed 44 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855 --output_file logs/eval_plan_a_spatial_seed44.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"664545\\\", \\\"seed\\\": 44, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only_adaptive\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_a_spatial_seed44.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1034}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2308
+          },
+          "id": "event-010495"
+        },
+        {
+          "source_line": 10496,
+          "timestamp": "2026-05-20T23:49:21.607684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'ps -p 664543,664544 -o pid= 2>/dev/null; echo \"---\"; ls /root/acr-vla-conformal-refinement/logs/*plan_a*spatial*seed4[23]*.json 2>/dev/null || echo \"NO JSON for seed42/43\"' 2>&1",
+              "description": "Check if seed42/43 also finished",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-010496"
+        },
+        {
+          "source_line": 10497,
+          "timestamp": "2026-05-20T23:49:22.511427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n664543\n664544\n---\nNO JSON for seed42/43"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-010497"
+        },
+        {
+          "source_line": 10498,
+          "timestamp": "2026-05-20T23:49:28.936175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-plan-a-spatial-seed44",
+              "field": "metrics",
+              "value": "{'success_rate': 0.36, 'sr_pct': '36.0%', 'n_tasks': 10, 'n_rollouts': 10, 'total_rollouts': 100, 'mean_uncertainty': 0.2661, 'trigger_rate': 0.978}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010498"
+        },
+        {
+          "source_line": 10499,
+          "timestamp": "2026-05-20T23:49:29.890286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-plan-a-spatial-seed44",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010499"
+        },
+        {
+          "source_line": 10500,
+          "timestamp": "2026-05-20T23:49:32.314870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-plan-a-spatial-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:17:17.907Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:49:30.124Z\\\", \\\"hypothesis\\\": \\\"D090 Plan A Spatial: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM correction; else: argmin-to-centroid only. Tests adaptive conformal CRM on LIBERO-Spatial (ID benchmark) seed44.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark spatial --seed 44 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855 --output_file logs/eval_plan_a_spatial_seed44.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"664545\\\", \\\"seed\\\": 44, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only_adaptive\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_a_spatial_seed44.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"sr_pct\\\": \\\"36.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100, \\\"mean_uncertainty\\\": 0.2661, \\\"trigger_rate\\\": 0.978}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0239}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3378
+          },
+          "id": "event-010500"
+        },
+        {
+          "source_line": 10501,
+          "timestamp": "2026-05-20T23:49:32.872593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 61 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed61.json > /root/autodl-tmp/logs/obs_only_object_norm005_seed61.log 2>&1 & echo PID=$!' 2>&1",
+              "description": "Deploy norm005-seed61 on bjb1-32546 cuda:2",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010501"
+        },
+        {
+          "source_line": 10502,
+          "timestamp": "2026-05-20T23:49:35.280005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-plan-a-spatial-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:17:17.907Z\\\", \\\"updated_at\\\": \\\"2026-05-20T23:49:32.228Z\\\", \\\"hypothesis\\\": \\\"D090 Plan A Spatial: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM correction; else: argmin-to-centroid only. Tests adaptive conformal CRM on LIBERO-Spatial (ID benchmark) seed44.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode adaptive_conformal_crm --benchmark spatial --seed 44 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.074855 --output_file logs/eval_plan_a_spatial_seed44.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"664545\\\", \\\"seed\\\": 44, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only_adaptive\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/plan_a_spatial_seed44.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"sr_pct\\\": \\\"36.0%\\\", \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100, \\\"mean_uncertainty\\\": 0.2661, \\\"trigger_rate\\\": 0.978}, \\\"completed_at\\\": \\\"2026-05-20T23:49:32.228Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2963}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5389
+          },
+          "id": "event-010502"
+        },
+        {
+          "source_line": 10503,
+          "timestamp": "2026-05-20T23:49:50.342534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: bdssrvphs. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/12f53ab8-a386-4fb7-8f93-8487b50f881a/tasks/bdssrvphs.output"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 17469
+          },
+          "id": "event-010503"
+        },
+        {
+          "source_line": 10504,
+          "timestamp": "2026-05-20T23:49:53.275091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/12f53ab8-a386-4fb7-8f93-8487b50f881a/tasks/bdssrvphs.output"
+            }
+          },
+          "id": "event-010504"
+        },
+        {
+          "source_line": 10505,
+          "timestamp": "2026-05-20T23:49:53.341124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\n2\tPID=712959\n3\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 66
+          },
+          "id": "event-010505"
+        },
+        {
+          "source_line": 10506,
+          "timestamp": "2026-05-20T23:49:58.034663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed61",
+              "server": "bjb1-32546",
+              "pid": "712959",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm005_seed61.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010506"
+        },
+        {
+          "source_line": 10507,
+          "timestamp": "2026-05-20T23:49:58.382527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed61\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"712959\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm005_seed61.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-20T23:49:58.126Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 347
+          },
+          "id": "event-010507"
+        },
+        {
+          "source_line": 10508,
+          "timestamp": "2026-05-20T23:51:56.625744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-010508"
+        },
+        {
+          "source_line": 10509,
+          "timestamp": "2026-05-20T23:51:56.626168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-010509"
+        },
+        {
+          "source_line": 10510,
+          "timestamp": "2026-05-20T23:51:59.838567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu', 'pid', 'hypothesis', 'metrics']"
+            }
+          },
+          "id": "event-010510"
+        },
+        {
+          "source_line": 10511,
+          "timestamp": "2026-05-20T23:52:00.291207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-010511"
+        },
+        {
+          "source_line": 10512,
+          "timestamp": "2026-05-20T23:52:00.342539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-argmin-object-seed48\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-obs-only-object-norm02-seed49\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-random-selection-spatial-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-random-selection-spatial-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-adaptive-k-spatial-p90-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-adaptive-k-spatial-p25-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-adaptive-k-spatial-p75-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-obs-only-spatial-norm02-seed46-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"obs_only CRM with epsilon=0.2 and K=10 improves LIBERO-Spatial success rate by applying observation-conditioned conformal corrections to fix spatial reasoning errors, seed46 rerun for statistical robustness\\\"}, \\\"eval-vla-only-goal-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed44 establishes reference success rate for comparing against CRM-augmented methods on goal-conditioned tasks, rerun for statistical robustness\\\"}, \\\"eval-argmin-object-k5-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"ReConVLA argmin mode with K=5 candidates improves LIBERO-Object success rate over VLA-only baseline by selecting the best action from multiple VLA samples using conformal scoring, seed44 rerun for statistical robustness\\\"}, \\\"eval-openvla-object-baseline-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"OpenVLA baseline on LIBERO-Object seed42 establishes reference success rate for comparing against SmolVLA and CRM-augmented methods on object manipulation tasks\\\"}, \\\"eval-perdof-object-norm02-seed48\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"perdof CRM with ε=0.2 on LIBERO-Object seed48. Additional seed for perdof magnitude curve at primary comparison norm. Running on bjb2-28827 cuda:5 PID 488665.\\\"}, \\\"eval-obs-only-object-norm005-seed43\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-perdof-object-norm02-seed45-r3\\\": {\\\"stat\n…[truncated 314 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-010512"
+        },
+        {
+          "source_line": 10513,
+          "timestamp": "2026-05-20T23:52:00.795449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-010513"
+        },
+        {
+          "source_line": 10514,
+          "timestamp": "2026-05-20T23:52:01.148428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010514"
+        },
+        {
+          "source_line": 10515,
+          "timestamp": "2026-05-20T23:52:57.465705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 15, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-plan-a-spatial-seed42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-plan-a-spatial-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed51\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=664546)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed52\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=664547)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed49\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=664548)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed53\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855444)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed54\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855445)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed50\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855446)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed46\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855447)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed55\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=578254)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed57\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=594635)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed58\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=596867)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=599925)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed60\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=890012)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed61\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=712959)\\\"]}]},\n…[truncated 37 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 57174
+          },
+          "id": "event-010515"
+        },
+        {
+          "source_line": 10516,
+          "timestamp": "2026-05-20T23:52:57.466445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval-obs-only-object-norm003-seed59 | CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed balance for ε=0.03. | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval-obs-only-object-norm02-seed55: CRM obs_only (ε=0.2) K=10 on LIBERO-Object seed55. Norm sweep seed balance.（准备中）\\\\n- eval-adaptive-k-spatial-p90-seed44-bjb2: Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.（准备中）\\\\n- …另有 33 项\\\\n\\\\n## 近期结论\\\\n- **eval-plan-a-spatial-seed44** (success): D090 Plan A Spatial: K=10 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM correction; else: argmin-to-centroid only. Tests adaptive conformal CRM on LIBERO-Spatial (ID benchmark) seed44.\\\\n\\\\n## 趋势\\\\n成功 286 / 负向 38 / 失败 44 / 共 456\\\\nmean_uncertainty: 0.2661 ↑（近 3 次 success）\\\\nn_rollouts: 10 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-18228: 无 GPU 信息\\\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-40593: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- plan_001-crm-smolvla: 训练失败 — unknown\\\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\\\n- precompute-v2-shard0: 已被终止 — unknown\\\\n- precompute-v2-shard1: 已被终止 — unknown\\\\n- precompute-v2-shard2: 已被终止 — unknown\\\\n- eval-spatial-v3-full: 已被终止 — unknown\\\\n- precompute-v3-shard0: 已被终止 — unknown\\\\n- precompute-v3-shard1: 已被终止 — unknown\\\\n- precompute-v3-shard2: 已被终止 — unknown\\\\n- eval-spatial-v4-full: 已被终止 — unknown\\\\n- eval-object-v4-full: 已被终止 — unknown\\\\n- eval-spatial-\n…[truncated 5333 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 56670
+          },
+          "id": "event-010516"
+        },
+        {
+          "source_line": 10517,
+          "timestamp": "2026-05-20T23:52:57.517538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 20:23 UTC | 更新原因: D090 NO-GO confirmed, GPU 17/17 restored (M033), paper data updates, Plan A in progress\\\\n\\\\n> 详见 paper_framing.md（D077: Adaptive K 核心, D088→D090: Uncertainty Head NO-GO → Plan A fallback）\\\\n\\\\n## 核心方向\\\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance 作为不确定性信号，自适应决定推理策略。CRM correction>selection 分析作为支撑。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026** DDL **2026-05-29**。剩余 **9 天**。\\\\n\\\\n## D088→D090 方法路径\\\\n- ❌ B (Learned Uncertainty Head): NO-GO, mean 12.0% < VLA-only 14%, avg_k=1.0 bug\\\\n- 🔄 A (K=2 Conformal + Selective CRM): **Plan A 代码实现中**，Reviewer PASS\\\\n- ⏳ C (Action Distribution Geometry): fallback if A fails\\\\n- ✅ Adaptive K P50: 15.3% (avg_K=3.8, ~91% of K=10) — safety net\\\\n\\\\n## OpenVLA 实验线（SYSTEMIC_ISSUE #1 关键路径）\\\\n- ✅ plan_801: OpenVLA v2 baseline SR=69%\\\\n- ✅ plan_802 train: CRM 训练完成 (val_loss=0.077260, 50 epochs, flat)\\\\n- ⏳ plan_802 eval: **未部署** — OpenVLA 7B 需 2 GPU，bjb2-28827 仅 1 空闲。rsync 到 bjb1-32546 进行中。\\\\n\\\\n## 论文数据更新（Paper Agent 已完成）\\\\n- ✅ VLA-only baseline: 11.0±1.3% (n=8, seeds 42-48+50)\\\\n- ✅ Random Selection: Object 9.7±1.5% (n=6), \\\\\\\"fails to exceed VLA-only\\\\\\\"\\\\n- ✅ ε range: 13.4-16.8% (修正 overclaim)\\\\n- ✅ C073 placeholder: P50 = 15.3% at 38% compute\\\\n- ✅ 页数: 正文 8 页 ✅\\\\n\\\\n## 核心实验结果\\\\n| Evidence | 结果 | 状态 |\\\\n|----------|------|------|\\\\n| Object CRM K=10 (norm02) | 16.8%±1.8% (n=7, +seed51=17%) | LOCKED |\\\\n| K=10 decomposition | correction +5.8pp, selection ≈0 | LOCKED |\\\\n| Random Selection | Object 9.7% (n=6), Spatial 29.3% (n=3) ≈ VLA-only | LOCKED |\\\\n| K-sweep | K=5 15.5%, K=10 16.8%, K=20 18.7% → diminishing returns | LOCKED |\\\\n| Adaptive K P50 (Object) | 15.3% (avg_K=3.8, ~91% of K=10) | LOCKED |\\\\n| Spatial CRM K=10 | 34.5%±1.5% (n=9, +seed50=35%) | LOCKED |\\\\n| Ope\n…[truncated 2348 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 56369
+          },
+          "id": "event-010517"
+        },
+        {
+          "source_line": 10518,
+          "timestamp": "2026-05-20T23:53:12.111204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-010518"
+        },
+        {
+          "source_line": 10519,
+          "timestamp": "2026-05-20T23:53:12.161826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-010519"
+        },
+        {
+          "source_line": 10520,
+          "timestamp": "2026-05-20T23:53:30.492461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:check-plan-a-spatial-seed42-43",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：检查 Plan A Spatial seed42/43 实验结果\n\n两个 Plan A Spatial eval 实验在 bjb1-32546 上完成（进程已消失）。需要检查 JSON 输出判断成功/失败。\n\n### 实验信息\n- **eval-plan-a-spatial-seed42**: bjb1-32546, 之前在 cuda:0 运行\n- **eval-plan-a-spatial-seed43**: bjb1-32546, 之前在 cuda:1 运行\n\n### SSH 连接\n服务器: bjb1-32546 (在 ~/.ssh/config 中配置)\n\n### 检查步骤\n\n1. SSH 到 bjb1-32546，查找 Plan A Spatial seed42 和 seed43 的 JSON 输出文件：\n```bash\nfind /root/acr-vla-conformal-refinement/results/ -name \"*plan*a*spatial*seed42*\" -o -name \"*adaptive*conformal*spatial*seed42*\" 2>/dev/null\nfind /root/acr-vla-conformal-refinement/results/ -name \"*plan*a*spatial*seed43*\" -o -name \"*adaptive*conformal*spatial*seed43*\" 2>/dev/null\n```\n也检查 /root/runs/ 目录。\n\n2. 如果找到 JSON 文件，读取内容，提取：\n   - success_rate（SR%）\n   - trigger_rate（如有）\n   - mean_uncertainty（如有）\n   - n_rollouts\n   - 文件路径\n\n3. 也检查 log 输出：\n```bash\nfind /root/acr-vla-conformal-refinement/logs/ -name \"*plan*a*spatial*seed42*\" -o -name \"*adaptive*conformal*spatial*seed42*\" 2>/dev/null\nfind /root/acr-vla-conformal-refinement/logs/ -name \"*plan*a*spatial*seed43*\" -o -name \"*adaptive*conformal*spatial*seed43*\" 2>/dev/null\n```\n如果有 log，grep \"Overall success rate\" 和 \"trigger_rate\"。\n\n4. 检查 tmux sessions 看是否有残留：\n```bash\ntmux ls 2>/dev/null | grep -i \"plan\\|spatial\\|seed42\\|seed43\"\n```\n\n5. 确认 GPU 状态：\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n\n### M031 规则\nJSON 完整 = success，不看 exit code。如果 JSON 存在且有 success_rate 字段，即为完成。\n\n### 输出要求\n报告每个实验的：\n- JSON 文件路径\n- SR%\n- trigger_rate\n- mean_uncertainty  \n- 完成状态（success/failed）\n- GPU 当前状态（哪些空闲）\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-010520"
+        },
+        {
+          "source_line": 10521,
+          "timestamp": "2026-05-20T23:53:36.433062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_check-plan-a-spatial-seed42-43_20260520T235331\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ops_check-plan-a-spatial-seed42-43_20260520T235331.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_check-plan-a-spatial-seed42-43_20260520T235331 started. Use get_worker_status('worker_ops_check-plan-a-spatial-seed42-43_20260520T235331') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5940
+          },
+          "id": "event-010521"
+        },
+        {
+          "source_line": 10522,
+          "timestamp": "2026-05-20T23:53:53.959767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'pid', 'conclusion']"
+            }
+          },
+          "id": "event-010522"
+        },
+        {
+          "source_line": 10523,
+          "timestamp": "2026-05-21T00:08:55.099529+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派去检查 Plan A Spatial seed42/43。同时检查 norm sweep 实验的 registry 状态是否都已更新。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010523"
+        }
+      ]
+    },
+    {
+      "number": 765,
+      "messages": [
+        {
+          "source_line": 10524,
+          "timestamp": "2026-05-21T00:08:55.227013+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **bjb1-32546 GPU 0/1 空闲 → 立即填充**\n\nPlan A Spatial 完成释放了 GPU。部署 norm sweep 补种或其他有用实验。你自行判断最有价值的数据点。ssh_execute 直接部署。\n\n另外：处理完 cron 后，**优先执行我的 uncertainty metric 调查指令**（对比 `select_action_adaptive_k` 和 `select_action_conformal_crm` 的 uncertainty 计算公式）。这比处理更多 cron 重要。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-010524"
+        },
+        {
+          "source_line": 10525,
+          "timestamp": "2026-05-21T00:09:40.698518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-obs-only-object-norm003-seed46'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu', 'pid', 'spec']"
+            }
+          },
+          "id": "event-010525"
+        },
+        {
+          "source_line": 10526,
+          "timestamp": "2026-05-21T00:09:40.924091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1437}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 225
+          },
+          "id": "event-010526"
+        },
+        {
+          "source_line": 10527,
+          "timestamp": "2026-05-21T00:09:40.924550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-obs-only-object-norm01-seed51'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu', 'pid', 'spec']"
+            }
+          },
+          "id": "event-010527"
+        },
+        {
+          "source_line": 10528,
+          "timestamp": "2026-05-21T00:09:40.980445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-010528"
+        },
+        {
+          "source_line": 10529,
+          "timestamp": "2026-05-21T00:09:41.201934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2326}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 277
+          },
+          "id": "event-010529"
+        },
+        {
+          "source_line": 10530,
+          "timestamp": "2026-05-21T00:10:38.416165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 13, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed51\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed52\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed49\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed53\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855444)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed54\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855445)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed50\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855446)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed46\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=855447)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed55\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 4/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed57\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=594635)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed58\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=596867)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=599925)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed60\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=890012)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed61\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=712959)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 57435
+          },
+          "id": "event-010530"
+        },
+        {
+          "source_line": 10531,
+          "timestamp": "2026-05-21T00:11:00.404747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-obs-only-object-norm003-seed46",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "30"
+            }
+          },
+          "id": "event-010531"
+        },
+        {
+          "source_line": 10532,
+          "timestamp": "2026-05-21T00:11:00.455320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10397:  eval-obs-only-object-norm003-seed46:\n10398-    status: RUNNING\n10399-    retry_count: 1\n10400-    created_at: '2026-05-18T16:50:34.507Z'\n10401-    updated_at: '2026-05-20T22:18:00.000Z'\n10402-    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed46. Norm sweep seed\n10403-      balance for ε=0.03.\n10404-    spec:\n10405-      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n10406-        46 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n10407-        --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed46.json\n10408-      server: bjb2-28827\n10409-      gpu:\n10410-      - cuda:4\n10411-      pid: '855447'\n10412-      seed: 46\n10413-      model_name: CRM_obs_only\n10414-      data_path: LIBERO-Object\n10415-      data_count: 100\n10416-      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n10417-      log_path: /root/autodl-tmp/logs/obs_only_object_norm003_seed46.log\n10418-  eval-random-selection-object-seed46:\n10419-    status: DONE\n10420-    retry_count: 0\n10421-    created_at: '2026-05-18T16:50:36.635Z'\n10422-    updated_at: '2026-05-20T15:33:54.594Z'\n10423-    hypothesis: Random selection baseline on LIBERO-Object seed46 (plan_600). Additional\n10424-      seed for random baseline to establish statistical comparison against CRM selection.\n10425-    conclusion: failed\n10426-    failure_reason: random_selection mode not supported on bjb1-18228\n10427-    completed_at: '2026-05-18T16:53:31.340Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010532"
+        },
+        {
+          "source_line": 10533,
+          "timestamp": "2026-05-21T00:11:37.391640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-obs-only-object-norm01-seed51",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "25"
+            }
+          },
+          "id": "event-010533"
+        },
+        {
+          "source_line": 10534,
+          "timestamp": "2026-05-21T00:11:37.442282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19036:  eval-obs-only-object-norm01-seed51:\n19037-    status: RUNNING\n19038-    retry_count: 0\n19039-    created_at: '2026-05-20T22:17:19.933Z'\n19040-    updated_at: '2026-05-20T22:18:00.000Z'\n19041-    hypothesis: 'CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed51. Norm sweep: filling\n19042-      ε=0.1 gap (ROADMAP TBD), bringing n from 3 to 4+.'\n19043-    spec:\n19044-      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19045-        51 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19046-        --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed51.json\n19047-      server: bjb1-32546\n19048-      gpu:\n19049-      - cuda:3\n19050-      pid: '664546'\n19051-      seed: 51\n19052-      model_name: CRM_obs_only\n19053-      data_path: LIBERO-Object\n19054-      data_count: 100\n19055-      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19056-      log_path: /root/autodl-tmp/logs/obs_only_object_norm01_seed51.log\n19057-  eval-obs-only-object-norm01-seed52:\n19058-    status: RUNNING\n19059-    retry_count: 0\n19060-    created_at: '2026-05-20T22:17:23.747Z'\n19061-    updated_at: '2026-05-20T22:18:00.000Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-010534"
+        },
+        {
+          "source_line": 10535,
+          "timestamp": "2026-05-21T00:12:29.356067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-010535"
+        },
+        {
+          "source_line": 10536,
+          "timestamp": "2026-05-21T00:12:29.406741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-010536"
+        },
+        {
+          "source_line": 10537,
+          "timestamp": "2026-05-21T00:12:41.664527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader 2>/dev/null; echo '---JSON-CHECK---'; for f in logs/eval_obs_only_object_norm01_seed51.json logs/eval_obs_only_object_norm01_seed52.json logs/eval_obs_only_object_norm005_seed49.json; do echo \\\"FILE: \\$f\\\"; cat /root/acr-vla-conformal-refinement/\\$f 2>/dev/null | python3 -c 'import sys,json; d=json.load(sys.stdin); print(f\\\"SR={d.get(\\\\\\\"success_rate\\\\\\\",\\\\\\\"?\\\\\\\")}, n={d.get(\\\\\\\"n_rollouts\\\\\\\",\\\\\\\"?\\\\\\\")}\\\")' 2>/dev/null || echo 'NO_JSON'; done\"",
+              "description": "Check bjb1-32546 GPU status and completed norm sweep JSONs",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010537"
+        },
+        {
+          "source_line": 10538,
+          "timestamp": "2026-05-21T00:12:43.454533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n0, 2 MiB, 24564 MiB, 0 %\n1, 2 MiB, 24564 MiB, 0 %\n2, 4802 MiB, 24564 MiB, 30 %\n3, 2 MiB, 24564 MiB, 0 %\n4, 2 MiB, 24564 MiB, 0 %\n5, 2 MiB, 24564 MiB, 0 %\n---JSON-CHECK---\nFILE: logs/eval_obs_only_object_norm01_seed51.json\nNO_JSON\nFILE: logs/eval_obs_only_object_norm01_seed52.json\nNO_JSON\nFILE: logs/eval_obs_only_object_norm005_seed49.json\nNO_JSON"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1790
+          },
+          "id": "event-010538"
+        },
+        {
+          "source_line": 10539,
+          "timestamp": "2026-05-21T00:12:43.859225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-18228 \"cat /root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm005_seed55.json 2>/dev/null | python3 -c 'import sys,json; d=json.load(sys.stdin); print(f\\\"SR={d.get(\\\\\\\"success_rate\\\\\\\",\\\\\\\"?\\\\\\\")}, n={d.get(\\\\\\\"n_rollouts\\\\\\\",\\\\\\\"?\\\\\\\")}\\\")' 2>/dev/null || echo 'NO_JSON'; nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\"",
+              "description": "Check bjb1-18228 norm005-seed55 JSON and GPU status",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010539"
+        },
+        {
+          "source_line": 10540,
+          "timestamp": "2026-05-21T00:12:43.970185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nssh: Could not resolve hostname bjb1-18228: Temporary failure in name resolution"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 110
+          },
+          "id": "event-010540"
+        },
+        {
+          "source_line": 10541,
+          "timestamp": "2026-05-21T00:13:10.305465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"cd /root/acr-vla-conformal-refinement && \\\nCUDA_VISIBLE_DEVICES=0 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 62 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed62.json > /root/autodl-tmp/logs/obs_only_object_norm003_seed62.log 2>&1 & echo \\\"cuda0_PID=\\$!\\\"; \\\nCUDA_VISIBLE_DEVICES=1 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 63 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed63.json > /root/autodl-tmp/logs/obs_only_object_norm003_seed63.log 2>&1 & echo \\\"cuda1_PID=\\$!\\\"; \\\nCUDA_VISIBLE_DEVICES=3 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 51 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed51_r2.json > /root/autodl-tmp/logs/obs_only_object_norm01_seed51_r2.log 2>&1 & echo \\\"cuda3_PID=\\$!\\\"; \\\nCUDA_VISIBLE_DEVICES=4 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 52 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed52_r2.json > /root/autodl-tmp/logs/obs_only_object_norm01_seed52_r2.log 2>&1 & echo \\\"cuda4_PID=\\$!\\\"; \\\nCUDA_VISIBLE_DEVICES=5 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 49 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed49_r2.json > /root/autodl-tmp/logs/obs_only_object_norm005_seed49_r2.log 2>&1 & echo \\\"cuda5_PID=\\$!\\\"\"",
+              "description": "Deploy 5 norm sweep experiments on bjb1-32546 cuda:0,1,3,4,5",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010541"
+        },
+        {
+          "source_line": 10542,
+          "timestamp": "2026-05-21T00:13:12.149014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\ncuda0_PID=720053\ncuda1_PID=720054\ncuda3_PID=720055\ncuda4_PID=720056\ncuda5_PID=720058"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1843
+          },
+          "id": "event-010542"
+        },
+        {
+          "source_line": 10543,
+          "timestamp": "2026-05-21T00:13:12.149466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"bjb1.*18228|18228\" ~/.ssh/config 2>/dev/null | head -5",
+              "description": "Find bjb1-18228 SSH config entry"
+            }
+          },
+          "id": "event-010543"
+        },
+        {
+          "source_line": 10544,
+          "timestamp": "2026-05-21T00:13:13.117660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    Port 18228"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 968
+          },
+          "id": "event-010544"
+        },
+        {
+          "source_line": 10545,
+          "timestamp": "2026-05-21T00:13:26.280998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "research:uncertainty-metric-comparison",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：对比 uncertainty 计算公式\n\nDirector 要求对比 `select_action_adaptive_k` 和 `select_action_conformal_crm` 两个函数的 uncertainty 计算方式。\n\n### 目标\n1. SSH 到 bjb1-32546，读取 `/root/acr-vla-conformal-refinement/src/evaluate.py`\n2. 找到这两个函数：\n   - `select_action_adaptive_k` — Adaptive K 模式的 action selection\n   - `select_action_conformal_crm` — Plan A (K=2 conformal + selective CRM) 的 action selection\n3. 提取并对比它们的 uncertainty 计算公式：\n   - 输入是什么（K 个 samples？哪些维度？）\n   - 数学公式（L2 norm？方差？其他？）\n   - 归一化方式（per-DoF？全局？无归一化？）\n   - 输出形状和语义（标量？向量？）\n4. 特别关注：\n   - Adaptive K 用的 uncertainty 和 calibration 阈值（P25/P50/P75/P90）是怎么算的\n   - Plan A 用的 L2 distance 和 conformal_threshold 是怎么比较的\n   - 两者的 uncertainty 数值范围是否可比（同一个 threshold 能否通用？）\n\n### 输出格式\n写一个对比表，包含：\n| 维度 | select_action_adaptive_k | select_action_conformal_crm |\n|------|--------------------------|----------------------------|\n| K 值 | ? | ? |\n| 输入维度 | ? | ? |\n| 数学公式 | ? | ? |\n| 归一化 | ? | ? |\n| 输出范围 | ? | ? |\n| 阈值来源 | ? | ? |\n| 阈值含义 | ? | ? |\n\n然后分析：\n- 两个 uncertainty metric 的本质区别\n- 如果要统一为一个 metric，应该选哪个，为什么\n- Plan A 的 conformal_threshold 值（P50=0.074855）在 Adaptive K 的 uncertainty 分布下处于什么分位\n\n### SSH 连接\n服务器 bjb1-32546 配置在 ~/.ssh/config 中。\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-010545"
+        },
+        {
+          "source_line": 10546,
+          "timestamp": "2026-05-21T00:13:35.509649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_uncertainty-metric-comparison_20260521T001327\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_research_uncertainty-metric-comparison_20260521T001327.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_uncertainty-metric-comparison_20260521T001327 started. Use get_worker_status('worker_research_uncertainty-metric-comparison_20260521T001327') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 9228
+          },
+          "id": "event-010546"
+        },
+        {
+          "source_line": 10547,
+          "timestamp": "2026-05-21T00:13:57.191902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B5 \"18228\" ~/.ssh/config | head -10",
+              "description": "Find bjb1-18228 SSH Host entry"
+            }
+          },
+          "id": "event-010547"
+        },
+        {
+          "source_line": 10548,
+          "timestamp": "2026-05-21T00:13:57.643435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    StrictHostKeyChecking no\n    UserKnownHostsFile /dev/null\n\nHost autodl-4090x4\n    HostName connect.bjb1.seetacloud.com\n    Port 18228"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 451
+          },
+          "id": "event-010548"
+        },
+        {
+          "source_line": 10549,
+          "timestamp": "2026-05-21T00:13:57.888437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "description": "Check registry.yaml size"
+            }
+          },
+          "id": "event-010549"
+        },
+        {
+          "source_line": 10550,
+          "timestamp": "2026-05-21T00:13:58.075469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19304 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 187
+          },
+          "id": "event-010550"
+        },
+        {
+          "source_line": 10551,
+          "timestamp": "2026-05-21T00:14:05.905744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"cat /root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm005_seed55.json 2>/dev/null | python3 -c 'import sys,json; d=json.load(sys.stdin); print(f\\\"SR={d.get(\\\\\\\"success_rate\\\\\\\",\\\\\\\"?\\\\\\\")}, n={d.get(\\\\\\\"n_rollouts\\\\\\\",\\\\\\\"?\\\\\\\")}\\\")' 2>/dev/null || echo 'NO_JSON'; nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\"",
+              "description": "Check bjb1-18228 seed55 JSON and GPU status",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010551"
+        },
+        {
+          "source_line": 10552,
+          "timestamp": "2026-05-21T00:14:06.609838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19270",
+              "limit": "35"
+            }
+          },
+          "id": "event-010552"
+        },
+        {
+          "source_line": 10553,
+          "timestamp": "2026-05-21T00:14:07.002502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nNO_JSON\n0, 3408 MiB, 24564 MiB, 32 %\n1, 1 MiB, 24564 MiB, 0 %\n2, 2934 MiB, 24564 MiB, 21 %\n3, 3870 MiB, 24564 MiB, 30 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1096
+          },
+          "id": "event-010553"
+        },
+        {
+          "source_line": 10554,
+          "timestamp": "2026-05-21T00:14:07.002952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19270\t    hypothesis: CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed58. Norm sweep seed\n19271\t      balance for ε=0.05.\n19272\t    spec:\n19273\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19274\t        58 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19275\t        --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed58.json\n19276\t      server: bjb1-18228\n19277\t      gpu:\n19278\t      - cuda:0\n19279\t      pid: '596867'\n19280\t      seed: 58\n19281\t      model_name: CRM_obs_only\n19282\t      data_path: LIBERO-Object\n19283\t      data_count: 100\n19284\t      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19285\t      log_path: /root/autodl-tmp/logs/obs_only_object_norm005_seed58.log\n19286\t  eval-obs-only-object-norm003-seed59:\n19287\t    status: RUNNING\n19288\t    retry_count: 0\n19289\t    created_at: '2026-05-20T23:25:26.898Z'\n19290\t    updated_at: '2026-05-20T23:25:30.000Z'\n19291\t    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed\n19292\t      balance for ε=0.03.\n19293\t    spec:\n19294\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19295\t        59 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19296\t        --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed59.json\n19297\t      server: bjb1-18228\n19298\t      gpu:\n19299\t      - cuda:3\n19300\t      pid: '599925'\n19301\t      seed: 59\n19302\t      model_name: CRM_obs_only\n19303\t      data_path: LIBERO-Object\n19304\t      data_count: 100"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 393
+          },
+          "id": "event-010554"
+        },
+        {
+          "source_line": 10555,
+          "timestamp": "2026-05-21T00:14:31.772475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=1 nohup python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 55 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed55_r2.json > /root/autodl-tmp/logs/obs_only_object_norm005_seed55_r2.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm005-seed55-r2 on bjb1-18228 cuda:1",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010555"
+        },
+        {
+          "source_line": 10556,
+          "timestamp": "2026-05-21T00:14:32.376444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19298",
+              "limit": "10"
+            }
+          },
+          "id": "event-010556"
+        },
+        {
+          "source_line": 10557,
+          "timestamp": "2026-05-21T00:14:32.678584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=617168"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 906
+          },
+          "id": "event-010557"
+        },
+        {
+          "source_line": 10558,
+          "timestamp": "2026-05-21T00:14:32.679039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19298\t    created_at: '2026-05-20T23:25:26.898Z'\n19299\t    updated_at: '2026-05-20T23:25:30.000Z'\n19300\t    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed59. Norm sweep seed\n19301\t      balance for ε=0.03.\n19302\t    spec:\n19303\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19304\t        59 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19305\t        --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed59.json\n19306\t      server: bjb1-18228\n19307\t      gpu:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-010558"
+        },
+        {
+          "source_line": 10559,
+          "timestamp": "2026-05-21T00:14:36.197821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml && tail -5 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "description": "Check exact end of registry.yaml"
+            }
+          },
+          "id": "event-010559"
+        },
+        {
+          "source_line": 10560,
+          "timestamp": "2026-05-21T00:14:36.301431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19316 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm003_seed59.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 103
+          },
+          "id": "event-010560"
+        },
+        {
+          "source_line": 10561,
+          "timestamp": "2026-05-21T00:14:47.888448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-obs-only-object-norm005-seed49:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "3"
+            }
+          },
+          "id": "event-010561"
+        },
+        {
+          "source_line": 10562,
+          "timestamp": "2026-05-21T00:14:48.166758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19088:  eval-obs-only-object-norm005-seed49:\n19089-    status: DONE\n19090-    retry_count: 0\n19091-    created_at: '2026-05-20T22:17:27.458Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 278
+          },
+          "id": "event-010562"
+        },
+        {
+          "source_line": 10563,
+          "timestamp": "2026-05-21T00:14:48.724536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-obs-only-object-norm005-seed55:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "3"
+            }
+          },
+          "id": "event-010563"
+        },
+        {
+          "source_line": 10564,
+          "timestamp": "2026-05-21T00:14:48.779740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19182:  eval-obs-only-object-norm005-seed55:\n19183-    status: DONE\n19184-    retry_count: 0\n19185-    created_at: '2026-05-20T22:23:01.005Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 55
+          },
+          "id": "event-010564"
+        },
+        {
+          "source_line": 10565,
+          "timestamp": "2026-05-21T00:14:52.493492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19088",
+              "limit": "25"
+            }
+          },
+          "id": "event-010565"
+        },
+        {
+          "source_line": 10566,
+          "timestamp": "2026-05-21T00:14:52.891030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19088\t  eval-obs-only-object-norm005-seed49:\n19089\t    status: DONE\n19090\t    retry_count: 0\n19091\t    created_at: '2026-05-20T22:17:27.458Z'\n19092\t    updated_at: '2026-05-21T00:14:32.980Z'\n19093\t    hypothesis: CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed49. Norm sweep seed\n19094\t      balance for ε=0.05.\n19095\t    spec:\n19096\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19097\t        49 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19098\t        --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed49.json\n19099\t      server: bjb1-32546\n19100\t      gpu:\n19101\t      - cuda:5\n19102\t      pid: '664548'\n19103\t      seed: 49\n19104\t      model_name: CRM_obs_only\n19105\t      data_path: LIBERO-Object\n19106\t      data_count: 100\n19107\t      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19108\t      log_path: /root/autodl-tmp/logs/obs_only_object_norm005_seed49.log\n19109\t    reproduce:\n19110\t      finished_at: '2026-05-21T00:14:26.282Z'\n19111\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n19112\t    conclusion: failed"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 397
+          },
+          "id": "event-010566"
+        },
+        {
+          "source_line": 10567,
+          "timestamp": "2026-05-21T00:14:53.402776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19036",
+              "limit": "45"
+            }
+          },
+          "id": "event-010567"
+        },
+        {
+          "source_line": 10568,
+          "timestamp": "2026-05-21T00:14:53.854572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19036\t  eval-obs-only-object-norm01-seed51:\n19037\t    status: DONE\n19038\t    retry_count: 0\n19039\t    created_at: '2026-05-20T22:17:19.933Z'\n19040\t    updated_at: '2026-05-21T00:14:02.331Z'\n19041\t    hypothesis: 'CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed51. Norm sweep: filling\n19042\t      ε=0.1 gap (ROADMAP TBD), bringing n from 3 to 4+.'\n19043\t    spec:\n19044\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19045\t        51 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19046\t        --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed51.json\n19047\t      server: bjb1-32546\n19048\t      gpu:\n19049\t      - cuda:3\n19050\t      pid: '664546'\n19051\t      seed: 51\n19052\t      model_name: CRM_obs_only\n19053\t      data_path: LIBERO-Object\n19054\t      data_count: 100\n19055\t      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19056\t      log_path: /root/autodl-tmp/logs/obs_only_object_norm01_seed51.log\n19057\t    reproduce:\n19058\t      finished_at: '2026-05-21T00:13:48.316Z'\n19059\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n19060\t    conclusion: failed\n19061\t    completed_at: '2026-05-21T00:14:02.331Z'\n19062\t    extra:\n19063\t      hook_events:\n19064\t      - event: on_failed\n19065\t        action: agent\n19066\t        ts: '2026-05-21T00:14:18.698296+00:00'\n19067\t  eval-obs-only-object-norm01-seed52:\n19068\t    status: RUNNING\n19069\t    retry_count: 0\n19070\t    created_at: '2026-05-20T22:17:23.747Z'\n19071\t    updated_at: '2026-05-20T22:18:00.000Z'\n19072\t    hypothesis: 'CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed52. Norm sweep: filling\n19073\t      ε=0.1 gap (ROADMAP TBD), bringing n from 3 to 5+.'\n19074\t    spec:\n19075\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19076\t        52 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoint\n…[truncated 202 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-010568"
+        },
+        {
+          "source_line": 10569,
+          "timestamp": "2026-05-21T00:14:53.912534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "19182",
+              "limit": "25"
+            }
+          },
+          "id": "event-010569"
+        },
+        {
+          "source_line": 10570,
+          "timestamp": "2026-05-21T00:14:53.970472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19182\t  eval-obs-only-object-norm005-seed55:\n19183\t    status: DONE\n19184\t    retry_count: 0\n19185\t    created_at: '2026-05-20T22:23:01.005Z'\n19186\t    updated_at: '2026-05-21T00:13:03.143Z'\n19187\t    hypothesis: CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed55. Norm sweep seed\n19188\t      balance for ε=0.05.\n19189\t    spec:\n19190\t      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed\n19191\t        55 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19192\t        --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed55.json\n19193\t      server: bjb1-18228\n19194\t      gpu:\n19195\t      - cuda:1\n19196\t      pid: '578254'\n19197\t      seed: 55\n19198\t      model_name: CRM_obs_only\n19199\t      data_path: LIBERO-Object\n19200\t      data_count: 100\n19201\t      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n19202\t      log_path: /root/autodl-tmp/logs/obs_only_object_norm005_seed55.log\n19203\t    reproduce:\n19204\t      finished_at: '2026-05-21T00:12:49.221Z'\n19205\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n19206\t    conclusion: failed"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 57
+          },
+          "id": "event-010570"
+        },
+        {
+          "source_line": 10571,
+          "timestamp": "2026-05-21T00:15:10.123621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "old_string": "  eval-obs-only-object-norm01-seed52:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-20T22:17:23.747Z'\n    updated_at: '2026-05-20T22:18:00.000Z'",
+              "new_string": "  eval-obs-only-object-norm01-seed52:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T22:17:23.747Z'\n    updated_at: '2026-05-21T00:15:00.000Z'\n    conclusion: failed\n    failure_reason: process dead, no JSON output — crashed without results"
+            }
+          },
+          "id": "event-010571"
+        },
+        {
+          "source_line": 10572,
+          "timestamp": "2026-05-21T00:15:10.415458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Edit",
+            "elapsed_ms": 291
+          },
+          "id": "event-010572"
+        },
+        {
+          "source_line": 10573,
+          "timestamp": "2026-05-21T00:15:36.207523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat >> /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml << 'YAML_EOF'\n  eval-obs-only-object-norm003-seed62:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-21T00:13:00.000Z'\n    updated_at: '2026-05-21T00:13:00.000Z'\n    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed62. Norm sweep seed balance for ε=0.03 (only 3 seeds, need more for reliable mean±std).\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 62 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed62.json\n      server: bjb1-32546\n      gpu:\n      - cuda:0\n      pid: '720053'\n      seed: 62\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm003_seed62.log\n  eval-obs-only-object-norm003-seed63:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-21T00:13:00.000Z'\n    updated_at: '2026-05-21T00:13:00.000Z'\n    hypothesis: CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed63. Norm sweep seed balance for ε=0.03.\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 63 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_obs_only_object_norm003_seed63.json\n      server: bjb1-32546\n      gpu:\n      - cuda:1\n      pid: '720054'\n      seed: 63\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm003_seed63.log\n  eval-obs-only-object-norm01-seed51-r2:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-21T00:13:00.000Z'\n    updated_at: '2026-05-21T00:13:00.000Z'\n    hypothesis: 'CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed51 r2. Redo of crashed seed51 (process dead, no JSON). Norm sweep: filling ε=0.1 gap.'\n    parent: eval-obs-only-object-norm01-seed51\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 51 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed51_r2.json\n      server: bjb1-32546\n      gpu:\n      - cuda:3\n      pid: '720055'\n      seed: 51\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm01_seed51_r2.log\n  eval-obs-only-object-norm01-seed52-r2:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-21T00:13:00.000Z'\n    updated_at: '2026-05-21T00:13:00.000Z'\n    hypothesis: 'CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed52 r2. Redo of crashed seed52 (process dead, no JSON). Norm sweep: filling ε=0.1 gap.'\n    parent: eval-obs-only-object-norm01-seed52\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 52 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_obs_only_object_norm01_seed52_r2.json\n      server: bjb1-32546\n      gpu:\n      - cuda:4\n      pid: '720056'\n      seed: 52\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm01_seed52_r2.log\n  eval-obs-only-object-norm005-seed49-r2:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-21T00:13:00.000Z'\n    updated_at: '2026-05-21T00:13:00.000Z'\n    hypothesis: CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed49 r2. Redo of crashed seed49 (process dead, no JSON). Norm sweep seed balance.\n    parent: eval-obs-only-object-norm005-seed49\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 49 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed49_r2.json\n      server: bjb1-32546\n      gpu:\n      - cuda:5\n      pid: '720058'\n      seed: 49\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm005_seed49_r2.log\n  eval-obs-only-object-norm005-seed55-r2:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-21T00:13:00.000Z'\n    updated_at: '2026-05-21T00:13:00.000Z'\n    hypothesis: CRM obs_only (ε=0.05) K=10 on LIBERO-Object seed55 r2. Redo of crashed seed55 (process dead, no JSON). Norm sweep seed balance.\n    parent: eval-obs-only-object-norm005-seed55\n    spec:\n      command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 55 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_obs_only_object_norm005_seed55_r2.json\n      server: bjb1-18228\n      gpu:\n      - cuda:1\n      pid: '617168'\n      seed: 55\n      model_name: CRM_obs_only\n      data_path: LIBERO-Object\n      data_count: 100\n      checkpoint_path: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n      log_path: /root/autodl-tmp/logs/obs_only_object_norm005_seed55_r2.log\nYAML_EOF",
+              "description": "Append 6 new experiment entries to registry.yaml"
+            }
+          },
+          "id": "event-010573"
+        },
+        {
+          "source_line": 10574,
+          "timestamp": "2026-05-21T00:15:36.258534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-010574"
+        },
+        {
+          "source_line": 10575,
+          "timestamp": "2026-05-21T00:15:41.700388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed62",
+              "server": "bjb1-32546",
+              "pid": "720053",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm003_seed62.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010575"
+        },
+        {
+          "source_line": 10576,
+          "timestamp": "2026-05-21T00:15:42.202135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed62\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"720053\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm003_seed62.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-21T00:15:41.729Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 501
+          },
+          "id": "event-010576"
+        },
+        {
+          "source_line": 10577,
+          "timestamp": "2026-05-21T00:15:43.155351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed63",
+              "server": "bjb1-32546",
+              "pid": "720054",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm003_seed63.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010577"
+        },
+        {
+          "source_line": 10578,
+          "timestamp": "2026-05-21T00:15:43.657152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed63\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"720054\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm003_seed63.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-21T00:15:43.166Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 501
+          },
+          "id": "event-010578"
+        },
+        {
+          "source_line": 10579,
+          "timestamp": "2026-05-21T00:15:44.561408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed51-r2",
+              "server": "bjb1-32546",
+              "pid": "720055",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm01_seed51_r2.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010579"
+        },
+        {
+          "source_line": 10580,
+          "timestamp": "2026-05-21T00:15:45.013353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed51-r2\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"720055\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm01_seed51_r2.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-21T00:15:44.609Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 451
+          },
+          "id": "event-010580"
+        },
+        {
+          "source_line": 10581,
+          "timestamp": "2026-05-21T00:15:45.516102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed52-r2",
+              "server": "bjb1-32546",
+              "pid": "720056",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm01_seed52_r2.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010581"
+        },
+        {
+          "source_line": 10582,
+          "timestamp": "2026-05-21T00:15:45.968053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed52-r2\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"720056\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/obs_only_object_norm01_seed52_r2.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-21T00:15:45.534Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 451
+          },
+          "id": "event-010582"
+        },
+        {
+          "source_line": 10583,
+          "timestamp": "2026-05-21T00:15:46.971611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed49-r2",
+              "server": "bjb1-32546",
+              "pid": "720058",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm005_seed49_r2.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010583"
+        },
+        {
+          "source_line": 10584,
+          "timestamp": "2026-05-21T00:15:48.026282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed55-r2",
+              "server": "bjb1-18228",
+              "pid": "617168",
+              "log_path": "/root/autodl-tmp/logs/obs_only_object_norm005_seed55_r2.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010584"
+        },
+        {
+          "source_line": 10585,
+          "timestamp": "2026-05-21T00:28:56.669549+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 6 个 cron 监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010585"
+        }
+      ]
+    },
+    {
+      "number": 766,
+      "messages": [
+        {
+          "source_line": 10586,
+          "timestamp": "2026-05-21T00:28:56.871566+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **最终综合指令（第三次队列清理）— 按顺序执行，不要跳步**\n\n所有 cron 回调已清空。大部分是 false positive（进程正常退出被误判）。以下是唯一需要做的 3 件事：\n\n## Step 1: 修复 bjb1-32546 python 环境（2 分钟）\n```bash\n# ssh_execute bjb1-32546\nln -s $(which python3) /usr/local/bin/python && which python && python --version\n```\n\n## Step 2: Uncertainty metric 调查（10 分钟，最重要）\n\nssh_read_only 到 bjb2-28827（环境正常）：\n```bash\ngrep -n \"def select_action\" /root/acr-vla-conformal-refinement/src/evaluate.py\n```\n然后用 ssh_read_only 读两个函数体（select_action_adaptive_k 和 select_action_conformal_crm / select_action_adaptive_conformal_crm），找 uncertainty / L2 / distance 的计算代码。\n\n**我需要知道**：为什么 Adaptive K mean_l2=0.053 而 Plan A mean_uncertainty=0.147。是 sqrt 差异？dim 归一化？还是完全不同的计算？\n\n## Step 3: GPU 填充（bjb1-32546 5 GPU + bjb1-18228 1 GPU）\n\nStep 1 修复后，在 bjb1-32546 上用 `python3`（或修复后的 `python`）部署 6 个 norm sweep 补种。\n\n**不要部署 r2 reruns**（原实验已成功）。选新的有价值的实验。\n\n**忽略所有后续 cron 回调**——如果收到新的 cron \"需要判断\"消息，直接检查 JSON 文件存在否，存在就 update_registry success + delete_cron，不存在才是真 failure。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-010586"
+        },
+        {
+          "source_line": 10587,
+          "timestamp": "2026-05-21T00:29:35.755504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"ln -sf \\$(which python3) /usr/local/bin/python && which python && python --version\"",
+              "description": "Fix python symlink on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010587"
+        },
+        {
+          "source_line": 10588,
+          "timestamp": "2026-05-21T00:29:36.715811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"grep -n 'def select_action' /root/acr-vla-conformal-refinement/src/evaluate.py\"",
+              "description": "Find all select_action functions in evaluate.py",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010588"
+        },
+        {
+          "source_line": 10589,
+          "timestamp": "2026-05-21T00:29:37.156518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1401
+          },
+          "id": "event-010589"
+        },
+        {
+          "source_line": 10590,
+          "timestamp": "2026-05-21T00:29:37.156987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ssh bjb1-32546 \"ln -sf \\$(which python3)…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 441
+          },
+          "id": "event-010590"
+        },
+        {
+          "source_line": 10591,
+          "timestamp": "2026-05-21T00:29:41.951094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"which python3 && python3 --version && ls -la /usr/local/bin/python 2>/dev/null; ln -sf /usr/bin/python3 /usr/local/bin/python 2>&1; which python && python --version\"",
+              "description": "Fix python symlink on bjb1-32546 with diagnostics",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010591"
+        },
+        {
+          "source_line": 10592,
+          "timestamp": "2026-05-21T00:29:42.964923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1013
+          },
+          "id": "event-010592"
+        },
+        {
+          "source_line": 10593,
+          "timestamp": "2026-05-21T00:29:51.970518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"echo CONNECTED && whoami\" 2>&1",
+              "description": "Test basic SSH connectivity to bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010593"
+        },
+        {
+          "source_line": 10594,
+          "timestamp": "2026-05-21T00:29:53.001018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nCONNECTED\nroot"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1030
+          },
+          "id": "event-010594"
+        },
+        {
+          "source_line": 10595,
+          "timestamp": "2026-05-21T00:29:56.211516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'which python3 && python3 --version && which python 2>/dev/null || echo NO_PYTHON_CMD' 2>&1",
+              "description": "Check python status on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010595"
+        },
+        {
+          "source_line": 10596,
+          "timestamp": "2026-05-21T00:29:56.837296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"grep -n 'def select_action' /root/acr-vla-conformal-refinement/src/evaluate.py\" 2>&1",
+              "description": "Find select_action functions in evaluate.py on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010596"
+        },
+        {
+          "source_line": 10597,
+          "timestamp": "2026-05-21T00:29:57.330626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nNO_PYTHON_CMD"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1119
+          },
+          "id": "event-010597"
+        },
+        {
+          "source_line": 10598,
+          "timestamp": "2026-05-21T00:29:58.324523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n154:def select_action_vla_only(wrapper, obs, task_name, K, cgs):\n181:def select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\"crm_perdof\"):\n222:def select_action_reconvla(wrapper, obs, task_name, K):\n243:def select_action_random(wrapper, obs, task_name, K):\n262:def select_action_crm_adaptive(wrapper, obs, task_name, cgs_map, crm, device, mode,\n308:def select_action_adaptive_k(wrapper, obs, task_name, crm, device,\n356:def select_action_unc_head(wrapper, obs, task_name, crm, unc_head, device,\n394:def select_action_conformal_crm(wrapper, obs, task_name, crm, device,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1487
+          },
+          "id": "event-010598"
+        },
+        {
+          "source_line": 10599,
+          "timestamp": "2026-05-21T00:30:03.464437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'ln -sf \"$(which python3)\" /usr/local/bin/python' 2>&1 && ssh bjb1-32546 'which python && python --version' 2>&1",
+              "description": "Create python symlink on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010599"
+        },
+        {
+          "source_line": 10600,
+          "timestamp": "2026-05-21T00:30:04.420589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nln: failed to create symbolic link '/usr/local/bin/python' -> '': No such file or directory"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 956
+          },
+          "id": "event-010600"
+        },
+        {
+          "source_line": 10601,
+          "timestamp": "2026-05-21T00:30:04.471186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"sed -n '308,393p' /root/acr-vla-conformal-refinement/src/evaluate.py\" 2>&1",
+              "description": "Read select_action_adaptive_k function body",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010601"
+        },
+        {
+          "source_line": 10602,
+          "timestamp": "2026-05-21T00:30:04.471548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ssh bjb1-32546 'ln -sf \"$(which python3)…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-010602"
+        },
+        {
+          "source_line": 10603,
+          "timestamp": "2026-05-21T00:30:05.173942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"sed -n '394,460p' /root/acr-vla-conformal-refinement/src/evaluate.py\" 2>&1",
+              "description": "Read select_action_conformal_crm function body",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010603"
+        },
+        {
+          "source_line": 10604,
+          "timestamp": "2026-05-21T00:30:05.174496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ssh bjb1-32546 'ln -sf \"$(which python3)…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-010604"
+        },
+        {
+          "source_line": 10605,
+          "timestamp": "2026-05-21T00:30:16.920393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'ls /root/miniconda3/bin/python* 2>/dev/null; ls /usr/bin/python* 2>/dev/null; ls /opt/conda/bin/python* 2>/dev/null; echo \"---PATH---\"; echo $PATH' 2>&1",
+              "description": "Find python binary on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010605"
+        },
+        {
+          "source_line": 10606,
+          "timestamp": "2026-05-21T00:30:17.379538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"sed -n '308,393p' /root/acr-vla-conformal-refinement/src/evaluate.py\" 2>&1",
+              "description": "Read select_action_adaptive_k function",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010606"
+        },
+        {
+          "source_line": 10607,
+          "timestamp": "2026-05-21T00:30:17.754115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n/root/miniconda3/bin/python\n/root/miniconda3/bin/python3\n/root/miniconda3/bin/python3-config\n/root/miniconda3/bin/python3.1\n/root/miniconda3/bin/python3.12\n/root/miniconda3/bin/python3.12-config\n---PATH---\n/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 833
+          },
+          "id": "event-010607"
+        },
+        {
+          "source_line": 10608,
+          "timestamp": "2026-05-21T00:30:18.895723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\ndef select_action_adaptive_k(wrapper, obs, task_name, crm, device,\n                              threshold, step_metadata):\n    \"\"\"Adaptive K: K=2 L2 probe, conditional K=10 expansion + CRM obs_only.\n\n    Fast path (L2 <= threshold): mean of K=2, no CRM.\n    Full path (L2 > threshold): expand to K=10, argmin + CRM obs_only (epsilon=0.2).\n    \"\"\"\n    agentview = obs[\"agentview_image\"]\n    eye_in_hand = obs.get(\"robot0_eye_in_hand_image\", None)\n    robot_state = get_robot_state(obs)\n\n    obs_feat, samples, meta = wrapper.get_obs_features_and_samples_adaptive(\n        agentview_rgb=agentview,\n        task_name=task_name,\n        robot_state=robot_state,\n        eye_in_hand_rgb=eye_in_hand,\n        threshold=threshold,\n        k_init=2,\n        k_full=10,\n    )\n    step_metadata.append(meta)\n\n    k_all = samples[0, :, :H_EFF, :]  # (actual_k, H_eff, 7)\n\n    if meta[\"path\"] == \"fast\":\n        # L2 <= threshold: mean of K=2, skip CRM\n        mean_action = k_all.mean(dim=0)  # (H_eff, 7)\n        return mean_action[0].cpu().numpy()\n\n    # L2 > threshold: K=10, argmin(L2 to mean) on 6D pose, then CRM obs_only\n    k_pose = k_all[:, :, :CORRECTION_DIM]  # (10, H_eff, 6)\n    k_pose_flat = k_pose.reshape(k_pose.shape[0], -1)  # (10, 30)\n    mean_pose = k_pose_flat.mean(dim=0)\n    distances = ((k_pose_flat - mean_pose) ** 2).sum(dim=-1)\n    best_idx = distances.argmin()\n    base_action = k_pose_flat[best_idx].unsqueeze(0).to(device)  # (1, 30)\n\n    obs_feat = obs_feat.to(device)\n    # CRM obs_only: uf=None\n    with torch.no_grad():\n        refined_pose = crm(base_action, None, obs_feat)\n\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\n    mean_gripper = k_all[:, :, CORRECTION_DIM:].mean(dim=0)\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)\n    return refined_full[0].cpu().numpy()\n\n\ndef select_action_unc_head(wrapper, obs, task_name, crm, un\n…[truncated 1476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1516
+          },
+          "id": "event-010608"
+        },
+        {
+          "source_line": 10609,
+          "timestamp": "2026-05-21T00:30:28.651256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"sed -n '394,460p' /root/acr-vla-conformal-refinement/src/evaluate.py\" 2>&1",
+              "description": "Read select_action_conformal_crm function",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010609"
+        },
+        {
+          "source_line": 10610,
+          "timestamp": "2026-05-21T00:30:29.858336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\ndef select_action_conformal_crm(wrapper, obs, task_name, crm, device,\n                                 conformal_threshold, step_metadata):\n    \"\"\"K=2 Conformal + Selective CRM: always K=2, CRM only when uncertain.\"\"\"\n    agentview = obs[\"agentview_image\"]\n    eye_in_hand = obs.get(\"robot0_eye_in_hand_image\", None)\n    robot_state = get_robot_state(obs)\n\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\n        agentview_rgb=agentview,\n        task_name=task_name,\n        robot_state=robot_state,\n        eye_in_hand_rgb=eye_in_hand,\n        K=2,\n    )\n    k_full = samples[0, :, :H_EFF, :]  # (2, H_eff, 7)\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (2, H_eff, 6)\n\n    a1 = k_pose[0].reshape(-1)  # (30,)\n    a2 = k_pose[1].reshape(-1)  # (30,)\n    uncertainty = (a1 - a2).norm().item()\n\n    centroid = (a1 + a2) / 2\n    d1 = (a1 - centroid).norm()\n    d2 = (a2 - centroid).norm()\n    selected_idx = 0 if d1 <= d2 else 1\n    selected_pose = k_pose[selected_idx]  # (H_eff, 6)\n\n    triggered = uncertainty > conformal_threshold\n\n    if triggered:\n        base_action = selected_pose.reshape(1, -1).to(device)  # (1, 30)\n        obs_feat_dev = obs_feat.to(device)\n        with torch.no_grad():\n            refined_pose = crm(base_action, None, obs_feat_dev)\n        refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\n        mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)\n        action_full = torch.cat([refined_pose, mean_gripper], dim=-1)\n    else:\n        mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)\n        action_full = torch.cat([selected_pose, mean_gripper], dim=-1)\n\n    step_metadata.append({\n        \"uncertainty\": uncertainty,\n        \"triggered\": triggered,\n    })\n    return action_full[0].cpu().numpy()\n\n\ndef rollout_single(env, init_state, action_fn, max_steps=300):\n    \"\"\"Run one rollout. action_fn returns 7D action directly\n…[truncated 526 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1207
+          },
+          "id": "event-010610"
+        },
+        {
+          "source_line": 10611,
+          "timestamp": "2026-05-21T00:30:29.858812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 'ln -sf /root/miniconda3/bin/python /usr/local/bin/python && /usr/local/bin/python --version' 2>&1",
+              "description": "Create python symlink pointing to conda python",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010611"
+        },
+        {
+          "source_line": 10612,
+          "timestamp": "2026-05-21T00:30:30.915738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nPython 3.12.3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1056
+          },
+          "id": "event-010612"
+        },
+        {
+          "source_line": 10613,
+          "timestamp": "2026-05-21T00:30:43.824320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"grep -rn 'def get_obs_features_and_samples_adaptive' /root/acr-vla-conformal-refinement/src/\" 2>&1",
+              "description": "Find get_obs_features_and_samples_adaptive definition",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010613"
+        },
+        {
+          "source_line": 10614,
+          "timestamp": "2026-05-21T00:30:44.678830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:369:    def get_obs_features_and_samples_adaptive(self, agentview_rgb, task_name,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 854
+          },
+          "id": "event-010614"
+        },
+        {
+          "source_line": 10615,
+          "timestamp": "2026-05-21T00:30:47.949766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"sed -n '369,440p' /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\" 2>&1",
+              "description": "Read get_obs_features_and_samples_adaptive function",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010615"
+        },
+        {
+          "source_line": 10616,
+          "timestamp": "2026-05-21T00:30:48.812559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n    def get_obs_features_and_samples_adaptive(self, agentview_rgb, task_name,\n                                               robot_state, eye_in_hand_rgb=None,\n                                               threshold=0.1, k_init=2, k_full=5):\n        \"\"\"End-to-end adaptive K: obs -> features + adaptive samples + metadata.\"\"\"\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\n        )\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\n            imgs, img_masks, lt, lm, state\n        )\n        samples, metadata = self.generate_adaptive_k_samples(\n            kv_cache, pad_masks, threshold, k_init, k_full\n        )\n        return obs_feat, samples, metadata"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 862
+          },
+          "id": "event-010616"
+        },
+        {
+          "source_line": 10617,
+          "timestamp": "2026-05-21T00:30:51.487866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"grep -n 'def generate_adaptive_k_samples' /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\" 2>&1",
+              "description": "Find generate_adaptive_k_samples definition",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010617"
+        },
+        {
+          "source_line": 10618,
+          "timestamp": "2026-05-21T00:30:52.394549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n332:    def generate_adaptive_k_samples(self, past_key_values, prefix_pad_masks,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 906
+          },
+          "id": "event-010618"
+        },
+        {
+          "source_line": 10619,
+          "timestamp": "2026-05-21T00:30:54.799255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"sed -n '332,368p' /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\" 2>&1",
+              "description": "Read generate_adaptive_k_samples function",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010619"
+        },
+        {
+          "source_line": 10620,
+          "timestamp": "2026-05-21T00:30:55.802712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n    def generate_adaptive_k_samples(self, past_key_values, prefix_pad_masks,\n                                     threshold, k_init=2, k_full=5):\n        \"\"\"Adaptive K: generate k_init samples, expand to k_full if L2 disagreement >= threshold.\"\"\"\n        init_samples = self.generate_k_samples_batched(\n            past_key_values, prefix_pad_masks, K=k_init\n        )\n        B = init_samples.shape[0]\n\n        if k_init == 2:\n            diff = init_samples[:, 0, :, :FULL_ACTION_DIM] - init_samples[:, 1, :, :FULL_ACTION_DIM]\n            per_step_l2 = diff.norm(dim=-1)\n            mean_l2 = per_step_l2.mean(dim=-1)\n        else:\n            dists = []\n            for i in range(k_init):\n                for j in range(i + 1, k_init):\n                    diff = init_samples[:, i, :, :FULL_ACTION_DIM] - init_samples[:, j, :, :FULL_ACTION_DIM]\n                    dists.append(diff.norm(dim=-1).mean(dim=-1))\n            mean_l2 = torch.stack(dists).mean(dim=0)\n\n        needs_full = (mean_l2 >= threshold).any().item()\n        l2_val = mean_l2.item() if B == 1 else mean_l2.cpu().tolist()\n\n        if not needs_full:\n            return init_samples, {\n                'path': 'fast', 'actual_k': k_init, 'l2_distance': l2_val,\n            }\n\n        extra_samples = self.generate_k_samples_batched(\n            past_key_values, prefix_pad_masks, K=k_full - k_init\n        )\n        all_samples = torch.cat([init_samples, extra_samples], dim=1)\n        return all_samples, {\n            'path': 'full', 'actual_k': k_full, 'l2_distance': l2_val,\n        }\n\n    @torch.no_grad()"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1003
+          },
+          "id": "event-010620"
+        }
+      ]
+    }
+  ]
+}

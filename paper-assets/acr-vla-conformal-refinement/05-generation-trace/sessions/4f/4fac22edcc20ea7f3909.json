@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fac22edcc20ea7f3909",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3692,
+    "sha256": "ab47bd7d3c2470e1f8adf4c4b6608476783b9d3d1a6dee8d1a9d4fa07ce70969"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-13T19:35:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-4090x4 (bjb1-18228) cuda:0/1/2/3 + autodl-4090 (bjb2-40593) cuda:0。不得使用其他服务器/GPU\n- **代码部署反复失败**：本 session 遇到 5 次\"修复在本地但未同步到服务器\"的问题。任何代码修改后必须要求 Agent 贴 grep/md5sum 证明服务器上的文件已更新，不要信任\"已部署\"的口头汇报\n- **kill 命令反复失效**：Agent 多次报告进程已 kill 但实际未死。必须要求 Agent 用 ssh_execute（不是 ssh_read_only）执行 kill -9，并贴 nvidia-smi 输出证明\n- SFT gate 尚未正式通过（D013），不要假设 smolvla_libero 可用——等 v5 eval 结果\n\n### 2. 🖥️ 基础设施快照\n- **autodl-4090x4** (bjb1-18228): 4× RTX 4090, 工作目录 `/root/acr-vla-conformal-refinement/`\n  - eval-spatial-v4 刚被 kill，camera_names 修复中，即将启动 v5\n  - precompute-v4-shard0/1/2 在 cuda:1/2/3 运行中（~35min total，可能已完成或接近完成）\n  - wrapper 已部署修复版（11327 bytes, flip/resize_with_pad/unnorm 全有）\n  - evaluate.py 正在被修复（加 camera_names）\n- **autodl-4090** (bjb2-40593): 1× RTX 4090 D, 同一工作目录\n  - 修复版 wrapper + evaluate.py 已部署（含 camera_names）\n  - eval-object-v4-full 在运行中\n- 模型: `lerobot/smolvla_libero` (HuggingFace, 已缓存)\n- 数据: LIBERO demos 在两台服务器均已就绪\n- Precompute cache: `/root/autodl-tmp/crm_cache_v4/`（v3 及以前全部无效已清除）\n\n### 3. 📊 当前状态\n刚批准 RESET_BOTH（Reviewer + 自己）。Agent 正在处理 camera_names 修复指令。\n\n**Registry 活跃实验：**\n- `eval-object-v4-full` (bjb2-40593 cuda:0) — RUNNING，10 tasks × 10 rollouts\n- `precompute-v4-shard0/1/2` (bjb1-18228 cuda:1/2/3) — RUNNING，可能已接近完成\n- `eval-spatial-v4-full` — 刚 killed，camera_names 修复后将启动 v5\n\n**等待中：**\n- Agent Worker `worker_infra_camera-names-fix` 或类似 — 修复 evaluate.py + 重启 eval v5\n- Precompute-v4 cron 回调（180s 间隔）\n- Paper Agent: Related Work + bib 修正已完成\n\n### 4. 📋 待办\n- precompute-v4 完成 → shard 合并 + 数据完整性检查 + 准备 CRM 训练脚本\n- eval-spatial-v5-full 完成 → **关键节点**：10 tasks × 10 rollouts 成功率\n  - ≥80% → SFT gate 正式通过，story 照原 framing\n  - 50-80% → SFT gate 通过但调低 nominal baseline 期望\n  - <30% → 需换模型（OpenVLA 等）\n- eval-spatial-v5 ≥30% + precompute-v4 完成 → 立即启动 CRM 训练（plan_001）\n- CRM 训练完成 → eval CRM mode on spatial + LIBERO-Plus → plan_001 首个完整结果\n- eval-object-v4 完成 → 汇报 object benchmark 成功率\n\n### 5. 🎯 战略上下文\n- **决策链**: D008(SmolVLA 未微调) → D009(试社区 checkpoint) → D010(0% 走 SFT) → D012(55.6% 取消 SFT) → D013(55.6% 不可靠，wrapper 重写) → D014(v3 代码未部署)\n- **投稿目标**: ICLR 2027 (D011，CoRL 2026 已放弃)\n- **MVP 已通过**: plan_000 在 3D 点到达任务上确认 per-DOF > scalar > none\n- **核心风险**: smolvla_libero 在正确 wrapper 下的真实成功率仍未知。这是整个项目的 gate——如果 <30% 需要换模型\n- **最容易判断错的事**: Agent 说\"已修复/已 kill/已部署\"不代表真的做了。必须要求贴证据（grep output / nvidia-smi / file timestamp）\n- **Paper 进展**: Related Work + bibliography (32 refs) 已完成初稿，Method section draft 也有。等实验数据后启动 Full Draft\n- **GPU 预算**: ~180h 剩余，P0+P1 需 ~110h，充足\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

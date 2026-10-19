@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fe7ecae89329bae9c7a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval mag obsonly norm003 b2",
+  "task_key": "worker_analysis_eval-mag-obsonly-norm003-b2_20260516T004734",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-mag-obsonly-norm003-b2_20260516T004734_result.json",
+    "occurrence": 1,
+    "bytes": 1518,
+    "sha256": "64a95d371ad2402530894e71f788b3d6b6af208a024889dfb8af59443a6ff5f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。\n\n## 结果汇报\n\n**数据来源**: `/root/acr-vla-conformal-refinement/logs/eval_mag_obsonly_norm003.json`\n\n### 10-task Final SR: **34%** (34/100)\n\n### Per-task breakdown\n\n| Task | SR | Successes |\n|---|---|---|\n| between_plate_and_ramekin | 0.9 | 9/10 |\n| next_to_ramekin | **1.0** | 10/10 |\n| next_to_cookie_box | 0.8 | 8/10 |\n| on_cookie_box | 0.3 | 3/10 |\n| next_to_plate | 0.3 | 3/10 |\n| in_top_drawer | 0.1 | 1/10 |\n| from_table_center | 0.0 | 0/10 |\n| on_ramekin | 0.0 | 0/10 |\n| on_stove | 0.0 | 0/10 |\n| on_wooden_cabinet | 0.0 | 0/10 |\n\n### Obs-only Spatial Magnitude Sweep 完整对比\n\n| norm | SR (10-task) |\n|---|---|\n| **0.03** | **34%** |\n| 0.05 | 35% |\n| 0.10 | 35% |\n| 0.20 | 35% |\n| 0.30 | 36% |\n\n### 分析\n\nMagnitude sweep 结论非常清晰：**obs_only CRM 对 correction magnitude 几乎不敏感**。从 norm=0.03 到 norm=0.30（10倍跨度），SR 仅在 34%-36% 之间波动，差异在统计噪声范围内。\n\nnorm=0.03 的 34% 比 partial 8-task 数据（38.75%）低，因为新增的两个 task（next_to_plate: 0.3, on_wooden_cabinet: 0.0）拉低了均值。\n\n关键发现：即使 correction 被限制到极小的 0.03 norm，obs_only 模式的表现与大 norm 几乎一致。这说明 obs_only CRM 的有效性不依赖于 correction 幅度——模型本质上在做某种\"方向性\"修正而非\"幅度性\"修正，或者修正本身就很小使得 norm clipping 基本不生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-mag-obsonly-norm003-b2.md"
+}

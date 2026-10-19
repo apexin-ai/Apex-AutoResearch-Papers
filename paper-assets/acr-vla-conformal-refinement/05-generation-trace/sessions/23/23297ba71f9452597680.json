@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "23297ba71f9452597680",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "data libero download",
+  "task_key": "worker_data_libero-download_20260513T030138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_libero-download_20260513T030138.log",
+    "occurrence": 1,
+    "bytes": 2112049,
+    "sha256": "4a2be96f190cd0e881565302e930ecd7ce45878fb9b6d3669ac358684a10da4b"
+  },
+  "statistics": {
+    "messages": 1338,
+    "user_turns": 2,
+    "tool_calls": 559,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 208,
+      "tool_call": 559,
+      "tool_result": 559,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 749,
+      "chunks": [
+        {
+          "path": "23297ba71f9452597680-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "23297ba71f9452597680-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "23297ba71f9452597680-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "23297ba71f9452597680-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "23297ba71f9452597680-part-0005.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 586,
+      "chunks": [
+        {
+          "path": "23297ba71f9452597680-part-0005.json",
+          "message_count": 151
+        },
+        {
+          "path": "23297ba71f9452597680-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "23297ba71f9452597680-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "23297ba71f9452597680-part-0008.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "23297ba71f9452597680-part-0008.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-libero-download.md"
+}

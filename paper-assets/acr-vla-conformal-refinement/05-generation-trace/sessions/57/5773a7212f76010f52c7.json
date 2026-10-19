@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5773a7212f76010f52c7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest norm02 missing metrics",
+  "task_key": "worker_harvest_norm02-missing-metrics_20260521T045202",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_norm02-missing-metrics_20260521T045202.jsonl",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "0e5266c0b3df34fbf856fd43a4f26621317f68e461b9e9b7b569e99cc9ff9339"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T04:52:15.559910+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_norm02-missing-metrics_20260521T045202"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-norm02-missing-metrics.md"
+}

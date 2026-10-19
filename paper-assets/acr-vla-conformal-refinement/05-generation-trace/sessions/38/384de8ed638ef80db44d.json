@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "384de8ed638ef80db44d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code prepare pi05 crm eval scripts",
+  "task_key": "worker_code_prepare-pi05-crm-eval-scripts_20260522T195202",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prepare-pi05-crm-eval-scripts_20260522T195202_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "af14e394f237196a9c0dd3876ce8226f8624304bbf4dcaf55741c9a8bc9017b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/deploy_pi05_crm_eval.sh`。\n\n**汇总：**\n\n| 项 | 值 |\n|---|---|\n| 总 evals | 36 (3 modes × 4 suites × 3 seeds) |\n| Sessions | 11 (5 on bjb1 + 6 on bjb2) |\n| 每 GPU | 链式 3 evals (crm_obs_only → adaptive_conformal_crm → vla_only) |\n| 瓶颈 | bjb2 cuda:5 跑 6 evals (goal/43 + goal/44 各 3 modes) |\n| Long suite | 全在 bjb1 (cuda:0,1,2)，避开 bjb2 超时限制 |\n\n**需注意的问题：**\n\n`crm_unified_4suite_r4` 训练日志确认使用 **SmolVLA features (obs_dim=960)**，但 π0.5 产生 **2048D features**。当前 `evaluate.py` 在 `--model pi05 --obs_dim 960` + CRM 时会 raise `ValueError`（第 605-613 行）。\n\n部署前需要解决：\n- **方案 A**：用 π0.5 caches 重训 CRM（obs_dim=2048）\n- **方案 B**：在 evaluate.py 加 2048→960 projection\n- **方案 C**：修改 pi05 obs_dim check 逻辑\n\n脚本中 `OBS_DIM=960` 按你的指定设置，改 checkpoint 或 obs_dim 只需修改顶部变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-pi05-crm-eval-scripts.md"
+}

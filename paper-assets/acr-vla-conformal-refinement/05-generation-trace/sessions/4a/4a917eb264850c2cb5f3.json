@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a917eb264850c2cb5f3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy argmin k5 and harvest k5 json",
+  "task_key": "worker_ops_deploy-argmin-k5-and-harvest-k5-json_20260519T113449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-argmin-k5-and-harvest-k5-json_20260519T113449_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "3d4b07ca48921272a2e9666fa79a579e44acb1e81f68cc3af2ed49c742580195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个 seeds 数据已收集。汇总结果：\n\n---\n\n## 三个任务汇总\n\n### 1. bjb2-40593 实验状态 — 全部在跑\n\n| 实验 | 进度 | 状态 |\n|---|---|---|\n| spatial-seed43 | 5/10 tasks | 在跑 |\n| scalar-seed45-r2 | 9/10 tasks | 在跑，即将完成 |\n| random-selection-seed46-r2 | 3/10 tasks | 在跑 |\n\nGPU 利用率 99%，无需干预。\n\n### 2. bjb1-32546 K=5 argmin 部署 — 3 个已提交\n\n| exp_id | GPU | Seed |\n|---|---|---|\n| eval-argmin-object-k5-seed42 | cuda:0 | 42 |\n| eval-argmin-object-k5-seed43 | cuda:2 | 43 |\n| eval-argmin-object-k5-seed45 | cuda:5 | 45 |\n\nseed44 已在 bjb2-28827 运行，GPU 5 改用 seed45。timeout 16h，registry 已标记 RUNNING。\n\n### 3. K=5 obs_only ε=0.2 全 7 seeds SR（JSON 直读）\n\n| Seed | SR | 服务器 |\n|---|---|---|\n| seed42 | 14% | bjb1-18228 |\n| seed43 | 19% | bjb2-28827 |\n| seed44 | 17% | bjb2-28827 |\n| seed45 | 15% | bjb2-28827 |\n| seed46 | 16% | bjb1-18228 |\n| seed47 | 13% | bjb1-18228 |\n| seed48 | 18% | bjb1-32546 |\n\n**Mean: 16.0% ± 2.2% (SD)**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-argmin-k5-and-harvest-k5-json.md"
+}

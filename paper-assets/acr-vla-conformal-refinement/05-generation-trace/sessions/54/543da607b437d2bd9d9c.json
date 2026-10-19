@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "543da607b437d2bd9d9c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check k5 seed44 bjb2 28827",
+  "task_key": "worker_ops_check-k5-seed44-bjb2-28827_20260518T194035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-k5-seed44-bjb2-28827_20260518T194035_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "9027124b3ff9172165069d2c3cbea640821ac8811e61a9af59189c89f7ff9d71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=5 seed44 实验状态\n\n**仍在运行** (已跑 6h39m)，当前进度:\n- 已完成 **8/10 tasks** (每 task 10 rollouts)，正在跑第 9 个 (`chocolate_pudding`, rollout 3/10)\n- 已完成 tasks 的 SR:\n\n| Task | SR |\n|---|---|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 10% (1/10) |\n| salad_dressing | 10% (1/10) |\n| bbq_sauce | **40%** (4/10) |\n| ketchup | 0% (0/10) |\n| tomato_sauce | 10% (1/10) |\n| butter | 10% (1/10) |\n| milk | 30% (3/10) |\n\n当前 8 tasks 平均 SR = **13.75%**，还剩 2 个 task，预计 ~1.5h 完成。\n\n## bjb2-28827 整体状态\n\n**GPU 利用率** — 6 卡全部在用:\n\n| GPU | Util | VRAM |\n|---|---|---|\n| 0 | 99% | 9.9/24.6 GB |\n| 1 | 99% | 9.0/24.6 GB |\n| 2 | 88% | 6.2/24.6 GB (K=5 seed44) |\n| 3 | 99% | 9.0/24.6 GB |\n| 4 | 99% | 10.9/24.6 GB |\n| 5 | 99% | 9.9/24.6 GB |\n\n**12 个 tmux session 活跃**，包括 obs_only、perdof、default、random_selection 等多组实验。\n\n**已完成结果文件** (最近):\n- `eval_object_random_selection_seed44.json` (May 19 02:00)\n- `eval_object_random_selection_seed43.json` (May 18 23:45)\n- `eval_object_obs_only_norm01_seed42.json` (May 18 23:16)\n- `eval_object_obs_only_norm02_k5_seed43.json` (May 18 20:28) — K=5 的前一个 seed 已完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-k5-seed44-bjb2-28827.md"
+}

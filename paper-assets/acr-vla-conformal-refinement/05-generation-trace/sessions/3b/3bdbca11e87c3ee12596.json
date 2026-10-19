@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bdbca11e87c3ee12596",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check multiscale train status",
+  "task_key": "worker_check_multiscale-train-status_20260517T182355",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_multiscale-train-status_20260517T182355_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "5d3a0183412506f23e7d63fdae372835039f05e61102a3ea451d464172732ef3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n进程状态: dead (训练已完成)\n当前 epoch: 50/50 ✓ 完成\n最终 train_loss: 0.024104\n最终 val_loss: 0.007199 (best)\n  - l2: 0.0068\n  - dir: 0.0787\n  - tri: 0.0010\n  - mag: 0.0013\nCheckpoint 路径: /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt (1.3M)\n```\n\n训练正常收敛完成，val_loss 从 epoch 44 到 50 持续小幅下降（0.007204 → 0.007199），最后几个 epoch lr 接近 0 说明 cosine schedule 已走完。GPU 已释放，无进程占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-multiscale-train-status.md"
+}

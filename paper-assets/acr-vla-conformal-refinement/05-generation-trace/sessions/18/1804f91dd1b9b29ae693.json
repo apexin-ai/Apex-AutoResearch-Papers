@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1804f91dd1b9b29ae693",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_11_1778877747.md",
+  "task_key": "loop_11_1778877747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778877747.md",
+    "occurrence": 1,
+    "bytes": 6500,
+    "sha256": "b95d4890d202a264d795585d4398a914b50b0d14597c9e371a1fbbb43fae20b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T20:28:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限定：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。超出即违规。\n- 所有 CRM checkpoint 在 `/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt`——不要更改路径或重新训练，当前 phase 是 eval + paper writing。\n- `submit_training_job` 命令必须用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，裸 `python` 在部分服务器 EXIT_CODE=127。\n- exp_id 中 norm 值用 `p` 替代小数点（norm-0p3 = 0.3），禁止 norm03 这种歧义缩写（曾导致误 kill 事故，9h GPU 空闲）。\n- Kill 实验前必须 `ps aux | grep` 完整命令行逐参数比对，名字相似 ≠ 同一实验。\n- 引用方法归因审计是提交前 **blocking item**——chen2026reconvla 归因已确认错误，全量审计未完成前不得提交论文。\n\n### 2. 🖥️ 基础设施快照\n- **服务器 & 工作目录**: 4 台，均为 `/root/acr-vla-conformal-refinement`\n  - bjb2-40593 (1× 4090D), bjb1-18228 (4× 4090), bjb1-32546 (6× 4090), bjb2-28827 (6× 4090)\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型 checkpoints**: `/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1）\n- **17 活跃进程**（全部 eval，全部 tmux + cron 监控）:\n\n| 服务器 | GPU | exp_id | PID |\n|--------|-----|--------|-----|\n| bjb2-40593 | cuda:0 | eval-mag-obsonly-norm003-b2 (spatial obs_only norm=0.03) | 227434 |\n| bjb1-18228 | cuda:0 | eval-acr-object-v4-default-r2 (perdof default norm, object) | 390936 |\n| bjb1-18228 | cuda:1 | eval-perdof-object-seed43 | 365925 |\n| bjb1-18228 | cuda:2 | eval-obs-only-object-seed43 | 356490 |\n| bjb1-18228 | cuda:3 | eval-argmin-object-seed43 | 356696 |\n| bjb1-32546 | cuda:0 | eval-mag-obsonly-norm003-object | 121325 |\n| bjb1-32546 | cuda:1 | eval-vla-mean-object-seed43 | 111709 |\n| bjb1-32546 | cuda:2 | eval-scalar-object-seed43 | 114664 |\n| bjb1-32546 | cuda:3 | eval-obs-only-object-norm02-seed43-r2 | 148788 |\n| bjb1-32546 | cuda:4 | eval-acr-object-obs-only-default (obs_only 无 norm cap) | 134094 |\n| bjb1-32546 | cuda:5 | eval-mag-perdof-norm02-object | 127732 |\n| bjb2-28827 | cuda:0 | eval-mag-perdof-norm003-object | 105938 |\n| bjb2-28827 | cuda:1 | eval-mag-perdof-norm005-object | 109650 |\n| bjb2-28827 | cuda:2 | eval-mag-perdof-norm03-object-r3 | 140759 |\n| bjb2-28827 | cuda:3 | eval-mag-perdof-norm02-seed43-object-r3 | 144504 |\n| bjb2-28827 | cuda:4 | eval-mag-obsonly-norm005-object | 101610 |\n| bjb2-28827 | cuda:5 | eval-mag-obsonly-norm03-object | 103028 |\n\n- **Cron**: 17 个 cron 全部活跃，reconcile 确认全部 still running。\n- **Workers 运行中**: 2 个\n  - `worker_code_fisher-test-preparation` — 准备 Fisher exact test 脚本\n  - `worker_paper_check-citation-audit-status` — 检查引用方法归因审计状态\n\n### 3. 📊 当前状态\n**Phase**: Phase 3 — Paper writing + seed=43 statistical validation。CoRL 2026 abstract DDL ~May 26（剩 11 天），full paper DDL ~Jun 2。\n\n**刚做完的**:\n- 部署了全部 17 GPU 满载 eval：seed=43 六方对比（obs_only/argmin/perdof/scalar/vla-mean/obs_only-norm02）+ object magnitude sweep（obs_only & perdof 各 5 个 norm 点）+ 两个 default norm 消融 + spatial obs_only norm=0.03 补完\n- 派了 Fisher test 准备 Worker 和引用审计检查 Worker\n\n**核心结果已锁定**:\n- Object: obs_only norm=0.2 = **22%** (+10pp over argmin 12%) — PROJECT HIGH\n- Object: obs_only norm=0.1 = 19% (+7pp over argmin) — D033 confirmed\n- Spatial: 所有 CRM 变体 ≈ argmin 34%（VLA backbone 瓶颈）— LOCKED\n- Spatial magnitude sweep: obs_only 全 norm 稳定 35-44%，perdof 偏离 0.1 退化 — D032\n\n**等待中**:\n- 17 个 eval cron 回调（预计 ~12h 陆续完成）\n- 2 个 Worker 回调\n- eval-mag-obsonly-norm03-b2 (spatial norm=0.3) 待人工审批\n- Paper: Intro ✅ Method ✅ Experiments ✅ Related Work ✅，Abstract + Discussion 进行中\n- 引用方法归因全量审计（blocking submission）\n\n### 4. 📋 待办（条件触发式）\n- **seed=43 六方全部完成** → spawn Worker 跑 Fisher exact test + bootstrap CI。obs_only 19% seed42 vs partial 8.3% seed43 — 若 pooled p<0.05 → claim 成立；p=0.05-0.10 → 部署 seed=44；p>0.10 → 调整 claim 强度\n- **object magnitude sweep 全部完成** → 生成 fig3 norm sensitivity curve（obs_only vs perdof × 5 norm points × 2 benchmarks）\n- **eval-acr-object-obs-only-default + eval-acr-object-v4-default-r2 完成** → 对比 obs_only default vs perdof default，若 obs_only 仍优 → \"obs_only robust regardless of norm\" claim 加强\n- **Fisher test Worker 回调** → 检查 p-value，向 Director 汇报统计显著性结论\n- **引用审计 Worker 回调** → 若方法归因仍有错 → 立即派 Worker 修正；若全部通过 → 解除 blocking\n- **所有 eval 完成 + 引用审计通过** → 补完 Abstract + Discussion/Conclusion → 论文可提交\n\n### 5. 🎯 战略上下文\n**核心结论链**: Per-DOF conformal claim 已死（D027/D029）→ obs_only CRM 是唯一存活路径 → 论文 story 转为 \"sample-then-correct > sample-then-select，obs features > conformal features\"（honest negative framing）→ Object 是主故事载体，Spatial 是 robustness 验证。\n\n**最容易判断错的事**:\n1. Seed=43 partial SR（obs_only 8.3%@6 tasks）看起来很低，但剩余 4 tasks 在 seed=42 中 SR 较高——**不要过早恐慌**，等 10-task FINAL 再判断。\n2. Spatial 所有 CRM ≈ argmin 不是 negative result——是 VLA backbone 瓶颈，hard tasks 全方法 0%。论文中这是 \"honest limitation\" 而非 failure。\n3. obs_only norm=0.03 spatial 已到 44.3%@7t — 这是所有 spatial 结果中最高的，但只有 7 tasks 完成，等 10t FINAL。如果最终 >40%，这是 spatial 维度的亮点。\n4. chen2026reconvla 的角色已重新定位（D034）：从\"直接竞品 selection-only\"改为\"同领域不同路线(UQ-guided)\"——不要在论文中把它当成 selection baseline 来对比。\n5. **不要在 seed=43 完成前动 paper Results section** — 数字会变。Abstract/Discussion 可以先写框架，具体数字等 FINAL。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778877747.md"
+}

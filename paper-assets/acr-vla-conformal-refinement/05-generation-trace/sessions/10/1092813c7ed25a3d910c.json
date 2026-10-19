@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "1092813c7ed25a3d910c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "verify pi05 crm checkpoint",
+  "task_key": "worker_verify_pi05-crm-checkpoint_20260526T024935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_verify_pi05-crm-checkpoint_20260526T024935.jsonl",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "aae21e322e10e97ed6f81b84f1a12bd954cfe6d9e0de3f859ed601496e3093e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T02:49:46.123667+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_pi05-crm-checkpoint_20260526T024935"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/verify-pi05-crm-checkpoint.md"
+}

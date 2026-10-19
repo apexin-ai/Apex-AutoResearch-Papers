@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41cf45cf8d642a13e683",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill default r3 bjb2 40593",
+  "task_key": "worker_ops_kill-default-r3-bjb2-40593_20260515T032905",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-default-r3-bjb2-40593_20260515T032905_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "dd8eed0b09e5bb2585cedcb3025838f1407c45103351eca19b417b82e6839204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status 已更新为 DONE，且 conclusion 已经是 \"killed\"。Registry 已是最终状态。\n\n## 总结\n\n### Task 1: v4-default-r3\n**已终止。** 进程之前已被 kill（日志显示 `Terminated`, EXIT_CODE=143）。当时只跑到第1个任务的 rollout 5/10，0/5 成功。Registry 已更新：status=DONE, conclusion=killed。\n\n### Task 2: reconvla-object on bjb2-40593\n**PID 211962 正在运行，cuda:0，5573MiB 显存。** \n- 命令：`python evaluate.py --benchmark object --mode reconvla --K 10 --n_rollouts 20 --seed 42`\n- 进度：第1个任务 `pick_up_the_alphabet_soup_and_place_it_in_the_basket` rollout 5/20，0/5 成功\n- 启动时间：今天 09:48，已运行约 1.5 小时\n- 10 个任务 × 20 rollouts = 共 200 rollouts，当前完成约 5/200（~2.5%）\n- tmux session: `eval-reconvla-object`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-default-r3-bjb2-40593.md"
+}

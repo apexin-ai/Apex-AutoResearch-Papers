@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21328df4ee162a37062a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis check experiment logs progress",
+  "task_key": "worker_analysis_check-experiment-logs-progress_20260515T193201",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check-experiment-logs-progress_20260515T193201_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "2742d6a13f7fa9b13c4c664086b6868792c4e6583ac1d563f3dfbef5277f0f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心发现：\n\n- **16/18 实验正常推进**，1 个死亡需重启\n- **eval-mag-perdof-norm02-object (bjb2-28827, PID 127732) 已死**，0 个 task 完成，需要重启\n- **最快完成的**：eval-mag-obsonly-norm003-b2 (bjb2-40593)，7/10 tasks，interim SR 44.3%，约 6h 后完成\n- **bjb1-18228** 有 2 个实验已过半（~7.5h 后完成）\n- **bjb2-28827** 最慢，7 个实验争抢资源，大部分还需 17-25h+"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-experiment-logs-progress.md"
+}

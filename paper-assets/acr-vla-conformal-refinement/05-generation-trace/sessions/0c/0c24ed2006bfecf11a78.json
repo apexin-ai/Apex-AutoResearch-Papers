@@ -1,0 +1,544 @@
+{
+  "schema_version": "1.0",
+  "id": "0c24ed2006bfecf11a78",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "paper k20 ablation table",
+  "task_key": "worker_paper_k20-ablation-table_20260521T112638",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_k20-ablation-table_20260521T112638.jsonl",
+    "occurrence": 1,
+    "bytes": 19643,
+    "sha256": "c7d2babf5505c990730c350d823a1477b632f6b69007e27cd3437442acc8ed91"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "assistant": 2,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T11:26:45.928046+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T11:28:45.889092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/",
+              "description": "List paper directory"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T11:28:45.889486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 32\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 15 19:11 .\ndrwxr-xr-x 11 ubuntu ubuntu 4096 May 21 10:54 ..\n-rw-r--r--  1 ubuntu ubuntu 5934 May 15 19:11 figure_plan.md\n-rw-r--r--  1 ubuntu ubuntu 9281 May 15 19:10 outline.md\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 15 19:11 sections"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T11:28:45.889725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/sections/",
+              "description": "List paper sections"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T11:28:45.889909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 16\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 15 19:11 .\ndrwxr-xr-x 3 ubuntu ubuntu 4096 May 15 19:11 ..\n-rw-r--r-- 1 ubuntu ubuntu 8090 May 15 19:11 related_work.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T11:28:45.890099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/outline.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T11:28:45.890420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# ACR-VLA: Observation-Conditioned Learned Correction for Robust Vision-Language-Action Models\n2\t\n3\t**Target**: CoRL 2026 (Abstract DDL ~May 26, Full paper DDL ~Jun 2)\n4\t**Format**: 8 pages + references, CoRL template\n5\t\n6\t---\n7\t\n8\t## Title Candidates\n9\t\n10\t1. **ACR-VLA: Sample-Then-Correct — Observation-Conditioned Action Refinement for Robust Vision-Language-Action Models**\n11\t2. **Beyond Sample Selection: Learned Action Correction Improves VLA Robustness Under Distribution Shift**\n12\t3. **When Conformal Features Fail: Observation-Conditioned Correction for Vision-Language-Action Models**\n13\t\n14\t---\n15\t\n16\t## 1. Introduction (~1.5 pages)\n17\t\n18\t**Key points**:\n19\t- Flow-matching VLAs (pi0, SmolVLA) achieve near-saturation on standard benchmarks (97-99%) but exhibit robustness gaps under distribution shift (LIBERO-Plus)\n20\t- Existing inference-time approaches: sample selection only (ReconVLA), task-level RL (SC-VLA), high-latency verifiers (VLA-Pilot 2.41s/step) — none explore learned action correction on frozen VLAs\n21\t- Our contribution: **sample-then-correct pipeline** — conformal sample selection (K=10) followed by a lightweight observation-conditioned Conformal Refinement Module (CRM, ~250K params, ~3ms overhead)\n22\t- Three findings:\n23\t  1. Sample-then-correct > sample-then-select: obs_only CRM +7pp over argmin on LIBERO object (19% vs 12%, exp: `eval-acr-object-v4-obs-only` vs `eval-argmin-only-object`)\n24\t  2. Observation features > conformal features for correction conditioning (honest negative: per-DOF conformal features ≈ argmin, exp: `eval-acr-object-v4-small`)\n25\t  3. Correction magnitude control is critical and previously unrecognized — norm=1.42 → 0%, norm=0.1 → 19% (exp: `eval-acr-spatial-v4-default-r3`, magnitude sweep D032)\n26\t\n27\t**Figure**: Fig. 1 — Pipeline overview diagram (sample → conformal selection → CRM correction → execution)\n28\t\n29\t---\n30\t\n31\t## 2. Related Work (~1.5 pages)\n32\t\n33\t→ See `paper/sections/related_work.md` for full draft.\n…[truncated 7812 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T11:28:45.890725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T11:28:45.890936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T11:28:45.891117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'tags': ['k20']}",
+              "limit": "20"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T11:28:45.891321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.426}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T11:28:45.891519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'LOCKED'}",
+              "limit": "50"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T11:28:45.891714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3146}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T11:28:45.891887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "100"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T11:28:45.892880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-pi05-vla-only-spatial-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-21T08:22:27.768Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:19:18.528Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Spatial seed44, cross-VLA validation of CRM\\\"}, \\\"eval-pi05-vla-only-spatial-seed43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-21T08:22:25.180Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:19:09.036Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Spatial seed43, cross-VLA validation of CRM\\\"}, \\\"eval-pi05-vla-only-spatial-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-21T08:22:22.540Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:18:58.812Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Spatial seed42, cross-VLA validation of CRM\\\"}, \\\"eval-pi05-vla-only-object-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-21T08:22:19.985Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:18:48.305Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed44, cross-VLA validation of CRM\\\"}, \\\"eval-pi05-vla-only-object-seed43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-21T08:22:17.435Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:18:37.555Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed43, cross-VLA validation of CRM\\\"}, \\\"eval-pi05-vla-only-object-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-21T08:22:14.823Z\\\", \\\"updated_at\\\": \\\"2026-05-21T10:18:27.592Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed42, cross-VLA validation of CRM\\\"}, \\\"eval-pi05-baseline-object-seed42-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T03:30:28.663Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:02:33.602Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed42 (r2). Fix: corrected QUANTILES→MEAN_STD normalization mismatch that caused 0% SR in r1.\\\", \\\"parent\\\": \\\"eval-pi05-baseline-object-seed42\\\", \\\"notes\\\": \\\"KILLED (旧策略 action[0] only). 后\n…[truncated 42196 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T11:28:45.893164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/sections/related_work.md",
+              "limit": "30"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T11:28:45.893443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work\n2\t\n3\t## VLA Robustness and Inference-Time Adaptation\n4\t\n5\tVision-Language-Action (VLA) models have rapidly advanced general-purpose robot control by leveraging large-scale vision-language pretraining [Brohan et al., 2023; Kim et al., 2024]. Flow-matching architectures such as pi0 [Black et al., 2024] and SmolVLA [Shukor et al., 2025] achieve strong performance on standard benchmarks but remain brittle under distribution shift, as systematically documented by LIBERO-Plus [Fei et al., 2025] and LIBERO-PRO [Xu et al., 2025].\n6\t\n7\tSeveral lines of work address VLA robustness at *training time*. RobustVLA [Zhang et al., 2025] applies Jacobian and smoothness regularization via RL post-training. SRPO [Fei et al., 2025] uses self-referential policy optimization to reach 82.1% on LIBERO-Plus. DiG-Flow [Zhang et al., 2025] introduces representation-level discrepancy guidance. ACoT-VLA [AgibotTech, 2026] adds chain-of-thought reasoning to VLA action prediction. VLA-GSE [Jiang et al., 2026] employs parameter-efficient fine-tuning with specialized experts. AFIL [2026] leverages failure trajectories as negative guidance during training. These methods require modifying the VLA training pipeline; our work is complementary, operating purely at inference time on a frozen model.\n8\t\n9\tAt *inference time*, the landscape is sparser. ReconVLA [Chen et al., 2026] applies conformal prediction to produce calibrated uncertainty estimates and selects the best action from K candidates — a pure sample-selection strategy. VLA-Pilot [2025] uses a multimodal LLM verifier with evolutionary diffusion optimization for zero-shot policy steering, but incurs 2.41s per step. SC-VLA [Li et al., 2026] performs online action refinement via sparse future state prediction and residual RL, requiring environment interaction. TT-VLA [Liu et al., 2026] adapts VLAs through test-time reinforcement learning with progress-based rewards. A2C2 [Sendai et al., 2025] proposes an asynchronous action chunk \n…[truncated 5443 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T11:28:45.893711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "write paper section edit",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T11:28:45.893920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T11:28:45.894151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/sections/ablation_k_sweep.md",
+              "content": "# Ablation: K-Value Sweep\n\nWe sweep the number of VLA samples K ∈ {2, 10, 20} drawn from the flow-matching policy and held fixed at the obs_only CRM head (ε = 0.2). The VLA-only K=1 baseline is reported for reference. Increasing K beyond 2 yields no measurable success-rate gain on either suite, supporting our adaptive K=2 configuration (Plan A) as Pareto-optimal in compute.\n\n**Table A: Effect of K on closed-loop success rate (mean ± std across seeds).**\n\n| K | Object SR (%) | Spatial SR (%) | n_seeds | Object exp_ids | Spatial exp_ids |\n|---|--------------:|---------------:|--------:|----------------|-----------------|\n| 1 (VLA-only) | 10.8 ± 1.3 | 29.4 ± 1.5 | ≥4 / ≥4 | `eval-vla-only-object-*` | `eval-pi05-vla-only-spatial-*` |\n| 2 (Plan A, adaptive) | **18.3 ± 2.1** | **35.0 ± 1.0** | 3 / 3 | `eval-plan-a-object-seed{42,43,44}` | `eval-plan-a-spatial-seed{42,43,44}` |\n| 10 | 16.8 ± 1.8 | 34.5 ± 1.5 | ≥3 / ≥3 | obs_only norm0.2 seed pool | spatial obs_only seed pool |\n| 20 | 18.8 ± 1.0 | 34.3 ± 0.6 | 4 / 3 | `eval-k20-obs-only-object-seed{42,43,44,45}` | `eval-k20-obs-only-spatial-seed{42,43,44}` |\n\nPer-seed K=20 raw numbers (Object): 20%, 18%, 18%, 19%. Per-seed K=20 raw (Spatial): 35%, 34%, 34%. All K=20 runs use the same CRM checkpoint (`obs_only_K10_eps02_default`) and differ only in the number of candidate actions resampled at inference.\n\n**Diminishing returns beyond K=2.** Moving from K=1 → K=2 captures the bulk of the gain on both benchmarks (+7.5pp Object, +5.6pp Spatial). Subsequent doublings of K provide no additional improvement: on Object, K=10 (16.8%) and K=20 (18.8%) bracket the K=2 mean (18.3%) within one standard deviation; on Spatial, the three K values lie within 0.7pp of one another (34.3-35.0%) and the K=20 standard deviation (0.6%) overlaps the K=2 and K=10 confidence ranges. The pattern is consistent with the obs_only CRM's correction signal being driven by the observation features rather than by candidate diversity — once two samples provide an uncertainty estimate sufficient to trigger correction, additional candidates are absorbed by the same correction head without measurable benefit.\n\n**Implication for compute–accuracy trade-off.** A single flow-matching forward pass dominates inference cost; K=20 requires 10× more VLA forwards than K=2 with no return on closed-loop SR. The adaptive K=2 configuration (Plan A) — which performs a second forward only when the pairwise L2 distance between the first two samples exceeds τ=P50=0.0749 — pays at most 2× VLA compute and triggers correction on roughly 84% of steps on Object and 98% on Spatial, while matching K=20 SR within noise. We therefore adopt K=2 (Plan A) as the default in all downstream experiments and recommend it as the operating point for deployment.\n"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T11:28:45.894411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/sections/ablation_k_sweep.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T11:28:45.894586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/outline.md",
+              "old_string": "### 4.5 Statistical Significance (seed=43 results, pending)\n- Fisher exact test on combined 200 trials (2 seeds × 10 tasks × 10 rollouts)\n- Per-task breakdown showing consistency\n- Bootstrap 95% CI for success rate differences",
+              "new_string": "### 4.5 K-Value Sweep Ablation\n\n→ See `paper/sections/ablation_k_sweep.md` for full draft.\n\n**Key message**: K=2 (Plan A) ≈ K=10 ≈ K=20 on both Object (18.3% / 16.8% / 18.8%) and Spatial (35.0% / 34.5% / 34.3%). Diminishing returns beyond K=2 justify Plan A (adaptive K=2) as Pareto-optimal — matches K=20 SR with ≤2× VLA compute. K=20 exp_ids: `eval-k20-obs-only-object-seed{42,43,44,45}`, `eval-k20-obs-only-spatial-seed{42,43,44}`.\n\n### 4.6 Statistical Significance (seed=43 results, pending)\n- Fisher exact test on combined 200 trials (2 seeds × 10 tasks × 10 rollouts)\n- Per-task breakdown showing consistency\n- Bootstrap 95% CI for success rate differences"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T11:28:45.894822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/outline.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T11:28:45.894967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "ablation_k_sweep_section",
+              "type": "paper",
+              "description": "Paper Section 4.5 — K-value sweep ablation (K=2 / 10 / 20). Object 18.3/16.8/18.8%, Spatial 35.0/34.5/34.3%. Diminishing returns beyond K=2 supports Plan A (adaptive K=2) as Pareto-optimal.",
+              "project": "acr-vla-conformal-refinement",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper/sections/ablation_k_sweep.md",
+              "tags": "['paper', 'ablation', 'k_sweep', 'k20']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T11:28:45.895126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_9622ce\\\", \\\"name\\\": \\\"ablation_k_sweep_section\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Paper Section 4.5 — K-value sweep ablation (K=2 / 10 / 20). Object 18.3/16.8/18.8%, Spatial 35.0/34.5/34.3%. Diminishing returns beyond K=2 supports Plan A (adaptive K=2) as Pareto-optimal.\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/paper/ablation_k_sweep.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T11:28:37.256209+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"ablation\\\", \\\"k_sweep\\\", \\\"k20\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T11:28:45.895386+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成。\n\n**新建文件**: `paper/sections/ablation_k_sweep.md`\n- Table A: K ∈ {1, 2, 10, 20} 双 benchmark SR（K=20 数字 18.8±1.0% Object / 34.3±0.6% Spatial 来自 4 + 3 个 seed，per-seed 原始值列出）\n- 列出全部 K=20 exp_ids：`eval-k20-obs-only-object-seed{42,43,44,45}`、`eval-k20-obs-only-spatial-seed{42,43,44}`\n- \"Diminishing returns beyond K=2\" 段：K=10/K=20 与 K=2 在一个 std 内重叠\n- \"Implication\" 段：K=20 = 10× VLA forwards 无收益 → 推荐 Plan A (K=2 adaptive，trigger_rate 84%/98%) 为操作点\n\n**更新 outline.md**: 新增 §4.5 K-Value Sweep Ablation 指向新 section，原 §4.5 Statistical Significance → §4.6。\n\n**Artifact 已注册**: `art_20260521_9622ce`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_k20-ablation-table_20260521T112638"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/paper-k20-ablation-table.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38a53fc71a1ae98babf1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper writing intro reframe",
+  "task_key": "worker_paper_writing_intro_reframe_20260528T040935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_intro_reframe_20260528T040935_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "a8ff43d391c22baf9e6b03b01513d45d1d4a86fc0d94aaba33b27373060adcdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已重写完成。主要变更：\n\n- **叙事重心**：从\"性能提升\"转为\"learned correction 默认有害 → conformal confidence sets 检测何时不该修正\"\n- **术语**：\"adaptive gating\" → \"τ-gating\"/\"conformal gating\"，贡献2标题改为 \"Conformal confidence sets with τ-gating\"\n- **结构**：5段（背景+hook → 相关工作gap → 根因分析+方法 → 结果 → 4条贡献）\n- **贡献从3→4条**：拆出 cross-suite validation（trigger rate ↔ effect size 单调相关、τ-sweep 稳定性）为独立贡献\n- **风格**：无 em-dash，无 -ing 短语结尾，无 AI 风格用词，所有 cite key 已覆盖，~670 words"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-intro-reframe.md"
+}

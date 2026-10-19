@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f6a2f7a14ed0fc56ef",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy tau0075 spatial bjb2 40593",
+  "task_key": "worker_deploy_tau0075-spatial-bjb2-40593_20260525T040826",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_tau0075-spatial-bjb2-40593_20260525T040826_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "3df48e84a1735e84e8c42500bcb2336484f7497cc5e9fe530e8a4414d943f17b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **exp_id**: eval-k2-tau0075-spatial-s42\n- **PID**: 349399, GPU 0 (5797 MiB 模型已加载)\n- **Log**: `/root/autodl-tmp/logs/eval-k2-tau0075-spatial-s42.log`\n- **状态**: SmolVLA 加载完成，CRM (327K params) 加载完成，LIBERO spatial envs 加载中\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-tau0075-spatial-bjb2-40593.md"
+}

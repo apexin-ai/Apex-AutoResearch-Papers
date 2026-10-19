@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26aafab77ee259aef4b1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh ghost check and deploy batch6",
+  "task_key": "worker_ssh_ghost-check-and-deploy-batch6_20260517T111811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_ghost-check-and-deploy-batch6_20260517T111811_result.json",
+    "occurrence": 1,
+    "bytes": 2244,
+    "sha256": "fa19cffd018246eefc4dbe532ff934c03b975126b0f5daec27f1a32b4897198c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况严峻：**所有 4 台服务器的所有 GPU 都被占用，没有空闲 GPU 可以部署。**\n\n### Ghost 实验诊断\n\n| 实验 | 服务器 | GPU | 状态 | 详情 |\n|------|--------|-----|------|------|\n| eval-perdof-object-norm02-seed45 | bjb2-28827 | cuda:1 | **ALIVE** | PID 222830 在跑，1923MiB，17% util |\n| eval-obs-only-object-norm01-seed45 | bjb1-18228 | cuda:0 | **ALIVE** | PID 474319 在跑，1923MiB，20% util |\n\n两个都不是 ghost，是正常运行的实验。Registry 的 RUNNING 状态正确，无需更新。\n\n### GPU 实际占用情况\n\n**bjb1-18228** (4 GPU) — 全满：\n- cuda:0: PID 474319 (ghost 2，在跑)\n- cuda:1: PID 612853 (5645MiB)\n- cuda:2: PID 587763 (4250MiB)\n- cuda:3: PID 588037 (4717MiB)\n\n**bjb1-32546** (6 GPU) — 全满：\n- cuda:0~5 全部被占用 (PIDs: 421086, 414824, 416568, 422357, 393646, 423767)\n\n**bjb2-28827** (6 GPU) — 全满：\n- cuda:0: PID 224628 (1923MiB)\n- cuda:1: PID 222830 (ghost 1，在跑)\n- cuda:2: PID 392856+394435 (11324MiB, 99% util)\n- cuda:3: PID 242264 (2392MiB)\n- cuda:4: PID 389051 (5645MiB)\n- cuda:5: PID 326081 (2856MiB)\n\n**bjb2-40593** (1 GPU) — 全满：\n- cuda:0: PID 388460 (5609MiB)\n\n### 部署结果\n\n| # | Exp ID | 计划 GPU | 结果 | 原因 |\n|---|--------|----------|------|------|\n| 1 | eval-obs-only-object-norm003-seed43 | bjb1-18228 cuda:0 | **跳过** | ghost 2 仍在运行 |\n| 2 | eval-perdof-object-norm003-seed43 | bjb1-18228 cuda:1 | **跳过** | PID 612853 占用 |\n| 3 | eval-obs-only-object-norm005-seed43 | bjb1-32546 cuda:0 | **跳过** | PID 421086 占用 |\n| 4 | eval-perdof-object-norm005-seed43 | bjb1-32546 cuda:3 | **跳过** | PID 422357 占用 |\n| 5 | eval-obs-only-object-default-seed43 | bjb1-32546 cuda:5 | **跳过** | PID 423767 占用 |\n| 6 | eval-perdof-object-norm03-seed46 | bjb2-28827 cuda:1 | **跳过** | ghost 1 仍在运行 |\n| 7 | eval-perdof-object-default-seed45 | bjb2-28827 cuda:2 | **跳过** | 2 进程占用，99% util |\n| 8 | eval-obs-only-object-norm003-seed44 | bjb2-40593 cuda:0 | **跳过** | PID 388460 占用 |\n\n**0/8 实验成功部署。** 所有目标 GPU 均被占用。需要等现有实验完成释放 GPU 后再部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ghost-check-and-deploy-batch6.md"
+}

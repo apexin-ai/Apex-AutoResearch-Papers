@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63da7f82041c298bf9a4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper figure fig1 pipeline",
+  "task_key": "worker_paper_figure_fig1_pipeline_20260515T204527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig1_pipeline_20260515T204527_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "91b04d0d607bd7d28802b9b4480d1754d63925f7d294979e8e08c690d8b09807"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已生成并注册：\n- **路径**: `artifacts/_project/paper/figures/fig1_pipeline.pdf`\n- **内容**: 5 阶段水平流程图 — Observation → Frozen VLA (K=10 samples fan) → Conformal Selection (argmin Mahalanobis) → CRM (‖δ‖₂ ≤ ε, 329K params) → a* = a_base + clip(δ) → robot\n- 包含 z_obs 990D embedding 虚线箭头、FROZEN 标签、Okabe-Ito 色盲友好配色、三色图例"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-pipeline.md"
+}

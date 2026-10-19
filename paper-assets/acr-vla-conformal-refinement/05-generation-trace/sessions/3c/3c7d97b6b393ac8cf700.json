@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7d97b6b393ac8cf700",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh scan bjb1 18228",
+  "task_key": "worker_ssh_scan-bjb1-18228_20260520T024104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scan-bjb1-18228_20260520T024104_result.json",
+    "occurrence": 1,
+    "bytes": 2114,
+    "sha256": "4f9296610de04ebbee343e6bfe822582103dafb92e3a22b0195f5d7adde9f609"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-18228 状态扫描结果\n\n### GPU 状态 (4× GPU, 24GB each)\n\n| GPU | 利用率 | 显存 | PID | 进程 |\n|-----|--------|------|-----|------|\n| 0 | 21% | 2376/24564 MiB | 200697 | `evaluate.py --mode vla_only --benchmark object --seed 49 --K 1` |\n| 1 | 22% | 3560/24564 MiB | 211897 | `evaluate.py --mode vla_only --benchmark spatial --seed 50 --K 1` |\n| 2 | 25% | 2071/24564 MiB | 201265 | `evaluate.py --mode crm_obs_only --benchmark spatial --seed 47 --K 10 --max_correction_norm 0.2` |\n| 3 | 23% | 1961/24564 MiB | 196349 | `evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark object --seed 43` |\n\n### 实验进度 (每个 benchmark 10 个 task)\n\n| GPU | 实验 | 输出文件 | 已完成 task | 进度 |\n|-----|------|----------|-------------|------|\n| 0 | vla_only object seed49 | `eval_object_vla_only_seed49.json` | 7/10 | ~70% |\n| 1 | vla_only spatial seed50 | `eval_spatial_vla_only_seed50.json` | 5/10 | ~50% |\n| 2 | crm_obs_only spatial seed47 | `eval_spatial_obs_only_norm02_seed47.json` | 8/10 | ~80% |\n| 3 | **adaptive_k p50 seed43** | `eval_adaptive_k_p50_seed43.json` | 8/10 | ~80% |\n\n### adaptive-k JSON 输出\n\n**尚未生成**。`eval_adaptive_k_p50_seed43.json` 不存在——实验仍在运行（8/10 tasks 完成），JSON 在所有 task 跑完后才写入。\n\n### 其他 sweep 实验\n\n**未发现** p50-seed42、p75-seed42、p75-seed43 等其他 sweep 进程。当前只有 p50-seed43 一个 adaptive-k 实验在跑。\n\n### logs 目录已有 JSON（最近的）\n\n| 文件 | 时间 |\n|------|------|\n| `eval_long_vla_only_seed48.json` | May 20 07:14 |\n| `eval_object_vla_only_seed50.json` | May 20 07:12 |\n| `eval_long_obs_only_norm02_seed46.json` | May 20 07:10 |\n| `eval_long_obs_only_norm02_seed45.json` | May 20 05:58 |\n| `eval_object_vla_only_seed48.json` | May 20 05:55 |\n| `eval_goal_obs_only_norm02_seed42.json` | May 20 05:20 |\n| `eval_goal_obs_only_norm02_seed43.json` | May 20 05:13 |\n\n所有 4 张 GPU 都在跑实验，预计 GPU 2 和 GPU 3 的实验（各 8/10）会先完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scan-bjb1-18228.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "472645f101c6b8985232",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code pi05 sync and smoke test",
+  "task_key": "worker_code_pi05-sync-and-smoke-test_20260521T012445",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pi05-sync-and-smoke-test_20260521T012445_result.json",
+    "occurrence": 1,
+    "bytes": 1818,
+    "sha256": "a99dcf835893191bb551381c4d1b6f246526125a60f39064b5e48715ef8eac3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改看起来完整正确。\n\n---\n\n## 总结\n\n### 1. 代码同步状态\n| 文件 | 状态 |\n|------|------|\n| `pi05_wrapper.py` | ✅ 同步到 bjb2 + 修复了两个问题 |\n| `evaluate.py` | ✅ 同步到 bjb2（31667 bytes，完整匹配） |\n\n### 2. GPU 可用性\n- **GPU**: 单卡 4090 (24564 MiB)\n- **占用**: 0 MiB（完全空闲，无其他进程）\n\n### 3. Smoke Test — **PASSED**\n| 指标 | 值 |\n|------|-----|\n| obs_features shape | (1, 2048) ✓ |\n| samples shape | (1, 2, 50, 7) ✓ |\n| GPU 占用 | 8.71GB → 8.72GB |\n| 推理时间 (K=2) | 1.24s |\n| 模型加载时间 | 238.2s |\n\n### 4. 修复内容（pi05_wrapper.py on bjb2）\n1. **Tokenizer**: PaliGemma 是 gated repo，无法直接下载。改为 fallback 到本地保存的 `unsloth/gemma-2b` tokenizer（同一 SentencePiece vocab，256K）\n2. **Vision tower key mismatch**: transformers 5.8.0 将 `.vision_tower.vision_model.X` 改为 `.vision_tower.X`，导致 437 个 vision tower 权重加载失败。添加 `_fix_vision_tower_keys()` 方法做 key remapping + strict=False 加载\n\n### 5. 待注意（未修复）\n- **归一化不匹配**: 模型 config 显示训练时用 `MEAN_STD` 归一化，但 wrapper 代码用 `QUANTILES` (q01/q99)。这会导致实际评估时 state 输入和 action 输出的归一化方式与训练不一致。需要 Worker A 确认意图。\n\n### 6. Baseline eval 命令\n```bash\ncd /root/acr-vla-conformal-refinement/src && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=0 python3 evaluate.py \\\n  --model pi05 \\\n  --pi05_path /root/autodl-tmp/models/pi05_libero_finetuned \\\n  --mode vla_only \\\n  --benchmark object \\\n  --seed 42 \\\n  --output_dir /root/acr-vla-conformal-refinement/logs\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pi05-sync-and-smoke-test.md"
+}

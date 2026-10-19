@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c5e101e74bd3cfb5ca9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_28_1779859011.md",
+  "task_key": "loop_28_1779859011",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_28_1779859011.md",
+    "occurrence": 1,
+    "bytes": 4873,
+    "sha256": "da531c89ce5b0149900af39814cad1930967851c688d5d54f46fb68b36bdc049"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 28\nreason: idle_timeout\nupdated: '2026-05-27T05:16:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单（29卡）**：bjb1-18228 cuda:0-3, bjb1-32546 cuda:0-5, bjb2-28827 cuda:0-5, cqa1-32758 cuda:0-5, westd-49937 cuda:0-5, bjb2-24035 cuda:0\n- **CoRL 2026 DDL = 2026-05-28 20:00 北京时间**（距 handoff 时刻约 18h）。论文提交是唯一最高优先级\n- **evaluate.py 锁定 commit a594db5**（D163），所有评估必须用旧代码，禁止升级\n- **westd-49937 (RTX PRO 6000 Blackwell)** 与 4090 有 ~3pp 系统偏差（D158），Table 数据必须 same-server paired\n- **cqa1-32758 并发 ≤6 个 π0.5 进程**，超过 OOM。cqa1 磁盘 /autodl-pub 94% ⚠️\n- **CRM checkpoint**：SmolVLA 用 `crm_smolvla_3suite_v1/crm_best.pt`，π0.5 用 `crm_pi05_unified_3suite/crm_best.pt`\n- **C001**: 启动实验前 nvidia-smi 检查目标 GPU 占用 < 500MB；**C002**: EXIT_CODE=0 ≠ 成功，必须查日志无 OOM/异常\n\n### 2. 🖥️ 基础设施快照\n- **项目路径（所有服务器）**: `/root/acr-vla-conformal-refinement`\n- **Python（所有服务器）**: `/root/miniconda3/bin/python`（conda base，不用 venv）\n- **服务器集群**:\n  - bjb1-18228 (4×4090): cuda:0/1/2 跑 smolvla-tau015/025/035-long-s43\n  - bjb1-32546 (6×4090): 全部空闲（无 .git）\n  - bjb2-28827 (6×4090, 1TB RAM): 全部空闲\n  - cqa1-32758 (6×4090D): cuda:0/1 跑 smolvla-vla-only-long-n20-s42/s43，其余空闲；磁盘紧张\n  - westd-49937 (6×RTX PRO 6000): 全部空闲（Blackwell 偏差注意）\n  - bjb2-24035 (1×4090D): 空闲，磁盘 /nvidia-smi 90% ⚠️\n- **CRM checkpoint**: `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt` (SmolVLA)\n- **活跃进程**: 5 个 RUNNING（见§3），cron 监控应跟随\n\n### 3. 📊 当前状态\n**Session 是冷启动**——本 session 在之前 8 次 WRITE HANDOFF 请求中均未成功执行 session-start 初始化或读取 registry/report（MCP 工具反复断连重连），现在是首次实际读取项目状态。\n\n**RUNNING (5)**:\n- smolvla-tau015-long-s43: bjb1-18228 cuda:0, PID 555572 — SmolVLA τ=0.15 Long s43 τ-sweep\n- smolvla-tau025-long-s43: bjb1-18228 cuda:1, PID 556705 — SmolVLA τ=0.25 Long s43 τ-sweep\n- smolvla-tau035-long-s43: bjb1-18228 cuda:2, PID 557567 — SmolVLA τ=0.35 Long s43 τ-sweep\n- smolvla-vla-only-long-n20-s42: cqa1-32758 cuda:0, PID 722840\n- smolvla-vla-only-long-n20-s43: cqa1-32758 cuda:1, PID 724487\n\n**ANALYZING (1)**: 需查 registry 确认具体 exp_id\n\n**最近完成**: smolvla-tau015/025/035-long-s42 全部 success (05-27 03:05)；pi05-goal-tau015-s43 negative (05-27 02:46)\n\n**论文状态**: v54 14页，Table 1 + Table 2 ✅ 已锁定，D169 Appendix τ-sweep patch 完成。审稿已提交 `submit_paper_to_review`，pending 用户审批 review mode。scatter_data.csv 89 行。\n\n**Agent 系统性问题**: report.md 记录\"连续 7 次 reset 后只处理 1-2 条消息就死\"，已向 Manager 升级。\n\n### 4. 📋 待办（条件触发式）\n- smolvla-tau015/025/035-long-s43 cron 回调 → 收割结果更新 scatter_data.csv，追加 τ-sweep Appendix 数据点\n- smolvla-vla-only-long-n20-s42/s43 完成 → 更新 Long VLA-only n=20 基线数据\n- ANALYZING 的实验 → 查 registry 确认 exp_id，派 Worker 分析\n- 用户审批 review mode → 处理审稿报告\n- **DDL 05-28 20:00 CST** → 所有剩余 τ-sweep 数据须在此前收割完毕；论文终稿确认\n- QUEUED 中有 eval-k2-tau035/025-spatial-s42 等 199 项 → 按优先级和 GPU 空闲情况部署（24/29 GPU 空闲）\n\n### 5. 🎯 战略上下文\n**项目核心**: ACR-VLA = Adaptive Conformal Refinement for Frozen Flow-Matching VLAs。投 CoRL 2026。\n\n**3 Claims**:\n- MC1 (D168): Adaptive ≥ CRM on 3/4 suites; recovery 19-38%\n- MC2 (D140+D169): Cross-suite trigger rate ↔ Δ 单调正相关；within-suite τ-sweep 是 sensitivity analysis（SR 对 τ 稳健）\n- MC3: Cross-VLA 模型能力依赖性（π0.5 CRM/Adaptive 全面负向 → 不 claim cross-model generalization）\n\n**决策链**: D001 (MVP GO) → D008 (SmolVLA SFT) → D016 (state bug) → D140 (cross-suite monotone) → D155 (π0.5 negative, reframe MC3) → D163 (code lock a594db5) → D168 (Goal harm fix) → D169 (τ-sweep → sensitivity analysis)\n\n**易错点**:\n1. DDL 只剩 ~18h，论文核心内容已 freeze，不要做大的 framing 调整\n2. π0.5 CRM/Adaptive 全面 negative 已 reframed 为 MC3 的证据（不 claim generalization），不要再试图\"修复\" π0.5 结果\n3. τ-sweep 数据是 Appendix sensitivity analysis，不是主表证据——不要用 τ-sweep 支撑 MC2 within-suite\n4. 24/29 GPU 空闲但 DDL 迫近——优先收割已运行实验，新实验只部署能在 DDL 前完成的\n5. 用户审批 review mode 是阻塞项——如果审批不来，论文仍可提交但缺少正式审稿反馈\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-28-1779859011.md"
+}

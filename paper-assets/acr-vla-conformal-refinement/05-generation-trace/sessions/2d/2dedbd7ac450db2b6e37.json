@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dedbd7ac450db2b6e37",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy mag perdof object bjb2",
+  "task_key": "worker_deploy_mag-perdof-object-bjb2_20260515T165718",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_mag-perdof-object-bjb2_20260515T165718_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "16df6da5fb2beb044201edc61dde7661a8f1ed8011fb52c535a01e324e876a21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 1 已注册为 RUNNING。\n\n**部署状态：**\n\n| 实验 | GPU | 状态 |\n|------|-----|------|\n| eval-mag-perdof-norm005-object (norm=0.05) | GPU 1 | RUNNING, PID 109650 |\n| eval-mag-perdof-norm03-object (norm=0.3) | — | QUEUED，等待 GPU 释放 |\n\n6 块 GPU 全满，无法立即部署实验 2。当前其他 GPU 任务：\n- GPU 0: perdof object norm003 (~10min)\n- GPU 2: acr_vla spatial (~13h)\n- GPU 3: perdof object default_norm (~6min)\n- GPU 4/5: obs_only object norm005/norm03 (~28min)\n\nGPU 0 或 GPU 3 上的实验最先完成，届时可部署 norm=0.3。需要我等 GPU 释放后自动部署，还是稍后手动部署？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-mag-perdof-object-bjb2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3021135668afafefec0f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper figure fig3 magnitude sweep",
+  "task_key": "worker_paper_figure_fig3_magnitude_sweep_20260515T213732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig3_magnitude_sweep_20260515T213732_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "53a9af183a236cf5e57b9e7fcc46a8e15ba694bba3979a23111c7a4636d062ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No `register_artifact` tool available in the current MCP toolset. The figure is generated and saved.\n\n**输出文件：**\n- PDF: `artifacts/_project/paper/figures/fig3_magnitude_sweep.pdf`\n- PNG: `artifacts/_project/paper/figures/fig3_magnitude_sweep.png`\n- 脚本: `artifacts/_project/chart/fig3_magnitude_sweep.py`\n\n**图表特性：**\n- obs_only（绿色圆形）在 ε ∈ [0.03, 0.30] 范围内 SR 稳定在 35–39%，partial point (8/10) 用空心 marker 标注\n- perdof（橙色方形）在 ε=0.10 达到峰值 35%，偏离后快速衰退至 26%（标注 \"−9 pp from peak\"），partial point (6/10) 同样空心标注\n- 两条 baseline 虚线：Argmin K=10 (34%) 和 VLA-only (30%)\n- Serif 字体、4.5×3.0 单列尺寸、log scale X 轴、浅色水平辅助线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-magnitude-sweep.md"
+}

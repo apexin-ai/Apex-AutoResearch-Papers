@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3747f85ca803f40811a3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh find argmin seed46 and verify perdof pid",
+  "task_key": "worker_ssh_find-argmin-seed46-and-verify-perdof-pid_20260517T103212",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_find-argmin-seed46-and-verify-perdof-pid_20260517T103212_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "66ed64d692d73e01ba257a37868d8199aff477ab8c0163b928c15cdaad2969b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== argmin seed46 定位 ===\n服务器搜索结果：\n- bjb1-18228: 进程不存在，无日志/输出文件\n- bjb1-32546: 进程不存在，已完成。日志: eval_argmin_object_seed46.log，输出: eval_object_reconvla_seed46.json\n- bjb2-28827: 进程不存在，无日志/输出文件\n- bjb2-40593: 进程不存在，无日志/输出文件\n\n结果文件内容：\n- mode: reconvla, benchmark: object, K=10, seed=46, n_rollouts=10\n- overall_success_rate = 10.0% (10/100)\n- 日志末尾: \"Results saved to logs/eval_object_reconvla_seed46.json\" — 正常完成\n\n结论：已完成(SR=10.0%)，位于 bjb1-32546\n\n=== perdof seed44 PID 验证 ===\n- PID 531963: 存在，是 bash wrapper 进程（S 状态，CPU 0%）\n- PID 531970: 存在，是实际 python 进程（Rl 状态，CPU 134%，运行中）\n- 完整命令: `python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed44.json`\n\n确认：mode=crm_perdof ✓, seed=44 ✓, max_correction_norm=0.1 ✓。Registry PID 531963 是 bash wrapper，实际工作进程是 531970，两者都在运行。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-find-argmin-seed46-and-verify-perdof-pid.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd870a7bf3d5cfbff33",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "figure trigger scatter update",
+  "task_key": "worker_figure_trigger-scatter-update_20260528T130755",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_trigger-scatter-update_20260528T130755_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "7827d7a1a6fc6a068c6bcf294459fea5e9cd9849f6f22f3d1a8c36ea109d77d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。5 轮迭代后输出：\n\n- **PDF**: `docs/paper/figures/fig_trigger_scatter.pdf`\n- **PNG**: `docs/paper/figures/fig_trigger_scatter.png`\n- **脚本**: `docs/paper/figures/gen_trigger_scatter.py`\n\n更新内容：D159 修正数据（Spatial 20%/+1.5, Goal 8%/+1.3, Object 4%/+0.1, Long 3%/−0.3），propagated std 误差棒，`#E69F00` 统一配色 + 4 种 marker，n.s. 文字框，subtle 趋势线强化正相关叙事。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-trigger-scatter-update.md"
+}

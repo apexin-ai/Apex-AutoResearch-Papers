@@ -1,0 +1,2072 @@
+# harvest bjb1 32546 status
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_harvest_bjb1-32546-status_20260526T200024.log`
+- **Structured JSON:** [`d954ebbe97a88d00a287.json`](../../sessions/d9/d954ebbe97a88d00a287.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "426195a7-7f78-4a09-8bb6-0a03adae337a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779843000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "07058f45-1dc4-40ad-a1a9-c689e2b7fb02",
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the status of all 6 experiments on bjb1-32546.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "ac4b6bb9-126c-4f0b-a592-a45caad46f18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDdixQak95abGvwxGT7dBP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12570,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12570
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EueoTu7EEeZbGfHrj7Hqxq`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "5477bfef-f04c-4d43-97d8-3e06999323a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDdixQak95abGvwxGT7dBP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12570,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12570
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T20:00:36.749Z_
+
+<details><summary>↩ Tool result · `toolu_01EueoTu7EEeZbGfHrj7Hqxq`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "2d45c74c-d62a-440a-8e23-9f0a2d5ad4a3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UsjYa9AGW3GP79RnyKkL1N`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ps -p 903949,904304,908783,909918,911462,912825 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "2f13dcc8-1152-42e0-8429-6f3768e42190",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GztqU7Yb2g8zsx6QcDzWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 460,
+      "cache_read_input_tokens": 24017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 460
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T20:00:41.844Z_
+
+<details><summary>↩ Tool result · `toolu_01UsjYa9AGW3GP79RnyKkL1N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n903949 S       04:14:58 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_adaptive_pi05_seed43_bjb1.json' > logs/eval-pi05-adaptive-long-s43-bjb1.log 2>&1 & echo \\\"PID=$!\\\"\\n904304 S       04:14:27 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_adaptive_pi05_seed44_bjb1.json' > logs/eval-pi05-adaptive-long-s44-bjb1.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "aad71b11-a213-440a-a6fb-df21dbca8609",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n903949 S       04:14:58 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_adaptive_pi05_seed43_bjb1.json' > logs/eval-pi05-adaptive-long-s43-bjb1.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n904304 S       04:14:27 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_adaptive_pi05_seed44_bjb1.json' > logs/eval-pi05-adaptive-long-s44-bjb1.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n903949 S       04:14:58 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_adaptive_pi05_seed43_bjb1.json' > logs/eval-pi05-adaptive-long-s43-bjb1.log 2>&1 & echo \\\"PID=$!\\\"\\n904304 S       04:14:27 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_adaptive_pi05_seed44_bjb1.json' > logs/eval-pi05-adaptive-long-s44-bjb1.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only PIDs 903949 and 904304 are still running. The other 4 PIDs (908783, 909918, 911462, 912825) are not listed, meaning they've ended. Let me check GPU status and read logs for all experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "f8701e2e-83ab-4c5a-bef1-50f77b0a42e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+PID 903949 和 904304 仍在运行（4h15m），其余 4 个进程已结束。读取日志和 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "856260e4-4865-4fe7-90da-2a908382de85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018y7DCToqXmRGrfYEa15hut`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "27a393dd-e012-4582-8644-3fccda127afc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T20:00:47.597Z_
+
+<details><summary>↩ Tool result · `toolu_018y7DCToqXmRGrfYEa15hut`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 11907 MiB, 24564 MiB, 25 %\\n1, 11907 MiB, 24564 MiB, 24 %\\n2, 2 MiB, 24564 MiB, 0 %\\n3, 2 MiB, 24564 MiB, 0 %\\n4, 2 MiB, 24564 MiB, 0 %\\n5, 2 MiB, 24564 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "11a4f4b5-59ec-4c47-ae0c-e43fd47100ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 11907 MiB, 24564 MiB, 25 %\\\\n1, 11907 MiB, 24564 MiB, 24 %\\\\n2, 2 MiB, 24564 MiB, 0 %\\\\n3, 2 MiB, 24564 MiB, 0 %\\\\n4, 2 MiB, 24564 MiB, 0 %\\\\n5, 2 MiB, 24564 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 11907 MiB, 24564 MiB, 25 %\\n1, 11907 MiB, 24564 MiB, 24 %\\n2, 2 MiB, 24564 MiB, 0 %\\n3, 2 MiB, 24564 MiB, 0 %\\n4, 2 MiB, 24564 MiB, 0 %\\n5, 2 MiB, 24564 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011BSc1hQ3xdMjcJL6mTEwGV`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -80 /root/acr-vla-conformal-refinement/logs/eval-pi05-adaptive-long-s43-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "49e77d0e-12be-4555-8958-909cbf1f0b8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T20:00:48.378Z_
+
+<details><summary>↩ Tool result · `toolu_011BSc1hQ3xdMjcJL6mTEwGV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_adaptive_pi05_seed43_bjb1.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO long environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/20, success so far: 10/10\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 20/20, success so far: 17/20\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 85.0% (17/20)\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/20, success so far: 10/10\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 15/20, success so far: 15/15\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 20/20\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 100.0% (20/20)\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 20/20\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 100.0% (20/20)\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 19/20\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 95.0% (19/20)\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 4/5\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 8/10\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 17/20\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 85.0% (17/20)\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 4/5\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 8/10\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 15/20, success so far: 10/15\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "bb97818b-88fe-49b8-87fd-c7a76a4ba23a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_adaptive_pi05_seed43_bjb1.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\\\n[eval] Loading LIBERO long environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 85.0% (17/20)\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 15/20, success so far: 15/15\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 20/20\\\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 100.0% (20/20)\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 15/15\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 20/20\\\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 100.0% (20/20)\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 15/15\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 19/20\\\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 95.0% (19/20)\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 4/5\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 8/10\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 13/15\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 17/20\\\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 85.0% (17/20)\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 4/5\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 8/10\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 15/20, success so far: 10/15\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_adaptive_pi05_seed43_bjb1.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO long environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/20, success so far: 10/10\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 20/20, success so far: 17/20\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 85.0% (17/20)\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/20, success so far: 10/10\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 15/20, success so far: 15/15\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 20/20\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 100.0% (20/20)\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 20/20\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 100.0% (20/20)\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 19/20\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 95.0% (19/20)\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 4/5\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 8/10\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 17/20\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 85.0% (17/20)\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 4/5\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 8/10\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 15/20, success so far: 10/15\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017fnAZxRfTNLRKbZAsymyKw`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -80 /root/acr-vla-conformal-refinement/logs/eval-pi05-adaptive-long-s44-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "54295ea8-5e29-48d9-9331-c60a041f881f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T20:00:49.362Z_
+
+<details><summary>↩ Tool result · `toolu_017fnAZxRfTNLRKbZAsymyKw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_adaptive_pi05_seed44_bjb1.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO long environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/20, success so far: 4/5\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/20, success so far: 9/10\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 20/20, success so far: 18/20\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 90.0% (18/20)\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/20, success so far: 10/10\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 15/20, success so far: 15/15\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 19/20\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 95.0% (19/20)\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 20/20\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 100.0% (20/20)\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 4/5\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 9/10\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 14/15\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 18/20\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 90.0% (18/20)\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 9/10\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 14/15\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 18/20\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 90.0% (18/20)\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 4/5\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 8/10\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "59eda6a4-83b7-479b-ac0c-ca78501184cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_adaptive_pi05_seed44_bjb1.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\\\n[eval] Loading LIBERO long environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 90.0% (18/20)\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 15/20, success so far: 15/15\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 19/20\\\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 95.0% (19/20)\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 15/15\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 20/20\\\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 100.0% (20/20)\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 4/5\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 9/10\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 14/15\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 18/20\\\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 90.0% (18/20)\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 9/10\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 14/15\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 18/20\\\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 90.0% (18/20)\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 4/5\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 8/10\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_adaptive_pi05_seed44_bjb1.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\n[eval] Mode: adaptive_conformal_crm, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt (615,966 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] PI05 features (2048D) passed directly to CRM (no projection)\\n[eval] Loading LIBERO long environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/20, success so far: 4/5\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/20, success so far: 9/10\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 20/20, success so far: 18/20\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 90.0% (18/20)\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/20, success so far: 10/10\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 15/20, success so far: 15/15\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 19/20\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 95.0% (19/20)\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 20/20\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 100.0% (20/20)\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 4/5\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 9/10\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 14/15\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 18/20\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 90.0% (18/20)\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 9/10\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 14/15\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 18/20\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 90.0% (18/20)\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 4/5\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 8/10\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011y33kY89aLfN6LsFd3nB9j`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-crm-spatial-s48-d149-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "3b0ff115-2bac-4f19-b0f1-cfc4962aff63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T20:00:50.244Z_
+
+<details><summary>↩ Tool result · `toolu_011y33kY89aLfN6LsFd3nB9j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_spatial_crm_norm005_s48_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: spatial\\n[eval] max_steps set to 280 for benchmark spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  56%|█████▌    | 275/489 [00:00<00:00, 2747.32it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3292.41it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 12/15\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 15/20\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 75.0% (15/20)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 13/15\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 18/20\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 90.0% (18/20)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 15/20\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 75.0% (15/20)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 80.5% (161/200)\\n============================================================\\n[eval] Results saved to logs/eval_spatial_crm_norm005_s48_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "fec2adc2-4b57-4168-bbe3-fa5bc3e9330e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_spatial_crm_norm005_s48_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: spatial\\\\n[eval] max_steps set to 280 for benchmark spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  56%|█████▌    | 275/489 [00:00<00:00, 2747.32it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3292.41it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 75.0% (15/20)\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 90.0% (18/20)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 75.0% (15/20)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\\\n\\\\n============================================================\\\\nOverall success rate (crm_obs_only): 80.5% (161/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_spatial_crm_norm005_s48_d149.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_spatial_crm_norm005_s48_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: spatial\\n[eval] max_steps set to 280 for benchmark spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  56%|█████▌    | 275/489 [00:00<00:00, 2747.32it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3292.41it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 12/15\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 15/20\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 75.0% (15/20)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 19/20\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 95.0% (19/20)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 13/15\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 18/20\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 90.0% (18/20)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 15/20\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 75.0% (15/20)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 14/15\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 80.5% (161/200)\\n============================================================\\n[eval] Results saved to logs/eval_spatial_crm_norm005_s48_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T6xnPuXHzHTSiiWrciu5C8`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-crm-object-s42-d149-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "b8c06155-314a-4329-859f-5b10cb53254c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T20:00:51.201Z_
+
+<details><summary>↩ Tool result · `toolu_01T6xnPuXHzHTSiiWrciu5C8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_norm005_s42_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  56%|█████▌    | 275/489 [00:00<00:00, 2731.32it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3345.02it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 77.0% (154/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_norm005_s42_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "3e4f20b7-c133-4b5f-92ca-d1d680b1a277",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_norm005_s42_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  56%|█████▌    | 275/489 [00:00<00:00, 2731.32it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3345.02it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\\\n\\\\n============================================================\\\\nOverall success rate (crm_obs_only): 77.0% (154/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_crm_norm005_s42_d149.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_norm005_s42_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  56%|█████▌    | 275/489 [00:00<00:00, 2731.32it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3345.02it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 77.0% (154/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_norm005_s42_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QTms2JXxshjAo2iY3n9ZQa`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-crm-object-s43-d149-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "a63326b0-ec0c-491f-8800-47432893ac77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T20:00:52.165Z_
+
+<details><summary>↩ Tool result · `toolu_01QTms2JXxshjAo2iY3n9ZQa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_norm005_s43_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  51%|█████     | 248/489 [00:00<00:00, 2478.50it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2938.73it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 78.5% (157/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_norm005_s43_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "8cb1ae68-b538-4fa2-9ea1-9d51243f50fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_norm005_s43_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  51%|█████     | 248/489 [00:00<00:00, 2478.50it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2938.73it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n\\\\n============================================================\\\\nOverall success rate (crm_obs_only): 78.5% (157/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_crm_norm005_s43_d149.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_crm_norm005_s43_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] max_steps set to 280 for benchmark object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  51%|█████     | 248/489 [00:00<00:00, 2478.50it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2938.73it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 2/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 6/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 10/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 78.5% (157/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_norm005_s43_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P4zS3Gp8QoaGxvwWSPBqUQ`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-crm-goal-s43-d149-bjb1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "b7c0eb8f-78f1-43ef-812a-19845f4faf6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UptxpjH7Jcb5f3hpGZHp5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 24477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T20:00:52.692Z_
+
+<details><summary>↩ Tool result · `toolu_01P4zS3Gp8QoaGxvwWSPBqUQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_crm_norm005_s43_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  59%|█████▉    | 289/489 [00:00<00:00, 2857.75it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3408.21it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO goal environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 5/5\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 7/10\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 10/15\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 15/20\\n[open_the_middle_drawer_of_the_cabinet] success rate: 75.0% (15/20)\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_stove: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_stove: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_the_stove: rollout 20/20, success so far: 20/20\\n[put_the_bowl_on_the_stove] success rate: 100.0% (20/20)\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/20, success so far: 4/5\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/20, success so far: 9/10\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 15/20, success so far: 13/15\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 20/20, success so far: 18/20\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 90.0% (18/20)\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/20, success so far: 4/5\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 10/20, success so far: 6/10\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 15/20, success so far: 9/15\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 20/20, success so far: 12/20\\n[open_the_top_drawer_and_put_the_bowl_inside] success rate: 60.0% (12/20)\\n  put_the_bowl_on_top_of_the_cabinet: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_top_of_the_cabinet: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_top_of_the_cabinet: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_top_of_the_cabinet: rollout 20/20, success so far: 19/20\\n[put_the_bowl_on_top_of_the_cabinet] success rate: 95.0% (19/20)\\n  push_the_plate_to_the_front_of_the_stove: rollout 5/20, success so far: 5/5\\n  push_the_plate_to_the_front_of_the_stove: rollout 10/20, success so far: 9/10\\n  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 14/15\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 19/20\\n[push_the_plate_to_the_front_of_the_stove] success rate: 95.0% (19/20)\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 1/5\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 3/10\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 6/15\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 10/20\\n[put_the_cream_cheese_in_the_bowl] success rate: 50.0% (10/20)\\n  turn_on_the_stove: rollout 5/20, success so far: 4/5\\n  turn_on_the_stove: rollout 10/20, success so far: 9/10\\n  turn_on_the_stove: rollout 15/20, success so far: 14/15\\n  turn_on_the_stove: rollout 20/20, success so far: 19/20\\n[turn_on_the_stove] success rate: 95.0% (19/20)\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 9/10\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 14/15\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 18/20\\n[put_the_bowl_on_the_plate] success rate: 90.0% (18/20)\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 3/5\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 7/10\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 10/15\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 14/20\\n[put_the_wine_bottle_on_the_rack] success rate: 70.0% (14/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 82.0% (164/200)\\n============================================================\\n[eval] Results saved to logs/eval_goal_crm_norm005_s43_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "710e5b1c-23cc-4e74-a07e-82b8c0e11dea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_crm_norm005_s43_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  59%|█████▉    | 289/489 [00:00<00:00, 2857.75it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3408.21it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] Loading LIBERO goal environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 5/5\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 7/10\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 10/15\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 15/20\\\\n[open_the_middle_drawer_of_the_cabinet] success rate: 75.0% (15/20)\\\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_the_stove: rollout 10/20, success so far: 10/10\\\\n  put_the_bowl_on_the_stove: rollout 15/20, success so far: 15/15\\\\n  put_the_bowl_on_the_stove: rollout 20/20, success so far: 20/20\\\\n[put_the_bowl_on_the_stove] success rate: 100.0% (20/20)\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/20, success so far: 4/5\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/20, success so far: 9/10\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 15/20, success so far: 13/15\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 20/20, success so far: 18/20\\\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 90.0% (18/20)\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/20, success so far: 4/5\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 10/20, success so far: 6/10\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 15/20, success so far: 9/15\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 20/20, success so far: 12/20\\\\n[open_the_top_drawer_and_put_the_bowl_inside] success rate: 60.0% (12/20)\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 10/20, success so far: 10/10\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 15/20, success so far: 15/15\\\\n  put_the_bowl_on_top_of_the_cabinet: rollout 20/20, success so far: 19/20\\\\n[put_the_bowl_on_top_of_the_cabinet] success rate: 95.0% (19/20)\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 5/20, success so far: 5/5\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 10/20, success so far: 9/10\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 14/15\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 19/20\\\\n[push_the_plate_to_the_front_of_the_stove] success rate: 95.0% (19/20)\\\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 1/5\\\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 3/10\\\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 6/15\\\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 10/20\\\\n[put_the_cream_cheese_in_the_bowl] success rate: 50.0% (10/20)\\\\n  turn_on_the_stove: rollout 5/20, success so far: 4/5\\\\n  turn_on_the_stove: rollout 10/20, success so far: 9/10\\\\n  turn_on_the_stove: rollout 15/20, success so far: 14/15\\\\n  turn_on_the_stove: rollout 20/20, success so far: 19/20\\\\n[turn_on_the_stove] success rate: 95.0% (19/20)\\\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 14/15\\\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 18/20\\\\n[put_the_bowl_on_the_plate] success rate: 90.0% (18/20)\\\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 3/5\\\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 7/10\\\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 10/15\\\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 14/20\\\\n[put_the_wine_bottle_on_the_rack] success rate: 70.0% (14/20)\\\\n\\\\n============================================================\\\\nOverall success rate (crm_obs_only): 82.0% (164/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_goal_crm_norm005_s43_d149.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_crm_norm005_s43_d149.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: goal\\n[eval] max_steps set to 300 for benchmark goal\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  59%|█████▉    | 289/489 [00:00<00:00, 2857.75it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3408.21it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.05\\n[eval] Loading LIBERO goal environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/20, success so far: 5/5\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/20, success so far: 7/10\\n  open_the_middle_drawer_of_the_cabinet: rollout 15/20, success so far: 10/15\\n  open_the_middle_drawer_of_the_cabinet: rollout 20/20, success so far: 15/20\\n[open_the_middle_drawer_of_the_cabinet] success rate: 75.0% (15/20)\\n  put_the_bowl_on_the_stove: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_stove: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_stove: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_the_stove: rollout 20/20, success so far: 20/20\\n[put_the_bowl_on_the_stove] success rate: 100.0% (20/20)\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/20, success so far: 4/5\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/20, success so far: 9/10\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 15/20, success so far: 13/15\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 20/20, success so far: 18/20\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 90.0% (18/20)\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/20, success so far: 4/5\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 10/20, success so far: 6/10\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 15/20, success so far: 9/15\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 20/20, success so far: 12/20\\n[open_the_top_drawer_and_put_the_bowl_inside] success rate: 60.0% (12/20)\\n  put_the_bowl_on_top_of_the_cabinet: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_top_of_the_cabinet: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_top_of_the_cabinet: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_top_of_the_cabinet: rollout 20/20, success so far: 19/20\\n[put_the_bowl_on_top_of_the_cabinet] success rate: 95.0% (19/20)\\n  push_the_plate_to_the_front_of_the_stove: rollout 5/20, success so far: 5/5\\n  push_the_plate_to_the_front_of_the_stove: rollout 10/20, success so far: 9/10\\n  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 14/15\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 19/20\\n[push_the_plate_to_the_front_of_the_stove] success rate: 95.0% (19/20)\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 1/5\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 3/10\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 6/15\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 10/20\\n[put_the_cream_cheese_in_the_bowl] success rate: 50.0% (10/20)\\n  turn_on_the_stove: rollout 5/20, success so far: 4/5\\n  turn_on_the_stove: rollout 10/20, success so far: 9/10\\n  turn_on_the_stove: rollout 15/20, success so far: 14/15\\n  turn_on_the_stove: rollout 20/20, success so far: 19/20\\n[turn_on_the_stove] success rate: 95.0% (19/20)\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 9/10\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 14/15\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 18/20\\n[put_the_bowl_on_the_plate] success rate: 90.0% (18/20)\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 3/5\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 7/10\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 10/15\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 14/20\\n[put_the_wine_bottle_on_the_rack] success rate: 70.0% (14/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 82.0% (164/200)\\n============================================================\\n[eval] Results saved to logs/eval_goal_crm_norm005_s43_d149.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile all results. Let me also check the JSON output files for the two pi05 experiments that are still running, and see if there are additional details in the completed experiment logs (like mean_correction_norm, trigger_rate).
+
+Summary so far:
+
+1. **pi05-adaptive-long-s43-bjb1** (PID 903949) — STILL RUNNING on GPU 0
+   - Progress: 6/10 tasks complete, currently on task 6 (STUDY_SCENE1), rollout 15/20
+   - Completed tasks: 85%, 100%, 100%, 95%, 85%, (task 6 in progress ~10/15)
+   
+2. **pi05-adaptive-long-s44-bjb1** (PID 904304) — STILL RUNNING on GPU 1
+   - Progress: 6/10 tasks complete, currently on task 6 (STUDY_SCENE1), rollout 10/20
+   - Completed tasks: 90%, 95%, 100%, 90%, 90%, (task 6 in progress ~8/10)
+
+3. **eval-crm-spatial-s48-d149-bjb1** (PID 908783) — COMPLETED with 80.5% success rate (161/200 tasks).
+
+4-6. Three more evaluation runs finished successfully with success rates ranging from 77-82%, all with results saved and no errors encountered.
+
+GPU status shows both devices at roughly 24-25% utilization with about 11.9GB memory allocated.
+
+Now I'm checking the completed CRM experiment logs for additional metrics like mean_correction_norm and trigger_rate, but they don't appear in the standard output—I'll need to look at the JSON files for those details. The logs themselves look clean across all four completed experiments with proper success rate reporting and no OOM or CUDA errors visible. I'm also noting that none of the completed runs show suspicious 0% task success rates, though the spatial s48 experiment does have one task with 0% completion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "46993efe-6d62-4499-8d24-fd5b179c1221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9jdrBNVopFkFM61JAfwHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18212,
+      "cache_read_input_tokens": 25196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+4 个 CRM 实验已完成，2 个 pi05-long 实验仍在运行（约 60% 进度）。检查 JSON 文件获取详细指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "f919211b-cef2-4e42-b32a-7bcf8ae9abe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9jdrBNVopFkFM61JAfwHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18212,
+      "cache_read_input_tokens": 25196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EmApXRGFAYbo3ViopYsPEb`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -30 /root/acr-vla-conformal-refinement/logs/eval_spatial_crm_norm005_s48_d149.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "ad2fa51d-d5c6-4eaf-9cc9-56efd6c495db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9jdrBNVopFkFM61JAfwHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18212,
+      "cache_read_input_tokens": 25196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T20:01:15.358Z_
+
+<details><summary>↩ Tool result · `toolu_01EmApXRGFAYbo3ViopYsPEb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "a2470aab-ed7c-4bc3-bfd9-badf22024361",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KfYL1od2HS9o1FAPHgW7Md`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -30 /root/acr-vla-conformal-refinement/logs/eval_object_crm_norm005_s42_d149.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "ff8258aa-2390-4af5-a995-7e933de6dfa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9jdrBNVopFkFM61JAfwHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18212,
+      "cache_read_input_tokens": 25196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T20:01:15.852Z_
+
+<details><summary>↩ Tool result · `toolu_01KfYL1od2HS9o1FAPHgW7Md`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "d7747708-93fa-42f9-9cd7-ea458d799c8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RmBuMW6yDQSFRzAnmzymNM`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -30 /root/acr-vla-conformal-refinement/logs/eval_object_crm_norm005_s43_d149.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "0c29b2c1-dd29-429f-b380-76b5229bef84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9jdrBNVopFkFM61JAfwHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18212,
+      "cache_read_input_tokens": 25196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T20:01:16.562Z_
+
+<details><summary>↩ Tool result · `toolu_01RmBuMW6yDQSFRzAnmzymNM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "05bb3cde-02f3-42f7-bf3c-649525b8f640",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TM5veRfmpL8CayPLRmdYpn`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -30 /root/acr-vla-conformal-refinement/logs/eval_goal_crm_norm005_s43_d149.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "112e90e7-f23d-45a8-9da0-63f240941b44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9jdrBNVopFkFM61JAfwHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18212,
+      "cache_read_input_tokens": 25196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T20:01:18.625Z_
+
+<details><summary>↩ Tool result · `toolu_01TM5veRfmpL8CayPLRmdYpn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "71f5a1bb-4352-4884-84e7-7d7a41d30b32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 20\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the JSON files for overall_success_rate and any additional metrics like mean_correction_norm, trigger_rate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "a191c6e0-71aa-4aa9-b6ea-395073c62d85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFX6QduMh1Z3KFvwvjPJqC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 43408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EPd1JFH978uxrpsEb6yZDQ`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_spatial_crm_norm005_s48_d149.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "c86fb126-21bc-4156-a222-77427afc8ad7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFX6QduMh1Z3KFvwvjPJqC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 43408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01248aL6exMnHYYZdddDSgUA`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_goal_crm_norm005_s43_d149.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "a20cfffe-4602-4ba0-8e14-d0676c66b36b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFX6QduMh1Z3KFvwvjPJqC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3486,
+      "cache_read_input_tokens": 43408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T20:01:23.275Z_
+
+<details><summary>↩ Tool result · `toolu_01EPd1JFH978uxrpsEb6yZDQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.805,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "f7fde836-ebce-4735-bd0f-75921c024504",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.805,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.805,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-26T20:01:23.757Z_
+
+<details><summary>↩ Tool result · `toolu_01248aL6exMnHYYZdddDSgUA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.82,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "55c527c6-5362-4507-963b-c3f33b3b334a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.82,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.82,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+汇总如下：
+
+---
+
+## 优先汇报：π0.5 Adaptive Long（Table 2 关键格）
+
+```
+exp_id: pi05-adaptive-long-s43-bjb1
+status: STILL_RUNNING
+PID: 903949 (running, elapsed 4h15m, GPU 0)
+progress: 6/10 tasks done, task 6 at rollout 15/20
+已完成 tasks SR: 85%, 100%, 100%, 95%, 85%, (task 6 ~67%)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-pi05-adaptive-long-s43-bjb1.log
+
+exp_id: pi05-adaptive-long-s44-bjb1
+status: STILL_RUNNING
+PID: 904304 (running, elapsed 4h14m, GPU 1)
+progress: 6/10 tasks done, task 6 at rollout 10/20
+已完成 tasks SR: 90%, 95%, 100%, 90%, 90%, (task 6 ~80%)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-pi05-adaptive-long-s44-bjb1.log
+```
+
+两个 pi05-long 实验都在正常跑，无 OOM/CUDA error，预计还需 ~2.5-3h 完成。
+
+---
+
+## 已完成的 4 个 CRM 实验
+
+```
+exp_id: eval-crm-spatial-s48-d149-bjb1
+status: COMPLETED ✓
+PID: 908783 (dead)
+SR: 80.5% (161/200)
+注意: pick_up_bowl_on_ramekin 0% (已知难 task)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-spatial-s48-d149-bjb1.log
+output: logs/eval_spatial_crm_norm005_s48_d149.json
+
+exp_id: eval-crm-object-s42-d149-bjb1
+status: COMPLETED ✓
+PID: 909918 (dead)
+SR: 77.0% (154/200)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-object-s42-d149-bjb1.log
+output: logs/eval_object_crm_norm005_s42_d149.json
+
+exp_id: eval-crm-object-s43-d149-bjb1
+status: COMPLETED ✓
+PID: 911462 (dead)
+SR: 78.5% (157/200)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-object-s43-d149-bjb1.log
+output: logs/eval_object_crm_norm005_s43_d149.json
+
+exp_id: eval-crm-goal-s43-d149-bjb1
+status: COMPLETED ✓
+PID: 912825 (dead)
+SR: 82.0% (164/200)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-goal-s43-d149-bjb1.log
+output: logs/eval_goal_crm_norm005_s43_d149.json
+```
+
+所有 4 个已完成实验日志干净，无 OOM/CUDA error，无 0% 异常（spatial 的 ramekin task 0% 是已知难 task，非 bug）。
+
+---
+
+## GPU 状态
+
+| GPU | 显存占用 | 利用率 | 状态 |
+|-----|---------|--------|------|
+| 0 | 11907/24564 MiB | 25% | pi05-s43 占用 |
+| 1 | 11907/24564 MiB | 24% | pi05-s44 占用 |
+| 2 | 2 MiB | 0% | **空闲** |
+| 3 | 2 MiB | 0% | **空闲** |
+| 4 | 2 MiB | 0% | **空闲** |
+| 5 | 2 MiB | 0% | **空闲** |
+
+---
+
+## 汇总
+
+- **4/6 完成**：CRM spatial-s48 (80.5%), object-s42 (77.0%), object-s43 (78.5%), goal-s43 (82.0%)
+- **2/6 运行中**：pi05-adaptive-long s43 和 s44，进度约 60%，预计还需 ~2.5-3h
+- **4 张 GPU 空闲**（GPU 2-5），可提交新实验
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "uuid": "99220398-d6ee-4166-9a44-8e2ad0b851a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTx9NxNqFHWomCkPkW7kT3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1177,
+      "cache_read_input_tokens": 46894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1177
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+汇总如下：
+
+---
+
+## 优先汇报：π0.5 Adaptive Long（Table 2 关键格）
+
+```
+exp_id: pi05-adaptive-long-s43-bjb1
+status: STILL_RUNNING
+PID: 903949 (running, elapsed 4h15m, GPU 0)
+progress: 6/10 tasks done, task 6 at rollout 15/20
+已完成 tasks SR: 85%, 100%, 100%, 95%, 85%, (task 6 ~67%)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-pi05-adaptive-long-s43-bjb1.log
+
+exp_id: pi05-adaptive-long-s44-bjb1
+status: STILL_RUNNING
+PID: 904304 (running, elapsed 4h14m, GPU 1)
+progress: 6/10 tasks done, task 6 at rollout 10/20
+已完成 tasks SR: 90%, 95%, 100%, 90%, 90%, (task 6 ~80%)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-pi05-adaptive-long-s44-bjb1.log
+```
+
+两个 pi05-long 实验都在正常跑，无 OOM/CUDA error，预计还需 ~2.5-3h 完成。
+
+---
+
+## 已完成的 4 个 CRM 实验
+
+```
+exp_id: eval-crm-spatial-s48-d149-bjb1
+status: COMPLETED ✓
+PID: 908783 (dead)
+SR: 80.5% (161/200)
+注意: pick_up_bowl_on_ramekin 0% (已知难 task)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-spatial-s48-d149-bjb1.log
+output: logs/eval_spatial_crm_norm005_s48_d149.json
+
+exp_id: eval-crm-object-s42-d149-bjb1
+status: COMPLETED ✓
+PID: 909918 (dead)
+SR: 77.0% (154/200)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-object-s42-d149-bjb1.log
+output: logs/eval_object_crm_norm005_s42_d149.json
+
+exp_id: eval-crm-object-s43-d149-bjb1
+status: COMPLETED ✓
+PID: 911462 (dead)
+SR: 78.5% (157/200)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-object-s43-d149-bjb1.log
+output: logs/eval_object_crm_norm005_s43_d149.json
+
+exp_id: eval-crm-goal-s43-d149-bjb1
+status: COMPLETED ✓
+PID: 912825 (dead)
+SR: 82.0% (164/200)
+log_path: /root/acr-vla-conformal-refinement/logs/eval-crm-goal-s43-d149-bjb1.log
+output: logs/eval_goal_crm_norm005_s43_d149.json
+```
+
+所有 4 个已完成实验日志干净，无 OOM/CUDA error，无 0% 异常（spatial 的 ramekin task 0% 是已知难 task，非 bug）。
+
+---
+
+## GPU 状态
+
+| GPU | 显存占用 | 利用率 | 状态 |
+|-----|---------|--------|------|
+| 0 | 11907/24564 MiB | 25% | pi05-s43 占用 |
+| 1 | 11907/24564 MiB | 24% | pi05-s44 占用 |
+| 2 | 2 MiB | 0% | **空闲** |
+| 3 | 2 MiB | 0% | **空闲** |
+| 4 | 2 MiB | 0% | **空闲** |
+| 5 | 2 MiB | 0% | **空闲** |
+
+---
+
+## 汇总
+
+- **4/6 完成**：CRM spatial-s48 (80.5%), object-s42 (77.0%), object-s43 (78.5%), goal-s43 (82.0%)
+- **2/6 运行中**：pi05-adaptive-long s43 和 s44，进度约 60%，预计还需 ~2.5-3h
+- **4 张 GPU 空闲**（GPU 2-5），可提交新实验
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 73123,
+  "duration_api_ms": 71511,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "9190ff2f-0a12-460c-af2b-d1cae14f2b20",
+  "total_cost_usd": 0.4239475,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 36624,
+    "cache_read_input_tokens": 175439,
+    "output_tokens": 4211,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36624,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1256,
+        "cache_read_input_tokens": 46894,
+        "cache_creation_input_tokens": 1177,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1177
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1898,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 4211,
+      "cacheReadInputTokens": 175439,
+      "cacheCreationInputTokens": 36624,
+      "webSearchRequests": 0,
+      "costUSD": 0.42194449999999994,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9d88defa-8e58-4b17-bd93-20b2c99bc313"
+}
+```
+
+</details>
+
+---

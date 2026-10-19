@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dc38e543ffc1cf60c7d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval goal vla only wrapper s42",
+  "task_key": "worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-goal-vla-only-wrapper-s42_20260523T100549_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "91b7fd6c3e8f2de8f1942ea610b7fa408a5834fa7f1d580a4a7cefa72ba22087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。结果：\n\n**Overall: 83.5% (167/200)**\n\n| Task | Success Rate | Successes/Rollouts |\n|------|-------------|-------------------|\n| open_the_middle_drawer_of_the_cabinet | 85.0% | 17/20 |\n| put_the_bowl_on_the_stove | 100.0% | 20/20 |\n| put_the_wine_bottle_on_top_of_the_cabinet | 90.0% | 18/20 |\n| open_the_top_drawer_and_put_the_bowl_inside | 75.0% | 15/20 |\n| put_the_bowl_on_top_of_the_cabinet | 80.0% | 16/20 |\n| push_the_plate_to_the_front_of_the_stove | 85.0% | 17/20 |\n| put_the_cream_cheese_in_the_bowl | 40.0% | 8/20 |\n| turn_on_the_stove | 100.0% | 20/20 |\n| put_the_bowl_on_the_plate | 95.0% | 19/20 |\n| put_the_wine_bottle_on_the_rack | 85.0% | 17/20 |\n\n与之前确认的 Goal VLA-only 结果一致：**83.5%**。Wrapper pipeline 没有引入偏差。`put_the_cream_cheese_in_the_bowl` 仍然是最弱任务（40%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-goal-vla-only-wrapper-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fac67fd4576db1ad1c9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh harvest seed45 fisher test",
+  "task_key": "worker_ssh_harvest-seed45-fisher-test_20260516T185120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest-seed45-fisher-test_20260516T185120_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "506ebe704f5ff792dd8f5393b1fbc0bb5100535dd86c0ef7115569063e30c793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两边都在运行中，尚未完成。\n\n## 当前状态\n\n**bjb1-32546 (obs_only seed45)**: 8/10 tasks 完成\n- 中间统计: 10/80 successes so far (0+0+1+4+1+1+1+2)\n- 最后修改: 02:49 CST，正在跑 task 9\n- 预估 ETA: ~2-3 小时 (约 05:00-06:00 CST)\n\n**bjb2-28827 (argmin seed45)**: 6.5/10 tasks 完成 (task 7 butter 在 rollout 5/10)\n- 中间统计: 5/60 successes so far (0+0+1+4+0+0)\n- 最后修改: 02:51 CST，正在跑 task 7 的后半\n- 预估 ETA: ~5-6 小时 (约 08:00-09:00 CST)\n\n## 初步趋势观察\n\nobs_only seed45 当前: 10/80 = 12.5% (8 tasks done)\nargmin seed45 当前: 5/60 = 8.3% (6 tasks done)\n\n差异方向与前 3 seeds 一致 (obs > argmin)，但绝对值比前几个 seed 偏低。\n\n---\n\n两实验均未完成，无法计算 4-seed Fisher test。建议数小时后再查收。需要我设置定时轮询吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-seed45-fisher-test.md"
+}

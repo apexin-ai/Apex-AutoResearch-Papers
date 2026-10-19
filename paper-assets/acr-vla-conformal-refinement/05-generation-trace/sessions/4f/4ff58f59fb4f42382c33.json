@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ff58f59fb4f42382c33",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose post restart gpu check",
+  "task_key": "worker_diagnose_post-restart-gpu-check_20260519T174115",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_post-restart-gpu-check_20260519T174115_result.json",
+    "occurrence": 1,
+    "bytes": 3162,
+    "sha256": "6bd4bad9395836757cc211431f340e54498428bf145a03c8874ba8b89415c909"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态总表\n\n### bjb2-28827（6/6 实验 ✅）\n| GPU | 实验 | 显存 | GPU% | 运行时间 | 状态 |\n|-----|------|------|------|---------|------|\n| 0 | eval-vla-only-goal-seed44-r2 | 3704/24564 MiB | 19% | 36m | ✅ ALIVE |\n| 1 | eval-argmin-object-k5-seed44-r2 | 4721/24564 MiB | 21% | 36m | ✅ ALIVE |\n| 2 | eval-vla-only-goal-seed45 | 5058/24564 MiB | 16% | 10m | ✅ ALIVE |\n| 3 | eval-obs-only-spatial-norm02-seed46-r2 | 4190/24564 MiB | 30% | 36m | ✅ ALIVE |\n| 4 | eval-openvla-object-baseline-seed42 | 22986/24564 MiB | 60% | 38m | ✅ ALIVE |\n| 5 | fmvd-calibration-phase1 | 4304/24564 MiB | 27% | 36m | ✅ ALIVE |\n\n### bjb1-32546（5/6 实验 ⚠️）\n| GPU | 实验 | 显存 | GPU% | 运行时间 | 状态 |\n|-----|------|------|------|---------|------|\n| 0 | eval-vla-only-long-seed42 | 3449/24564 MiB | 23% | 1h2m | ✅ ALIVE |\n| 1 | **eval-vla-only-spatial-seed47** | **2/24564 MiB** | **0%** | — | **❌ MISSING** |\n| 2 | eval-vla-only-long-seed43 | 3449/24564 MiB | 25% | 1h2m | ✅ ALIVE |\n| 3 | eval-vla-only-long-seed44 | 3449/24564 MiB | 20% | 1h2m | ✅ ALIVE |\n| 4 | eval-vla-only-goal-seed42 | 1896/24564 MiB | 21% | 1h2m | ✅ ALIVE |\n| 5 | eval-vla-only-goal-seed43 | 1896/24564 MiB | 22% | 1h2m | ✅ ALIVE |\n\n### bjb1-18228（4/4 实验 ✅）\n| GPU | 实验 | 显存 | GPU% | 运行时间 | 状态 |\n|-----|------|------|------|---------|------|\n| 0 | eval-obs-only-object-norm005-seed48 | 1942/24564 MiB | 21% | 11h46m | ✅ ALIVE |\n| 1 | eval-vla-only-long-seed45 | 6283/24564 MiB | 22% | 11m | ✅ ALIVE |\n| 2 | eval-perdof-object-norm005-seed47 | 1942/24564 MiB | 23% | 11h46m | ✅ ALIVE |\n| 3 | eval-perdof-object-norm003-seed47 | 1942/24564 MiB | 22% | 11h46m | ✅ ALIVE |\n\n### bjb2-40593（1/1 实验 ✅）\n| GPU | 实验 | 显存 | GPU% | 运行时间 | 状态 |\n|-----|------|------|------|---------|------|\n| 0 | eval-obs-only-spatial-norm02-seed43 | 2499/24564 MiB | 12% | 15h57m | ✅ ALIVE |\n\n---\n\n## FMVD Phase 1 详情\n- **进程状态**: ALIVE (PID 901435)\n- **进度**: **15/50 episodes（3/10 tasks 完成）**，正在运行中\n  - Task 1 `alphabet_soup`: 0/5 成功\n  - Task 2 `cream_cheese`: 0/5 成功\n  - Task 3 `salad_dressing`: 1/5 成功（ep4 OK, 137 steps）\n  - 已耗时 ~2034s（~34 min），每 episode ~135s\n- **JSON 输出**: 尚未生成（运行完才写）\n- **预计剩余**: 35 episodes × ~135s ≈ 79 min\n\n## OpenVLA 详情\n- **进度**: **42/50 trials（84%）**\n- 当前速度 ~48-54s/trial\n- **预计剩余**: ~8 trials × ~50s ≈ 7 min\n\n---\n\n## 异常\n\n1. **❌ bjb1-32546 cuda:1 — eval-vla-only-spatial-seed47 未运行**\n   - GPU 1 显存 2 MiB / 0% 利用率\n   - 无对应 log 文件，无 exit file → **从未部署过**\n   - 需要手动启动\n\n2. **⚠️ bjb1-32546 残留旧 tmux**: `eval-acr-object-v4-obs-only`（4d16h 前创建，cuda:2），与当前 eval-vla-only-long-seed43 可能冲突（两者都用 cuda:2）\n\n3. **⚠️ bjb2-40593 残留旧 tmux**: `eval-scalar-seed45-r2`（1d5h 前）和 `eval-obs-only-spatial-norm02-seed43`（16h 前，仍在 cuda:0 运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-post-restart-gpu-check.md"
+}

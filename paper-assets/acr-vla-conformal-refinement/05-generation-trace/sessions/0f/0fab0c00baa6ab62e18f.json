@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fab0c00baa6ab62e18f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval argmin object seed49",
+  "task_key": "worker_analyze_eval-argmin-object-seed49_20260520T124000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-argmin-object-seed49_20260520T124000_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "babe496d573d13d59a219bc33ecf1fb1c0266c70fe774ef395a8acd9fc7e7783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均完整完成，10/10 tasks，数据一致。结果如下：\n\n---\n\n```\nexp_id: eval-argmin-object-seed49\nSR: 16.0% (16/100)\nper_task:\n  alphabet_soup:        0.0%  (0/10)\n  cream_cheese:         0.0%  (0/10)\n  salad_dressing:      20.0%  (2/10)\n  bbq_sauce:           40.0%  (4/10)\n  ketchup:              0.0%  (0/10)\n  tomato_sauce:        10.0%  (1/10)\n  butter:              10.0%  (1/10)\n  milk:                30.0%  (3/10)\n  chocolate_pudding:   30.0%  (3/10)\n  orange_juice:        20.0%  (2/10)\ntasks_completed: 10/10\ntotal_rollouts: 100\nlog_path: /root/acr-vla-conformal-refinement/logs/eval-argmin-object-seed49.log\njson_path: /root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed49.json\ncheckpoint_path: N/A (eval only)\n\nexp_id: eval-argmin-object-seed48\nSR: 15.0% (15/100)\nper_task:\n  alphabet_soup:        0.0%  (0/10)\n  cream_cheese:         0.0%  (0/10)\n  salad_dressing:      20.0%  (2/10)\n  bbq_sauce:           30.0%  (3/10)\n  ketchup:              0.0%  (0/10)\n  tomato_sauce:        10.0%  (1/10)\n  butter:              10.0%  (1/10)\n  milk:                20.0%  (2/10)\n  chocolate_pudding:   40.0%  (4/10)\n  orange_juice:        20.0%  (2/10)\ntasks_completed: 10/10\ntotal_rollouts: 100\nlog_path: /root/acr-vla-conformal-refinement/logs/eval-argmin-object-seed48.log\njson_path: /root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed48.json\ncheckpoint_path: N/A (eval only)\n```\n\n两个 seed 结果非常接近（16% vs 15%），per-task 分布也基本一致。日志中未包含 W&B run URL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-argmin-object-seed49-copy-2.md"
+}

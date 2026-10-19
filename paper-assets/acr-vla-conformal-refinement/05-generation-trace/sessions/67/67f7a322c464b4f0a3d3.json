@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67f7a322c464b4f0a3d3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "exec kill and start diagnostics",
+  "task_key": "worker_exec_kill-and-start-diagnostics_20260514T174719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_kill-and-start-diagnostics_20260514T174719_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "b4fef1807d0ce3da7fdd9a501716303d8cf5b77e3d92241480fbe33ad9ccf17f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，总结：\n\n| 项目 | 状态 |\n|------|------|\n| eval-scalar-unc-spatial-v2 (PID 197324) | **已 kill** |\n| eval-obs-only-spatial-v3 (PID 211961) | **已 kill** |\n| `evaluate.py --max_correction_norm` | **已添加并验证** |\n| eval-argmin-only-spatial (bjb1:1, PID 231421) | **RUNNING**, GPU1 99% utilization |\n| eval-tiny-correction-spatial (bjb1:2, PID 232815) | **RUNNING**, GPU2 21% (加载中) |\n\nGPU 0 和 3 上的 eval-acr-spatial-v3 / eval-acr-object-v3 未受影响，继续运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-kill-and-start-diagnostics.md"
+}

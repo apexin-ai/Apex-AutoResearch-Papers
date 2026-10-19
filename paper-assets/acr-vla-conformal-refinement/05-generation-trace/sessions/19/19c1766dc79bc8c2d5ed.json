@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19c1766dc79bc8c2d5ed",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh k2 check and gpu scan",
+  "task_key": "worker_ssh_k2-check-and-gpu-scan_20260519T214013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_k2-check-and-gpu-scan_20260519T214013_result.json",
+    "occurrence": 1,
+    "bytes": 2904,
+    "sha256": "78920f3fd6fbf1eb12aad44448af1a78502b8c6f1acbeff40ff2c6a3e38d7894"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## 任务 1: K=2 L2 校准状态\n\n- **PID 995736**: 仍在运行，已耗时 **1h08m**，CPU 358%，内存 ~10GB\n- **命令**: `calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json`\n- **输出文件**: `k2_l2_calibration.json` **尚未生成**\n- **进度**: 已完成 8237/~14500 步 (**~57%**)，当前在 `pick_up_the_tomato_sauce` ep 3/5，预计还需 **~50 分钟**\n- **参考**: 之前 `fmvd_calibration.json`（K=10）的 Spearman ρ = **0.0825**（远低于 0.3 阈值）\n\n**Go/No-Go**: 待定——K=2 L2 结果尚未产出。若与 K=10 基线（ρ=0.08）一致，则大概率 **No-Go**。\n\n---\n\n## 任务 2: 全服务器 GPU 扫描汇总\n\n### bjb2-28827（6× RTX 4090）\n\n| GPU | 显存占用 | 利用率 | 状态 | 进程 |\n|-----|---------|--------|------|------|\n| cuda:0 | 1/24564 MiB | 0% | **空闲** | — |\n| cuda:1 | 3378/24564 MiB | 27% | 占用 | PID 995736 — K=2 L2 calibration (miniconda python) |\n| cuda:2 | 1/24564 MiB | 0% | **空闲** | — |\n| cuda:3 | 1/24564 MiB | 0% | **空闲** | — |\n| cuda:4 | 23006/24564 MiB | 42% | 占用 | PID 900134 — OpenVLA (python) |\n| cuda:5 | 1/24564 MiB | 0% | **空闲** | — |\n\n**可用**: cuda:0, 2, 3, 5 (4 GPU 空闲)\n\n### bjb1-18228（4× RTX 4090）\n\n| GPU | 显存占用 | 利用率 | 状态 | 进程 |\n|-----|---------|--------|------|------|\n| cuda:0 | 5706/24564 MiB | 29% | 占用 | PID 160888 (miniconda python) |\n| cuda:1 | 7510/24564 MiB | 85% | 占用 | PID 132329 (python, 1889M) + PID 161154 (miniconda python, 5587M) |\n| cuda:2 | 5166/24564 MiB | 22% | 占用 | PID 161421 (miniconda python) |\n| cuda:3 | 1815/24564 MiB | 38% | 占用 | PID 132125 (python) |\n\n**可用**: 无 (4/4 全占用)\n\n### bjb1-32546（6× RTX 4090）\n\n| GPU | 显存占用 | 利用率 | 状态 | 进程 |\n|-----|---------|--------|------|------|\n| cuda:0 | 4077/24564 MiB | 23% | 占用 | PID 105899 (miniconda python) |\n| cuda:1 | 2/24564 MiB | 0% | **空闲** | — |\n| cuda:2 | 4222/24564 MiB | 0% | 占用 | PID 106169 (miniconda python) |\n| cuda:3 | 2/24564 MiB | 0% | **空闲** | — |\n| cuda:4 | 3021/24564 MiB | 21% | 占用 | PID 86797 (miniconda python) |\n| cuda:5 | 2502/24564 MiB | 22% | 占用 | PID 88043 (miniconda python) |\n\n**可用**: cuda:1, 3 (2 GPU 空闲)\n\n### bjb2-40593（1× RTX 4090 D）\n\n| GPU | 显存占用 | 利用率 | 状态 | 进程 |\n|-----|---------|--------|------|------|\n| cuda:0 | 4496/24564 MiB | 11% | 占用 | PID 628941 (python) |\n\n**可用**: 无\n\n---\n\n### 总览\n\n| 服务器 | 总 GPU | 空闲 | 可部署 |\n|--------|--------|------|--------|\n| bjb2-28827 | 6 | 4 | cuda:0, 2, 3, 5 |\n| bjb1-18228 | 4 | 0 | — |\n| bjb1-32546 | 6 | 2 | cuda:1, 3 |\n| bjb2-40593 | 1 | 0 | — |\n| **合计** | **17** | **6** | |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-k2-check-and-gpu-scan.md"
+}

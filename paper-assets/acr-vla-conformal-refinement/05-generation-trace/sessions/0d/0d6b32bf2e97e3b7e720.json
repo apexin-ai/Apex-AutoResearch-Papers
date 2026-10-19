@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d6b32bf2e97e3b7e720",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval reconvla fix restart",
+  "task_key": "worker_eval_reconvla-fix-restart_20260513T201919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_reconvla-fix-restart_20260513T201919_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "0a758605eb14483b637a1f328c1ec88017b17ef428aba225b39eca5b824e2488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常。\n\n### 产出汇总\n\n**1. eval-reconvla-spatial-v1** — 已修复并重启\n- **PID**: 85963\n- **GPU 2** (GPU-7d267f8c): 4139 MiB 已占用\n- 日志前 10 行无 EGL 错误，模型加载成功，10 个 task 已加载\n- **根因**: 系统仅有 1 个 EGL device (index 0)，原命令设 `MUJOCO_EGL_DEVICE_ID=2` 越界\n- **修复**: 更新 `run_eval_gpu.py` —— unset `CUDA_VISIBLE_DEVICES` 让 EGL 默认用 device 0，用 `torch.cuda.set_device(2)` 把计算放到 GPU 2\n\n**2. precompute-k5** (cuda:3) — 正常运行\n- PID 79517，GPU 3 占用 1532 MiB\n- 进度: `2100/12167` (~17%)，~0.25s/sample，预计还需 ~2500s (~42 min)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-reconvla-fix-restart.md"
+}

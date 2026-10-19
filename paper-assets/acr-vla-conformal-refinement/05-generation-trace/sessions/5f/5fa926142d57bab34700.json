@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa926142d57bab34700",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "prep rsync object ckpt",
+  "task_key": "worker_prep_rsync-object-ckpt_20260522T010208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_prep_rsync-object-ckpt_20260522T010208.jsonl",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "6601a21b53abf09c71961ba29744eb6c5a879436e6faf4d47e9907282a132f1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T01:02:20.080588+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_prep_rsync-object-ckpt_20260522T010208"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/prep-rsync-object-ckpt.md"
+}

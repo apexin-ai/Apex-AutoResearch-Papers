@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55d51bc794315c2e6f31",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 fill gpus",
+  "task_key": "worker_deploy_bjb1-18228-fill-gpus_20260517T135353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-fill-gpus_20260517T135353_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "096815c97da3137b57148112accbcb25f5549a256f15eac6813a0daaa6b94746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**结果**：4 个实验已由另一个 Worker 在 21:35-21:37 提交并运行，本次操作仅完成 registry 同步（4 个条目全部更新为 RUNNING）。\n\n| GPU | exp_id | PID | 状态 |\n|-----|--------|-----|------|\n| cuda:0 | eval-perdof-object-norm02-seed45-r2 | 634438 | RUNNING |\n| cuda:1 | eval-obs-only-object-norm005-seed43-r3 | 633649 | RUNNING |\n| cuda:2 | eval-obs-only-object-norm02-k5-seed42 | 633662 | RUNNING |\n| cuda:3 | eval-obs-only-object-norm02-k20-seed42 | 636638 | RUNNING |\n\n**注意**：perdof seed45 的实际 exp_id 是 `r2` 而非任务要求的 `r3`。报告已注册为 artifact `art_20260517_ecac67`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-fill-gpus.md"
+}

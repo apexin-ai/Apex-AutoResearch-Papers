@@ -1,0 +1,1577 @@
+# diagnose eval adaptive k spatial p75 seed44
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_diagnose_eval-adaptive-k-spatial-p75-seed44_20260520T130411.log`
+- **Structured JSON:** [`2a607a7233a9f754061b.json`](../../sessions/2a/2a607a7233a9f754061b.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "dbc81940-90bb-442d-838e-4319c5f85865",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779295200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "dce9aa99-8885-4591-90ff-be5db1082949",
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me diagnose the failed experiment by SSH-ing to the server and reading the relevant logs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "f3e934af-1f16-4b77-a74a-8c5a4f7d63f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aiEGpcnEjH9F7N7SgyT8z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11536,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11536
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始诊断实验失败原因，先读取日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "248c487a-aab0-4856-9071-bef49f5690f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aiEGpcnEjH9F7N7SgyT8z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11536,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11536
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AGLFU4zzMBRTmMnizTZP5Z`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "f2802e42-0efc-40cf-aff5-6bd42e63c1cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aiEGpcnEjH9F7N7SgyT8z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11536,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11536
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T13:04:22.173Z_
+
+<details><summary>↩ Tool result · `toolu_01AGLFU4zzMBRTmMnizTZP5Z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "986ed727-dca1-485b-b7fa-11040ddb26a3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the diagnostic commands on the server. I'll run multiple read-only commands in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "11eef4ff-0e83-4e6d-9de7-0bf1f07d3a65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A5CTxD13xQxzMVVPm2zhmf`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -100 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p75-seed44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "287651c5-81da-46f1-8e76-f99fc5b135e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T13:04:27.746Z_
+
+<details><summary>↩ Tool result · `toolu_01A5CTxD13xQxzMVVPm2zhmf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p75_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.098735, 'k_init': 2, 'k_full': 10}\\n[eval] Mode: adaptive_k, benchmark: spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  69%|██████▉   | 338/489 [00:00<00:00, 3376.82it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3209.19it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 6/10\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 60.0% (6/10)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 5/10\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 50.0% (5/10)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n\\n============================================================\\nOverall success rate (adaptive_k): 33.0% (33/100)\\n============================================================\\n[eval] Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=129\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "8aa5ec01-600a-47b9-9313-a66b3d00cb9a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p75_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.098735, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  69%|██████▉   | 338/489 [00:00<00:00, 3376.82it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3209.19it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 6/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 60.0% (6/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 5/10\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 50.0% (5/10)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_k): 33.0% (33/100)\\\\n============================================================\\\\n[eval] Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920\\\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=129\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p75_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.098735, 'k_init': 2, 'k_full': 10}\\n[eval] Mode: adaptive_k, benchmark: spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  69%|██████▉   | 338/489 [00:00<00:00, 3376.82it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3209.19it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 6/10\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 60.0% (6/10)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 5/10\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 50.0% (5/10)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n\\n============================================================\\nOverall success rate (adaptive_k): 33.0% (33/100)\\n============================================================\\n[eval] Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=129\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TAVgSRhq6aKMM3bR6Q9W3J`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-adaptive-k-spatial-p75-seed44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "c43923c3-6a9e-405d-a5ad-3eff05035055",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T13:04:28.180Z_
+
+<details><summary>↩ Tool result · `toolu_01TAVgSRhq6aKMM3bR6Q9W3J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p75_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.098735, 'k_init': 2, 'k_full': 10}\\n[eval] Mode: adaptive_k, benchmark: spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  69%|██████▉   | 338/489 [00:00<00:00, 3376.82it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3209.19it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 6/10\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 60.0% (6/10)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 5/10\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 50.0% (5/10)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n\\n============================================================\\nOverall success rate (adaptive_k): 33.0% (33/100)\\n============================================================\\n[eval] Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "cf484035-f3e9-44df-be81-b90c0192c541",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p75_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.098735, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  69%|██████▉   | 338/489 [00:00<00:00, 3376.82it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3209.19it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 6/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 60.0% (6/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 5/10\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 50.0% (5/10)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_k): 33.0% (33/100)\\\\n============================================================\\\\n[eval] Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920\\\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p75_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.098735, 'k_init': 2, 'k_full': 10}\\n[eval] Mode: adaptive_k, benchmark: spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  69%|██████▉   | 338/489 [00:00<00:00, 3376.82it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3209.19it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 6/10\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 60.0% (6/10)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 5/10\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 50.0% (5/10)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n\\n============================================================\\nOverall success rate (adaptive_k): 33.0% (33/100)\\n============================================================\\n[eval] Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L45sk5PicWWgQ6WJwHJWGJ`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p75_seed44.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "74c4d39b-e67c-49fc-9f5e-aee9f4ba74d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T13:04:29.225Z_
+
+<details><summary>↩ Tool result · `toolu_01L45sk5PicWWgQ6WJwHJWGJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_k\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.33,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 6,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  },\\n  \\\"per_step_K\\\": [\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n\\n\\n... [截断: 输出过长，省略 167249 字符] ...\\n\\n 10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10\\n  ],\\n  \\\"avg_K\\\": 5.0543408771256875,\\n  \\\"adaptive_trigger_rate\\\": 0.38179260964071093,\\n  \\\"threshold\\\": 0.098735,\\n  \\\"adaptive_stats\\\": {\\n    \\\"fast_path_ratio\\\": 0.6182073903592891,\\n    \\\"avg_actual_k\\\": 5.0543408771256875,\\n    \\\"mean_l2_distance\\\": 0.09196919364371944,\\n    \\\"total_steps\\\": 23463,\\n    \\\"fast_steps\\\": 14505,\\n    \\\"full_steps\\\": 8958\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "0cca4e1c-3dc9-4b8f-a67d-75de15576c7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_k\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.33,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 6,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"successes\\\\\\\": 5,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_step_K\\\\\\\": [\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n\\\\n\\\\n... [截断: 输出过长，省略 167249 字符] ...\\\\n\\\\n 10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10\\\\n  ],\\\\n  \\\\\\\"avg_K\\\\\\\": 5.0543408771256875,\\\\n  \\\\\\\"adaptive_trigger_rate\\\\\\\": 0.38179260964071093,\\\\n  \\\\\\\"threshold\\\\\\\": 0.098735,\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"fast_path_ratio\\\\\\\": 0.6182073903592891,\\\\n    \\\\\\\"avg_actual_k\\\\\\\": 5.0543408771256875,\\\\n    \\\\\\\"mean_l2_distance\\\\\\\": 0.09196919364371944,\\\\n    \\\\\\\"total_steps\\\\\\\": 23463,\\\\n    \\\\\\\"fast_steps\\\\\\\": 14505,\\\\n    \\\\\\\"full_steps\\\\\\\": 8958\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_k\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.33,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 6,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  },\\n  \\\"per_step_K\\\": [\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n\\n\\n... [截断: 输出过长，省略 167249 字符] ...\\n\\n 10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10\\n  ],\\n  \\\"avg_K\\\": 5.0543408771256875,\\n  \\\"adaptive_trigger_rate\\\": 0.38179260964071093,\\n  \\\"threshold\\\": 0.098735,\\n  \\\"adaptive_stats\\\": {\\n    \\\"fast_path_ratio\\\": 0.6182073903592891,\\n    \\\"avg_actual_k\\\": 5.0543408771256875,\\n    \\\"mean_l2_distance\\\": 0.09196919364371944,\\n    \\\"total_steps\\\": 23463,\\n    \\\"fast_steps\\\": 14505,\\n    \\\"full_steps\\\": 8958\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017toM1tuXWE8XJeJBkHxf3g`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "dmesg -T --level=err,warn,crit,alert,emerg",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "c0bc7c0f-f64e-4dd2-80bc-4a446d49adfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T13:04:29.661Z_
+
+<details><summary>↩ Tool result · `toolu_017toM1tuXWE8XJeJBkHxf3g`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "3499425e-0ee3-4c0d-81c8-fb8204b9aa1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016uEaCMhRBYLiTmNnX4TpJW`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "cba8b998-4db1-415f-a7a1-91cf007865c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T13:04:30.671Z_
+
+<details><summary>↩ Tool result · `toolu_016uEaCMhRBYLiTmNnX4TpJW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "8fde7017-519e-4f71-b229-261227d544ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EJM7xkamXnKY2LFEXkjhua`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "249986ed-ca6d-4bb0-b8c7-daf1148f2965",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuGMNMkfnwSBobNPMd4TcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 23377,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1190
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T13:04:31.765Z_
+
+<details><summary>↩ Tool result · `toolu_01EJM7xkamXnKY2LFEXkjhua`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Wed May 20 21:04:31 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:52:00.0 Off |                  Off |\\n| 30%   28C    P8             19W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:56:00.0 Off |                  Off |\\n| 30%   37C    P2             94W /  450W |    2026MiB /  24564MiB |     19%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:57:00.0 Off |                  Off |\\n| 30%   28C    P8             22W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D1:00.0 Off |                  Off |\\n| 30%   29C    P8             14W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   4  NVIDIA GeForce RTX 4090        On  |   00000000:D5:00.0 Off |                  Off |\\n| 30%   29C    P8              6W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   5  NVIDIA GeForce RTX 4090        On  |   00000000:D6:00.0 Off |                  Off |\\n| 30%   29C    P8             24W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    1   N/A  N/A          307767    C+G   python                                 2007MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "59969d61-5769-48ab-aee6-6d769ac09636",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 21:04:31 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:52:00.0 Off |                  Off |\\\\n| 30%   28C    P8             19W /  450W |       1MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:56:00.0 Off |                  Off |\\\\n| 30%   37C    P2             94W /  450W |    2026MiB /  24564MiB |     19%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:57:00.0 Off |                  Off |\\\\n| 30%   28C    P8             22W /  450W |       1MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D1:00.0 Off |                  Off |\\\\n| 30%   29C    P8             14W /  450W |       1MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   4  NVIDIA GeForce RTX 4090        On  |   00000000:D5:00.0 Off |                  Off |\\\\n| 30%   29C    P8              6W /  450W |       1MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   5  NVIDIA GeForce RTX 4090        On  |   00000000:D6:00.0 Off |                  Off |\\\\n| 30%   29C    P8             24W /  450W |       1MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    1   N/A  N/A          307767    C+G   python                                 2007MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Wed May 20 21:04:31 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:52:00.0 Off |                  Off |\\n| 30%   28C    P8             19W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:56:00.0 Off |                  Off |\\n| 30%   37C    P2             94W /  450W |    2026MiB /  24564MiB |     19%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:57:00.0 Off |                  Off |\\n| 30%   28C    P8             22W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D1:00.0 Off |                  Off |\\n| 30%   29C    P8             14W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   4  NVIDIA GeForce RTX 4090        On  |   00000000:D5:00.0 Off |                  Off |\\n| 30%   29C    P8              6W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   5  NVIDIA GeForce RTX 4090        On  |   00000000:D6:00.0 Off |                  Off |\\n| 30%   29C    P8             24W /  450W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    1   N/A  N/A          307767    C+G   python                                 2007MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the results:
+
+1. **Log files**: The experiment actually **completed successfully** - all 10 tasks × 10 rollouts = 100 rollouts were executed. The final output shows:
+   - "Overall success rate (adaptive_k): 33.0% (33/100)"
+   - "Results saved to logs/eval_adaptive_k_spatial_p75_seed44.json"
+   - Then EXIT_CODE=129
+
+2. **JSON results**: Complete - has all 10 tasks with results, per_step_K data, adaptive_stats. Overall SR = 33%.
+   
+3. **The EXIT_CODE=129 (SIGHUP)**: The process received SIGHUP after completing all evaluation and saving results - same pattern as P90-seed42 where the tmux session or SSH connection dropped after the work was already done.
+
+4. **GPU state**: GPU 1 still has a python process using 2007MiB from the P25-seed44 run, while GPUs 0 and 2 are now free.
+
+5. **System commands**: dmesg and tmux were blocked due to read-only mode.
+
+So the experiment actually succeeded - all 100 rollouts finished with a 33% success rate and results were saved. The EXIT_CODE=129 happened after the process completed its work, likely from an SSH disconnect or session cleanup. The results are valid and complete. Now I need to update memory.md with this diagnosis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "03ef5870-0912-465e-8a84-ffe27a5b498b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014mGkdCJ9bQef7WVt3KNqTL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11832,
+      "cache_read_input_tokens": 24567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+实验实际上**已完成全部评估**。日志和 JSON 都有完整结果。先读取现有 memory.md 再追加诊断结论。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "e4fcd24d-9ab9-41a3-9b43-013378fdf61e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014mGkdCJ9bQef7WVt3KNqTL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11832,
+      "cache_read_input_tokens": 24567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EBNjvRuWYij3CGHhfVWqmg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "cbd24053-5995-4427-94df-3c2f2c620544",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014mGkdCJ9bQef7WVt3KNqTL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11832,
+      "cache_read_input_tokens": 24567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T13:04:46.379Z_
+
+<details><summary>↩ Tool result · `toolu_01EBNjvRuWYij3CGHhfVWqmg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "86876ca5-d3c2-46b5-a40a-7db3188aafa9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SRiTXgrVKfLbMC7TuYXQ84`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "309382b6-b68f-495a-9ade-941bf9d6499e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Py2UiyMSHgWQ7GtN7wgSY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 36399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1000
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T13:04:49.774Z_
+
+<details><summary>↩ Tool result · `toolu_01SRiTXgrVKfLbMC7TuYXQ84`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## 失败模式记录\\n\\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\\n\\n- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（\\\"process dead 5× with no sentinel/W&B\\\"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**\\n\\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\\n\\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\\n\\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\\n\\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \\\"obs_only_k10\\\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\\n\\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\\n\\n## CRM Coverage 限制\\n\\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\\n\\n## Adaptive K 信号探索\\n\\n| 信号 | ρ vs K10_var | 结论 | 备注 |\\n|------|-------------|------|------|\\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost 但 magnitude 是常数 |\\n| CRM correction magnitude (K=2 argmin) | 0.1340 | ❌ NO-GO | 同上 |\\n\\n**结论：K=2 L2 distance 是唯一可用的 adaptive K 门控信号。** FMVD 和 CRM magnitude 均因信号方差不足而失败。\\n\\n## Adaptive K Sweep 最终结果 (2026-05-20, 12/12 完成)\\n\\n| 阈值 | SR [seeds] | avg_K | fast_path% |\\n|------|-----------|-------|-----------|\\n| P90 (τ=0.127) | 13.3% [12,14,14] | ~2.6 | ~93% |\\n| P75 (τ=0.099) | 13.7% [12,13,16] | ~3.1 | ~87% |\\n| **P50 (τ=0.075)** | **15.3% [16,16,14]** | **~3.8** | **~77%** |\\n| P25 (τ=0.055) | 14.3% [15,13,15] | ~4.8 | ~65% |\\n\\n**P50 = Pareto optimal**: 最高 SR + 比 K=10 省 62% compute (avg_K 3.8 vs 10)。P25 多 26% compute 但 SR 低 1pp。\\n\\n## Adaptive K 跨 Benchmark 迁移 (2026-05-20)\\n\\nObject 校准的 P50 阈值 (τ=0.074855) 直接应用于 Spatial（无 per-benchmark tuning）：\\n\\n| 指标 | Object P50 (3-seed) | Spatial P50 (seed43) | 差异分析 |\\n|------|---------------------|---------------------|----------|\\n| SR | 15.3% (vs VLA 10.9%) | 33.0% (vs K=10 34.3%) | 两个 benchmark 均在 baseline CI 内 |\\n| avg_K | 3.8 | 6.33 | Spatial 更高——方法自适应多用 full steps |\\n| fast_path | 77% | 45.8% | Spatial L2 均值更高 (0.090 vs Object) |\\n\\n**关键洞察**：Spatial 任务不确定性更大 → L2 divergence 均值更高 → fast_path 自动降低 → 更多 step 触发 full K=10 refinement → SR 保持。这正是 Adaptive K 的设计意图——\\\"在难的地方多花计算\\\"。阈值不需要 per-benchmark 调整，方法通过 L2 信号自动适配。\\n\\n## Latency Profiling (dry-run N=20, RTX 4090, 2026-05-20)\\n\\n| Component | Mean (ms) | 备注 |\\n|-----------|----------|------|\\n| VLA sampling | 206 | **K 无关**（batched generation） |\\n| CRM MLP forward | 0.33 | 337K params |\\n| Argmin L2 + CRM 总开销 | 4.0 | 管线 1.6% |\\n| Full pipeline K=10 | 259 | ~3.9 Hz |\\n| **Adaptive K 快路径** | **254** | K=2 only |\\n| **Adaptive K 全路径** | **459** | K=2→K=10 |\\n\\n**关键发现：VLA batched sampling 消除 K 作为 latency 因子。Adaptive K 快路径省 45% latency。CRM overhead 可忽略。**\\n\\n## Random Selection Baseline (2026-05-20)\\n\\n代码 `--mode random_selection` 可用。已有结果：seed43=9%, seed45=10%（之前标记 failed 是状态标记问题，实际正常完成）。\\n\\n## 全 Benchmark 统计摘要 (v2, 2026-05-20, 含新增数据)\\n\\n### 1. LIBERO-Object — **Strong improvement**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| **CRM norm02 K=10 (主配置)** | **6** | **16.8%±1.8%** | **+6.0pp** | **0.000095** | **\\\\*\\\\*\\\\*** |\\n| CRM norm01 (补充) | 6 | 17.5%±1.0% | +6.6pp | <0.001 | *** |\\n| CRM norm02 K=5 (补充) | 7 | 16.0%±2.2% | +5.1pp | 0.000312 | *** |\\n| Adaptive-K (all) | 12 | 14.2%±1.5% | +3.3pp | 0.000098 | *** |\\n| Argmin K=10 | 5 | 12.4%±2.9% | +1.5pp | 0.317 | n.s. |\\n| **VLA-only** | **8** | **10.9%±1.4%** | — | — | — |\\n\\n### 2. LIBERO-Spatial — **Strong improvement**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| CRM obs_only (K=10) | 7 | 34.6%±1.4% | **+5.0pp** | 0.000007 | *** |\\n| **VLA-only** | **9** | **29.6%±1.1%** | — | — | — |\\n\\n### 3. LIBERO-Goal (OOD) — **Neutral**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| CRM obs_only | 6 | 68.2%±3.4% | -0.5pp | 0.818 | n.s. |\\n| **VLA-only** | **6** | **68.7%±3.9%** | — | — | — |\\n\\n### 4. LIBERO-Long (OOD) — **⚠️ Borderline**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| CRM obs_only | 7 | 17.0%±2.0% | **+2.2pp** | 0.049 | * |\\n| **VLA-only** | **11** | **14.8%±2.2%** | — | — | — |\\n\\n**⚠️ Long MW-U p=0.061 (n.s.)。t检验 p=0.049 刚好卡在 0.05 边缘。论文需 cautious wording。**\\n\\n### 效果总结\\n\\n| Benchmark | Δ (pp) | p-value | 判定 |\\n|-----------|--------|---------|------|\\n| **Object** | +6.0 | <0.001 | Strong (主配置 norm02) |\\n| **Spatial** | +5.0 | <0.001 | Strong |\\n| **Long** | +2.2 | 0.049 | ⚠️ Borderline (OOD, MW-U n.s.) |\\n| **Goal** | -0.5 | 0.818 | Neutral (OOD) |\\n\\n**注意**: Argmin K=10 seed43=17% 是未验证离群值（4 台服务器未找到原始 JSON），标注 unverified。\", \"total_chars\": 5936, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "cb224f32-a46a-4487-835d-55009da7b057",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## 失败模式记录\\\\n\\\\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\\\\n\\\\n- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（\\\\\\\"process dead 5× with no sentinel/W&B\\\\\\\"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**\\\\n\\\\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\\\\n\\\\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\\\\n\\\\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\\\\n\\\\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \\\\\\\"obs_only_k10\\\\\\\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\\\\n\\\\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\\\\n\\\\n## CRM Coverage 限制\\\\n\\\\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\\\\n\\\\n## Adaptive K 信号探索\\\\n\\\\n| 信号 | ρ vs K10_var | 结论 | 备注 |\\\\n|------|-------------|------|------|\\\\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\\\\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\\\\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost 但 magnitude 是常数 |\\\\n| CRM correction magnitude (K=2 argmin) | 0.1340 | ❌ NO-GO | 同上 |\\\\n\\\\n**结论：K=2 L2 distance 是唯一可用的 adaptive K 门控信号。** FMVD 和 CRM magnitude 均因信号方差不足而失败。\\\\n\\\\n## Adaptive K Sweep 最终结果 (2026-05-20, 12/12 完成)\\\\n\\\\n| 阈值 | SR [seeds] | avg_K | fast_path% |\\\\n|------|-----------|-------|-----------|\\\\n| P90 (τ=0.127) | 13.3% [12,14,14] | ~2.6 | ~93% |\\\\n| P75 (τ=0.099) | 13.7% [12,13,16] | ~3.1 | ~87% |\\\\n| **P50 (τ=0.075)** | **15.3% [16,16,14]** | **~3.8** | **~77%** |\\\\n| P25 (τ=0.055) | 14.3% [15,13,15] | ~4.8 | ~65% |\\\\n\\\\n**P50 = Pareto optimal**: 最高 SR + 比 K=10 省 62% compute (avg_K 3.8 vs 10)。P25 多 26% compute 但 SR 低 1pp。\\\\n\\\\n## Adaptive K 跨 Benchmark 迁移 (2026-05-20)\\\\n\\\\nObject 校准的 P50 阈值 (τ=0.074855) 直接应用于 Spatial（无 per-benchmark tuning）：\\\\n\\\\n| 指标 | Object P50 (3-seed) | Spatial P50 (seed43) | 差异分析 |\\\\n|------|---------------------|---------------------|----------|\\\\n| SR | 15.3% (vs VLA 10.9%) | 33.0% (vs K=10 34.3%) | 两个 benchmark 均在 baseline CI 内 |\\\\n| avg_K | 3.8 | 6.33 | Spatial 更高——方法自适应多用 full steps |\\\\n| fast_path | 77% | 45.8% | Spatial L2 均值更高 (0.090 vs Object) |\\\\n\\\\n**关键洞察**：Spatial 任务不确定性更大 → L2 divergence 均值更高 → fast_path 自动降低 → 更多 step 触发 full K=10 refinement → SR 保持。这正是 Adaptive K 的设计意图——\\\\\\\"在难的地方多花计算\\\\\\\"。阈值不需要 per-benchmark 调整，方法通过 L2 信号自动适配。\\\\n\\\\n## Latency Profiling (dry-run N=20, RTX 4090, 2026-05-20)\\\\n\\\\n| Component | Mean (ms) | 备注 |\\\\n|-----------|----------|------|\\\\n| VLA sampling | 206 | **K 无关**（batched generation） |\\\\n| CRM MLP forward | 0.33 | 337K params |\\\\n| Argmin L2 + CRM 总开销 | 4.0 | 管线 1.6% |\\\\n| Full pipeline K=10 | 259 | ~3.9 Hz |\\\\n| **Adaptive K 快路径** | **254** | K=2 only |\\\\n| **Adaptive K 全路径** | **459** | K=2→K=10 |\\\\n\\\\n**关键发现：VLA batched sampling 消除 K 作为 latency 因子。Adaptive K 快路径省 45% latency。CRM overhead 可忽略。**\\\\n\\\\n## Random Selection Baseline (2026-05-20)\\\\n\\\\n代码 `--mode random_selection` 可用。已有结果：seed43=9%, seed45=10%（之前标记 failed 是状态标记问题，实际正常完成）。\\\\n\\\\n## 全 Benchmark 统计摘要 (v2, 2026-05-20, 含新增数据)\\\\n\\\\n### 1. LIBERO-Object — **Strong improvement**\\\\n\\\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\\\n|--------|---|----------|----------|-----------|-----|\\\\n| **CRM norm02 K=10 (主配置)** | **6** | **16.8%±1.8%** | **+6.0pp** | **0.000095** | **\\\\\\\\*\\\\\\\\*\\\\\\\\*** |\\\\n| CRM norm01 (补充) | 6 | 17.5%±1.0% | +6.6pp | <0.001 | *** |\\\\n| CRM norm02 K=5 (补充) | 7 | 16.0%±2.2% | +5.1pp | 0.000312 | *** |\\\\n| Adaptive-K (all) | 12 | 14.2%±1.5% | +3.3pp | 0.000098 | *** |\\\\n| Argmin K=10 | 5 | 12.4%±2.9% | +1.5pp | 0.317 | n.s. |\\\\n| **VLA-only** | **8** | **10.9%±1.4%** | — | — | — |\\\\n\\\\n### 2. LIBERO-Spatial — **Strong improvement**\\\\n\\\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\\\n|--------|---|----------|----------|-----------|-----|\\\\n| CRM obs_only (K=10) | 7 | 34.6%±1.4% | **+5.0pp** | 0.000007 | *** |\\\\n| **VLA-only** | **9** | **29.6%±1.1%** | — | — | — |\\\\n\\\\n### 3. LIBERO-Goal (OOD) — **Neutral**\\\\n\\\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\\\n|--------|---|----------|----------|-----------|-----|\\\\n| CRM obs_only | 6 | 68.2%±3.4% | -0.5pp | 0.818 | n.s. |\\\\n| **VLA-only** | **6** | **68.7%±3.9%** | — | — | — |\\\\n\\\\n### 4. LIBERO-Long (OOD) — **⚠️ Borderline**\\\\n\\\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\\\n|--------|---|----------|----------|-----------|-----|\\\\n| CRM obs_only | 7 | 17.0%±2.0% | **+2.2pp** | 0.049 | * |\\\\n| **VLA-only** | **11** | **14.8%±2.2%** | — | — | — |\\\\n\\\\n**⚠️ Long MW-U p=0.061 (n.s.)。t检验 p=0.049 刚好卡在 0.05 边缘。论文需 cautious wording。**\\\\n\\\\n### 效果总结\\\\n\\\\n| Benchmark | Δ (pp) | p-value | 判定 |\\\\n|-----------|--------|---------|------|\\\\n| **Object** | +6.0 | <0.001 | Strong (主配置 norm02) |\\\\n| **Spatial** | +5.0 | <0.001 | Strong |\\\\n| **Long** | +2.2 | 0.049 | ⚠️ Borderline (OOD, MW-U n.s.) |\\\\n| **Goal** | -0.5 | 0.818 | Neutral (OOD) |\\\\n\\\\n**注意**: Argmin K=10 seed43=17% 是未验证离群值（4 台服务器未找到原始 JSON），标注 unverified。\\\", \\\"total_chars\\\": 5936, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## 失败模式记录\\n\\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\\n\\n- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（\\\"process dead 5× with no sentinel/W&B\\\"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**\\n\\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\\n\\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\\n\\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\\n\\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \\\"obs_only_k10\\\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\\n\\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\\n\\n## CRM Coverage 限制\\n\\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\\n\\n## Adaptive K 信号探索\\n\\n| 信号 | ρ vs K10_var | 结论 | 备注 |\\n|------|-------------|------|------|\\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost 但 magnitude 是常数 |\\n| CRM correction magnitude (K=2 argmin) | 0.1340 | ❌ NO-GO | 同上 |\\n\\n**结论：K=2 L2 distance 是唯一可用的 adaptive K 门控信号。** FMVD 和 CRM magnitude 均因信号方差不足而失败。\\n\\n## Adaptive K Sweep 最终结果 (2026-05-20, 12/12 完成)\\n\\n| 阈值 | SR [seeds] | avg_K | fast_path% |\\n|------|-----------|-------|-----------|\\n| P90 (τ=0.127) | 13.3% [12,14,14] | ~2.6 | ~93% |\\n| P75 (τ=0.099) | 13.7% [12,13,16] | ~3.1 | ~87% |\\n| **P50 (τ=0.075)** | **15.3% [16,16,14]** | **~3.8** | **~77%** |\\n| P25 (τ=0.055) | 14.3% [15,13,15] | ~4.8 | ~65% |\\n\\n**P50 = Pareto optimal**: 最高 SR + 比 K=10 省 62% compute (avg_K 3.8 vs 10)。P25 多 26% compute 但 SR 低 1pp。\\n\\n## Adaptive K 跨 Benchmark 迁移 (2026-05-20)\\n\\nObject 校准的 P50 阈值 (τ=0.074855) 直接应用于 Spatial（无 per-benchmark tuning）：\\n\\n| 指标 | Object P50 (3-seed) | Spatial P50 (seed43) | 差异分析 |\\n|------|---------------------|---------------------|----------|\\n| SR | 15.3% (vs VLA 10.9%) | 33.0% (vs K=10 34.3%) | 两个 benchmark 均在 baseline CI 内 |\\n| avg_K | 3.8 | 6.33 | Spatial 更高——方法自适应多用 full steps |\\n| fast_path | 77% | 45.8% | Spatial L2 均值更高 (0.090 vs Object) |\\n\\n**关键洞察**：Spatial 任务不确定性更大 → L2 divergence 均值更高 → fast_path 自动降低 → 更多 step 触发 full K=10 refinement → SR 保持。这正是 Adaptive K 的设计意图——\\\"在难的地方多花计算\\\"。阈值不需要 per-benchmark 调整，方法通过 L2 信号自动适配。\\n\\n## Latency Profiling (dry-run N=20, RTX 4090, 2026-05-20)\\n\\n| Component | Mean (ms) | 备注 |\\n|-----------|----------|------|\\n| VLA sampling | 206 | **K 无关**（batched generation） |\\n| CRM MLP forward | 0.33 | 337K params |\\n| Argmin L2 + CRM 总开销 | 4.0 | 管线 1.6% |\\n| Full pipeline K=10 | 259 | ~3.9 Hz |\\n| **Adaptive K 快路径** | **254** | K=2 only |\\n| **Adaptive K 全路径** | **459** | K=2→K=10 |\\n\\n**关键发现：VLA batched sampling 消除 K 作为 latency 因子。Adaptive K 快路径省 45% latency。CRM overhead 可忽略。**\\n\\n## Random Selection Baseline (2026-05-20)\\n\\n代码 `--mode random_selection` 可用。已有结果：seed43=9%, seed45=10%（之前标记 failed 是状态标记问题，实际正常完成）。\\n\\n## 全 Benchmark 统计摘要 (v2, 2026-05-20, 含新增数据)\\n\\n### 1. LIBERO-Object — **Strong improvement**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| **CRM norm02 K=10 (主配置)** | **6** | **16.8%±1.8%** | **+6.0pp** | **0.000095** | **\\\\*\\\\*\\\\*** |\\n| CRM norm01 (补充) | 6 | 17.5%±1.0% | +6.6pp | <0.001 | *** |\\n| CRM norm02 K=5 (补充) | 7 | 16.0%±2.2% | +5.1pp | 0.000312 | *** |\\n| Adaptive-K (all) | 12 | 14.2%±1.5% | +3.3pp | 0.000098 | *** |\\n| Argmin K=10 | 5 | 12.4%±2.9% | +1.5pp | 0.317 | n.s. |\\n| **VLA-only** | **8** | **10.9%±1.4%** | — | — | — |\\n\\n### 2. LIBERO-Spatial — **Strong improvement**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| CRM obs_only (K=10) | 7 | 34.6%±1.4% | **+5.0pp** | 0.000007 | *** |\\n| **VLA-only** | **9** | **29.6%±1.1%** | — | — | — |\\n\\n### 3. LIBERO-Goal (OOD) — **Neutral**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| CRM obs_only | 6 | 68.2%±3.4% | -0.5pp | 0.818 | n.s. |\\n| **VLA-only** | **6** | **68.7%±3.9%** | — | — | — |\\n\\n### 4. LIBERO-Long (OOD) — **⚠️ Borderline**\\n\\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\\n|--------|---|----------|----------|-----------|-----|\\n| CRM obs_only | 7 | 17.0%±2.0% | **+2.2pp** | 0.049 | * |\\n| **VLA-only** | **11** | **14.8%±2.2%** | — | — | — |\\n\\n**⚠️ Long MW-U p=0.061 (n.s.)。t检验 p=0.049 刚好卡在 0.05 边缘。论文需 cautious wording。**\\n\\n### 效果总结\\n\\n| Benchmark | Δ (pp) | p-value | 判定 |\\n|-----------|--------|---------|------|\\n| **Object** | +6.0 | <0.001 | Strong (主配置 norm02) |\\n| **Spatial** | +5.0 | <0.001 | Strong |\\n| **Long** | +2.2 | 0.049 | ⚠️ Borderline (OOD, MW-U n.s.) |\\n| **Goal** | -0.5 | 0.818 | Neutral (OOD) |\\n\\n**注意**: Argmin K=10 seed43=17% 是未验证离群值（4 台服务器未找到原始 JSON），标注 unverified。\", \"total_chars\": 5936, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me write the diagnosis and append it to memory.md.
+
+Key findings:
+1. The experiment **completed successfully** - all 10 tasks × 10 rollouts = 100 rollouts finished
+2. Overall SR = 33.0% (33/100)
+3. Adaptive stats: fast_path=61.8%, avg_k=5.1, mean_l2=0.0920
+4. The EXIT_CODE=129 (SIGHUP) occurred AFTER the process finished evaluation and saved results to JSON
+5. This is the same pattern as P90-seed42 - SIGHUP after completion, a false failure
+
+
+6. The JSON file is complete with all data
+
+This is another cron false positive - the process completed but got SIGHUP after saving results. I notice memory.md already has a P50 seed43 entry with SR=33.0%, and this new P75 seed44 result also shows SR=33.0%, so I should compare the adaptive stats between them and update the memory file accordingly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "d04ebe3a-6e09-4c38-baba-ecffc26e73de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142627P9DD3pttexD1xtrnq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3755,
+      "cache_read_input_tokens": 37399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+诊断完成。实验**实际已成功完成全部 100 rollouts**，SR=33%，JSON 完整。EXIT_CODE=129 是进程完成后收到 SIGHUP，属于 false failure。
+
+追加诊断结论到 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "543253fd-8411-4f82-ab9e-5077d749b50a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142627P9DD3pttexD1xtrnq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3755,
+      "cache_read_input_tokens": 37399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01KMWvA1S6GM1Uf4pMS7yQdt`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "memory.md",
+  "content": "# Project Memory\n\n## 失败模式记录\n\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\n\n- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（\"process dead 5× with no sentinel/W&B\"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**\n\n- [失败模式] SIGHUP false failure（2026-05-20）：**eval-adaptive-k-spatial-p75-seed44** (bjb2-28827, cuda:0) EXIT_CODE=129 (SIGHUP) 被标记 failed。实际情况：**全部 10 tasks × 10 rollouts = 100 rollouts 已完成**，JSON 结果完整保存。SIGHUP 发生在进程写完结果之后（tmux session 断开或 SSH 连接清理）。同服务器 P90-seed42 也是同样模式——EXIT_CODE=129 但结果完整。**这是 false failure，需手动修正 conclusion=success 并补录 metrics。**\n\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\n\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\n\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\n\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \"obs_only_k10\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\n\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\n\n## CRM Coverage 限制\n\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\n\n## Adaptive K 信号探索\n\n| 信号 | ρ vs K10_var | 结论 | 备注 |\n|------|-------------|------|------|\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost 但 magnitude 是常数 |\n| CRM correction magnitude (K=2 argmin) | 0.1340 | ❌ NO-GO | 同上 |\n\n**结论：K=2 L2 distance 是唯一可用的 adaptive K 门控信号。** FMVD 和 CRM magnitude 均因信号方差不足而失败。\n\n## Adaptive K Sweep 最终结果 (2026-05-20, 12/12 完成)\n\n| 阈值 | SR [seeds] | avg_K | fast_path% |\n|------|-----------|-------|-----------|\n| P90 (τ=0.127) | 13.3% [12,14,14] | ~2.6 | ~93% |\n| P75 (τ=0.099) | 13.7% [12,13,16] | ~3.1 | ~87% |\n| **P50 (τ=0.075)** | **15.3% [16,16,14]** | **~3.8** | **~77%** |\n| P25 (τ=0.055) | 14.3% [15,13,15] | ~4.8 | ~65% |\n\n**P50 = Pareto optimal**: 最高 SR + 比 K=10 省 62% compute (avg_K 3.8 vs 10)。P25 多 26% compute 但 SR 低 1pp。\n\n## Adaptive K 跨 Benchmark 迁移 (2026-05-20)\n\nObject 校准的 P50 阈值 (τ=0.074855) 直接应用于 Spatial（无 per-benchmark tuning）：\n\n| 指标 | Object P50 (3-seed) | Spatial P50 (seed43) | 差异分析 |\n|------|---------------------|---------------------|----------|\n| SR | 15.3% (vs VLA 10.9%) | 33.0% (vs K=10 34.3%) | 两个 benchmark 均在 baseline CI 内 |\n| avg_K | 3.8 | 6.33 | Spatial 更高——方法自适应多用 full steps |\n| fast_path | 77% | 45.8% | Spatial L2 均值更高 (0.090 vs Object) |\n\n**关键洞察**：Spatial 任务不确定性更大 → L2 divergence 均值更高 → fast_path 自动降低 → 更多 step 触发 full K=10 refinement → SR 保持。这正是 Adaptive K 的设计意图——\"在难的地方多花计算\"。阈值不需要 per-benchmark 调整，方法通过 L2 信号自动适配。\n\n### Adaptive K Spatial P75 结果 (2026-05-20)\n\n**eval-adaptive-k-spatial-p75-seed44** (bjb2-28827): SR=33.0% (33/100), avg_K=5.05, fast_path=61.8%, mean_l2=0.092, threshold=0.098735。全部 100 rollouts 完成，EXIT_CODE=129 是 SIGHUP false failure。与 P75 seed42 (31%) / seed43 (34%) 一致。\n\n## Latency Profiling (dry-run N=20, RTX 4090, 2026-05-20)\n\n| Component | Mean (ms) | 备注 |\n|-----------|----------|------|\n| VLA sampling | 206 | **K 无关**（batched generation） |\n| CRM MLP forward | 0.33 | 337K params |\n| Argmin L2 + CRM 总开销 | 4.0 | 管线 1.6% |\n| Full pipeline K=10 | 259 | ~3.9 Hz |\n| **Adaptive K 快路径** | **254** | K=2 only |\n| **Adaptive K 全路径** | **459** | K=2→K=10 |\n\n**关键发现：VLA batched sampling 消除 K 作为 latency 因子。Adaptive K 快路径省 45% latency。CRM overhead 可忽略。**\n\n## Random Selection Baseline (2026-05-20)\n\n代码 `--mode random_selection` 可用。已有结果：seed43=9%, seed45=10%（之前标记 failed 是状态标记问题，实际正常完成）。\n\n## 全 Benchmark 统计摘要 (v2, 2026-05-20, 含新增数据)\n\n### 1. LIBERO-Object — **Strong improvement**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| **CRM norm02 K=10 (主配置)** | **6** | **16.8%±1.8%** | **+6.0pp** | **0.000095** | **\\*\\*\\*** |\n| CRM norm01 (补充) | 6 | 17.5%±1.0% | +6.6pp | <0.001 | *** |\n| CRM norm02 K=5 (补充) | 7 | 16.0%±2.2% | +5.1pp | 0.000312 | *** |\n| Adaptive-K (all) | 12 | 14.2%±1.5% | +3.3pp | 0.000098 | *** |\n| Argmin K=10 | 5 | 12.4%±2.9% | +1.5pp | 0.317 | n.s. |\n| **VLA-only** | **8** | **10.9%±1.4%** | — | — | — |\n\n### 2. LIBERO-Spatial — **Strong improvement**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only (K=10) | 7 | 34.6%±1.4% | **+5.0pp** | 0.000007 | *** |\n| **VLA-only** | **9** | **29.6%±1.1%** | — | — | — |\n\n### 3. LIBERO-Goal (OOD) — **Neutral**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only | 6 | 68.2%±3.4% | -0.5pp | 0.818 | n.s. |\n| **VLA-only** | **6** | **68.7%±3.9%** | — | — | — |\n\n### 4. LIBERO-Long (OOD) — **⚠️ Borderline**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only | 7 | 17.0%±2.0% | **+2.2pp** | 0.049 | * |\n| **VLA-only** | **11** | **14.8%±2.2%** | — | — | — |\n\n**⚠️ Long MW-U p=0.061 (n.s.)。t检验 p=0.049 刚好卡在 0.05 边缘。论文需 cautious wording。**\n\n### 效果总结\n\n| Benchmark | Δ (pp) | p-value | 判定 |\n|-----------|--------|---------|------|\n| **Object** | +6.0 | <0.001 | Strong (主配置 norm02) |\n| **Spatial** | +5.0 | <0.001 | Strong |\n| **Long** | +2.2 | 0.049 | ⚠️ Borderline (OOD, MW-U n.s.) |\n| **Goal** | -0.5 | 0.818 | Neutral (OOD) |\n\n**注意**: Argmin K=10 seed43=17% 是未验证离群值（4 台服务器未找到原始 JSON），标注 unverified。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "6d0c92ab-821c-4c79-89cf-8e4656b25f92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142627P9DD3pttexD1xtrnq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3755,
+      "cache_read_input_tokens": 37399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3755
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T13:05:38.423Z_
+
+<details><summary>↩ Tool result · `toolu_01KMWvA1S6GM1Uf4pMS7yQdt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "77830dc6-e44b-4b59-97de-9a61195df79d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+## 诊断结论
+
+**根因**：实验已正常完成全部评估，EXIT_CODE=129 是进程写完结果后收到 SIGHUP（tmux session 断开），属于 **false failure**。与同服务器 P90-seed42 同一模式。
+
+**结果**：
+- SR = **33.0%** (33/100)，与 P75 seed42 (31%) / seed43 (34%) 一致
+- adaptive stats: avg_K=5.05, fast_path=61.8%, mean_l2=0.092
+- JSON 文件完整，10 tasks 全部有结果
+
+**处理**：无需重试。需手动修正 conclusion=success 并补录 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "uuid": "e35b0768-1876-46fa-ad20-ad91acf7cb95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aCwZXeC7LULaYNZpSzP5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 41154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4302
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+## 诊断结论
+
+**根因**：实验已正常完成全部评估，EXIT_CODE=129 是进程写完结果后收到 SIGHUP（tmux session 断开），属于 **false failure**。与同服务器 P90-seed42 同一模式。
+
+**结果**：
+- SR = **33.0%** (33/100)，与 P75 seed42 (31%) / seed43 (34%) 一致
+- adaptive stats: avg_K=5.05, fast_path=61.8%, mean_l2=0.092
+- JSON 文件完整，10 tasks 全部有结果
+
+**处理**：无需重试。需手动修正 conclusion=success 并补录 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 86258,
+  "duration_api_ms": 86635,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "a3b43434-ef37-45c2-8dd7-a85ec550874b",
+  "total_cost_usd": 0.44783825,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 33615,
+    "cache_read_input_tokens": 174737,
+    "output_tokens": 5959,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33615,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 199,
+        "cache_read_input_tokens": 41154,
+        "cache_creation_input_tokens": 4302,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4302
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1211,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001341,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 5959,
+      "cacheReadInputTokens": 174737,
+      "cacheCreationInputTokens": 33615,
+      "webSearchRequests": 0,
+      "costUSD": 0.44649725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "07fae835-5c45-407b-9ece-db82a2235e96"
+}
+```
+
+</details>
+
+---

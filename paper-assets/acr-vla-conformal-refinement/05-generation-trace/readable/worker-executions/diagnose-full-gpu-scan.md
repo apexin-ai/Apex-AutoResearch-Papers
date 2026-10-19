@@ -1,0 +1,1767 @@
+# diagnose full gpu scan
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_diagnose_full-gpu-scan_20260519T212809.log`
+- **Structured JSON:** [`550697f12737f15ce883.json`](../../sessions/55/550697f12737f15ce883.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c99de1f5-6409-4af3-b9e8-5c417afa7e00",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779243000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a76dd46a-567b-41e0-8fda-f80bf02326a7",
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to scan 4 servers for GPU status and collect experiment results. I need to use the MCP SSH tools. Let me first load the tool schemas, then execute commands on all 4 servers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "a9b92f97-ef09-47d8-8174-13fe3facede0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyGyutFSsoqiFBis7tj21V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12171
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me load the SSH tools first, then scan all servers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "03d08cc8-74d1-4196-b50e-3bd1ab93be2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyGyutFSsoqiFBis7tj21V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12171
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LCzs4LWoHEFDXDZyFHLEC6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "2557187e-fd4f-4876-9343-02717bdb8fb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyGyutFSsoqiFBis7tj21V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12171
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T21:28:20.862Z_
+
+<details><summary>↩ Tool result · `toolu_01LCzs4LWoHEFDXDZyFHLEC6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "64822a54-0ac4-4290-9ed1-0860cc6b7523",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Now scanning all 4 servers in parallel — GPU status + experiment results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "8a3ee771-8403-4c31-8679-76f5ac137e38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sv1iYYhERmqPbQCUtuCZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 24012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 750
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014vHhNRNRy8W8Gp5nqkndFw`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "3ba86497-c135-4874-9c50-d109c9cfdf23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sv1iYYhERmqPbQCUtuCZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 24012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 750
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015rTxVyrHyHEpM8cM83Qohm`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "c960905e-8ea8-4095-bdb8-09a4c96f63d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sv1iYYhERmqPbQCUtuCZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 24012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 750
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T21:28:25.471Z_
+
+<details><summary>↩ Tool result · `toolu_014vHhNRNRy8W8Gp5nqkndFw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 8 %, 4496 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "1ce80b7d-b906-4d27-ac47-9cc0bb5c9892",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 8 %, 4496 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 8 %, 4496 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T21:28:26.221Z_
+
+<details><summary>↩ Tool result · `toolu_015rTxVyrHyHEpM8cM83Qohm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 1 MiB, 24564 MiB\\n1, 16 %, 3840 MiB, 24564 MiB\\n2, 0 %, 1 MiB, 24564 MiB\\n3, 0 %, 1 MiB, 24564 MiB\\n4, 46 %, 23005 MiB, 24564 MiB\\n5, 0 %, 1 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "fae646e4-520f-4063-8e5b-d2c7a3d90db7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 1 MiB, 24564 MiB\\\\n1, 16 %, 3840 MiB, 24564 MiB\\\\n2, 0 %, 1 MiB, 24564 MiB\\\\n3, 0 %, 1 MiB, 24564 MiB\\\\n4, 46 %, 23005 MiB, 24564 MiB\\\\n5, 0 %, 1 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 1 MiB, 24564 MiB\\n1, 16 %, 3840 MiB, 24564 MiB\\n2, 0 %, 1 MiB, 24564 MiB\\n3, 0 %, 1 MiB, 24564 MiB\\n4, 46 %, 23005 MiB, 24564 MiB\\n5, 0 %, 1 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01222ohheCvmCyJmWSAbz1dC`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "0c91ee94-29b0-4306-bb6d-874c7ea2e5ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sv1iYYhERmqPbQCUtuCZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 24012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 750
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TiVxX1gcCUUssgayf3BtaK`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "c4b26d31-e826-4bda-aa89-f61ac5a482ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sv1iYYhERmqPbQCUtuCZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 24012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 750
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T21:28:27.179Z_
+
+<details><summary>↩ Tool result · `toolu_01222ohheCvmCyJmWSAbz1dC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 10 %, 6348 MiB, 24564 MiB\\n1, 98 %, 8655 MiB, 24564 MiB\\n2, 22 %, 5630 MiB, 24564 MiB\\n3, 27 %, 2422 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "12355566-0e08-44a3-979a-b58d3df426ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 10 %, 6348 MiB, 24564 MiB\\\\n1, 98 %, 8655 MiB, 24564 MiB\\\\n2, 22 %, 5630 MiB, 24564 MiB\\\\n3, 27 %, 2422 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 10 %, 6348 MiB, 24564 MiB\\n1, 98 %, 8655 MiB, 24564 MiB\\n2, 22 %, 5630 MiB, 24564 MiB\\n3, 27 %, 2422 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T21:28:27.944Z_
+
+<details><summary>↩ Tool result · `toolu_01TiVxX1gcCUUssgayf3BtaK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 8 %, 5149 MiB, 24564 MiB\\n1, 36 %, 1996 MiB, 24564 MiB\\n2, 23 %, 5167 MiB, 24564 MiB\\n3, 31 %, 1996 MiB, 24564 MiB\\n4, 20 %, 3449 MiB, 24564 MiB\\n5, 20 %, 3032 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "6ea7cf65-63e5-4983-867f-2ee7c21adae3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 8 %, 5149 MiB, 24564 MiB\\\\n1, 36 %, 1996 MiB, 24564 MiB\\\\n2, 23 %, 5167 MiB, 24564 MiB\\\\n3, 31 %, 1996 MiB, 24564 MiB\\\\n4, 20 %, 3449 MiB, 24564 MiB\\\\n5, 20 %, 3032 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 8 %, 5149 MiB, 24564 MiB\\n1, 36 %, 1996 MiB, 24564 MiB\\n2, 23 %, 5167 MiB, 24564 MiB\\n3, 31 %, 1996 MiB, 24564 MiB\\n4, 20 %, 3449 MiB, 24564 MiB\\n5, 20 %, 3032 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+GPU data collected. Now getting process info + tmux sessions + experiment results from all servers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "ce9d54dd-779c-4f9e-b8e5-3dfdd5f636ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGi43ggtez6TfPypCxKcR7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 24762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014U4j6SQF3xLVA4p1orV2Z8`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ps aux | grep -E \"evaluate.py|calibrate\" | grep -v grep; echo \"---TMUX---\"; tmux ls 2>/dev/null; echo \"---RESULTS---\"; cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed48.json 2>/dev/null || echo \"NO: vla-only-object-seed48\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "927a81a7-82c8-41b0-8bf1-7c283d11fd64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGi43ggtez6TfPypCxKcR7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 24762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T21:28:32.932Z_
+
+<details><summary>↩ Tool result · `toolu_014U4j6SQF3xLVA4p1orV2Z8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     628934  0.0  0.0   6080  3776 ?        Ss   04:30   0:00 tmux new-session -d -s eval-vla-only-object-seed48 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_object_vla_only_seed48.log\\nroot     628935  0.0  0.0   4364  3228 pts/0    Ss+  04:30   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_object_vla_only_seed48.log\\nroot     628941  401  1.9 46065168 10051936 pts/0 Rl+ 04:30 233:30 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json\\n---TMUX---\\neval-vla-only-object-seed48: 1 windows (created Wed May 20 04:30:22 2026)\\n---RESULTS---\\nNO: vla-only-object-seed48\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "ba86a60b-6ca4-43d7-9da9-c33dc701788f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     628934  0.0  0.0   6080  3776 ?        Ss   04:30   0:00 tmux new-session -d -s eval-vla-only-object-seed48 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_object_vla_only_seed48.log\\\\nroot     628935  0.0  0.0   4364  3228 pts/0    Ss+  04:30   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_object_vla_only_seed48.log\\\\nroot     628941  401  1.9 46065168 10051936 pts/0 Rl+ 04:30 233:30 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json\\\\n---TMUX---\\\\neval-vla-only-object-seed48: 1 windows (created Wed May 20 04:30:22 2026)\\\\n---RESULTS---\\\\nNO: vla-only-object-seed48\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     628934  0.0  0.0   6080  3776 ?        Ss   04:30   0:00 tmux new-session -d -s eval-vla-only-object-seed48 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_object_vla_only_seed48.log\\nroot     628935  0.0  0.0   4364  3228 pts/0    Ss+  04:30   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_object_vla_only_seed48.log\\nroot     628941  401  1.9 46065168 10051936 pts/0 Rl+ 04:30 233:30 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json\\n---TMUX---\\neval-vla-only-object-seed48: 1 windows (created Wed May 20 04:30:22 2026)\\n---RESULTS---\\nNO: vla-only-object-seed48\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BFBL5KDo2geVinC59C5WDu`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ps aux | grep -E \"evaluate.py|calibrate\" | grep -v grep; echo \"---TMUX---\"; tmux ls 2>/dev/null; echo \"---RESULTS---\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed42.json 2>/dev/null || echo \"NO: crm-long-seed42\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed43.json 2>/dev/null || echo \"NO: crm-long-seed43\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed44.json 2>/dev/null || echo \"NO: crm-long-seed44\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed47.json 2>/dev/null || echo \"NO: vla-only-object-seed47\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "1dc28e84-f0d1-49bd-ad56-2597722eea09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGi43ggtez6TfPypCxKcR7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 24762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T21:28:35.746Z_
+
+<details><summary>↩ Tool result · `toolu_01BFBL5KDo2geVinC59C5WDu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     995735  0.0  0.0   4364  1992 ?        S    04:32   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json' > /tmp/k2_l2_calibration.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     995736  359  1.0 69263260 10608672 ?   Rl   04:32 200:28 /root/miniconda3/bin/python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json\\n---TMUX---\\neval-openvla-object-baseline-seed42: 1 windows (created Wed May 20 01:03:26 2026)\\n---RESULTS---\\n{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.17,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\n{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.15,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\n{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.2,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 6,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\n{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.1,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "09643b50-8f8f-49fe-b034-d38d76ac69a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     995735  0.0  0.0   4364  1992 ?        S    04:32   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json' > /tmp/k2_l2_calibration.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     995736  359  1.0 69263260 10608672 ?   Rl   04:32 200:28 /root/miniconda3/bin/python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json\\\\n---TMUX---\\\\neval-openvla-object-baseline-seed42: 1 windows (created Wed May 20 01:03:26 2026)\\\\n---RESULTS---\\\\n{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.17,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}===\\\\n{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.15,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}===\\\\n{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.2,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 6,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}===\\\\n{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.1,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     995735  0.0  0.0   4364  1992 ?        S    04:32   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json' > /tmp/k2_l2_calibration.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     995736  359  1.0 69263260 10608672 ?   Rl   04:32 200:28 /root/miniconda3/bin/python -u src/calibrate_fmvd.py --benchmark object --n_episodes 5 --seed 42 --output logs/k2_l2_calibration.json\\n---TMUX---\\neval-openvla-object-baseline-seed42: 1 windows (created Wed May 20 01:03:26 2026)\\n---RESULTS---\\n{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.17,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\n{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.15,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\n{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.2,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 6,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\n{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.1,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012Rw8KZDpNgpnzMoCqkQaZa`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ps aux | grep -E \"evaluate.py|calibrate\" | grep -v grep; echo \"---TMUX---\"; tmux ls 2>/dev/null; echo \"---RESULTS---\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed45.json 2>/dev/null || echo \"NO: crm-long-seed45\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed46.json 2>/dev/null || echo \"NO: crm-long-seed46\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed48.json 2>/dev/null || echo \"NO: vla-only-long-seed48\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed50.json 2>/dev/null || echo \"NO: vla-only-object-seed50\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "79a9da83-d23e-48de-8e94-2195c9decb87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGi43ggtez6TfPypCxKcR7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 24762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T21:28:38.637Z_
+
+<details><summary>↩ Tool result · `toolu_012Rw8KZDpNgpnzMoCqkQaZa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     130616  0.0  0.0   6248  4012 ?        Ss   04:10   0:00 tmux new-session -d -s eval-crm-goal-seed42 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed42.json 2>&1 | tee logs/eval_crm_goal_seed42.log\\nroot     132123  0.0  0.0   4364  3192 pts/2    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed45.json 2>&1 | tee logs/eval_crm_long_seed45.log\\nroot     132125  373  0.9 64863680 10538316 pts/2 Rl+ 04:11 289:51 python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed45.json\\nroot     132327  0.0  0.0   4364  3108 pts/3    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_vla_only_object_seed48.log\\nroot     132329  381  0.9 64024744 9983520 pts/3 Rl+ 04:11 295:38 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json\\nroot     160883  0.0  0.0   4496  3604 pts/0    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-crm-long-seed46.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-crm-long-seed46.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log 2>&1\\nroot     160887  0.0  0.0   2800  1048 pts/0    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\"\\nroot     160888  407  1.1 77178656 11993628 pts/0 Rl 05:24  16:58 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\nroot     161149  0.0  0.0   4496  3548 pts/1    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-long-seed48.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed48.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-long-seed48.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed48.log 2>&1\\nroot     161153  0.0  0.0   2800  1032 pts/1    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\"\\nroot     161154  398  1.1 76701576 11859912 pts/1 Rl 05:24  16:25 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\nroot     161416  0.0  0.0   4496  3608 pts/4    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-object-seed50.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed50.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-object-seed50.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed50.log 2>&1\\nroot     161420  0.0  0.0   2800   996 pts/4    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\"\\nroot     161421  400  1.0 75919316 10753268 pts/4 Rl 05:24  16:18 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\n---TMUX---\\neval-crm-long-seed45: 1 windows (created Wed May 20 04:11:07 2026)\\neval-crm-long-seed46: 1 windows (created Wed May 20 05:24:28 2026)\\neval-vla-only-long-seed48: 1 windows (created Wed May 20 05:24:31 2026)\\neval-vla-only-object-seed48: 1 windows (created Wed May 20 04:11:08 2026)\\neval-vla-only-object-seed50: 1 windows (created Wed May 20 05:24:34 2026)\\n---RESULTS---\\nNO: crm-long-seed45\\n===\\nNO: crm-long-seed46\\n===\\nNO: vla-only-long-seed48\\n===\\nNO: vla-only-object-seed50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "c89b4945-00ae-41a5-96bb-59ead0a53400",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     130616  0.0  0.0   6248  4012 ?        Ss   04:10   0:00 tmux new-session -d -s eval-crm-goal-seed42 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed42.json 2>&1 | tee logs/eval_crm_goal_seed42.log\\\\nroot     132123  0.0  0.0   4364  3192 pts/2    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed45.json 2>&1 | tee logs/eval_crm_long_seed45.log\\\\nroot     132125  373  0.9 64863680 10538316 pts/2 Rl+ 04:11 289:51 python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed45.json\\\\nroot     132327  0.0  0.0   4364  3108 pts/3    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_vla_only_object_seed48.log\\\\nroot     132329  381  0.9 64024744 9983520 pts/3 Rl+ 04:11 295:38 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json\\\\nroot     160883  0.0  0.0   4496  3604 pts/0    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-crm-long-seed46.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-crm-long-seed46.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log 2>&1\\\\nroot     160887  0.0  0.0   2800  1048 pts/0    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\\\\\"\\\\nroot     160888  407  1.1 77178656 11993628 pts/0 Rl 05:24  16:58 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\\nroot     161149  0.0  0.0   4496  3548 pts/1    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-long-seed48.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed48.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-vla-only-long-seed48.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed48.log 2>&1\\\\nroot     161153  0.0  0.0   2800  1032 pts/1    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\\\\\"\\\\nroot     161154  398  1.1 76701576 11859912 pts/1 Rl 05:24  16:25 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\\nroot     161416  0.0  0.0   4496  3608 pts/4    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-object-seed50.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed50.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-vla-only-object-seed50.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed50.log 2>&1\\\\nroot     161420  0.0  0.0   2800   996 pts/4    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\\\\\"\\\\nroot     161421  400  1.0 75919316 10753268 pts/4 Rl 05:24  16:18 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\\n---TMUX---\\\\neval-crm-long-seed45: 1 windows (created Wed May 20 04:11:07 2026)\\\\neval-crm-long-seed46: 1 windows (created Wed May 20 05:24:28 2026)\\\\neval-vla-only-long-seed48: 1 windows (created Wed May 20 05:24:31 2026)\\\\neval-vla-only-object-seed48: 1 windows (created Wed May 20 04:11:08 2026)\\\\neval-vla-only-object-seed50: 1 windows (created Wed May 20 05:24:34 2026)\\\\n---RESULTS---\\\\nNO: crm-long-seed45\\\\n===\\\\nNO: crm-long-seed46\\\\n===\\\\nNO: vla-only-long-seed48\\\\n===\\\\nNO: vla-only-object-seed50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     130616  0.0  0.0   6248  4012 ?        Ss   04:10   0:00 tmux new-session -d -s eval-crm-goal-seed42 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed42.json 2>&1 | tee logs/eval_crm_goal_seed42.log\\nroot     132123  0.0  0.0   4364  3192 pts/2    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed45.json 2>&1 | tee logs/eval_crm_long_seed45.log\\nroot     132125  373  0.9 64863680 10538316 pts/2 Rl+ 04:11 289:51 python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed45.json\\nroot     132327  0.0  0.0   4364  3108 pts/3    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json 2>&1 | tee logs/eval_vla_only_object_seed48.log\\nroot     132329  381  0.9 64024744 9983520 pts/3 Rl+ 04:11 295:38 python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_object_vla_only_seed48.json\\nroot     160883  0.0  0.0   4496  3604 pts/0    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-crm-long-seed46.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-crm-long-seed46.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log 2>&1\\nroot     160887  0.0  0.0   2800  1048 pts/0    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\\"\\nroot     160888  407  1.1 77178656 11993628 pts/0 Rl 05:24  16:58 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\\nroot     161149  0.0  0.0   4496  3548 pts/1    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-long-seed48.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed48.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-long-seed48.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-long-seed48.log 2>&1\\nroot     161153  0.0  0.0   2800  1032 pts/1    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\\"\\nroot     161154  398  1.1 76701576 11859912 pts/1 Rl 05:24  16:25 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_long_vla_only_seed48.json\\nroot     161416  0.0  0.0   4496  3608 pts/4    Ss+  05:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-object-seed50.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed50.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-object-seed50.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed50.log 2>&1\\nroot     161420  0.0  0.0   2800   996 pts/4    S    05:24   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\\"\\nroot     161421  400  1.0 75919316 10753268 pts/4 Rl 05:24  16:18 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 50 --K 1 --output_file logs/eval_object_vla_only_seed50.json\\n---TMUX---\\neval-crm-long-seed45: 1 windows (created Wed May 20 04:11:07 2026)\\neval-crm-long-seed46: 1 windows (created Wed May 20 05:24:28 2026)\\neval-vla-only-long-seed48: 1 windows (created Wed May 20 05:24:31 2026)\\neval-vla-only-object-seed48: 1 windows (created Wed May 20 04:11:08 2026)\\neval-vla-only-object-seed50: 1 windows (created Wed May 20 05:24:34 2026)\\n---RESULTS---\\nNO: crm-long-seed45\\n===\\nNO: crm-long-seed46\\n===\\nNO: vla-only-long-seed48\\n===\\nNO: vla-only-object-seed50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Fza8AjP9jNfqVqN1iLcsMN`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ps aux | grep -E \"evaluate.py|calibrate\" | grep -v grep; echo \"---TMUX---\"; tmux ls 2>/dev/null; echo \"---RESULTS---\"; cat /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed44.json 2>/dev/null || echo \"NO: crm-goal-seed44\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed45.json 2>/dev/null || echo \"NO: crm-goal-seed45\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json 2>/dev/null || echo \"NO: vla-only-spatial-seed48\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed49.json 2>/dev/null || echo \"NO: vla-only-spatial-seed49\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.json 2>/dev/null || echo \"NO: vla-only-long-seed47\"; echo \"===\"; cat /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json 2>/dev/null || echo \"NO: vla-only-object-seed49\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "dd128c61-5719-412b-af64-8af7444848e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGi43ggtez6TfPypCxKcR7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 24762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T21:28:41.975Z_
+
+<details><summary>↩ Tool result · `toolu_01Fza8AjP9jNfqVqN1iLcsMN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      83909  0.0  0.0   4364  1708 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02_seed44.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      83910  362  0.7 62105764 8145604 ?    Rl   04:30 212:31 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json\\nroot      85315  0.0  0.0   4364  1724 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json > logs/eval_goal_obs_only_norm02_seed45.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      85316  377  0.7 60322336 7662844 ?    Rl   04:30 219:10 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json\\nroot      86796  0.0  0.0   4364  1708 ?        S    04:31   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json > logs/eval_long_vla_only_seed47.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      86797  363  1.0 68176984 11190332 ?   Rl   04:31 209:19 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json\\nroot      88042  0.0  0.0   4364  1800 ?        S    04:31   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json > logs/eval_spatial_vla_only_seed48.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      88043  357  0.8 65489276 8938948 ?    Rl   04:31 203:57 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json\\nroot     105889  0.0  0.0   6088  3824 ?        Ss   05:15   0:00 tmux new-session -d -s eval-vla-only-spatial-seed49 rm -f /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed49.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed49.log 2>&1\\nroot     105890  0.0  0.0   4496  3620 pts/0    Ss+  05:15   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit; mkdir -p /t\\n\\n... [截断: 输出过长，省略 891 字符] ...\\n\\noot/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\"\\nroot     105899  365  1.0 72964348 10609080 pts/0 Rl 05:15  48:21 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\nroot     106160  0.0  0.0   4496  3672 pts/1    Ss+  05:15   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-object-seed49.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed49.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-object-seed49.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed49.log 2>&1\\nroot     106168  0.0  0.0   2800  1064 pts/1    S    05:15   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\"\\nroot     106169  393  1.0 74484476 10993824 pts/1 Rl 05:15  51:55 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\n---TMUX---\\neval-vla-only-object-seed49: 1 windows (created Wed May 20 05:15:30 2026)\\neval-vla-only-spatial-seed49: 1 windows (created Wed May 20 05:15:27 2026)\\n---RESULTS---\\nNO: crm-goal-seed44\\n===\\nNO: crm-goal-seed45\\n===\\nNO: vla-only-spatial-seed48\\n===\\nNO: vla-only-spatial-seed49\\n===\\n{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.14,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\nNO: vla-only-object-seed49\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "8abfb70e-3477-48e0-96ef-8a10e9da3caf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      83909  0.0  0.0   4364  1708 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02_seed44.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      83910  362  0.7 62105764 8145604 ?    Rl   04:30 212:31 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json\\\\nroot      85315  0.0  0.0   4364  1724 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json > logs/eval_goal_obs_only_norm02_seed45.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      85316  377  0.7 60322336 7662844 ?    Rl   04:30 219:10 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json\\\\nroot      86796  0.0  0.0   4364  1708 ?        S    04:31   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json > logs/eval_long_vla_only_seed47.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      86797  363  1.0 68176984 11190332 ?   Rl   04:31 209:19 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json\\\\nroot      88042  0.0  0.0   4364  1800 ?        S    04:31   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json > logs/eval_spatial_vla_only_seed48.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      88043  357  0.8 65489276 8938948 ?    Rl   04:31 203:57 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json\\\\nroot     105889  0.0  0.0   6088  3824 ?        Ss   05:15   0:00 tmux new-session -d -s eval-vla-only-spatial-seed49 rm -f /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed49.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed49.log 2>&1\\\\nroot     105890  0.0  0.0   4496  3620 pts/0    Ss+  05:15   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit; mkdir -p /t\\\\n\\\\n... [截断: 输出过长，省略 891 字符] ...\\\\n\\\\noot/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\\\\\"\\\\nroot     105899  365  1.0 72964348 10609080 pts/0 Rl 05:15  48:21 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\\nroot     106160  0.0  0.0   4496  3672 pts/1    Ss+  05:15   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-object-seed49.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed49.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-vla-only-object-seed49.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed49.log 2>&1\\\\nroot     106168  0.0  0.0   2800  1064 pts/1    S    05:15   0:00 timeout 86400 env bash -c bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\\\\\"\\\\nroot     106169  393  1.0 74484476 10993824 pts/1 Rl 05:15  51:55 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\\n---TMUX---\\\\neval-vla-only-object-seed49: 1 windows (created Wed May 20 05:15:30 2026)\\\\neval-vla-only-spatial-seed49: 1 windows (created Wed May 20 05:15:27 2026)\\\\n---RESULTS---\\\\nNO: crm-goal-seed44\\\\n===\\\\nNO: crm-goal-seed45\\\\n===\\\\nNO: vla-only-spatial-seed48\\\\n===\\\\nNO: vla-only-spatial-seed49\\\\n===\\\\n{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.14,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}===\\\\nNO: vla-only-object-seed49\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root      83909  0.0  0.0   4364  1708 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02_seed44.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      83910  362  0.7 62105764 8145604 ?    Rl   04:30 212:31 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json\\nroot      85315  0.0  0.0   4364  1724 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json > logs/eval_goal_obs_only_norm02_seed45.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      85316  377  0.7 60322336 7662844 ?    Rl   04:30 219:10 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json\\nroot      86796  0.0  0.0   4364  1708 ?        S    04:31   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json > logs/eval_long_vla_only_seed47.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      86797  363  1.0 68176984 11190332 ?   Rl   04:31 209:19 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json\\nroot      88042  0.0  0.0   4364  1800 ?        S    04:31   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json > logs/eval_spatial_vla_only_seed48.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      88043  357  0.8 65489276 8938948 ?    Rl   04:31 203:57 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json\\nroot     105889  0.0  0.0   6088  3824 ?        Ss   05:15   0:00 tmux new-session -d -s eval-vla-only-spatial-seed49 rm -f /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed49.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed49.log 2>&1\\nroot     105890  0.0  0.0   4496  3620 pts/0    Ss+  05:15   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-spatial-seed49.exit; mkdir -p /t\\n\\n... [截断: 输出过长，省略 891 字符] ...\\n\\noot/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\\"\\nroot     105899  365  1.0 72964348 10609080 pts/0 Rl 05:15  48:21 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_spatial_vla_only_seed49.json\\nroot     106160  0.0  0.0   4496  3672 pts/1    Ss+  05:15   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-vla-only-object-seed49.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed49.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-vla-only-object-seed49.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed49.log 2>&1\\nroot     106168  0.0  0.0   2800  1064 pts/1    S    05:15   0:00 timeout 86400 env bash -c bash -c \\\"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\\"\\nroot     106169  393  1.0 74484476 10993824 pts/1 Rl 05:15  51:55 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 49 --K 1 --output_file logs/eval_object_vla_only_seed49.json\\n---TMUX---\\neval-vla-only-object-seed49: 1 windows (created Wed May 20 05:15:30 2026)\\neval-vla-only-spatial-seed49: 1 windows (created Wed May 20 05:15:27 2026)\\n---RESULTS---\\nNO: crm-goal-seed44\\n===\\nNO: crm-goal-seed45\\n===\\nNO: vla-only-spatial-seed48\\n===\\nNO: vla-only-spatial-seed49\\n===\\n{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.14,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}===\\nNO: vla-only-object-seed49\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to get the OpenVLA results from bjb2-28827 and also check the crm-goal-seed42 tmux session status. Let me also check bjb1-18228 for the crm-long-seed45 results.
+
+Let me also get the OpenVLA results from bjb2-28827.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "06a5e5ef-1022-46ba-bcbf-4e0aa020b74f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tVc83uSjYYqjWLdsfrdaf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13490,
+      "cache_read_input_tokens": 26067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13490
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Now fetching the OpenVLA results from bjb2-28827.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "ab9c5a05-b334-4f66-bb51-ad1c16a61c77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tVc83uSjYYqjWLdsfrdaf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13490,
+      "cache_read_input_tokens": 26067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13490
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AC3ALFqnBW8LFbz8iofjAM`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_openvla_seed42.json 2>/dev/null || echo \"NO: openvla\"; echo \"===LS===\"; ls -la /root/acr-vla-conformal-refinement/logs/eval_object_openvla*.json 2>/dev/null || echo \"NO openvla json files\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "799baed5-901e-4e57-be4a-573b3e456bdc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tVc83uSjYYqjWLdsfrdaf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13490,
+      "cache_read_input_tokens": 26067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13490
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T21:28:48.774Z_
+
+<details><summary>↩ Tool result · `toolu_01AC3ALFqnBW8LFbz8iofjAM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"NO: openvla\\n===LS===\\nNO openvla json files\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "45dec43a-3f6b-4587-8099-e1f63d99d670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NO: openvla\\\\n===LS===\\\\nNO openvla json files\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"NO: openvla\\n===LS===\\nNO openvla json files\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me compile all the results.
+
+## GPU Status
+
+### bjb2-40593 (1 GPU)
+| GPU | Util | Mem Used | Mem Total | Process | Idle? |
+|-----|------|----------|-----------|---------|-------|
+| 0 | 8% | 4496 MiB | 24564 MiB | eval-vla-only-object-seed48 (running) | No |
+
+
+Generating GPU status table... The openvla eval is likely running in that tmux session on GPU 4 despite not showing up in my process grep—the 23GB memory usage and 46% utilization are consistent with a 7B model running, so it's probably using a different script name than what I searched for. Looking at the ps output more carefully, I can see the calibrate_fmvd.py process is definitely running on GPU 1, but the grep filter might be hiding the openvla evaluate.py process that should be using GPU 4. It's possible the process is running inside the tmux session but either uses a different script name or the output got truncated in the grep results.
+
+Now I'm parsing through the bjb1-18228 results to match them against the order of my queries. I'm cross-referencing the process list from result 3 with the GPU metrics to verify which sessions are actually running on bjb1-18228. The GPU data shows varying utilization across four devices, but I need to reconcile this with the tmux sessions listed to make sure I'm matching the right processes to the right server. Looking at the process list more carefully, I see crm-long-seed45 is indeed running on bjb1-18228 as expected, though there's also a crm-goal-seed42 experiment on GPU 0 that wasn't part of the original request. Let me verify the full set of processes running on this server to make sure everything aligns with what was supposed to be scheduled. I'm noticing there are GPU allocation conflicts—multiple evaluation jobs are trying to use the same CUDA_VISIBLE_DEVICES settings, so GPU 0 and GPU 1 each have two processes competing for resources, while GPU 2 and 3 have single assignments. Looking at the GPU allocation across bjb1-18228, I can see there's significant contention on GPU 1 where two processes are sharing resources at 98% utilization with 8655 MiB allocated, while the other GPUs have lower utilization rates. Now checking the status on bjb1-32546, which has 6 GPUs available with varying utilization levels ranging from 8% to 36%. Looking at the GPU allocation across bjb1-32546, all six GPUs are currently occupied with evaluation jobs running different benchmark modes and seeds. Most of the results came back negative, but the vla-only-long-seed47 run on GPU 4 successfully found a solution.
+
+Now checking the results from bjb2-28827, where the crm-long-seed42 experiment achieved an overall success rate of 0.17, with performance varying significantly across tasks—some showing strong results like the stove moka pot task at 0.8, while others like the alphabet soup and cream cheese tasks scored zero. Now I'm looking at the performance metrics for additional model configurations, tracking success rates across different task variants and seed values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "2ab78711-8833-495e-a67a-6c0296a4d201",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016VDm3aEZoCLQdM4JD719Ag",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 39557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+All data collected. Here's the full report.
+
+---
+
+## 1. GPU 状态表
+
+### bjb2-40593 (1× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 8% | 4496/24564 MiB | eval-vla-only-object-seed48 | No |
+
+### bjb2-28827 (6× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 0% | 1/24564 MiB | — | **Yes** |
+| 1 | 16% | 3840/24564 MiB | calibrate_fmvd.py (k2_l2_calibration) | No |
+| 2 | 0% | 1/24564 MiB | — | **Yes** |
+| 3 | 0% | 1/24564 MiB | — | **Yes** |
+| 4 | 46% | 23005/24564 MiB | eval-openvla-object-baseline-seed42 (tmux) | No |
+| 5 | 0% | 1/24564 MiB | — | **Yes** |
+
+### bjb1-18228 (4× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 10% | 6348/24564 MiB | crm-goal-seed42 + crm-long-seed46 | No |
+| 1 | 98% | 8655/24564 MiB | vla-only-object-seed48 + vla-only-long-seed48 | No |
+| 2 | 22% | 5630/24564 MiB | vla-only-object-seed50 | No |
+| 3 | 27% | 2422/24564 MiB | crm-long-seed45 | No |
+
+### bjb1-32546 (6× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 8% | 5149/24564 MiB | vla-only-spatial-seed49 | No |
+| 1 | 36% | 1996/24564 MiB | crm-goal-seed44 | No |
+| 2 | 23% | 5167/24564 MiB | vla-only-object-seed49 | No |
+| 3 | 31% | 1996/24564 MiB | crm-goal-seed45 | No |
+| 4 | 20% | 3449/24564 MiB | vla-only-long-seed47 | No |
+| 5 | 20% | 3032/24564 MiB | vla-only-spatial-seed48 | No |
+
+---
+
+## 2. 已完成实验结果
+
+### crm-long-seed42 (bjb2-28827) — overall: **0.17**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| KITCHEN_SCENE6_mug_microwave | 0.4 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.2 |
+| STUDY_SCENE1_book_caddy | 0.2 |
+| LIVING_ROOM_SCENE6_mug_plate_pudding | 0.1 |
+| 其余 5 个 task | 0.0 |
+
+### crm-long-seed43 (bjb2-28827) — overall: **0.15**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| KITCHEN_SCENE6_mug_microwave | 0.3 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.2 |
+| STUDY_SCENE1_book_caddy | 0.2 |
+| 其余 6 个 task | 0.0 |
+
+### crm-long-seed44 (bjb2-28827) — overall: **0.20**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| KITCHEN_SCENE6_mug_microwave | 0.6 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.3 |
+| STUDY_SCENE1_book_caddy | 0.2 |
+| LIVING_ROOM_SCENE6_mug_plate_pudding | 0.1 |
+| 其余 5 个 task | 0.0 |
+
+### vla-only-object-seed47 (bjb2-28827) — overall: **0.10**
+| Task | Rate |
+|------|------|
+| salad_dressing | 0.2 |
+| bbq_sauce | 0.2 |
+| milk | 0.2 |
+| chocolate_pudding | 0.2 |
+| orange_juice | 0.2 |
+| 其余 5 个 task | 0.0 |
+
+### vla-only-long-seed47 (bjb1-32546) — overall: **0.14**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.4 |
+| STUDY_SCENE1_book_caddy | 0.1 |
+| LIVING_ROOM_SCENE6_mug_plate_pudding | 0.1 |
+| 其余 6 个 task | 0.0 |
+
+---
+
+## 3. 仍在运行（未出结果）
+
+| 实验 | 服务器 | GPU |
+|------|--------|-----|
+| crm-long-seed45 | bjb1-18228 | 3 |
+| crm-long-seed46 | bjb1-18228 | 0 |
+| crm-goal-seed42 | bjb1-18228 | 0 |
+| crm-goal-seed44 | bjb1-32546 | 1 |
+| crm-goal-seed45 | bjb1-32546 | 3 |
+| vla-only-long-seed48 | bjb1-18228 | 1 |
+| vla-only-object-seed48 | bjb2-40593 | 0 |
+| vla-only-object-seed48 | bjb1-18228 | 1 |
+| vla-only-object-seed49 | bjb1-32546 | 2 |
+| vla-only-object-seed50 | bjb1-18228 | 2 |
+| vla-only-spatial-seed48 | bjb1-32546 | 5 |
+| vla-only-spatial-seed49 | bjb1-32546 | 0 |
+| openvla-object-seed42 | bjb2-28827 | 4 |
+| calibrate_fmvd (k2_l2) | bjb2-28827 | 1 |
+
+---
+
+## 4. 空闲 GPU 列表
+
+| 服务器:GPU | 显存 |
+|-----------|------|
+| **bjb2-28827:0** | 24564 MiB |
+| **bjb2-28827:2** | 24564 MiB |
+| **bjb2-28827:3** | 24564 MiB |
+| **bjb2-28827:5** | 24564 MiB |
+
+共 **4 块空闲 GPU**，全在 bjb2-28827 上。其余 13 块 GPU 全部在跑实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "uuid": "0ead7819-3141-4fec-bca7-192b8b8a5c83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016VDm3aEZoCLQdM4JD719Ag",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 39557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+All data collected. Here's the full report.
+
+---
+
+## 1. GPU 状态表
+
+### bjb2-40593 (1× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 8% | 4496/24564 MiB | eval-vla-only-object-seed48 | No |
+
+### bjb2-28827 (6× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 0% | 1/24564 MiB | — | **Yes** |
+| 1 | 16% | 3840/24564 MiB | calibrate_fmvd.py (k2_l2_calibration) | No |
+| 2 | 0% | 1/24564 MiB | — | **Yes** |
+| 3 | 0% | 1/24564 MiB | — | **Yes** |
+| 4 | 46% | 23005/24564 MiB | eval-openvla-object-baseline-seed42 (tmux) | No |
+| 5 | 0% | 1/24564 MiB | — | **Yes** |
+
+### bjb1-18228 (4× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 10% | 6348/24564 MiB | crm-goal-seed42 + crm-long-seed46 | No |
+| 1 | 98% | 8655/24564 MiB | vla-only-object-seed48 + vla-only-long-seed48 | No |
+| 2 | 22% | 5630/24564 MiB | vla-only-object-seed50 | No |
+| 3 | 27% | 2422/24564 MiB | crm-long-seed45 | No |
+
+### bjb1-32546 (6× 4090)
+| GPU | 利用率 | 显存 | 运行实验 | 空闲? |
+|-----|--------|------|----------|-------|
+| 0 | 8% | 5149/24564 MiB | vla-only-spatial-seed49 | No |
+| 1 | 36% | 1996/24564 MiB | crm-goal-seed44 | No |
+| 2 | 23% | 5167/24564 MiB | vla-only-object-seed49 | No |
+| 3 | 31% | 1996/24564 MiB | crm-goal-seed45 | No |
+| 4 | 20% | 3449/24564 MiB | vla-only-long-seed47 | No |
+| 5 | 20% | 3032/24564 MiB | vla-only-spatial-seed48 | No |
+
+---
+
+## 2. 已完成实验结果
+
+### crm-long-seed42 (bjb2-28827) — overall: **0.17**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| KITCHEN_SCENE6_mug_microwave | 0.4 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.2 |
+| STUDY_SCENE1_book_caddy | 0.2 |
+| LIVING_ROOM_SCENE6_mug_plate_pudding | 0.1 |
+| 其余 5 个 task | 0.0 |
+
+### crm-long-seed43 (bjb2-28827) — overall: **0.15**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| KITCHEN_SCENE6_mug_microwave | 0.3 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.2 |
+| STUDY_SCENE1_book_caddy | 0.2 |
+| 其余 6 个 task | 0.0 |
+
+### crm-long-seed44 (bjb2-28827) — overall: **0.20**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| KITCHEN_SCENE6_mug_microwave | 0.6 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.3 |
+| STUDY_SCENE1_book_caddy | 0.2 |
+| LIVING_ROOM_SCENE6_mug_plate_pudding | 0.1 |
+| 其余 5 个 task | 0.0 |
+
+### vla-only-object-seed47 (bjb2-28827) — overall: **0.10**
+| Task | Rate |
+|------|------|
+| salad_dressing | 0.2 |
+| bbq_sauce | 0.2 |
+| milk | 0.2 |
+| chocolate_pudding | 0.2 |
+| orange_juice | 0.2 |
+| 其余 5 个 task | 0.0 |
+
+### vla-only-long-seed47 (bjb1-32546) — overall: **0.14**
+| Task | Rate |
+|------|------|
+| KITCHEN_SCENE3_stove_moka_pot | 0.8 |
+| LIVING_ROOM_SCENE5_mugs_plates | 0.4 |
+| STUDY_SCENE1_book_caddy | 0.1 |
+| LIVING_ROOM_SCENE6_mug_plate_pudding | 0.1 |
+| 其余 6 个 task | 0.0 |
+
+---
+
+## 3. 仍在运行（未出结果）
+
+| 实验 | 服务器 | GPU |
+|------|--------|-----|
+| crm-long-seed45 | bjb1-18228 | 3 |
+| crm-long-seed46 | bjb1-18228 | 0 |
+| crm-goal-seed42 | bjb1-18228 | 0 |
+| crm-goal-seed44 | bjb1-32546 | 1 |
+| crm-goal-seed45 | bjb1-32546 | 3 |
+| vla-only-long-seed48 | bjb1-18228 | 1 |
+| vla-only-object-seed48 | bjb2-40593 | 0 |
+| vla-only-object-seed48 | bjb1-18228 | 1 |
+| vla-only-object-seed49 | bjb1-32546 | 2 |
+| vla-only-object-seed50 | bjb1-18228 | 2 |
+| vla-only-spatial-seed48 | bjb1-32546 | 5 |
+| vla-only-spatial-seed49 | bjb1-32546 | 0 |
+| openvla-object-seed42 | bjb2-28827 | 4 |
+| calibrate_fmvd (k2_l2) | bjb2-28827 | 1 |
+
+---
+
+## 4. 空闲 GPU 列表
+
+| 服务器:GPU | 显存 |
+|-----------|------|
+| **bjb2-28827:0** | 24564 MiB |
+| **bjb2-28827:2** | 24564 MiB |
+| **bjb2-28827:3** | 24564 MiB |
+| **bjb2-28827:5** | 24564 MiB |
+
+共 **4 块空闲 GPU**，全在 bjb2-28827 上。其余 13 块 GPU 全部在跑实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 117094,
+  "duration_api_ms": 116299,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "23ab67ad-5e5e-4bb1-a285-ac4a44651daf",
+  "total_cost_usd": 0.46308375,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 28133,
+    "cache_read_input_tokens": 126239,
+    "output_tokens": 8884,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28133,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 6442,
+        "cache_read_input_tokens": 39557,
+        "cache_creation_input_tokens": 417,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 417
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1893,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0019879999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 8884,
+      "cacheReadInputTokens": 126239,
+      "cacheCreationInputTokens": 28133,
+      "webSearchRequests": 0,
+      "costUSD": 0.46109575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "012a20c6-5f59-4670-831e-f191270b2df9"
+}
+```
+
+</details>
+
+---

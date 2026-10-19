@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42bbb6a51b390960d4ec",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh harvest obs only seed45 check",
+  "task_key": "worker_ssh_harvest-obs-only-seed45-check_20260516T211308",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest-obs-only-seed45-check_20260516T211308_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "71f26ca6279db9c093b893de7de4cb676633a2cc929eccf8afa5734f51898097"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行**，最后一个 task（orange_juice）正在跑，已完成 5/10 rollouts。\n\n### 已完成 9/10 tasks，第 10 个进行中：\n\n| Task | Success | SR |\n|------|---------|-----|\n| alphabet_soup | 0/10 | 0% |\n| cream_cheese | 0/10 | 0% |\n| salad_dressing | 1/10 | 10% |\n| bbq_sauce | 4/10 | 40% |\n| ketchup | 1/10 | 10% |\n| tomato_sauce | 1/10 | 10% |\n| butter | 1/10 | 10% |\n| milk | 2/10 | 20% |\n| chocolate_pudding | 4/10 | 40% |\n| orange_juice | 1/5 (进行中) | — |\n\n**当前累计**: 已完成 9 个 task 共 14/90 成功，orange_juice 目前 1/5。\n\n按当前趋势估算（假设 orange_juice 最终 ~2/10），overall_sr 大约在 **16/100 = 16%** 左右。\n\norange_juice 还剩 5 个 rollouts，预计很快完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-obs-only-seed45-check.md"
+}

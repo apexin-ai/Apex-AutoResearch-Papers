@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "162e45fd636ac84cf2d9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval crm goal seed45",
+  "task_key": "worker_analyze_eval-crm-goal-seed45_20260519T205121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-crm-goal-seed45_20260519T205121_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "ec6fda3a08f0230259ccb58374e8910aef113e427c92dea5074fb1c0e1651499"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 session 无 cron job，可能是在其他 session 创建的，已不存在。\n\n**诊断结果：**\n- `eval-crm-goal-seed45` tmux session DEAD，进程在 3/10 task 后被杀（SIGKILL，dmesg 无 OOM 记录）\n- 已完成的 3 个 task：open_middle_drawer 70%, bowl_on_stove 90%, wine_bottle_on_cabinet 40%\n- 无 JSON 输出文件\n- Registry 已更新：status=DONE, conclusion=failed, failure_reason 已记录\n- 需要重跑此实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-crm-goal-seed45.md"
+}

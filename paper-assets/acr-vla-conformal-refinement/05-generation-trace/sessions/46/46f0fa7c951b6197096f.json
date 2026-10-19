@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46f0fa7c951b6197096f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy canonical k10 bjb2 bjb1",
+  "task_key": "worker_deploy_canonical-k10-bjb2-bjb1_20260525T011734",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_canonical-k10-bjb2-bjb1_20260525T011734_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "90800c50d91e911ae0a59781358fa46dafc914c39aafee5070691d5da5a3ac4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部已被部署并注册：\n\n| 实验 | 服务器 | GPU | 状态 | 提交时间 |\n|------|--------|-----|------|----------|\n| eval-canonical-adaptive-k10-spatial-s43 | bjb2-28827 | cuda:4 | RUNNING | 2026-05-24T23:07:19Z |\n| eval-canonical-adaptive-k10-spatial-s44 | bjb2-28827 | cuda:5 | RUNNING | 2026-05-24T23:07:25Z |\n| eval-canonical-adaptive-k10-spatial-s48 | bjb1-32546 | cuda:2 | RUNNING | 2026-05-24T23:07:31Z |\n| eval-canonical-adaptive-k10-spatial-s49 | bjb1-32546 | cuda:3 | RUNNING | 2026-05-24T23:07:38Z |\n\nRegistry 中 hypothesis 和 spec 均已完整填写。所有 4 个实验已由另一个 Worker 在昨晚 23:07 提交，当前正在正常运行（进程活跃，GPU 内存占用 ~6.2GB/~10.9GB）。无需重复操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-canonical-k10-bjb2-bjb1.md"
+}

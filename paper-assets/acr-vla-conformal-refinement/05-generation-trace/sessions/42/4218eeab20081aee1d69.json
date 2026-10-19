@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4218eeab20081aee1d69",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code smolvla lerobot eval",
+  "task_key": "worker_code_smolvla-lerobot-eval_20260522T105040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_smolvla-lerobot-eval_20260522T105040_result.json",
+    "occurrence": 1,
+    "bytes": 1556,
+    "sha256": "4dfc2bbd7f5010a5e8a5aaea401647eccabb718dd0fe7dbeab8d80a75a05f65a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断总结\n\n**根因确认：模型不匹配 + wrapper 有 bug**\n\n| 配置 | LIBERO-Object 成功率 |\n|------|---------------------|\n| 论文（多任务 40 task, 100K steps, bs=64） | 96% |\n| 官方 lerobot pipeline + 当前模型（spatial-only, 25K steps） | **66.5%** |\n| 我们的 wrapper + 当前模型 | **10.8%** |\n\n**两个独立问题：**\n\n1. **模型差距（66.5% → 96%）**：当前模型 `pepijn223/smolvla_libero`（= `lerobot/smolvla_libero`）只在 libero_spatial 上训练了 25K steps。论文用的是 ALL 40 tasks 联合训练 100K steps 的 checkpoint，该 checkpoint **未公开发布**。GitHub issue #3287 也有人报告相同复现困难。\n\n2. **Wrapper bug（10.8% → 66.5%）**：即使用同一个模型，我们的 evaluate.py 比官方 pipeline 低 6 倍，说明 wrapper 有实现错误。可能原因：\n   - 缺少 open-loop chunk replay（50 步 action chunk 一次性执行）\n   - state 维度处理错误（模型期望 6D）\n   - 图像预处理差异\n\n**下一步建议：** 修 wrapper 可以提升到 ~66%，但要达到 96% 需要自己训练多任务模型（100K steps on all 40 LIBERO tasks）。\n\nSources:\n- [SmolVLA Paper (arXiv)](https://arxiv.org/html/2506.01844v1)\n- [GitHub Issue #3287 - Reproduction difficulty](https://github.com/huggingface/lerobot/issues/3287)\n- [MarkTechPost - SmolVLA overview](https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-smolvla-lerobot-eval.md"
+}

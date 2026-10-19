@@ -1,0 +1,1750 @@
+{
+  "schema_version": "1.0",
+  "id": "544ce85fef9198d3f692",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "research analysis prep",
+  "task_key": "worker_research_analysis-prep_20260515T052922",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_research_analysis-prep_20260515T052922.jsonl",
+    "occurrence": 1,
+    "bytes": 123286,
+    "sha256": "b0f77307434ca504a658db5bb19fb72269e4b405bfc1e9d69556e3cfce7a2c53"
+  },
+  "statistics": {
+    "messages": 87,
+    "user_turns": 0,
+    "tool_calls": 43,
+    "roles": {
+      "tool_call": 43,
+      "tool_result": 43,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T05:37:46.766551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T05:37:46.766897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T05:37:46.767060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T05:37:46.767671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (121,872 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results/mcp-agent-ml-research-read_registry-1778822974775.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results/mcp-agent-ml-research-read_registry-1778822974775.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results/mcp-agent-ml-research-read_registry-1778822974775.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T05:37:46.767883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Analyze registry structure",
+              "prompt": "I need to understand the structure of the experiment registry for a VLA conformal refinement project. The registry data is in a JSON file at:\n\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results/mcp-agent-ml-research-read_registry-1778822974775.txt\n\nThis file has schema: {result: string} — the `result` field contains a string (likely YAML or JSON).\n\nI need you to:\n\n1. Probe the structure with jq (type/length/keys)\n2. Find ALL experiments related to:\n   - \"magnitude sweep\" or norm values (0.03, 0.05, 0.2, 0.3) — these should have per-task success rates for perdof and obs_only methods\n   - \"object benchmark\" — experiments on object tasks with methods like reconvla, perdof, obs_only, scalar, vla-mean, obs-only-norm02\n   - \"spatial\" experiments — especially baselines (vla-only, vla-mean, reconvla argmin) and any restart experiments\n3. For each relevant experiment, extract:\n   - experiment ID/name\n   - status\n   - method type (perdof, obs_only, scalar, reconvla, vla-mean, etc.)\n   - norm value if applicable\n   - per-task success rates (the actual task names and their SR values)\n   - overall metrics/conclusion\n\n4. Also tell me: what is the YAML structure of the registry file itself (at /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml)? I need to know the exact format so I can write Python scripts that parse it.\n\nReport everything verbatim — I need exact field names, exact experiment IDs, exact metric values. This is critical for writing analysis scripts.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T05:37:46.768087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results/mcp-agent-ml-research-read_registry-1778822974775.txt"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T05:37:46.768224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (51150 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T05:37:46.768380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T05:37:46.768506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (47029 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T05:37:46.768631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "limit": "200"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T05:37:46.768796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  mvp-point-reaching:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-13T01:22:10.415Z'\n7\t    updated_at: '2026-05-13T22:06:11.073Z'\n8\t    spec:\n9\t      hypothesis: Per-DOF uncertainty features carry more actionable information than\n10\t        scalar uncertainty summaries, enabling dimension-selective correction\n11\t      description: '3D point-reaching MVP: 3 MLP variants (scalar/per-DOF/no uncertainty)\n12\t        x 6 groups (3 anisotropy ratios x 2 uncertainty sources)'\n13\t      server: bjb2-40593\n14\t      gpu: cuda:0\n15\t      data_count: 20000\n16\t      model_name: CorrectionMLP(2-layer, 64-hidden)\n17\t      seed: 42\n18\t      command: python -u run_mvp.py\n19\t      data_path: synthetic (generated in-script)\n20\t      checkpoint_path: /root/acr-vla-conformal-refinement/mvp/\n21\t      log_path: /root/acr-vla-conformal-refinement/mvp/mvp_results.log\n22\t    conclusion: success\n23\t    completed_at: '2026-05-13T01:44:00.055Z'\n24\t    metrics:\n25\t      group1_oracle:\n26\t        A_scalar:\n27\t          mse_x: 0.180218\n28\t          mse_y: 0.02497\n29\t          mse_z: 0.024232\n30\t          total: 0.076473\n31\t        B_perDOF:\n32\t          mse_x: 0.172652\n33\t          mse_y: 0.015544\n34\t          mse_z: 0.01561\n35\t          total: 0.067935\n36\t        C_none:\n37\t          mse_x: 0.22706\n38\t          mse_y: 0.025542\n39\t          mse_z: 0.024753\n40\t          total: 0.092451\n41\t      group2_oracle:\n42\t        A_scalar:\n43\t          mse_x: 0.064642\n44\t          mse_y: 0.023836\n45\t          mse_z: 0.022967\n46\t          total: 0.037148\n47\t        B_perDOF:\n48\t          mse_x: 0.053403\n49\t          mse_y: 0.015695\n50\t          mse_z: 0.01573\n51\t          total: 0.028276\n52\t        C_none:\n53\t          mse_x: 0.084178\n54\t          mse_y: 0.025427\n55\t          mse_z: 0.024798\n56\t          total: 0.044801\n57\t      group3_oracle:\n58\t        A_scalar:\n59\t          mse_x: 0.042948\n60\t          mse_y: 0.023218\n61\t          mse_z: 0.022365\n62\t   \n…[truncated 4968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T05:37:46.768955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results/mcp-agent-ml-research-read_registry-1778822974775.txt",
+              "limit": "100"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T05:37:46.769079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (51150 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T05:37:46.769201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "200",
+              "limit": "300"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T05:37:46.769422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t      data_path: /root/autodl-tmp/libero_data/ (spatial)\n201\t      data_count: 10 tasks x 3 rollouts x 300 steps\n202\t      model_name: lerobot/smolvla_libero (450M, full fine-tuned on libero_spatial)\n203\t      seed: 42\n204\t      hypothesis: Validate smolvla_libero checkpoint with fixed wrapper (correct state\n205\t        repr, 256x256 images, 7D action) achieves >50% success on libero_spatial\n206\t      log_path: /tmp/eval_spatial_full.log\n207\t      checkpoint_source: lerobot/smolvla_libero (HuggingFace community checkpoint)\n208\t      failure_reason: 'smolvla_libero 0% on spatial - 6 wrapper bugs: image flip/size/normalization,\n209\t        state 6D→8D, state normalization, action denormalization all missing'\n210\t      checkpoint_path: N/A\n211\t    conclusion: failed\n212\t    completed_at: '2026-05-13T15:45:51.082Z'\n213\t  precompute-shard0:\n214\t    status: DONE\n215\t    retry_count: 0\n216\t    created_at: '2026-05-13T11:57:45.284Z'\n217\t    updated_at: '2026-05-13T15:26:05.433Z'\n218\t    spec:\n219\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n220\t        base && cd /root/acr-vla-conformal-refinement && python -u src/train_crm.py\n221\t        --precompute --benchmark spatial object --max_demos_per_task 10 --shard_id\n222\t        0 --num_shards 3 --seed 42 --K 10\"\n223\t      server: bjb1-18228\n224\t      gpu:\n225\t      - cuda:1\n226\t      pid: '46966'\n227\t      log_path: ~/runs/acr-vla-conformal-refinement/precompute-shard0.log\n228\t      submitted_at: '2026-05-13T11:57:45.270Z'\n229\t      submitted_via: submit_training_job\n230\t      backend: tmux\n231\t      account: root\n232\t      checkpoint_path: /root/autodl-tmp/crm_cache/\n233\t      wall_clock_seconds: 12500.2\n234\t      gpu_hours: 3.47\n235\t    conclusion: success\n236\t    completed_at: '2026-05-13T15:26:05.433Z'\n237\t  precompute-shard1:\n238\t    status: DONE\n239\t    retry_count: 0\n240\t    created_at: '2026-05-13T11:57:46.669Z'\n241\t    updated_at: '2026-05-13T15:26:06.485Z'\n242\t    spec:\n\n…[truncated 11537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T05:37:46.769674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\nprint('Top-level keys:', list(data.keys()))\nprint('Type of result:', type(data.get('result')))\nprint('First 500 chars of result:', data['result'][:500])\n\"",
+              "description": "Probe the JSON structure of the registry tool result file"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T05:37:46.769880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Top-level keys: ['result']\nType of result: <class 'str'>\nFirst 500 chars of result: {\"success\": true, \"data\": {\"experiments\": {\"eval-mag-obsonly-norm003\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:21:24.009Z\", \"updated_at\": \"2026-05-15T05:22:57.556Z\", \"hypothesis\": \"Magnitude sweep: obs_only CRM v3-norm at norm=0.03 on spatial. Completes obs_only norm curve (have 0.05, 0.2; adding 0.03).\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --max_correction_norm 0.03 --n_rollouts 10 --K 10 --smolvla_path /root/autodl"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T05:37:46.770087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nprint('Inner keys:', list(inner.keys()))\nprint('Inner data keys:', list(inner['data'].keys()))\nexps = inner['data']['experiments']\nprint('Number of experiments:', len(exps))\nprint('Experiment IDs:')\nfor k in exps:\n    print(f'  {k}')\n\"",
+              "description": "Parse the nested JSON structure and list all experiment IDs"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T05:37:46.770305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inner keys: ['success', 'data', 'error', 'metadata']\nInner data keys: ['experiments', 'count', 'total', 'baseline']\nNumber of experiments: 92\nExperiment IDs:\n  eval-mag-obsonly-norm003\n  eval-acr-object-obs-only-norm02\n  eval-acr-spatial-v4-small-r2\n  eval-mag-obsonly-norm003-b2\n  eval-acr-spatial-v4-obs-only-r3\n  eval-acr-spatial-v4-scalar-r2\n  eval-argmin-only-spatial-r2\n  eval-acr-object-v4-default\n  eval-vla-only-object-k1\n  eval-acr-spatial-v4-obs-only-r2\n  eval-acr-spatial-v4-small\n  eval-acr-spatial-v4-scalar\n  eval-argmin-only-spatial\n  eval-vla-only-object\n  eval-vla-mean-object\n  eval-acr-object-v4-scalar\n  eval-acr-object-v4-obs-only\n  eval-acr-object-v4-perdof\n  eval-reconvla-object\n  eval-mag-perdof-norm003\n  eval-mag-perdof-norm005\n  eval-mag-perdof-norm02\n  eval-mag-perdof-norm03\n  eval-mag-obsonly-norm005\n  eval-mag-obsonly-norm02\n  eval-acr-spatial-v4-default-r3\n  eval-acr-object-v4-scalar-b2\n  eval-acr-object-v4-obs-only-b2\n  eval-tiny-correction-spatial\n  eval-vla-mean-spatial-t10\n  eval-vla-mean-spatial\n  eval-acr-spatial-v4-default-r2\n  eval-acr-spatial-v4-obs-only\n  eval-acr-spatial-v4-default\n  crm-train-v3-norm-scalar-unc\n  crm-train-v3-norm-obs-only\n  eval-acr-object-v3\n  eval-acr-spatial-v3\n  crm-train-v3-norm\n  crm-train-v3-scalar-unc\n  crm-train-v3-obs-only\n  crm-train-v3-perdof\n  eval-obs-only-spatial-v3\n  eval-scalar-unc-spatial-v2\n  eval-obs-only-spatial-v2\n  eval-obs-only-spatial\n  crm-train-v2-obs-only\n  crm-train-v2-scalar-unc\n  crm-train-v2-perdof\n  eval-reconvla-spatial-v3\n  precompute-v5-shard2\n  precompute-v5-shard1\n  precompute-v5-shard0\n  crm-train-a4-scalar-unc\n  crm-train-a3-obs-only\n  crm-train-v1\n  crm-train-k5\n  eval-scalar-unc-spatial\n  eval-acr-spatial-v2\n  eval-k5-spatial\n  eval-object-v8-full\n  eval-spatial-v7-full\n  eval-object-v7-full\n  eval-spatial-v6-full\n  eval-object-v5-full\n  eval-object-v6-full\n  eval-acr-vla-spatial-v1\n  eval-acr-spatial-v1\n  eval-reconvla-spatial-v2\n  eval-object-v4-full\n  eval-spatial-v5-fu\n…[truncated 486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T05:37:46.770541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Magnitude sweep experiments\nmag_keys = [k for k in exps if 'mag' in k.lower()]\nprint('=== MAGNITUDE SWEEP EXPERIMENTS ===')\nfor k in mag_keys:\n    e = exps[k]\n    print(f'\\n--- {k} ---')\n    print(json.dumps(e, indent=2))\n\" 2>&1 | head -500",
+              "description": "Extract all magnitude sweep experiments from the registry"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T05:37:46.770774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== MAGNITUDE SWEEP EXPERIMENTS ===\n\n--- eval-mag-obsonly-norm003 ---\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T05:21:24.009Z\",\n  \"updated_at\": \"2026-05-15T05:22:57.556Z\",\n  \"hypothesis\": \"Magnitude sweep: obs_only CRM v3-norm at norm=0.03 on spatial. Completes obs_only norm curve (have 0.05, 0.2; adding 0.03).\",\n  \"spec\": {\n    \"command\": \"python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --max_correction_norm 0.03 --n_rollouts 10 --K 10 --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_mag_obsonly_norm003.json\",\n    \"server\": \"bjb2-40593\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": 225144,\n    \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-mag-obsonly-norm003-b2.log\",\n    \"submitted_at\": \"2026-05-15T05:20:45Z\",\n    \"submitted_via\": \"tmux (manual)\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"LIBERO spatial benchmark\",\n    \"data_count\": \"10 tasks x 10 rollouts\",\n    \"model_name\": \"SmolVLA + CRM-v3-norm-obs_only\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"crm-train-v3-norm-obs_only\",\n    \"eval_data\": \"LIBERO spatial\"\n  }\n}\n\n--- eval-mag-obsonly-norm003-b2 ---\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T05:20:45.606Z\",\n  \"updated_at\": \"2026-05-15T05:21:50.988Z\",\n  \"spec\": {\n    \"command\": \"python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_mag_obsonly_norm003.json\",\n    \"server\": \"bjb2-40593\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"225139\",\n    \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-mag-obsonly-norm003-b2.log\",\n    \"submitted_at\": \"2026-05-15T05:20:45.407Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_pat\n…[truncated 5133 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T05:37:46.770993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Object benchmark experiments\nobj_keys = [k for k in exps if 'object' in k.lower()]\nprint('=== OBJECT BENCHMARK EXPERIMENTS ===')\nfor k in obj_keys:\n    e = exps[k]\n    print(f'\\n--- {k} ---')\n    print(json.dumps(e, indent=2))\n\" 2>&1 | head -800",
+              "description": "Extract all object benchmark experiments from the registry"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T05:37:46.771242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== OBJECT BENCHMARK EXPERIMENTS ===\n\n--- eval-acr-object-obs-only-norm02 ---\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T05:20:46.639Z\",\n  \"updated_at\": \"2026-05-15T05:22:09.374Z\",\n  \"spec\": {\n    \"hypothesis\": \"obs-only CRM with norm=0.2 on object benchmark. Cross-benchmark norm sensitivity test \\u2014 paired with eval-mag-obsonly-norm02 on spatial. If obs-only at norm=0.2 > norm=0.1 on both benchmarks \\u2192 robust 'observation-conditioned correction' story.\",\n    \"parent\": \"eval-acr-object-v4-obs-only\",\n    \"command\": \"python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02.json\",\n    \"server\": \"bjb1-32546\",\n    \"gpu\": \"cuda:4\",\n    \"pid\": 44270,\n    \"tmux_session\": \"eval-acr-object-obs-only-norm02\",\n    \"data_path\": \"LIBERO object benchmark (10 tasks)\",\n    \"data_count\": 100,\n    \"model_name\": \"crm_obs_only (327198 params)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\",\n    \"eval_data\": \"LIBERO object benchmark, 10 tasks x 10 rollouts\",\n    \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-acr-object-obs-only-norm02.log\"\n  }\n}\n\n--- eval-acr-object-v4-default ---\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T05:18:17.209Z\",\n  \"updated_at\": \"2026-05-15T05:18:42.236Z\",\n  \"hypothesis\": \"Ablation: perdof CRM v3-norm with DEFAULT max_correction_norm (~1.42, no magnitude control) on LIBERO object benchmark. Tests whether magnitude control is essential on object domain too. If v4-default << v4-perdof (norm=0.1) \\u2192 magnitude control is universally needed. If v4-default \\u2248 v4-perdof \\u2192 spatial failure was anomalous.\",\n  \"parent\": \"eval-acr-object-v4-perdof\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && cond\n…[truncated 20253 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T05:37:46.771451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Spatial experiments - ones with metrics/conclusions\nspatial_keys = [k for k in exps if 'spatial' in k.lower() and 'precompute' not in k.lower()]\nprint('=== SPATIAL EXPERIMENTS ===')\nfor k in spatial_keys:\n    e = exps[k]\n    status = e.get('status', 'N/A')\n    conclusion = e.get('conclusion', 'N/A')\n    metrics = e.get('metrics', {})\n    hypothesis = e.get('hypothesis', e.get('spec', {}).get('hypothesis', 'N/A'))\n    print(f'\\n--- {k} ---')\n    print(f'  status: {status}')\n    print(f'  conclusion: {conclusion}')\n    print(f'  hypothesis: {hypothesis}')\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics, indent=4)}')\n    else:\n        print(f'  metrics: (none)')\n\" 2>&1",
+              "description": "Extract all spatial experiments with their metrics"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T05:37:46.771647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== SPATIAL EXPERIMENTS ===\n\n--- eval-acr-spatial-v4-small-r2 ---\n  status: RUNNING\n  conclusion: N/A\n  hypothesis: Restart from T7. ACR-VLA perdof CRM v3-norm with max_correction_norm=0.1 on spatial. Full per-DOF uncertainty pipeline.\n  metrics: (none)\n\n--- eval-acr-spatial-v4-obs-only-r3 ---\n  status: RUNNING\n  conclusion: N/A\n  hypothesis: Restart from T6. obs_only CRM v3-norm with max_correction_norm=0.1 on spatial. If obs_only >= perdof, conformal features need restructuring.\n  metrics: (none)\n\n--- eval-acr-spatial-v4-scalar-r2 ---\n  status: RUNNING\n  conclusion: N/A\n  hypothesis: Restart from T3. scalar_unc CRM v3-norm with max_correction_norm=0.1 on spatial. Three-way ablation: perdof vs scalar_unc vs obs_only.\n  metrics: (none)\n\n--- eval-argmin-only-spatial-r2 ---\n  status: RUNNING\n  conclusion: N/A\n  hypothesis: Restart from T9. ReconVLA baseline (scalar Euclidean argmin, K=10) on spatial. Isolate argmin base action selection from CRM correction.\n  metrics: (none)\n\n--- eval-acr-spatial-v4-obs-only-r2 ---\n  status: DONE\n  conclusion: failed\n  hypothesis: D020: obs_only CRM v3-norm (val_loss 0.0165) with max_correction_norm=0.1. If obs_only >= v4-small (perdof) → Claim 1 needs restructuring. If obs_only < v4-small → conformal features have unique value under distribution shift.\n  metrics: {\n    \"tasks_done\": \"6/10\",\n    \"partial_results\": {\n        \"between_plate_and_ramekin\": \"90.0% (9/10)\",\n        \"next_to_ramekin\": \"100.0% (10/10)\",\n        \"from_table_center\": \"0.0% (0/10)\",\n        \"on_cookie_box\": \"40.0% (4/10)\",\n        \"in_top_drawer\": \"10.0% (1/10)\",\n        \"on_ramekin\": \"0.0% (0/10)\"\n    },\n    \"running_avg_6tasks\": \"40.0% (24/60)\",\n    \"snapshot_time\": \"2026-05-15T12:00:00Z\",\n    \"server\": \"bjb1-18228\",\n    \"gpu\": \"cuda:0\",\n    \"pid\": 270097\n}\n\n--- eval-acr-spatial-v4-small ---\n  status: DONE\n  conclusion: failed\n  hypothesis: D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-d\n…[truncated 10876 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T05:37:46.771816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Find experiments with per_task metrics\nprint('=== EXPERIMENTS WITH per_task SUCCESS RATES ===')\nfor k, e in exps.items():\n    m = e.get('metrics', {})\n    if 'per_task' in m:\n        print(f'\\n--- {k} ---')\n        print(f'  status: {e.get(\\\"status\\\")}')\n        print(f'  conclusion: {e.get(\\\"conclusion\\\")}')\n        print(f'  overall_sr: {m.get(\\\"overall_success_rate\\\", m.get(\\\"overall_sr\\\", \\\"N/A\\\"))}')\n        print(f'  per_task:')\n        for task, sr in m['per_task'].items():\n            print(f'    {task}: {sr}')\n\" 2>&1",
+              "description": "Find all experiments that have per_task success rate data"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T05:37:46.771955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== EXPERIMENTS WITH per_task SUCCESS RATES ===\n\n--- eval-vla-only-object ---\n  status: DONE\n  conclusion: success\n  overall_sr: 0.12\n  per_task:\n    alphabet_soup: 0\n    cream_cheese: 0.1\n    salad_dressing: 0.2\n    bbq_sauce: 0.2\n    ketchup: 0\n    tomato_sauce: 0.1\n    butter: 0\n    milk: 0.1\n    chocolate_pudding: 0.2\n    orange_juice: 0.3\n\n--- eval-reconvla-spatial-v3 ---\n  status: DONE\n  conclusion: success\n  overall_sr: 0.34\n  per_task:\n    pick_up_black_bowl_between_plate_and_ramekin: 0.6\n    pick_up_black_bowl_next_to_ramekin: 1\n    pick_up_black_bowl_from_table_center: 0\n    pick_up_black_bowl_on_cookie_box: 0.3\n    pick_up_black_bowl_in_top_drawer: 0.1\n    pick_up_black_bowl_on_ramekin: 0.1\n    pick_up_black_bowl_next_to_cookie_box: 0.9\n    pick_up_black_bowl_on_stove: 0\n    pick_up_black_bowl_next_to_plate: 0.4\n    pick_up_black_bowl_on_wooden_cabinet: 0\n\n--- eval-object-v8-full ---\n  status: DONE\n  conclusion: success\n  overall_sr: 0.13\n  per_task:\n    alphabet_soup: 0\n    cream_cheese: 0\n    salad_dressing: 0.2\n    bbq_sauce: 0.3\n    ketchup: 0\n    tomato_sauce: 0.1\n    butter: 0.1\n    milk: 0.2\n    chocolate_pudding: 0.2\n    orange_juice: 0.2\n\n--- eval-spatial-v7-full ---\n  status: DONE\n  conclusion: success\n  overall_sr: 0.3\n  per_task:\n    pick_up_black_bowl_between_plate_and_ramekin: 0.6\n    pick_up_black_bowl_next_to_ramekin: 1\n    pick_up_black_bowl_from_table_center: 0\n    pick_up_black_bowl_on_cookie_box: 0.2\n    pick_up_black_bowl_in_top_drawer: 0\n    pick_up_black_bowl_on_ramekin: 0\n    pick_up_black_bowl_next_to_cookie_box: 0.9\n    pick_up_black_bowl_on_stove: 0\n    pick_up_black_bowl_next_to_plate: 0.3\n    pick_up_black_bowl_on_wooden_cabinet: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T05:37:46.772105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Get ALL experiments with partial_results (in-progress snapshots)\nprint('=== EXPERIMENTS WITH partial_results ===')\nfor k, e in exps.items():\n    m = e.get('metrics', {})\n    if 'partial_results' in m:\n        print(f'\\n--- {k} ---')\n        print(f'  status: {e.get(\\\"status\\\")}')\n        print(f'  conclusion: {e.get(\\\"conclusion\\\")}')\n        print(f'  tasks_done: {m.get(\\\"tasks_done\\\", \\\"N/A\\\")}')\n        print(f'  running_avg: {m.get(\\\"running_avg_7tasks\\\", m.get(\\\"running_avg_6tasks\\\", m.get(\\\"running_avg_9tasks\\\", m.get(\\\"running_avg_3tasks\\\", m.get(\\\"running_avg_1task\\\", \\\"N/A\\\")))))}')\n        print(f'  partial_results:')\n        for task, sr in m['partial_results'].items():\n            print(f'    {task}: {sr}')\n\" 2>&1",
+              "description": "Extract all experiments with partial_results snapshots"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T05:37:46.772245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== EXPERIMENTS WITH partial_results ===\n\n--- eval-acr-spatial-v4-obs-only-r2 ---\n  status: DONE\n  conclusion: failed\n  tasks_done: 6/10\n  running_avg: 40.0% (24/60)\n  partial_results:\n    between_plate_and_ramekin: 90.0% (9/10)\n    next_to_ramekin: 100.0% (10/10)\n    from_table_center: 0.0% (0/10)\n    on_cookie_box: 40.0% (4/10)\n    in_top_drawer: 10.0% (1/10)\n    on_ramekin: 0.0% (0/10)\n\n--- eval-acr-spatial-v4-small ---\n  status: DONE\n  conclusion: failed\n  tasks_done: 7/10\n  running_avg: 42.9% (30/70)\n  partial_results:\n    between_plate_and_ramekin: 60.0% (6/10)\n    next_to_ramekin: 100.0% (10/10)\n    from_table_center: 10.0% (1/10)\n    on_cookie_box: 40.0% (4/10)\n    in_top_drawer: 0.0% (0/10)\n    on_ramekin: 0.0% (0/10)\n    next_to_cookie_box: 90.0% (9/10)\n\n--- eval-acr-spatial-v4-scalar ---\n  status: DONE\n  conclusion: failed\n  tasks_done: 3/10\n  running_avg: 56.7% (17/30)\n  partial_results:\n    between_plate_and_ramekin: 60.0% (6/10)\n    next_to_ramekin: 100.0% (10/10)\n    from_table_center: 10.0% (1/10)\n\n--- eval-argmin-only-spatial ---\n  status: DONE\n  conclusion: failed\n  tasks_done: 9/10\n  running_avg: 36.7% (33/90)\n  partial_results:\n    between_plate_and_ramekin: 60.0% (6/10)\n    next_to_ramekin: 100.0% (10/10)\n    from_table_center: 0.0% (0/10)\n    on_cookie_box: 30.0% (3/10)\n    in_top_drawer: 10.0% (1/10)\n    on_ramekin: 10.0% (1/10)\n    next_to_cookie_box: 90.0% (9/10)\n    on_stove: 0.0% (0/10)\n    next_to_plate: 30.0% (3/10)\n\n--- eval-vla-mean-object ---\n  status: RUNNING\n  conclusion: None\n  tasks_done: 1/10\n  running_avg: 0.0% (0/10)\n  partial_results:\n    pick_up_the_alphabet_soup: 0.0% (0/10)\n\n--- eval-acr-object-v4-scalar ---\n  status: RUNNING\n  conclusion: None\n  tasks_done: 1/10\n  running_avg: 0.0% (0/10)\n  partial_results:\n    pick_up_the_alphabet_soup: 0.0% (0/10)\n\n--- eval-acr-object-v4-obs-only ---\n  status: RUNNING\n  conclusion: None\n  tasks_done: 1/10\n  running_avg: 0.0% (0/10)\n  partial_results:\n    pick_up_the_alphabet_soup: 0.0% (\n…[truncated 743 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T05:37:46.772449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\n\n# Print metadata and baseline\nprint('=== METADATA ===')\nprint(json.dumps(inner.get('metadata', {}), indent=2))\nprint()\nprint('=== BASELINE ===')\nprint(json.dumps(inner['data'].get('baseline'), indent=2))\nprint()\nprint('=== COUNT/TOTAL ===')\nprint('count:', inner['data'].get('count'))\nprint('total:', inner['data'].get('total'))\n\" 2>&1",
+              "description": "Extract metadata, baseline, and counts from the registry"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T05:37:46.772583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== METADATA ===\n{\n  \"elapsed_seconds\": 0.2392\n}\n\n=== BASELINE ===\nnull\n\n=== COUNT/TOTAL ===\ncount: 92\ntotal: 92"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T05:37:46.772722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "500",
+              "limit": "300"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T05:37:46.772901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "500\t    created_at: '2026-05-13T18:58:09.830Z'\n501\t    updated_at: '2026-05-13T20:07:52.129Z'\n502\t    spec:\n503\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n504\t        base && cd /root/acr-vla-conformal-refinement && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n505\t        && python -u src/train_crm.py --precompute --benchmark spatial object --max_demos_per_task\n506\t        10 --shard_id 0 --num_shards 3 --seed 42 --K 10 --cache_dir /root/autodl-tmp/crm_cache/\n507\t        2>&1\"\n508\t      server: bjb1-18228\n509\t      gpu:\n510\t      - cuda:1\n511\t      pid: '69647'\n512\t      log_path: ~/runs/acr-vla-conformal-refinement/precompute-v4-shard0.log\n513\t      submitted_at: '2026-05-13T18:58:09.802Z'\n514\t      submitted_via: submit_training_job\n515\t      backend: tmux\n516\t      account: root\n517\t      checkpoint_path: /root/autodl-tmp/crm_cache/\n518\t    reproduce:\n519\t      finished_at: '2026-05-13T20:04:45.258Z'\n520\t    extra:\n521\t      hook_events:\n522\t      - event: on_complete\n523\t        action: agent\n524\t        ts: '2026-05-13T20:04:50.222546+00:00'\n525\t    conclusion: success\n526\t  precompute-v4-shard1:\n527\t    status: PREPARING\n528\t    retry_count: 0\n529\t    created_at: '2026-05-13T18:58:12.183Z'\n530\t    updated_at: '2026-05-13T20:07:53.062Z'\n531\t    spec:\n532\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n533\t        base && cd /root/acr-vla-conformal-refinement && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n534\t        && python -u src/train_crm.py --precompute --benchmark spatial object --max_demos_per_task\n535\t        10 --shard_id 1 --num_shards 3 --seed 42 --K 10 --cache_dir /root/autodl-tmp/crm_cache/\n536\t        2>&1\"\n537\t      server: bjb1-18228\n538\t      gpu:\n539\t      - cuda:2\n540\t      pid: '69793'\n541\t      log_path: ~/runs/acr-vla-conformal-refinement/precompute-v4-shard1.log\n542\t      submitted_at: '2026-05-13T18:58:12.154Z'\n543\t      submitted_via: submit_trai\n…[truncated 10764 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T05:37:46.773065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Show one complete experiment structure with all fields for understanding the schema\ne = exps['eval-acr-spatial-v4-small']\nprint('=== COMPLETE STRUCTURE: eval-acr-spatial-v4-small ===')\nprint(json.dumps(e, indent=2))\nprint()\n\n# Show field variations across experiments\nall_top_keys = set()\nall_spec_keys = set()\nall_metrics_keys = set()\nfor k, e in exps.items():\n    all_top_keys.update(e.keys())\n    if 'spec' in e:\n        all_spec_keys.update(e['spec'].keys())\n    if 'metrics' in e:\n        all_metrics_keys.update(e['metrics'].keys())\n\nprint('=== ALL TOP-LEVEL FIELDS (across all experiments) ===')\nfor k in sorted(all_top_keys):\n    print(f'  {k}')\nprint()\nprint('=== ALL SPEC FIELDS ===')\nfor k in sorted(all_spec_keys):\n    print(f'  {k}')\nprint()\nprint('=== ALL METRICS FIELDS ===')\nfor k in sorted(all_metrics_keys):\n    print(f'  {k}')\n\" 2>&1",
+              "description": "Extract complete structure schema for one experiment and all field names across experiments"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T05:37:46.773221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== COMPLETE STRUCTURE: eval-acr-spatial-v4-small ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T20:09:00.358Z\",\n  \"updated_at\": \"2026-05-15T05:05:19.028Z\",\n  \"hypothesis\": \"D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-default \\u2192 magnitude control needed on top of normalization.\",\n  \"spec\": {\n    \"command\": \"python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1\",\n    \"server\": \"bjb1-18228\",\n    \"gpu_ids\": [\n      \"cuda:3\"\n    ],\n    \"pid\": 253085,\n    \"data_path\": \"/root/autodl-tmp/libero_data/\",\n    \"data_count\": 100,\n    \"model_name\": \"ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\",\n    \"eval_data\": \"LIBERO spatial 10 tasks x 10 rollouts\",\n    \"log_path\": \"/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log\"\n  },\n  \"metrics\": {\n    \"tasks_done\": \"7/10\",\n    \"partial_results\": {\n      \"between_plate_and_ramekin\": \"60.0% (6/10)\",\n      \"next_to_ramekin\": \"100.0% (10/10)\",\n      \"from_table_center\": \"10.0% (1/10)\",\n      \"on_cookie_box\": \"40.0% (4/10)\",\n      \"in_top_drawer\": \"0.0% (0/10)\",\n      \"on_ramekin\": \"0.0% (0/10)\",\n      \"next_to_cookie_box\": \"90.0% (9/10)\"\n    },\n    \"running_avg_7tasks\": \"42.9% (30/70)\",\n    \"snapshot_time\": \"2026-05-15T12:00:00Z\",\n    \"server\": \"bjb1-18228\",\n    \"gpu\": \"cuda:3\",\n    \"pid\": 253085\n  },\n  \"notes\": \"[2026-05-15 corrected] \\u4e4b\\u524d\\u8bef\\u5224\\u4e3a env init hang\\uff0c\\u5b9e\\u9645\\u662f\\u88ab kill-restart Worker SIGTERM kill\\u3002\\u65e5\\u5fd7\\u65e0 error/traceback\\uff0c\\u7b26\\u5408 SIGTERM \\u7279\\u5f81\\u30027/10 tasks \\u5b8c\\u6210\\uff0c42.9% SR (30/70)\\u3002\\u9700\\u91cd\\u8dd1 tasks 8-10\\uff08\\u6216\\u5168\\u90e8\\u91cd\\u8dd1\\uff09\\u3002\",\n  \"conclusion\": \"failed\",\n  \"c\n…[truncated 2013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T05:37:46.773406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# CRM training experiments with metrics\ncrm_keys = [k for k in exps if 'crm-train' in k.lower()]\nprint('=== CRM TRAINING EXPERIMENTS ===')\nfor k in crm_keys:\n    e = exps[k]\n    print(f'\\n--- {k} ---')\n    print(f'  status: {e.get(\\\"status\\\")}')\n    print(f'  conclusion: {e.get(\\\"conclusion\\\")}')\n    m = e.get('metrics', {})\n    if m:\n        print(f'  metrics: {json.dumps(m, indent=4)}')\n    spec = e.get('spec', {})\n    print(f'  command: {spec.get(\\\"command\\\", \\\"N/A\\\")[:200]}')\n\" 2>&1",
+              "description": "Extract CRM training experiments with their metrics"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T05:37:46.773557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== CRM TRAINING EXPERIMENTS ===\n\n--- crm-train-v3-norm-scalar-unc ---\n  status: DONE\n  conclusion: success\n  metrics: {\n    \"best_epoch\": 46,\n    \"best_val_loss\": 0.037354,\n    \"final_train_loss\": 0.053422,\n    \"final_val_loss\": 0.03737\n}\n  command: python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_v5 --output_dir /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/ --K 10 --epochs 50 --batch_size 512 --lr 0.01\n\n--- crm-train-v3-norm-obs-only ---\n  status: DONE\n  conclusion: success\n  metrics: {\n    \"best_epoch\": 48,\n    \"best_val_loss\": 0.01645,\n    \"final_train_loss\": 0.025576,\n    \"final_val_loss\": 0.01645,\n    \"total_epochs\": 50\n}\n  command: python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_v5 --output_dir /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/ --K 10 --epochs 50 --batch_size 512 --lr 0.016 \n\n--- crm-train-v3-norm ---\n  status: DONE\n  conclusion: success\n  command: CUDA_VISIBLE_DEVICES=1 python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache_v5 --output_dir /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/ --K 10 --epochs 50 --batch\n\n--- crm-train-v3-scalar-unc ---\n  status: DONE\n  conclusion: killed\n  metrics: {\n    \"invalidation_reason\": \"Trained on bjb2 crm_cache v4 (6D state, pre-D016). Must retrain on bjb1 crm_cache_v5 (8D state).\",\n    \"original_val_loss\": 1.195\n}\n  command: python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache/ --output_dir /root/autodl-tmp/checkpoints/crm_v3/scalar_unc/ --K 10 --epochs 50 --batch_size 512 --lr 0.016 --inp\n\n--- crm-train-v3-obs-only ---\n  status: DONE\n  conclusion: killed\n  metrics: {\n    \"invalidation_reason\": \"Trained on bjb2 crm_cache v4 (6D state, pre-D016). Must retrain on bjb1 crm_cache_v5 (8D state).\",\n    \"original_val_loss\": 1.193424\n}\n  command: python -u src/train_crm.py --benchmark spatial --cache_dir /root/autodl-tmp/crm_cache/ --output_dir /root/autodl-tmp/checkpo\n…[truncated 3943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T05:37:46.773707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/42c1dfaf-1f34-4bb6-8503-bb3034ef7b4c/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778822974775.txt') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Get experiments with 'results' field (different from 'metrics')\nfor k, e in exps.items():\n    if 'results' in e:\n        print(f'\\n--- {k} (has results field) ---')\n        print(json.dumps(e['results'], indent=2))\n\" 2>&1",
+              "description": "Check for experiments with a 'results' field distinct from 'metrics'"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T05:37:46.773838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- crm-train-v3-norm (has results field) ---\n{\n  \"best_epoch\": 47,\n  \"best_val_loss\": 0.03578,\n  \"final_train_loss\": 0.04992,\n  \"final_val_loss\": 0.03578,\n  \"total_epochs\": 50,\n  \"normalization\": \"per-feature input normalization (mean/std stored in crm_best.pt as input_mean/input_std tensors)\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T05:37:46.773963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "800",
+              "limit": "300"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T05:37:46.774126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "800\t      model_name: CRM-obs_only\n801\t      seed: 42\n802\t      hypothesis: CRM without conformal features (obs_only, 990D input) performs significantly\n803\t        worse than full CRM (1030D), validating that per-DOF conformal features are\n804\t        necessary for effective correction\n805\t      checkpoint_path: /root/autodl-tmp/checkpoints/crm/obs_only/crm_best.pt\n806\t      log_path: /root/autodl-tmp/checkpoints/crm/obs_only/train.log\n807\t    conclusion: killed\n808\t    completed_at: '2026-05-13T23:43:51.534Z'\n809\t    metrics:\n810\t      best_val_loss: 0.018312\n811\t      best_epoch: 4\n812\t      early_stopped_at_epoch: ~15-20\n813\t      early_stop_reason: 'val_loss plateau at 0.018 for 10+ epochs (full CRM: 0.009,\n814\t        2x gap confirms conformal features are critical)'\n815\t      input_dim: 990\n816\t      params: 327966\n817\t    conclusion_note: invalidated by D016 C1 fix, 6D state mismatch — checkpoint trained\n818\t      on wrong features\n819\t  eval-acr-vla-spatial-v1:\n820\t    status: DONE\n821\t    retry_count: 0\n822\t    created_at: '2026-05-13T22:56:40.287Z'\n823\t    updated_at: '2026-05-13T23:14:22.561Z'\n824\t    spec:\n825\t      command: python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts\n826\t        10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm/crm_best.pt\n827\t        --output_file /root/autodl-tmp/eval_results/acr_vla_spatial_v1.json\n828\t      server: bjb1-18228\n829\t      data_path: LIBERO spatial benchmark (10 tasks)\n830\t      data_count: 100\n831\t      model_name: ACR-VLA (SmolVLA + CRM perdof)\n832\t      seed: 42\n833\t      checkpoint_source: /root/autodl-tmp/checkpoints/crm/crm_best.pt\n834\t      eval_data: LIBERO spatial, 10 tasks x 10 rollouts\n835\t      parent: train-crm-v1\n836\t      failure_reason: 'P0 bug: evaluate.py env.reset() 覆盖 set_init_state 的 demo 初始状态，结果不可信。已被\n837\t        eval-acr-spatial-v2 替代'\n838\t    conclusion: killed\n839\t    completed_at: '2026-05-13T23:13:00.422Z'\n840\t  eval-spatial-v6-full:\n841\t    s\n…[truncated 11699 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T05:37:46.774414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive data. Here is the complete report.\n\n---\n\n## REGISTRY YAML STRUCTURE\n\nFile: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml`\n\n```yaml\nbaseline: null\nexperiments:\n  <experiment-id>:           # string key, e.g. \"eval-acr-spatial-v4-small\"\n    status: DONE|RUNNING|PREPARING\n    retry_count: 0\n    created_at: '2026-05-13T01:22:10.415Z'\n    updated_at: '2026-05-13T22:06:11.073Z'\n    hypothesis: <string>     # sometimes at top level, sometimes inside spec\n    spec:\n      command: <string>\n      server: <string>       # e.g. \"bjb1-18228\", \"bjb2-40593\", \"autodl-4090\"\n      gpu: [cuda:0]          # list; sometimes gpu_ids instead\n      pid: <string|int>\n      log_path: <string>\n      submitted_at: <string>\n      submitted_via: <string>\n      backend: tmux\n      account: root\n      data_path: <string>\n      data_count: <int|string>\n      model_name: <string>\n      seed: 42\n      checkpoint_source: <string>\n      checkpoint_path: <string>\n      eval_data: <string>\n      failure_reason: <string>       # sometimes here, sometimes at top level\n      wall_clock_seconds: <float>\n      gpu_hours: <float>\n      description: <string>\n      fixes_applied: [<string>]\n      parent: <string>              # parent experiment ID\n      tmux_session: <string>\n      note: <string>\n    conclusion: success|failed|killed|null\n    conclusion_note: <string>\n    completed_at: <string>\n    failure_reason: <string>\n    notes: <string>\n    parent: <string>\n    gpu: <string>              # sometimes at top level: \"bjb1-32546:cuda:4\"\n    pid: <int>                 # sometimes at top level\n    log_path: <string>         # sometimes at top level\n    checkpoint_path: <string>  # sometimes at top level\n    reproduce:\n      finished_at: <string>\n    extra:\n      hook_events:\n        - event: on_failed|on_complete\n          action: agent\n          ts: <string>\n      previous_failure:\n        conclusion: failed\n    metrics:           \n…[truncated 10726 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Agent",
+            "elapsed_ms": 6
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T05:37:46.774660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/ 2>/dev/null; mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures",
+              "description": "Check artifacts dir and create figures subdir"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T05:37:46.774851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nablation_eval_commands.md\ncompetitive_analysis_20260515.md\ncompetitor_analysis.md\ncorrection_degradation_literature.md\ncrm-train-v2-k5\ncrm_bug_audit.md\ndiag-eval-v6-batch-failure.md\ndream_reports\neval-reconvla-spatial-v1-diag.md\nfix_plan_code_sketch.md\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nmanifest.yaml\nmethod_section_draft.tex\nmvp-point-reaching\nobject_eval_commands.md\npipeline-dimension-verification.md\nprecompute-k5\nprecompute-k5-analysis.md\nreconvla-comparison-report.md\nreport_eval_progress.md\nreport_running_status.md\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py\nspatial_analysis_prep.md\nspatial_comparison_template.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T05:37:46.774985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "limit": "80"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T05:37:46.775129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  mvp-point-reaching:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-13T01:22:10.415Z'\n7\t    updated_at: '2026-05-13T22:06:11.073Z'\n8\t    spec:\n9\t      hypothesis: Per-DOF uncertainty features carry more actionable information than\n10\t        scalar uncertainty summaries, enabling dimension-selective correction\n11\t      description: '3D point-reaching MVP: 3 MLP variants (scalar/per-DOF/no uncertainty)\n12\t        x 6 groups (3 anisotropy ratios x 2 uncertainty sources)'\n13\t      server: bjb2-40593\n14\t      gpu: cuda:0\n15\t      data_count: 20000\n16\t      model_name: CorrectionMLP(2-layer, 64-hidden)\n17\t      seed: 42\n18\t      command: python -u run_mvp.py\n19\t      data_path: synthetic (generated in-script)\n20\t      checkpoint_path: /root/acr-vla-conformal-refinement/mvp/\n21\t      log_path: /root/acr-vla-conformal-refinement/mvp/mvp_results.log\n22\t    conclusion: success\n23\t    completed_at: '2026-05-13T01:44:00.055Z'\n24\t    metrics:\n25\t      group1_oracle:\n26\t        A_scalar:\n27\t          mse_x: 0.180218\n28\t          mse_y: 0.02497\n29\t          mse_z: 0.024232\n30\t          total: 0.076473\n31\t        B_perDOF:\n32\t          mse_x: 0.172652\n33\t          mse_y: 0.015544\n34\t          mse_z: 0.01561\n35\t          total: 0.067935\n36\t        C_none:\n37\t          mse_x: 0.22706\n38\t          mse_y: 0.025542\n39\t          mse_z: 0.024753\n40\t          total: 0.092451\n41\t      group2_oracle:\n42\t        A_scalar:\n43\t          mse_x: 0.064642\n44\t          mse_y: 0.023836\n45\t          mse_z: 0.022967\n46\t          total: 0.037148\n47\t        B_perDOF:\n48\t          mse_x: 0.053403\n49\t          mse_y: 0.015695\n50\t          mse_z: 0.01573\n51\t          total: 0.028276\n52\t        C_none:\n53\t          mse_x: 0.084178\n54\t          mse_y: 0.025427\n55\t          mse_z: 0.024798\n56\t          total: 0.044801\n57\t      group3_oracle:\n58\t        A_scalar:\n59\t          mse_x: 0.042948\n60\t          mse_y: 0.023218\n61\t          mse_z: 0.022365\n62\t   \n…[truncated 501 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T05:37:46.775378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_magnitude_sweep.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Magnitude sweep analysis: norm sensitivity curve for perdof vs obs_only on spatial benchmark.\"\"\"\n\nimport json\nimport os\nimport re\nimport sys\n\nimport yaml\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nimport numpy as np\n\n# ── paths ──────────────────────────────────────────────────────────────\nREGISTRY = os.path.join(os.path.dirname(__file__), \"..\", \"registry.yaml\")\nOUT_DIR = os.path.join(os.path.dirname(__file__), \"figures\")\nos.makedirs(OUT_DIR, exist_ok=True)\n\n# ── experiment ID patterns ─────────────────────────────────────────────\n# Magnitude sweep experiments follow: eval-mag-{method}-norm{nnn}\nMAG_PERDOF_PREFIX = \"eval-mag-perdof-norm\"\nMAG_OBSONLY_PREFIX = \"eval-mag-obsonly-norm\"\n\n# Also include norm=0.1 baseline runs (original spatial evals)\nPERDOF_NORM01 = \"eval-acr-spatial-v4-small\"      # perdof, norm=0.1 (7/10 partial)\nPERDOF_NORM01_R2 = \"eval-acr-spatial-v4-small-r2\" # restart tasks 8-10\nOBSONLY_NORM01 = \"eval-acr-spatial-v4-obs-only-r2\" # obs_only, norm=0.1\nOBSONLY_NORM01_R3 = \"eval-acr-spatial-v4-obs-only-r3\" # restart\n\n# Baselines\nRECONVLA_ARGMIN = \"eval-reconvla-spatial-v3\"  # 34%\nVLA_ONLY = \"eval-spatial-v7-full\"              # 30%\nVLA_MEAN = \"eval-vla-mean-spatial\"             # 32%\n\n\ndef load_registry():\n    with open(REGISTRY) as f:\n        return yaml.safe_load(f)\n\n\ndef extract_overall_sr(exp):\n    \"\"\"Extract overall success rate from experiment metrics, handling inconsistent field names.\"\"\"\n    m = exp.get(\"metrics\", {})\n    if not m:\n        return None\n\n    for key in (\"overall_success_rate\", \"overall_sr\", \"overall_success_rate_10tasks\"):\n        if key in m:\n            return float(m[key])\n\n    # Try computing from per_task\n    per_task = m.get(\"per_task\", {})\n    if per_task and len(per_task) == 10:\n        return sum(per_task.values()) / len(per_task)\n\n    return None\n\n\ndef extract_partial_sr(exp):\n    \"\"\"Extract SR from partial results (in-progress experiments).\"\"\"\n    m = exp.get(\"metrics\", {})\n    if not m:\n        return None, 0\n\n    partial = m.get(\"partial_results\", {})\n    if partial:\n        successes = 0\n        trials = 0\n        for v in partial.values():\n            match = re.search(r\"\\((\\d+)/(\\d+)\\)\", str(v))\n            if match:\n                successes += int(match.group(1))\n                trials += int(match.group(2))\n        if trials > 0:\n            return successes / trials, len(partial)\n        return None, 0\n\n    per_task_partial = m.get(\"per_task_partial\", {})\n    if per_task_partial:\n        return sum(per_task_partial.values()) / len(per_task_partial), len(per_task_partial)\n\n    # Try running_avg fields\n    for key, val in m.items():\n        if key.startswith(\"running_avg\"):\n            match = re.search(r\"([\\d.]+)%\", str(val))\n            if match:\n                return float(match.group(1)) / 100.0, int(re.search(r\"(\\d+)tasks?\", key).group(1)) if re.search(r\"(\\d+)tasks?\", key) else 0\n    return None, 0\n\n\ndef parse_norm_from_id(exp_id, prefix):\n    \"\"\"Parse norm value from experiment ID like eval-mag-perdof-norm003 -> 0.03.\"\"\"\n    suffix = exp_id[len(prefix):]\n    # Handle formats: 003 -> 0.03, 005 -> 0.05, 02 -> 0.2, 03 -> 0.3\n    if len(suffix) == 3 and suffix.startswith(\"0\"):\n        return float(\"0.\" + suffix)\n    elif len(suffix) == 2 and suffix.startswith(\"0\"):\n        return float(\"0.\" + suffix[1])\n    else:\n        try:\n            return float(\"0.\" + suffix)\n        except ValueError:\n            return None\n\n\ndef merge_partial_results(exps, base_id, restart_ids):\n    \"\"\"Merge base + restart partial results into combined SR.\"\"\"\n    all_results = {}\n\n    for eid in [base_id] + restart_ids:\n        if eid not in exps:\n            continue\n        m = exps[eid].get(\"metrics\", {})\n\n        # From per_task (completed)\n        for k, v in m.get(\"per_task\", {}).items():\n            short = k.replace(\"pick_up_black_bowl_\", \"\")\n            all_results[short] = float(v)\n\n        # From partial_results\n        for k, v in m.get(\"partial_results\", {}).items():\n            short = k.replace(\"pick_up_black_bowl_\", \"\")\n            match = re.search(r\"([\\d.]+)%\", str(v))\n            if match:\n                all_results[short] = float(match.group(1)) / 100.0\n\n        # From per_task_partial\n        for k, v in m.get(\"per_task_partial\", {}).items():\n            short = k.replace(\"pick_up_black_bowl_\", \"\")\n            all_results[short] = float(v)\n\n    if all_results:\n        return sum(all_results.values()) / len(all_results), len(all_results), all_results\n    return None, 0, {}\n\n\ndef collect_sweep_data(exps):\n    \"\"\"Collect norm -> SR data for perdof and obs_only methods.\"\"\"\n    perdof_data = {}\n    obsonly_data = {}\n\n    # Magnitude sweep experiments\n    for eid, exp in exps.items():\n        if eid.startswith(MAG_PERDOF_PREFIX):\n            norm = parse_norm_from_id(eid, MAG_PERDOF_PREFIX)\n            if norm is None:\n                continue\n            sr = extract_overall_sr(exp)\n            if sr is None:\n                sr, n = extract_partial_sr(exp)\n            if sr is not None:\n                perdof_data[norm] = {\"sr\": sr, \"exp_id\": eid, \"status\": exp.get(\"status\")}\n\n        elif eid.startswith(MAG_OBSONLY_PREFIX):\n            norm = parse_norm_from_id(eid, MAG_OBSONLY_PREFIX)\n            if norm is None:\n                continue\n            sr = extract_overall_sr(exp)\n            if sr is None:\n                sr, n = extract_partial_sr(exp)\n            if sr is not None:\n                obsonly_data[norm] = {\"sr\": sr, \"exp_id\": eid, \"status\": exp.get(\"status\")}\n\n    # Add norm=0.1 from original spatial evals\n    sr_perdof_01, n, _ = merge_partial_results(exps, PERDOF_NORM01, [PERDOF_NORM01_R2])\n    if sr_perdof_01 is not None:\n        perdof_data[0.1] = {\"sr\": sr_perdof_01, \"exp_id\": f\"{PERDOF_NORM01}+restart\", \"status\": \"MERGED\", \"n_tasks\": n}\n\n    sr_obsonly_01, n, _ = merge_partial_results(exps, OBSONLY_NORM01, [OBSONLY_NORM01_R3])\n    if sr_obsonly_01 is not None:\n        obsonly_data[0.1] = {\"sr\": sr_obsonly_01, \"exp_id\": f\"{OBSONLY_NORM01}+restart\", \"status\": \"MERGED\", \"n_tasks\": n}\n\n    return perdof_data, obsonly_data\n\n\ndef plot_sensitivity_curve(perdof_data, obsonly_data, baselines):\n    \"\"\"Generate norm sensitivity curve plot.\"\"\"\n    # ── style ──────────────────────────────────────────────────────────\n    plt.rcParams.update({\n        \"font.family\": \"serif\",\n        \"font.serif\": [\"Times New Roman\", \"DejaVu Serif\"],\n        \"font.size\": 11,\n        \"axes.labelsize\": 13,\n        \"axes.titlesize\": 14,\n        \"legend.fontsize\": 10,\n        \"xtick.labelsize\": 11,\n        \"ytick.labelsize\": 11,\n        \"axes.linewidth\": 0.8,\n        \"lines.linewidth\": 2.0,\n        \"lines.markersize\": 8,\n        \"figure.dpi\": 150,\n    })\n\n    colors = {\n        \"perdof\": \"#2E86AB\",      # steel blue\n        \"obs_only\": \"#A23B72\",    # raspberry\n        \"argmin\": \"#555555\",      # dark gray\n        \"vla_only\": \"#999999\",    # light gray\n        \"vla_mean\": \"#BBBBBB\",    # lighter gray\n    }\n\n    fig, ax = plt.subplots(figsize=(6.5, 4.5))\n\n    # Plot perdof\n    if perdof_data:\n        norms = sorted(perdof_data.keys())\n        srs = [perdof_data[n][\"sr\"] * 100 for n in norms]\n        markers = [\"o\" if perdof_data[n].get(\"status\") == \"DONE\" or perdof_data[n].get(\"n_tasks\", 10) == 10\n                   else \"^\" for n in norms]\n        ax.plot(norms, srs, \"-o\", color=colors[\"perdof\"], label=\"ACR per-DOF\", zorder=5)\n        # Mark partial results with open markers\n        for i, n in enumerate(norms):\n            status = perdof_data[n].get(\"status\")\n            n_tasks = perdof_data[n].get(\"n_tasks\", 10)\n            if status == \"RUNNING\" or (n_tasks is not None and n_tasks < 10):\n                ax.plot(n, srs[i], \"^\", color=colors[\"perdof\"], markerfacecolor=\"white\",\n                       markeredgewidth=2, markersize=9, zorder=6)\n\n    # Plot obs_only\n    if obsonly_data:\n        norms = sorted(obsonly_data.keys())\n        srs = [obsonly_data[n][\"sr\"] * 100 for n in norms]\n        ax.plot(norms, srs, \"-s\", color=colors[\"obs_only\"], label=\"ACR obs-only\", zorder=5)\n        for i, n in enumerate(norms):\n            status = obsonly_data[n].get(\"status\")\n            n_tasks = obsonly_data[n].get(\"n_tasks\", 10)\n            if status == \"RUNNING\" or (n_tasks is not None and n_tasks < 10):\n                ax.plot(n, srs[i], \"D\", color=colors[\"obs_only\"], markerfacecolor=\"white\",\n                       markeredgewidth=2, markersize=9, zorder=6)\n\n    # Baseline horizontal lines\n    xmin, xmax = 0.02, 0.35\n    if baselines.get(\"argmin\") is not None:\n        ax.axhline(baselines[\"argmin\"] * 100, color=colors[\"argmin\"], ls=\"--\", lw=1.5,\n                   label=f\"ReconVLA argmin ({baselines['argmin']*100:.0f}%)\", zorder=3)\n    if baselines.get(\"vla_mean\") is not None:\n        ax.axhline(baselines[\"vla_mean\"] * 100, color=colors[\"vla_mean\"], ls=\":\", lw=1.5,\n                   label=f\"VLA mean ({baselines['vla_mean']*100:.0f}%)\", zorder=2)\n    if baselines.get(\"vla_only\") is not None:\n        ax.axhline(baselines[\"vla_only\"] * 100, color=colors[\"vla_only\"], ls=\"-.\", lw=1.0,\n                   label=f\"VLA-only ({baselines['vla_only']*100:.0f}%)\", zorder=1)\n\n    ax.set_xlabel(\"Correction Magnitude (max norm)\")\n    ax.set_ylabel(\"Success Rate (%)\")\n    ax.set_title(\"Norm Sensitivity: Spatial Benchmark\")\n    ax.set_xscale(\"log\")\n    ax.xaxis.set_major_formatter(mticker.ScalarFormatter())\n    ax.xaxis.set_minor_formatter(mticker.NullFormatter())\n    ax.set_xticks([0.03, 0.05, 0.1, 0.2, 0.3])\n    ax.get_xaxis().set_major_formatter(mticker.FormatStrFormatter(\"%.2f\"))\n    ax.set_xlim(xmin, xmax)\n    ax.set_ylim(0, 65)\n    ax.grid(True, alpha=0.3, ls=\"-\", lw=0.5)\n    ax.legend(loc=\"best\", framealpha=0.9, edgecolor=\"gray\")\n\n    # Annotation for open markers\n    ax.annotate(\"Open markers = partial (< 10 tasks)\", xy=(0.98, 0.02),\n                xycoords=\"axes fraction\", ha=\"right\", va=\"bottom\",\n                fontsize=8, color=\"gray\", style=\"italic\")\n\n    fig.tight_layout()\n    out_path = os.path.join(OUT_DIR, \"magnitude_sweep_spatial.pdf\")\n    fig.savefig(out_path, bbox_inches=\"tight\", dpi=300)\n    print(f\"Saved: {out_path}\")\n\n    # Also save PNG for quick preview\n    png_path = out_path.replace(\".pdf\", \".png\")\n    fig.savefig(png_path, bbox_inches=\"tight\", dpi=200)\n    print(f\"Saved: {png_path}\")\n    plt.close(fig)\n\n\ndef generate_summary_json(perdof_data, obsonly_data, baselines):\n    \"\"\"Generate JSON summary table.\"\"\"\n    summary = {\n        \"baselines\": {k: v for k, v in baselines.items() if v is not None},\n        \"perdof\": {},\n        \"obs_only\": {},\n    }\n\n    argmin_sr = baselines.get(\"argmin\", 0.34)\n\n    for norm in sorted(set(list(perdof_data.keys()) + list(obsonly_data.keys()))):\n        norm_str = f\"{norm:.2f}\"\n        if norm in perdof_data:\n            sr = perdof_data[norm][\"sr\"]\n            summary[\"perdof\"][norm_str] = {\n                \"sr\": round(sr, 4),\n                \"sr_pct\": f\"{sr*100:.1f}%\",\n                \"delta_vs_argmin\": f\"{(sr - argmin_sr)*100:+.1f}pp\",\n                \"exp_id\": perdof_data[norm][\"exp_id\"],\n                \"status\": perdof_data[norm].get(\"status\", \"UNKNOWN\"),\n            }\n        if norm in obsonly_data:\n            sr = obsonly_data[norm][\"sr\"]\n            summary[\"obs_only\"][norm_str] = {\n                \"sr\": round(sr, 4),\n                \"sr_pct\": f\"{sr*100:.1f}%\",\n                \"delta_vs_argmin\": f\"{(sr - argmin_sr)*100:+.1f}pp\",\n                \"exp_id\": obsonly_data[norm][\"exp_id\"],\n                \"status\": obsonly_data[norm].get(\"status\", \"UNKNOWN\"),\n            }\n\n    out_path = os.path.join(OUT_DIR, \"magnitude_sweep_summary.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"Saved: {out_path}\")\n    return summary\n\n\ndef main():\n    data = load_registry()\n    exps = data.get(\"experiments\", {})\n\n    # Collect baseline SRs\n    baselines = {}\n    for bid, bname in [(RECONVLA_ARGMIN, \"argmin\"), (VLA_ONLY, \"vla_only\"), (VLA_MEAN, \"vla_mean\")]:\n        if bid in exps:\n            baselines[bname] = extract_overall_sr(exps[bid])\n\n    perdof_data, obsonly_data = collect_sweep_data(exps)\n\n    # Print status\n    print(\"=\" * 60)\n    print(\"MAGNITUDE SWEEP ANALYSIS\")\n    print(\"=\" * 60)\n    print(f\"\\nBaselines: {', '.join(f'{k}={v*100:.0f}%' for k, v in baselines.items() if v)}\")\n    print(f\"\\nPer-DOF data points: {len(perdof_data)}\")\n    for n in sorted(perdof_data.keys()):\n        d = perdof_data[n]\n        print(f\"  norm={n:.2f}: SR={d['sr']*100:.1f}%  [{d.get('status', '?')}]  ({d['exp_id']})\")\n    print(f\"\\nObs-only data points: {len(obsonly_data)}\")\n    for n in sorted(obsonly_data.keys()):\n        d = obsonly_data[n]\n        print(f\"  norm={n:.2f}: SR={d['sr']*100:.1f}%  [{d.get('status', '?')}]  ({d['exp_id']})\")\n\n    if not perdof_data and not obsonly_data:\n        print(\"\\n⚠ No magnitude sweep results available yet. Experiments are still RUNNING.\")\n        print(\"Re-run this script once experiments have metrics.\")\n        # Still generate empty JSON\n        generate_summary_json(perdof_data, obsonly_data, baselines)\n        return\n\n    plot_sensitivity_curve(perdof_data, obsonly_data, baselines)\n    summary = generate_summary_json(perdof_data, obsonly_data, baselines)\n\n    print(\"\\n── Summary ──\")\n    for method in [\"perdof\", \"obs_only\"]:\n        if summary[method]:\n            best_norm = min(summary[method], key=lambda n: -summary[method][n][\"sr\"])\n            print(f\"  Best {method}: norm={best_norm}, SR={summary[method][best_norm]['sr_pct']}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T05:37:46.775751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_magnitude_sweep.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T05:37:46.775948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_object_benchmark.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Object benchmark analysis: grouped bar chart + LaTeX table for method comparison.\"\"\"\n\nimport json\nimport os\nimport re\nimport sys\n\nimport yaml\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# ── paths ──────────────────────────────────────────────────────────────\nREGISTRY = os.path.join(os.path.dirname(__file__), \"..\", \"registry.yaml\")\nOUT_DIR = os.path.join(os.path.dirname(__file__), \"figures\")\nos.makedirs(OUT_DIR, exist_ok=True)\n\n# ── experiment IDs for object benchmark ────────────────────────────────\nOBJECT_EXPERIMENTS = {\n    \"VLA-only\":         [\"eval-vla-only-object\", \"eval-object-v8-full\"],\n    \"VLA-mean\":         [\"eval-vla-mean-object\"],\n    \"ReconVLA\":         [\"eval-reconvla-object\"],\n    \"ACR per-DOF\":      [\"eval-acr-object-v4-perdof\"],\n    \"ACR obs-only\":     [\"eval-acr-object-v4-obs-only\"],\n    \"ACR scalar\":       [\"eval-acr-object-v4-scalar\"],\n    \"ACR obs-only-0.2\": [\"eval-acr-object-obs-only-norm02\"],\n}\n\n# Canonical task order for object benchmark\nOBJECT_TASKS = [\n    \"alphabet_soup\", \"cream_cheese\", \"salad_dressing\", \"bbq_sauce\",\n    \"ketchup\", \"tomato_sauce\", \"butter\", \"milk\",\n    \"chocolate_pudding\", \"orange_juice\",\n]\n\n# Display-friendly task names\nTASK_DISPLAY = {\n    \"alphabet_soup\": \"Alphabet\\nSoup\",\n    \"cream_cheese\": \"Cream\\nCheese\",\n    \"salad_dressing\": \"Salad\\nDressing\",\n    \"bbq_sauce\": \"BBQ\\nSauce\",\n    \"ketchup\": \"Ketchup\",\n    \"tomato_sauce\": \"Tomato\\nSauce\",\n    \"butter\": \"Butter\",\n    \"milk\": \"Milk\",\n    \"chocolate_pudding\": \"Choc.\\nPudding\",\n    \"orange_juice\": \"Orange\\nJuice\",\n}\n\nMETHOD_ORDER = [\"VLA-only\", \"VLA-mean\", \"ReconVLA\", \"ACR per-DOF\", \"ACR obs-only\", \"ACR scalar\"]\n\n\ndef load_registry():\n    with open(REGISTRY) as f:\n        return yaml.safe_load(f)\n\n\ndef extract_per_task(exp, task_list):\n    \"\"\"Extract per-task SR from experiment metrics.\"\"\"\n    m = exp.get(\"metrics\", {})\n    if not m:\n        return {}\n\n    result = {}\n\n    # From per_task dict (completed experiments)\n    per_task = m.get(\"per_task\", {})\n    if per_task:\n        for task in task_list:\n            for key, val in per_task.items():\n                if task in key.lower().replace(\" \", \"_\"):\n                    result[task] = float(val)\n                    break\n\n    # From partial_results (in-progress)\n    partial = m.get(\"partial_results\", {})\n    if partial:\n        for task in task_list:\n            for key, val in partial.items():\n                if task in key.lower().replace(\" \", \"_\"):\n                    match = re.search(r\"([\\d.]+)%\", str(val))\n                    if match:\n                        result[task] = float(match.group(1)) / 100.0\n                    break\n\n    # From per_task_partial\n    per_task_partial = m.get(\"per_task_partial\", {})\n    if per_task_partial:\n        for task in task_list:\n            for key, val in per_task_partial.items():\n                if task in key.lower().replace(\" \", \"_\"):\n                    result[task] = float(val)\n                    break\n\n    return result\n\n\ndef extract_overall_sr(exp):\n    m = exp.get(\"metrics\", {})\n    if not m:\n        return None\n    for key in (\"overall_success_rate\", \"overall_sr\", \"overall_success_rate_10tasks\"):\n        if key in m:\n            return float(m[key])\n    per_task = m.get(\"per_task\", {})\n    if per_task:\n        return sum(per_task.values()) / len(per_task)\n    return None\n\n\ndef collect_object_data(exps):\n    \"\"\"Collect per-task and overall SR for each method.\"\"\"\n    methods = {}\n\n    for method_name, exp_ids in OBJECT_EXPERIMENTS.items():\n        best_exp = None\n        best_n_tasks = 0\n\n        for eid in exp_ids:\n            if eid not in exps:\n                continue\n            exp = exps[eid]\n            per_task = extract_per_task(exp, OBJECT_TASKS)\n            if len(per_task) > best_n_tasks:\n                best_n_tasks = len(per_task)\n                best_exp = {\n                    \"exp_id\": eid,\n                    \"status\": exp.get(\"status\"),\n                    \"conclusion\": exp.get(\"conclusion\"),\n                    \"per_task\": per_task,\n                    \"overall_sr\": extract_overall_sr(exp),\n                    \"n_tasks\": len(per_task),\n                }\n\n        if best_exp:\n            methods[method_name] = best_exp\n\n    return methods\n\n\ndef plot_grouped_bar(methods):\n    \"\"\"Generate grouped bar chart for object benchmark.\"\"\"\n    plt.rcParams.update({\n        \"font.family\": \"serif\",\n        \"font.serif\": [\"Times New Roman\", \"DejaVu Serif\"],\n        \"font.size\": 10,\n        \"axes.labelsize\": 12,\n        \"axes.titlesize\": 13,\n        \"legend.fontsize\": 8.5,\n        \"xtick.labelsize\": 8,\n        \"ytick.labelsize\": 10,\n        \"axes.linewidth\": 0.8,\n        \"figure.dpi\": 150,\n    })\n\n    colors = {\n        \"VLA-only\":         \"#AAAAAA\",\n        \"VLA-mean\":         \"#888888\",\n        \"ReconVLA\":         \"#555555\",\n        \"ACR per-DOF\":      \"#2E86AB\",\n        \"ACR obs-only\":     \"#A23B72\",\n        \"ACR scalar\":       \"#E8A838\",\n        \"ACR obs-only-0.2\": \"#6B4C9A\",\n    }\n\n    hatches = {\n        \"VLA-only\":    \"\",\n        \"VLA-mean\":    \"//\",\n        \"ReconVLA\":    \"\",\n        \"ACR per-DOF\": \"\",\n        \"ACR obs-only\": \"\",\n        \"ACR scalar\":  \"\",\n        \"ACR obs-only-0.2\": \"\\\\\\\\\",\n    }\n\n    # Filter to methods that have data\n    active_methods = [m for m in METHOD_ORDER if m in methods]\n    if not active_methods:\n        active_methods = [m for m in methods if m in METHOD_ORDER]\n    # Add any extra methods not in standard order\n    for m in methods:\n        if m not in active_methods:\n            active_methods.append(m)\n\n    n_methods = len(active_methods)\n    n_tasks = len(OBJECT_TASKS)\n\n    if n_methods == 0:\n        print(\"No object benchmark data available yet.\")\n        return\n\n    fig, ax = plt.subplots(figsize=(12, 5))\n\n    bar_width = 0.8 / n_methods\n    x = np.arange(n_tasks)\n\n    for i, method in enumerate(active_methods):\n        mdata = methods[method]\n        srs = [mdata[\"per_task\"].get(t, float(\"nan\")) * 100 for t in OBJECT_TASKS]\n        offset = (i - n_methods / 2 + 0.5) * bar_width\n        bars = ax.bar(x + offset, srs, bar_width * 0.9,\n                      label=method, color=colors.get(method, f\"C{i}\"),\n                      hatch=hatches.get(method, \"\"),\n                      edgecolor=\"white\", linewidth=0.5, zorder=3)\n\n    ax.set_xlabel(\"Task\")\n    ax.set_ylabel(\"Success Rate (%)\")\n    ax.set_title(\"Object Benchmark: Per-Task Success Rate\")\n    ax.set_xticks(x)\n    ax.set_xticklabels([TASK_DISPLAY.get(t, t) for t in OBJECT_TASKS], ha=\"center\")\n    ax.set_ylim(0, 55)\n    ax.grid(True, axis=\"y\", alpha=0.3, ls=\"-\", lw=0.5, zorder=0)\n    ax.legend(loc=\"upper right\", ncol=2, framealpha=0.9, edgecolor=\"gray\")\n\n    # Add overall SR annotation\n    overall_text = \"  \".join(\n        f\"{m}: {methods[m]['overall_sr']*100:.0f}%\" if methods[m]['overall_sr'] is not None\n        else f\"{m}: {methods[m]['n_tasks']}/10 tasks\"\n        for m in active_methods\n    )\n    ax.annotate(overall_text, xy=(0.5, -0.12), xycoords=\"axes fraction\",\n                ha=\"center\", fontsize=7.5, color=\"gray\", style=\"italic\")\n\n    fig.tight_layout()\n    out_path = os.path.join(OUT_DIR, \"object_benchmark.pdf\")\n    fig.savefig(out_path, bbox_inches=\"tight\", dpi=300)\n    print(f\"Saved: {out_path}\")\n\n    png_path = out_path.replace(\".pdf\", \".png\")\n    fig.savefig(png_path, bbox_inches=\"tight\", dpi=200)\n    print(f\"Saved: {png_path}\")\n    plt.close(fig)\n\n\ndef generate_latex_table(methods):\n    \"\"\"Generate LaTeX table: methods × tasks.\"\"\"\n    active_methods = [m for m in METHOD_ORDER if m in methods]\n    for m in methods:\n        if m not in active_methods:\n            active_methods.append(m)\n\n    if not active_methods:\n        print(\"No data for LaTeX table.\")\n        return \"\"\n\n    n_tasks = len(OBJECT_TASKS)\n    short_tasks = [t.replace(\"_\", \" \").title() for t in OBJECT_TASKS]\n\n    # Build table\n    col_spec = \"l\" + \"c\" * n_tasks + \"c\"  # method + tasks + overall\n    lines = []\n    lines.append(r\"\\begin{table}[t]\")\n    lines.append(r\"\\centering\")\n    lines.append(r\"\\caption{Object Benchmark: Per-Task Success Rate (\\%)}\")\n    lines.append(r\"\\label{tab:object-benchmark}\")\n    lines.append(r\"\\resizebox{\\textwidth}{!}{%\")\n    lines.append(r\"\\begin{tabular}{\" + col_spec + \"}\")\n    lines.append(r\"\\toprule\")\n\n    # Header\n    header = \"Method\"\n    for t in OBJECT_TASKS:\n        short = t.replace(\"_\", \" \").title()\n        if len(short) > 10:\n            parts = short.split()\n            short = parts[0][:4] + \".\"\n            if len(parts) > 1:\n                short += \" \" + parts[1][:4] + \".\"\n        header += f\" & \\\\rotatebox{{60}}{{{short}}}\"\n    header += r\" & \\textbf{Avg.} \\\\\"\n    lines.append(header)\n    lines.append(r\"\\midrule\")\n\n    # Data rows\n    for method in active_methods:\n        mdata = methods[method]\n        row = method.replace(\"_\", r\"\\_\")\n        task_srs = []\n        for t in OBJECT_TASKS:\n            sr = mdata[\"per_task\"].get(t)\n            if sr is not None:\n                val = sr * 100\n                task_srs.append(val)\n                row += f\" & {val:.0f}\"\n            else:\n                row += \" & --\"\n\n        # Overall\n        if mdata[\"overall_sr\"] is not None:\n            row += f\" & \\\\textbf{{{mdata['overall_sr']*100:.0f}}}\"\n        elif task_srs:\n            avg = sum(task_srs) / len(task_srs)\n            row += f\" & {avg:.0f}$^*$\"\n        else:\n            row += \" & --\"\n\n        row += r\" \\\\\"\n        lines.append(row)\n\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}}\")\n    lines.append(r\"\\end{table}\")\n\n    latex = \"\\n\".join(lines)\n\n    out_path = os.path.join(OUT_DIR, \"object_benchmark_table.tex\")\n    with open(out_path, \"w\") as f:\n        f.write(latex)\n    print(f\"Saved: {out_path}\")\n\n    # Also save JSON\n    json_data = {}\n    for method in active_methods:\n        mdata = methods[method]\n        json_data[method] = {\n            \"per_task\": {t: mdata[\"per_task\"].get(t) for t in OBJECT_TASKS},\n            \"overall_sr\": mdata[\"overall_sr\"],\n            \"n_tasks_completed\": mdata[\"n_tasks\"],\n            \"exp_id\": mdata[\"exp_id\"],\n            \"status\": mdata[\"status\"],\n        }\n\n    json_path = os.path.join(OUT_DIR, \"object_benchmark_data.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(json_data, f, indent=2)\n    print(f\"Saved: {json_path}\")\n\n    return latex\n\n\ndef main():\n    data = load_registry()\n    exps = data.get(\"experiments\", {})\n    methods = collect_object_data(exps)\n\n    print(\"=\" * 60)\n    print(\"OBJECT BENCHMARK ANALYSIS\")\n    print(\"=\" * 60)\n\n    for method, mdata in methods.items():\n        sr_str = f\"{mdata['overall_sr']*100:.0f}%\" if mdata['overall_sr'] else \"N/A\"\n        print(f\"\\n{method} [{mdata['status']}] ({mdata['exp_id']})\")\n        print(f\"  Overall: {sr_str}  ({mdata['n_tasks']}/{len(OBJECT_TASKS)} tasks)\")\n        for t in OBJECT_TASKS:\n            if t in mdata[\"per_task\"]:\n                print(f\"    {t}: {mdata['per_task'][t]*100:.0f}%\")\n\n    if not methods:\n        print(\"\\nNo object benchmark results available yet.\")\n        return\n\n    plot_grouped_bar(methods)\n    latex = generate_latex_table(methods)\n\n    if latex:\n        print(\"\\n── LaTeX Table ──\")\n        print(latex)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T05:37:46.776260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_object_benchmark.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T05:37:46.776480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Spatial benchmark final analysis: merge partial + restart results, generate comparison table.\"\"\"\n\nimport json\nimport os\nimport re\nimport sys\n\nimport yaml\nimport matplotlib\nmatplotlib.use(\"Agg\")\n\n# ── paths ──────────────────────────────────────────────────────────────\nREGISTRY = os.path.join(os.path.dirname(__file__), \"..\", \"registry.yaml\")\nOUT_DIR = os.path.join(os.path.dirname(__file__), \"figures\")\nos.makedirs(OUT_DIR, exist_ok=True)\n\n# ── canonical spatial tasks (order from eval-spatial-v7-full) ──────────\nSPATIAL_TASKS = [\n    \"between_plate_and_ramekin\",\n    \"next_to_ramekin\",\n    \"from_table_center\",\n    \"on_cookie_box\",\n    \"in_top_drawer\",\n    \"on_ramekin\",\n    \"next_to_cookie_box\",\n    \"on_stove\",\n    \"next_to_plate\",\n    \"on_wooden_cabinet\",\n]\n\nTASK_SHORT_TO_FULL = {t: f\"pick_up_black_bowl_{t}\" for t in SPATIAL_TASKS}\n\nTASK_DISPLAY = {\n    \"between_plate_and_ramekin\": \"Betw. Plate\\n& Ramekin\",\n    \"next_to_ramekin\": \"Next to\\nRamekin\",\n    \"from_table_center\": \"Table\\nCenter\",\n    \"on_cookie_box\": \"On Cookie\\nBox\",\n    \"in_top_drawer\": \"In Top\\nDrawer\",\n    \"on_ramekin\": \"On\\nRamekin\",\n    \"next_to_cookie_box\": \"Next to\\nCookie Box\",\n    \"on_stove\": \"On\\nStove\",\n    \"next_to_plate\": \"Next to\\nPlate\",\n    \"on_wooden_cabinet\": \"On Wooden\\nCabinet\",\n}\n\n# ── experiments to merge per method ────────────────────────────────────\n# Each method maps to a list of experiment IDs to merge (base + restarts).\n# Later experiments overwrite earlier ones for the same task.\nSPATIAL_METHODS = {\n    \"VLA-only (K=1)\": {\n        \"exp_ids\": [\"eval-spatial-v7-full\"],\n        \"color\": \"#AAAAAA\",\n    },\n    \"VLA-mean (K=10)\": {\n        \"exp_ids\": [\"eval-vla-mean-spatial\", \"eval-vla-mean-spatial-t10\"],\n        \"color\": \"#888888\",\n    },\n    \"ReconVLA argmin (K=10)\": {\n        \"exp_ids\": [\"eval-reconvla-spatial-v3\"],\n        \"color\": \"#555555\",\n    },\n    \"Argmin-only (K=10)\": {\n        \"exp_ids\": [\"eval-argmin-only-spatial\", \"eval-argmin-only-spatial-r2\"],\n        \"color\": \"#777777\",\n    },\n    \"ACR per-DOF\": {\n        \"exp_ids\": [\"eval-acr-spatial-v4-small\", \"eval-acr-spatial-v4-small-r2\"],\n        \"color\": \"#2E86AB\",\n    },\n    \"ACR obs-only\": {\n        \"exp_ids\": [\"eval-acr-spatial-v4-obs-only-r2\", \"eval-acr-spatial-v4-obs-only-r3\"],\n        \"color\": \"#A23B72\",\n    },\n    \"ACR scalar\": {\n        \"exp_ids\": [\"eval-acr-spatial-v4-scalar\", \"eval-acr-spatial-v4-scalar-r2\"],\n        \"color\": \"#E8A838\",\n    },\n    \"ACR tiny (norm=0.05)\": {\n        \"exp_ids\": [\"eval-tiny-correction-spatial\"],\n        \"color\": \"#6B4C9A\",\n    },\n}\n\n# T-index to task mapping (used by some experiments that report T1-T10)\nT_INDEX_MAP = {f\"T{i+1}\": SPATIAL_TASKS[i] for i in range(10)}\n# Also map \"on_wooden_shelf\" -> \"on_wooden_cabinet\" (known alias)\nTASK_ALIASES = {\"on_wooden_shelf\": \"on_wooden_cabinet\"}\n\n\ndef load_registry():\n    with open(REGISTRY) as f:\n        return yaml.safe_load(f)\n\n\ndef normalize_task_name(name):\n    \"\"\"Normalize task name to canonical short form.\"\"\"\n    # Strip full prefix\n    name = name.replace(\"pick_up_black_bowl_\", \"\")\n    # T-index mapping\n    if name in T_INDEX_MAP:\n        return T_INDEX_MAP[name]\n    # Aliases\n    name = TASK_ALIASES.get(name, name)\n    # Handle T10_on_wooden_shelf style\n    for alias, canonical in TASK_ALIASES.items():\n        if alias in name:\n            return canonical\n    return name\n\n\ndef extract_task_results(exp):\n    \"\"\"Extract per-task results from experiment, returning {task_short: sr}.\"\"\"\n    m = exp.get(\"metrics\", {})\n    if not m:\n        return {}\n\n    results = {}\n\n    # per_task dict (completed experiments)\n    for key, val in m.get(\"per_task\", {}).items():\n        task = normalize_task_name(key)\n        if task in SPATIAL_TASKS:\n            results[task] = float(val)\n\n    # partial_results (in-progress, format: \"60.0% (6/10)\")\n    for key, val in m.get(\"partial_results\", {}).items():\n        task = normalize_task_name(key)\n        if task in SPATIAL_TASKS:\n            match = re.search(r\"([\\d.]+)%\", str(val))\n            if match:\n                results[task] = float(match.group(1)) / 100.0\n\n    # per_task_partial\n    for key, val in m.get(\"per_task_partial\", {}).items():\n        task = normalize_task_name(key)\n        if task in SPATIAL_TASKS:\n            results[task] = float(val)\n\n    # Handle T1-T10 format in per_task\n    for key, val in m.get(\"per_task\", {}).items():\n        if key in T_INDEX_MAP:\n            task = T_INDEX_MAP[key]\n            results[task] = float(val)\n\n    # Handle special fields like T10_on_wooden_shelf\n    for key, val in m.items():\n        if key.startswith(\"T10_\"):\n            task = normalize_task_name(key)\n            if task in SPATIAL_TASKS:\n                match = re.search(r\"(\\d+)%\", str(val))\n                if match:\n                    results[task] = float(match.group(1)) / 100.0\n\n    return results\n\n\ndef merge_method_results(exps, exp_ids):\n    \"\"\"Merge results from multiple experiments (base + restarts). Later overwrite earlier.\"\"\"\n    merged = {}\n    sources = {}\n\n    for eid in exp_ids:\n        if eid not in exps:\n            continue\n        task_results = extract_task_results(exps[eid])\n        for task, sr in task_results.items():\n            merged[task] = sr\n            sources[task] = eid\n\n    return merged, sources\n\n\ndef collect_all_methods(exps):\n    \"\"\"Collect per-task results for all methods.\"\"\"\n    all_methods = {}\n\n    for method_name, cfg in SPATIAL_METHODS.items():\n        merged, sources = merge_method_results(exps, cfg[\"exp_ids\"])\n        n_tasks = len(merged)\n        overall = sum(merged.values()) / n_tasks if n_tasks > 0 else None\n\n        all_methods[method_name] = {\n            \"per_task\": merged,\n            \"sources\": sources,\n            \"n_tasks\": n_tasks,\n            \"overall_sr\": overall,\n            \"complete\": n_tasks == 10,\n            \"color\": cfg[\"color\"],\n        }\n\n    return all_methods\n\n\ndef generate_latex_table(all_methods):\n    \"\"\"Generate LaTeX table: methods × spatial tasks.\"\"\"\n    n_tasks = len(SPATIAL_TASKS)\n    col_spec = \"l\" + \"c\" * n_tasks + \"c\"\n\n    lines = []\n    lines.append(r\"\\begin{table*}[t]\")\n    lines.append(r\"\\centering\")\n    lines.append(r\"\\caption{Spatial Benchmark: Per-Task Success Rate (\\%). Best per-task in \\textbf{bold}.}\")\n    lines.append(r\"\\label{tab:spatial-final}\")\n    lines.append(r\"\\resizebox{\\textwidth}{!}{%\")\n    lines.append(r\"\\begin{tabular}{\" + col_spec + \"}\")\n    lines.append(r\"\\toprule\")\n\n    # Header\n    header = \"Method\"\n    for t in SPATIAL_TASKS:\n        short = t.replace(\"_\", \" \").title()\n        # Abbreviate long names\n        abbrev_map = {\n            \"Between Plate And Ramekin\": \"Btw P\\\\&R\",\n            \"Next To Ramekin\": \"Nxt Ram\",\n            \"From Table Center\": \"Tbl Ctr\",\n            \"On Cookie Box\": \"On CkBx\",\n            \"In Top Drawer\": \"Top Drw\",\n            \"On Ramekin\": \"On Ram\",\n            \"Next To Cookie Box\": \"Nxt CkBx\",\n            \"On Stove\": \"On Stv\",\n            \"Next To Plate\": \"Nxt Plt\",\n            \"On Wooden Cabinet\": \"On WdCb\",\n        }\n        short = abbrev_map.get(short, short[:8])\n        header += f\" & \\\\rotatebox{{60}}{{{short}}}\"\n    header += r\" & \\textbf{Avg.} \\\\\"\n    lines.append(header)\n    lines.append(r\"\\midrule\")\n\n    # Find best per task (for bolding)\n    best_per_task = {}\n    for t in SPATIAL_TASKS:\n        best_sr = -1\n        for m, mdata in all_methods.items():\n            sr = mdata[\"per_task\"].get(t)\n            if sr is not None and sr > best_sr:\n                best_sr = sr\n        if best_sr >= 0:\n            best_per_task[t] = best_sr\n\n    # Method rows — baselines first, then ACR variants\n    method_order = [\n        \"VLA-only (K=1)\", \"VLA-mean (K=10)\", \"ReconVLA argmin (K=10)\", \"Argmin-only (K=10)\",\n        \"ACR per-DOF\", \"ACR obs-only\", \"ACR scalar\", \"ACR tiny (norm=0.05)\",\n    ]\n    active_methods = [m for m in method_order if m in all_methods]\n\n    for i, method in enumerate(active_methods):\n        if i == 4 and any(m.startswith(\"ACR\") for m in active_methods[i:]):\n            lines.append(r\"\\midrule\")\n\n        mdata = all_methods[method]\n        row = method.replace(\"_\", r\"\\_\").replace(\"&\", r\"\\&\")\n        if not mdata[\"complete\"]:\n            row += f\"$^{{{mdata['n_tasks']}}}$\"\n\n        task_srs = []\n        for t in SPATIAL_TASKS:\n            sr = mdata[\"per_task\"].get(t)\n            if sr is not None:\n                val = sr * 100\n                task_srs.append(val)\n                cell = f\"{val:.0f}\"\n                if t in best_per_task and abs(sr - best_per_task[t]) < 1e-6:\n                    cell = f\"\\\\textbf{{{cell}}}\"\n                row += f\" & {cell}\"\n            else:\n                row += \" & --\"\n\n        # Overall\n        if mdata[\"overall_sr\"] is not None:\n            avg = mdata[\"overall_sr\"] * 100\n            avg_str = f\"{avg:.1f}\"\n            if mdata[\"complete\"]:\n                row += f\" & \\\\textbf{{{avg_str}}}\"\n            else:\n                row += f\" & {avg_str}$^*$\"\n        else:\n            row += \" & --\"\n\n        row += r\" \\\\\"\n        lines.append(row)\n\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\multicolumn{\" + str(n_tasks + 2) + r\"}{l}{\\footnotesize $^n$ = only $n$/10 tasks completed. $^*$ = partial average.} \\\\\")\n    lines.append(r\"\\end{tabular}}\")\n    lines.append(r\"\\end{table*}\")\n\n    latex = \"\\n\".join(lines)\n\n    out_path = os.path.join(OUT_DIR, \"spatial_final_table.tex\")\n    with open(out_path, \"w\") as f:\n        f.write(latex)\n    print(f\"Saved: {out_path}\")\n\n    return latex\n\n\ndef generate_json_summary(all_methods):\n    \"\"\"Generate JSON summary of all spatial results.\"\"\"\n    summary = {}\n\n    for method, mdata in all_methods.items():\n        summary[method] = {\n            \"per_task\": {t: mdata[\"per_task\"].get(t) for t in SPATIAL_TASKS},\n            \"overall_sr\": mdata[\"overall_sr\"],\n            \"n_tasks\": mdata[\"n_tasks\"],\n            \"complete\": mdata[\"complete\"],\n            \"sources\": mdata[\"sources\"],\n        }\n\n    out_path = os.path.join(OUT_DIR, \"spatial_final_data.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"Saved: {out_path}\")\n\n    return summary\n\n\ndef main():\n    data = load_registry()\n    exps = data.get(\"experiments\", {})\n    all_methods = collect_all_methods(exps)\n\n    print(\"=\" * 60)\n    print(\"SPATIAL BENCHMARK - FINAL COMPARISON\")\n    print(\"=\" * 60)\n\n    # Summary table\n    header = f\"{'Method':<28} {'Tasks':>5} {'Overall':>8}  Status\"\n    print(f\"\\n{header}\")\n    print(\"-\" * len(header))\n\n    for method, mdata in all_methods.items():\n        sr_str = f\"{mdata['overall_sr']*100:.1f}%\" if mdata['overall_sr'] else \"N/A\"\n        status = \"COMPLETE\" if mdata['complete'] else f\"PARTIAL ({mdata['n_tasks']}/10)\"\n        print(f\"{method:<28} {mdata['n_tasks']:>5} {sr_str:>8}  {status}\")\n\n    # Per-task detail\n    print(f\"\\n{'Task':<30}\", end=\"\")\n    method_names = list(all_methods.keys())\n    for m in method_names:\n        print(f\" {m[:12]:>12}\", end=\"\")\n    print()\n    print(\"-\" * (30 + 13 * len(method_names)))\n\n    for t in SPATIAL_TASKS:\n        print(f\"{t:<30}\", end=\"\")\n        for m in method_names:\n            sr = all_methods[m][\"per_task\"].get(t)\n            if sr is not None:\n                print(f\" {sr*100:>11.0f}%\", end=\"\")\n            else:\n                print(f\" {'--':>12}\", end=\"\")\n        print()\n\n    # Improvement analysis\n    print(\"\\n── ACR vs Baselines ──\")\n    baselines = {\n        \"VLA-only (K=1)\": all_methods.get(\"VLA-only (K=1)\", {}).get(\"overall_sr\"),\n        \"ReconVLA argmin (K=10)\": all_methods.get(\"ReconVLA argmin (K=10)\", {}).get(\"overall_sr\"),\n    }\n\n    for method in all_methods:\n        if not method.startswith(\"ACR\"):\n            continue\n        mdata = all_methods[method]\n        if mdata[\"overall_sr\"] is None:\n            continue\n\n        sr = mdata[\"overall_sr\"]\n        for bname, bsr in baselines.items():\n            if bsr is not None:\n                delta = (sr - bsr) * 100\n                rel = (sr - bsr) / bsr * 100 if bsr > 0 else float(\"inf\")\n                suffix = f\"({'PARTIAL' if not mdata['complete'] else 'FULL'})\"\n                print(f\"  {method} vs {bname}: {delta:+.1f}pp ({rel:+.1f}% relative) {suffix}\")\n\n    # Generate outputs\n    latex = generate_latex_table(all_methods)\n    summary = generate_json_summary(all_methods)\n\n    print(\"\\n── LaTeX Table ──\")\n    print(latex)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T05:37:46.776820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T05:37:46.776980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts && python analysis_spatial_final.py 2>&1",
+              "description": "Run spatial analysis script",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T05:37:46.777114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T05:37:46.777236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts && python analysis_magnitude_sweep.py 2>&1",
+              "description": "Run magnitude sweep analysis script",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T05:37:46.777379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-idea_…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T05:37:46.777499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts && python analysis_object_benchmark.py 2>&1",
+              "description": "Run object benchmark analysis script",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T05:37:46.777616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-idea_…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T05:37:46.777732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "which python3 && pip3 list 2>/dev/null | grep -iE \"yaml|matplotlib\"",
+              "description": "Check python3 and dependencies"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T05:37:46.777847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/bin/python3\nPyYAML                    6.0.3"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T05:37:46.777959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip3 install matplotlib --quiet 2>&1 | tail -3",
+              "description": "Install matplotlib",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T05:37:46.778072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T05:37:46.778186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip3 install matplotlib --break-system-packages --quiet 2>&1 | tail -3",
+              "description": "Install matplotlib with PEP 668 override",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T05:37:46.778379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/ubuntu/.local/bin' which is not on PATH.\n  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T05:37:46.778566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts && python3 analysis_spatial_final.py 2>&1",
+              "description": "Run spatial analysis",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T05:37:46.778807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nSPATIAL BENCHMARK - FINAL COMPARISON\n============================================================\n\nMethod                       Tasks  Overall  Status\n---------------------------------------------------\nVLA-only (K=1)                  10    30.0%  COMPLETE\nVLA-mean (K=10)                  1    10.0%  PARTIAL (1/10)\nReconVLA argmin (K=10)          10    34.0%  COMPLETE\nArgmin-only (K=10)               9    36.7%  PARTIAL (9/10)\nACR per-DOF                      7    42.9%  PARTIAL (7/10)\nACR obs-only                     6    40.0%  PARTIAL (6/10)\nACR scalar                       3    56.7%  PARTIAL (3/10)\nACR tiny (norm=0.05)             0      N/A  PARTIAL (0/10)\n\nTask                           VLA-only (K= VLA-mean (K= ReconVLA arg Argmin-only   ACR per-DOF ACR obs-only   ACR scalar ACR tiny (no\n--------------------------------------------------------------------------------------------------------------------------------------\nbetween_plate_and_ramekin               60%           --          60%          60%          60%          90%          60%           --\nnext_to_ramekin                        100%           --         100%         100%         100%         100%         100%           --\nfrom_table_center                        0%           --           0%           0%          10%           0%          10%           --\non_cookie_box                           20%           --          30%          30%          40%          40%           --           --\nin_top_drawer                            0%           --          10%          10%           0%          10%           --           --\non_ramekin                               0%           --          10%          10%           0%           0%           --           --\nnext_to_cookie_box                      90%           --          90%          90%          90%           --           --           --\non_stove                                 0%         \n…[truncated 2653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T05:37:46.779029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 analysis_magnitude_sweep.py 2>&1",
+              "description": "Run magnitude sweep analysis",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T05:37:46.779213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 analysis_object_benchmark.py 2>&1",
+              "description": "Run object benchmark analysis",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T05:37:46.779432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nMAGNITUDE SWEEP ANALYSIS\n============================================================\n\nBaselines: argmin=34%, vla_only=30%, vla_mean=32%\n\nPer-DOF data points: 1\n  norm=0.10: SR=42.9%  [MERGED]  (eval-acr-spatial-v4-small+restart)\n\nObs-only data points: 1\n  norm=0.10: SR=40.0%  [MERGED]  (eval-acr-spatial-v4-obs-only-r2+restart)\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/magnitude_sweep_spatial.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/magnitude_sweep_spatial.png\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/magnitude_sweep_summary.json\n\n── Summary ──\n  Best perdof: norm=0.10, SR=42.9%\n  Best obs_only: norm=0.10, SR=40.0%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T05:37:46.779660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nOBJECT BENCHMARK ANALYSIS\n============================================================\n\nVLA-only [DONE] (eval-vla-only-object)\n  Overall: 12%  (10/10 tasks)\n    alphabet_soup: 0%\n    cream_cheese: 10%\n    salad_dressing: 20%\n    bbq_sauce: 20%\n    ketchup: 0%\n    tomato_sauce: 10%\n    butter: 0%\n    milk: 10%\n    chocolate_pudding: 20%\n    orange_juice: 30%\n\nVLA-mean [RUNNING] (eval-vla-mean-object)\n  Overall: N/A  (1/10 tasks)\n    alphabet_soup: 0%\n\nReconVLA [RUNNING] (eval-reconvla-object)\n  Overall: N/A  (1/10 tasks)\n    alphabet_soup: 0%\n\nACR per-DOF [RUNNING] (eval-acr-object-v4-perdof)\n  Overall: N/A  (1/10 tasks)\n    alphabet_soup: 0%\n\nACR obs-only [RUNNING] (eval-acr-object-v4-obs-only)\n  Overall: N/A  (1/10 tasks)\n    alphabet_soup: 0%\n\nACR scalar [RUNNING] (eval-acr-object-v4-scalar)\n  Overall: N/A  (1/10 tasks)\n    alphabet_soup: 0%\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/object_benchmark.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/object_benchmark.png\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/object_benchmark_table.tex\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/object_benchmark_data.json\n\n── LaTeX Table ──\n\\begin{table}[t]\n\\centering\n\\caption{Object Benchmark: Per-Task Success Rate (\\%)}\n\\label{tab:object-benchmark}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{lccccccccccc}\n\\toprule\nMethod & \\rotatebox{60}{Alph. Soup.} & \\rotatebox{60}{Crea. Chee.} & \\rotatebox{60}{Sala. Dres.} & \\rotatebox{60}{Bbq Sauce} & \\rotatebox{60}{Ketchup} & \\rotatebox{60}{Toma. Sauc.} & \\rotatebox{60}{Butter} & \\rotatebox{60}{Milk} & \\rotatebox{60}{Choc. Pudd.} & \\rotatebox{60}{Oran. Juic.} & \\textbf{Avg.} \\\\\n\\midrule\nVLA-only & 0 & 10 & 20 & 20 \n…[truncated 437 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T05:37:46.779899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement && python3 -c \"\nimport yaml\ndata = yaml.safe_load(open('registry.yaml'))\nexp = data['experiments'].get('eval-vla-mean-spatial', {})\nprint('keys:', list(exp.keys()))\nm = exp.get('metrics', {})\nprint('metrics keys:', list(m.keys()))\nfor k, v in m.items():\n    print(f'  {k}: {v}')\n\"",
+              "description": "Check VLA-mean spatial experiment metrics format"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T05:37:46.780094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "keys: ['status', 'retry_count', 'created_at', 'updated_at', 'spec', 'metrics', 'conclusion', 'completed_at', 'log_path', 'checkpoint_path']\nmetrics keys: ['overall_success_rate_10tasks', 'total_successes', 'total_trials', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10']\n  overall_success_rate_10tasks: 0.32\n  total_successes: 32\n  total_trials: 100\n  T1: 0.7\n  T2: 1\n  T3: 0\n  T4: 0.3\n  T5: 0\n  T6: 0\n  T7: 0.8\n  T8: 0\n  T9: 0.3\n  T10: 0.1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T05:37:46.780444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\ndata = yaml.safe_load(open('registry.yaml'))\nfor eid in ['eval-tiny-correction-spatial', 'eval-vla-mean-spatial-t10']:\n    exp = data['experiments'].get(eid, {})\n    m = exp.get('metrics', {})\n    print(f'=== {eid} ===')\n    for k, v in m.items():\n        print(f'  {k}: {v}')\n    print()\n\"",
+              "description": "Check tiny correction and T10 experiment formats"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T05:37:46.780666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== eval-tiny-correction-spatial ===\n  tasks_done: 7/10\n  partial_results: {'T1_between_plate_ramekin': '70% (7/10)', 'T2_next_to_ramekin': '90% (9/10)', 'T3_from_table_center': '0% (0/10)', 'T4_on_cookie_box': '30% (3/10)', 'T5_in_top_drawer': '0% (0/10)', 'T6_on_ramekin': '0% (0/10)', 'T7_next_to_cookie_box': '90% (9/10)'}\n  running_avg_7tasks: 40% (28/70)\n  process_status: ACTUALLY ALIVE - bash wrapper PID 232815 dead but python child PID 232820 still running (07:48h, 139% CPU, 9.1GB RSS, GPU2)\n  status_correction: Registry incorrectly marked DONE, process is still completing remaining 3 tasks\n  snapshot_time: 2026-05-15T09:40Z\n\n=== eval-vla-mean-spatial-t10 ===\n  T10_on_wooden_shelf: 10% (1/10)\n  note: Only ran task 9 (start_task=9). T10 = wooden shelf task."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T05:37:46.780940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py",
+              "offset": "86",
+              "limit": "50"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T05:37:46.781157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "86\tT_INDEX_MAP = {f\"T{i+1}\": SPATIAL_TASKS[i] for i in range(10)}\n87\t# Also map \"on_wooden_shelf\" -> \"on_wooden_cabinet\" (known alias)\n88\tTASK_ALIASES = {\"on_wooden_shelf\": \"on_wooden_cabinet\"}\n89\t\n90\t\n91\tdef load_registry():\n92\t    with open(REGISTRY) as f:\n93\t        return yaml.safe_load(f)\n94\t\n95\t\n96\tdef normalize_task_name(name):\n97\t    \"\"\"Normalize task name to canonical short form.\"\"\"\n98\t    # Strip full prefix\n99\t    name = name.replace(\"pick_up_black_bowl_\", \"\")\n100\t    # T-index mapping\n101\t    if name in T_INDEX_MAP:\n102\t        return T_INDEX_MAP[name]\n103\t    # Aliases\n104\t    name = TASK_ALIASES.get(name, name)\n105\t    # Handle T10_on_wooden_shelf style\n106\t    for alias, canonical in TASK_ALIASES.items():\n107\t        if alias in name:\n108\t            return canonical\n109\t    return name\n110\t\n111\t\n112\tdef extract_task_results(exp):\n113\t    \"\"\"Extract per-task results from experiment, returning {task_short: sr}.\"\"\"\n114\t    m = exp.get(\"metrics\", {})\n115\t    if not m:\n116\t        return {}\n117\t\n118\t    results = {}\n119\t\n120\t    # per_task dict (completed experiments)\n121\t    for key, val in m.get(\"per_task\", {}).items():\n122\t        task = normalize_task_name(key)\n123\t        if task in SPATIAL_TASKS:\n124\t            results[task] = float(val)\n125\t\n126\t    # partial_results (in-progress, format: \"60.0% (6/10)\")\n127\t    for key, val in m.get(\"partial_results\", {}).items():\n128\t        task = normalize_task_name(key)\n129\t        if task in SPATIAL_TASKS:\n130\t            match = re.search(r\"([\\d.]+)%\", str(val))\n131\t            if match:\n132\t                results[task] = float(match.group(1)) / 100.0\n133\t\n134\t    # per_task_partial\n135\t    for key, val in m.get(\"per_task_partial\", {}).items():"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T05:37:46.781392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py",
+              "old_string": "TASK_ALIASES = {\"on_wooden_shelf\": \"on_wooden_cabinet\"}",
+              "new_string": "TASK_ALIASES = {\n    \"on_wooden_shelf\": \"on_wooden_cabinet\",\n    \"between_plate_ramekin\": \"between_plate_and_ramekin\",\n}"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T05:37:46.781621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T05:37:46.781770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py",
+              "old_string": "def normalize_task_name(name):\n    \"\"\"Normalize task name to canonical short form.\"\"\"\n    # Strip full prefix\n    name = name.replace(\"pick_up_black_bowl_\", \"\")\n    # T-index mapping\n    if name in T_INDEX_MAP:\n        return T_INDEX_MAP[name]\n    # Aliases\n    name = TASK_ALIASES.get(name, name)\n    # Handle T10_on_wooden_shelf style\n    for alias, canonical in TASK_ALIASES.items():\n        if alias in name:\n            return canonical\n    return name",
+              "new_string": "def normalize_task_name(name):\n    \"\"\"Normalize task name to canonical short form.\"\"\"\n    # Strip full prefix\n    name = name.replace(\"pick_up_black_bowl_\", \"\")\n    # Strip T{n}_ prefix (e.g. \"T1_between_plate_ramekin\" -> \"between_plate_ramekin\")\n    name = re.sub(r\"^T\\d+_\", \"\", name)\n    # T-index mapping (bare \"T1\", \"T2\", ...)\n    if name in T_INDEX_MAP:\n        return T_INDEX_MAP[name]\n    # Aliases\n    name = TASK_ALIASES.get(name, name)\n    # Fuzzy alias match\n    for alias, canonical in TASK_ALIASES.items():\n        if alias in name:\n            return canonical\n    return name"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T05:37:46.781986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T05:37:46.782136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py",
+              "old_string": "    # Handle T1-T10 format in per_task\n    for key, val in m.get(\"per_task\", {}).items():\n        if key in T_INDEX_MAP:\n            task = T_INDEX_MAP[key]\n            results[task] = float(val)\n\n    # Handle special fields like T10_on_wooden_shelf\n    for key, val in m.items():\n        if key.startswith(\"T10_\"):\n            task = normalize_task_name(key)\n            if task in SPATIAL_TASKS:\n                match = re.search(r\"(\\d+)%\", str(val))\n                if match:\n                    results[task] = float(match.group(1)) / 100.0",
+              "new_string": "    # Handle T1-T10 at metrics top level (e.g. eval-vla-mean-spatial)\n    for key, val in m.items():\n        if re.match(r\"^T\\d+$\", key) and key in T_INDEX_MAP:\n            task = T_INDEX_MAP[key]\n            results[task] = float(val)\n        elif re.match(r\"^T\\d+_\", key):\n            task = normalize_task_name(key)\n            if task in SPATIAL_TASKS:\n                if isinstance(val, (int, float)):\n                    results[task] = float(val)\n                else:\n                    match = re.search(r\"(\\d+)%\", str(val))\n                    if match:\n                        results[task] = float(match.group(1)) / 100.0"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T05:37:46.782383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_spatial_final.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T05:37:46.782551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/analysis_magnitude_sweep.py",
+              "offset": "57",
+              "limit": "30"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T05:37:46.782693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "57\t\n58\t    return None\n59\t\n60\t\n61\tdef extract_partial_sr(exp):\n62\t    \"\"\"Extract SR from partial results (in-progress experiments).\"\"\"\n63\t    m = exp.get(\"metrics\", {})\n64\t    if not m:\n65\t        return None, 0\n66\t\n67\t    partial = m.get(\"partial_results\", {})\n68\t    if partial:\n69\t        successes = 0\n70\t        trials = 0\n71\t        for v in partial.values():\n72\t            match = re.search(r\"\\((\\d+)/(\\d+)\\)\", str(v))\n73\t            if match:\n74\t                successes += int(match.group(1))\n75\t                trials += int(match.group(2))\n76\t        if trials > 0:\n77\t            return successes / trials, len(partial)\n78\t        return None, 0\n79\t\n80\t    per_task_partial = m.get(\"per_task_partial\", {})\n81\t    if per_task_partial:\n82\t        return sum(per_task_partial.values()) / len(per_task_partial), len(per_task_partial)\n83\t\n84\t    # Try running_avg fields\n85\t    for key, val in m.items():\n86\t        if key.startswith(\"running_avg\"):"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T05:37:46.782843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts && python3 analysis_spatial_final.py 2>&1",
+              "description": "Run fixed spatial analysis",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T05:37:46.783007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nSPATIAL BENCHMARK - FINAL COMPARISON\n============================================================\n\nMethod                       Tasks  Overall  Status\n---------------------------------------------------\nVLA-only (K=1)                  10    30.0%  COMPLETE\nVLA-mean (K=10)                 10    32.0%  COMPLETE\nReconVLA argmin (K=10)          10    34.0%  COMPLETE\nArgmin-only (K=10)               9    36.7%  PARTIAL (9/10)\nACR per-DOF                      7    42.9%  PARTIAL (7/10)\nACR obs-only                     6    40.0%  PARTIAL (6/10)\nACR scalar                       3    56.7%  PARTIAL (3/10)\nACR tiny (norm=0.05)             7    40.0%  PARTIAL (7/10)\n\nTask                           VLA-only (K= VLA-mean (K= ReconVLA arg Argmin-only   ACR per-DOF ACR obs-only   ACR scalar ACR tiny (no\n--------------------------------------------------------------------------------------------------------------------------------------\nbetween_plate_and_ramekin               60%          70%          60%          60%          60%          90%          60%          70%\nnext_to_ramekin                        100%         100%         100%         100%         100%         100%         100%          90%\nfrom_table_center                        0%           0%           0%           0%          10%           0%          10%           0%\non_cookie_box                           20%          30%          30%          30%          40%          40%           --          30%\nin_top_drawer                            0%           0%          10%          10%           0%          10%           --           0%\non_ramekin                               0%           0%          10%          10%           0%           0%           --           0%\nnext_to_cookie_box                      90%          80%          90%          90%          90%           --           --          90%\non_stove                                 0%           0%  \n…[truncated 2836 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T05:37:46.783199+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "VLA-mean 现在正确显示 10/10 tasks, 32%。三个脚本全部正常工作。\n\n## 产出总结\n\n创建了 3 个分析脚本在 `artifacts/` 下：\n\n### 1. `analysis_magnitude_sweep.py`\n- 读 registry 中 `eval-mag-perdof-norm*` 和 `eval-mag-obsonly-norm*` 实验\n- 自动合并 norm=0.1 的原始 spatial eval 数据作为已知点\n- 输出 PDF 曲线图（x=norm log scale, y=SR%, perdof vs obs_only + 三条 baseline 水平线）\n- 输出 `figures/magnitude_sweep_summary.json`\n- 当前状态：magnitude sweep 实验还没出结果，只有 norm=0.1 一个点。实验完成后重跑即可自动填充\n\n### 2. `analysis_object_benchmark.py`\n- 读 6 个 object 实验（VLA-only / VLA-mean / ReconVLA / perdof / obs_only / scalar）\n- 输出 grouped bar chart PDF（每个 task 一组 bars）\n- 输出 LaTeX table + JSON\n- 当前状态：只有 VLA-only 有完整 10 task 数据，其他只有 1/10 (alphabet_soup)\n\n### 3. `analysis_spatial_final.py`\n- 自动合并 base + restart 实验的 partial results\n- 处理 T1-T10 格式、`T{n}_{task}` 格式、full task name 等各种 metrics 格式\n- 输出 LaTeX table（`\\textbf` 标注 per-task best）+ JSON\n- 当前状态：VLA-only/VLA-mean/ReconVLA 完整，ACR 方法等待 restart 完成\n\n### 使用方式\n```bash\ncd artifacts/\npython3 analysis_magnitude_sweep.py   # → figures/magnitude_sweep_spatial.pdf + .json\npython3 analysis_object_benchmark.py  # → figures/object_benchmark.pdf + .tex + .json\npython3 analysis_spatial_final.py     # → figures/spatial_final_table.tex + .json\n```\n\n实验跑完后直接重跑对应脚本，会自动从 registry.yaml 读取最新数据。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_analysis-prep_20260515T052922"
+          },
+          "id": "event-000087"
+        }
+      ],
+      "message_count": 87
+    }
+  ],
+  "readable_path": "readable/conversations/research-analysis-prep.md"
+}

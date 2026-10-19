@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45134dc46c04b72b0817",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_11_1778876461.md",
+  "task_key": "loop_11_1778876461",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778876461.md",
+    "occurrence": 1,
+    "bytes": 6883,
+    "sha256": "a0a456ec3c8f76f589ef8530cfe7c8b3107da79beb350643faaded8b4dc135c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T20:12:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：只能用 `bjb2-40593:cuda:0`, `bjb1-18228:cuda:0-3`, `bjb1-32546:cuda:0-5`, `bjb2-28827:cuda:0-5`（共 17 张 4090）。白名单外的 GPU 即使 Director 指令也必须 push back。\n- **submit_training_job 命令必须 bash -c 包裹**：tmux 用 `sh` 执行，裸 `python` 会 EXIT_CODE=127。正确格式：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u ...\"`\n- **Kill 操作前必须 `ps aux | grep` 核对完整命令行参数**（norm03 vs norm003 事故教训，9 小时 GPU 空闲）\n- **exp_id 中 norm 值用 `p` 替代小数点**：norm-0p3 = 0.3, norm-0p03 = 0.03，禁止歧义缩写\n- **CoRL 2026 DDL**：abstract ~May 26, full paper ~Jun 2，剩余 ~11 天，不可拖延\n- **seed=43 obs_only partial 8.3% 低于 seed=42 的 19%**——严禁在 10-task FINAL 出来前下结论，剩余 4 tasks (butter/milk/choc_pudding/OJ) 在 seed=42 中 SR 较高\n\n### 2. 🖥️ 基础设施快照\n- **服务器 4 台**（全部 RTX 4090）：\n  - `bjb2-40593`（1×4090D）：工作目录 `/root/acr-vla-conformal-refinement`，account=root\n  - `bjb1-18228`（4×4090）：同上\n  - `bjb1-32546`（6×4090）：同上\n  - `bjb2-28827`（6×4090）：同上\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **预置镜像**：`aml-train`（用 `detect_image` 确认）\n- **活跃进程（17 个 RUNNING）**：\n\n| exp_id | 服务器:GPU | PID | 用途 |\n|--------|-----------|-----|------|\n| eval-acr-object-v4-default-r2 | bjb1-18228:cuda:0 | 390936 | perdof default norm object ablation |\n| eval-perdof-object-seed43 | bjb1-18228:cuda:1 | 365925 | seed=43 perdof |\n| eval-obs-only-object-seed43 | bjb1-18228:cuda:2 | 356490 | seed=43 obs_only |\n| eval-argmin-object-seed43 | bjb1-18228:cuda:3 | 356696 | seed=43 argmin |\n| eval-mag-obsonly-norm003-object | bjb1-32546:cuda:0 | 121325 | object mag sweep obs_only 0.03 |\n| eval-vla-mean-object-seed43 | bjb1-32546:cuda:1 | 111709 | seed=43 VLA-mean |\n| eval-scalar-object-seed43 | bjb1-32546:cuda:2 | 114664 | seed=43 scalar |\n| eval-obs-only-object-norm02-seed43-r2 | bjb1-32546:cuda:3 | 148788 | seed=43 obs_only norm=0.2（P0 关键） |\n| eval-acr-object-obs-only-default | bjb1-32546:cuda:4 | 134094 | obs_only default norm object |\n| eval-mag-perdof-norm02-object | bjb1-32546:cuda:5 | 127732 | object mag sweep perdof 0.2 |\n| eval-mag-perdof-norm003-object | bjb2-28827:cuda:0 | 105938 | object mag sweep perdof 0.03 |\n| eval-mag-perdof-norm005-object | bjb2-28827:cuda:1 | 109650 | object mag sweep perdof 0.05 |\n| eval-mag-perdof-norm03-object-r3 | bjb2-28827:cuda:2 | 140759 | object mag sweep perdof 0.3 |\n| eval-mag-perdof-norm02-seed43-object-r3 | bjb2-28827:cuda:3 | 144504 | seed=43 perdof norm=0.2 |\n| eval-mag-obsonly-norm03-object | bjb2-28827:cuda:4 | 103028 | object mag sweep obs_only 0.3 |\n| eval-mag-obsonly-norm005-object | bjb2-28827:cuda:5 | 101610 | object mag sweep obs_only 0.05 |\n| eval-mag-obsonly-norm003-b2 | bjb2-40593:cuda:0 | 225139 | spatial mag sweep obs_only 0.03 retry |\n\n- **Cron 监控**：17 个 cron 全部 active，reconcile 确认全部 still running\n- **PENDING**：`eval-mag-obsonly-norm03-b2`（spatial obs_only norm=0.3 retry，等审批）\n- **Worker 池**：0 running（全部已完成）\n\n### 3. 📊 当前状态\n**Phase 3 — Paper writing + seed=43 statistical validation + object magnitude sweep**\n\n**刚做完**：\n- Object 10/10 seed=42 全部 FINAL：obs_only 0.1=19%（+7pp over argmin），obs_only 0.2=22%（PROJECT HIGH +10pp）\n- Paper Agent 已完成 Intro / Method / Experiments / Related Work 四章\n- 引用审计 10/10 全部真实\n- Spatial magnitude sweep 基本完成（obs_only 全 norm 35-36% stable, perdof 偏离 0.1 崩溃）\n- Bug A (T-index off-by-one) + Bug B (norm=0.10 merge) 已修复\n\n**正在跑**：\n- **seed=43 六方对比**（P0）：obs_only/argmin/perdof/scalar/VLA-mean/obs_only-norm0.2 在 bjb1-18228 + bjb1-32546 上跑。obs_only 6/10 partial=8.3%（低于 seed=42 的 19%，但剩余 tasks 在 seed=42 中 SR 高），预计 12-24h 完成\n- **Object magnitude sweep**（5-point curve）：obs_only 和 perdof 各 5 个 norm 点在 bjb2-28827 + bjb1-32546 跑\n- **Ablation**：default norm (无 magnitude control) 两个在跑\n\n**等待中**：\n- 所有 17 个实验的 cron 回调\n- `eval-mag-obsonly-norm03-b2` 等审批\n\n### 4. 📋 待办（条件触发式）\n- **seed=43 六方全部 10/10 完成** → spawn Worker 跑 Fisher exact test + bootstrap CI → 若 p<0.05 更新 paper claims；p=0.05-0.10 考虑加 seed=44；p>0.10 需调整 claim 强度\n- **Object magnitude sweep 全部完成** → spawn Worker 生成 norm sensitivity curve figure（obs_only flat vs perdof collapse），补入 Paper Experiments section\n- **seed=43 obs_only 10/10 FINAL** → 这是整个项目的 make-or-break：若 obs_only seed=43 也显著 > argmin → claim 稳固；若 seed=43 obs_only ≈ argmin → 需要 Framing 调整\n- **所有实验完成后** → Paper Agent 写 Abstract + Discussion/Conclusion → seed=43 结果补入 Results section\n- **eval-mag-obsonly-norm03-b2 审批通过** → submit_on_allocated\n- **default norm ablation 完成** → 确认 catastrophic failure (0%)，补入 magnitude control narrative\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D029+D030：Spatial 全部 CRM 变体 dead（32-35%≈argmin 34%），per-DOF conformal claim 已死\n- D032：Magnitude sweep 叙事修正——obs_only 优势不是\"更好的 correction\"而是\"更鲁棒的 magnitude tolerance\"\n- D033：Object 10-task FINAL obs_only +7.0pp 超过 5pp 门槛，项目存活\n\n**论文 story（Scenario C active）**：sample-then-correct > sample-then-select；obs features > conformal features（honest negative）；magnitude control 是 critical factor。单 claim 论文，以 object benchmark 为主故事载体，spatial 作 robustness 验证。\n\n**最容易判断错的事**：\n1. **seed=43 partial 低不等于 FAIL**——剩余 4 tasks 在 seed=42 中 SR 较高，必须等 10-task FINAL\n2. **spatial 35% ≠ 无价值**——spatial 是\"CRM 不伤害 + obs_only 鲁棒\"的证据，不是\"CRM 改进\"的证据\n3. **obs_only norm=0.2 (22%) vs norm=0.1 (19%)**——只有 object 域显示 larger correction = better；spatial 域无此效应。不要泛化\n4. **bjb2-40593 环境有坑**：无 .git repo，CRM cache 路径是旧的 `/root/autodl-tmp/crm_cache/spatial/`，之前出过 ghost PID 问题\n5. **DDL 压力**：CoRL abstract ~May 26（11 天），full paper ~Jun 2（18 天）。Paper 四章已完成，还差 Abstract + Discussion + seed=43 结果补入 + magnitude figure。时间够但不能拖\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778876461.md"
+}

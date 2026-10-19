@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224b7825f86b7c185527",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper check citation audit status",
+  "task_key": "worker_paper_check-citation-audit-status_20260515T202514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_check-citation-audit-status_20260515T202514_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "9bcdd04d7673b2e37f1d4b43ba92cbf9a6e5d2d13926edb5290f856a6e578973"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告写入 `artifacts/citation_audit_report.md`。\n\n**结论：审计未通过，2 个 blocking 问题：**\n\n1. **chen2026reconvla 跨章节不一致** — `sections/introduction.tex` 已按 D034 修正为\"UQ 框架\"定位，但 `related_work.tex`（仍说\"action selection\"）和 `method.tex`（仍说\"conformal selection frontend of ReconVLA\"）未同步更新。三个章节对 ReconVLA 的描述互相矛盾。\n\n2. **braun2025cgs / CGS 命名归因** — 论文说\"Braun et al. develop Conformalized Gaussian Scoring (CGS)\"，但 braun2025cgs 原文标题是\"Multivariate Standardized Residuals for Conformal Prediction\"。\"CGS\"可能是本文自创术语，不应归因给 braun2025cgs。需核实原文是否使用该术语。\n\n其余 29 个 \\cite{} 键全部在 bib 中存在，22 个方法归因基于论文标题验证通过。bib 中有 14 个未引用条目，提交前建议清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-citation-audit-status.md"
+}

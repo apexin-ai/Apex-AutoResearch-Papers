@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "376947b2d20af2c4c6fa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diag crm training progress L24",
+  "task_key": "worker_diag_crm-training-progress-L24_20260521T190004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diag_crm-training-progress-L24_20260521T190004.jsonl",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "f7aa5a0a78961babc1b2a313ce3fc6847c5106d5938780546cc2f2141142d763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:00:13.515891+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_crm-training-progress-L24_20260521T190004"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diag-crm-training-progress-l24.md"
+}

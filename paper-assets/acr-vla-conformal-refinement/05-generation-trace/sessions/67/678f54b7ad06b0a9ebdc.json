@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "678f54b7ad06b0a9ebdc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose unified crm k check",
+  "task_key": "worker_diagnose_unified-crm-k-check_20260522T112635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_unified-crm-k-check_20260522T112635_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "916b3aae56c8a5f6711a1c6218fc844088347441e24d380ff3eba3b7073169e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已 kill。\n\n## 总结\n\n1. **`--mode obs_only` 缺失** — 已 kill PID 317054。\n2. **K 值不一致** — Long suite 的 cache 是 K=2（其他都是 K=10）。**不能直接重启**，因为混合训练数据的 K 不一致会导致模型学到错误的 pattern。\n\n**等 Director 决策：**\n- 选项 A：重新生成 Long 的 cache（K=10），然后再启动 unified training\n- 选项 B：所有 suite 统一用 K=2 重新生成 cache\n- 选项 C：仅用 object/spatial/goal（K=10）三个 suite 先训练，Long 后补"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-unified-crm-k-check.md"
+}

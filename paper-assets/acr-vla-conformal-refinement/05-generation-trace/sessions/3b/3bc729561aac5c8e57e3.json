@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bc729561aac5c8e57e3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research smolvla official eval",
+  "task_key": "worker_research_smolvla-official-eval_20260522T092150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_smolvla-official-eval_20260522T092150_result.json",
+    "occurrence": 1,
+    "bytes": 2241,
+    "sha256": "d3ec5ca1af941cdad490cae20e162b88eda886a5b1532dc27028d4b3abfa43a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调研结论\n\n### 1. SmolVLA 官方 Repo\n- 代码在 [huggingface/lerobot](https://github.com/huggingface/lerobot) 框架下\n- 论文: [arXiv:2506.01844](https://arxiv.org/abs/2506.01844)\n- LIBERO fine-tuned 模型: [HuggingFaceVLA/smolvla_libero](https://huggingface.co/HuggingFaceVLA/smolvla_libero)\n\n### 2. 是否有 LIBERO eval 脚本：**YES**\nlerobot 官方提供 `lerobot-eval` 命令，完整支持 LIBERO 四个 suite 的评估。文档见 [lerobot LIBERO docs](https://huggingface.co/docs/lerobot/libero)。\n\n### 3. 官方 LIBERO 数字（SmolVLA 0.45B, fine-tuned 100k steps）\n\n| Suite | Spatial | Object | Goal | Long | **Avg** |\n|-------|---------|--------|------|------|---------|\n| SR | 90% | 96% | 92% | 71% | **87.3%** |\n\n### 4. 与我们的 baseline 对比——巨大差距的根因\n\n| Suite | 官方 (fine-tuned) | 我们 (VLA-only) |\n|-------|-------------------|-----------------|\n| Object | 96% | 10.8% |\n| Spatial | 90% | 29.4% |\n\n**官方数字是在 LIBERO 训练集 (1693 episodes) 上 fine-tune 100k steps 后的结果。** 我们的数字如果是 zero-shot（未 fine-tune），差距完全可以解释——这是两个完全不同的评估设定。\n\n值得注意：即使 fine-tune 后，社区多人报告无法复现官方数字（[#2354](https://github.com/huggingface/lerobot/issues/2354), [#3287](https://github.com/huggingface/lerobot/issues/3287)），均无官方 resolution。\n\n### 5. 对论文的影响\n\n需要在论文中明确两件事：\n1. **我们评估的是什么**：是 pretrained SmolVLA (zero-shot) 还是 LIBERO fine-tuned 版本？如果是 zero-shot，需标注清楚，不能直接和官方 fine-tuned 数字对比\n2. **Wrapper 的必要性**：如果不在 lerobot 框架内评估，我们的 wrapper 是必要的（处理 obs/action 映射、7-dim continuous action、relative control mode 等）。如果用 lerobot-eval，则不需要\n\n### 6. 建议的下一步\n- 确认我们的 SmolVLA baseline 是 zero-shot 还是 fine-tuned\n- 如果是 zero-shot，考虑用官方 `lerobot-eval` + `HuggingFaceVLA/smolvla_libero`（fine-tuned 版本）跑一遍，获取 fair comparison baseline\n- 复现命令模板已写入 `memory.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-smolvla-official-eval.md"
+}

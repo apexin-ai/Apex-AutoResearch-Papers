@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04c88b81cea9492aa8b0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag stale tmux eval spatial v6",
+  "task_key": "worker_diag_stale-tmux-eval-spatial-v6_20260514T023036",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_stale-tmux-eval-spatial-v6_20260514T023036_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "a55a3ea517861dbaa8670094ffb45833ab9fd84642581b3e52e723d920037e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**`eval-spatial-v6-full` 已死 — 无 GPU 冲突。**\n\n| 项目 | 详情 |\n|------|------|\n| **tmux session** | 不存在（`has-session` 返回 exit 1） |\n| **Python 进程** | 无。仅残留一个 stale tmux server (PID 117472) |\n| **原始命令** | `--mode vla_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10` |\n| **CUDA_VISIBLE_DEVICES** | 0（如果存活会与 crm-train-k5 冲突） |\n| **日志** | 仅 14 行 — 加载了 10 个 task 后停止，未产出任何 eval 结果 |\n| **死因** | tmux 命令拼写错误（`&&` 未被引号包裹，evaluate.py 在父 shell 中执行而非 tmux 内，父 shell 退出后进程被杀） |\n\n**与 crm-train-k5 (cuda:0) 无冲突** — 进程已死，不占 GPU。\n\n**不是有效的 K=10 vla_only 基线** — 进程在开始 rollout 前就崩了，且 `vla_only` 模式下 K 参数无意义（VLA-only 不使用 CRM refinement）。\n\n**建议**: Kill 残留 tmux server `kill 117472`，无需重启。vla_only 模式与 K 值无关，已有的 vla_only 结果（如果之前完成过）即可作为公平基线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-stale-tmux-eval-spatial-v6.md"
+}

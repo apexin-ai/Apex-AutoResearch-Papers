@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64a97424830bedd9bb80",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval supp long k2mean s47 r2",
+  "task_key": "worker_harvest_eval-supp-long-k2mean-s47-r2_20260524T155120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-supp-long-k2mean-s47-r2_20260524T155120_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "ac8a0a9d4265fcd5ad2670ed576a98f1b61eaf6658f435810d0871d4d2846b8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需删除。\n\n**结果汇总：eval-supp-long-k2mean-s47-r2 — 成功**\n\n- **Overall SR: 54.5%** (109/200)，Long suite K2-mean baseline seed=47\n- Registry 已更新：DONE / success / metrics 完整\n- 结果文件：`logs/eval_long_vla_only_seed47.json`\n\nPer-task breakdown：\n\n| Task | SR |\n|------|-----|\n| KITCHEN_SCENE3 stove+moka | 100% |\n| KITCHEN_SCENE4 bowl+drawer | 95% |\n| STUDY_SCENE1 book+caddy | 85% |\n| SCENE2 cream+butter | 75% |\n| KITCHEN_SCENE6 mug+microwave | 70% |\n| SCENE1 soup+cream | 50% |\n| SCENE5 mugs+plates | 25% |\n| SCENE6 mug+pudding | 25% |\n| SCENE2 soup+tomato | 15% |\n| SCENE8 moka_pots | 5% |\n\n与 s42 的 57.0% 基本一致，K2-mean baseline 在 Long suite 上 SR 约 55-57% 范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-supp-long-k2mean-s47-r2.md"
+}

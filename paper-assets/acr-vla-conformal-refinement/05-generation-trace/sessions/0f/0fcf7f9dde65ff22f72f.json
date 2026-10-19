@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fcf7f9dde65ff22f72f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "hotfix eval reset order bjb1 v2",
+  "task_key": "worker_hotfix_eval-reset-order-bjb1-v2_20260513T234224",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_hotfix_eval-reset-order-bjb1-v2_20260513T234224_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "4c74cde263c863a0952adcceb6aa2540d6313dc78a00ba9fcd1ab11dfef26c4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个进程活跃（运行 3.5 分钟，CPU 200%+ 说明在做 MuJoCo 初始化），无 ValueError。\n\n**修复报告**：\n\n| 项目 | 内容 |\n|------|------|\n| **修改文件** | `/root/acr-vla-conformal-refinement/src/evaluate.py` 第 201 行 |\n| **修改内容** | 在 `obs = env.set_init_state(init_state)` 之前插入 `env.reset()`，顺序：reset → set_init_state → 5 步零动作 |\n| **进程 PID** | eval-spatial-v6-full: **117486** (GPU0), eval-acr-spatial-v2: **117814** (GPU1), eval-reconvla-spatial-v3: **118108** (GPU2) |\n| **ValueError** | 3 个日志均为 0 次，修复生效 |\n| **train_crm.py** | 未受影响（tmux session `crm-train-scalar-unc` 仍在运行） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/hotfix-eval-reset-order-bjb1-v2.md"
+}

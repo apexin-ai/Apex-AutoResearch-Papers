@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64ac3f5c6215fe5eaedc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh final harvest 3dir",
+  "task_key": "worker_ssh_final-harvest-3dir_20260523T032139",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_final-harvest-3dir_20260523T032139_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "d9145f7dbdf9cc58c3adb0d194fc6532ed10f83131551e0155db6bbfef547c7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 实验状态 (bjb1-32546)\n\n| 实验 | 状态 | Overall SR |\n|------|------|-----------|\n| CRM norm=0.3 | **INCOMPLETE** (T10 rollout 10/20 被杀) | ~73.9% (9 tasks) |\n| CRM norm=0.1 | **DONE** | **79.0%** |\n| CRM norm=0.05 | **DONE** | **80.0%** |\n| Adaptive CRM | **DONE** | **81.0%** |\n| Reconvla K=10 | **DONE** | **79.0%** |\n| CRM 4-suite training | **RUNNING** (PID 548658) | — |\n\nnorm03 进程在最后一个 task (wooden_cabinet) rollout 10/20 处被杀，无 JSON 输出。可能被 11:24 新启动的实验（adapt_tau015/025/035, crm_norm02, obj_crm005）挤掉了。\n\n### 最终对比表\n\n| Mode | K | norm | SR | vs VLA-only (78.5%) |\n|------|---|------|----|---------------------|\n| VLA-only K=1 | 1 | — | 78.5% | baseline |\n| CRM norm=0.3 | 10 | 0.3 | ~73.9%† | ~-4.6pp |\n| CRM norm=0.1 | 10 | 0.1 | 79.0% | +0.5pp |\n| CRM norm=0.05 | 10 | 0.05 | 80.0% | +1.5pp |\n| **Adaptive CRM** | **2→5** | **0.2** | **81.0%** | **+2.5pp** |\n| Reconvla K=10 | 10 | — | 79.0% | +0.5pp |\n\n### 关键发现\n\n1. **Adaptive conformal CRM 最优**：81.0%，trigger_rate=91.8%，confidence-gated 避免有害修正\n2. **CRM norm=0.05 次优**：80.0%，修正量足够小不会伤害\n3. **Reconvla 是强 baseline**：79.0%，无需学习组件\n4. **norm=0.3 仍然过激**：T9 从 80%→55%（-25pp），T7 从 100%→80%（-20pp）\n5. **T6 (on_ramekin) 全军覆没**：6 种方法均 0/20\n\n完整 task-level breakdown 已写入 `artifacts/3dir_spatial_s42_results.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-final-harvest-3dir.md"
+}

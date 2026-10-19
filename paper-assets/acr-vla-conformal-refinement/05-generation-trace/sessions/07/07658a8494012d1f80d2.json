@@ -1,0 +1,707 @@
+{
+  "schema_version": "1.0",
+  "id": "07658a8494012d1f80d2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "audit bjb2 28827 cleanup",
+  "task_key": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_audit_bjb2-28827-cleanup_20260519T120344.jsonl",
+    "occurrence": 1,
+    "bytes": 31935,
+    "sha256": "ae59a7ed71a7b28d55814c8f62822298aad66538ad0f3abc2e49530b77b5ce6e"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T12:05:32.118802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T12:05:32.119137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T12:05:32.119379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tmux list-sessions 2>/dev/null",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T12:05:32.119552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-random-selection-seed46-t16: 1 windows (created Tue May 19 09:38:15 2026)\\\\neval-spatial-obs-only-norm02-seq: 1 windows (created Tue May 19 09:44:50 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T12:05:32.119687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_reconvla_k5_seed42*.json /root/acr-vla-conformal-refinement/logs/eval_object_argmin_k5_seed42*.json /root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm005_seed45*.json /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed44*.json /root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed46*.json /root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm03_seed43*.json 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:05:32.119830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_object_reconvla_k5_seed42*.json': No such file or directory\\\\nls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_object_argmin_k5_seed42*.json': No such file or directory\\\\nls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm005_seed45*.json': No such file or directory\\\\nls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed44*.json': No such file or directory\\\\nls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed46*.json': No such file or directory\\\\nls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm03_seed43*.json': No such file or directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T12:05:32.119963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---\"; nvidia-smi --query-gpu=index,gpu_uuid,utilization.gpu,memory.used,memory.total --format=csv,noheader 2>/dev/null",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:05:32.120093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"503784, GPU-a7c79137-3a96-7036-cedf-aaeda2b1fd1d, 3713 MiB\\\\n508930, GPU-a7c79137-3a96-7036-cedf-aaeda2b1fd1d, 3539 MiB\\\\n---\\\\n0, GPU-a7c79137-3a96-7036-cedf-aaeda2b1fd1d, 99 %, 7286 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T12:05:32.120287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tmux capture-pane -t eval-random-selection-seed46-t16 -p 2>/dev/null | tail -30",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T12:05:32.120466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so\\\\n far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success s\\\\no far: 0/10\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so\\\\nfar: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so\\\\n far: 0/10\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success s\\\\no far: 1/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/10, success\\\\nso far: 2/10\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 20.0% (2/1\\\\n0)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/10, success so far\\\\n: 1/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/10, success so fa\\\\nr: 2/10\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T12:05:32.120605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tmux capture-pane -t eval-spatial-obs-only-norm02-seq -p 2>/dev/null | tail -30",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T12:05:32.120793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout\\\\n10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success r\\\\nate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/\\\\n10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10\\\\n/10, success so far: 1/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rat\\\\ne: 10.0% (1/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/\\\\n10, success so far: 1/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10\\\\n/10, success so far: 3/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rat\\\\ne: 30.0% (3/10)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on\\\\n_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on\\\\n_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_\\\\nthe_plate] success rate: 0.0% (0/10)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T12:05:32.120972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/ 2>/dev/null | head -60",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T12:05:32.121122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 92\\\\ndrwxr-xr-x 3 root root 4096 May 19 19:40 .\\\\ndrwxr-xr-x 9 root root 4096 May 19 16:04 ..\\\\n-rw-r--r-- 1 root root 7015 May 13 16:54 crm_spatial_train.log\\\\n-rw-r--r-- 1 root root 1484 May 14 07:36 eval-object-v5-full.log\\\\n-rw-r--r-- 1 root root 1697 May 16 08:42 eval_mag_obsonly_norm003.json\\\\n-rw-r--r-- 1 root root 1491 May 16 00:08 eval_object_obs_only.json\\\\n-rw-r--r-- 1 root root 3392 May 17 19:16 eval_object_perdof_norm01_seed47.log\\\\n-rw-r--r-- 1 root root 1494 May 18 20:17 eval_object_random_selection_seed42.json\\\\n-rw-r--r-- 1 root root 4925 May 18 20:17 eval_object_random_selection_seed42.log\\\\n-rw-r--r-- 1 root root 3698 May 19 19:36 eval_object_random_selection_seed46.log\\\\n-rw-r--r-- 1 root root 1488 May 19 19:40 eval_object_scalar_seed45_r2.json\\\\n-rw-r--r-- 1 root root 6117 May 19 19:40 eval_object_scalar_seed45_r2.log\\\\n-rw-r--r-- 1 root root 1485 May 16 12:58 eval_object_vla_only_seed44.json\\\\n-rw-r--r-- 1 root root 3530 May 19 19:15 eval_spatial_obs_only_norm02_seed43.log\\\\n-rw-r--r-- 1 root root  690 May 13 12:05 precompute.log\\\\n-rw-r--r-- 1 root root 1578 May 13 17:21 reconvla_object.log\\\\n-rw-r--r-- 1 root root 1638 May 13 16:56 reconvla_spatial.log\\\\ndrwxr-xr-x 2 root root   10 May 17 22:56 sentinels\\\\n-rw-r--r-- 1 root root  690 May 13 12:05 train_crm.log\\\\n-rw-r--r-- 1 root root 2678 May 13 14:34 train_crm_v2.log\\\\n-rw-r--r-- 1 root root 1812 May 13 17:35 vla_only_spatial_K1.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T12:05:32.121256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ps aux | grep -E \"python|eval\" | grep -v grep | head -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T12:05:32.121437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        904  0.0  0.0 2181320 54200 ?       Sl   May13   4:01 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        905  0.0  0.0 191540 88880 ?        S    May13   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        974  0.0  0.0 17524960 4608 ?       Sl   May13   3:29 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_cg0t3xd4/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_cg0t3xd4/startup_error\\\\nroot     464943  0.0  0.0   6344  3700 ?        Ss   May18   0:00 tmux new-session -d -s eval-scalar-seed45-r2 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_scalar --benchmark object --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_scalar_seed45_r2.json 2>&1 | tee logs/eval_object_scalar_seed45_r2.log\\\\nroot     503780  0.0  0.0   4364  1600 pts/1    Ss+  09:38   0:00 bash -c export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=0 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode random_selection --benchmark object --n_rollouts 10 --seed 46 --K 10 --output_file logs/eval_object_random_selection_seed46.json 2>&1 | tee logs/eval_object_random_selection_seed46.log\\\\nroot     503782  0.0  0.0   2800   412 pts/1    S    09:38   0:00 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode random_selection --benchmark object --n_rollouts 10 --seed 46 --K 10 --output_\n…[truncated 2752 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T12:05:32.121643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "python3 -c \"\nimport json, os\nfor f in ['eval_object_scalar_seed45_r2.json', 'eval_object_random_selection_seed42.json', 'eval_object_obs_only.json', 'eval_object_vla_only_seed44.json', 'eval_mag_obsonly_norm003.json']:\n    path = f'/root/acr-vla-conformal-refinement/logs/{f}'\n    if os.path.exists(path):\n        d = json.load(open(path))\n        sr = d.get('success_rate', d.get('overall_success_rate', 'N/A'))\n        print(f'{f}: SR={sr}')\n        if 'per_task_success_rates' in d:\n            for t,v in d['per_task_success_rates'].items():\n                print(f'  {t}: {v}')\n        print()\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T12:05:32.121784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T12:05:32.121907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed46.log",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T12:05:32.122036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/10, success so far: 2/10\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/10, success so far: 2/10\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T12:05:32.122157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed43.log",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T12:05:32.122308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T12:05:32.122459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json, os\nfor f in ['eval_object_scalar_seed45_r2.json', 'eval_object_random_selection_seed42.json', 'eval_object_obs_only.json', 'eval_object_vla_only_seed44.json', 'eval_mag_obsonly_norm003.json']:\n    path = f'/root/acr-vla-conformal-refinement/logs/{f}'\n    if os.path.exists(path):\n        d = json.load(open(path))\n        sr = d.get('success_rate', d.get('overall_success_rate', 'N/A'))\n        print(f'{f}: SR={sr}')\n        if 'per_task_success_rates' in d:\n            for t,v in d['per_task_success_rates'].items():\n                print(f'  {t}: {v}')\n        print()\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T12:05:32.122593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_object_scalar_seed45_r2.json: SR=0.07\\\\n\\\\neval_object_random_selection_seed42.json: SR=0.13\\\\n\\\\neval_object_obs_only.json: SR=0.19\\\\n\\\\neval_object_vla_only_seed44.json: SR=0.1\\\\n\\\\neval_mag_obsonly_norm003.json: SR=0.34\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T12:05:32.122710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat /root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed46.log",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T12:05:32.122879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 10, 'max_steps': 300, 'seed': 46, 'K': 10, 'mode': 'random_selection', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_random_selection_seed46.json', 'max_correction_norm': None}\\\\n[eval] Mode: random_selection, benchmark: object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:   3%|▎         | 15/489 [00:00<00:03, 124.99it/s]\\\\rLoading weights:   7%|▋         | 32/489 [00:00<00:03, 149.03it/s]\\\\rLoading weights:  10%|▉         | 48/489 [00:00<00:03, 146.16it/s]\\\\rLoading weights:  13%|█▎        | 65/489 [00:00<00:02, 152.91it/s]\\\\rLoading weights:  18%|█▊        | 88/489 [00:00<00:02, 166.96it/s]\\\\rLoading weights:  21%|██▏       | 105/489 [00:00<00:02, 140.15it/s]\\\\rLoading weights:  25%|██▌       | 123/489 [00:00<00:02, 143.59it/s]\\\\rLoading weights:  29%|██▊       | 140/489 [00:01<00:02, 123.11it/s]\\\\rLoading weights:  34%|███▎      | 164/489 [00:01<00:02, 145.18it/s]\\\\rLoading weights:  37%|███▋      | 180/489 [00:01<00:02, 122.89it/s]\\\\rLoading weights:  40%|████      | 197/489 [00:01<00:02, 132.94it/s]\\\\rLoading weights:  45%|████▍     | 218/489 [00:01<00:01, 143.80it/s]\\\\rLoading weights:  51%|█████     | 248/489 [00:01<00:01, 155.38it/s]\\\\rLoading weights:  54%|████\n…[truncated 1780 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T12:05:32.123032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed43.log",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T12:05:32.123202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_spatial_obs_only_norm02_seed43.json', 'max_correction_norm': 0.2}\\\\n[eval] Mode: crm_obs_only, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  21%|██        | 102/489 [00:00<00:00, 719.50it/s]\\\\rLoading weights:  36%|███▌      | 174/489 [00:00<00:00, 663.14it/s]\\\\rLoading weights:  49%|████▉     | 240/489 [00:00<00:00, 639.35it/s]\\\\rLoading weights:  62%|██████▏   | 304/489 [00:00<00:00, 633.13it/s]\\\\rLoading weights:  85%|████████▍ | 414/489 [00:00<00:00, 788.97it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 810.83it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout \n…[truncated 1692 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T12:05:32.123393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json, os\nfor f in ['eval_object_scalar_seed45_r2.json', 'eval_object_random_selection_seed42.json', 'eval_object_obs_only.json', 'eval_object_vla_only_seed44.json', 'eval_mag_obsonly_norm003.json']:\n    path = f'/root/acr-vla-conformal-refinement/logs/{f}'\n    if os.path.exists(path):\n        d = json.load(open(path))\n        sr = d.get('success_rate', d.get('overall_success_rate', 'N/A'))\n        print(f'{f}: SR={sr}')\n        if 'per_task_success_rates' in d:\n            for t,v in d['per_task_success_rates'].items():\n                print(f'  {t}: {v}')\n        print()\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T12:05:32.123534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_object_scalar_seed45_r2.json: SR=0.07\\\\n\\\\neval_object_random_selection_seed42.json: SR=0.13\\\\n\\\\neval_object_obs_only.json: SR=0.19\\\\n\\\\neval_object_vla_only_seed44.json: SR=0.1\\\\n\\\\neval_mag_obsonly_norm003.json: SR=0.34\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T12:05:32.123674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json, os\nfor f in ['eval_object_scalar_seed45_r2.json', 'eval_object_random_selection_seed42.json', 'eval_object_obs_only.json', 'eval_object_vla_only_seed44.json', 'eval_mag_obsonly_norm003.json']:\n    path = f'/root/acr-vla-conformal-refinement/logs/{f}'\n    if os.path.exists(path):\n        d = json.load(open(path))\n        print(f'=== {f} ===')\n        print(json.dumps(d, indent=2))\n        print()\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T12:05:32.123948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== eval_object_scalar_seed45_r2.json ===\\\\n{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_scalar\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.07,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\\\n…[truncated 8108 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T12:05:32.124158+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计报告：bjb2-40593 (原 bjb2-28827)\n\n**重要说明**：项目配置绑定的是 **bjb2-40593**（单 GPU 机器），与任务描述的多 GPU 机器 bjb2-28827 不一致。任务中提到的 GPU 0/2/4/5 分配在当前服务器上不存在。以下是当前服务器的实际状态。\n\n---\n\n### 任务中指定的 5 个实验 — 全部不存在\n\n| 实验 | 状态 |\n|------|------|\n| reconvla K=5 seed42 (原 GPU 4) | **进程不存在，无输出文件** |\n| perdof norm005 seed45 (原 GPU 0) | **进程不存在，无输出文件** |\n| obs_only norm003 seed44 (原 GPU 2) | **进程不存在，无输出文件** |\n| random_selection seed46 (原 GPU 2) | 见下方（不同配置在跑） |\n| perdof norm03 seed43 (原 GPU 5) | **进程不存在，无输出文件** |\n\n---\n\n### 当前服务器实际运行中的 2 个进程（共享 GPU 0）\n\n**1. random_selection seed46 (object benchmark)**\n- tmux: `eval-random-selection-seed46-t16`，PID 503784，启动 09:38\n- 进度：**4/10 tasks 完成**（~10h 运行中）\n- 已完成 tasks：\n  - alphabet_soup: 0/10, cream_cheese: 0/10, salad_dressing: 2/10, bbq_sauce: 2/10\n\n**2. crm_obs_only spatial norm02 seed43（顺序跑 seed43→44→45）**\n- tmux: `eval-spatial-obs-only-norm02-seq`，PID 508930，启动 09:44\n- 进度：**5/10 tasks 完成**（seed43 第一轮，~10h 运行中）\n- 已完成 tasks：\n  - between_plate_and_ramekin: 8/10, next_to_ramekin: 10/10, table_center: 1/10, cookie_box: 3/10, top_drawer: 0/10\n\n---\n\n### 已完成的实验结果（服务器上现存 JSON）\n\n| 文件 | mode | benchmark | SR |\n|------|------|-----------|----|\n| eval_object_scalar_seed45_r2.json | crm_scalar | object | **0.07** |\n| eval_object_random_selection_seed42.json | random_selection | object | **0.13** |\n| eval_object_obs_only.json | crm_obs_only | object | **0.19** |\n| eval_object_vla_only_seed44.json | vla_only | object | **0.10** |\n| eval_mag_obsonly_norm003.json | crm_obs_only | spatial | **0.34** |\n\n---\n\n### 结论\n\n任务描述中 5 个实验的进程和输出文件在当前服务器上均不存在。可能原因：\n1. bjb2-28827 是之前的实例，已被 bjb2-40593 替换，数据未迁移\n2. 这些实验在不同服务器上运行\n\n需要确认 bjb2-28827 是否仍然可达，还是已经被释放。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-cleanup_20260519T120344"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/audit-bjb2-28827-cleanup.md"
+}

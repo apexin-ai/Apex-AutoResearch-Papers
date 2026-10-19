@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65306a397e1860751d0e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix eval perdof norm02 seed45 check",
+  "task_key": "worker_fix_eval-perdof-norm02-seed45-check_20260517T170219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_eval-perdof-norm02-seed45-check_20260517T170219_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "1f1df45d0deb7a721ac4a1b9c51df6e6087712ca82d2840aec12d68a9bc11e3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Cron 已不存在（可能之前已删除）。\n\n**结果汇总**：eval-perdof-object-norm02-seed45 成功，overall success rate = **9%** (18/200)。\n\nCross-seed 汇总（perdof ε=0.2, LIBERO Object）：\n| Seed | Success Rate |\n|------|-------------|\n| 42 | 11% |\n| 43 | 9% |\n| 44 | 10% |\n| 45 | 9% |\n| **Mean** | **9.75%** |\n\n方差很小，结果稳定。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-perdof-norm02-seed45-check.md"
+}

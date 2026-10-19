@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6427cc80ea7eef6f502e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor fresh metrics all evals",
+  "task_key": "worker_monitor_fresh-metrics-all-evals_20260515T013810",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_fresh-metrics-all-evals_20260515T013810_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "222851a2d3b416b25e95c4ee2da3e058ef2a8b9635bb112b857cfc4c58fef82f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。Summary：\n\n---\n\n## bjb1-18228 三个 RUNNING eval 状态\n\n| 实验 | 进度 | Running Avg | ETA |\n|------|------|-------------|-----|\n| **eval-argmin-only-spatial** (cuda:1) | **7/10 tasks** | **42.86%** | ~3h |\n| **eval-acr-spatial-v4-small** (cuda:3) | **4.5/10 tasks** | **52.5%** | ~6.3h |\n| **eval-acr-spatial-v4-obs-only-r2** (cuda:0) | **3.5/10 tasks** | **63.33%** | ~6.1h |\n\n### 各任务明细\n\n**argmin-only-spatial** (reconvla, no CRM):\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | 60% |\n| next_to_ramekin | **100%** |\n| from_table_center | 0% |\n| on_cookie_box | 30% |\n| in_top_drawer | 10% |\n| on_ramekin | 10% |\n| next_to_cookie_box | **90%** |\n\n**acr-spatial-v4-small** (perdof CRM, norm=0.1):\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | 60% |\n| next_to_ramekin | **100%** |\n| from_table_center | 10% |\n| on_cookie_box | 40% |\n| in_top_drawer | ⏳ rollout 5/10 |\n\n**acr-spatial-v4-obs-only-r2** (obs_only CRM, norm=0.1):\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | **90%** |\n| next_to_ramekin | **100%** |\n| from_table_center | 0% |\n| on_cookie_box | ⏳ rollout 5/10 (1/5) |\n\n### 额外发现\n\n- **cuda:2 不空闲** — 占用两个进程:\n  - PID 232820 (运行 7h50m): `eval acr_vla` 用 crm_v2/perdof, norm=0.05（老实验）\n  - PID 288939 (运行 4m22s): `eval crm_scalar` 用 crm_v3_norm/scalar_unc, norm=0.1（**刚启动的新实验**）\n- **bjb2-40593 eval-vla-mean-spatial-t10**: log 文件不存在，GPU 完全空闲 (0%, 0 MiB)。确认 failed/未执行。\n\n### 初步观察\n\nobs-only-r2 前 3 个 task 均值 63.33% 显著高于 argmin-only 的 42.86%，尤其 between_plate_and_ramekin 任务 obs-only 达到 90% vs argmin-only 60%。v4-small (perdof) 居中 52.5%。不过 task 3 (from_table_center) 对所有方法都是 0-10%，是个普遍难 task。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-fresh-metrics-all-evals.md"
+}

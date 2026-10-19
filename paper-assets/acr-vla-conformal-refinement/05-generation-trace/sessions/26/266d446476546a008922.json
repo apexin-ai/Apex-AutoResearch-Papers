@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "266d446476546a008922",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 action queue fix status",
+  "task_key": "worker_diagnose_pi05-action-queue-fix-status_20260521T054823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-action-queue-fix-status_20260521T054823_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "43dd4c061d2ecb90806723b766f7266957882354508a6e4bee5ff13d3dec2ce8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**修复已应用，verify 已完成，但结果不理想。**\n\n### 1. 代码修改状态：✅ 完整且正确\n- **文件位置**：`/root/acr-vla-conformal-refinement/src/pi05_wrapper.py`（不在 `src/models/` 下）\n- **wrapper 实现**（pi05_wrapper.py）：\n  - L22: `from collections import deque`\n  - L63: `self._action_queue = deque()` in `__init__`\n  - L382-384: `reset_action_queue()` clears queue\n  - L386-408: `predict_action()` 队列空时推理→入队，非空时 `popleft()` 返回\n  - chunk 取 K 样本均值（`samples[0].mean(dim=0)`）\n- **evaluate.py wiring**：\n  - L174-175: `wrapper.predict_action(...)` 被正确调用（PI05 路径）\n  - L480-481: 每个 rollout 开始前调用 `wrapper.reset_action_queue()`\n\n### 2. Quick verify 结果：❌ SR = 0%\n- **运行参数**：`--task_filter bbq_sauce`, `n_rollouts=5`, `seed=42`, `vla_only`\n- **输出**：`logs/pi05_action_queue_quicktest.json`\n- **结果**：`pick_up_the_bbq_sauce`: 0/5 (0%)\n- **日志**：`/tmp/pi05_quicktest.log`（完整结束，无 exception）\n\n### 3. 环境状态\n- GPU 0：空闲（0 MiB / 24564 MiB）\n- 无 evaluate/pi05 进程在跑\n- 旧 PID 831620 已不存在\n\n### 4. 关键观察\n- 修复代码本身没问题，wiring 正确\n- 但 **只测了 1 个 task（bbq_sauce）** 就 5/5 失败\n- 成功标准是「任何 task SR > 0%」，单 task 测试不能证伪修复\n- 日志里没有 gripper 维度的诊断打印，无法直接看 gripper 是否已不再恒定\n\n**建议**（如需）：跑全部 10 个 object tasks 各 5 rollouts，确认是否真有 0 task 成功。是否要启动？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-action-queue-fix-status.md"
+}

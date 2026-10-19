@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b6aad2a16d5d43f3016",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy spatial adaptive seed43 bjb1",
+  "task_key": "worker_deploy_spatial-adaptive-seed43-bjb1_20260523T033431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_spatial-adaptive-seed43-bjb1_20260523T033431_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "7ec6c023c33869a8fcb1d54966a307adc1e8cae82745d12653a7c66c1e809eb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bjb1-32546 环境完备（CRM checkpoint、SmolVLA 模型、adaptive_conformal_crm 代码都在）。\n\n**状况汇报：**\n\n**bjb1-18228 的 4 张 GPU 全部被 π0.5 precompute 占满：**\n| GPU | 进程 | 显存 |\n|-----|------|------|\n| 0 | precompute --benchmark object | 9874 MiB |\n| 1 | precompute --benchmark spatial | 9874 MiB |\n| 2 | precompute --benchmark goal | 9874 MiB |\n| 3 | precompute --benchmark long | 9874 MiB |\n\ncuda:3 不可用。每个 shard（500 samples）约 16 分钟，long 已到 14000，完成时间不确定。\n\n**建议改在 bjb1-32546:cuda:3 部署：**\n- GPU 3 当前仅运行 CRM 训练（534 MiB / 24564 MiB），剩余 ~24GB\n- SmolVLA eval 约需 5-6GB，可共存\n- CRM checkpoint、SmolVLA 模型、adaptive_conformal_crm 代码全部就绪\n\n从 seed42 日志提取的精确命令（改 seed=43）：\n```\nCUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py \\\n  --mode adaptive_conformal_crm \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt \\\n  --benchmark spatial --seed 43 --n_rollouts 20 --K 10 \\\n  --model smolvla --conformal_threshold 0.074855 \\\n  --output_file logs/eval_spatial_adaptive_conformal_crm_tau0.074855_seed43.json\n```\n\n是否在 bjb1-32546:cuda:3 上提交？还是等 bjb1-18228 的 precompute 跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-spatial-adaptive-seed43-bjb1.md"
+}

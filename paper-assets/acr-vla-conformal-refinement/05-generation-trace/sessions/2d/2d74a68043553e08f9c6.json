@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "2d74a68043553e08f9c6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy openvla oft baseline 20260522T053417 retry1 retry2",
+  "task_key": "worker_deploy_openvla-oft-baseline_20260522T053417_retry1_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_openvla-oft-baseline_20260522T053417_retry1_retry2.log",
+    "occurrence": 1,
+    "bytes": 1246061,
+    "sha256": "7ecd7cb1f6d440582d46df99a6f4005055acbe509e569d6d8d2e6dc746161026"
+  },
+  "statistics": {
+    "messages": 465,
+    "user_turns": 0,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 4,
+      "assistant": 67,
+      "tool_call": 188,
+      "tool_result": 188
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 465,
+      "chunks": [
+        {
+          "path": "2d74a68043553e08f9c6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2d74a68043553e08f9c6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2d74a68043553e08f9c6-part-0003.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-openvla-oft-baseline-20260522t053417-retry1-retry2.md"
+}

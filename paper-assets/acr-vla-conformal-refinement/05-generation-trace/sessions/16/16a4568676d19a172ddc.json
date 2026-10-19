@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16a4568676d19a172ddc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 tau sweep",
+  "task_key": "worker_deploy_bjb1-18228-tau-sweep_20260528T001622",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-tau-sweep_20260528T001622_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "9730b3fb4fde44da8b840dab969091d049cb11a029560f19568109b22500b44f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tau040、tau045 和 crm-always-on-goal-s46 都已在 registry 中标记为 RUNNING。\n\n**部署总结：**\n\n| 实验 | GPU | 状态 |\n|------|-----|------|\n| smolvla-tau040-long-s42 | GPU 0 | 已在运行（之前提交） |\n| smolvla-tau045-long-s42 | GPU 1 | 已在运行（之前提交） |\n| crm-always-on-object-s45 | GPU 2 | 已在运行（之前提交） |\n| **crm-always-on-goal-s46** | **GPU 3** | **刚启动，PID=944319** |\n| crm-always-on-long-s45 | — | 无空闲 GPU，待上述实验完成后提交 |\n\n4 个 GPU 全部占满。`crm-always-on-long-s45` 需等任一实验结束后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-tau-sweep.md"
+}

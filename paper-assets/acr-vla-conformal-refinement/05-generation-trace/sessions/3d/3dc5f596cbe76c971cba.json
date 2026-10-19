@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dc5f596cbe76c971cba",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis mvp data backfill",
+  "task_key": "worker_analysis_mvp-data-backfill_20260513T220508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mvp-data-backfill_20260513T220508_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "4697cff383cee42f97f9d07774b4112b1396199261fc9f4aaece8558169c97ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**汇总：**\n\n- **数据源文件**: `artifacts/mvp-point-reaching/data/mvp_results.log`\n- **Registry 条目**: `mvp-point-reaching` (status: DONE, conclusion: success)\n- **论文引用验证** (均来自 Group 4, K=10)：\n\n| 论文引用 | 实际计算 | 来源 |\n|---------|---------|------|\n| \"6.7% over scalar\" | (0.078799−0.073478)/0.078799 = **6.75%** | B vs A total MSE |\n| \"16.7% over no uncertainty\" | (0.088223−0.073478)/0.088223 = **16.71%** | B vs C total MSE |\n| \"22-24% improvements\" | y: **22.79%**, z: **23.90%** | B vs A per-axis MSE |\n\n已将 `summary_pct_improvements` 字段（含改进百分比和 paper claims 溯源公式）补录到 registry metrics 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-data-backfill.md"
+}

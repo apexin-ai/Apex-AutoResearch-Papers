@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc6709e3d1cd6eafd68",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops collect sweep bjb2 28827",
+  "task_key": "worker_ops_collect-sweep-bjb2-28827_20260515T043856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_collect-sweep-bjb2-28827_20260515T043856_result.json",
+    "occurrence": 1,
+    "bytes": 2148,
+    "sha256": "815b25138ead43eef683ffcc06afb9c996e1ce64aa64ba490af1c0f9c77508bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**这 6 个实验都还在运行中，并非已跑 12+ 小时。** 进程 etime 显示仅 ~1h30m，当前都在早期阶段（1-2/10 tasks）。\n\n## 当前进度\n\n```\nexp_id: eval-mag-perdof-norm003\nStatus: RUNNING (~1.5h elapsed)\nnorm: 0.03, mode: acr_vla (perdof)\nTasks: 1/10 complete, T2 in progress\n  T1 pick_up_black_bowl_between_plate_ramekin → plate: 60% (6/10) ✓\n  T2 pick_up_black_bowl_next_to_ramekin → plate: 5/5 at rollout 5... (running)\n\nexp_id: eval-mag-perdof-norm005\nStatus: RUNNING\nnorm: 0.05, mode: acr_vla (perdof)\nTasks: 1/10 complete, T2 in progress\n  T1 pick_up_black_bowl_between_plate_ramekin → plate: 50% (5/10) ✓\n  T2 pick_up_black_bowl_next_to_ramekin → plate: 5/5 at rollout 5... (running)\n\nexp_id: eval-mag-perdof-norm02\nStatus: RUNNING\nnorm: 0.2, mode: acr_vla (perdof)\nTasks: 1/10 complete\n  T1 pick_up_black_bowl_between_plate_ramekin → plate: 60% (6/10) ✓\n\nexp_id: eval-mag-perdof-norm03\nStatus: RUNNING\nnorm: 0.3, mode: acr_vla (perdof)\nTasks: 1/10 complete\n  T1 pick_up_black_bowl_between_plate_ramekin → plate: 70% (7/10) ✓\n\nexp_id: eval-mag-obsonly-norm005\nStatus: RUNNING\nnorm: 0.05, mode: crm_obs_only\nTasks: 1/10 complete, T2 in progress\n  T1 pick_up_black_bowl_between_plate_ramekin → plate: 80% (8/10) ✓\n  T2 pick_up_black_bowl_next_to_ramekin → plate: 5/5 at rollout 5... (running)\n\nexp_id: eval-mag-obsonly-norm02\nStatus: RUNNING (fastest)\nnorm: 0.2, mode: crm_obs_only\nTasks: 2/10 complete\n  T1 pick_up_black_bowl_between_plate_ramekin → plate: 90% (9/10) ✓\n  T2 pick_up_black_bowl_next_to_ramekin → plate: 100% (10/10) ✓\n```\n\n## 预估\n\n按 ~45min/task 计算，10 tasks 总计约 **7-8 小时**，还需 **~6 小时** 才能全部完成（大约 UTC 18:30-19:00，即今天下午/晚间）。\n\n## T1 部分结果对比（仅供参考，1/10 tasks）\n\n| norm | perdof T1 | obs_only T1 |\n|------|-----------|-------------|\n| 0.03 | 60% | — |\n| 0.05 | 50% | 80% |\n| 0.2  | 60% | 90% |\n| 0.3  | 70% | — |\n\n不更新 registry 到 DONE——实验远未完成。需要我稍后再来查看吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-sweep-bjb2-28827.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "154ae8a4416c0f00adbb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb1 18228 gpu check and action analysis",
+  "task_key": "worker_ops_bjb1-18228-gpu-check-and-action-analysis_20260517T223958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb1-18228-gpu-check-and-action-analysis_20260517T223958_result.json",
+    "occurrence": 1,
+    "bytes": 1751,
+    "sha256": "8246b11b1c448c57f6644b59b050abfa7e30cbe84533732d95f2ee68eb9c4440"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存。\n\n---\n\n## 汇总报告\n\n### Part 1: GPU 状态\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| GPU0 | 占用 | PID 713405 — K=5 eval seed42 |\n| GPU1 | 空闲 | — |\n| GPU2 | 空闲 | — |\n| GPU3 | 占用 | PID 749547 — perdof seed45 |\n\nK=20 (PID 713480) 已不存在，无需 kill。\n\n### Part 2: OpenVLA Action 分布分析结果\n\n**关键发现：OpenVLA 的 action generation 是 STOCHASTIC 的（`do_sample=True` 有效）。**\n\nDry-run 验证：\n- Greedy (do_sample=False): 两次输出完全一致 (diff=0)\n- Stochastic (do_sample=True, T=1.0): 三次输出 pairwise diff = [1.02, 0.11, 1.03]\n\n**Per-temperature aggregate results (5 obs, K=10):**\n\n| Temperature | Mean Pairwise Dist | DOF with Highest Variance |\n|-------------|-------------------|--------------------------|\n| 0.5 | 0.1746 | DOF6 (gripper): 0.048 |\n| 1.0 | 0.3890 | DOF6 (gripper): 0.115 |\n| 1.5 | 0.4988 | DOF6 (gripper): 0.147 |\n\n**Per-DOF variance pattern (T=1.0):**\n- DOF 0-2 (xyz position): low-moderate variance (0.003, 0.007, 0.029)\n- DOF 3-5 (rotation): very low variance (~0.0005)\n- DOF 6 (gripper): **highest variance (0.115)** — 因为 gripper 是二值化的 (open/close)，token-level 的微小概率差就导致 0/1 翻转\n\n**初步结论：**\n1. OpenVLA 支持 temperature sampling，K-sample 方法有意义\n2. 多样性主要来自 gripper action 的离散翻转 + xyz 位移的小幅波动\n3. 旋转轴 (DOF 3-5) 几乎无变化——模型对旋转预测高度确定\n4. T=1.0 时 mean pairwise distance ≈ 0.39，表明 K=10 采样可以产生有意义的多样性\n5. 结果保存于 `/root/acr-vla-conformal-refinement/results/openvla_action_analysis.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-18228-gpu-check-and-action-analysis.md"
+}

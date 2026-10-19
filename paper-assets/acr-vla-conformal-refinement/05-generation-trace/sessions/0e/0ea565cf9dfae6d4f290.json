@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ea565cf9dfae6d4f290",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy magnitude bjb2 28827 gpu0 gpu5",
+  "task_key": "worker_ops_deploy-magnitude-bjb2-28827-gpu0-gpu5_20260517T230444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-magnitude-bjb2-28827-gpu0-gpu5_20260517T230444_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "0acf2af7dc866b90a83b1acdae8f4d4865045a3ca985e24974118fd54bd9db33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU0 和 GPU5 显存从 1 MiB 升至 4 MiB，进程正在初始化加载中（模型较大，显存会逐步上升）。\n\n部署完成：\n\n| 实验 | GPU | PID | tmux session |\n|------|-----|-----|-------------|\n| eval-obs-only-object-norm02-seed48 | cuda:0 | 488388 | eval-obs-only-object-norm02-seed48 |\n| eval-perdof-object-norm02-seed48 | cuda:5 | 488656 | eval-perdof-object-norm02-seed48 |\n\n残留 tmux session `train-crm-k1-v2` 已清理，registry hypothesis 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-magnitude-bjb2-28827-gpu0-gpu5.md"
+}

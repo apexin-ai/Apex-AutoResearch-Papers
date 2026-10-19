@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45849394fbb19ad57a5b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only object norm03 seed48",
+  "task_key": "worker_diagnose_eval-obs-only-object-norm03-seed48_20260518T132609",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-object-norm03-seed48_20260518T132609_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "81c1c3b0b869f833e133575e3dd84a24d31be4e4a7af8b3799b31e7f86e5766a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n结论: success\nSR: 16%\nPer-task:\n  alphabet_soup: 0%\n  cream_cheese: 0%\n  salad_dressing: 30%\n  bbq_sauce: 40%\n  ketchup: 0%\n  tomato_sauce: 10%\n  butter: 10%\n  milk: 10%\n  chocolate_pudding: 40%\n  orange_juice: 20%\nRegistry: 已更新 (metrics, log_path, checkpoint_path, conclusion=success, hypothesis, status=DONE)\nCron: 已不存在（可能已被手动删除或未注册）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-object-norm03-seed48-copy-2.md"
+}

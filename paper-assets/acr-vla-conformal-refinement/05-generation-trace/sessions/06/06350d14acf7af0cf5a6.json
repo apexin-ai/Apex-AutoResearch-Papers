@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06350d14acf7af0cf5a6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779331471.md",
+  "task_key": "loop_22_1779331471",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779331471.md",
+    "occurrence": 1,
+    "bytes": 4091,
+    "sha256": "ffd97d863c5135bb16740cb433115cd74b6056cacfb04ffa4166464f9b6443e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T02:44:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，即使 Director 指令用白名单外的 GPU 也必须 push back\n- K=10 Object CRM 数据已锁定 norm02-only n=6 (16.8±1.8%)，D084 决定 seed42 (SR=20%) 不纳入 Table 1（异常值）\n- Spatial CRM K=10 已修正为 clean n=8 (34.4±1.5%)，D083\n- Long OOD 必须用 cautious wording（MW-U p=0.061 n.s.），D081\n- evaluate.py 确认使用 batched inference（D082），延迟表和效率 claim 需据此校准\n- CoRL 2026 DDL **2026-05-29**，剩余 ~8 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base。磁盘 400G/438G 可用(4%)。CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- **bjb1-32546**: 同上路径布局。磁盘 400G/438G 可用(4%)。多卡运行中 cuda:1-5\n- **bjb2-40593**: 磁盘紧张 46G/437G (90%) ⚠️。cuda:0 跑 adaptive-k-spatial-p50-seed42\n- **bjb2-28827**: 磁盘 399G/439G 可用(5%)。当前空闲\n- HF cache: `/root/autodl-tmp/.hf_cache`（所有服务器）\n- 输出 JSON 路径: `/root/acr-vla-conformal-refinement/logs/eval_*.json`\n\n### 3. 📊 当前状态\n**刚做完**: 收到 `eval-crm-object-k20-seed42` 的 cron 完成回调（ANALYZING），已派 Worker `worker_analysis_eval-crm-object-k20-seed42_20260520T103217` 去 SSH 读取结果并更新 registry。**Worker 结果尚未回调**——下一个 session 需要检查该 Worker 是否完成，若完成则处理结果并汇报 Director。\n\n**RUNNING 实验** (7 张 GPU):\n| exp_id | server | gpu |\n|--------|--------|-----|\n| eval-adaptive-k-spatial-p50-seed42 | bjb2-40593 | cuda:0 |\n| eval-adaptive-k-spatial-p25-seed42 | bjb1-18228 | cuda:2 |\n| eval-adaptive-k-spatial-p75-seed43 | bjb1-32546 | cuda:1 |\n| eval-adaptive-k-spatial-p25-seed43 | bjb1-32546 | cuda:2 |\n| eval-crm-object-k20-seed43 | bjb1-32546 | cuda:3 |\n| eval-obs-only-object-norm003-seed43-r2 | bjb1-32546 | cuda:4 |\n| eval-obs-only-object-norm005-seed44 | bjb1-32546 | cuda:5 |\n\n**另有 1 个 running Worker**: `worker_diagnose_eval-adaptive-k-spatial-p50-seed42` (诊断 p50-seed42 运行状况)\n\n**ANALYZING**: eval-crm-object-k20-seed42（等 Worker 回调）\n\n### 4. 📋 待办\n- Worker `worker_analysis_eval-crm-object-k20-seed42` 回调 → 读取 K=20 SR，与 K=10 (16.8%) 对比，更新 registry → 汇报 Director（K=20 是否有边际收益，支撑 \"K=10 compute-efficient\" claim）\n- eval-crm-object-k20-seed43 完成 → 同样分析，汇总 K=20 两个 seed 的均值\n- eval-adaptive-k-spatial-* 各 seed 完成 → 汇总 Spatial Adaptive K 全矩阵，更新 ROADMAP 的 Spatial sweep 表\n- eval-obs-only-object-norm003/005 完成 → 补充 Figure 2 低 ε 区间 error bars\n- Spatial Adaptive K P50 3 seeds 全部完成 → 可以写论文 Spatial 段落，验证 cross-benchmark transfer\n- bjb2-40593 磁盘 90% → 提交新实验前先 list_large_dirs 清理\n- Worker 池 < 2 → 需要补充并行任务（文献联动、论文起草准备等）\n\n### 5. 🎯 战略上下文\n- **D077 方向转换**: Adaptive K = 论文核心贡献（用户硬要求）。K=2 L2 distance 是唯一可用不确定性信号 (ρ=0.9979)。K=10 CRM 分析降为 supporting evidence\n- **D078**: P50 阈值 = Pareto 最优（Object 3 seeds: 15.3% SR, avg_K~3.8, ~77% fast_path, ~91% of K=10 SR）\n- **K-value sweep (plan_601)**: K=20 实验正在分析中。如果 K=20 ≈ K=10 SR，则强化 \"diminishing returns beyond K=10\" claim；如果 K=20 > K=10，需要重新讨论 K=10 的定位\n- **关键格子还缺**: Spatial Adaptive K P50 × 3 seeds, Random Selection baseline (plan_600)\n- **易踩坑**: \n  - D084 决定 seed42 norm02 (SR=20%) 是异常值不纳入 Table 1，新 session 别把它算进去\n  - bjb2-40593 磁盘极紧张，不要往上面提交新实验\n  - eval-adaptive-k-spatial-p50-seed42 在 bjb2-40593 上有诊断 Worker 在跑，可能有问题需要关注\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779331471.md"
+}

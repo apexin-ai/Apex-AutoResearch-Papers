@@ -1,0 +1,1325 @@
+{
+  "schema_version": "1.0",
+  "id": "1d5b1bfa5bc37186c0b2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval k2 tau020 spatial s42 20260527T051650 162326",
+  "task_key": "cron_hook_eval-k2-tau020-spatial-s42_20260527T051650_162326",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_eval-k2-tau020-spatial-s42_20260527T051650_162326.jsonl",
+    "occurrence": 1,
+    "bytes": 92421,
+    "sha256": "df2a3841dafc3109c15525ee9051c264106ca19f1a22d5bd9b78b0de34da4023"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 6,
+    "tool_calls": 29,
+    "roles": {
+      "user": 6,
+      "tool_call": 29,
+      "tool_result": 28,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T10:06:26.861747+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #28。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**（29卡）：bjb1-18228 cuda:0-3, bjb1-32546 cuda:0-5, bjb2-28827 cuda:0-5, cqa1-32758 cuda:0-5, westd-49937 cuda:0-5, bjb2-24035 cuda:0。白名单外的 GPU 一律不碰，Director 指令也要 push back\n- **westd-49937 是 RTX PRO 6000 (Blackwell)**，与 4090 集群存在 ~3pp 系统性偏差（D158）。Table 2 数据必须 same-server paired，westd 数据不能和 4090 直接比\n- **evaluate.py 必须用 a594db5 版本**（D163）。所有补跑用旧代码确保 Table 1/2 一致性，不要拉新 commit\n- **cqa1-32758 并发 ≤6 个 π0.5 进程**，超过必 OOM。cqa1 上部署 π0.5 前需确认 gemma-2b-tokenizer 完整（之前缺 tokenizer.model 导致崩溃）\n- **CoRL 2026 DDL = 2026-05-29**，距今 3 天，一切以论文提交为最高优先级\n\n### 2. 🖥️ 基础设施快照\n- **项目路径（所有服务器）**: `/root/acr-vla-conformal-refinement`\n- **服务器集群**:\n  - bjb1-18228 (4×4090) — SmolVLA + π0.5 eval\n  - bjb1-32546 (6×4090) — π0.5 CRM K=2 Object/Goal eval（无 .git，不能回溯版本）\n  - bjb2-28827 (6×4090, 1TB RAM) — π0.5 CRM/Adaptive Spatial eval，可跑 6 个 π0.5 同时\n  - cqa1-32758 (6×4090D) — π0.5 Adaptive Object/Long + CRM Long eval\n  - westd-49937 (6×RTX PRO 6000) — ⚠️ Blackwell 偏差，VLA-only baseline 补跑\n  - bjb2-24035 (1×4090D) — 状态待确认\n- **CRM checkpoint**: SmolVLA → `.../crm_smolvla_3suite_v1/crm_best.pt`; π0.5 → `.../crm_pi05_unified_3suite/crm_best.pt`\n- **Python**: 各服务器 `/root/miniconda3/bin/python`（conda base，不用 venv）\n- **活跃 cron 监控**: 10 个（reconcile 确认全部 still running）\n  - bjb1-18228: pi05-adaptive-goal-s43-bjb1-18228 (pid=42110)\n  - bjb2-28827: pi05-crm-k2-spatial-s42/s43/s44-bjb2-r2 (pid=334539/334906/335268), pi05-adaptive-spatial-s42/s43/s44-bjb2-r2 (pid=335649/336003/刚创建)\n  - cqa1-32758: pi05-crm-k2-long-s44-cqa1, pi05-adaptive-object-s42-cqa1, pi05-adaptive-goal-s42-cqa1\n\n### 3. 📊 当前状态\n**π0.5 Table 2 数据收集是当前唯一焦点**——DDL 前 3 天，需完成 4 suite × 3 mode × 3 seed = 36 cells。\n\n**RUNNING（18 个实验，24 GPU 活跃）**:\n- bjb2-28827 (6/6 GPU): CRM K=2 Spatial s42/43/44 + Adaptive Spatial s42/43/44\n- bjb1-32546 (6/6 GPU): CRM K=2 Goal s42/43/44 + Object s42/43/44\n- cqa1-32758 (3-6/6 GPU): CRM K=2 Long s44 + Adaptive Goal s42, Object s42, Long s43/s44, Object s44\n- bjb1-18228 (1/4 GPU): Adaptive Goal s43\n\n**PREPARING（177 个，大量是早期残留或排队）**:\n- 有意义的待部署: pi05-crm-k2-long-s43-r2, pi05-crm-k2-long-s42-r2 (QUEUED), westd VLA-only baseline 补跑\n\n**已完成数据（memory.md）**: π0.5 VLA-only 全 4 suite ✅, CRM K=2 Spatial/Goal/Object ✅, CRM Long ⏳, Adaptive Spatial/Goal/Object/Long 大部分 ⏳\n\n**Worker 池: 0 个运行中**。Paper Agent 已激活但本轮 session 无活跃 Worker。\n\n**等待中**: 所有 18 个 RUNNING 实验的 cron 回调；Paper Agent 写作流水线 Steps 2-5；Director 综合指令的 P0-P3 执行。\n\n### 4. 📋 待办（条件触发式）\n- π0.5 CRM/Adaptive Spatial (bjb2-28827) 完成 → 更新 memory.md Table 2 数据，与 VLA-only 97.8% 对比\n- π0.5 CRM Goal/Object (bjb1-32546) 完成 → 确认 CRM 退化幅度（已知 Goal -11.7pp, Object -11.3pp from s42 data）\n- π0.5 Adaptive Long/Object/Goal (cqa1) 完成 → 补全 Table 2 Adaptive 列，判断 Adaptive 是否缓解 CRM 退化\n- **所有 Table 2 cells 就绪** → spawn Worker 写 Table 2 + Discussion/Analysis section + Appendix；spawn Worker 填 paper_provenance.yaml T002\n- westd VLA-only baseline 需 same-server paired → 确认 westd 是否还需要跑（如果 4090 集群数据足够则跳过）\n- **P0 空闲 GPU 部署**: bjb1-18228 cuda:0/1/2 空闲 + cqa1 空闲卡 → 部署 pi05-crm-k2-long-s42/s43 或 Adaptive 剩余 seeds\n- Paper Agent 写作完成 → submit_paper_to_review 最终审稿\n- **DDL -1 day (05-28)** → 全部实验必须 DONE，Paper Agent 必须完成所有 section，提交前 reference-audit + paper-visual-review\n\n### 5. 🎯 战略上下文\n**核心叙事（D146/D150/D159）**: ACR-VLA 是 Method paper，CRM + Adaptive K 为核心贡献。3 个 Claims:\n- MC1 (Consistency): Adaptive ≥ CRM on ALL 4 suites（gating 消除 CRM 退化）。n=3 p≈0.27 n.s.，附录保留 8-seed paired p=0.017\n- MC2 (Mechanism): trigger_rate ↔ Δ 单调正相关\n- MC3 (Cross-VLA): π0.5 负向 → 改为\"模型能力依赖性分析\"（D155 reframe），不 claim cross-model generalization\n\n**Table 1 SmolVLA 已锁定** (36/36 cells)。关键 pattern: CRM always-on 在 Object/Long 有害，Adaptive gating 必要。\n\n**π0.5 已知结论**: VLA-only 极强(94-99%)，CRM K=2 在 Goal/Object 导致 -11pp 退化，Adaptive 略好但仍负向。这符合 D155 reframe 预期——不需要 π0.5 positive，只需系统性数据支撑\"模型能力依赖性\"分析。\n\n**最容易判断错的事**:\n1. **不要期望 π0.5 positive results**——π0.5 baseline 饱和，CRM/Adaptive 预期均为 no-harm 或 slightly harmful，这是论文叙事设计的一部分（分析贡献而非 claim 跨模型泛化）\n2. **PREPARING 里 177 个实验大量是早期残留**，不要盲目部署——只关注当前 Table 2 需要的 cells\n3. **bjb1-32546 无 .git**——不能在上面做代码修改或版本回溯\n4. **monitor \"失败\" 经常是误判**（π0.5 eval 每个 4-6h，monitor 5 次无信号就判 dead）——收到 failed 回调先 SSH 检查进程是否真的死了\n5. **Spatial 数据有历史修正**（D159: 78.7±0.3→79.3±0.8），Table 1 Spatial VLA-only 用 79.3±0.8\n\n## 项目硬约束 (memory.md 节选)\n\n## 服务器 SSH 配置\n- autodl-4090x4 = bjb1-18228 (4 GPU)\n- autodl-4090 = bjb2-40593 (1 GPU)\n- cqa1-32758, bjb1-32546, bjb2-28827 直接可用\n\n## 可查的历史\n前 266 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T10:06:37.329556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T10:06:37.419929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 90
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T10:06:40.844362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid', 'created_at', 'updated_at']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T10:06:41.346850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T10:06:41.900095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T10:06:42.002583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T10:06:43.407892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"pi05-adaptive-spatial-s44-bjb2-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:47.784Z\\\", \\\"updated_at\\\": \\\"2026-05-26T10:00:04.376Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s44. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": \\\"337564\\\"}, \\\"pi05-adaptive-spatial-s43-bjb2-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:43.728Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:59:15.673Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s43. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"336003\\\"}, \\\"pi05-adaptive-spatial-s42-bjb2-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:39.703Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:58:46.516Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s42. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"335649\\\"}, \\\"pi05-crm-k2-spatial-s44-bjb2-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:35.735Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:58:10.616Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s44. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"335268\\\"}, \\\"pi05-crm-k2-spatial-s43-bjb2-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T09:55:31.701Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:57:41.093Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Spatial s43. Table 2 cross-architecture CRM impact. Re-run after bjb2-28827 node-level tmux cleanup.\\\", \\\"server\\\": \\\"bjb2-28827\\\n…[truncated 4434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2563
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T10:08:38.317610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 10, \\\"results\\\": [{\\\"exp_id\\\": \\\"pi05-adaptive-goal-s43-bjb1-18228\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=42110)\\\"]}, {\\\"exp_id\\\": \\\"pi05-crm-k2-long-s44-cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05-crm-k2-long-s44-cqa1)\\\"]}, {\\\"exp_id\\\": \\\"pi05-adaptive-object-s42-cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05-adaptive-object-s42-cqa1)\\\"]}, {\\\"exp_id\\\": \\\"pi05-adaptive-goal-s42-cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=pi05-adaptive-goal-s42-cqa1)\\\"]}, {\\\"exp_id\\\": \\\"pi05-crm-k2-spatial-s42-bjb2-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=334539)\\\"]}, {\\\"exp_id\\\": \\\"pi05-crm-k2-spatial-s43-bjb2-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=334906)\\\"]}, {\\\"exp_id\\\": \\\"pi05-crm-k2-spatial-s44-bjb2-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=335268)\\\"]}, {\\\"exp_id\\\": \\\"pi05-adaptive-spatial-s42-bjb2-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=335649)\\\"]}, {\\\"exp_id\\\": \\\"pi05-adaptive-spatial-s43-bjb2-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=336003)\\\"]}, {\\\"exp_id\\\": \\\"pi05-adaptive-spatial-s44-bjb2-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=337564)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 116970
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T10:08:38.318345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-26\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| pi05-adaptive-spatial-s44-bjb2-r2 | π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Spatial s44. Table 2 cross-architecture gating analysis. Re-run after bjb2-28827 node-level tmux cleanup. | — | — | — |\\\\n\\\\n## 待处理\\\\n- pi05-crm-k2-long-s43-r2: π0.5 CRM K=2 obs_only on LIBERO-Long s43 (re-run after server restart). Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.（排队等待 GPU）\\\\n- pi05-crm-k2-long-s42-r2: π0.5 CRM K=2 obs_only on LIBERO-Long s42 (re-run after server restart). Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.（排队等待 GPU）\\\\n- …另有 175 项\\\\n\\\\n## 近期结论\\\\n- **pi05-adaptive-long-s44-cqa1** (killed): π0.5 Adaptive Conformal on Long s44. Table 2 long-horizon cross-architecture analysis.\\\\n\\\\n## 趋势\\\\n成功 561 / 负向 83 / 失败 100 / 共 977\\\\nn_rollouts_per_task: 20 →（近 3 次 success）\\\\nn_tasks: 10 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-18228: 无 GPU 信息\\\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-24035: 空闲 cuda:0\\\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\ncqa1-32758: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nwestd-49937: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\n\\\\n## 告警\\\\n- plan_001-crm-smolvla: 训练失败 — unknown\\\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\\\n- precompute-v2-shard0: 已被终止 — unknown\\\\n- precompute-v2-shard1: 已被终止 — unknown\\\\n- precompute-v2-shard2: 已被终止 — unknown\\\\n- eval-spatial-v3-full: 已被终止 — unknown\\\\n- precompute-v3-shard0: 已被终止 — unknown\\\\n- precompute-v3-shard1: 已被终止 — unknown\\\\n-\n…[truncated 5370 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 116418
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T10:08:38.369130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-26 06:39 UTC | 更新原因: Loop #24: D157-D159 修正 + MC1 consistency claim + π0.5 进度 + GPU 集群扩展到 29 卡\\\\n\\\\n> 详见 paper_framing.md（D146 narrative + D159 修正）\\\\n\\\\n## 核心方向\\\\n**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-29**（3天）。\\\\n\\\\n## 当前进展\\\\n- **SmolVLA Table 1**: 36/36 cells 完成（D157 统一 s42/43/44）。D159 修正 Spatial VLA-only 79.3±0.8\\\\n- **MC1 Claim 调整**: 从 magnitude claim (p<0.05) → **consistency claim**（Adaptive ≥ CRM on ALL 4 suites）。n=3 p≈0.27 n.s.；附录保留 8-seed paired p=0.017\\\\n- **MC3 Reframe (D155)**: π0.5 CRM/Adaptive 全 suite 负向 → 改为\\\\\\\"模型能力依赖性分析\\\\\\\"，不 claim cross-model generalization\\\\n- **π0.5 Table 2**: 实验进行中（~24 GPU 活跃），预计 12-24h 完成全部 4 suite × 3 mode × 3 seed\\\\n- **D158 westd Blackwell 偏差**: RTX PRO 6000 vs 4090 存在 3pp 系统性偏差 → Table 2 必须 same-server paired\\\\n- **Paper Agent**: 已激活（Reframe 模式），D159 修正已应用到 experiments/intro/abstract/discussion.tex\\\\n- **Agent**: 综合指令已发（P0 部署 5 空闲 GPU + P1 registry 清理 + P2 数据溯源 + P3 集群状态）\\\\n\\\\n## Table 1 — SmolVLA (D157 s42/43/44 统一, D159 修正)\\\\n| Suite | VLA-only | CRM | Adaptive | Δ(A-V) | 叙事角色 |\\\\n|-------|---------|-----|----------|--------|---------|\\\\n| Spatial | 79.3±0.8% | 80.3% | 80.8% | **+1.5pp** | consistency (n.s. p≈0.27) |\\\\n| Goal | 83.7% | 82.2% | 84.8% | **+1.1pp** | mechanism (trigger 8%) |\\\\n| Object | 77.8% | 76.5% | 77.8% | ±0.0pp | CRM harmful → gating necessary |\\\\n| Long | 57.2% | ~55.5% | ~56.0% | ~-1.2pp | CRM harmful → gating necessary |\\\\n\\\\n**核心 pattern**: CRM always-on 在 Object/Long 有害 → Adaptive gating 必要性。Spatial/Goal Adaptive ≥ VLA-only。\\\\n\\\\n## π0.5 Table 2 进度\\\\n- **VLA-only baseline**: 需补跑（westd 需 same-server paired）\\\\n- **CRM K=2**: Goal s42-44 运行中, Object/Long/Spatial 部署中\\\\n- **Adaptive**: Spatial s42-44 运行中, Goa\n…[truncated 2717 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 116366
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T10:09:30.303899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'QUEUED'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['exp_id', 'status', 'server', 'gpu']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T10:09:31.309513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "max_chars": "20000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T10:09:32.714931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T10:09:32.766829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"pi05-crm-k2-long-s43-r2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"pi05-crm-k2-long-s42-r2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"pi05-adaptive-long-s42-r2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"pi05-k2mean-goal-s42-r2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-k2-tau035-spatial-s42\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-k2-tau025-spatial-s42\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-pi05-vla-only-object-s43-v2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-pi05-vla-only-object-s42-v2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-pi05-vla-only-goal-s43-v2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-pi05-vla-only-goal-s42-v2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-pi05-vla-only-spatial-s43-v2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-pi05-vla-only-spatial-s42-v2\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-supp-object-vla-only-s50\\\": {\\\"status\\\": \\\"QUEUED\\\"}, \\\"eval-smolvla-lerobot-goal-seed44\\\": {\\\"status\\\": \\\"QUEUED\\\"}}, \\\"count\\\": 14, \\\"total\\\": 14, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.419}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2462
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T10:09:32.767641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory — acr-vla-conformal-refinement\\\\n\\\\n## Table 1 SmolVLA 最终数据 (D152 修订: Spatial s47/48/49, Goal/Object/Long s42/43/44)\\\\n\\\\n论文正文只写 \\\\\\\"averaged over 3 random seeds\\\\\\\"，不标具体 seed 编号。\\\\n\\\\n| Suite | VLA-only | CRM (K=10, norm=0.05) | Adaptive (K=2, τ=0.25) | Δ(A-V) |\\\\n|-------|---------|----------------------|------------------------|--------|\\\\n| Spatial | **78.5%** | **80.3%** | **80.8%** | **+2.3pp** |\\\\n| Goal | **83.7%** (83.5/82.5/85) | **82.2%** (82/82/82.5) | **84.8%** (83.5/84.5/86.5) | **+1.1pp** |\\\\n| Object | **77.8%** (79/77/77.5) | **76.5%** (77/78.5/74) | **77.8%** (81/77.5/75) | **±0pp** |\\\\n| Long | **57.0%** (57/59.5/54.5) | **55.5%** (56.5/54.5/55.5) | **56.7%** (58/58/54) | **-0.3pp** |\\\\n\\\\n## Table 1 代码一致性验证 (2026-05-26)\\\\n\\\\n**结论：三组使用同一代码逻辑，Table 1 有效。**\\\\n\\\\n- r4 文件 (SR≈97.5-98%) = K=10 mean 基线，pre-disambiguation commit 手动改名，未进 Table 1\\\\n- r2 文件 (SR≈73%) = 早期 10-rollout 实验，未进 Table 1\\\\n- 无后缀文件 (SR≈83-85%) = mode=vla_only, baseline_mode=single, K=1, n_rollouts=20 → Table 1 使用版本\\\\n- 05-23 21:39 disambiguation commit 仅改 baseline_mode=mean 输出文件名，对 single/CRM/Adaptive 零逻辑影响\\\\n- 三列结果全部来自 bjb1-32546，JSON schema 一致\\\\n- 跨服务器非确定性：同 seed 同 mode 不同服务器差 ~1.5pp\\\\n\\\\n## Spatial τ-sweep (K=2, s42, norm=0.2) — 2026-05-26\\\\n\\\\n| τ | SR | trigger_rate | Δ vs VLA-only (78.5%) | 来源 |\\\\n|---|---|---|---|---|\\\\n| 0.05 | 78.5% | 99.4% | ±0pp | bjb1-32546 |\\\\n| 0.10 | 77.0% | 74.6% | -1.5pp | bjb1-32546 |\\\\n| 0.15 | 78.5% | 41.0% | ±0pp | bjb1-32546 |\\\\n| **0.20** | **81.0%** | **26.7%** | **+2.5pp** | bjb1-32546 |\\\\n| 0.25 | deploying | | | bjb1-32546 |\\\\n| 0.30 | 79.5% | 16.8% | +1.0pp | bjb1-32546 |\\\\n| 0.35 | 79.5% | 12.3% | +1.0pp | bjb1-32546 |\\\\n| 0.40 | 78.0% | 9.9% | -0.5pp | bjb2-28827 |\\\\n| 0.45 | 80.0% | 7.2% | +1.5pp | bjb2-28827 |\\\\n\\\\n**Pattern**: 倒 U 型。τ=0.20 peak (+2.5pp)\n…[truncated 4986 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1458
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T10:09:32.768014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 53
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T10:13:07.986455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T10:13:08.042226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 55
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T10:15:04.133516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:cron-audit-loop28",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "你是 acr-vla-conformal-refinement 项目的 Worker。任务：审计 bjb1-32546 和 cqa1-32758 上无 cron 监控的 RUNNING 实验，注册 cron，检查是否有已完成实验。\n\n## 背景\n当前有 18 个 RUNNING 实验，但只有 10 个 cron 监控。以下 9 个实验缺少 cron 回调——如果它们完成了我们不会收到通知，DDL 3 天后。\n\n### bjb1-32546 上 6 个无 cron 实验\n- pi05-crm-k2-goal-s42-bjb1-r2\n- pi05-crm-k2-goal-s43-bjb1-r2\n- pi05-crm-k2-goal-s44-bjb1-r2\n- pi05-crm-k2-object-s42-bjb1-r2\n- pi05-crm-k2-object-s43-bjb1-r2\n- pi05-crm-k2-object-s44-bjb1-r2\n\n### cqa1-32758 上 3 个无 cron 实验\n- pi05-adaptive-long-s43-cqa1-r2\n- pi05-adaptive-long-s44-cqa1-r2\n- pi05-adaptive-object-s44-cqa1-r2\n\n### 额外检查：bjb1-18228\n- pi05-adaptive-goal-s43-bjb1-18228 有 cron (pid=42110) 但不在 RUNNING registry 中，请确认进程状态\n\n## 任务步骤\n\n### Step 1: SSH 到 bjb1-32546 检查进程\n用 ssh_read_only 执行（server name = `bjb1-32546`）：\n```bash\ntmux ls 2>/dev/null; echo \"---\"; nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader; echo \"---\"; ps aux | grep evaluate.py | grep -v grep\n```\n\n记录每个 tmux session 名和对应的 PID、GPU。\n\n然后检查是否有已完成的 JSON 结果（π0.5 eval 输出 JSON 到项目目录）：\n```bash\nls -lt /root/acr-vla-conformal-refinement/results/pi05_crm_obs_only_*_goal_*.json /root/acr-vla-conformal-refinement/results/pi05_crm_obs_only_*_object_*.json 2>/dev/null | head -20\n```\n\n也查看（可能输出路径不同）：\n```bash\nfind /root/acr-vla-conformal-refinement -name \"*.json\" -newer /root/acr-vla-conformal-refinement/evaluate.py -type f 2>/dev/null | head -30\n```\n\n如果发现 JSON 结果文件，用 `cat` 读取其中的 success_rate。\n\n### Step 2: SSH 到 cqa1-32758 检查进程\nserver name = `cqa1-32758`：\n```bash\ntmux ls 2>/dev/null; echo \"---\"; nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader; echo \"---\"; ps aux | grep evaluate.py | grep -v grep\n```\n\n已知之前手动重启的 tmux sessions: pi05-obj-s44, pi05-long-s43, pi05-long-s44。确认是否仍在运行。\n\n同样检查结果：\n```bash\nfind /root/acr-vla-conformal-refinement -name \"*.json\" -newer /root/acr-vla-conformal-refinement/evaluate.py -type f 2>/dev/null | head -30\n```\n\n### Step 3: SSH 到 bjb1-18228 检查 adaptive-goal-s43\nserver name = `autodl-4090x4`：\n```bash\ntmux ls 2>/dev/null; echo \"---\"; nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader; echo \"---\"; ps -p 42110 -o pid,stat,etime,comm 2>/dev/null || echo \"PID 42110 NOT FOUND\"\n```\n\n### Step 4: 注册 cron\n对每个确认仍在运行的实验，用 `register_cron` 注册：\n- project: \"acr-vla-conformal-refinement\"\n- interval_seconds: 180\n- pid: 用 tmux session name（register_cron 支持 tmux session name 作为 pid）\n\nbjb1-32546 实验用 server=\"bjb1-32546\"\ncqa1-32758 实验用 server=\"cqa1-32758\"\n\n### Step 5: 处理已完成实验\n如果发现某些实验已完成（JSON 结果存在）：\n1. 读取 JSON 结果，提取 success_rate（百分比形式）\n2. 用 update_registry 更新：\n   - status → \"DONE\"\n   - conclusion → \"success\"（如果有结果）\n   - metrics → {\"success_rate\": XX.X}\n   - log_path → JSON 文件路径\n   - checkpoint_path → \"N/A (eval only)\"\n\n### 汇报格式\n最后汇报每个实验的状态：\n```\nbjb1-32546:\n- pi05-crm-k2-goal-s42-bjb1-r2: [running/completed/dead] PID=xxx GPU=cuda:x [SR=xx.x% if completed]\n...\n\ncqa1-32758:\n- pi05-adaptive-long-s43-cqa1-r2: [running/completed/dead] PID=xxx GPU=cuda:x\n...\n\nbjb1-18228:\n- pi05-adaptive-goal-s43-bjb1-18228: [running/completed/dead] PID=42110\n\nCrons registered: [list]\nCompleted experiments updated: [list]\nFree GPUs discovered: [list]\n```\n\n## 注意事项\n- 用 ssh_read_only 检查状态，不用 ssh_execute（只读操作）\n- bjb1-32546 无 .git，不能做版本操作\n- π0.5 eval 每个 4-6 小时，进程可能长时间无新输出但仍活跃\n- cqa1 并发上限 6 个 π0.5 进程",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['register_cron']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T10:15:27.866003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cron-audit-loop28_20260526T101507\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ops_cron-audit-loop28_20260526T101507.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_cron-audit-loop28_20260526T101507 started. Use get_worker_status('worker_ops_cron-audit-loop28_20260526T101507') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 23732
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T10:15:28.405295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:deploy-bjb1-18228-loop28",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "你是 acr-vla-conformal-refinement 项目的 Worker。任务：在 bjb1-18228 的 3 个空闲 GPU 上部署 π0.5 Table 2 缺失实验。\n\n## 背景\nCoRL 2026 DDL = 2026-05-29（3天）。π0.5 Table 2 需要 4 suite × 3 mode × 3 seed = 36 cells。\nbjb1-18228 (SSH alias: autodl-4090x4, 4×4090) 目前 cuda:3 在跑 adaptive-goal-s43，cuda:0/1/2 空闲。\n\n以下 Table 2 cells 缺失，需部署：\n1. Adaptive Goal s44\n2. Adaptive Object s43\n3. CRM Long s42\n\n## Step 1: 环境验证\n\nSSH 到 bjb1-18228（server name: `autodl-4090x4`），用 ssh_read_only 检查：\n\n```bash\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader && echo \"---GPU---\" && cd /root/acr-vla-conformal-refinement && git log --oneline -5 && echo \"---GIT---\" && ls -la /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt && echo \"---CKP---\" && /root/miniconda3/bin/python -c \"import torch; print(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')\"\n```\n\n**关键检查：**\n- cuda:0/1/2 必须空闲（memory.used < 1GB）\n- evaluate.py 必须在 a594db5 版本（git log 确认）\n- CRM checkpoint 必须存在：`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`\n- PyTorch + CUDA 可用\n\n如果 evaluate.py 不在 a594db5，执行：\n```bash\ncd /root/acr-vla-conformal-refinement && git checkout a594db5 -- evaluate.py\n```\n\n## Step 2: 创建实验 registry 条目\n\n用 `update_registry` 为每个新实验创建条目（field=\"hypothesis\"）：\n\n1. exp_id=\"pi05-adaptive-goal-s44-bjb1\", hypothesis=\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Goal s44. Table 2 cross-architecture gating analysis on bjb1-18228.\"\n2. exp_id=\"pi05-adaptive-object-s43-bjb1\", hypothesis=\"π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Object s43. Table 2 cross-architecture gating analysis on bjb1-18228.\"\n3. exp_id=\"pi05-crm-k2-long-s42-bjb1\", hypothesis=\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Long s42. Table 2 long-horizon CRM impact with near-expert VLA on bjb1-18228.\"\n\n## Step 3: 提交实验\n\n用 `submit_training_job` 提交（⚠️ command 必须用 bash -c 包裹）：\n\n### 实验 1: Adaptive Goal s44 → cuda:0\n```\nserver: \"bjb1-18228\"\ngpu_ids: [\"cuda:0\"]\nexp_id: \"pi05-adaptive-goal-s44-bjb1\"\nproject: \"acr-vla-conformal-refinement\"\ntimeout_hours: 8\ncommand: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts_per_task 20 --n_tasks 10\"\n```\n\n### 实验 2: Adaptive Object s43 → cuda:1\n```\nserver: \"bjb1-18228\"\ngpu_ids: [\"cuda:1\"]\nexp_id: \"pi05-adaptive-object-s43-bjb1\"\nproject: \"acr-vla-conformal-refinement\"\ntimeout_hours: 8\ncommand: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark object --seed 43 --n_rollouts_per_task 20 --n_tasks 10\"\n```\n\n### 实验 3: CRM Long s42 → cuda:2\n```\nserver: \"bjb1-18228\"\ngpu_ids: [\"cuda:2\"]\nexp_id: \"pi05-crm-k2-long-s42-bjb1\"\nproject: \"acr-vla-conformal-refinement\"\ntimeout_hours: 8\ncommand: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark long --seed 42 --n_rollouts_per_task 20 --n_tasks 10\"\n```\n\n## Step 4: 验证部署\n\n每个 submit_training_job 后，用 ssh_read_only 确认 tmux session 已创建且进程在运行：\n```bash\ntmux ls | grep -E \"pi05-(adaptive|crm)\" && nvidia-smi --query-gpu=index,memory.used --format=csv,noheader\n```\n\nπ0.5 模型加载需 2-5 分钟，所以提交后稍等再验证。\n\n## 汇报格式\n```\n环境检查: [OK/问题]\n- evaluate.py: [版本]\n- CRM checkpoint: [存在/缺失]\n- 空闲 GPU: [列表]\n\n部署结果:\n- pi05-adaptive-goal-s44-bjb1: [submitted/failed] cuda:0 tmux=[session_name]\n- pi05-adaptive-object-s43-bjb1: [submitted/failed] cuda:1 tmux=[session_name]\n- pi05-crm-k2-long-s42-bjb1: [submitted/failed] cuda:2 tmux=[session_name]\n\n验证: [all running / issues]\n```\n\n## 注意事项\n- GPU 编号从 0 开始，submit_training_job 自动注入 CUDA_VISIBLE_DEVICES\n- 命令必须用 bash -c 包裹（tmux 用 sh 不是 bash）\n- π0.5 模型加载需 2-5 分钟，别急着判断失败\n- bjb1-18228 的 SSH alias 是 autodl-4090x4，但 submit_training_job 用 server=\"bjb1-18228\"",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['submit_training_job']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T10:15:41.593449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_deploy-bjb1-18228-loop28_20260526T101530\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ops_deploy-bjb1-18228-loop28_20260526T101530.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_deploy-bjb1-18228-loop28_20260526T101530 started. Use get_worker_status('worker_ops_deploy-bjb1-18228-loop28_20260526T101530') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13188
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T10:15:41.761518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 19/29 活跃 | Worker 2 (GPU 2 / CPU 0) 刚派出 | bjb1-18228 3空闲→部署中 | westd ×6 + bjb2-24035 ×1 闲置\n\n## Loop #28 Session Start\n\n### π0.5 Table 2 进度 (36 cells)\n- VLA-only: 12/12 ✅\n- CRM K=2: 10/12 RUNNING, 2 缺 (Long s42/s43)\n- Adaptive: 9/12 RUNNING, 3 缺 (Goal s44, Object s43, Long s42)\n- **合计: 12 DONE + 19 RUNNING + 5 待部署**\n\n### 发现 & 立即行动\n\n**P0 — 9 个 RUNNING 实验无 cron 监控（严重）**\nbjb1-32546 的 6 个 CRM Goal/Object + cqa1 的 3 个 Adaptive Long/Object 没有注册 cron 回调。已派 Worker-1 SSH 审计进程状态并注册 cron。\n\n**P0 — bjb1-18228 3 空闲 GPU 部署**\n已派 Worker-2 在 cuda:0/1/2 部署：\n- Adaptive Goal s44\n- Adaptive Object s43\n- CRM Long s42\n\n部署后还剩 2 cells 待跑: CRM Long s43 + Adaptive Long s42 → 等当前实验完成释放 GPU 后部署。\n\n### 时间线预估\n- 当前 RUNNING 实验: ~4-6h 完成 → 05-26 晚间\n- 新部署 3 个: ~4-6h → 05-27 凌晨\n- 最后 2 cells: +4-6h → 05-27 上午\n- **全部 Table 2 数据就绪: ~05-27 中午**\n- Paper 写作: 05-27 下午 → 05-28\n- DDL: 05-29\n\n### 闲置 GPU\n- westd-49937 ×6: Blackwell 偏差限制，不用于 Table 2 数据\n- bjb2-24035 ×1: 可部署 1 个实验（但 4090D 单卡，优先级低）\n- 是否需要在 westd 跑 same-server paired VLA-only baseline？如果 Table 2 不需要 westd 数据，这 6 卡可闲置\n\n请确认：westd 6 卡是否有其他用途，还是 DDL 前闲置可接受？",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T10:26:27.184949+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now spawning two Workers in parallel and reporting to Director."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T02:28:12.068802+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T02:38:22.813840+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T02:54:14.821311+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T03:07:59.587403+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-27T05:14:16.644988+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-27T05:15:13.838604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-27T05:15:13.839112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/median/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/worst/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/review_context.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/meta.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/dream_registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/literature_map.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/review_issues.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conforma\n…[truncated 759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-27T05:15:13.880582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-27T05:15:13.881152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/libero-smolvla-env-report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/pipeline-dimension-verification.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/paper_agent_f11cbd51/memory/MEMORY.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/smolvla-libero-finetune-survey.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/lerobot-pipeline-alignment.md\n/h\n…[truncated 11405 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-27T05:15:16.727092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-27T05:15:17.043846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (1.6MB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 316
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-27T05:15:17.044300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-27T05:15:17.684207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t<!-- AUTO-FACTS-BEGIN (generated 2026-05-27T04:16:53Z; do not edit — regenerated by auto_build_report_facts) -->\n2\t## 📊 当前状态（auto-derived from registry）\n3\t\n4\t**总计**: 1231 个实验 — ANALYZING 1, DEPLOYED 6, DONE 1024, PREPARING 185, QUEUED 10, RUNNING 5\n5\t**DONE 分布**: failed 98, killed 207, negative 94, success 625\n6\t\n7\t### GPU 占用\n8\t- **实际运行**: 5 张 — bjb1-18228:cuda:0(smolvla-tau015-long-s43), bjb1-18228:cuda:1(smolvla-tau025-long-s43), bjb1-18228:cuda:2(smolvla-tau035-long-s43), cqa1-32758:cuda:0(smolvla-vla-only-long-n20-s42), cqa1-32758:cuda:1(smolvla-vla-only-long-n20-s43)\n9\t\n10\t### 💾 磁盘余量\n11\t- **bjb1-18228**:\n12\t  - `/init`: 150M/150M 可用（已用 1%）\n13\t  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\n14\t  - `/usr/bin/nvidia-smi`: 399G/438G 可用（已用 4%）\n15\t- **bjb1-32546**:\n16\t  - `/autodl-pub`: 1.1T/7.0T 可用（已用 85%）\n17\t  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\n18\t  - `/usr/bin/nvidia-smi`: 399G/438G 可用（已用 4%）\n19\t- **bjb2-28827**:\n20\t  - `/autodl-pub`: 4.3T/14T 可用（已用 70%）\n21\t  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\n22\t  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\n23\t- **cqa1-32758**:\n24\t  - `/autodl-pub`: 474G/7.0T 可用（已用 94%） ⚠️\n25\t  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\n26\t  - `/usr/bin/nvidia-smi`: 77G/98G 可用（已用 19%）\n27\t- **westd-49937**:\n28\t  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\n29\t  - `/init`: 150M/150M 可用（已用 0%）\n30\t  - `/usr/bin/nvidia-smi`: 815G/879G 可用（已用 3%）\n31\t- **bjb2-24035**:\n32\t  - `/autodl-pub`: 5.1T/14T 可用（已用 64%）\n33\t  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\n34\t  - `/usr/bin/nvidia-smi`: 45G/437G 可用（已用 90%） ⚠️\n35\t\n36\t### 🏃 RUNNING\n37\t| exp_id | server | gpu | pid | log |\n38\t|--------|--------|-----|-----|-----|\n39\t| `smolvla-tau015-long-s43` | bjb1-18228 | cuda:0 | 555572 | `…ns/acr-vla-conformal-refinement/smolvla-tau015-long-s43.log` |\n40\t| `smolvla-tau025-long-s43` | bjb1-18228 | cuda:1 | 556705 | `…ns/acr-vla-conformal-refinement/smolvla-tau025-long-s43.log` |\n41\t| `smolvla-tau035-long-s43` | bjb1-18228 | cuda:2 | 557567 | `…ns/acr-vla-conformal-r\n…[truncated 7830 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 639
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-27T05:15:17.737526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-27T05:15:17.805806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# acr-vla-conformal-refinement — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-27 01:34 UTC | 更新原因: D169 Appendix patch 完成 + Agent 系统性问题持续\n4\t\n5\t> 详见 paper_framing.md（D168: Goal harm 13.2pp, D169: τ-sweep→sensitivity analysis）\n6\t\n7\t## 核心方向\n8\t**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-28 20:00 北京时间**（~34h）。\n9\t\n10\t## 当前进展\n11\t- **Table 1 + Table 2**: ✅ 锁定\n12\t- **论文写作**: ✅ Step 5 收敛 + D169 Appendix τ-sweep patch 完成（v54, 14页）\n13\t- **审稿提交**: ✅ submit_paper_to_review 已发，⚠️ pending 用户审批 review mode\n14\t- **τ-sweep 数据**: scatter_data.csv 89 行。部分实验仍在运行\n15\t- **Agent 系统性问题**: 连续 7 次 reset 后只处理 1-2 条消息就死。已向 Manager 升级\n16\t\n17\t## 近期任务\n18\t- [x] Table 2 完成\n19\t- [x] 论文 Step 5 收敛\n20\t- [x] submit_paper_to_review 提交\n21\t- [x] D169 Appendix τ-sweep 叙事调整 + Paper Agent patch\n22\t- [x] 主要 τ-sweep 数据收割（89 行）\n23\t- [ ] **P0** 等待用户审批 review mode（已多次提醒）\n24\t- [ ] **P1** Agent 稳定性修复（Manager 已知）\n25\t- [ ] **P1** 剩余 τ-sweep 收割：cqa1 pi05 s43 (6个) + bjb1-32546 SmolVLA Long s42 (3个)\n26\t- [ ] **P1** Stale RUNNING registry 修正（6个：bjb1-18228 4个 + bjb2-28827 2个）\n27\t- [ ] **P2** 正式审稿报告处理\n28\t- [ ] **P2** paper_framing.md 更新 D165-D169\n29\t\n30\t## Claim 策略\n31\t- **MC1** (D168): Adaptive ≥ CRM on 3/4 suites; recovery 19-38%\n32\t- **MC2** (D140+D169): Cross-suite trigger rate ↔ Δ 单调正相关。Within-suite τ-sweep 定位为 sensitivity analysis（SR 对 τ 稳健），非 MC2 within-suite 证据\n33\t- **MC3**: cross-VLA 模型能力依赖\n34\t\n35\t## GPU 预算\n36\t- 本项目分配：29 GPU（6 servers，bjb2-40593 掉线）\n37\t- 主要实验已完成，剩余 τ-sweep 补充实验在 cqa1/bjb1-32546 运行中\n38\t\n39\t## 关键决策日志\n40\t\n41\t| ID | 日期 | 摘要 | 关联实验 |\n42\t|----|------|------|----------|\n43\t| D169 | 2026-05-27 | D169: τ-sweep Appendix 叙事定位调整 — \"sensitivity/robus | smolvla-tau015-goal-s43, smolvla-tau025-goal-s43, smolvla-tau035-goal-s43 |\n44\t| D168 | 2026-05-26 | D168: Goal CRM harm 计算修正 14.5pp→13.2pp, recovery 3 | pi05-adaptive-goal |\n45\t| D167 | 2026-05-26 | D167: Table 2 完成 12/12 + MC1 framing 三次修正：从 \"恢复比例  | pi05-adaptive-long-s43-cqa1-r3, pi05-adaptive-long-s44-cqa1-r3, pi\n…[truncated 971 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 68
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-27T05:15:21.822506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-27T05:15:22.273478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory\n2\t\n3\t## 竞品实验参考\n4\t（见 literature_map.yaml）\n5\t\n6\t## 关键经验\n7\t\n8\t### C001 硬约束：GPU 部署前必须检查占用 (2026-05-26)\n9\t- **3 起碰撞事故根因**：K2mean 批量部署 + v2 baselines 部署均未检查 GPU 状态\n10\t- **规则**：每个实验启动前必须执行 `nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i $GPU_ID`，返回值 > 500MB → 不启动，报告冲突\n11\t- **EXIT_CODE=0 ≠ 实验成功**：收割时必须检查：(1) 日志无 OOM/CUDA error (2) 无 task SR=0% 异常 (3) 总 SR 与同类偏差 < 20pp 需人工审查\n12\t- **worker status 报告不可信**：worker 可能报告 \"Not logged in\" 但实际已提交实验。取消 worker 前先查 registry 是否已有 spec/pid\n13\t\n14\t### π0.5 Adaptive Goal 结果一致性 (2026-05-26)\n15\t- Goal Adaptive s42 (cqa1): SR=89.5%, trigger_rate=8.1%, mean_unc=0.1152\n16\t- Goal Adaptive s43 (bjb1-18228): SR=89.5%\n17\t- 两个不同服务器、不同 GPU 型号得到完全一致的 89.5%，说明 Adaptive Conformal 在 Goal suite 上稳定\n18\t- trigger_rate 仅 8.1% 意味着绝大多数 timestep 不触发校正，CRM 校正是精准的\n19\t\n20\t### cqa1 僵尸进程事故教训 (2026-05-26)\n21\t- 原因：6 个 π0.5 并发导致 GPU OOM，r2 实验在僵尸进程占用显存时启动\n22\t- 症状：r2 实验 SR=0%（step 0 就 OOM），但僵尸原始进程仍在占用显存\n23\t- 修复：kill 所有僵尸 → 确认 GPU 释放 → 部署 r3\n24\t- 教训：部署实验前必须确认目标 GPU 无残留进程（nvidia-smi 检查）\n25\t\n26\t### D158 westd Blackwell 系统偏差 (2026-05-26)\n27\t- westd RTX PRO 6000 Blackwell GPU 与 4090 有 ~3pp 系统性差异\n28\t- Table 2 要求同服务器 paired comparison（VLA-only / CRM / Adaptive 都在同一台机器跑）\n29\t- westd VLA-only 部署后，等完成再部署 CRM/Adaptive 做同服务器对比\n30\t\n31\t### pi05 376 missing_keys 不是 bug (2026-05-26)\n32\t- 四台服务器（bjb1-18228/bjb1-32546/bjb2-28827/bjb2-24035）全部有相同的 376 missing_keys\n33\t- 是 `_fix_vision_tower_keys` 的正常行为：只加载 437 个 vision tower keys 的 remap，`load_state_dict(remap, strict=False)` 报告的 376 \"missing\" keys 是其他已由 `from_pretrained` 加载的参数\n34\t- bjb1-18228 pi05 实际 SR=97.5%（spatial s43），模型完全正常\n35\t\n36\t### D166 Goal VLA-only 数据版本决策 (2026-05-26)\n37\t- May22 r4 = 97.8±0.3% 和 May24 = 96.7±1.0% 都不是 D163 (a594db5) 版本\n38\t- 两组使用相同版本的 evaluate.py（含 unified_obs_dim/openvla_oft 补丁）\n39\t- **Director 决策：选 May24 = 96.7±1.0%**（全在 4090，更保守，不影响结论——CRM 退化 -13.2pp 仍然显著）\n40\t- 1.1pp 差异主要来自 s42 跨服务器漂移（bjb1-18228 98.0% vs bjb1-32546 95.5%）\n41\t\n42\t### SmolVLA CRM checkpoint 路径 (2026-05-26)\n43\t- 正确路径：`/\n…[truncated 610 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 450
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-27T05:15:22.467038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-27T05:15:22.591073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t_next_id: 170\n2\tdecisions:\n3\t- id: D001\n4\t  date: 2026-05-13 01:03 UTC\n5\t  summary: MVP 方案确定：3D Point-Reaching Motivating Experiment 验证 per-DOF conformal 特征的信息优势\n6\t  rationale: IDEA_BRIEF 已设计了完美的 go/no-go gate：用合成数据的 3D reaching task 对比 per-DOF vs\n7\t    标量 vs 无不确定性三种 conditioning，直接测试核心假设。成本极低（<0.5 GPU-hours），无需 VLA 基础设施，失败则提前止损。Pass\n8\t    标准明确：B 在非扰动轴 MSE 比 A 低 >10%。\n9\t  related_experiments: []\n10\t  depends_on: []\n11\t- id: D002\n12\t  date: 2026-05-13 01:06 UTC\n13\t  summary: 采纳 Reviewer 建议完善 MVP：增加 B vs C 对比（>5% MSE）、K=10 estimated uncertainty variant、2:1/1.5:1\n14\t    各向异性 sweep\n15\t  rationale: Reviewer 正确指出 (1) 缺少 B vs C 对比会遗漏\"观测特征已足够\"的可能性，这直接关系核心 claim；(2) oracle\n16\t    uncertainty 与实际 pipeline 存在 gap，K=10 variant 几乎零成本可验证；(3) 5:1 比率过极端，需测试更温和情况。三项改进均不增加显著成本。\n17\t  related_experiments: []\n18\t  depends_on:\n19\t  - D001\n20\t- id: D003\n21\t  date: 2026-05-13 01:47 UTC\n22\t  summary: MVP 通过，GO — 进入 research 阶段\n23\t  rationale: 全部 3 条 pass 标准满足且 margin 很大：per-DOF (B) 在非扰动轴 MSE 比标量 (A) 低 22-38%，比无\n24\t    uncertainty (C) 低 15-39%。K=10 estimated 和弱各向异性(1.5:1)下均成立。核心假设\"per-DOF conformal\n25\t    特征携带更多可操作信息\"得到验证。关注风险：oracle→K=10 衰减 ~15pp，真实 7-DOF 场景待验证。\n26\t  related_experiments:\n27\t  - exp_id: mvp-point-reaching\n28\t    role: MVP gate\n29\t    result: PASS — all 6 conditions met criteria\n30\t  depends_on:\n31\t  - D001\n32\t  - D002\n33\t- id: D004\n34\t  date: 2026-05-13 02:59 UTC\n35\t  summary: Horizon 策略：截取 chunk 前 H_eff=5 步，action_dim=6。CGS 输出 40D。\n36\t  rationale: SmolVLA chunk_size=50 远超原假设 H=5。receding-horizon 执行语义下只需关注近期 action 的\n37\t    uncertainty，远期 step 对当前校正无意义。H_eff=5 保持与 IDEA_BRIEF 设计一致，CGS 40D 可控（per-DOF std\n38\t    30 + radius 5 + volume 5），p/n=6/10=0.6 优于原假设 0.7。H_eff=10 留作 ablation。action_dim=6\n39\t    使 Ledoit-Wolf 更稳定。\n40\t  related_experiments: []\n41\t  depends_on:\n42\t  - D003\n43\t- id: D005\n44\t  date: 2026-05-13 03:00 UTC\n45\t  summary: 不等 Dream 重新提交，直接启动 P0 实验。Dream zombie 占槽，Reviewer 已两轮审核通过 framing/plan。\n46\t  rationale: Dream dream_20260513T015051 崩溃在 review 阶段（imagine+write\n…[truncated 2521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 124
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-27T05:15:27.166440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md",
+              "offset": "60",
+              "limit": "50"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-27T05:15:27.672994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t- [2026-05-26] Goal VLA-only 选 May24 数据（96.7±1.0%），Director 批准 Option A\n61\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 506
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-27T05:15:28.433402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gpu_ids|GPU.*分配|allocation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "glob": "config*.yaml",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-27T05:15:28.689861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Grep",
+            "elapsed_ms": 256
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-27T05:15:31.619622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/config*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-27T05:15:32.130231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "elapsed_ms": 510
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-27T05:15:32.330689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/project.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-27T05:15:32.964435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Glob",
+            "elapsed_ms": 633
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-27T05:15:36.399842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gpu_ids",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-27T05:15:37.138506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/constraints.yaml",
+              "limit": "50"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-27T05:15:37.577057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t_next_id: 3\n2\tconstraints:\n3\t- id: C001\n4\t  added: 2026-05-26 13:36 UTC\n5\t  summary: 提交实验前必须 nvidia-smi 确认目标 GPU 显存占用 < 500 MiB，否则禁止启动\n6\t  scope: worker\n7\t  reason: 本轮已发生 2 起 GPU 碰撞（cqa1 cuda:0、bjb2-24035 cuda:0），均因未检查 GPU 状态直接提交导致两个实验共享\n8\t    GPU、严重减速、结果不可信。M101/M102 记录在案。\n9\t- id: C002\n10\t  added: 2026-05-26 13:47 UTC\n11\t  summary: 收割实验结果时必须检查日志无 OOM/CUDA error，且无 task SR=0% 异常；EXIT_CODE=0 不等于实验成功\n12\t  scope: all\n13\t  reason: pi05-vla-only-goal-s42-4090 EXIT_CODE=0 但 200/200 rollout 全部 OOM，产出 0% 假结果。若不审查直接引用会导致灾难性错误结论。\n14\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 438
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-27T05:15:39.432187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:1887:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:1952:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:2176:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:2272:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:2313:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:2363:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:2522:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_hp5nas9m.tmp:4414:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:1887:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:1952:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:2176:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:2272:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:2313:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:2363:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.registry_rpe0lmos.tmp:2522:      gpu_ids:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-\n…[truncated 945 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Grep",
+            "elapsed_ms": 3032
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-27T05:15:43.460938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/loop_6.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-27T05:15:43.924729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 6\n3\treason: idle_timeout\n4\tupdated: '2026-05-15T01:27:30+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- bjb1-18228 GPU 白名单: cuda:0-3（4× RTX 4090）；bjb2-40593 只有 cuda:0（1× RTX 4090 D）\n9\t- SmolVLA 基线锁定 30%（spatial K=1），不要重跑基线，除非 wrapper 代码改动\n10\t- CRM checkpoint 必须用 v3-norm 版本（内嵌 normalization stats），v2 及以前全部废弃（D016 state 6D→8D bug）\n11\t- precompute cache 只能用 v5+（precompute-v4 及以前 state 维度错误）\n12\t- evaluate.py 中 env.reset() 必须在 set_init_state() 之前，否则静默产生错误结果\n13\t- CoRL 2026 abstract DDL ~May 26（D021），时间窗口极紧\n14\t\n15\t### 2. 🖥️ 基础设施快照\n16\t- **bjb1-18228**: 工作目录 `/root/acr-vla-conformal-refinement/`，Python 路径待 SSH 确认（conda base 或 venv）\n17\t  - cuda:0 — eval-acr-spatial-v4-obs-only-r2（running）\n18\t  - cuda:1 — eval-argmin-only-spatial（running，已出 3/10 tasks = 53.3%）\n19\t  - cuda:2 — eval-tiny-correction-spatial（running，已出 3/10 tasks = 53.3%）\n20\t  - cuda:3 — eval-acr-spatial-v4-small（running，已出 T1=60%）\n21\t- **bjb2-40593**: 工作目录同上，cuda:0 — eval-vla-mean-spatial-t10（running 或已完成）\n22\t- 模型 checkpoint: `/root/acr-vla-conformal-refinement/checkpoints/` 下 crm-v3-norm-perdof / scalar / obs-only\n23\t- HF cache / 数据: 在各服务器 `/root/autodl-tmp/` 或本地\n24\t- GPU 预算: ~200h 总计，~80h 已用，~120h 剩余\n25\t\n26\t### 3. 📊 当前状态\n27\t刚完成 eval-acr-spatial-v4-default-r2 分析：max_norm=1.42（默认）→ 0/5 on T1，确认 D019\"normalization alone 不够\"。VLA-mean 31% 完成，证明 K=10 averaging 无增益（+1pp noise）。\n28\t\n29\t**Registry RUNNING**:\n30\t- eval-argmin-only-spatial: K=10 argmin 无 CRM，已 53.3%（3/10 tasks）——sample selection alone 就很强\n31\t- eval-tiny-correction-spatial: max_norm=0.05，已 53.3%（3/10）——与 argmin-only 齐平，correction 可能无害但也无益\n32\t- eval-acr-spatial-v4-small: max_norm=0.1，T1=60%（1/10）\n33\t- eval-acr-spatial-v4-obs-only-r2: CRM obs-only 模式，测 conformal features 是否真有用\n34\t- eval-vla-mean-spatial-t10: VLA-mean 最后一个 task（T10）\n35\t\n36\t**等待中**: 无 Worker 回调待处理。5 个 eval cron 在监控中。eval-acr-spatial-v4-scalar 已 prepared 等 GPU。\n37\t\n38\t### 4. 📋 待办（条件触发式）\n39\t- argmin-only + tiny-correction + v4-small 三个都完成 → 对比表：若 argmin-only ≈ tiny-correction >> v4-defaul\n…[truncated 1432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 463
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-27T05:15:43.934760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -lt /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/ | head -20",
+              "description": "List latest agent handoff files"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-27T05:15:45.102418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 2028\n-rw-r--r-- 1 ubuntu ubuntu 3927 May 27 01:36 loop_27_1779849219.md\n-rw-r--r-- 1 ubuntu ubuntu 4225 May 27 00:59 loop_27_1779845774.md\n-rw-r--r-- 1 ubuntu ubuntu 4167 May 26 19:58 loop_27_1779843564.md\n-rw-r--r-- 1 ubuntu ubuntu 4226 May 26 19:58 loop_27_1779825519.md\n-rw-r--r-- 1 ubuntu ubuntu 3946 May 26 19:56 loop_27_1779825482.md\n-rw-r--r-- 1 ubuntu ubuntu 4939 May 26 10:07 loop_27_1779825397.md\n-rw-r--r-- 1 ubuntu ubuntu 5759 May 26 10:06 loop_27.md\n-rw-r--r-- 1 ubuntu ubuntu 6849 May 26 08:42 loop_26_1779789986.md\n-rw-r--r-- 1 ubuntu ubuntu 4367 May 25 17:40 loop_26_1779784979.md\n-rw-r--r-- 1 ubuntu ubuntu 4463 May 25 17:40 loop_26.md\n-rw-r--r-- 1 ubuntu ubuntu 5510 May 24 00:55 loop_25_1779730830.md\n-rw-r--r-- 1 ubuntu ubuntu 4718 May 24 00:55 loop_25_1779584146.md\n-rw-r--r-- 1 ubuntu ubuntu 4975 May 24 00:55 loop_25_1779584136.md\n-rw-r--r-- 1 ubuntu ubuntu 4713 May 23 23:21 loop_25_1779584131.md\n-rw-r--r-- 1 ubuntu ubuntu 4902 May 23 23:08 loop_25_1779578501.md\n-rw-r--r-- 1 ubuntu ubuntu 4517 May 23 23:08 loop_25_1779577698.md\n-rw-r--r-- 1 ubuntu ubuntu 4312 May 23 23:08 loop_25_1779577695.md\n-rw-r--r-- 1 ubuntu ubuntu 4990 May 23 22:43 loop_25_1779577692.md\n-rw-r--r-- 1 ubuntu ubuntu 4598 May 23 22:29 loop_25_1779576221.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Bash",
+            "elapsed_ms": 1167
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-27T05:15:49.625435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/loop_27_1779849219.md"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-27T05:15:49.652174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 27\n3\treason: idle_timeout\n4\tupdated: '2026-05-27T01:36:14+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- cqa1-32758 同时 ≤6 个 π0.5 进程，超过必 OOM（memory.md 已记录）\n9\t- westd-49937 RTX PRO 6000 与 4090 存在 3pp 系统性偏差（D158），Table 2 必须 same-server paired，不可混用 westd 数据\n10\t- π0.5 Adaptive 参数：τ=0.25, norm=0.2, K=2（SmolVLA 校准值，直接套用到 π0.5 可能不合适但 D155 已决定不再调）\n11\t- evaluate.py 必须用 commit a594db5 版本（D163），所有补跑用旧代码确保 Table 一致性\n12\t- bjb1-32546 无 .git，无法回溯代码历史\n13\t\n14\t### 2. 🖥️ 基础设施快照\n15\t- **cqa1-32758** (6×4090D): 项目目录待确认（Worker 诊断中）；磁盘 /autodl-pub 94% ⚠️（仅 485G/7T 可用）\n16\t- **bjb1-18228** (4×4090): SSH alias autodl-4090x4\n17\t- **bjb1-32546** (6×4090): SmolVLA Table 1 数据全来自此服务器\n18\t- **bjb2-28827** (6×4090): 1TB RAM，可并发 6 个 π0.5\n19\t- **westd-49937** (6×RTX PRO 6000): Blackwell 偏差，仅用于非 Table 数据\n20\t- **bjb2-24035** (1×4090D): 磁盘 /nvidia-smi 90% ⚠️\n21\t- CRM checkpoint: SmolVLA `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`，π0.5 `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`\n22\t- 活跃 cron 4 个：pi05-adaptive-goal-s43-bjb1-18228, pi05-crm-k2-long-s44-cqa1, pi05-adaptive-object-s42-cqa1, pi05-adaptive-goal-s42-cqa1\n23\t\n24\t### 3. 📊 当前状态\n25\t**刚做完**：收到 pi05-adaptive-long-s44-cqa1 失败 cron 回调，发现 6 个实验批量失败（cqa1×3 + bjb1×3），全部 \"process dead 5× with no sentinel/W&B\"，日志文件不存在（启动即崩溃）。已派诊断 Worker `worker_diagnose_pi05-adaptive-long-s44-cqa1_20260526T093118`，**尚未回调**。\n26\t\n27\t**RUNNING (3)**:\n28\t- pi05-crm-k2-long-s44-cqa1 — cqa1 cuda:0，π0.5 CRM K=2 Long s44\n29\t- pi05-adaptive-object-s42-cqa1 — cqa1 cuda:1，π0.5 Adaptive Object s42\n30\t- pi05-adaptive-goal-s42-cqa1 — cqa1 cuda:2，π0.5 Adaptive Goal s42\n31\t\n32\t**ANALYZING (4)**：reconcile 时未列出具体 exp_id，需查 registry\n33\t\n34\t**等待中**：\n35\t- 诊断 Worker 回调 → 根据 root_cause 决定是否可重跑失败的 6 个实验\n36\t- π0.5 Table 2 Long suite CRM 数据（pi05-crm-k2-long-s44 running）\n37\t- 14 个 QUEUED 实验等 GPU\n38\t\n39\t### 4. 📋 待办（条件触发式）\n40\t- 诊断 Worker 回调 → 按 root_cause 分类：infrastructure 则修复重跑，resource(OOM/磁盘) 则调整部署策略，向 Director 汇报\n41\t- pi05-crm-k2-long-s44-cqa1 完成 → 补全\n…[truncated 890 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 26
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-27T05:15:53.211622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/loop_27.md",
+              "limit": "60"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-27T05:15:53.320890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 27\n3\treason: idle_timeout\n4\tupdated: '2026-05-26T10:06:26+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- **GPU 白名单**（29卡）：bjb1-18228 cuda:0-3, bjb1-32546 cuda:0-5, bjb2-28827 cuda:0-5, cqa1-32758 cuda:0-5, westd-49937 cuda:0-5, bjb2-24035 cuda:0。白名单外的 GPU 一律不碰，Director 指令也要 push back\n9\t- **westd-49937 是 RTX PRO 6000 (Blackwell)**，与 4090 集群存在 ~3pp 系统性偏差（D158）。Table 2 数据必须 same-server paired，westd 数据不能和 4090 直接比\n10\t- **evaluate.py 必须用 a594db5 版本**（D163）。所有补跑用旧代码确保 Table 1/2 一致性，不要拉新 commit\n11\t- **cqa1-32758 并发 ≤6 个 π0.5 进程**，超过必 OOM。cqa1 上部署 π0.5 前需确认 gemma-2b-tokenizer 完整（之前缺 tokenizer.model 导致崩溃）\n12\t- **CoRL 2026 DDL = 2026-05-29**，距今 3 天，一切以论文提交为最高优先级\n13\t\n14\t### 2. 🖥️ 基础设施快照\n15\t- **项目路径（所有服务器）**: `/root/acr-vla-conformal-refinement`\n16\t- **服务器集群**:\n17\t  - bjb1-18228 (4×4090) — SmolVLA + π0.5 eval\n18\t  - bjb1-32546 (6×4090) — π0.5 CRM K=2 Object/Goal eval（无 .git，不能回溯版本）\n19\t  - bjb2-28827 (6×4090, 1TB RAM) — π0.5 CRM/Adaptive Spatial eval，可跑 6 个 π0.5 同时\n20\t  - cqa1-32758 (6×4090D) — π0.5 Adaptive Object/Long + CRM Long eval\n21\t  - westd-49937 (6×RTX PRO 6000) — ⚠️ Blackwell 偏差，VLA-only baseline 补跑\n22\t  - bjb2-24035 (1×4090D) — 状态待确认\n23\t- **CRM checkpoint**: SmolVLA → `.../crm_smolvla_3suite_v1/crm_best.pt`; π0.5 → `.../crm_pi05_unified_3suite/crm_best.pt`\n24\t- **Python**: 各服务器 `/root/miniconda3/bin/python`（conda base，不用 venv）\n25\t- **活跃 cron 监控**: 10 个（reconcile 确认全部 still running）\n26\t  - bjb1-18228: pi05-adaptive-goal-s43-bjb1-18228 (pid=42110)\n27\t  - bjb2-28827: pi05-crm-k2-spatial-s42/s43/s44-bjb2-r2 (pid=334539/334906/335268), pi05-adaptive-spatial-s42/s43/s44-bjb2-r2 (pid=335649/336003/刚创建)\n28\t  - cqa1-32758: pi05-crm-k2-long-s44-cqa1, pi05-adaptive-object-s42-cqa1, pi05-adaptive-goal-s42-cqa1\n29\t\n30\t### 3. 📊 当前状态\n31\t**π0.5 Table 2 数据收集是当前唯一焦点**——DDL 前 3 天，需完成 4 suite × 3 mode × 3 seed = 36 cells。\n32\t\n33\t**RUNNING（18 个实验，24 GPU 活跃）**:\n34\t- bjb2-28827 (6/6 GPU): CRM K=2 Spatial s42/43/44 + Adaptive Spatial s42/43/44\n35\t- bjb1-32546 (6/6 GPU): CRM K=2 Goal s\n…[truncated 1656 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42",
+            "tool": "Read",
+            "elapsed_ms": 109
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-27T05:16:50.159682+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough context. Let me write the handoff.\n\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单（29卡）**：bjb1-18228 cuda:0-3, bjb1-32546 cuda:0-5, bjb2-28827 cuda:0-5, cqa1-32758 cuda:0-5, westd-49937 cuda:0-5, bjb2-24035 cuda:0\n- **CoRL 2026 DDL = 2026-05-28 20:00 北京时间**（距 handoff 时刻约 18h）。论文提交是唯一最高优先级\n- **evaluate.py 锁定 commit a594db5**（D163），所有评估必须用旧代码，禁止升级\n- **westd-49937 (RTX PRO 6000 Blackwell)** 与 4090 有 ~3pp 系统偏差（D158），Table 数据必须 same-server paired\n- **cqa1-32758 并发 ≤6 个 π0.5 进程**，超过 OOM。cqa1 磁盘 /autodl-pub 94% ⚠️\n- **CRM checkpoint**：SmolVLA 用 `crm_smolvla_3suite_v1/crm_best.pt`，π0.5 用 `crm_pi05_unified_3suite/crm_best.pt`\n- **C001**: 启动实验前 nvidia-smi 检查目标 GPU 占用 < 500MB；**C002**: EXIT_CODE=0 ≠ 成功，必须查日志无 OOM/异常\n\n### 2. 🖥️ 基础设施快照\n- **项目路径（所有服务器）**: `/root/acr-vla-conformal-refinement`\n- **Python（所有服务器）**: `/root/miniconda3/bin/python`（conda base，不用 venv）\n- **服务器集群**:\n  - bjb1-18228 (4×4090): cuda:0/1/2 跑 smolvla-tau015/025/035-long-s43\n  - bjb1-32546 (6×4090): 全部空闲（无 .git）\n  - bjb2-28827 (6×4090, 1TB RAM): 全部空闲\n  - cqa1-32758 (6×4090D): cuda:0/1 跑 smolvla-vla-only-long-n20-s42/s43，其余空闲；磁盘紧张\n  - westd-49937 (6×RTX PRO 6000): 全部空闲（Blackwell 偏差注意）\n  - bjb2-24035 (1×4090D): 空闲，磁盘 /nvidia-smi 90% ⚠️\n- **CRM checkpoint**: `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt` (SmolVLA)\n- **活跃进程**: 5 个 RUNNING（见§3），cron 监控应跟随\n\n### 3. 📊 当前状态\n**Session 是冷启动**——本 session 在之前 8 次 WRITE HANDOFF 请求中均未成功执行 session-start 初始化或读取 registry/report（MCP 工具反复断连重连），现在是首次实际读取项目状态。\n\n**RUNNING (5)**:\n- smolvla-tau015-long-s43: bjb1-18228 cuda:0, PID 555572 — SmolVLA τ=0.15 Long s43 τ-sweep\n- smolvla-tau025-long-s43: bjb1-18228 cuda:1, PID 556705 — SmolVLA τ=0.25 Long s43 τ-sweep\n- smolvla-tau035-long-s43: bjb1-18228 cuda:2, PID 557567 — SmolVLA τ=0.35 Long s43 τ-sweep\n- smolvla-vla-only-long-n20-s42: cqa1-32758 cuda:0, PID 722840\n- smolvla-vla-only-long-n20-s43: cqa1-32758 cuda:1, PID 724487\n\n**ANALYZING (1)**: 需查 registry 确认具体 exp_id\n\n**最近完成**: smolvla-tau015/025/035-long-s42 全部 success (05-27 03:05)；pi05-goal-tau015-s43 negative (05-27 02:46)\n\n**论文状态**: v54 14页，Table 1 + Table 2 ✅ 已锁定，D169 Appendix τ-sweep patch 完成。审稿已提交 `submit_paper_to_review`，pending 用户审批 review mode。scatter_data.csv 89 行。\n\n**Agent 系统性问题**: report.md 记录\"连续 7 次 reset 后只处理 1-2 条消息就死\"，已向 Manager 升级。\n\n### 4. 📋 待办（条件触发式）\n- smolvla-tau015/025/035-long-s43 cron 回调 → 收割结果更新 scatter_data.csv，追加 τ-sweep Appendix 数据点\n- smolvla-vla-only-long-n20-s42/s43 完成 → 更新 Long VLA-only n=20 基线数据\n- ANALYZING 的实验 → 查 registry 确认 exp_id，派 Worker 分析\n- 用户审批 review mode → 处理审稿报告\n- **DDL 05-28 20:00 CST** → 所有剩余 τ-sweep 数据须在此前收割完毕；论文终稿确认\n- QUEUED 中有 eval-k2-tau035/025-spatial-s42 等 199 项 → 按优先级和 GPU 空闲情况部署（24/29 GPU 空闲）\n\n### 5. 🎯 战略上下文\n**项目核心**: ACR-VLA = Adaptive Conformal Refinement for Frozen Flow-Matching VLAs。投 CoRL 2026。\n\n**3 Claims**:\n- MC1 (D168): Adaptive ≥ CRM on 3/4 suites; recovery 19-38%\n- MC2 (D140+D169): Cross-suite trigger rate ↔ Δ 单调正相关；within-suite τ-sweep 是 sensitivity analysis（SR 对 τ 稳健）\n- MC3: Cross-VLA 模型能力依赖性（π0.5 CRM/Adaptive 全面负向 → 不 claim cross-model generalization）\n\n**决策链**: D001 (MVP GO) → D008 (SmolVLA SFT) → D016 (state bug) → D140 (cross-suite monotone) → D155 (π0.5 negative, reframe MC3) → D163 (code lock a594db5) → D168 (Goal harm fix) → D169 (τ-sweep → sensitivity analysis)\n\n**易错点**:\n1. DDL 只剩 ~18h，论文核心内容已 freeze，不要做大的 framing 调整\n2. π0.5 CRM/Adaptive 全面 negative 已 reframed 为 MC3 的证据（不 claim generalization），不要再试图\"修复\" π0.5 结果\n3. τ-sweep 数据是 Appendix sensitivity analysis，不是主表证据——不要用 τ-sweep 支撑 MC2 within-suite\n4. 24/29 GPU 空闲但 DDL 迫近——优先收割已运行实验，新实验只部署能在 DDL 前完成的\n5. 用户审批 review mode 是阻塞项——如果审批不来，论文仍可提交但缺少正式审稿反馈\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-k2-tau020-spatial-s42"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-k2-tau020-spatial-s42-20260527t051650-162326.md"
+}

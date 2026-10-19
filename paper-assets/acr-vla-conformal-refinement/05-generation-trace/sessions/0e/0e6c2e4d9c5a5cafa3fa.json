@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e6c2e4d9c5a5cafa3fa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy perdof object seed43",
+  "task_key": "worker_deploy_perdof-object-seed43_20260515T132013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_perdof-object-seed43_20260515T132013_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "a28eb2c3bd1e15d61b60bf09139a1215c82a309d9b51ba01624a9f0a71042caf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **exp_id**: `eval-perdof-object-seed43`\n- **服务器**: bjb1-18228, **GPU**: cuda:1\n- **PID**: 365925\n- **状态**: RUNNING\n- **日志**: `~/runs/acr-vla-conformal-refinement/eval-perdof-object-seed43.log`\n\n命令格式已与 cuda:2/cuda:3 上的 obs_only 和 reconvla 实验对齐（含 `HF_HOME`, `HF_HUB_OFFLINE=1`, `TRANSFORMERS_OFFLINE=1`, `MUJOCO_GL=egl`）。日志显示参数解析正确，正在加载模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-perdof-object-seed43.md"
+}

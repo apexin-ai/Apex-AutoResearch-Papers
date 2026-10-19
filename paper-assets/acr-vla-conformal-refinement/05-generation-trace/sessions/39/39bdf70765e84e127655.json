@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "39bdf70765e84e127655",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "audit table1 K values 20260524T213618 retry1",
+  "task_key": "worker_audit_table1-K-values_20260524T213618_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-K-values_20260524T213618_retry1.log",
+    "occurrence": 1,
+    "bytes": 1717607,
+    "sha256": "ac2f7e5e50d6edf58d9fe7cbb0a35681f1589ca7eec6740ce7d40e6c44ac1ce7"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "system": 2,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "39bdf70765e84e127655-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "39bdf70765e84e127655-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "39bdf70765e84e127655-part-0003.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-k-values-20260524t213618-retry1.md"
+}

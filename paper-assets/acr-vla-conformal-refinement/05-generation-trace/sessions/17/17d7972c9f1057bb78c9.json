@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d7972c9f1057bb78c9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops resubmit bjb1 32546 timeout16",
+  "task_key": "worker_ops_resubmit-bjb1-32546-timeout16_20260518T212518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_resubmit-bjb1-32546-timeout16_20260518T212518_result.json",
+    "occurrence": 1,
+    "bytes": 1526,
+    "sha256": "14428b9c5f4b8821b2d33a6cd703692d3e37f14dc3d41e3408bca4f9caf70567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 session 已确认运行。汇总如下：\n\n---\n\n## 任务 1: GPU 状态\n\n| GPU | Util | 显存占用 | 进程数 |\n|-----|------|----------|--------|\n| 0 | 20% | 4270/24564 MiB | 1 → 2 (新加 seed44) |\n| 1 | 99% | 7141/24564 MiB | 2 |\n| 2 | 98% | 7607/24564 MiB | 2 |\n| 3 | 21% | 5182/24564 MiB | 1 |\n| 4 | 89% | 6676/24564 MiB | 2 |\n| 5 | 21% | 4270/24564 MiB | 1 → 2 (新加 seed46) |\n\n当前 11 个 tmux session 在跑。\n\n## 任务 2: seed44 重提交 ✓\n- `eval-obs-only-norm003-seed44-t16` → GPU 0, timeout 57600s\n\n## 任务 3: seed46 重提交 ✓\n- 原 session `eval-obs-only-object-norm003-seed46` 已不存在\n- `eval-obs-only-norm003-seed46-t16` → GPU 5, timeout 57600s\n\n## 任务 4: 最近 24h 收割结果\n\n| 实验 | SR |\n|------|----|\n| obs_only_norm03_seed46 | **0.17** |\n| obs_only_default_seed46 | 0.15 |\n| obs_only_norm005_seed43_r2 | 0.14 |\n| obs_only_norm005_seed44 | 0.16 |\n| obs_only_norm005_seed45 | 0.14 |\n| obs_only_norm01_seed46 | **0.18** |\n| perdof_default_seed46 | 0.00 |\n| perdof_norm005_seed44 | 0.09 |\n| perdof_norm01_seed43 | 0.12 |\n| perdof_norm01_seed47_r2 | 0.14 |\n| perdof_norm02_seed43_bjb1 | 0.09 |\n\n## 任务 5: 空闲 GPU slots\n- **GPU 3**: 1 进程, 21% util, ~19 GB 空闲 — 可部署新实验\n- GPU 0/5 刚各加了 1 个任务，仍有 ~16 GB 空闲但已各 2 进程\n- GPU 1/2/4 各 2 进程, 高利用率, 不建议再加\n\n**最佳可用 slot: GPU 3**（目前只有 1 个进程且利用率低）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-bjb1-32546-timeout16.md"
+}

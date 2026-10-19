@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03f4ae9505d07cff39f2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops add exp bjb2 28827 gpu4",
+  "task_key": "worker_ops_add-exp-bjb2-28827-gpu4_20260518T191334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_add-exp-bjb2-28827-gpu4_20260518T191334_result.json",
+    "occurrence": 1,
+    "bytes": 226,
+    "sha256": "7e071d4cfb21d663e9f7d648004f93207e71384c9e9e129705597957a833f24a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **tmux session** `eval-obs-only-object-norm005-seed47` 已在 bjb2-28827 GPU 4 启动\n- **nvidia-smi** 确认：PID 605833, 5182 MiB\n- **Registry** 已注册为 RUNNING，hypothesis 已填入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-add-exp-bjb2-28827-gpu4.md"
+}

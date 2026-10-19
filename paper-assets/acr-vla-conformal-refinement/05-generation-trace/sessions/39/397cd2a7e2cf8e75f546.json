@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "397cd2a7e2cf8e75f546",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check perdof norm02 seed47 bjb2 28827",
+  "task_key": "worker_ops_check-perdof-norm02-seed47-bjb2-28827_20260518T043605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-perdof-norm02-seed47-bjb2-28827_20260518T043605_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "4036c81ae7f347253b9bda0461b35ab6d43d673b7a1a5a17cd47c73e2e910e6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done.\n\n**eval-perdof-object-norm02-seed47** — completed, overall SR = **11%**\n- Top task: chocolate_pudding 40%, salad_dressing 20%, orange_juice 20%\n- 4 tasks at 0%\n- Registry → DONE/success, cron deleted\n\n**eval-obs-only-object-norm02-k5-seed43** — deployed on GPU 2 (bjb2-28827), PID 527465, status RUNNING."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-perdof-norm02-seed47-bjb2-28827.md"
+}

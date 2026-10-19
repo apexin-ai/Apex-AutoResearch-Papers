@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c0d6d15090ab67e7caa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops progress check all servers",
+  "task_key": "worker_ops_progress-check-all-servers_20260515T170904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_progress-check-all-servers_20260515T170904_result.json",
+    "occurrence": 1,
+    "bytes": 1785,
+    "sha256": "dab553f6bafdab7b99edb8255135b1396b1a3e0a3c262e78667b4444dc3d399c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 registry entries updated. Here's the consolidated view:\n\n---\n\n## Progress Dashboard (2026-05-16 01:00 UTC)\n\n### Seed=43 Six-Way (Object) — all 6 running, 0 complete\n\n| Method | Server | Tasks | Status |\n|--------|--------|-------|--------|\n| crm_obs_only (norm=0.1) | bjb1-18228 | **4**/10 | T1:0 T2:10 T3:10 T4:30 |\n| crm_perdof (norm=0.1) | bjb1-18228 | **2**/10 | T1:0 T2:0, T3 in-progress |\n| reconvla | bjb1-18228 | **4**/10 | T1:0 T2:0 T3:20 T4:20 |\n| crm_scalar (norm=0.1) | bjb1-32546 | **0**/10 | T1 at rollout 5/10 |\n| vla_only (K=1) | bjb1-32546 | **2**/10 | T1:0 T2:10 |\n| vla_mean (K=10) | bjb1-32546 | **1**/10 | T1:0 |\n\nETA: ~4-6 hours\n\n### Object Magnitude Sweep\n\n**obs_only:**\n| 0.03 | 0.05 | 0.1 | 0.2 | 0.3 |\n|------|------|-----|-----|-----|\n| 0/10 | 0/10 | **19% DONE** | **9/10** ~21% | 0/10 |\n\n**perdof:**\n| 0.03 | 0.05 | 0.1 | 0.2 | 0.3 |\n|------|------|-----|-----|-----|\n| 0/10 | 0/10 | **11% DONE** | 0/10 | **MISSING** |\n\n### Spatial Supplementary\n\n**Completed:**\n- obs_only: norm=0.05 → **35%**, norm=0.2 → **35%**\n- perdof: norm=0.03 → **30%**, norm=0.05 → **31%**, norm=0.3 → **26%**\n\n**Near-complete:**\n- obs_only norm=0.3 (bjb1-18228): **9/10**, ~40% partial → ~30min\n- perdof norm=0.2 (bjb2-28827): **9/10**, ~29% partial → ~30min\n- obs_only norm=0.03 (bjb2-40593): **6/10**, ~38% partial → ~4h (slow 4090D)\n\n### Action Items\n\n1. **PID 42311 DEAD** — `eval-acr-object-v4-default` (perdof default-norm on object) died at 3/10 tasks. Needs restart.\n2. **perdof object norm=0.3 MISSING** — not submitted anywhere. Gap in the 5-point sweep.\n3. Several completed spatial experiments on bjb2-28827 (norm005, norm02, norm003, norm03) may need registry status → DONE."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-all-servers.md"
+}

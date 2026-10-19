@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35e5c52741c67063b32c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix bjb2 28827 gpu conflict",
+  "task_key": "worker_ops_fix-bjb2-28827-gpu-conflict_20260516T111949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-bjb2-28827-gpu-conflict_20260516T111949_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "8642c1ae97b3a21943e6c23b66aeb05196d1fb8836955020fc17eb3d558bae0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已执行：**\n- Kill PID 246301（GPU 2 上旧的 obs_only norm=0.3 seed45）— 成功\n\n**当前状态：**\n- GPU 2：仅 PID 248661（新进程），冲突已解决\n- GPU 3：PID 242264 + PID 248932 并行，显存 11.3GB/24.6GB，余量充足，无需干预\n\n**注意：** `eval_object_obs_only_norm03_seed45.json` 当前损坏/不完整。新进程 248860 仍在运行中，会从头写入结果覆盖该文件。如果该进程是追加写入模式（而非覆盖），可能需要删除旧文件后重启评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bjb2-28827-gpu-conflict.md"
+}

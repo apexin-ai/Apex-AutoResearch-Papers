@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "56a7867fc24b79aee6cc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code wrapper rewrite lerobot aligned",
+  "task_key": "worker_code_wrapper-rewrite-lerobot-aligned_20260513T161300",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_wrapper-rewrite-lerobot-aligned_20260513T161300.log",
+    "occurrence": 1,
+    "bytes": 2245736,
+    "sha256": "56e41a637264c3c415a792cdc9b19c69beff3f4fa79eb5699f3c89f59e1abf6f"
+  },
+  "statistics": {
+    "messages": 1458,
+    "user_turns": 1,
+    "tool_calls": 641,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 6,
+      "assistant": 151,
+      "tool_call": 641,
+      "tool_result": 641,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 472,
+      "chunks": [
+        {
+          "path": "56a7867fc24b79aee6cc-part-0001.json",
+          "message_count": 113
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0003.json",
+          "message_count": 179
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 986,
+      "chunks": [
+        {
+          "path": "56a7867fc24b79aee6cc-part-0003.json",
+          "message_count": 1
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "56a7867fc24b79aee6cc-part-0009.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-wrapper-rewrite-lerobot-aligned.md"
+}

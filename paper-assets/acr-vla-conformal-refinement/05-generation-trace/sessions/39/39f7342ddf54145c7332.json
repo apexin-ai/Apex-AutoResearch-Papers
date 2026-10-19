@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39f7342ddf54145c7332",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag bjb1 18228 recovery",
+  "task_key": "worker_diag_bjb1-18228-recovery_20260526T031747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_bjb1-18228-recovery_20260526T031747_result.json",
+    "occurrence": 1,
+    "bytes": 2471,
+    "sha256": "e12c13b526de96db66bd84da8f98ae08b4fb60e9ee6bcfb5e8372ed56e383280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。现在整理完整报告。\n\n---\n\n## 状态检查报告\n\n### bjb1-18228\n**连接状态**: 成功  \n**GPU**: 4x RTX 4090，全部空闲（0% 利用率，0MiB 显存）  \n**进程**: 无 evaluate.py 进程运行，无 tmux session（重启后全部被杀死）\n\n#### 实验结果\n\n| 实验 | 状态 | 结果 |\n|------|------|------|\n| **pi05-crm-k2-long-s44** | **完成** | overall_success_rate=**80%** (160/200)。Registry 已更新为 success |\n| **pi05-crm-k2-long-s42** | **被杀死，需重跑** | 日志显示跑到第10个task (KITCHEN_SCENE6) 的 rollout 15/20 时被杀。距完成仅差5个rollout，无JSON输出 |\n| **pi05-crm-k2-long-s43** | **被杀死，需重跑** | 日志显示跑到第10个task (KITCHEN_SCENE6) 的 rollout 5/20 时被杀。差15个rollout，无JSON输出 |\n| **eval-mechanism-goal-adapt-s42** | **已失败（非重启导致）** | 启动即 crash：`FileNotFoundError: '/root/acr-vla-conformal-refinement/checkpoints/crm_smolvla_3suite_v1/crm_best.pt'`。checkpoint 路径应为 `/root/autodl-tmp/checkpoints/...`。Registry 已标记 failed |\n\n### bjb2-40593\n**连接状态**: **失败** — `Unable to connect to port 40593 on 106.38.204.136`  \n需要用户去控制台查新端口并更新 SSH 配置。\n\n### 需要重新部署的实验清单\n\n1. **pi05-crm-k2-long-s42** — π0.5 CRM Long seed42，原命令：\n   ```\n   CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_crm_obs_only_norm0.05_seed42_pi05_K2.json\n   ```\n\n2. **pi05-crm-k2-long-s43** — π0.5 CRM Long seed43，原命令：\n   ```\n   CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2.json\n   ```\n\n3. **eval-mechanism-goal-adapt-s42** — 需修正 checkpoint 路径为 `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt` 后重跑\n\nbjb1-18228 有 4 块空闲 4090，可立即部署以上 3 个实验。等主 Agent 安排。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb1-18228-recovery.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32774432e91bcb87ccf1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze westd pi05 vla only spatial paired",
+  "task_key": "worker_analyze_westd-pi05-vla-only-spatial-paired_20260526T124625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_westd-pi05-vla-only-spatial-paired_20260526T124625_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "28c395ce9a76236302c4709756b4805961024592935ffec3aca738497dc2b27d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 registry 已更新完成（之前已有 metrics/conclusion/checkpoint_path/log_path，状态已确认为 DONE）。\n\n## π0.5 VLA-only Spatial (westd paired) 结果\n\n| seed | success_rate | n_rollouts | total_rollouts |\n|------|-------------|------------|----------------|\n| 42   | 98.0%       | 20         | 200            |\n| 43   | 97.5%       | 20         | 200            |\n| 44   | 98.5%       | 20         | 200            |\n| **mean±std** | **98.0±0.5%** | — | — |\n\n### Per-task 成功率\n\n| Task | s42 | s43 | s44 | mean |\n|------|-----|-----|-----|------|\n| between_plate_and_ramekin | 100% | 100% | 100% | 100% |\n| next_to_ramekin | 100% | 100% | 100% | 100% |\n| from_table_center | 100% | 100% | 100% | 100% |\n| on_cookie_box | 100% | 100% | 100% | 100% |\n| in_top_drawer | 100% | 95% | 100% | 98.3% |\n| **on_ramekin** | **90%** | **80%** | **85%** | **85.0%** |\n| next_to_cookie_box | 95% | 100% | 100% | 98.3% |\n| on_stove | 100% | 100% | 100% | 100% |\n| next_to_plate | 100% | 100% | 100% | 100% |\n| on_wooden_cabinet | 95% | 100% | 100% | 98.3% |\n\n**关键发现**：π0.5 Spatial VLA-only **98.0±0.5%**，远高于 SmolVLA 的 79.3±0.8%。唯一弱点是 `on_ramekin` task（85.0%），其余 9 个 task 均 ≥95%。\n\nRegistry 更新状态：三个实验均已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-westd-pi05-vla-only-spatial-paired.md"
+}

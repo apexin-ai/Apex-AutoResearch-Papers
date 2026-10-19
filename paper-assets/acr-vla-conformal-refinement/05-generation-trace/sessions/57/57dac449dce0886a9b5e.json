@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "57dac449dce0886a9b5e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze pi05 baseline r3 batch",
+  "task_key": "worker_analyze_pi05-baseline-r3-batch_20260521T121613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_pi05-baseline-r3-batch_20260521T121613.jsonl",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "86ebb123ab04ef30c620f611fd502ac0eff2d20682d3a1cc7494b6d187c1cce6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T12:16:32.180499+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_pi05-baseline-r3-batch_20260521T121613"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-pi05-baseline-r3-batch.md"
+}

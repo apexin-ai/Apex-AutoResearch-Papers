@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32688b3df9fa3337a27e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy plan500 low norm bjb1 32546",
+  "task_key": "worker_deploy_plan500-low-norm-bjb1-32546_20260528T031742",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_plan500-low-norm-bjb1-32546_20260528T031742_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "2c86daa1d194b60edee1c18f00c37bb4438ec05aa270a49bd3ce5a78583141a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已正常启动，模型加载中。\n\n---\n\n## 1. 数据缺口分析\n\n| 条件 | 有效 seed（非 westd） | 缺口 |\n|------|----------------------|------|\n| obs_only ε=0.03 | s43 (bjb1, bjb2), s44 (bjb1, bjb2) | 充足 |\n| obs_only ε=0.05 | s43 (bjb1, bjb2), s44 (bjb1, bjb2), s45 (bjb2), s46 (cqa1) | 充足 |\n| **perdof ε=0.03** | s43-v3 (cqa1) | **s44 缺失**（仅有 westd 版本） |\n| **perdof ε=0.05** | s43-v3 (cqa1) | **s44 缺失**（仅有 westd 版本） |\n\nperdof 两个 norm 的 s44 是 Figure 2 最弱环节，已优先部署。\n\n## 2. 部署详情\n\n| exp_id | GPU | PID | 参数 |\n|--------|-----|-----|------|\n| `eval-perdof-object-norm003-s44-v3` | bjb1-32546 cuda:3 | 515221 | mode=crm_perdof, norm=0.03, seed=44, K=10, 20 rollouts×10 tasks |\n| `eval-perdof-object-norm005-s44-v3` | bjb1-32546 cuda:4 | 515577 | mode=crm_perdof, norm=0.05, seed=44, K=10, 20 rollouts×10 tasks |\n\n命令模板与 cqa1 上 s43-v3 成功实验完全一致（仅改 seed 和 output_file）。预计运行 3-5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-plan500-low-norm-bjb1-32546.md"
+}

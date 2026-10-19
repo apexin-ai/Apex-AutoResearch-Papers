@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23f06093b7a4ccc892dd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor k20 progress and pi05 prep",
+  "task_key": "worker_monitor_k20-progress-and-pi05-prep_20260521T070719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_k20-progress-and-pi05-prep_20260521T070719_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "a5a32a7b54d564d4e1faa40809fafb438991bf649484d29cdb8ffcd2a48157ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署方案已写入 `artifacts/pi05_eval_deploy_plan.md`。\n\n---\n\n## 汇总\n\n### K=20 实验进度\n\n| 实验 | 状态 | Tasks | SR | 预计完成 |\n|------|------|-------|----|---------|\n| **object-seed45** (bjb2-28827) | 运行中 | 9.5/10 | ~18% | ~10 min |\n| **spatial-seed43** (bjb1-18228) | **已完成** | 10/10 | **34.0%** | - |\n| **spatial-seed44** (bjb1-18228) | **已完成** | 10/10 | **34.0%** | - |\n| **spatial-seed42** (bjb1-32546) | 运行中 | 9/10 | ~39% | ~15-20 min |\n\nSpatial K=20 seed43/44 结果完全一致（34.0%），seed42 预计在 36-40% 区间。Object seed45 预计 ~18-20%。\n\n### π0.5 部署方案\n\n- 6 个 baseline eval 命令已就绪（分配到 3 台服务器 6 张 GPU）\n- 等 fix Worker 完成 vision tower 修复 + quick verify 后即可部署\n- CRM 训练推荐方案 A（训练 obs_dim=2048 的新 CRM）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-k20-progress-and-pi05-prep.md"
+}

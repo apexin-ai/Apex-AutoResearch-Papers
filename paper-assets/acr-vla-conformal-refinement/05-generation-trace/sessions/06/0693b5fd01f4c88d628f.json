@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0693b5fd01f4c88d628f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval supp goal s45 failures",
+  "task_key": "worker_diagnose_eval-supp-goal-s45-failures_20260523T225630",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-supp-goal-s45-failures_20260523T225630_result.json",
+    "occurrence": 1,
+    "bytes": 1576,
+    "sha256": "5e362d460f961f12c9aae67071b058f58e4c9e021911fbba8b6615297b141fac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**两个实验都已正常完成，不是真正的失败。** 是 cron 监控误报。\n\n### 根因\n\n启动这两个实验时**没有写 exit sentinel**，也没有将日志 tee 到 `~/runs/` 路径，且评估脚本不上报 W&B metrics。cron 检测不到任何完成信号，因此：\n- `eval-supp-goal-vla-only-s45` → 进程退出后 cron 报 \"Process exited without valid W&B metrics\"\n- `eval-supp-goal-crm-norm005-s45` → 进程退出后 cron 报 \"Process gone, no sentinel, no W&B\"\n\n### 实验结果\n\n| 实验 | 模式 | Overall Success Rate | 完成时间 |\n|------|------|---------------------|----------|\n| eval-supp-goal-vla-only-s45 | vla_only | **83.5%** (167/200) | May 24 06:39 |\n| eval-supp-goal-crm-norm005-s45 | crm_obs_only (norm=0.05) | **81.0%** (162/200) | May 24 06:45 |\n\n### Per-task 对比\n\n| Task | VLA-only | CRM norm005 |\n|------|----------|-------------|\n| open_middle_drawer_of_cabinet | 90% | 70% |\n| put_bowl_on_stove | 100% | 100% |\n| put_wine_bottle_on_top_cabinet | 90% | 85% |\n| open_top_drawer_put_bowl_inside | 65% | 60% |\n| put_bowl_on_top_cabinet | 85% | 100% |\n| push_plate_to_front_stove | 85% | 90% |\n| put_cream_cheese_in_bowl | 50% | 50% |\n| turn_on_stove | 100% | 95% |\n| put_bowl_on_plate | 90% | 95% |\n| put_wine_bottle_on_rack | 80% | 65% |\n\n结果 JSON 已保存在服务器上：\n- `logs/eval_goal_vla_only_seed45.json`\n- `logs/eval_goal_crm_obs_only_norm0.05_seed45.json`\n\n**无需重跑。** 只需将 cron 中这两个实验标记为完成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-supp-goal-s45-failures.md"
+}

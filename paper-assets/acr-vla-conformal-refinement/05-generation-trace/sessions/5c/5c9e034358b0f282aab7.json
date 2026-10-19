@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c9e034358b0f282aab7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit stale running harvest",
+  "task_key": "worker_audit_stale-running-harvest_20260526T145318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_stale-running-harvest_20260526T145318_result.json",
+    "occurrence": 1,
+    "bytes": 3354,
+    "sha256": "e5f20783300b9cf7b46ee96f2eee8fa06f0ddf2070038f439cc0df173595b6f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 台服务器检查完毕。汇总报告：\n\n---\n\n## 收割结果汇总（22 个实验）\n\n### cqa1-32758（5 个，全部完成）\n\n```\npi05-adaptive-long-s44-cqa1:          COMPLETED | SR=0.0%  | 10 tasks x 20 rollouts 全部失败\npi05-adaptive-long-s43-cqa1:          COMPLETED | SR=0.0%  | 10 tasks x 20 rollouts 全部失败\npi05-adaptive-object-s44-cqa1:        COMPLETED | SR=88.0% | tau=0.25, trigger_rate=3.5%\neval-supp-spatial-reconvla-s46:       COMPLETED | SR=80.0% | PID 588065 已死，结果文件: eval_spatial_reconvla_seed46.json\neval-supp-spatial-adapt-tau025-s45-r3:COMPLETED | SR=80.0% | PID 502821 已死，trigger_rate=20.0%，结果文件: eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\n```\n\n### bjb1-32546（10 个，8 完成 / 2 失败）\n\n```\neval-crm-spatial-s48-d149:            COMPLETED | SR=80.5% | eval_spatial_crm_seed48.json (May 25 20:35)\neval-crm-object-s44-d149:             COMPLETED | SR=74.0% | eval_object_crm_seed44.json (May 25 21:01)\neval-crm-object-s43-d149:             COMPLETED | SR=78.5% | eval_object_crm_seed43.json (May 25 20:55)\neval-crm-object-s42-d149:             COMPLETED | SR=77.0% | eval_object_crm_seed42.json (May 25 20:38)\neval-crm-goal-s44-d149:               COMPLETED | SR=82.0% | eval_goal_crm_seed44.json (May 25 20:16)\neval-crm-goal-s43-d149:               COMPLETED | SR=82.0% | eval_goal_crm_seed43.json (May 25 20:20)\neval-supp-spatial-k2mean-s46:         COMPLETED | SR=80.0% | PID 188432 已死，eval_spatial_k2mean_seed46.json (May 24 09:22)\neval-supp-reconvla-obj-s45:           COMPLETED | SR=78.0% | eval_object_reconvla_seed45.json (May 24 08:59)\neval-smolvla-lerobot-goal-seed43-v3:  CRASHED   | SR=N/A   | RuntimeError: state_dict size mismatch (input shape [990] vs [1030])\neval-smolvla-lerobot-spatial-seed43-v3:NO_TRACE  | SR=N/A   | 服务器上无任何日志或结果文件\n```\n\n### bjb2-28827（5 个，4 完成 / 1 无痕迹）\n\n```\neval-supp-obj-reconvla-s47:           COMPLETED | SR=76.5% | eval_object_reconvla_seed47.json (May 24 20:26)\neval-supp-goal-reconvla-s47:          COMPLETED | SR=83.5% | eval_goal_reconvla_seed47.json (May 24 19:56)\neval-supp-goal-k2mean-s47:            NO_TRACE  | SR=N/A   | 无结果文件、无日志，可能从未启动\neval-supp-goal-crm-norm005-s47:       COMPLETED | SR=82.0% | eval_goal_crm_obs_only_norm0.05_seed47.json (May 24 19:58)\neval-supp-goal-adapt-tau025-s47:      COMPLETED | SR=82.0% | eval_goal_adaptive_conformal_crm_tau0.25_seed47.json (May 24 20:03)\n```\n\n### bjb1-18228（2 个，全部完成）\n\n```\nprecompute-pi05-long-2048-r2:         COMPLETED | cache=2.5G | n=136,090 samples, manifest created May 26\nprecompute-pi05-object-2048-r2:       COMPLETED | cache=1.3G | n=72,507 samples, manifest created May 24\n```\n\n---\n\n### 统计\n\n| 状态 | 数量 |\n|------|------|\n| COMPLETED（有结果） | 19 |\n| CRASHED | 1（smolvla-goal: state_dict mismatch） |\n| NO_TRACE | 2（smolvla-spatial、goal-k2mean-s47） |\n\n### ⚠️ C002 警告\n\n- **pi05-adaptive-long-s43/s44**: SR=0.0%，200/200 rollouts 全部失败。long-horizon + pi05 adaptive 组合完全不工作。\n- **smolvla 系列**: CRM checkpoint 与 SmolVLA obs_dim 不兼容（990 vs 1030），需要重新训练 CRM 或修改维度映射。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-stale-running-harvest.md"
+}

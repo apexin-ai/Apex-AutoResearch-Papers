@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49388fd5980bd1418fdc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops investigate norm01 seed46 gone",
+  "task_key": "worker_ops_investigate-norm01-seed46-gone_20260518T000653",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_investigate-norm01-seed46-gone_20260518T000653_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "34182b807ec249b5f871933a94193b1fb9814908f2c3deba5c95ba50385fccea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry already has `conclusion: \"killed\"` which is correct.\n\n**Summary:**\n\n| Field | Value |\n|-------|-------|\n| Server | bjb1-18228 (cuda:3) |\n| Status | Process killed mid-run (task 5/10, ~May 17 20:53) |\n| Cause | Unknown — no OOM, no kernel kill. Likely external termination or server restart |\n| Output JSON | Does not exist |\n| Registry | Set back to QUEUED for retry |\n\n**Partial results before death** (not authoritative — incomplete):\n- alphabet_soup: 0%, cream_cheese: 10%, salad_dressing: 30%, bbq_sauce: 20%\n\n**Action needed:** Retry this experiment on next available GPU slot on bjb1-18228 (or elsewhere). Same command:\n```\npython evaluate.py --benchmark object --mode crm_obs_only \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt \\\n  --max_correction_norm 0.1 --seed 46 \\\n  --output_file logs/eval_object_obs_only_norm01_seed46.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-norm01-seed46-gone.md"
+}

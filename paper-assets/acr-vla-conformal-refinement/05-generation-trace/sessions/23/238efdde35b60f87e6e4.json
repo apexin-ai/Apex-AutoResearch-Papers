@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "238efdde35b60f87e6e4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "sync pi05 crm ckpt via relay",
+  "task_key": "worker_sync_pi05-crm-ckpt-via-relay_20260525T075402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_sync_pi05-crm-ckpt-via-relay_20260525T075402.jsonl",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "e057d390ec872c61b8068d23e6dfe9988040011e9ceef95c714e0277611c991c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T07:54:09.668037+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_sync_pi05-crm-ckpt-via-relay_20260525T075402"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/sync-pi05-crm-ckpt-via-relay.md"
+}

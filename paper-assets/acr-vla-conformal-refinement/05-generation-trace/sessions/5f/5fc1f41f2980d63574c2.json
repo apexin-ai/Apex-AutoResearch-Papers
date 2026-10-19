@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc1f41f2980d63574c2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research paper research",
+  "task_key": "worker_research_paper-research_20260514T031618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_paper-research_20260514T031618_result.json",
+    "occurrence": 1,
+    "bytes": 2129,
+    "sha256": "e0e5470681719e098c89e2a18bbd7da8ef044c93b1ca101438f9a9b095e07e06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已更新。总结如下：\n\n## 扫描结果\n\n**新增 15 篇论文**（31 → 46 篇），覆盖 4 个搜索方向：\n\n### 竞争者（2 篇，需重点关注）\n- **SC-VLA** (2602.21633) — 在线 action refinement via sparse world imagination + residual RL，9% 成功率提升。与 ACR-VLA 同属 inference-time correction，但用 RL 而非统计方法\n- **VLA-Pilot** (2511.14178) — Plug-and-play inference-time policy steering，用 MLLM 做 verifier + evolutionary diffusion 做 action optimizer。同属 zero-shot inference-time 方法，但无统计保证\n\n### CP + 机器人 / 多维 CP（6 篇）\n- **Fan & Sesia 2025** — 坐标级标准化做多维 CP，与我们的 per-DOF 方法论直接相关\n- **OTCP** (Klein et al.) — 最优传输做多维 CP scoring\n- **LCP** (2509.21955) — 可学习 nonconformity function 用于机器人规划\n- **CLAPS** (2512.10294) — Lie 群上的 conformalized action prediction sets\n- **LUCCa** (2409.08249) — 状态-动作空间的局部 conformal 校准\n- **CRC-CBF** (2603.10392) — Conformal risk control + CBF 用于 HRI 安全\n\n### VLA 不确定性量化（3 篇）\n- **Zollo & Zemel 2025** — 首个 VLA 置信度校准研究（prompt ensembles + Platt scaling）\n- **Tang et al. 2026** — \"Averaging Trap\" 问题，max-pooling 捕捉关键时刻不确定性\n- **Valle et al. 2025** — 8 个不确定性指标 + 5 个质量指标的 VLA 评估框架\n\n### VLA 架构 / 训练（4 篇）\n- **ACoT-VLA** (CVPR 2026) — Action chain-of-thought，LIBERO-Plus 84.1%\n- **AFIL** (2605.08434) — 失败轨迹作为负向引导\n- **SafeDiffCon** (ICML 2025) — CP + 扩散模型安全控制\n- **DiffusionVLA** (ICML 2025) — 自回归推理 + 扩散策略\n\n### 直接竞争者分析\n**未发现做 per-DOF conformal + VLA 的工作。** 最近的是 ReconVLA（已收录），它用 CQR 做 scalar action-level uncertainty，而非我们的 per-DOF 分解。SC-VLA 和 VLA-Pilot 做 inference-time correction 但不用 conformal prediction。**ACR-VLA 的 per-DOF conformal statistics 创新点仍然成立。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-research.md"
+}

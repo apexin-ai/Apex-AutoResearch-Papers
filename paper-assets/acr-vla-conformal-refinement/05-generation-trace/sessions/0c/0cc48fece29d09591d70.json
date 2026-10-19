@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc48fece29d09591d70",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb1 18228 redeploy and fill",
+  "task_key": "worker_ops_bjb1-18228-redeploy-and-fill_20260519T055205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb1-18228-redeploy-and-fill_20260519T055205_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "55fc11aa9bb277365b2df3925ccf0d1a5a270aab7c67b483f612ec62d2bdf271"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个新任务全部正常加载模型，无报错。\n\n## 产出\n\n### Task A: VLA-only baseline r3\n- **已启动** `eval-lto-splitA-vla-only-r3` on GPU 1 (与 heldout-r2 共享)\n- `--task_names` 功能正常（代码中无 `.replace(\"_\", \" \")`，直接按逗号拆分 + substring 匹配）\n\n### Task B: 加跑实验（去重后替代方案）\n\n原建议 4 个实验全部已 DONE 或 RUNNING，替换为：\n\n| GPU | 原有实验 | 新增实验 | 补充目标 |\n|-----|---------|---------|---------|\n| 0 | k5-seed47 (4.2GB) | **obs_only ε=0.05 seed48** | obs_only ε=0.05 → n=5 |\n| 1 | heldout-r2 (2.9GB) | **VLA-only r3** (Task A) | LTO baseline |\n| 2 | argmin-k5-seed43 (4.7GB) | **perdof ε=0.05 seed47** | perdof ε=0.05 → n=5 |\n| 3 | k5-seed46 (4.2GB) | **perdof ε=0.03 seed47** | perdof ε=0.03 → n=6 |\n\n每张卡现在跑 2 个实验，总 VRAM ~8-10GB/24GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-18228-redeploy-and-fill.md"
+}

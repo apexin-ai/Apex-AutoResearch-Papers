@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52a5b072b3303866a81e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb2 28827 verify and rootcause",
+  "task_key": "worker_ops_bjb2-28827-verify-and-rootcause_20260515T191948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb2-28827-verify-and-rootcause_20260515T191948_result.json",
+    "occurrence": 1,
+    "bytes": 3275,
+    "sha256": "cb24c580a85250cfe9f7ace3158f0812e27b40b6941bef99285af2d29117b902"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收集到足够信息了。汇报如下：\n\n---\n\n## 1. GPU 当前状态（6 块 GPU）\n\n| GPU | PID | 显存占用 | GPU利用率 | 任务 | 启动时间 | 状态 |\n|-----|-----|---------|----------|------|---------|------|\n| 0 | 105947 | 5182/24564 MiB | 19% | perdof object norm=0.03 | 00:47 | ✅ 正常 |\n| 1 | 109655 | 5182/24564 MiB | 18% | perdof object norm=0.05 | 00:58 | ✅ 正常 |\n| 2 | 127581 | 5645 MiB | 97% | perdof object norm=0.3 r2 | 02:58 | ✅ 保留的 |\n| 2 | 138867 | 5645 MiB | (共享) | perdof object norm=0.2 seed43 | 03:19 | ✅ 重新提交的 |\n| 3 | 130113 | 6221/24564 MiB | 19% | obs_only spatial norm=0.3 (b2) | 03:11 | ✅ 保留的 |\n| 4 | 101616 | 5182/24564 MiB | 18% | obs_only object norm=0.05 | 00:29 | ✅ 正常 |\n| 5 | 103034 | 5182/24564 MiB | 18% | obs_only object norm=0.3 | 00:30 | ✅ 正常 |\n\n**GPU 2** 共 2 个进程占用 11324/24564 MiB (46%)，利用率 97%，两个任务共存正常。其余 GPU 均单进程运行。\n\n---\n\n## 2. 根因分析\n\n### 证据\n\n`~/runs/acr-vla-conformal-refinement/` 目录下找到 3 个 obsonly-norm03 日志：\n\n| 文件 | 创建时间 | 退出码 | 退出时间 (UTC) | 说明 |\n|------|---------|--------|---------------|------|\n| `eval-mag-obsonly-norm03-b2.log` | 03:11:50 | 143 (stale) | 19:23:34Z | PID 130113，当前仍在 cuda:3 运行 |\n| `eval-mag-obsonly-norm03-b3.log` | 03:19 | 143+129 | 19:19:13Z | 已被 kill，输出文件错误地写为 `eval_spatial_obs_only_norm03_b2.json`（与 b2 不同命名但都指向 spatial norm=0.3 任务） |\n| `eval-mag-obsonly-norm03-b4.log` | 03:19 | 143 | 19:19:14Z | 已被 kill |\n\n关键发现：\n- **b3 和 b4 在同一分钟内（03:19）创建**，间隔极短，随即被 kill\n- b3 的 output_file 参数是 `eval_spatial_obs_only_norm03_b2.json`——session 名叫 b3 但输出路径写的是 b2，说明是**复制粘贴 b2 的提交命令时没改文件名**\n- 所有三个 b2/b3/b4 都是通过 **agent-ml tmux framework** 提交的（带 `~/runs/` 日志 + `/tmp/agent-ml-exit/` 退出跟踪）\n- b2 还有一个 stale exit file（19:23:34Z），说明 b2 session 也被重建过\n\n### 两种提交模式共存\n\n服务器上同时存在两种提交方式：\n1. **nohup 直接提交**（PID 101616, 103034）：通过 `ssh_execute` 的 `nohup ... &` 模式，无 tmux session\n2. **agent-ml tmux 框架**（其余所有）：通过 `tmux new-session -d -s NAME` 提交\n\n### 根因推断\n\n**obs_only spatial norm=0.3 的 4 份副本（b2 + 3 个重复）最可能原因：多个 agent 会话/worker 并发提交了相同任务。**\n\n证据链：\n1. b2 在 03:11:50 创建，分配到 cuda:3\n2. b3、b4 在 03:19 密集创建（同一分钟内），且 b3 的 output_file 参数错误复制了 b2 的文件名——这是自动化脚本在生成命令时的 copy-paste bug\n3. b2 的 stale exit file 表明 b2 session 本身也经历了一次 kill-recreate 循环\n4. 三个重复副本都被分配到了 cuda:2（与已在运行的 perdof norm=0.3 r2 冲突），没有做 GPU 占用检查\n\n**建议**：agent-ml 框架的 job 提交需要加 **GPU 占用检查**（提交前查 nvidia-smi）和 **session 去重**（同名任务不允许重复提交）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb2-28827-verify-and-rootcause.md"
+}

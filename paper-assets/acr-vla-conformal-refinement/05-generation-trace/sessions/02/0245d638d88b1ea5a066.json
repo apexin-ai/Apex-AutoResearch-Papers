@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0245d638d88b1ea5a066",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diagnose spatial obs only seed45",
+  "task_key": "worker_diagnose_spatial-obs-only-seed45_20260521T114948",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diagnose_spatial-obs-only-seed45_20260521T114948.jsonl",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "55298e5e4ac80380480d0d7df5270171d61d347487dcafb9fa96ccf575869bb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T11:49:58.225650+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_spatial-obs-only-seed45_20260521T114948"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-spatial-obs-only-seed45.md"
+}

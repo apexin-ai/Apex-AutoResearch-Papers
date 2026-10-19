@@ -1,0 +1,3178 @@
+# prep fix plan code sketch
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 68
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/workers/worker_prep_fix-plan-code-sketch_20260514T073852.log`
+- **Structured JSON:** [`15b5d9cb19270ef8d1d5.json`](../../sessions/15/15b5d9cb19270ef8d1d5.json)
+
+## Before a recorded user message
+
+68 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0de63b8d-84d4-42e5-ad90-d35c8700b039",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778760600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e1e805e2-9fca-43ed-8bc4-df761d89f2dc",
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH into a server, review code read-only, and produce a diff plan document for 4 fixes. Let me start by reading the relevant source files on the remote server.
+
+Let me fetch the necessary tool schemas first, then SSH to read the code files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "191885bc-da85-4955-bff9-d6239523beeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XbwcbnbdH7HVfvgXxVCeUZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11565,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11565
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NVHEjkrvyH2KyuNAYzT1RR`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "4e390c6d-844e-496c-8e06-242a62a94f15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XbwcbnbdH7HVfvgXxVCeUZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11565,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11565
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T07:39:02.986Z_
+
+<details><summary>↩ Tool result · `toolu_01NVHEjkrvyH2KyuNAYzT1RR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "84e6fea4-75bc-4d81-9199-adc6563167c0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+SSH 读取 4 个目标文件的代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "e122d23e-2c1e-4009-acf7-a08ff10ba3f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwgcCA8SGGc1tsuf3znyUe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QYQrCgT7pH15AxgUkcQAww`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "c1512615-da1c-4cf5-9093-6f5abc1119bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwgcCA8SGGc1tsuf3znyUe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017EHKF6Vi5HLrbn6eXtzHVY`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "bee7e59c-47b2-414b-9788-3653f78b1023",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwgcCA8SGGc1tsuf3znyUe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T07:39:07.742Z_
+
+<details><summary>↩ Tool result · `toolu_01QYQrCgT7pH15AxgUkcQAww`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nACR-VLA utility functions.\\n\\n- LIBERO dataset loading\\n- Synthetic augmentation (known noise injection for OOD simulation)\\n- Evaluation metrics\\n- Checkpoint management\\n\\\"\\\"\\\"\\nimport torch\\nimport numpy as np\\nfrom pathlib import Path\\nimport h5py\\nimport glob\\n\\n\\nCORRECTION_DIM = 6   # 6D pose — CRM corrects only pose, not gripper\\nFULL_ACTION_DIM = 7  # 6D pose + 1D gripper (LIBERO env action space)\\nH_EFF = 5            # effective horizon (truncated from chunk_size=50)\\nCHUNK_SIZE = 50      # SmolVLA native chunk_size\\nOBS_DIM = 960        # VLM hidden_size\\nMAX_STATE_DIM = 32\\nMAX_ACTION_DIM = 32\\n\\nBENCHMARK_MAP = {\\n    \\\"spatial\\\": \\\"libero_spatial\\\",\\n    \\\"object\\\": \\\"libero_object\\\",\\n    \\\"goal\\\": \\\"libero_goal\\\",\\n    \\\"long\\\": \\\"libero_10\\\",\\n    \\\"90\\\": \\\"libero_90\\\",\\n}\\n\\n\\ndef set_seed(seed: int):\\n    torch.manual_seed(seed)\\n    np.random.seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n        torch.backends.cudnn.deterministic = True\\n        torch.backends.cudnn.benchmark = False\\n\\n\\ndef load_libero_demos(benchmark_name: str,\\n                      data_dir: str = \\\"/root/autodl-tmp/libero_data/\\\",\\n                      max_demos_per_task: int = 50):\\n    \\\"\\\"\\\"\\n    Load LIBERO demo trajectories from HDF5 files.\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"joint_states\\\": (T, 7) float\\n            - \\\"ee_states\\\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\\n            - \\\"actions\\\": (T, 7) float (6D pose + 1D gripper)\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    folder = BENCHMARK_MAP.get(benchmark_name, benchmark_name)\\n    data_path = Path(data_dir) / folder\\n    if not data_path.exists():\\n        raise FileNotFoundError(f\\\"LIBERO data not found at {data_path}\\\")\\n\\n    hdf5_files = sorted(data_path.glob(\\\"*.hdf5\\\"))\\n    if not hdf5_files:\\n        raise FileNotFoundError(f\\\"No HDF5 files in {data_path}\\\")\\n\\n    trajectories = []\\n    for hdf5_file in hdf5_files:\\n        task_name = hdf5_file.stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n        with h5py.File(hdf5_file, \\\"r\\\") as f:\\n            demo_keys = sorted(\\n                [k for k in f[\\\"data\\\"].keys() if k.startswith(\\\"demo\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[1])\\n            )\\n            for dk in demo_keys[:max_demos_per_task]:\\n                demo = f[f\\\"data/{dk}\\\"]\\n                traj = {\\n                    \\\"agentview_rgb\\\": np.array(demo[\\\"obs/agentview_rgb\\\"]),\\n                    \\\"eye_in_hand_rgb\\\": np.array(demo[\\\"obs/eye_in_hand_rgb\\\"]),\\n                    \\\"joint_states\\\": np.array(demo[\\\"obs/joint_states\\\"]),\\n                    \\\"ee_states\\\": np.array(demo[\\\"obs/ee_states\\\"]),\\n                    \\\"actions\\\": np.array(demo[\\\"actions\\\"]),\\n                    \\\"task_name\\\": task_name,\\n                }\\n                trajectories.append(traj)\\n\\n    return trajectories\\n\\n\\ndef build_training_samples(trajectories: list, h_eff: int = H_EFF,\\n                           action_dim: int = CORRECTION_DIM):\\n    \\\"\\\"\\\"\\n    Convert trajectories into (timestep, image, state, expert_action_chunk) tuples.\\n\\n    expert_action is sliced to action_dim (default CORRECTION_DIM=6, pose only).\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (128, 128, 3) uint8\\n            - \\\"ee_states\\\": (6,) float — eef_pos(3) + eef_axisangle(3)\\n            - \\\"expert_action\\\": (h_eff, action_dim) float\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    samples = []\\n    for traj in trajectories:\\n        T = traj[\\\"actions\\\"].shape[0]\\n        for t in range(T - h_eff + 1):\\n            samples.append({\\n                \\\"agentview_rgb\\\": traj[\\\"agentview_rgb\\\"][t],\\n                \\\"eye_in_hand_rgb\\\": traj[\\\"eye_in_hand_rgb\\\"][t],\\n                \\\"ee_states\\\": traj[\\\"ee_states\\\"][t],\\n                \\\"expert_action\\\": traj[\\\"actions\\\"][t:t + h_eff, :action_dim].astype(np.float32),\\n                \\\"task_name\\\": traj[\\\"task_name\\\"],\\n            })\\n    return samples\\n\\n\\ndef synthetic_augmentation(expert_action: torch.Tensor,\\n                           noise_scale: torch.Tensor,\\n                           perturbation: torch.Tensor | None = None) -> torch.Tensor:\\n    \\\"\\\"\\\"Add known noise to expert actions to simulate OOD conditions.\\\"\\\"\\\"\\n    if expert_action.dim() == 2:\\n        noise = torch.randn_like(expert_action) * noise_scale.repeat(H_EFF).unsqueeze(0)\\n    else:\\n        noise = torch.randn_like(expert_action) * noise_scale.unsqueeze(0).unsqueeze(0)\\n    noisy = expert_action + noise\\n    if perturbation is not None:\\n        noisy = noisy + perturbation\\n    return noisy\\n\\n\\nclass CheckpointManager:\\n    def __init__(self, output_dir: str, max_keep: int = 5):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.max_keep = max_keep\\n\\n    def save(self, model: torch.nn.Module, optimizer: torch.optim.Optimizer,\\n             epoch: int, metrics: dict):\\n        path = self.output_dir / f\\\"checkpoint_epoch{epoch:04d}.pt\\\"\\n        torch.save({\\n            \\\"epoch\\\": epoch,\\n            \\\"model_state_dict\\\": model.state_dict(),\\n            \\\"optimizer_state_dict\\\": optimizer.state_dict(),\\n            \\\"metrics\\\": metrics,\\n        }, path)\\n        self._cleanup()\\n        return path\\n\\n    def load_best(self, model: torch.nn.Module, metric_key: str = \\\"val_loss\\\",\\n                  lower_is_better: bool = True):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        if not checkpoints:\\n            raise FileNotFoundError(f\\\"No checkpoints in {self.output_dir}\\\")\\n\\n        best_path = None\\n        best_metric = float(\\\"inf\\\") if lower_is_better else float(\\\"-inf\\\")\\n        for cp_path in checkpoints:\\n            cp = torch.load(cp_path, map_location=\\\"cpu\\\", weights_only=False)\\n            metric = cp[\\\"metrics\\\"].get(metric_key, float(\\\"inf\\\"))\\n            if (lower_is_better and metric < best_metric) or \\\\\\n               (not lower_is_better and metric > best_metric):\\n                best_metric = metric\\n                best_path = cp_path\\n\\n        cp = torch.load(best_path, map_location=\\\"cpu\\\", weights_only=False)\\n        model.load_state_dict(cp[\\\"model_state_dict\\\"])\\n        return cp\\n\\n    def _cleanup(self):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        while len(checkpoints) > self.max_keep:\\n            checkpoints[0].unlink()\\n            checkpoints.pop(0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "1aa441e5-1898-412f-8352-4989f8daa9e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nACR-VLA utility functions.\\\\n\\\\n- LIBERO dataset loading\\\\n- Synthetic augmentation (known noise injection for OOD simulation)\\\\n- Evaluation metrics\\\\n- Checkpoint management\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\nimport h5py\\\\nimport glob\\\\n\\\\n\\\\nCORRECTION_DIM = 6   # 6D pose — CRM corrects only pose, not gripper\\\\nFULL_ACTION_DIM = 7  # 6D pose + 1D gripper (LIBERO env action space)\\\\nH_EFF = 5            # effective horizon (truncated from chunk_size=50)\\\\nCHUNK_SIZE = 50      # SmolVLA native chunk_size\\\\nOBS_DIM = 960        # VLM hidden_size\\\\nMAX_STATE_DIM = 32\\\\nMAX_ACTION_DIM = 32\\\\n\\\\nBENCHMARK_MAP = {\\\\n    \\\\\\\"spatial\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n    \\\\\\\"object\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n    \\\\\\\"goal\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n    \\\\\\\"long\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"90\\\\\\\": \\\\\\\"libero_90\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    torch.manual_seed(seed)\\\\n    np.random.seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n        torch.backends.cudnn.deterministic = True\\\\n        torch.backends.cudnn.benchmark = False\\\\n\\\\n\\\\ndef load_libero_demos(benchmark_name: str,\\\\n                      data_dir: str = \\\\\\\"/root/autodl-tmp/libero_data/\\\\\\\",\\\\n                      max_demos_per_task: int = 50):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load LIBERO demo trajectories from HDF5 files.\\\\n\\\\n    Returns:\\\\n        list of dicts with keys:\\\\n            - \\\\\\\"agentview_rgb\\\\\\\": (T, 128, 128, 3) uint8\\\\n            - \\\\\\\"eye_in_hand_rgb\\\\\\\": (T, 128, 128, 3) uint8\\\\n            - \\\\\\\"joint_states\\\\\\\": (T, 7) float\\\\n            - \\\\\\\"ee_states\\\\\\\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\\\\n            - \\\\\\\"actions\\\\\\\": (T, 7) float (6D pose + 1D gripper)\\\\n            - \\\\\\\"task_name\\\\\\\": str\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    folder = BENCHMARK_MAP.get(benchmark_name, benchmark_name)\\\\n    data_path = Path(data_dir) / folder\\\\n    if not data_path.exists():\\\\n        raise FileNotFoundError(f\\\\\\\"LIBERO data not found at {data_path}\\\\\\\")\\\\n\\\\n    hdf5_files = sorted(data_path.glob(\\\\\\\"*.hdf5\\\\\\\"))\\\\n    if not hdf5_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No HDF5 files in {data_path}\\\\\\\")\\\\n\\\\n    trajectories = []\\\\n    for hdf5_file in hdf5_files:\\\\n        task_name = hdf5_file.stem.replace(\\\\\\\"_demo\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n        with h5py.File(hdf5_file, \\\\\\\"r\\\\\\\") as f:\\\\n            demo_keys = sorted(\\\\n                [k for k in f[\\\\\\\"data\\\\\\\"].keys() if k.startswith(\\\\\\\"demo\\\\\\\")],\\\\n                key=lambda x: int(x.split(\\\\\\\"_\\\\\\\")[1])\\\\n            )\\\\n            for dk in demo_keys[:max_demos_per_task]:\\\\n                demo = f[f\\\\\\\"data/{dk}\\\\\\\"]\\\\n                traj = {\\\\n                    \\\\\\\"agentview_rgb\\\\\\\": np.array(demo[\\\\\\\"obs/agentview_rgb\\\\\\\"]),\\\\n                    \\\\\\\"eye_in_hand_rgb\\\\\\\": np.array(demo[\\\\\\\"obs/eye_in_hand_rgb\\\\\\\"]),\\\\n                    \\\\\\\"joint_states\\\\\\\": np.array(demo[\\\\\\\"obs/joint_states\\\\\\\"]),\\\\n                    \\\\\\\"ee_states\\\\\\\": np.array(demo[\\\\\\\"obs/ee_states\\\\\\\"]),\\\\n                    \\\\\\\"actions\\\\\\\": np.array(demo[\\\\\\\"actions\\\\\\\"]),\\\\n                    \\\\\\\"task_name\\\\\\\": task_name,\\\\n                }\\\\n                trajectories.append(traj)\\\\n\\\\n    return trajectories\\\\n\\\\n\\\\ndef build_training_samples(trajectories: list, h_eff: int = H_EFF,\\\\n                           action_dim: int = CORRECTION_DIM):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Convert trajectories into (timestep, image, state, expert_action_chunk) tuples.\\\\n\\\\n    expert_action is sliced to action_dim (default CORRECTION_DIM=6, pose only).\\\\n\\\\n    Returns:\\\\n        list of dicts with keys:\\\\n            - \\\\\\\"agentview_rgb\\\\\\\": (128, 128, 3) uint8\\\\n            - \\\\\\\"eye_in_hand_rgb\\\\\\\": (128, 128, 3) uint8\\\\n            - \\\\\\\"ee_states\\\\\\\": (6,) float — eef_pos(3) + eef_axisangle(3)\\\\n            - \\\\\\\"expert_action\\\\\\\": (h_eff, action_dim) float\\\\n            - \\\\\\\"task_name\\\\\\\": str\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    samples = []\\\\n    for traj in trajectories:\\\\n        T = traj[\\\\\\\"actions\\\\\\\"].shape[0]\\\\n        for t in range(T - h_eff + 1):\\\\n            samples.append({\\\\n                \\\\\\\"agentview_rgb\\\\\\\": traj[\\\\\\\"agentview_rgb\\\\\\\"][t],\\\\n                \\\\\\\"eye_in_hand_rgb\\\\\\\": traj[\\\\\\\"eye_in_hand_rgb\\\\\\\"][t],\\\\n                \\\\\\\"ee_states\\\\\\\": traj[\\\\\\\"ee_states\\\\\\\"][t],\\\\n                \\\\\\\"expert_action\\\\\\\": traj[\\\\\\\"actions\\\\\\\"][t:t + h_eff, :action_dim].astype(np.float32),\\\\n                \\\\\\\"task_name\\\\\\\": traj[\\\\\\\"task_name\\\\\\\"],\\\\n            })\\\\n    return samples\\\\n\\\\n\\\\ndef synthetic_augmentation(expert_action: torch.Tensor,\\\\n                           noise_scale: torch.Tensor,\\\\n                           perturbation: torch.Tensor | None = None) -> torch.Tensor:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Add known noise to expert actions to simulate OOD conditions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if expert_action.dim() == 2:\\\\n        noise = torch.randn_like(expert_action) * noise_scale.repeat(H_EFF).unsqueeze(0)\\\\n    else:\\\\n        noise = torch.randn_like(expert_action) * noise_scale.unsqueeze(0).unsqueeze(0)\\\\n    noisy = expert_action + noise\\\\n    if perturbation is not None:\\\\n        noisy = noisy + perturbation\\\\n    return noisy\\\\n\\\\n\\\\nclass CheckpointManager:\\\\n    def __init__(self, output_dir: str, max_keep: int = 5):\\\\n        self.output_dir = Path(output_dir)\\\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\\\n        self.max_keep = max_keep\\\\n\\\\n    def save(self, model: torch.nn.Module, optimizer: torch.optim.Optimizer,\\\\n             epoch: int, metrics: dict):\\\\n        path = self.output_dir / f\\\\\\\"checkpoint_epoch{epoch:04d}.pt\\\\\\\"\\\\n        torch.save({\\\\n            \\\\\\\"epoch\\\\\\\": epoch,\\\\n            \\\\\\\"model_state_dict\\\\\\\": model.state_dict(),\\\\n            \\\\\\\"optimizer_state_dict\\\\\\\": optimizer.state_dict(),\\\\n            \\\\\\\"metrics\\\\\\\": metrics,\\\\n        }, path)\\\\n        self._cleanup()\\\\n        return path\\\\n\\\\n    def load_best(self, model: torch.nn.Module, metric_key: str = \\\\\\\"val_loss\\\\\\\",\\\\n                  lower_is_better: bool = True):\\\\n        checkpoints = sorted(self.output_dir.glob(\\\\\\\"checkpoint_*.pt\\\\\\\"))\\\\n        if not checkpoints:\\\\n            raise FileNotFoundError(f\\\\\\\"No checkpoints in {self.output_dir}\\\\\\\")\\\\n\\\\n        best_path = None\\\\n        best_metric = float(\\\\\\\"inf\\\\\\\") if lower_is_better else float(\\\\\\\"-inf\\\\\\\")\\\\n        for cp_path in checkpoints:\\\\n            cp = torch.load(cp_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n            metric = cp[\\\\\\\"metrics\\\\\\\"].get(metric_key, float(\\\\\\\"inf\\\\\\\"))\\\\n            if (lower_is_better and metric < best_metric) or \\\\\\\\\\\\n               (not lower_is_better and metric > best_metric):\\\\n                best_metric = metric\\\\n                best_path = cp_path\\\\n\\\\n        cp = torch.load(best_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        model.load_state_dict(cp[\\\\\\\"model_state_dict\\\\\\\"])\\\\n        return cp\\\\n\\\\n    def _cleanup(self):\\\\n        checkpoints = sorted(self.output_dir.glob(\\\\\\\"checkpoint_*.pt\\\\\\\"))\\\\n        while len(checkpoints) > self.max_keep:\\\\n            checkpoints[0].unlink()\\\\n            checkpoints.pop(0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nACR-VLA utility functions.\\n\\n- LIBERO dataset loading\\n- Synthetic augmentation (known noise injection for OOD simulation)\\n- Evaluation metrics\\n- Checkpoint management\\n\\\"\\\"\\\"\\nimport torch\\nimport numpy as np\\nfrom pathlib import Path\\nimport h5py\\nimport glob\\n\\n\\nCORRECTION_DIM = 6   # 6D pose — CRM corrects only pose, not gripper\\nFULL_ACTION_DIM = 7  # 6D pose + 1D gripper (LIBERO env action space)\\nH_EFF = 5            # effective horizon (truncated from chunk_size=50)\\nCHUNK_SIZE = 50      # SmolVLA native chunk_size\\nOBS_DIM = 960        # VLM hidden_size\\nMAX_STATE_DIM = 32\\nMAX_ACTION_DIM = 32\\n\\nBENCHMARK_MAP = {\\n    \\\"spatial\\\": \\\"libero_spatial\\\",\\n    \\\"object\\\": \\\"libero_object\\\",\\n    \\\"goal\\\": \\\"libero_goal\\\",\\n    \\\"long\\\": \\\"libero_10\\\",\\n    \\\"90\\\": \\\"libero_90\\\",\\n}\\n\\n\\ndef set_seed(seed: int):\\n    torch.manual_seed(seed)\\n    np.random.seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n        torch.backends.cudnn.deterministic = True\\n        torch.backends.cudnn.benchmark = False\\n\\n\\ndef load_libero_demos(benchmark_name: str,\\n                      data_dir: str = \\\"/root/autodl-tmp/libero_data/\\\",\\n                      max_demos_per_task: int = 50):\\n    \\\"\\\"\\\"\\n    Load LIBERO demo trajectories from HDF5 files.\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (T, 128, 128, 3) uint8\\n            - \\\"joint_states\\\": (T, 7) float\\n            - \\\"ee_states\\\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\\n            - \\\"actions\\\": (T, 7) float (6D pose + 1D gripper)\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    folder = BENCHMARK_MAP.get(benchmark_name, benchmark_name)\\n    data_path = Path(data_dir) / folder\\n    if not data_path.exists():\\n        raise FileNotFoundError(f\\\"LIBERO data not found at {data_path}\\\")\\n\\n    hdf5_files = sorted(data_path.glob(\\\"*.hdf5\\\"))\\n    if not hdf5_files:\\n        raise FileNotFoundError(f\\\"No HDF5 files in {data_path}\\\")\\n\\n    trajectories = []\\n    for hdf5_file in hdf5_files:\\n        task_name = hdf5_file.stem.replace(\\\"_demo\\\", \\\"\\\").replace(\\\"_\\\", \\\" \\\")\\n        with h5py.File(hdf5_file, \\\"r\\\") as f:\\n            demo_keys = sorted(\\n                [k for k in f[\\\"data\\\"].keys() if k.startswith(\\\"demo\\\")],\\n                key=lambda x: int(x.split(\\\"_\\\")[1])\\n            )\\n            for dk in demo_keys[:max_demos_per_task]:\\n                demo = f[f\\\"data/{dk}\\\"]\\n                traj = {\\n                    \\\"agentview_rgb\\\": np.array(demo[\\\"obs/agentview_rgb\\\"]),\\n                    \\\"eye_in_hand_rgb\\\": np.array(demo[\\\"obs/eye_in_hand_rgb\\\"]),\\n                    \\\"joint_states\\\": np.array(demo[\\\"obs/joint_states\\\"]),\\n                    \\\"ee_states\\\": np.array(demo[\\\"obs/ee_states\\\"]),\\n                    \\\"actions\\\": np.array(demo[\\\"actions\\\"]),\\n                    \\\"task_name\\\": task_name,\\n                }\\n                trajectories.append(traj)\\n\\n    return trajectories\\n\\n\\ndef build_training_samples(trajectories: list, h_eff: int = H_EFF,\\n                           action_dim: int = CORRECTION_DIM):\\n    \\\"\\\"\\\"\\n    Convert trajectories into (timestep, image, state, expert_action_chunk) tuples.\\n\\n    expert_action is sliced to action_dim (default CORRECTION_DIM=6, pose only).\\n\\n    Returns:\\n        list of dicts with keys:\\n            - \\\"agentview_rgb\\\": (128, 128, 3) uint8\\n            - \\\"eye_in_hand_rgb\\\": (128, 128, 3) uint8\\n            - \\\"ee_states\\\": (6,) float — eef_pos(3) + eef_axisangle(3)\\n            - \\\"expert_action\\\": (h_eff, action_dim) float\\n            - \\\"task_name\\\": str\\n    \\\"\\\"\\\"\\n    samples = []\\n    for traj in trajectories:\\n        T = traj[\\\"actions\\\"].shape[0]\\n        for t in range(T - h_eff + 1):\\n            samples.append({\\n                \\\"agentview_rgb\\\": traj[\\\"agentview_rgb\\\"][t],\\n                \\\"eye_in_hand_rgb\\\": traj[\\\"eye_in_hand_rgb\\\"][t],\\n                \\\"ee_states\\\": traj[\\\"ee_states\\\"][t],\\n                \\\"expert_action\\\": traj[\\\"actions\\\"][t:t + h_eff, :action_dim].astype(np.float32),\\n                \\\"task_name\\\": traj[\\\"task_name\\\"],\\n            })\\n    return samples\\n\\n\\ndef synthetic_augmentation(expert_action: torch.Tensor,\\n                           noise_scale: torch.Tensor,\\n                           perturbation: torch.Tensor | None = None) -> torch.Tensor:\\n    \\\"\\\"\\\"Add known noise to expert actions to simulate OOD conditions.\\\"\\\"\\\"\\n    if expert_action.dim() == 2:\\n        noise = torch.randn_like(expert_action) * noise_scale.repeat(H_EFF).unsqueeze(0)\\n    else:\\n        noise = torch.randn_like(expert_action) * noise_scale.unsqueeze(0).unsqueeze(0)\\n    noisy = expert_action + noise\\n    if perturbation is not None:\\n        noisy = noisy + perturbation\\n    return noisy\\n\\n\\nclass CheckpointManager:\\n    def __init__(self, output_dir: str, max_keep: int = 5):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.max_keep = max_keep\\n\\n    def save(self, model: torch.nn.Module, optimizer: torch.optim.Optimizer,\\n             epoch: int, metrics: dict):\\n        path = self.output_dir / f\\\"checkpoint_epoch{epoch:04d}.pt\\\"\\n        torch.save({\\n            \\\"epoch\\\": epoch,\\n            \\\"model_state_dict\\\": model.state_dict(),\\n            \\\"optimizer_state_dict\\\": optimizer.state_dict(),\\n            \\\"metrics\\\": metrics,\\n        }, path)\\n        self._cleanup()\\n        return path\\n\\n    def load_best(self, model: torch.nn.Module, metric_key: str = \\\"val_loss\\\",\\n                  lower_is_better: bool = True):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        if not checkpoints:\\n            raise FileNotFoundError(f\\\"No checkpoints in {self.output_dir}\\\")\\n\\n        best_path = None\\n        best_metric = float(\\\"inf\\\") if lower_is_better else float(\\\"-inf\\\")\\n        for cp_path in checkpoints:\\n            cp = torch.load(cp_path, map_location=\\\"cpu\\\", weights_only=False)\\n            metric = cp[\\\"metrics\\\"].get(metric_key, float(\\\"inf\\\"))\\n            if (lower_is_better and metric < best_metric) or \\\\\\n               (not lower_is_better and metric > best_metric):\\n                best_metric = metric\\n                best_path = cp_path\\n\\n        cp = torch.load(best_path, map_location=\\\"cpu\\\", weights_only=False)\\n        model.load_state_dict(cp[\\\"model_state_dict\\\"])\\n        return cp\\n\\n    def _cleanup(self):\\n        checkpoints = sorted(self.output_dir.glob(\\\"checkpoint_*.pt\\\"))\\n        while len(checkpoints) > self.max_keep:\\n            checkpoints[0].unlink()\\n            checkpoints.pop(0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T07:39:08.129Z_
+
+<details><summary>↩ Tool result · `toolu_017EHKF6Vi5HLrbn6eXtzHVY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    benchmark_dict = {\\n        \\\"spatial\\\": \\\"libero_spatial\\\",\\n        \\\"object\\\": \\\"libero_object\\\",\\n        \\\"goal\\\": \\\"libero_goal\\\",\\n        \\\"long\\\": \\\"libe\\n\\n... [截断: 输出过长，省略 5502 字符] ...\\n\\nor CRM modes\\\")\\n\\n        if args.mode == \\\"crm_scalar\\\":\\n            unc_dim = 3\\n        else:  # crm_perdof or acr_vla\\n            unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\\n\\n        crm = ConformalRefinementModule(\\n            action_dim=H_EFF * CORRECTION_DIM,\\n            uncertainty_dim=unc_dim,\\n            obs_dim=args.obs_dim,\\n            hidden_dim=args.hidden_dim,\\n        ).to(device)\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n                                        weights_only=True))\\n        crm.eval()\\n        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n              f\\\"({crm.count_parameters():,} params)\\\")\\n\\n    # ACI for online alpha tracking\\n    aci = AdaptiveConformalInference()\\n\\n    # Load LIBERO envs\\n    print(f\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\")\\n    task_envs = load_libero_env(args.benchmark)\\n    print(f\\\"[eval] {len(task_envs)} tasks loaded.\\\")\\n\\n    # Rollout\\n    results = {}\\n    overall_successes = 0\\n    overall_total = 0\\n\\n    for task_info in task_envs:\\n        task_name = task_info[\\\"task_name\\\"]\\n        task_desc = task_info[\\\"task_description\\\"]\\n        env = task_info[\\\"env\\\"]\\n        init_states = task_info[\\\"init_states\\\"]\\n\\n        aci.reset()\\n        task_successes = 0\\n\\n        for r in range(args.n_rollouts):\\n            init_state = init_states[r % len(init_states)]\\n\\n            if args.mode == \\\"vla_only\\\":\\n                action_fn = lambda obs: select_action_vla_only(\\n                    wrapper, obs, task_desc, args.K, cgs\\n                )\\n            elif args.mode == \\\"reconvla\\\":\\n                action_fn = lambda obs: select_action_reconvla(\\n                    wrapper, obs, task_desc, args.K\\n                )\\n            else:\\n                action_fn = lambda obs: select_action_crm(\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\n                )\\n\\n            success, steps = rollout_single(env, init_state, action_fn,\\n                                            max_steps=args.max_steps)\\n            task_successes += int(success)\\n            overall_successes += int(success)\\n            overall_total += 1\\n\\n            if (r + 1) % 5 == 0:\\n                print(f\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\"\\n                      f\\\"success so far: {task_successes}/{r+1}\\\")\\n\\n        task_rate = task_successes / args.n_rollouts\\n        results[task_name] = {\\n            \\\"success_rate\\\": task_rate,\\n            \\\"successes\\\": task_successes,\\n            \\\"total\\\": args.n_rollouts,\\n        }\\n        print(f\\\"[{task_name}] success rate: {task_rate:.1%} \\\"\\n              f\\\"({task_successes}/{args.n_rollouts})\\\")\\n\\n        env.close()\\n\\n    overall_rate = overall_successes / max(overall_total, 1)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\"\\n          f\\\"({overall_successes}/{overall_total})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Save results\\n    summary = {\\n        \\\"mode\\\": args.mode,\\n        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n        \\\"benchmark\\\": args.benchmark,\\n        \\\"n_rollouts\\\": args.n_rollouts,\\n        \\\"overall_success_rate\\\": overall_rate,\\n        \\\"per_task\\\": results,\\n    }\\n\\n    if args.output_file:\\n        out_path = Path(args.output_file)\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\n        out_path.write_text(json.dumps(summary, indent=2))\\n        print(f\\\"[eval] Results saved to {args.output_file}\\\")\\n\\n    return summary\\n\\n\\ndef main():\\n    def _segfault_handler(signum, frame):\\n        print(f\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\", flush=True)\\n        sys.exit(139)\\n\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\n\\n    args = parse_args()\\n    if args.mode == \\\"vla_only\\\":\\n        if args.baseline_mode == \\\"single\\\":\\n            args.K = 1\\n        elif args.baseline_mode == \\\"mean\\\":\\n            args.K = 10\\n    print(f\\\"[evaluate] args: {vars(args)}\\\", flush=True)\\n    evaluate(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "00bb367a-cd3c-4970-9545-aa7aa5e469aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom aci import AdaptiveConformalInference\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom reconvla_baseline import reconvla_select\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Evaluate ACR-VLA on LIBERO\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_rollouts\\\\\\\", type=int, default=20)\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300,\\\\n                   help=\\\\\\\"Max steps per rollout\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"crm_perdof\\\\\\\",\\\\n                   choices=[\\\\\\\"vla_only\\\\\\\", \\\\\\\"crm_scalar\\\\\\\", \\\\\\\"crm_perdof\\\\\\\", \\\\\\\"acr_vla\\\\\\\", \\\\\\\"reconvla\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n                   choices=[\\\\\\\"single\\\\\\\", \\\\\\\"mean\\\\\\\"],\\\\n                   help=\\\\\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--render\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_file\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Save results JSON to this path\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef get_robot_state(obs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n    eef_axisangle = quat2axisangle(obs[\\\\\\\"robot0_eef_quat\\\\\\\"])\\\\n    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n\\\\n\\\\ndef load_libero_env(benchmark_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load LIBERO benchmark tasks and create environments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from libero.libero import benchmark as bm\\\\n    from libero.libero.envs import OffScreenRenderEnv\\\\n\\\\n    benchmark_dict = {\\\\n        \\\\\\\"spatial\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n        \\\\\\\"object\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n        \\\\\\\"goal\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n        \\\\\\\"long\\\\\\\": \\\\\\\"libe\\\\n\\\\n... [截断: 输出过长，省略 5502 字符] ...\\\\n\\\\nor CRM modes\\\\\\\")\\\\n\\\\n        if args.mode == \\\\\\\"crm_scalar\\\\\\\":\\\\n            unc_dim = 3\\\\n        else:  # crm_perdof or acr_vla\\\\n            unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\\\\n\\\\n        crm = ConformalRefinementModule(\\\\n            action_dim=H_EFF * CORRECTION_DIM,\\\\n            uncertainty_dim=unc_dim,\\\\n            obs_dim=args.obs_dim,\\\\n            hidden_dim=args.hidden_dim,\\\\n        ).to(device)\\\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n                                        weights_only=True))\\\\n        crm.eval()\\\\n        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n              f\\\\\\\"({crm.count_parameters():,} params)\\\\\\\")\\\\n\\\\n    # ACI for online alpha tracking\\\\n    aci = AdaptiveConformalInference()\\\\n\\\\n    # Load LIBERO envs\\\\n    print(f\\\\\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\\\\\")\\\\n    task_envs = load_libero_env(args.benchmark)\\\\n    print(f\\\\\\\"[eval] {len(task_envs)} tasks loaded.\\\\\\\")\\\\n\\\\n    # Rollout\\\\n    results = {}\\\\n    overall_successes = 0\\\\n    overall_total = 0\\\\n\\\\n    for task_info in task_envs:\\\\n        task_name = task_info[\\\\\\\"task_name\\\\\\\"]\\\\n        task_desc = task_info[\\\\\\\"task_description\\\\\\\"]\\\\n        env = task_info[\\\\\\\"env\\\\\\\"]\\\\n        init_states = task_info[\\\\\\\"init_states\\\\\\\"]\\\\n\\\\n        aci.reset()\\\\n        task_successes = 0\\\\n\\\\n        for r in range(args.n_rollouts):\\\\n            init_state = init_states[r % len(init_states)]\\\\n\\\\n            if args.mode == \\\\\\\"vla_only\\\\\\\":\\\\n                action_fn = lambda obs: select_action_vla_only(\\\\n                    wrapper, obs, task_desc, args.K, cgs\\\\n                )\\\\n            elif args.mode == \\\\\\\"reconvla\\\\\\\":\\\\n                action_fn = lambda obs: select_action_reconvla(\\\\n                    wrapper, obs, task_desc, args.K\\\\n                )\\\\n            else:\\\\n                action_fn = lambda obs: select_action_crm(\\\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\\\n                )\\\\n\\\\n            success, steps = rollout_single(env, init_state, action_fn,\\\\n                                            max_steps=args.max_steps)\\\\n            task_successes += int(success)\\\\n            overall_successes += int(success)\\\\n            overall_total += 1\\\\n\\\\n            if (r + 1) % 5 == 0:\\\\n                print(f\\\\\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\\\\\"\\\\n                      f\\\\\\\"success so far: {task_successes}/{r+1}\\\\\\\")\\\\n\\\\n        task_rate = task_successes / args.n_rollouts\\\\n        results[task_name] = {\\\\n            \\\\\\\"success_rate\\\\\\\": task_rate,\\\\n            \\\\\\\"successes\\\\\\\": task_successes,\\\\n            \\\\\\\"total\\\\\\\": args.n_rollouts,\\\\n        }\\\\n        print(f\\\\\\\"[{task_name}] success rate: {task_rate:.1%} \\\\\\\"\\\\n              f\\\\\\\"({task_successes}/{args.n_rollouts})\\\\\\\")\\\\n\\\\n        env.close()\\\\n\\\\n    overall_rate = overall_successes / max(overall_total, 1)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\\\\\"\\\\n          f\\\\\\\"({overall_successes}/{overall_total})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    # Save results\\\\n    summary = {\\\\n        \\\\\\\"mode\\\\\\\": args.mode,\\\\n        \\\\\\\"baseline_mode\\\\\\\": getattr(args, \\\\\\\"baseline_mode\\\\\\\", \\\\\\\"single\\\\\\\"),\\\\n        \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n        \\\\\\\"n_rollouts\\\\\\\": args.n_rollouts,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": overall_rate,\\\\n        \\\\\\\"per_task\\\\\\\": results,\\\\n    }\\\\n\\\\n    if args.output_file:\\\\n        out_path = Path(args.output_file)\\\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n        out_path.write_text(json.dumps(summary, indent=2))\\\\n        print(f\\\\\\\"[eval] Results saved to {args.output_file}\\\\\\\")\\\\n\\\\n    return summary\\\\n\\\\n\\\\ndef main():\\\\n    def _segfault_handler(signum, frame):\\\\n        print(f\\\\\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\\\\\", flush=True)\\\\n        sys.exit(139)\\\\n\\\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\\\n\\\\n    args = parse_args()\\\\n    if args.mode == \\\\\\\"vla_only\\\\\\\":\\\\n        if args.baseline_mode == \\\\\\\"single\\\\\\\":\\\\n            args.K = 1\\\\n        elif args.baseline_mode == \\\\\\\"mean\\\\\\\":\\\\n            args.K = 10\\\\n    print(f\\\\\\\"[evaluate] args: {vars(args)}\\\\\\\", flush=True)\\\\n    evaluate(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    benchmark_dict = {\\n        \\\"spatial\\\": \\\"libero_spatial\\\",\\n        \\\"object\\\": \\\"libero_object\\\",\\n        \\\"goal\\\": \\\"libero_goal\\\",\\n        \\\"long\\\": \\\"libe\\n\\n... [截断: 输出过长，省略 5502 字符] ...\\n\\nor CRM modes\\\")\\n\\n        if args.mode == \\\"crm_scalar\\\":\\n            unc_dim = 3\\n        else:  # crm_perdof or acr_vla\\n            unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\\n\\n        crm = ConformalRefinementModule(\\n            action_dim=H_EFF * CORRECTION_DIM,\\n            uncertainty_dim=unc_dim,\\n            obs_dim=args.obs_dim,\\n            hidden_dim=args.hidden_dim,\\n        ).to(device)\\n        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n                                        weights_only=True))\\n        crm.eval()\\n        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n              f\\\"({crm.count_parameters():,} params)\\\")\\n\\n    # ACI for online alpha tracking\\n    aci = AdaptiveConformalInference()\\n\\n    # Load LIBERO envs\\n    print(f\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\")\\n    task_envs = load_libero_env(args.benchmark)\\n    print(f\\\"[eval] {len(task_envs)} tasks loaded.\\\")\\n\\n    # Rollout\\n    results = {}\\n    overall_successes = 0\\n    overall_total = 0\\n\\n    for task_info in task_envs:\\n        task_name = task_info[\\\"task_name\\\"]\\n        task_desc = task_info[\\\"task_description\\\"]\\n        env = task_info[\\\"env\\\"]\\n        init_states = task_info[\\\"init_states\\\"]\\n\\n        aci.reset()\\n        task_successes = 0\\n\\n        for r in range(args.n_rollouts):\\n            init_state = init_states[r % len(init_states)]\\n\\n            if args.mode == \\\"vla_only\\\":\\n                action_fn = lambda obs: select_action_vla_only(\\n                    wrapper, obs, task_desc, args.K, cgs\\n                )\\n            elif args.mode == \\\"reconvla\\\":\\n                action_fn = lambda obs: select_action_reconvla(\\n                    wrapper, obs, task_desc, args.K\\n                )\\n            else:\\n                action_fn = lambda obs: select_action_crm(\\n                    wrapper, obs, task_desc, args.K, cgs, crm, device, args.mode\\n                )\\n\\n            success, steps = rollout_single(env, init_state, action_fn,\\n                                            max_steps=args.max_steps)\\n            task_successes += int(success)\\n            overall_successes += int(success)\\n            overall_total += 1\\n\\n            if (r + 1) % 5 == 0:\\n                print(f\\\"  {task_name}: rollout {r+1}/{args.n_rollouts}, \\\"\\n                      f\\\"success so far: {task_successes}/{r+1}\\\")\\n\\n        task_rate = task_successes / args.n_rollouts\\n        results[task_name] = {\\n            \\\"success_rate\\\": task_rate,\\n            \\\"successes\\\": task_successes,\\n            \\\"total\\\": args.n_rollouts,\\n        }\\n        print(f\\\"[{task_name}] success rate: {task_rate:.1%} \\\"\\n              f\\\"({task_successes}/{args.n_rollouts})\\\")\\n\\n        env.close()\\n\\n    overall_rate = overall_successes / max(overall_total, 1)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Overall success rate ({args.mode}): {overall_rate:.1%} \\\"\\n          f\\\"({overall_successes}/{overall_total})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Save results\\n    summary = {\\n        \\\"mode\\\": args.mode,\\n        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n        \\\"benchmark\\\": args.benchmark,\\n        \\\"n_rollouts\\\": args.n_rollouts,\\n        \\\"overall_success_rate\\\": overall_rate,\\n        \\\"per_task\\\": results,\\n    }\\n\\n    if args.output_file:\\n        out_path = Path(args.output_file)\\n        out_path.parent.mkdir(parents=True, exist_ok=True)\\n        out_path.write_text(json.dumps(summary, indent=2))\\n        print(f\\\"[eval] Results saved to {args.output_file}\\\")\\n\\n    return summary\\n\\n\\ndef main():\\n    def _segfault_handler(signum, frame):\\n        print(f\\\"[evaluate] FATAL: caught signal {signum} (segfault)\\\", flush=True)\\n        sys.exit(139)\\n\\n    signal.signal(signal.SIGSEGV, _segfault_handler)\\n\\n    args = parse_args()\\n    if args.mode == \\\"vla_only\\\":\\n        if args.baseline_mode == \\\"single\\\":\\n            args.K = 1\\n        elif args.baseline_mode == \\\"mean\\\":\\n            args.K = 10\\n    print(f\\\"[evaluate] args: {vars(args)}\\\", flush=True)\\n    evaluate(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UkKLMeT7KjyvPdSM2LBiLv`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/cgs.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "f5db3188-ab5c-4438-b316-6b93e2e1eebd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwgcCA8SGGc1tsuf3znyUe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T07:39:08.515Z_
+
+<details><summary>↩ Tool result · `toolu_01UkKLMeT7KjyvPdSM2LBiLv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nConformalized Gaussian Scoring (CGS) module.\\n\\nInput: K flow-matching samples, shape (K, H_eff, D) where D=CORRECTION_DIM=6, H_eff=5.\\n       Accepts (K, chunk_size, D') and auto-truncates to (K, H_eff, action_dim).\\n\\nOutput:\\n  - uncertainty_features: (action_dim*H_eff + H_eff + H_eff) tensor\\n    [per_dof_std(30), conformal_radius(5), log_volume(5)]\\n  - mean_action: (H_eff*action_dim) tensor (K samples mean, flattened)\\n\\\"\\\"\\\"\\nimport torch\\nimport numpy as np\\nfrom sklearn.covariance import LedoitWolf\\n\\ntry:\\n    from utils import CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import CORRECTION_DIM\\n\\n\\nclass ConformilizedGaussianScoring:\\n    \\\"\\\"\\\"Compute structured uncertainty features from K flow-matching samples (pose only).\\\"\\\"\\\"\\n\\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\\n                 alpha: float = 0.1, chunk_size: int = 50):\\n        self.K = K\\n        self.horizon = horizon       # H_eff = 5\\n        self.action_dim = action_dim  # 6D pose (no gripper)\\n        self.alpha = alpha\\n        self.chunk_size = chunk_size\\n\\n    def compute_features(self, samples: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:\\n        \\\"\\\"\\\"\\n        Args:\\n            samples: (K, T, D') where T >= H_eff and D' >= action_dim.\\n                     Auto-truncates to (K, H_eff, action_dim).\\n        Returns:\\n            uncertainty_features: (action_dim*H_eff + H_eff + H_eff,)\\n            mean_action: (H_eff * action_dim,) — flattened mean over K samples\\n        \\\"\\\"\\\"\\n        if samples.shape[1] > self.horizon:\\n            samples = samples[:, :self.horizon, :]\\n        if samples.shape[2] > self.action_dim:\\n            samples = samples[:, :, :self.action_dim]\\n\\n        assert samples.shape == (self.K, self.horizon, self.action_dim), \\\\\\n            f\\\"Expected ({self.K}, {self.horizon}, {self.action_dim}), got {samples.shape}\\\"\\n\\n        mean_action = samples.mean(dim=0)  # (H, D)\\n\\n        per_dof_stds = []\\n        conformal_radii = []\\n        log_volumes = []\\n\\n        for h in range(self.horizon):\\n            step_samples = samples[:, h, :]  # (K, D)\\n            cov_matrix = self._ledoit_wolf_cov(step_samples)  # (D, D)\\n\\n            stds = torch.sqrt(torch.diag(cov_matrix).clamp(min=1e-10))\\n            per_dof_stds.append(stds)\\n\\n            q_h = self._conformal_radius(step_samples, mean_action[h], cov_matrix)\\n            conformal_radii.append(q_h)\\n\\n            sign, logabsdet = torch.linalg.slogdet(cov_matrix)\\n            log_vol = 0.5 * logabsdet\\n            log_volumes.append(log_vol)\\n\\n        # 6*5=30 + 5 + 5 = 40D\\n        uncertainty_features = torch.cat([\\n            torch.cat(per_dof_stds),       # (30,)\\n            torch.stack(conformal_radii),   # (5,)\\n            torch.stack(log_volumes),       # (5,)\\n        ])\\n\\n        return uncertainty_features, mean_action.flatten()\\n\\n    def compute_features_batch(self, samples: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:\\n        \\\"\\\"\\\"Batch version: process B sets of K samples.\\\"\\\"\\\"\\n        B = samples.shape[0]\\n        all_uf = []\\n        all_ma = []\\n        for b in range(B):\\n            uf, ma = self.compute_features(samples[b])\\n            all_uf.append(uf)\\n            all_ma.append(ma)\\n        return torch.stack(all_uf), torch.stack(all_ma)\\n\\n    def _ledoit_wolf_cov(self, samples: torch.Tensor) -> torch.Tensor:\\n        samples_np = samples.detach().cpu().numpy()\\n        lw = LedoitWolf().fit(samples_np)\\n        return torch.tensor(lw.covariance_, dtype=samples.dtype, device=samples.device)\\n\\n    def _conformal_radius(self, samples: torch.Tensor, mean: torch.Tensor,\\n                          cov: torch.Tensor) -> torch.Tensor:\\n        diff = samples - mean.unsqueeze(0)\\n        cov_inv = torch.linalg.inv(cov + 1e-6 * torch.eye(cov.shape[0], device=cov.device))\\n        mahal = torch.sqrt((diff @ cov_inv * diff).sum(dim=1).clamp(min=0))\\n\\n        q_idx = int(np.ceil((1 - self.alpha) * (self.K + 1))) - 1\\n        q_idx = min(q_idx, self.K - 1)\\n        q_h = torch.sort(mahal)[0][q_idx]\\n        return q_h\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "83c42d68-3d20-4603-b50b-73ddfc340d10",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nConformalized Gaussian Scoring (CGS) module.\\\\n\\\\nInput: K flow-matching samples, shape (K, H_eff, D) where D=CORRECTION_DIM=6, H_eff=5.\\\\n       Accepts (K, chunk_size, D') and auto-truncates to (K, H_eff, action_dim).\\\\n\\\\nOutput:\\\\n  - uncertainty_features: (action_dim*H_eff + H_eff + H_eff) tensor\\\\n    [per_dof_std(30), conformal_radius(5), log_volume(5)]\\\\n  - mean_action: (H_eff*action_dim) tensor (K samples mean, flattened)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch\\\\nimport numpy as np\\\\nfrom sklearn.covariance import LedoitWolf\\\\n\\\\ntry:\\\\n    from utils import CORRECTION_DIM\\\\nexcept ImportError:\\\\n    from .utils import CORRECTION_DIM\\\\n\\\\n\\\\nclass ConformilizedGaussianScoring:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute structured uncertainty features from K flow-matching samples (pose only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\\\\n                 alpha: float = 0.1, chunk_size: int = 50):\\\\n        self.K = K\\\\n        self.horizon = horizon       # H_eff = 5\\\\n        self.action_dim = action_dim  # 6D pose (no gripper)\\\\n        self.alpha = alpha\\\\n        self.chunk_size = chunk_size\\\\n\\\\n    def compute_features(self, samples: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            samples: (K, T, D') where T >= H_eff and D' >= action_dim.\\\\n                     Auto-truncates to (K, H_eff, action_dim).\\\\n        Returns:\\\\n            uncertainty_features: (action_dim*H_eff + H_eff + H_eff,)\\\\n            mean_action: (H_eff * action_dim,) — flattened mean over K samples\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if samples.shape[1] > self.horizon:\\\\n            samples = samples[:, :self.horizon, :]\\\\n        if samples.shape[2] > self.action_dim:\\\\n            samples = samples[:, :, :self.action_dim]\\\\n\\\\n        assert samples.shape == (self.K, self.horizon, self.action_dim), \\\\\\\\\\\\n            f\\\\\\\"Expected ({self.K}, {self.horizon}, {self.action_dim}), got {samples.shape}\\\\\\\"\\\\n\\\\n        mean_action = samples.mean(dim=0)  # (H, D)\\\\n\\\\n        per_dof_stds = []\\\\n        conformal_radii = []\\\\n        log_volumes = []\\\\n\\\\n        for h in range(self.horizon):\\\\n            step_samples = samples[:, h, :]  # (K, D)\\\\n            cov_matrix = self._ledoit_wolf_cov(step_samples)  # (D, D)\\\\n\\\\n            stds = torch.sqrt(torch.diag(cov_matrix).clamp(min=1e-10))\\\\n            per_dof_stds.append(stds)\\\\n\\\\n            q_h = self._conformal_radius(step_samples, mean_action[h], cov_matrix)\\\\n            conformal_radii.append(q_h)\\\\n\\\\n            sign, logabsdet = torch.linalg.slogdet(cov_matrix)\\\\n            log_vol = 0.5 * logabsdet\\\\n            log_volumes.append(log_vol)\\\\n\\\\n        # 6*5=30 + 5 + 5 = 40D\\\\n        uncertainty_features = torch.cat([\\\\n            torch.cat(per_dof_stds),       # (30,)\\\\n            torch.stack(conformal_radii),   # (5,)\\\\n            torch.stack(log_volumes),       # (5,)\\\\n        ])\\\\n\\\\n        return uncertainty_features, mean_action.flatten()\\\\n\\\\n    def compute_features_batch(self, samples: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Batch version: process B sets of K samples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        B = samples.shape[0]\\\\n        all_uf = []\\\\n        all_ma = []\\\\n        for b in range(B):\\\\n            uf, ma = self.compute_features(samples[b])\\\\n            all_uf.append(uf)\\\\n            all_ma.append(ma)\\\\n        return torch.stack(all_uf), torch.stack(all_ma)\\\\n\\\\n    def _ledoit_wolf_cov(self, samples: torch.Tensor) -> torch.Tensor:\\\\n        samples_np = samples.detach().cpu().numpy()\\\\n        lw = LedoitWolf().fit(samples_np)\\\\n        return torch.tensor(lw.covariance_, dtype=samples.dtype, device=samples.device)\\\\n\\\\n    def _conformal_radius(self, samples: torch.Tensor, mean: torch.Tensor,\\\\n                          cov: torch.Tensor) -> torch.Tensor:\\\\n        diff = samples - mean.unsqueeze(0)\\\\n        cov_inv = torch.linalg.inv(cov + 1e-6 * torch.eye(cov.shape[0], device=cov.device))\\\\n        mahal = torch.sqrt((diff @ cov_inv * diff).sum(dim=1).clamp(min=0))\\\\n\\\\n        q_idx = int(np.ceil((1 - self.alpha) * (self.K + 1))) - 1\\\\n        q_idx = min(q_idx, self.K - 1)\\\\n        q_h = torch.sort(mahal)[0][q_idx]\\\\n        return q_h\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nConformalized Gaussian Scoring (CGS) module.\\n\\nInput: K flow-matching samples, shape (K, H_eff, D) where D=CORRECTION_DIM=6, H_eff=5.\\n       Accepts (K, chunk_size, D') and auto-truncates to (K, H_eff, action_dim).\\n\\nOutput:\\n  - uncertainty_features: (action_dim*H_eff + H_eff + H_eff) tensor\\n    [per_dof_std(30), conformal_radius(5), log_volume(5)]\\n  - mean_action: (H_eff*action_dim) tensor (K samples mean, flattened)\\n\\\"\\\"\\\"\\nimport torch\\nimport numpy as np\\nfrom sklearn.covariance import LedoitWolf\\n\\ntry:\\n    from utils import CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import CORRECTION_DIM\\n\\n\\nclass ConformilizedGaussianScoring:\\n    \\\"\\\"\\\"Compute structured uncertainty features from K flow-matching samples (pose only).\\\"\\\"\\\"\\n\\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\\n                 alpha: float = 0.1, chunk_size: int = 50):\\n        self.K = K\\n        self.horizon = horizon       # H_eff = 5\\n        self.action_dim = action_dim  # 6D pose (no gripper)\\n        self.alpha = alpha\\n        self.chunk_size = chunk_size\\n\\n    def compute_features(self, samples: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:\\n        \\\"\\\"\\\"\\n        Args:\\n            samples: (K, T, D') where T >= H_eff and D' >= action_dim.\\n                     Auto-truncates to (K, H_eff, action_dim).\\n        Returns:\\n            uncertainty_features: (action_dim*H_eff + H_eff + H_eff,)\\n            mean_action: (H_eff * action_dim,) — flattened mean over K samples\\n        \\\"\\\"\\\"\\n        if samples.shape[1] > self.horizon:\\n            samples = samples[:, :self.horizon, :]\\n        if samples.shape[2] > self.action_dim:\\n            samples = samples[:, :, :self.action_dim]\\n\\n        assert samples.shape == (self.K, self.horizon, self.action_dim), \\\\\\n            f\\\"Expected ({self.K}, {self.horizon}, {self.action_dim}), got {samples.shape}\\\"\\n\\n        mean_action = samples.mean(dim=0)  # (H, D)\\n\\n        per_dof_stds = []\\n        conformal_radii = []\\n        log_volumes = []\\n\\n        for h in range(self.horizon):\\n            step_samples = samples[:, h, :]  # (K, D)\\n            cov_matrix = self._ledoit_wolf_cov(step_samples)  # (D, D)\\n\\n            stds = torch.sqrt(torch.diag(cov_matrix).clamp(min=1e-10))\\n            per_dof_stds.append(stds)\\n\\n            q_h = self._conformal_radius(step_samples, mean_action[h], cov_matrix)\\n            conformal_radii.append(q_h)\\n\\n            sign, logabsdet = torch.linalg.slogdet(cov_matrix)\\n            log_vol = 0.5 * logabsdet\\n            log_volumes.append(log_vol)\\n\\n        # 6*5=30 + 5 + 5 = 40D\\n        uncertainty_features = torch.cat([\\n            torch.cat(per_dof_stds),       # (30,)\\n            torch.stack(conformal_radii),   # (5,)\\n            torch.stack(log_volumes),       # (5,)\\n        ])\\n\\n        return uncertainty_features, mean_action.flatten()\\n\\n    def compute_features_batch(self, samples: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:\\n        \\\"\\\"\\\"Batch version: process B sets of K samples.\\\"\\\"\\\"\\n        B = samples.shape[0]\\n        all_uf = []\\n        all_ma = []\\n        for b in range(B):\\n            uf, ma = self.compute_features(samples[b])\\n            all_uf.append(uf)\\n            all_ma.append(ma)\\n        return torch.stack(all_uf), torch.stack(all_ma)\\n\\n    def _ledoit_wolf_cov(self, samples: torch.Tensor) -> torch.Tensor:\\n        samples_np = samples.detach().cpu().numpy()\\n        lw = LedoitWolf().fit(samples_np)\\n        return torch.tensor(lw.covariance_, dtype=samples.dtype, device=samples.device)\\n\\n    def _conformal_radius(self, samples: torch.Tensor, mean: torch.Tensor,\\n                          cov: torch.Tensor) -> torch.Tensor:\\n        diff = samples - mean.unsqueeze(0)\\n        cov_inv = torch.linalg.inv(cov + 1e-6 * torch.eye(cov.shape[0], device=cov.device))\\n        mahal = torch.sqrt((diff @ cov_inv * diff).sum(dim=1).clamp(min=0))\\n\\n        q_idx = int(np.ceil((1 - self.alpha) * (self.K + 1))) - 1\\n        q_idx = min(q_idx, self.K - 1)\\n        q_h = torch.sort(mahal)[0][q_idx]\\n        return q_h\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WnjBBD74mwXijZJLjYqBDi`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "77a6f31f-fa9b-49be-baf8-e0c50d10c5b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwgcCA8SGGc1tsuf3znyUe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1378
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T07:39:08.901Z_
+
+<details><summary>↩ Tool result · `toolu_01WnjBBD74mwXijZJLjYqBDi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nConformal Refinement Module (CRM).\\n\\nInput: mean_action (30D) + uncertainty_features (40D) + obs_features (960D from VLM)\\nOutput: refined_action (30D)\\n\\nArchitecture: 2 hidden layers, dim 256, ReLU, residual connection.\\n\\\"\\\"\\\"\\nimport torch\\nimport torch.nn as nn\\n\\n\\nclass ConformalRefinementModule(nn.Module):\\n    \\\"\\\"\\\"Learn to refine VLA action predictions using structured uncertainty.\\\"\\\"\\\"\\n\\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\\n                 obs_dim: int = 960, hidden_dim: int = 256):\\n        \\\"\\\"\\\"\\n        Args:\\n            action_dim: flattened action dim (H_eff * D = 5 * 6 = 30)\\n            uncertainty_dim: CGS output dim (30 + 5 + 5 = 40), 0 for obs_only\\n            obs_dim: VLM encoder frozen output dim (960)\\n            hidden_dim: hidden layer dim\\n        \\\"\\\"\\\"\\n        super().__init__()\\n\\n        self.uncertainty_dim = uncertainty_dim\\n        input_dim = action_dim + uncertainty_dim + obs_dim\\n\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, action_dim),\\n        )\\n\\n        # Residual: output = mean_action + delta. Init last layer near zero.\\n        nn.init.zeros_(self.net[-1].weight)\\n        nn.init.zeros_(self.net[-1].bias)\\n\\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\\n                obs_features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            mean_action: (B, 30) mean of K samples, flattened\\n            uncertainty_features: (B, 40) CGS output, or None for obs_only\\n            obs_features: (B, 960) VLM frozen obs features\\n        Returns:\\n            refined_action: (B, 30) corrected action\\n        \\\"\\\"\\\"\\n        if uncertainty_features is not None:\\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\\n        else:\\n            x = torch.cat([mean_action, obs_features], dim=-1)\\n        delta = self.net(x)\\n        return mean_action + delta\\n\\n    def count_parameters(self) -> int:\\n        return sum(p.numel() for p in self.parameters() if p.requires_grad)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "25de5fb7-f982-4f5d-93cf-0bf5897109fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nConformal Refinement Module (CRM).\\\\n\\\\nInput: mean_action (30D) + uncertainty_features (40D) + obs_features (960D from VLM)\\\\nOutput: refined_action (30D)\\\\n\\\\nArchitecture: 2 hidden layers, dim 256, ReLU, residual connection.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch\\\\nimport torch.nn as nn\\\\n\\\\n\\\\nclass ConformalRefinementModule(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Learn to refine VLA action predictions using structured uncertainty.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\\\\n                 obs_dim: int = 960, hidden_dim: int = 256):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            action_dim: flattened action dim (H_eff * D = 5 * 6 = 30)\\\\n            uncertainty_dim: CGS output dim (30 + 5 + 5 = 40), 0 for obs_only\\\\n            obs_dim: VLM encoder frozen output dim (960)\\\\n            hidden_dim: hidden layer dim\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        super().__init__()\\\\n\\\\n        self.uncertainty_dim = uncertainty_dim\\\\n        input_dim = action_dim + uncertainty_dim + obs_dim\\\\n\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(input_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, hidden_dim),\\\\n            nn.ReLU(),\\\\n            nn.Linear(hidden_dim, action_dim),\\\\n        )\\\\n\\\\n        # Residual: output = mean_action + delta. Init last layer near zero.\\\\n        nn.init.zeros_(self.net[-1].weight)\\\\n        nn.init.zeros_(self.net[-1].bias)\\\\n\\\\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\\\\n                obs_features: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            mean_action: (B, 30) mean of K samples, flattened\\\\n            uncertainty_features: (B, 40) CGS output, or None for obs_only\\\\n            obs_features: (B, 960) VLM frozen obs features\\\\n        Returns:\\\\n            refined_action: (B, 30) corrected action\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if uncertainty_features is not None:\\\\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\\\\n        else:\\\\n            x = torch.cat([mean_action, obs_features], dim=-1)\\\\n        delta = self.net(x)\\\\n        return mean_action + delta\\\\n\\\\n    def count_parameters(self) -> int:\\\\n        return sum(p.numel() for p in self.parameters() if p.requires_grad)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nConformal Refinement Module (CRM).\\n\\nInput: mean_action (30D) + uncertainty_features (40D) + obs_features (960D from VLM)\\nOutput: refined_action (30D)\\n\\nArchitecture: 2 hidden layers, dim 256, ReLU, residual connection.\\n\\\"\\\"\\\"\\nimport torch\\nimport torch.nn as nn\\n\\n\\nclass ConformalRefinementModule(nn.Module):\\n    \\\"\\\"\\\"Learn to refine VLA action predictions using structured uncertainty.\\\"\\\"\\\"\\n\\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\\n                 obs_dim: int = 960, hidden_dim: int = 256):\\n        \\\"\\\"\\\"\\n        Args:\\n            action_dim: flattened action dim (H_eff * D = 5 * 6 = 30)\\n            uncertainty_dim: CGS output dim (30 + 5 + 5 = 40), 0 for obs_only\\n            obs_dim: VLM encoder frozen output dim (960)\\n            hidden_dim: hidden layer dim\\n        \\\"\\\"\\\"\\n        super().__init__()\\n\\n        self.uncertainty_dim = uncertainty_dim\\n        input_dim = action_dim + uncertainty_dim + obs_dim\\n\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.ReLU(),\\n            nn.Linear(hidden_dim, action_dim),\\n        )\\n\\n        # Residual: output = mean_action + delta. Init last layer near zero.\\n        nn.init.zeros_(self.net[-1].weight)\\n        nn.init.zeros_(self.net[-1].bias)\\n\\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\\n                obs_features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            mean_action: (B, 30) mean of K samples, flattened\\n            uncertainty_features: (B, 40) CGS output, or None for obs_only\\n            obs_features: (B, 960) VLM frozen obs features\\n        Returns:\\n            refined_action: (B, 30) corrected action\\n        \\\"\\\"\\\"\\n        if uncertainty_features is not None:\\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\\n        else:\\n            x = torch.cat([mean_action, obs_features], dim=-1)\\n        delta = self.net(x)\\n        return mean_action + delta\\n\\n    def count_parameters(self) -> int:\\n        return sum(p.numel() for p in self.parameters() if p.requires_grad)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The evaluate.py output was truncated. I need to see the `select_action_crm` function specifically. Let me also check the HDF5 file structure to understand what fields are available for ee_states (to know if gripper_qpos is available).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "8a41464b-ce02-41b0-8020-460b9fca21ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WWrL11zASbgC1CAaW9yhL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9093,
+      "cache_read_input_tokens": 24784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9093
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+evaluate.py 输出被截断，需要看 `select_action_crm` 函数和其他关键函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "472c2ee1-beb0-4b0e-82a3-236244b1ed25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WWrL11zASbgC1CAaW9yhL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9093,
+      "cache_read_input_tokens": 24784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9093
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GcYKeR95QdUTLk3H2oWdhc`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"def select_action\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "eafa0a63-7f72-4633-b5ed-ca6fedacf405",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WWrL11zASbgC1CAaW9yhL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9093,
+      "cache_read_input_tokens": 24784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9093
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T07:39:15.677Z_
+
+<details><summary>↩ Tool result · `toolu_01GcYKeR95QdUTLk3H2oWdhc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"131:def select_action_vla_only(wrapper, obs, task_name, K, cgs):\\n158:def select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\"crm_perdof\\\"):\\n191:def select_action_reconvla(wrapper, obs, task_name, K):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "76f19ac9-9154-4929-a269-86cd2c359eb6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"131:def select_action_vla_only(wrapper, obs, task_name, K, cgs):\\\\n158:def select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\\\\\"crm_perdof\\\\\\\"):\\\\n191:def select_action_reconvla(wrapper, obs, task_name, K):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"131:def select_action_vla_only(wrapper, obs, task_name, K, cgs):\\n158:def select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\"crm_perdof\\\"):\\n191:def select_action_reconvla(wrapper, obs, task_name, K):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mpt1xCC1gxmStW2r8AzNV7`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "head -250 /root/acr-vla-conformal-refinement/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "68717917-1de9-42fd-8acb-a098bcab1253",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WWrL11zASbgC1CAaW9yhL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9093,
+      "cache_read_input_tokens": 24784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9093
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T07:39:16.176Z_
+
+<details><summary>↩ Tool result · `toolu_01Mpt1xCC1gxmStW2r8AzNV7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    benchmark_dict = {\\n        \\\"spatial\\\": \\\"libero_spatial\\\",\\n        \\\"object\\\": \\\"libero_object\\\",\\n        \\\"goal\\\": \\\"libero_goal\\\",\\n        \\\"long\\\": \\\"libe\\n\\n... [截断: 输出过长，省略 1314 字符] ...\\n\\nsamples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\n    return mean_action[0].cpu().numpy()\\n\\n\\ndef _to_scalar_uf(uf):\\n    return torch.stack([\\n        uf[:, :30].norm(dim=1),\\n        uf[:, 30:35].mean(dim=1),\\n        uf[:, 35:40].mean(dim=1),\\n    ], dim=1)\\n\\n\\ndef select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\"crm_perdof\\\"):\\n    \\\"\\\"\\\"ACR-VLA: CGS on 6D pose → CRM refinement → combine with mean gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n\\n    uf, ma = cgs.compute_features(k_pose)\\n    uf = uf.unsqueeze(0).to(device)\\n    if mode == \\\"crm_scalar\\\":\\n        uf = _to_scalar_uf(uf)\\n    ma = ma.unsqueeze(0).to(device)\\n    obs_feat = obs_feat.to(device)\\n\\n    with torch.no_grad():\\n        refined_pose = crm(ma, uf, obs_feat)  # (1, H_EFF * CORRECTION_DIM)\\n\\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)  # (H_eff, 7)\\n\\n    return refined_full[0].cpu().numpy()\\n\\n\\ndef select_action_reconvla(wrapper, obs, task_name, K):\\n    \\\"\\\"\\\"ReconVLA baseline: scalar Euclidean argmin on 6D pose, pass-through gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n    selected_pose = reconvla_select(k_pose)  # (H_eff, 6)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    selected_full = torch.cat([selected_pose, mean_gripper], dim=-1)\\n    return selected_full[0].cpu().numpy()\\n\\n\\ndef rollout_single(env, init_state, action_fn, max_steps=300):\\n    \\\"\\\"\\\"Run one rollout. action_fn returns 7D action directly.\\\"\\\"\\\"\\n    env.reset()\\n    obs = env.set_init_state(init_state)\\n    for _ in range(5):\\n        obs, _, _, _ = env.step(np.zeros(7))\\n\\n    for step in range(max_steps):\\n        try:\\n            action_7d = action_fn(obs)\\n            obs, reward, done, info = env.step(action_7d)\\n        except Exception as e:\\n            print(f\\\"[rollout] Exception at step {step}: {e}\\\", flush=True)\\n            traceback.print_exc()\\n            return False, step\\n\\n        if done or info.get(\\\"success\\\", False):\\n            return True, step + 1\\n\\n    return False, max_steps\\n\\n\\ndef evaluate(args):\\n    set_seed(args.seed)\\n    device = torch.device(\\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n\\n    # --crm_checkpoint is an alias for --checkpoint\\n    if args.crm_checkpoint and not args.checkpoint:\\n        args.checkpoint = args.crm_checkpoint\\n\\n    print(f\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\")\\n\\n    # Load SmolVLA\\n    from smolvla_wrapper import SmolVLAWrapper\\n    print(f\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\")\\n    wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\n\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "7cea8ee0-a4f3-4b6e-9bd5-636eeac42fc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom aci import AdaptiveConformalInference\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom reconvla_baseline import reconvla_select\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Evaluate ACR-VLA on LIBERO\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_rollouts\\\\\\\", type=int, default=20)\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300,\\\\n                   help=\\\\\\\"Max steps per rollout\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"crm_perdof\\\\\\\",\\\\n                   choices=[\\\\\\\"vla_only\\\\\\\", \\\\\\\"crm_scalar\\\\\\\", \\\\\\\"crm_perdof\\\\\\\", \\\\\\\"acr_vla\\\\\\\", \\\\\\\"reconvla\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n                   choices=[\\\\\\\"single\\\\\\\", \\\\\\\"mean\\\\\\\"],\\\\n                   help=\\\\\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--render\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_file\\\\\\\", type=str, default=None,\\\\n                   help=\\\\\\\"Save results JSON to this path\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef get_robot_state(obs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n    eef_axisangle = quat2axisangle(obs[\\\\\\\"robot0_eef_quat\\\\\\\"])\\\\n    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n\\\\n\\\\ndef load_libero_env(benchmark_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load LIBERO benchmark tasks and create environments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from libero.libero import benchmark as bm\\\\n    from libero.libero.envs import OffScreenRenderEnv\\\\n\\\\n    benchmark_dict = {\\\\n        \\\\\\\"spatial\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",\\\\n        \\\\\\\"object\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n        \\\\\\\"goal\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n        \\\\\\\"long\\\\\\\": \\\\\\\"libe\\\\n\\\\n... [截断: 输出过长，省略 1314 字符] ...\\\\n\\\\nsamples = wrapper.get_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\\\n    return mean_action[0].cpu().numpy()\\\\n\\\\n\\\\ndef _to_scalar_uf(uf):\\\\n    return torch.stack([\\\\n        uf[:, :30].norm(dim=1),\\\\n        uf[:, 30:35].mean(dim=1),\\\\n        uf[:, 35:40].mean(dim=1),\\\\n    ], dim=1)\\\\n\\\\n\\\\ndef select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\\\\\"crm_perdof\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"ACR-VLA: CGS on 6D pose → CRM refinement → combine with mean gripper.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    agentview = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    eye_in_hand = obs.get(\\\\\\\"robot0_eye_in_hand_image\\\\\\\", None)\\\\n    robot_state = get_robot_state(obs)\\\\n\\\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\\\n\\\\n    uf, ma = cgs.compute_features(k_pose)\\\\n    uf = uf.unsqueeze(0).to(device)\\\\n    if mode == \\\\\\\"crm_scalar\\\\\\\":\\\\n        uf = _to_scalar_uf(uf)\\\\n    ma = ma.unsqueeze(0).to(device)\\\\n    obs_feat = obs_feat.to(device)\\\\n\\\\n    with torch.no_grad():\\\\n        refined_pose = crm(ma, uf, obs_feat)  # (1, H_EFF * CORRECTION_DIM)\\\\n\\\\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\\\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\\\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)  # (H_eff, 7)\\\\n\\\\n    return refined_full[0].cpu().numpy()\\\\n\\\\n\\\\ndef select_action_reconvla(wrapper, obs, task_name, K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"ReconVLA baseline: scalar Euclidean argmin on 6D pose, pass-through gripper.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    agentview = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    eye_in_hand = obs.get(\\\\\\\"robot0_eye_in_hand_image\\\\\\\", None)\\\\n    robot_state = get_robot_state(obs)\\\\n\\\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\\\n    selected_pose = reconvla_select(k_pose)  # (H_eff, 6)\\\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\\\n    selected_full = torch.cat([selected_pose, mean_gripper], dim=-1)\\\\n    return selected_full[0].cpu().numpy()\\\\n\\\\n\\\\ndef rollout_single(env, init_state, action_fn, max_steps=300):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run one rollout. action_fn returns 7D action directly.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env.reset()\\\\n    obs = env.set_init_state(init_state)\\\\n    for _ in range(5):\\\\n        obs, _, _, _ = env.step(np.zeros(7))\\\\n\\\\n    for step in range(max_steps):\\\\n        try:\\\\n            action_7d = action_fn(obs)\\\\n            obs, reward, done, info = env.step(action_7d)\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"[rollout] Exception at step {step}: {e}\\\\\\\", flush=True)\\\\n            traceback.print_exc()\\\\n            return False, step\\\\n\\\\n        if done or info.get(\\\\\\\"success\\\\\\\", False):\\\\n            return True, step + 1\\\\n\\\\n    return False, max_steps\\\\n\\\\n\\\\ndef evaluate(args):\\\\n    set_seed(args.seed)\\\\n    device = torch.device(\\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n\\\\n    # --crm_checkpoint is an alias for --checkpoint\\\\n    if args.crm_checkpoint and not args.checkpoint:\\\\n        args.checkpoint = args.crm_checkpoint\\\\n\\\\n    print(f\\\\\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\\\\\")\\\\n\\\\n    # Load SmolVLA\\\\n    from smolvla_wrapper import SmolVLAWrapper\\\\n    print(f\\\\\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\\\\\")\\\\n    wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\\\n\\\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLIBERO evaluation script for ACR-VLA.\\n\\nRollout loop:\\n  1. Load LIBERO env + task suite\\n  2. Load SmolVLA (frozen) + CRM\\n  3. For each task, rollout N times:\\n     a. Reset env\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\n        → combine refined pose with gripper → execute 7D action\\n     c. Record success/failure\\n  4. Report per-task and overall success rate\\n\\nBaselines:\\n  - \\\"vla_only\\\": SmolVLA mean of K=10, no CRM refinement\\n  - \\\"crm_scalar\\\": CRM with scalar uncertainty (single std, not per-DOF)\\n  - \\\"crm_perdof\\\": CRM with full per-DOF uncertainty (ours)\\n  - \\\"acr_vla\\\": alias for crm_perdof — the full ACR-VLA pipeline\\n  - \\\"reconvla\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\n\\nUsage:\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n\\\"\\\"\\\"\\nimport argparse\\nimport functools\\nbuiltins_print = print\\nprint = functools.partial(builtins_print, flush=True)\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport numpy as np\\nfrom robosuite.utils.transform_utils import quat2axisangle\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom aci import AdaptiveConformalInference\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\nfrom reconvla_baseline import reconvla_select\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Evaluate ACR-VLA on LIBERO\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n                   help=\\\"Max steps per rollout\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n                   choices=[\\\"vla_only\\\", \\\"crm_scalar\\\", \\\"crm_perdof\\\", \\\"acr_vla\\\", \\\"reconvla\\\"])\\n    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n                   choices=[\\\"single\\\", \\\"mean\\\"],\\n                   help=\\\"vla_only baseline: single (K=1) or mean (K=10 avg)\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n                   help=\\\"Save results JSON to this path\\\")\\n    return p.parse_args()\\n\\n\\ndef get_robot_state(obs):\\n    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n    eef_axisangle = quat2axisangle(obs[\\\"robot0_eef_quat\\\"])\\n    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\\n\\ndef load_libero_env(benchmark_name):\\n    \\\"\\\"\\\"Load LIBERO benchmark tasks and create environments.\\\"\\\"\\\"\\n    from libero.libero import benchmark as bm\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    benchmark_dict = {\\n        \\\"spatial\\\": \\\"libero_spatial\\\",\\n        \\\"object\\\": \\\"libero_object\\\",\\n        \\\"goal\\\": \\\"libero_goal\\\",\\n        \\\"long\\\": \\\"libe\\n\\n... [截断: 输出过长，省略 1314 字符] ...\\n\\nsamples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\n    return mean_action[0].cpu().numpy()\\n\\n\\ndef _to_scalar_uf(uf):\\n    return torch.stack([\\n        uf[:, :30].norm(dim=1),\\n        uf[:, 30:35].mean(dim=1),\\n        uf[:, 35:40].mean(dim=1),\\n    ], dim=1)\\n\\n\\ndef select_action_crm(wrapper, obs, task_name, K, cgs, crm, device, mode=\\\"crm_perdof\\\"):\\n    \\\"\\\"\\\"ACR-VLA: CGS on 6D pose → CRM refinement → combine with mean gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n\\n    uf, ma = cgs.compute_features(k_pose)\\n    uf = uf.unsqueeze(0).to(device)\\n    if mode == \\\"crm_scalar\\\":\\n        uf = _to_scalar_uf(uf)\\n    ma = ma.unsqueeze(0).to(device)\\n    obs_feat = obs_feat.to(device)\\n\\n    with torch.no_grad():\\n        refined_pose = crm(ma, uf, obs_feat)  # (1, H_EFF * CORRECTION_DIM)\\n\\n    refined_pose = refined_pose[0].reshape(H_EFF, CORRECTION_DIM)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    refined_full = torch.cat([refined_pose, mean_gripper], dim=-1)  # (H_eff, 7)\\n\\n    return refined_full[0].cpu().numpy()\\n\\n\\ndef select_action_reconvla(wrapper, obs, task_name, K):\\n    \\\"\\\"\\\"ReconVLA baseline: scalar Euclidean argmin on 6D pose, pass-through gripper.\\\"\\\"\\\"\\n    agentview = obs[\\\"agentview_image\\\"]\\n    eye_in_hand = obs.get(\\\"robot0_eye_in_hand_image\\\", None)\\n    robot_state = get_robot_state(obs)\\n\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\n        agentview_rgb=agentview,\\n        task_name=task_name,\\n        robot_state=robot_state,\\n        eye_in_hand_rgb=eye_in_hand,\\n        K=K,\\n    )\\n    k_full = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\n    k_pose = k_full[:, :, :CORRECTION_DIM]  # (K, H_eff, 6)\\n    selected_pose = reconvla_select(k_pose)  # (H_eff, 6)\\n    mean_gripper = k_full[:, :, CORRECTION_DIM:].mean(dim=0)  # (H_eff, 1)\\n    selected_full = torch.cat([selected_pose, mean_gripper], dim=-1)\\n    return selected_full[0].cpu().numpy()\\n\\n\\ndef rollout_single(env, init_state, action_fn, max_steps=300):\\n    \\\"\\\"\\\"Run one rollout. action_fn returns 7D action directly.\\\"\\\"\\\"\\n    env.reset()\\n    obs = env.set_init_state(init_state)\\n    for _ in range(5):\\n        obs, _, _, _ = env.step(np.zeros(7))\\n\\n    for step in range(max_steps):\\n        try:\\n            action_7d = action_fn(obs)\\n            obs, reward, done, info = env.step(action_7d)\\n        except Exception as e:\\n            print(f\\\"[rollout] Exception at step {step}: {e}\\\", flush=True)\\n            traceback.print_exc()\\n            return False, step\\n\\n        if done or info.get(\\\"success\\\", False):\\n            return True, step + 1\\n\\n    return False, max_steps\\n\\n\\ndef evaluate(args):\\n    set_seed(args.seed)\\n    device = torch.device(\\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n\\n    # --crm_checkpoint is an alias for --checkpoint\\n    if args.crm_checkpoint and not args.checkpoint:\\n        args.checkpoint = args.crm_checkpoint\\n\\n    print(f\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\")\\n\\n    # Load SmolVLA\\n    from smolvla_wrapper import SmolVLAWrapper\\n    print(f\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\")\\n    wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\n\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the code I need. Let me also check the HDF5 file structure to understand if gripper_qpos is available in the demo data, and check the reconvla_baseline.py for the argmin selection logic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "e590529d-acb0-4a32-b943-6b3c885c58d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmPM3G1Mk8ZWHjEsJJo3Qy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4160,
+      "cache_read_input_tokens": 33877,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+再看 reconvla_baseline.py（argmin 逻辑参考）和 HDF5 数据结构中是否有 gripper_qpos。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "8dd359ce-5082-4fb8-b075-ca67efd12b25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmPM3G1Mk8ZWHjEsJJo3Qy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4160,
+      "cache_read_input_tokens": 33877,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018nTudeEkGaHadh7eqxvgd1`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/reconvla_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "1c66c4e6-f0be-4386-b01f-b45deb52b282",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmPM3G1Mk8ZWHjEsJJo3Qy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4160,
+      "cache_read_input_tokens": 33877,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T07:39:22.625Z_
+
+<details><summary>↩ Tool result · `toolu_018nTudeEkGaHadh7eqxvgd1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nReconVLA baseline (plan_014).\\n\\nScalar Euclidean nonconformity score + argmin selection over K flow-matching samples.\\nNo learned CRM, no per-DOF features — the simplest conformal selection baseline.\\n\\\"\\\"\\\"\\nimport torch\\n\\n\\ndef reconvla_select(k_samples, calibration_mean=None):\\n    \\\"\\\"\\\"\\n    Select the best action from K samples via scalar Euclidean nonconformity.\\n\\n    Args:\\n        k_samples: (K, H_EFF, ACTION_DIM) — K flow-matching action samples\\n        calibration_mean: (H_EFF, ACTION_DIM) — reference mean.\\n            If None, uses mean of k_samples (online estimation, consistent with ReconVLA).\\n\\n    Returns:\\n        selected_action: (H_EFF, ACTION_DIM) — sample with minimum nonconformity score\\n    \\\"\\\"\\\"\\n    K = k_samples.shape[0]\\n    if calibration_mean is None:\\n        calibration_mean = k_samples.mean(dim=0)\\n\\n    flat_samples = k_samples.reshape(K, -1)\\n    flat_mean = calibration_mean.reshape(1, -1)\\n\\n    scores = torch.norm(flat_samples - flat_mean, p=2, dim=1)\\n    best_idx = scores.argmin()\\n    return k_samples[best_idx]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "77a6a1ee-786d-4944-b096-d70a038cb108",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nReconVLA baseline (plan_014).\\\\n\\\\nScalar Euclidean nonconformity score + argmin selection over K flow-matching samples.\\\\nNo learned CRM, no per-DOF features — the simplest conformal selection baseline.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport torch\\\\n\\\\n\\\\ndef reconvla_select(k_samples, calibration_mean=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Select the best action from K samples via scalar Euclidean nonconformity.\\\\n\\\\n    Args:\\\\n        k_samples: (K, H_EFF, ACTION_DIM) — K flow-matching action samples\\\\n        calibration_mean: (H_EFF, ACTION_DIM) — reference mean.\\\\n            If None, uses mean of k_samples (online estimation, consistent with ReconVLA).\\\\n\\\\n    Returns:\\\\n        selected_action: (H_EFF, ACTION_DIM) — sample with minimum nonconformity score\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = k_samples.shape[0]\\\\n    if calibration_mean is None:\\\\n        calibration_mean = k_samples.mean(dim=0)\\\\n\\\\n    flat_samples = k_samples.reshape(K, -1)\\\\n    flat_mean = calibration_mean.reshape(1, -1)\\\\n\\\\n    scores = torch.norm(flat_samples - flat_mean, p=2, dim=1)\\\\n    best_idx = scores.argmin()\\\\n    return k_samples[best_idx]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nReconVLA baseline (plan_014).\\n\\nScalar Euclidean nonconformity score + argmin selection over K flow-matching samples.\\nNo learned CRM, no per-DOF features — the simplest conformal selection baseline.\\n\\\"\\\"\\\"\\nimport torch\\n\\n\\ndef reconvla_select(k_samples, calibration_mean=None):\\n    \\\"\\\"\\\"\\n    Select the best action from K samples via scalar Euclidean nonconformity.\\n\\n    Args:\\n        k_samples: (K, H_EFF, ACTION_DIM) — K flow-matching action samples\\n        calibration_mean: (H_EFF, ACTION_DIM) — reference mean.\\n            If None, uses mean of k_samples (online estimation, consistent with ReconVLA).\\n\\n    Returns:\\n        selected_action: (H_EFF, ACTION_DIM) — sample with minimum nonconformity score\\n    \\\"\\\"\\\"\\n    K = k_samples.shape[0]\\n    if calibration_mean is None:\\n        calibration_mean = k_samples.mean(dim=0)\\n\\n    flat_samples = k_samples.reshape(K, -1)\\n    flat_mean = calibration_mean.reshape(1, -1)\\n\\n    scores = torch.norm(flat_samples - flat_mean, p=2, dim=1)\\n    best_idx = scores.argmin()\\n    return k_samples[best_idx]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012ueMom9GRWtY8X2a3Rd5Ye`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "python3 -c \"import h5py, glob; fs=sorted(glob.glob('/root/autodl-tmp/libero_data/libero_object/*.hdf5')); f=h5py.File(fs[0],'r'); d=f['data/demo_0']; print('obs keys:', list(d['obs'].keys())); print('ee_states shape:', d['obs/ee_states'].shape); print('joint_states shape:', d['obs/joint_states'].shape); print('actions shape:', d['actions'].shape); print('ee_states[0]:', d['obs/ee_states'][0]); print('joint_states[0]:', d['obs/joint_states'][0])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "715628fe-7d4d-4736-be4a-24e90254299b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmPM3G1Mk8ZWHjEsJJo3Qy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4160,
+      "cache_read_input_tokens": 33877,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T07:39:26.394Z_
+
+<details><summary>↩ Tool result · `toolu_012ueMom9GRWtY8X2a3Rd5Ye`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "a309acbd-0d56-45ba-876d-85fa9a55652e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U5WgDpp4PKyZMsSg1dzj83`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "b5bb69b1-2ee9-4d8a-8f3b-0eb2d4aab0f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HmPM3G1Mk8ZWHjEsJJo3Qy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4160,
+      "cache_read_input_tokens": 33877,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T07:39:26.786Z_
+
+<details><summary>↩ Tool result · `toolu_01U5WgDpp4PKyZMsSg1dzj83`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/acr-vla-conformal-refinement/src/train.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "7522768d-e08a-42ab-afff-d06d9181b6af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/acr-vla-conformal-refinement/src/train.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/acr-vla-conformal-refinement/src/train.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to check the HDF5 data structure differently since semicolons are blocked. Let me also find the training script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "5c4f185d-3fde-438c-8b86-1761412c7204",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WtJ1iEYbMAZKvcxkzWGpa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 38037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DU5RHbnKuL7NuEH4j4vQ3M`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "python3 -c \"import h5py; f=h5py.File('/root/autodl-tmp/libero_data/libero_object/LIVING_ROOM_SCENE2_put_the_red_mug_on_the_left_plate_demo.hdf5','r'); print(list(f['data/demo_0/obs'].keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "d66a1497-e79a-47b1-b6de-84aed5d3df78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WtJ1iEYbMAZKvcxkzWGpa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 38037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T07:39:32.174Z_
+
+<details><summary>↩ Tool result · `toolu_01DU5RHbnKuL7NuEH4j4vQ3M`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "b813a502-8e7f-4ede-bc85-de5864f4db3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013sZFzc59G3Abxu412G3K4o`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "find /root/acr-vla-conformal-refinement/src -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "56d4200b-5aaf-431b-ab2c-a1b0680cde18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WtJ1iEYbMAZKvcxkzWGpa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 38037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T07:39:33.410Z_
+
+<details><summary>↩ Tool result · `toolu_013sZFzc59G3Abxu412G3K4o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/__init__.py\\n/root/acr-vla-conformal-refinement/src/cgs.py\\n/root/acr-vla-conformal-refinement/src/aci.py\\n/root/acr-vla-conformal-refinement/src/crm.py\\n/root/acr-vla-conformal-refinement/src/train_crm.py\\n/root/acr-vla-conformal-refinement/src/evaluate.py\\n/root/acr-vla-conformal-refinement/src/utils.py\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\\n/root/acr-vla-conformal-refinement/src/reconvla_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "19b04e4e-235c-4f49-adde-6bc2293507d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/__init__.py\\\\n/root/acr-vla-conformal-refinement/src/cgs.py\\\\n/root/acr-vla-conformal-refinement/src/aci.py\\\\n/root/acr-vla-conformal-refinement/src/crm.py\\\\n/root/acr-vla-conformal-refinement/src/train_crm.py\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py\\\\n/root/acr-vla-conformal-refinement/src/utils.py\\\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\\\\n/root/acr-vla-conformal-refinement/src/reconvla_baseline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/__init__.py\\n/root/acr-vla-conformal-refinement/src/cgs.py\\n/root/acr-vla-conformal-refinement/src/aci.py\\n/root/acr-vla-conformal-refinement/src/crm.py\\n/root/acr-vla-conformal-refinement/src/train_crm.py\\n/root/acr-vla-conformal-refinement/src/evaluate.py\\n/root/acr-vla-conformal-refinement/src/utils.py\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\\n/root/acr-vla-conformal-refinement/src/reconvla_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J8o4Z8cujAC5DAAWdnhMBU`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -rn \"gripper_qpos\" /root/acr-vla-conformal-refinement/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "f33f4324-6f41-4fad-b974-883de3976964",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WtJ1iEYbMAZKvcxkzWGpa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1446,
+      "cache_read_input_tokens": 38037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T07:39:34.112Z_
+
+<details><summary>↩ Tool result · `toolu_01J8o4Z8cujAC5DAAWdnhMBU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/evaluate.py:81:    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n/root/acr-vla-conformal-refinement/src/evaluate.py:84:    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n/root/acr-vla-conformal-refinement/src/evaluate.py:85:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:11:  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:112:            robot_state: (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:74:    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:77:    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:78:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float32)\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:81:    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:84:    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:85:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\", \"stderr\": \"grep: /root/acr-vla-conformal-refinement/src/__pycache__/smolvla_wrapper.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "9f4d07ca-5494-414a-9735-41fc842ddf59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/evaluate.py:81:    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py:84:    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py:85:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:11:  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:112:            robot_state: (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:74:    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:77:    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:78:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float32)\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:81:    \\\\\\\"\\\\\\\"\\\\\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:84:    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:85:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\\\n\\\", \\\"stderr\\\": \\\"grep: /root/acr-vla-conformal-refinement/src/__pycache__/smolvla_wrapper.cpython-312.pyc: binary file matches\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/evaluate.py:81:    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n/root/acr-vla-conformal-refinement/src/evaluate.py:84:    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n/root/acr-vla-conformal-refinement/src/evaluate.py:85:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:11:  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:112:            robot_state: (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:74:    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:77:    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak.20260514071116:78:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float32)\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:81:    \\\"\\\"\\\"Extract 8D robot state: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2).\\\"\\\"\\\"\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:84:    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak:85:    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.float64)\\n\", \"stderr\": \"grep: /root/acr-vla-conformal-refinement/src/__pycache__/smolvla_wrapper.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look at the train_crm.py to understand how training data is constructed, and also check the HDF5 data to see what `ee_states` contains.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "16721ee6-27b9-452a-91ea-366a5f624c3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWtWWRtb1NvqFCCrBm8K5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1732,
+      "cache_read_input_tokens": 39483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1732
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011vwzEBggLYj1tBQKbzXZkx`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "24e908d3-b153-437a-96a4-ebebcd0b31cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWtWWRtb1NvqFCCrBm8K5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1732,
+      "cache_read_input_tokens": 39483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1732
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T07:39:38.303Z_
+
+<details><summary>↩ Tool result · `toolu_011vwzEBggLYj1tBQKbzXZkx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCRM training script.\\n\\nTwo-phase approach:\\n  Phase 1 (--precompute): Run frozen SmolVLA on LIBERO demos, cache\\n      (obs_features, K_samples, expert_action) to disk.\\n  Phase 2 (default): Load cached features, train CRM with MSE loss +\\n      synthetic augmentation.\\n\\nUsage:\\n  # Phase 1: precompute features (slow, GPU-heavy)\\n  python train_crm.py --precompute --benchmark object\\n\\n  # Phase 2: train CRM (fast)\\n  python train_crm.py --benchmark object --epochs 50\\n\\n  # End-to-end (precompute if cache missing, then train)\\n  python train_crm.py --benchmark object --epochs 50 --auto\\n\\\"\\\"\\\"\\nimport argparse\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom utils import (\\n    set_seed, load_libero_demos, build_training_samples,\\n    synthetic_augmentation, CheckpointManager,\\n    CORRECTION_DIM, H_EFF, OBS_DIM, CHUNK_SIZE,\\n)\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train CRM on LIBERO demos\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, nargs='+', default=[\\\"spatial\\\"],\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=32)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/checkpoints/crm/\\\")\\n    p.add_argument(\\\"--cache_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/crm_cache/\\\")\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--aug_noise_min\\\", type=float, default=0.02)\\n    p.add_argument(\\\"--aug_noise_max\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--aug_ratio\\\", type=float, default=0.5,\\n                   help=\\\"fraction of batch to augment\\\")\\n    p.add_argument(\\\"--precompute\\\", action=\\\"store_true\\\",\\n                   help=\\\"only precompute features, don't train\\\")\\n    p.add_argument(\\\"--auto\\\", action=\\\"store_true\\\",\\n                   help=\\\"precompute if cache missing, then train\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--max_demos_per_task\\\", type=int, default=50)\\n    p.add_argument(\\\"--val_split\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--log_every\\\", type=int, default=50)\\n    p.add_argument(\\\"--precompute_batch_size\\\", type=int, default=4,\\n                   help=\\\"batch size for SmolVLA forward during precompute\\\")\\n    p.add_argument(\\\"--save_every\\\", type=int, default=500,\\n                   help=\\\"save partial cache every N samples\\\")\\n    p.add_argument(\\\"--shard_id\\\", type=int, default=0,\\n                   help=\\\"shard ID for parallel precompute (0-based)\\\")\\n    p.add_argument(\\\"--num_shards\\\", type=int, default=1,\\n                   help=\\\"total number of shards for parallel precompute\\\")\\n    p.add_argument(\\\"--input_mode\\\", type=str, default=\\\"full\\\",\\n                   choices=[\\\"full\\\", \\\"obs_only\\\", \\\"scalar_unc\\\"],\\n                   help=\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\")\\n    return p.parse_args()\\n\\n\\n# ── Precomputation ──────────────────────────────────────────────────\\n\\ndef precompute_features(args):\\n    \\\"\\\"\\\"Run frozen SmolVLA on all demo timesteps, save features to disk.\\\"\\\"\\\"\\n    from smolvla_wrapper import SmolVLAWrapper\\n\\n    benchmarks_to_run = []\\n    for bm in args.benchmark:\\n        cache_dir = Path(args.cache_dir) / bm\\n        if (cache_dir / \\\"manifest.json\\\").exists():\\n            print(f\\\"[precompute] \\n\\n... [截断: 输出过长，省略 10783 字符] ...\\n\\n    # ── Train ──\\n        crm.train()\\n        epoch_loss = 0.0\\n        n_batches = 0\\n\\n        for batch_idx, batch in enumerate(train_loader):\\n            obs_feat = batch[\\\"obs_features\\\"].to(device)       # (B, 960)\\n            k_samp = batch[\\\"k_samples\\\"].to(device)             # (B, K, H, D)\\n            expert = batch[\\\"expert_action\\\"].to(device)         # (B, H, D)\\n            expert_flat = expert.reshape(expert.shape[0], -1)  # (B, 30)\\n\\n            # CGS\\n            uf, ma = cgs.compute_features_batch(k_samp)\\n            if scalar_unc:\\n                uf = _to_scalar_uf(uf)\\n            uf = uf.to(device)\\n            ma = ma.to(device)\\n\\n            # CRM forward\\n            refined = crm(ma, None if obs_only else uf, obs_feat)\\n            loss = loss_fn(refined, expert_flat)\\n\\n            # Synthetic augmentation: perturb inputs, keep clean target\\n            n_aug = int(obs_feat.shape[0] * args.aug_ratio)\\n            if n_aug > 0:\\n                ma_noise = noise_scale.repeat(H_EFF)\\n                aug_ma = ma[:n_aug] + torch.randn_like(ma[:n_aug]) * ma_noise\\n                aug_uf = uf[:n_aug] + torch.randn_like(uf[:n_aug]) * noise_scale.mean() * 0.1\\n                aug_refined = crm(aug_ma, None if obs_only else aug_uf, obs_feat[:n_aug])\\n                aug_loss = loss_fn(aug_refined, expert_flat[:n_aug])\\n                loss = loss + 0.5 * aug_loss\\n\\n            optimizer.zero_grad()\\n            loss.backward()\\n            torch.nn.utils.clip_grad_norm_(crm.parameters(), 1.0)\\n            optimizer.step()\\n\\n            epoch_loss += loss.item()\\n            n_batches += 1\\n\\n            if (batch_idx + 1) % args.log_every == 0:\\n                print(f\\\"  epoch {epoch} batch {batch_idx+1}/{len(train_loader)} \\\"\\n                      f\\\"loss={loss.item():.6f}\\\")\\n\\n        scheduler.step()\\n        avg_train_loss = epoch_loss / max(n_batches, 1)\\n\\n        # ── Validate ──\\n        crm.eval()\\n        val_loss = 0.0\\n        n_val_batches = 0\\n        with torch.no_grad():\\n            for batch in val_loader:\\n                obs_feat = batch[\\\"obs_features\\\"].to(device)\\n                k_samp = batch[\\\"k_samples\\\"].to(device)\\n                expert = batch[\\\"expert_action\\\"].to(device)\\n                expert_flat = expert.reshape(expert.shape[0], -1)\\n\\n                uf, ma = cgs.compute_features_batch(k_samp)\\n                if scalar_unc:\\n                    uf = _to_scalar_uf(uf)\\n                uf, ma = uf.to(device), ma.to(device)\\n\\n                refined = crm(ma, None if obs_only else uf, obs_feat)\\n                val_loss += loss_fn(refined, expert_flat).item()\\n                n_val_batches += 1\\n\\n        avg_val_loss = val_loss / max(n_val_batches, 1)\\n\\n        print(f\\\"Epoch {epoch}/{args.epochs}  \\\"\\n              f\\\"train_loss={avg_train_loss:.6f}  \\\"\\n              f\\\"val_loss={avg_val_loss:.6f}  \\\"\\n              f\\\"lr={scheduler.get_last_lr()[0]:.2e}\\\")\\n\\n        metrics = {\\\"train_loss\\\": avg_train_loss, \\\"val_loss\\\": avg_val_loss}\\n        ckpt_mgr.save(crm, optimizer, epoch, metrics)\\n\\n        if avg_val_loss < best_val_loss:\\n            best_val_loss = avg_val_loss\\n            torch.save(crm.state_dict(),\\n                       Path(args.output_dir) / \\\"crm_best.pt\\\")\\n            print(f\\\"  → New best val_loss: {best_val_loss:.6f}\\\")\\n\\n    print(f\\\"\\\\n[train] Done. Best val_loss={best_val_loss:.6f}\\\")\\n    print(f\\\"[train] Checkpoints at {args.output_dir}\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    print(f\\\"[train_crm] args: {vars(args)}\\\")\\n    print(f\\\"[train_crm] device: {'cuda' if torch.cuda.is_available() else 'cpu'}\\\")\\n\\n    if args.precompute:\\n        precompute_features(args)\\n        return\\n\\n    if args.auto:\\n        needs_precompute = any(\\n            not (Path(args.cache_dir) / bm / \\\"manifest.json\\\").exists()\\n            for bm in args.benchmark\\n        )\\n        if needs_precompute:\\n            print(\\\"[auto] Cache not found for some benchmarks, precomputing...\\\")\\n            precompute_features(args)\\n\\n    train(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "b29cd1ab-3d58-45c5-ba86-cc0f14407c21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCRM training script.\\\\n\\\\nTwo-phase approach:\\\\n  Phase 1 (--precompute): Run frozen SmolVLA on LIBERO demos, cache\\\\n      (obs_features, K_samples, expert_action) to disk.\\\\n  Phase 2 (default): Load cached features, train CRM with MSE loss +\\\\n      synthetic augmentation.\\\\n\\\\nUsage:\\\\n  # Phase 1: precompute features (slow, GPU-heavy)\\\\n  python train_crm.py --precompute --benchmark object\\\\n\\\\n  # Phase 2: train CRM (fast)\\\\n  python train_crm.py --benchmark object --epochs 50\\\\n\\\\n  # End-to-end (precompute if cache missing, then train)\\\\n  python train_crm.py --benchmark object --epochs 50 --auto\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom utils import (\\\\n    set_seed, load_libero_demos, build_training_samples,\\\\n    synthetic_augmentation, CheckpointManager,\\\\n    CORRECTION_DIM, H_EFF, OBS_DIM, CHUNK_SIZE,\\\\n)\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train CRM on LIBERO demos\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, nargs='+', default=[\\\\\\\"spatial\\\\\\\"],\\\\n                   choices=[\\\\\\\"object\\\\\\\", \\\\\\\"spatial\\\\\\\", \\\\\\\"goal\\\\\\\", \\\\\\\"long\\\\\\\", \\\\\\\"90\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=32)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/checkpoints/crm/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--cache_dir\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/crm_cache/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--aug_noise_min\\\\\\\", type=float, default=0.02)\\\\n    p.add_argument(\\\\\\\"--aug_noise_max\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--aug_ratio\\\\\\\", type=float, default=0.5,\\\\n                   help=\\\\\\\"fraction of batch to augment\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--precompute\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"only precompute features, don't train\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--auto\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"precompute if cache missing, then train\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_demos_per_task\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--val_split\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--log_every\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--precompute_batch_size\\\\\\\", type=int, default=4,\\\\n                   help=\\\\\\\"batch size for SmolVLA forward during precompute\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--save_every\\\\\\\", type=int, default=500,\\\\n                   help=\\\\\\\"save partial cache every N samples\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--shard_id\\\\\\\", type=int, default=0,\\\\n                   help=\\\\\\\"shard ID for parallel precompute (0-based)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_shards\\\\\\\", type=int, default=1,\\\\n                   help=\\\\\\\"total number of shards for parallel precompute\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--input_mode\\\\\\\", type=str, default=\\\\\\\"full\\\\\\\",\\\\n                   choices=[\\\\\\\"full\\\\\\\", \\\\\\\"obs_only\\\\\\\", \\\\\\\"scalar_unc\\\\\\\"],\\\\n                   help=\\\\\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ── Precomputation ──────────────────────────────────────────────────\\\\n\\\\ndef precompute_features(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run frozen SmolVLA on all demo timesteps, save features to disk.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from smolvla_wrapper import SmolVLAWrapper\\\\n\\\\n    benchmarks_to_run = []\\\\n    for bm in args.benchmark:\\\\n        cache_dir = Path(args.cache_dir) / bm\\\\n        if (cache_dir / \\\\\\\"manifest.json\\\\\\\").exists():\\\\n            print(f\\\\\\\"[precompute] \\\\n\\\\n... [截断: 输出过长，省略 10783 字符] ...\\\\n\\\\n    # ── Train ──\\\\n        crm.train()\\\\n        epoch_loss = 0.0\\\\n        n_batches = 0\\\\n\\\\n        for batch_idx, batch in enumerate(train_loader):\\\\n            obs_feat = batch[\\\\\\\"obs_features\\\\\\\"].to(device)       # (B, 960)\\\\n            k_samp = batch[\\\\\\\"k_samples\\\\\\\"].to(device)             # (B, K, H, D)\\\\n            expert = batch[\\\\\\\"expert_action\\\\\\\"].to(device)         # (B, H, D)\\\\n            expert_flat = expert.reshape(expert.shape[0], -1)  # (B, 30)\\\\n\\\\n            # CGS\\\\n            uf, ma = cgs.compute_features_batch(k_samp)\\\\n            if scalar_unc:\\\\n                uf = _to_scalar_uf(uf)\\\\n            uf = uf.to(device)\\\\n            ma = ma.to(device)\\\\n\\\\n            # CRM forward\\\\n            refined = crm(ma, None if obs_only else uf, obs_feat)\\\\n            loss = loss_fn(refined, expert_flat)\\\\n\\\\n            # Synthetic augmentation: perturb inputs, keep clean target\\\\n            n_aug = int(obs_feat.shape[0] * args.aug_ratio)\\\\n            if n_aug > 0:\\\\n                ma_noise = noise_scale.repeat(H_EFF)\\\\n                aug_ma = ma[:n_aug] + torch.randn_like(ma[:n_aug]) * ma_noise\\\\n                aug_uf = uf[:n_aug] + torch.randn_like(uf[:n_aug]) * noise_scale.mean() * 0.1\\\\n                aug_refined = crm(aug_ma, None if obs_only else aug_uf, obs_feat[:n_aug])\\\\n                aug_loss = loss_fn(aug_refined, expert_flat[:n_aug])\\\\n                loss = loss + 0.5 * aug_loss\\\\n\\\\n            optimizer.zero_grad()\\\\n            loss.backward()\\\\n            torch.nn.utils.clip_grad_norm_(crm.parameters(), 1.0)\\\\n            optimizer.step()\\\\n\\\\n            epoch_loss += loss.item()\\\\n            n_batches += 1\\\\n\\\\n            if (batch_idx + 1) % args.log_every == 0:\\\\n                print(f\\\\\\\"  epoch {epoch} batch {batch_idx+1}/{len(train_loader)} \\\\\\\"\\\\n                      f\\\\\\\"loss={loss.item():.6f}\\\\\\\")\\\\n\\\\n        scheduler.step()\\\\n        avg_train_loss = epoch_loss / max(n_batches, 1)\\\\n\\\\n        # ── Validate ──\\\\n        crm.eval()\\\\n        val_loss = 0.0\\\\n        n_val_batches = 0\\\\n        with torch.no_grad():\\\\n            for batch in val_loader:\\\\n                obs_feat = batch[\\\\\\\"obs_features\\\\\\\"].to(device)\\\\n                k_samp = batch[\\\\\\\"k_samples\\\\\\\"].to(device)\\\\n                expert = batch[\\\\\\\"expert_action\\\\\\\"].to(device)\\\\n                expert_flat = expert.reshape(expert.shape[0], -1)\\\\n\\\\n                uf, ma = cgs.compute_features_batch(k_samp)\\\\n                if scalar_unc:\\\\n                    uf = _to_scalar_uf(uf)\\\\n                uf, ma = uf.to(device), ma.to(device)\\\\n\\\\n                refined = crm(ma, None if obs_only else uf, obs_feat)\\\\n                val_loss += loss_fn(refined, expert_flat).item()\\\\n                n_val_batches += 1\\\\n\\\\n        avg_val_loss = val_loss / max(n_val_batches, 1)\\\\n\\\\n        print(f\\\\\\\"Epoch {epoch}/{args.epochs}  \\\\\\\"\\\\n              f\\\\\\\"train_loss={avg_train_loss:.6f}  \\\\\\\"\\\\n              f\\\\\\\"val_loss={avg_val_loss:.6f}  \\\\\\\"\\\\n              f\\\\\\\"lr={scheduler.get_last_lr()[0]:.2e}\\\\\\\")\\\\n\\\\n        metrics = {\\\\\\\"train_loss\\\\\\\": avg_train_loss, \\\\\\\"val_loss\\\\\\\": avg_val_loss}\\\\n        ckpt_mgr.save(crm, optimizer, epoch, metrics)\\\\n\\\\n        if avg_val_loss < best_val_loss:\\\\n            best_val_loss = avg_val_loss\\\\n            torch.save(crm.state_dict(),\\\\n                       Path(args.output_dir) / \\\\\\\"crm_best.pt\\\\\\\")\\\\n            print(f\\\\\\\"  → New best val_loss: {best_val_loss:.6f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n[train] Done. Best val_loss={best_val_loss:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"[train] Checkpoints at {args.output_dir}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    print(f\\\\\\\"[train_crm] args: {vars(args)}\\\\\\\")\\\\n    print(f\\\\\\\"[train_crm] device: {'cuda' if torch.cuda.is_available() else 'cpu'}\\\\\\\")\\\\n\\\\n    if args.precompute:\\\\n        precompute_features(args)\\\\n        return\\\\n\\\\n    if args.auto:\\\\n        needs_precompute = any(\\\\n            not (Path(args.cache_dir) / bm / \\\\\\\"manifest.json\\\\\\\").exists()\\\\n            for bm in args.benchmark\\\\n        )\\\\n        if needs_precompute:\\\\n            print(\\\\\\\"[auto] Cache not found for some benchmarks, precomputing...\\\\\\\")\\\\n            precompute_features(args)\\\\n\\\\n    train(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCRM training script.\\n\\nTwo-phase approach:\\n  Phase 1 (--precompute): Run frozen SmolVLA on LIBERO demos, cache\\n      (obs_features, K_samples, expert_action) to disk.\\n  Phase 2 (default): Load cached features, train CRM with MSE loss +\\n      synthetic augmentation.\\n\\nUsage:\\n  # Phase 1: precompute features (slow, GPU-heavy)\\n  python train_crm.py --precompute --benchmark object\\n\\n  # Phase 2: train CRM (fast)\\n  python train_crm.py --benchmark object --epochs 50\\n\\n  # End-to-end (precompute if cache missing, then train)\\n  python train_crm.py --benchmark object --epochs 50 --auto\\n\\\"\\\"\\\"\\nimport argparse\\nimport os\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nimport sys\\nimport json\\nimport time\\nimport signal\\nimport traceback\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom cgs import ConformilizedGaussianScoring\\nfrom crm import ConformalRefinementModule\\nfrom utils import (\\n    set_seed, load_libero_demos, build_training_samples,\\n    synthetic_augmentation, CheckpointManager,\\n    CORRECTION_DIM, H_EFF, OBS_DIM, CHUNK_SIZE,\\n)\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train CRM on LIBERO demos\\\")\\n    p.add_argument(\\\"--benchmark\\\", type=str, nargs='+', default=[\\\"spatial\\\"],\\n                   choices=[\\\"object\\\", \\\"spatial\\\", \\\"goal\\\", \\\"long\\\", \\\"90\\\"])\\n    p.add_argument(\\\"--epochs\\\", type=int, default=50)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=32)\\n    p.add_argument(\\\"--lr\\\", type=float, default=1e-3)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/checkpoints/crm/\\\")\\n    p.add_argument(\\\"--cache_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/crm_cache/\\\")\\n    p.add_argument(\\\"--K\\\", type=int, default=10)\\n    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--aug_noise_min\\\", type=float, default=0.02)\\n    p.add_argument(\\\"--aug_noise_max\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--aug_ratio\\\", type=float, default=0.5,\\n                   help=\\\"fraction of batch to augment\\\")\\n    p.add_argument(\\\"--precompute\\\", action=\\\"store_true\\\",\\n                   help=\\\"only precompute features, don't train\\\")\\n    p.add_argument(\\\"--auto\\\", action=\\\"store_true\\\",\\n                   help=\\\"precompute if cache missing, then train\\\")\\n    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n    p.add_argument(\\\"--max_demos_per_task\\\", type=int, default=50)\\n    p.add_argument(\\\"--val_split\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--log_every\\\", type=int, default=50)\\n    p.add_argument(\\\"--precompute_batch_size\\\", type=int, default=4,\\n                   help=\\\"batch size for SmolVLA forward during precompute\\\")\\n    p.add_argument(\\\"--save_every\\\", type=int, default=500,\\n                   help=\\\"save partial cache every N samples\\\")\\n    p.add_argument(\\\"--shard_id\\\", type=int, default=0,\\n                   help=\\\"shard ID for parallel precompute (0-based)\\\")\\n    p.add_argument(\\\"--num_shards\\\", type=int, default=1,\\n                   help=\\\"total number of shards for parallel precompute\\\")\\n    p.add_argument(\\\"--input_mode\\\", type=str, default=\\\"full\\\",\\n                   choices=[\\\"full\\\", \\\"obs_only\\\", \\\"scalar_unc\\\"],\\n                   help=\\\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\\\")\\n    return p.parse_args()\\n\\n\\n# ── Precomputation ──────────────────────────────────────────────────\\n\\ndef precompute_features(args):\\n    \\\"\\\"\\\"Run frozen SmolVLA on all demo timesteps, save features to disk.\\\"\\\"\\\"\\n    from smolvla_wrapper import SmolVLAWrapper\\n\\n    benchmarks_to_run = []\\n    for bm in args.benchmark:\\n        cache_dir = Path(args.cache_dir) / bm\\n        if (cache_dir / \\\"manifest.json\\\").exists():\\n            print(f\\\"[precompute] \\n\\n... [截断: 输出过长，省略 10783 字符] ...\\n\\n    # ── Train ──\\n        crm.train()\\n        epoch_loss = 0.0\\n        n_batches = 0\\n\\n        for batch_idx, batch in enumerate(train_loader):\\n            obs_feat = batch[\\\"obs_features\\\"].to(device)       # (B, 960)\\n            k_samp = batch[\\\"k_samples\\\"].to(device)             # (B, K, H, D)\\n            expert = batch[\\\"expert_action\\\"].to(device)         # (B, H, D)\\n            expert_flat = expert.reshape(expert.shape[0], -1)  # (B, 30)\\n\\n            # CGS\\n            uf, ma = cgs.compute_features_batch(k_samp)\\n            if scalar_unc:\\n                uf = _to_scalar_uf(uf)\\n            uf = uf.to(device)\\n            ma = ma.to(device)\\n\\n            # CRM forward\\n            refined = crm(ma, None if obs_only else uf, obs_feat)\\n            loss = loss_fn(refined, expert_flat)\\n\\n            # Synthetic augmentation: perturb inputs, keep clean target\\n            n_aug = int(obs_feat.shape[0] * args.aug_ratio)\\n            if n_aug > 0:\\n                ma_noise = noise_scale.repeat(H_EFF)\\n                aug_ma = ma[:n_aug] + torch.randn_like(ma[:n_aug]) * ma_noise\\n                aug_uf = uf[:n_aug] + torch.randn_like(uf[:n_aug]) * noise_scale.mean() * 0.1\\n                aug_refined = crm(aug_ma, None if obs_only else aug_uf, obs_feat[:n_aug])\\n                aug_loss = loss_fn(aug_refined, expert_flat[:n_aug])\\n                loss = loss + 0.5 * aug_loss\\n\\n            optimizer.zero_grad()\\n            loss.backward()\\n            torch.nn.utils.clip_grad_norm_(crm.parameters(), 1.0)\\n            optimizer.step()\\n\\n            epoch_loss += loss.item()\\n            n_batches += 1\\n\\n            if (batch_idx + 1) % args.log_every == 0:\\n                print(f\\\"  epoch {epoch} batch {batch_idx+1}/{len(train_loader)} \\\"\\n                      f\\\"loss={loss.item():.6f}\\\")\\n\\n        scheduler.step()\\n        avg_train_loss = epoch_loss / max(n_batches, 1)\\n\\n        # ── Validate ──\\n        crm.eval()\\n        val_loss = 0.0\\n        n_val_batches = 0\\n        with torch.no_grad():\\n            for batch in val_loader:\\n                obs_feat = batch[\\\"obs_features\\\"].to(device)\\n                k_samp = batch[\\\"k_samples\\\"].to(device)\\n                expert = batch[\\\"expert_action\\\"].to(device)\\n                expert_flat = expert.reshape(expert.shape[0], -1)\\n\\n                uf, ma = cgs.compute_features_batch(k_samp)\\n                if scalar_unc:\\n                    uf = _to_scalar_uf(uf)\\n                uf, ma = uf.to(device), ma.to(device)\\n\\n                refined = crm(ma, None if obs_only else uf, obs_feat)\\n                val_loss += loss_fn(refined, expert_flat).item()\\n                n_val_batches += 1\\n\\n        avg_val_loss = val_loss / max(n_val_batches, 1)\\n\\n        print(f\\\"Epoch {epoch}/{args.epochs}  \\\"\\n              f\\\"train_loss={avg_train_loss:.6f}  \\\"\\n              f\\\"val_loss={avg_val_loss:.6f}  \\\"\\n              f\\\"lr={scheduler.get_last_lr()[0]:.2e}\\\")\\n\\n        metrics = {\\\"train_loss\\\": avg_train_loss, \\\"val_loss\\\": avg_val_loss}\\n        ckpt_mgr.save(crm, optimizer, epoch, metrics)\\n\\n        if avg_val_loss < best_val_loss:\\n            best_val_loss = avg_val_loss\\n            torch.save(crm.state_dict(),\\n                       Path(args.output_dir) / \\\"crm_best.pt\\\")\\n            print(f\\\"  → New best val_loss: {best_val_loss:.6f}\\\")\\n\\n    print(f\\\"\\\\n[train] Done. Best val_loss={best_val_loss:.6f}\\\")\\n    print(f\\\"[train] Checkpoints at {args.output_dir}\\\")\\n\\n\\ndef main():\\n    args = parse_args()\\n    print(f\\\"[train_crm] args: {vars(args)}\\\")\\n    print(f\\\"[train_crm] device: {'cuda' if torch.cuda.is_available() else 'cpu'}\\\")\\n\\n    if args.precompute:\\n        precompute_features(args)\\n        return\\n\\n    if args.auto:\\n        needs_precompute = any(\\n            not (Path(args.cache_dir) / bm / \\\"manifest.json\\\").exists()\\n            for bm in args.benchmark\\n        )\\n        if needs_precompute:\\n            print(\\\"[auto] Cache not found for some benchmarks, precomputing...\\\")\\n            precompute_features(args)\\n\\n    train(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GzvqDXYaX53n4YgpExMwDD`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -rn \"ee_states\" /root/acr-vla-conformal-refinement/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "8beea104-e9f0-4a91-bd14-9e9e3c48c77c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BWtWWRtb1NvqFCCrBm8K5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1732,
+      "cache_read_input_tokens": 39483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1732
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T07:39:38.975Z_
+
+<details><summary>↩ Tool result · `toolu_01GzvqDXYaX53n4YgpExMwDD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/utils.py:53:            - \\\"ee_states\\\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\\n/root/acr-vla-conformal-refinement/src/utils.py:80:                    \\\"ee_states\\\": np.array(demo[\\\"obs/ee_states\\\"]),\\n/root/acr-vla-conformal-refinement/src/utils.py:100:            - \\\"ee_states\\\": (6,) float — eef_pos(3) + eef_axisangle(3)\\n/root/acr-vla-conformal-refinement/src/utils.py:111:                \\\"ee_states\\\": traj[\\\"ee_states\\\"][t],\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:180:            es = torch.tensor(s[\\\"ee_states\\\"], dtype=torch.float32, device=dev)\\n\", \"stderr\": \"grep: /root/acr-vla-conformal-refinement/src/__pycache__/utils.cpython-312.pyc: binary file matches\\ngrep: /root/acr-vla-conformal-refinement/src/__pycache__/smolvla_wrapper.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "31b8889d-e79a-4a20-9207-309d1b14ba9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/utils.py:53:            - \\\\\\\"ee_states\\\\\\\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\\\\n/root/acr-vla-conformal-refinement/src/utils.py:80:                    \\\\\\\"ee_states\\\\\\\": np.array(demo[\\\\\\\"obs/ee_states\\\\\\\"]),\\\\n/root/acr-vla-conformal-refinement/src/utils.py:100:            - \\\\\\\"ee_states\\\\\\\": (6,) float — eef_pos(3) + eef_axisangle(3)\\\\n/root/acr-vla-conformal-refinement/src/utils.py:111:                \\\\\\\"ee_states\\\\\\\": traj[\\\\\\\"ee_states\\\\\\\"][t],\\\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:180:            es = torch.tensor(s[\\\\\\\"ee_states\\\\\\\"], dtype=torch.float32, device=dev)\\\\n\\\", \\\"stderr\\\": \\\"grep: /root/acr-vla-conformal-refinement/src/__pycache__/utils.cpython-312.pyc: binary file matches\\\\ngrep: /root/acr-vla-conformal-refinement/src/__pycache__/smolvla_wrapper.cpython-312.pyc: binary file matches\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/utils.py:53:            - \\\"ee_states\\\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\\n/root/acr-vla-conformal-refinement/src/utils.py:80:                    \\\"ee_states\\\": np.array(demo[\\\"obs/ee_states\\\"]),\\n/root/acr-vla-conformal-refinement/src/utils.py:100:            - \\\"ee_states\\\": (6,) float — eef_pos(3) + eef_axisangle(3)\\n/root/acr-vla-conformal-refinement/src/utils.py:111:                \\\"ee_states\\\": traj[\\\"ee_states\\\"][t],\\n/root/acr-vla-conformal-refinement/src/smolvla_wrapper.py:180:            es = torch.tensor(s[\\\"ee_states\\\"], dtype=torch.float32, device=dev)\\n\", \"stderr\": \"grep: /root/acr-vla-conformal-refinement/src/__pycache__/utils.cpython-312.pyc: binary file matches\\ngrep: /root/acr-vla-conformal-refinement/src/__pycache__/smolvla_wrapper.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the smolvla_wrapper.py to understand how ee_states is used (particularly around line 180), and also check the HDF5 data to see if there's gripper_qpos or joint_states that contains gripper info.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "b7a717a8-a753-4a34-a7c1-aba3a5c688f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176thP7unxvgLh2cTb7WNWb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4079,
+      "cache_read_input_tokens": 41215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4079
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jiy7QuuFGsG7MiPK9W28aA`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "9b8c59a2-a106-4be8-8f94-39fcd7b2250f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176thP7unxvgLh2cTb7WNWb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4079,
+      "cache_read_input_tokens": 41215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4079
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T07:39:43.342Z_
+
+<details><summary>↩ Tool result · `toolu_01Jiy7QuuFGsG7MiPK9W28aA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSmolVLA wrapper for ACR-VLA.\\n\\nProvides:\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\n  2. K-sample flow-matching generation with shared KV cache\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\n\\nPreprocessing follows the official lerobot pipeline:\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n  - Action output: unnormalize with MEAN_STD stats\\n\\\"\\\"\\\"\\nimport math\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport numpy as np\\nfrom PIL import Image\\nfrom torchvision import transforms as T\\nfrom safetensors.torch import load_file\\n\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\n    SmolVLAPolicy,\\n    VLAFlowMatching,\\n    make_att_2d_masks,\\n    resize_with_pad,\\n)\\n\\ntry:\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\n\\nNORM_EPS = 1e-8\\n\\n\\ndef split_action(action_7d):\\n    \\\"\\\"\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\n\\n    Works with numpy arrays and torch tensors, including batched inputs.\\n    \\\"\\\"\\\"\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\n\\n\\nclass SmolVLAWrapper:\\n    \\\"\\\"\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\"\\\"\\\"\\n\\n    def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/smolvla_libero/\\\",\\n                 device: str = \\\"cuda\\\"):\\n        self.device = torch.device(device)\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n        self.policy.to(self.device)\\n        self.policy.eval()\\n        for p in self.policy.parameters():\\n            p.requires_grad = False\\n\\n        self.flow: VLAFlowMatching = self.policy.model\\n        self.processor = self.flow.vlm_with_expert.processor\\n        self.tokenizer = self.processor.tokenizer\\n        self.config = self.policy.config\\n\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\n\\n        # Load normalizer stats\\n        model_dir = Path(pretrained_path)\\n        pre_stats = load_file(str(model_dir / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"))\\n        post_stats = load_file(str(model_dir / \\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\"))\\n\\n        self.state_mean = pre_stats[\\\"observation.state.mean\\\"].to(self.device)  # (8,)\\n        self.state_std = pre_stats[\\\"observation.state.std\\\"].to(self.device)    # (8,)\\n        self.action_mean = post_stats[\\\"action.mean\\\"].to(self.device)           # (7,)\\n        self.action_std = post_stats[\\\"action.std\\\"].to(self.device)             # (7,)\\n\\n        # Image resize target from config\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\n\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\n        \\\"\\\"\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\"\\\"\\\"\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\n        img = img.unsqueeze(0).to(self.device)\\n        if self.resize_wh is not None:\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\n        return img\\n\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\"\\\"\\\"\\n        D = state_raw.shape[-1]\\n        mean = self.state_mean[:D]\\n        std = self.state_std[:D]\\n        return (state_raw - mean) / (std + NORM_EPS)\\n\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\"\\\"\\\"\\n        return action_norm * self.action_std + self.action_mean\\n\\n    @torch.no_grad()\\n    def preprocess_obs(self, agentview_\\n\\n... [截断: 输出过长，省略 3304 字符] ...\\n\\ne_state(es)\\n            state[i, :es.shape[0]] = es\\n\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\n\\n    @torch.no_grad()\\n    def encode_prefix(self, images, img_masks, lang_tokens, lang_masks, state):\\n        \\\"\\\"\\\"\\n        Encode observation prefix through VLM, return obs_features and KV cache.\\n\\n        Returns:\\n            obs_features: (B, 960)\\n            past_key_values: KV cache for denoising\\n            prefix_pad_masks: (B, seq_len) for denoising attention\\n        \\\"\\\"\\\"\\n        prefix_embs, prefix_pad_masks, prefix_att_masks = self.flow.embed_prefix(\\n            images, img_masks, lang_tokens, lang_masks, state=state\\n        )\\n        prefix_att_2d_masks = make_att_2d_masks(prefix_pad_masks, prefix_att_masks)\\n        prefix_position_ids = torch.cumsum(prefix_pad_masks, dim=1) - 1\\n\\n        outputs_embeds, past_key_values = self.flow.vlm_with_expert.forward(\\n            attention_mask=prefix_att_2d_masks,\\n            position_ids=prefix_position_ids,\\n            past_key_values=None,\\n            inputs_embeds=[prefix_embs, None],\\n            use_cache=self.config.use_cache,\\n            fill_kv_cache=True,\\n        )\\n\\n        vlm_hidden = outputs_embeds[0]  # (B, seq_len, 960)\\n        mask = prefix_pad_masks.unsqueeze(-1).float()\\n        obs_features = (vlm_hidden.float() * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        return obs_features, past_key_values, prefix_pad_masks\\n\\n    @torch.no_grad()\\n    def generate_k_samples(self, past_key_values, prefix_pad_masks,\\n                           K: int = 10) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Generate K action samples using cached prefix KV.\\n\\n        Returns:\\n            samples: (B, K, chunk_size, FULL_ACTION_DIM) — unnormalized actions\\n        \\\"\\\"\\\"\\n        B = prefix_pad_masks.shape[0]\\n        chunk_size = self.config.chunk_size\\n        max_act_dim = self.config.max_action_dim\\n        num_steps = self.config.num_steps\\n        dt = -1.0 / num_steps\\n\\n        all_samples = []\\n        for _ in range(K):\\n            noise = self.flow.sample_noise((B, chunk_size, max_act_dim), self.device)\\n            x_t = noise\\n\\n            for step in range(num_steps):\\n                time_val = 1.0 + step * dt\\n                time_tensor = torch.full((B,), time_val, dtype=torch.float32,\\n                                         device=self.device)\\n                v_t = self.flow.denoise_step(\\n                    x_t=x_t,\\n                    prefix_pad_masks=prefix_pad_masks,\\n                    past_key_values=past_key_values,\\n                    timestep=time_tensor,\\n                )\\n                x_t = x_t + dt * v_t\\n\\n            raw_action = x_t[:, :, :FULL_ACTION_DIM]  # (B, chunk_size, 7)\\n            unnorm_action = self._unnormalize_action(raw_action)\\n            all_samples.append(unnorm_action)\\n\\n        return torch.stack(all_samples, dim=1)  # (B, K, chunk_size, FULL_ACTION_DIM)\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples(self, agentview_rgb, task_name, robot_state,\\n                                     eye_in_hand_rgb=None, K=10):\\n        \\\"\\\"\\\"\\n        End-to-end: raw obs → obs_features (960D) + K action samples (7D).\\n\\n        Returns:\\n            obs_features: (1, 960)\\n            samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n        \\\"\\\"\\\"\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\n        )\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples_batch(self, batch_obs, K=10):\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs_batch(batch_obs)\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "fbd7d41c-c717-47d2-b6a3-817ff977e42a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSmolVLA wrapper for ACR-VLA.\\\\n\\\\nProvides:\\\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\\\n  2. K-sample flow-matching generation with shared KV cache\\\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\\\n\\\\nPreprocessing follows the official lerobot pipeline:\\\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\\\n  - Action output: unnormalize with MEAN_STD stats\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport math\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nimport numpy as np\\\\nfrom PIL import Image\\\\nfrom torchvision import transforms as T\\\\nfrom safetensors.torch import load_file\\\\n\\\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\\\n    SmolVLAPolicy,\\\\n    VLAFlowMatching,\\\\n    make_att_2d_masks,\\\\n    resize_with_pad,\\\\n)\\\\n\\\\ntry:\\\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\nexcept ImportError:\\\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\n\\\\nNORM_EPS = 1e-8\\\\n\\\\n\\\\ndef split_action(action_7d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\\\n\\\\n    Works with numpy arrays and torch tensors, including batched inputs.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\\\n\\\\n\\\\nclass SmolVLAWrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, pretrained_path: str = \\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\",\\\\n                 device: str = \\\\\\\"cuda\\\\\\\"):\\\\n        self.device = torch.device(device)\\\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\\\n        self.policy.to(self.device)\\\\n        self.policy.eval()\\\\n        for p in self.policy.parameters():\\\\n            p.requires_grad = False\\\\n\\\\n        self.flow: VLAFlowMatching = self.policy.model\\\\n        self.processor = self.flow.vlm_with_expert.processor\\\\n        self.tokenizer = self.processor.tokenizer\\\\n        self.config = self.policy.config\\\\n\\\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\\\n\\\\n        # Load normalizer stats\\\\n        model_dir = Path(pretrained_path)\\\\n        pre_stats = load_file(str(model_dir / \\\\\\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\\\\\"))\\\\n        post_stats = load_file(str(model_dir / \\\\\\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\\\\\"))\\\\n\\\\n        self.state_mean = pre_stats[\\\\\\\"observation.state.mean\\\\\\\"].to(self.device)  # (8,)\\\\n        self.state_std = pre_stats[\\\\\\\"observation.state.std\\\\\\\"].to(self.device)    # (8,)\\\\n        self.action_mean = post_stats[\\\\\\\"action.mean\\\\\\\"].to(self.device)           # (7,)\\\\n        self.action_std = post_stats[\\\\\\\"action.std\\\\\\\"].to(self.device)             # (7,)\\\\n\\\\n        # Image resize target from config\\\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\\\n\\\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\\\n        img = img.unsqueeze(0).to(self.device)\\\\n        if self.resize_wh is not None:\\\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\\\n        return img\\\\n\\\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        D = state_raw.shape[-1]\\\\n        mean = self.state_mean[:D]\\\\n        std = self.state_std[:D]\\\\n        return (state_raw - mean) / (std + NORM_EPS)\\\\n\\\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return action_norm * self.action_std + self.action_mean\\\\n\\\\n    @torch.no_grad()\\\\n    def preprocess_obs(self, agentview_\\\\n\\\\n... [截断: 输出过长，省略 3304 字符] ...\\\\n\\\\ne_state(es)\\\\n            state[i, :es.shape[0]] = es\\\\n\\\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\\\n\\\\n    @torch.no_grad()\\\\n    def encode_prefix(self, images, img_masks, lang_tokens, lang_masks, state):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Encode observation prefix through VLM, return obs_features and KV cache.\\\\n\\\\n        Returns:\\\\n            obs_features: (B, 960)\\\\n            past_key_values: KV cache for denoising\\\\n            prefix_pad_masks: (B, seq_len) for denoising attention\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        prefix_embs, prefix_pad_masks, prefix_att_masks = self.flow.embed_prefix(\\\\n            images, img_masks, lang_tokens, lang_masks, state=state\\\\n        )\\\\n        prefix_att_2d_masks = make_att_2d_masks(prefix_pad_masks, prefix_att_masks)\\\\n        prefix_position_ids = torch.cumsum(prefix_pad_masks, dim=1) - 1\\\\n\\\\n        outputs_embeds, past_key_values = self.flow.vlm_with_expert.forward(\\\\n            attention_mask=prefix_att_2d_masks,\\\\n            position_ids=prefix_position_ids,\\\\n            past_key_values=None,\\\\n            inputs_embeds=[prefix_embs, None],\\\\n            use_cache=self.config.use_cache,\\\\n            fill_kv_cache=True,\\\\n        )\\\\n\\\\n        vlm_hidden = outputs_embeds[0]  # (B, seq_len, 960)\\\\n        mask = prefix_pad_masks.unsqueeze(-1).float()\\\\n        obs_features = (vlm_hidden.float() * mask).sum(1) / mask.sum(1).clamp(min=1)\\\\n\\\\n        return obs_features, past_key_values, prefix_pad_masks\\\\n\\\\n    @torch.no_grad()\\\\n    def generate_k_samples(self, past_key_values, prefix_pad_masks,\\\\n                           K: int = 10) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Generate K action samples using cached prefix KV.\\\\n\\\\n        Returns:\\\\n            samples: (B, K, chunk_size, FULL_ACTION_DIM) — unnormalized actions\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        B = prefix_pad_masks.shape[0]\\\\n        chunk_size = self.config.chunk_size\\\\n        max_act_dim = self.config.max_action_dim\\\\n        num_steps = self.config.num_steps\\\\n        dt = -1.0 / num_steps\\\\n\\\\n        all_samples = []\\\\n        for _ in range(K):\\\\n            noise = self.flow.sample_noise((B, chunk_size, max_act_dim), self.device)\\\\n            x_t = noise\\\\n\\\\n            for step in range(num_steps):\\\\n                time_val = 1.0 + step * dt\\\\n                time_tensor = torch.full((B,), time_val, dtype=torch.float32,\\\\n                                         device=self.device)\\\\n                v_t = self.flow.denoise_step(\\\\n                    x_t=x_t,\\\\n                    prefix_pad_masks=prefix_pad_masks,\\\\n                    past_key_values=past_key_values,\\\\n                    timestep=time_tensor,\\\\n                )\\\\n                x_t = x_t + dt * v_t\\\\n\\\\n            raw_action = x_t[:, :, :FULL_ACTION_DIM]  # (B, chunk_size, 7)\\\\n            unnorm_action = self._unnormalize_action(raw_action)\\\\n            all_samples.append(unnorm_action)\\\\n\\\\n        return torch.stack(all_samples, dim=1)  # (B, K, chunk_size, FULL_ACTION_DIM)\\\\n\\\\n    @torch.no_grad()\\\\n    def get_obs_features_and_samples(self, agentview_rgb, task_name, robot_state,\\\\n                                     eye_in_hand_rgb=None, K=10):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        End-to-end: raw obs → obs_features (960D) + K action samples (7D).\\\\n\\\\n        Returns:\\\\n            obs_features: (1, 960)\\\\n            samples: (1, K, chunk_size, FULL_ACTION_DIM)\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\\\n        )\\\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\\\n            imgs, img_masks, lt, lm, state\\\\n        )\\\\n        samples = self.generate_k_samples(kv_cache, pad_masks, K=K)\\\\n        return obs_feat, samples\\\\n\\\\n    @torch.no_grad()\\\\n    def get_obs_features_and_samples_batch(self, batch_obs, K=10):\\\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs_batch(batch_obs)\\\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\\\n            imgs, img_masks, lt, lm, state\\\\n        )\\\\n        samples = self.generate_k_samples(kv_cache, pad_masks, K=K)\\\\n        return obs_feat, samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSmolVLA wrapper for ACR-VLA.\\n\\nProvides:\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\n  2. K-sample flow-matching generation with shared KV cache\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\n\\nPreprocessing follows the official lerobot pipeline:\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n  - Action output: unnormalize with MEAN_STD stats\\n\\\"\\\"\\\"\\nimport math\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport numpy as np\\nfrom PIL import Image\\nfrom torchvision import transforms as T\\nfrom safetensors.torch import load_file\\n\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\n    SmolVLAPolicy,\\n    VLAFlowMatching,\\n    make_att_2d_masks,\\n    resize_with_pad,\\n)\\n\\ntry:\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\n\\nNORM_EPS = 1e-8\\n\\n\\ndef split_action(action_7d):\\n    \\\"\\\"\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\n\\n    Works with numpy arrays and torch tensors, including batched inputs.\\n    \\\"\\\"\\\"\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\n\\n\\nclass SmolVLAWrapper:\\n    \\\"\\\"\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\"\\\"\\\"\\n\\n    def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/smolvla_libero/\\\",\\n                 device: str = \\\"cuda\\\"):\\n        self.device = torch.device(device)\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n        self.policy.to(self.device)\\n        self.policy.eval()\\n        for p in self.policy.parameters():\\n            p.requires_grad = False\\n\\n        self.flow: VLAFlowMatching = self.policy.model\\n        self.processor = self.flow.vlm_with_expert.processor\\n        self.tokenizer = self.processor.tokenizer\\n        self.config = self.policy.config\\n\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\n\\n        # Load normalizer stats\\n        model_dir = Path(pretrained_path)\\n        pre_stats = load_file(str(model_dir / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"))\\n        post_stats = load_file(str(model_dir / \\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\"))\\n\\n        self.state_mean = pre_stats[\\\"observation.state.mean\\\"].to(self.device)  # (8,)\\n        self.state_std = pre_stats[\\\"observation.state.std\\\"].to(self.device)    # (8,)\\n        self.action_mean = post_stats[\\\"action.mean\\\"].to(self.device)           # (7,)\\n        self.action_std = post_stats[\\\"action.std\\\"].to(self.device)             # (7,)\\n\\n        # Image resize target from config\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\n\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\n        \\\"\\\"\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\"\\\"\\\"\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\n        img = img.unsqueeze(0).to(self.device)\\n        if self.resize_wh is not None:\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\n        return img\\n\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\"\\\"\\\"\\n        D = state_raw.shape[-1]\\n        mean = self.state_mean[:D]\\n        std = self.state_std[:D]\\n        return (state_raw - mean) / (std + NORM_EPS)\\n\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\"\\\"\\\"\\n        return action_norm * self.action_std + self.action_mean\\n\\n    @torch.no_grad()\\n    def preprocess_obs(self, agentview_\\n\\n... [截断: 输出过长，省略 3304 字符] ...\\n\\ne_state(es)\\n            state[i, :es.shape[0]] = es\\n\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\n\\n    @torch.no_grad()\\n    def encode_prefix(self, images, img_masks, lang_tokens, lang_masks, state):\\n        \\\"\\\"\\\"\\n        Encode observation prefix through VLM, return obs_features and KV cache.\\n\\n        Returns:\\n            obs_features: (B, 960)\\n            past_key_values: KV cache for denoising\\n            prefix_pad_masks: (B, seq_len) for denoising attention\\n        \\\"\\\"\\\"\\n        prefix_embs, prefix_pad_masks, prefix_att_masks = self.flow.embed_prefix(\\n            images, img_masks, lang_tokens, lang_masks, state=state\\n        )\\n        prefix_att_2d_masks = make_att_2d_masks(prefix_pad_masks, prefix_att_masks)\\n        prefix_position_ids = torch.cumsum(prefix_pad_masks, dim=1) - 1\\n\\n        outputs_embeds, past_key_values = self.flow.vlm_with_expert.forward(\\n            attention_mask=prefix_att_2d_masks,\\n            position_ids=prefix_position_ids,\\n            past_key_values=None,\\n            inputs_embeds=[prefix_embs, None],\\n            use_cache=self.config.use_cache,\\n            fill_kv_cache=True,\\n        )\\n\\n        vlm_hidden = outputs_embeds[0]  # (B, seq_len, 960)\\n        mask = prefix_pad_masks.unsqueeze(-1).float()\\n        obs_features = (vlm_hidden.float() * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        return obs_features, past_key_values, prefix_pad_masks\\n\\n    @torch.no_grad()\\n    def generate_k_samples(self, past_key_values, prefix_pad_masks,\\n                           K: int = 10) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Generate K action samples using cached prefix KV.\\n\\n        Returns:\\n            samples: (B, K, chunk_size, FULL_ACTION_DIM) — unnormalized actions\\n        \\\"\\\"\\\"\\n        B = prefix_pad_masks.shape[0]\\n        chunk_size = self.config.chunk_size\\n        max_act_dim = self.config.max_action_dim\\n        num_steps = self.config.num_steps\\n        dt = -1.0 / num_steps\\n\\n        all_samples = []\\n        for _ in range(K):\\n            noise = self.flow.sample_noise((B, chunk_size, max_act_dim), self.device)\\n            x_t = noise\\n\\n            for step in range(num_steps):\\n                time_val = 1.0 + step * dt\\n                time_tensor = torch.full((B,), time_val, dtype=torch.float32,\\n                                         device=self.device)\\n                v_t = self.flow.denoise_step(\\n                    x_t=x_t,\\n                    prefix_pad_masks=prefix_pad_masks,\\n                    past_key_values=past_key_values,\\n                    timestep=time_tensor,\\n                )\\n                x_t = x_t + dt * v_t\\n\\n            raw_action = x_t[:, :, :FULL_ACTION_DIM]  # (B, chunk_size, 7)\\n            unnorm_action = self._unnormalize_action(raw_action)\\n            all_samples.append(unnorm_action)\\n\\n        return torch.stack(all_samples, dim=1)  # (B, K, chunk_size, FULL_ACTION_DIM)\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples(self, agentview_rgb, task_name, robot_state,\\n                                     eye_in_hand_rgb=None, K=10):\\n        \\\"\\\"\\\"\\n        End-to-end: raw obs → obs_features (960D) + K action samples (7D).\\n\\n        Returns:\\n            obs_features: (1, 960)\\n            samples: (1, K, chunk_size, FULL_ACTION_DIM)\\n        \\\"\\\"\\\"\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs(\\n            agentview_rgb, task_name, robot_state, eye_in_hand_rgb\\n        )\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\\n    @torch.no_grad()\\n    def get_obs_features_and_samples_batch(self, batch_obs, K=10):\\n        imgs, img_masks, lt, lm, state = self.preprocess_obs_batch(batch_obs)\\n        obs_feat, kv_cache, pad_masks = self.encode_prefix(\\n            imgs, img_masks, lt, lm, state\\n        )\\n        samples = self.generate_k_samples(kv_cache, pad_masks, K=K)\\n        return obs_feat, samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hf6hmAfyQEvGE5ZSdSqFmd`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"ee_states\\|gripper\\|joint_states\\|robot_state\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "942502d3-09c6-4082-8b15-4bab26bd6e46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176thP7unxvgLh2cTb7WNWb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4079,
+      "cache_read_input_tokens": 41215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4079
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T07:39:43.958Z_
+
+<details><summary>↩ Tool result · `toolu_01Hf6hmAfyQEvGE5ZSdSqFmd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "649acdcd-952e-494e-8e6b-5e38c9389dfe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for how ee_states is used in train_crm.py.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "65973c34-d4c4-4e00-8163-01a9dba05b25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAPQYyReP782kLK3ybsaHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3609,
+      "cache_read_input_tokens": 45294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3609
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PUL5SWWc5TN6tfwnvGcvaD`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"ee_states\\|gripper\\|joint_states\\|robot_state\\|STATE_DIM\\|8D\\|6D\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "fefcb86d-4d99-4d5a-ba2f-ba0968dadc11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAPQYyReP782kLK3ybsaHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3609,
+      "cache_read_input_tokens": 45294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3609
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T07:39:47.881Z_
+
+<details><summary>↩ Tool result · `toolu_01PUL5SWWc5TN6tfwnvGcvaD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "334f04f3-98f3-4186-8ec8-24982fbea3af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PtFFttXweKDppKtxEpja9H`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"ee_states\\|gripper\\|STATE_DIM\\|state_dim\" /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "c2092f6e-71e1-4245-ab6a-4eedbbb79686",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAPQYyReP782kLK3ybsaHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3609,
+      "cache_read_input_tokens": 45294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3609
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T07:39:49.166Z_
+
+<details><summary>↩ Tool result · `toolu_01PtFFttXweKDppKtxEpja9H`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "af0b55b7-a9cf-4e45-8629-750acd466375",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fyvbhbj3oSVLkgWLQ2anxL`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"ee_states\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "c7f73552-c136-44a7-918b-63f15c43e65d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TsiRc3MGDW9r7UfeaGZfY2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 48903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 573
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T07:39:52.801Z_
+
+<details><summary>↩ Tool result · `toolu_01Fyvbhbj3oSVLkgWLQ2anxL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "467b2d78-3de2-49d7-a379-a8fa462ccdff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tho1M6YrVgLsZu6PY8cvt9`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"ee_states\" /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "70227498-a1e2-413f-8899-5533acbdb0fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TsiRc3MGDW9r7UfeaGZfY2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 48903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 573
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T07:39:53.562Z_
+
+<details><summary>↩ Tool result · `toolu_01Tho1M6YrVgLsZu6PY8cvt9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"180:            es = torch.tensor(s[\\\"ee_states\\\"], dtype=torch.float32, device=dev)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "bd846002-9d7f-4595-b837-942022337e97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"180:            es = torch.tensor(s[\\\\\\\"ee_states\\\\\\\"], dtype=torch.float32, device=dev)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"180:            es = torch.tensor(s[\\\"ee_states\\\"], dtype=torch.float32, device=dev)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look at smolvla_wrapper.py around line 180 to understand how ee_states is used there, and how robot_state flows through.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "6b294342-cd78-4a88-861c-a12bc0cc83c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jp5t6bzD7Q1ywLpaPjJje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 49476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XJisEbiahijgi9rGrKDMwk`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "head -195 /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "7da3d874-59db-4c28-b509-132f13177ab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jp5t6bzD7Q1ywLpaPjJje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 49476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T07:39:57.795Z_
+
+<details><summary>↩ Tool result · `toolu_01XJisEbiahijgi9rGrKDMwk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSmolVLA wrapper for ACR-VLA.\\n\\nProvides:\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\n  2. K-sample flow-matching generation with shared KV cache\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\n\\nPreprocessing follows the official lerobot pipeline:\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n  - Action output: unnormalize with MEAN_STD stats\\n\\\"\\\"\\\"\\nimport math\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport numpy as np\\nfrom PIL import Image\\nfrom torchvision import transforms as T\\nfrom safetensors.torch import load_file\\n\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\n    SmolVLAPolicy,\\n    VLAFlowMatching,\\n    make_att_2d_masks,\\n    resize_with_pad,\\n)\\n\\ntry:\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\n\\nNORM_EPS = 1e-8\\n\\n\\ndef split_action(action_7d):\\n    \\\"\\\"\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\n\\n    Works with numpy arrays and torch tensors, including batched inputs.\\n    \\\"\\\"\\\"\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\n\\n\\nclass SmolVLAWrapper:\\n    \\\"\\\"\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\"\\\"\\\"\\n\\n    def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/smolvla_libero/\\\",\\n                 device: str = \\\"cuda\\\"):\\n        self.device = torch.device(device)\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n        self.policy.to(self.device)\\n        self.policy.eval()\\n        for p in self.policy.parameters():\\n            p.requires_grad = False\\n\\n        self.flow: VLAFlowMatching = self.policy.model\\n        self.processor = self.flow.vlm_with_expert.processor\\n        self.tokenizer = self.processor.tokenizer\\n        self.config = self.policy.config\\n\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\n\\n        # Load normalizer stats\\n        model_dir = Path(pretrained_path)\\n        pre_stats = load_file(str(model_dir / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"))\\n        post_stats = load_file(str(model_dir / \\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\"))\\n\\n        self.state_mean = pre_stats[\\\"observation.state.mean\\\"].to(self.device)  # (8,)\\n        self.state_std = pre_stats[\\\"observation.state.std\\\"].to(self.device)    # (8,)\\n        self.action_mean = post_stats[\\\"action.mean\\\"].to(self.device)           # (7,)\\n        self.action_std = post_stats[\\\"action.std\\\"].to(self.device)             # (7,)\\n\\n        # Image resize target from config\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\n\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\n        \\\"\\\"\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\"\\\"\\\"\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\n        img = img.unsqueeze(0).to(self.device)\\n        if self.resize_wh is not None:\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\n        return img\\n\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\"\\\"\\\"\\n        D = state_raw.shape[-1]\\n        mean = self.state_mean[:D]\\n        std = self.state_std[:D]\\n        return (state_raw - mean) / (std + NORM_EPS)\\n\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\"\\\"\\\"\\n        return action_norm * self.action_std + self.action_mean\\n\\n    @torch.no_grad()\\n    def preprocess_obs(self, agentview_rgb: np.ndarray,\\n                       task_name: str,\\n                       robot_state: np.ndarray,\\n                       eye_in_hand_rgb: np.ndarray | None = None):\\n        \\\"\\\"\\\"\\n        Convert raw LIBERO observation into SmolVLA-ready tensors.\\n\\n        Args:\\n            agentview_rgb: (H, W, 3) uint8\\n            task_name: task description string\\n            robot_state: (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n            eye_in_hand_rgb: optional (H, W, 3) uint8\\n        Returns:\\n            images: list of (1, C, H, W) float tensors\\n            img_masks: list of (1,) bool tensors\\n            lang_tokens: (1, L) long tensor\\n            lang_masks: (1, L) bool tensor\\n            state: (1, max_state_dim) float tensor (normalized + padded)\\n        \\\"\\\"\\\"\\n        dev = self.device\\n\\n        imgs = [self._preprocess_image(agentview_rgb)]\\n        img_masks = [torch.ones(1, dtype=torch.bool, device=dev)]\\n        if eye_in_hand_rgb is not None:\\n            imgs.append(self._preprocess_image(eye_in_hand_rgb))\\n            img_masks.append(torch.ones(1, dtype=torch.bool, device=dev))\\n\\n        # lerobot SmolVLANewLineProcessor: append \\\\n to task string\\n        task_text = task_name if task_name.endswith(\\\"\\\\n\\\") else f\\\"{task_name}\\\\n\\\"\\n        tokens = self.tokenizer(\\n            task_text,\\n            return_tensors=\\\"pt\\\",\\n            padding=\\\"max_length\\\",\\n            max_length=self.config.tokenizer_max_length,\\n            truncation=True,\\n        )\\n        lang_tokens = tokens[\\\"input_ids\\\"].to(dev)\\n        lang_masks = tokens[\\\"attention_mask\\\"].to(dev).bool()\\n\\n        state_t = torch.tensor(robot_state, dtype=torch.float32, device=dev)\\n        state_t = self._normalize_state(state_t)\\n        state = torch.zeros(1, self.config.max_state_dim, device=dev, dtype=torch.float32)\\n        state[0, :state_t.shape[0]] = state_t\\n\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\n\\n    @torch.no_grad()\\n    def preprocess_obs_batch(self, batch_obs):\\n        dev = self.device\\n        B = len(batch_obs)\\n\\n        agentview_tensors = torch.cat(\\n            [self._preprocess_image(s[\\\"agentview_rgb\\\"]) for s in batch_obs], dim=0\\n        )\\n        imgs = [agentview_tensors]\\n        img_masks = [torch.ones(B, dtype=torch.bool, device=dev)]\\n\\n        if batch_obs[0].get(\\\"eye_in_hand_rgb\\\") is not None:\\n            eih_tensors = torch.cat(\\n                [self._preprocess_image(s[\\\"eye_in_hand_rgb\\\"]) for s in batch_obs], dim=0\\n            )\\n            imgs.append(eih_tensors)\\n            img_masks.append(torch.ones(B, dtype=torch.bool, device=dev))\\n\\n        task_names = [s[\\\"task_name\\\"] if s[\\\"task_name\\\"].endswith(\\\"\\\\n\\\") else f\\\"{s['task_name']}\\\\n\\\"\\n                     for s in batch_obs]\\n        tokens = self.tokenizer(\\n            task_names,\\n            return_tensors=\\\"pt\\\",\\n            padding=\\\"max_length\\\",\\n            max_length=self.config.tokenizer_max_length,\\n            truncation=True,\\n        )\\n        lang_tokens = tokens[\\\"input_ids\\\"].to(dev)\\n        lang_masks = tokens[\\\"attention_mask\\\"].to(dev).bool()\\n\\n        state = torch.zeros(B, self.config.max_state_dim, device=dev, dtype=torch.float32)\\n        for i, s in enumerate(batch_obs):\\n            es = torch.tensor(s[\\\"ee_states\\\"], dtype=torch.float32, device=dev)\\n            es = self._normalize_state(es)\\n            state[i, :es.shape[0]] = es\\n\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\n\\n    @torch.no_grad()\\n    def encode_prefix(self, images, img_masks, lang_tokens, lang_masks, state):\\n        \\\"\\\"\\\"\\n        Encode observation prefix through VLM, return obs_features and KV cache.\\n\\n        Returns:\\n            obs_features: (B, 960)\\n            past_key_values: KV cache for denoising\\n            prefix_pad_masks: (B, seq_len) for denoising attention\\n        \\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "4f68e4f1-a3d2-493e-b21c-b70d078dc817",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSmolVLA wrapper for ACR-VLA.\\\\n\\\\nProvides:\\\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\\\n  2. K-sample flow-matching generation with shared KV cache\\\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\\\n\\\\nPreprocessing follows the official lerobot pipeline:\\\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\\\n  - Action output: unnormalize with MEAN_STD stats\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport math\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nimport numpy as np\\\\nfrom PIL import Image\\\\nfrom torchvision import transforms as T\\\\nfrom safetensors.torch import load_file\\\\n\\\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\\\n    SmolVLAPolicy,\\\\n    VLAFlowMatching,\\\\n    make_att_2d_masks,\\\\n    resize_with_pad,\\\\n)\\\\n\\\\ntry:\\\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\nexcept ImportError:\\\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\n\\\\nNORM_EPS = 1e-8\\\\n\\\\n\\\\ndef split_action(action_7d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\\\n\\\\n    Works with numpy arrays and torch tensors, including batched inputs.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\\\n\\\\n\\\\nclass SmolVLAWrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, pretrained_path: str = \\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\",\\\\n                 device: str = \\\\\\\"cuda\\\\\\\"):\\\\n        self.device = torch.device(device)\\\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\\\n        self.policy.to(self.device)\\\\n        self.policy.eval()\\\\n        for p in self.policy.parameters():\\\\n            p.requires_grad = False\\\\n\\\\n        self.flow: VLAFlowMatching = self.policy.model\\\\n        self.processor = self.flow.vlm_with_expert.processor\\\\n        self.tokenizer = self.processor.tokenizer\\\\n        self.config = self.policy.config\\\\n\\\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\\\n\\\\n        # Load normalizer stats\\\\n        model_dir = Path(pretrained_path)\\\\n        pre_stats = load_file(str(model_dir / \\\\\\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\\\\\"))\\\\n        post_stats = load_file(str(model_dir / \\\\\\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\\\\\"))\\\\n\\\\n        self.state_mean = pre_stats[\\\\\\\"observation.state.mean\\\\\\\"].to(self.device)  # (8,)\\\\n        self.state_std = pre_stats[\\\\\\\"observation.state.std\\\\\\\"].to(self.device)    # (8,)\\\\n        self.action_mean = post_stats[\\\\\\\"action.mean\\\\\\\"].to(self.device)           # (7,)\\\\n        self.action_std = post_stats[\\\\\\\"action.std\\\\\\\"].to(self.device)             # (7,)\\\\n\\\\n        # Image resize target from config\\\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\\\n\\\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\\\n        img = img.unsqueeze(0).to(self.device)\\\\n        if self.resize_wh is not None:\\\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\\\n        return img\\\\n\\\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        D = state_raw.shape[-1]\\\\n        mean = self.state_mean[:D]\\\\n        std = self.state_std[:D]\\\\n        return (state_raw - mean) / (std + NORM_EPS)\\\\n\\\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return action_norm * self.action_std + self.action_mean\\\\n\\\\n    @torch.no_grad()\\\\n    def preprocess_obs(self, agentview_rgb: np.ndarray,\\\\n                       task_name: str,\\\\n                       robot_state: np.ndarray,\\\\n                       eye_in_hand_rgb: np.ndarray | None = None):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Convert raw LIBERO observation into SmolVLA-ready tensors.\\\\n\\\\n        Args:\\\\n            agentview_rgb: (H, W, 3) uint8\\\\n            task_name: task description string\\\\n            robot_state: (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\\\n            eye_in_hand_rgb: optional (H, W, 3) uint8\\\\n        Returns:\\\\n            images: list of (1, C, H, W) float tensors\\\\n            img_masks: list of (1,) bool tensors\\\\n            lang_tokens: (1, L) long tensor\\\\n            lang_masks: (1, L) bool tensor\\\\n            state: (1, max_state_dim) float tensor (normalized + padded)\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        dev = self.device\\\\n\\\\n        imgs = [self._preprocess_image(agentview_rgb)]\\\\n        img_masks = [torch.ones(1, dtype=torch.bool, device=dev)]\\\\n        if eye_in_hand_rgb is not None:\\\\n            imgs.append(self._preprocess_image(eye_in_hand_rgb))\\\\n            img_masks.append(torch.ones(1, dtype=torch.bool, device=dev))\\\\n\\\\n        # lerobot SmolVLANewLineProcessor: append \\\\\\\\n to task string\\\\n        task_text = task_name if task_name.endswith(\\\\\\\"\\\\\\\\n\\\\\\\") else f\\\\\\\"{task_name}\\\\\\\\n\\\\\\\"\\\\n        tokens = self.tokenizer(\\\\n            task_text,\\\\n            return_tensors=\\\\\\\"pt\\\\\\\",\\\\n            padding=\\\\\\\"max_length\\\\\\\",\\\\n            max_length=self.config.tokenizer_max_length,\\\\n            truncation=True,\\\\n        )\\\\n        lang_tokens = tokens[\\\\\\\"input_ids\\\\\\\"].to(dev)\\\\n        lang_masks = tokens[\\\\\\\"attention_mask\\\\\\\"].to(dev).bool()\\\\n\\\\n        state_t = torch.tensor(robot_state, dtype=torch.float32, device=dev)\\\\n        state_t = self._normalize_state(state_t)\\\\n        state = torch.zeros(1, self.config.max_state_dim, device=dev, dtype=torch.float32)\\\\n        state[0, :state_t.shape[0]] = state_t\\\\n\\\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\\\n\\\\n    @torch.no_grad()\\\\n    def preprocess_obs_batch(self, batch_obs):\\\\n        dev = self.device\\\\n        B = len(batch_obs)\\\\n\\\\n        agentview_tensors = torch.cat(\\\\n            [self._preprocess_image(s[\\\\\\\"agentview_rgb\\\\\\\"]) for s in batch_obs], dim=0\\\\n        )\\\\n        imgs = [agentview_tensors]\\\\n        img_masks = [torch.ones(B, dtype=torch.bool, device=dev)]\\\\n\\\\n        if batch_obs[0].get(\\\\\\\"eye_in_hand_rgb\\\\\\\") is not None:\\\\n            eih_tensors = torch.cat(\\\\n                [self._preprocess_image(s[\\\\\\\"eye_in_hand_rgb\\\\\\\"]) for s in batch_obs], dim=0\\\\n            )\\\\n            imgs.append(eih_tensors)\\\\n            img_masks.append(torch.ones(B, dtype=torch.bool, device=dev))\\\\n\\\\n        task_names = [s[\\\\\\\"task_name\\\\\\\"] if s[\\\\\\\"task_name\\\\\\\"].endswith(\\\\\\\"\\\\\\\\n\\\\\\\") else f\\\\\\\"{s['task_name']}\\\\\\\\n\\\\\\\"\\\\n                     for s in batch_obs]\\\\n        tokens = self.tokenizer(\\\\n            task_names,\\\\n            return_tensors=\\\\\\\"pt\\\\\\\",\\\\n            padding=\\\\\\\"max_length\\\\\\\",\\\\n            max_length=self.config.tokenizer_max_length,\\\\n            truncation=True,\\\\n        )\\\\n        lang_tokens = tokens[\\\\\\\"input_ids\\\\\\\"].to(dev)\\\\n        lang_masks = tokens[\\\\\\\"attention_mask\\\\\\\"].to(dev).bool()\\\\n\\\\n        state = torch.zeros(B, self.config.max_state_dim, device=dev, dtype=torch.float32)\\\\n        for i, s in enumerate(batch_obs):\\\\n            es = torch.tensor(s[\\\\\\\"ee_states\\\\\\\"], dtype=torch.float32, device=dev)\\\\n            es = self._normalize_state(es)\\\\n            state[i, :es.shape[0]] = es\\\\n\\\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\\\n\\\\n    @torch.no_grad()\\\\n    def encode_prefix(self, images, img_masks, lang_tokens, lang_masks, state):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Encode observation prefix through VLM, return obs_features and KV cache.\\\\n\\\\n        Returns:\\\\n            obs_features: (B, 960)\\\\n            past_key_values: KV cache for denoising\\\\n            prefix_pad_masks: (B, seq_len) for denoising attention\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSmolVLA wrapper for ACR-VLA.\\n\\nProvides:\\n  1. obs_features extraction (mean-pooled VLM hidden states, 960D)\\n  2. K-sample flow-matching generation with shared KV cache\\n  3. LIBERO data preprocessing (image, language, state → SmolVLA inputs)\\n\\nPreprocessing follows the official lerobot pipeline:\\n  - Images: flip H+W → resize_with_pad 512×512 → normalize [-1,1]\\n  - State: 8D (eef_pos + axisangle + gripper_qpos) → MEAN_STD normalize → pad 32D\\n  - Action output: unnormalize with MEAN_STD stats\\n\\\"\\\"\\\"\\nimport math\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport numpy as np\\nfrom PIL import Image\\nfrom torchvision import transforms as T\\nfrom safetensors.torch import load_file\\n\\nfrom lerobot.policies.smolvla.modeling_smolvla import (\\n    SmolVLAPolicy,\\n    VLAFlowMatching,\\n    make_att_2d_masks,\\n    resize_with_pad,\\n)\\n\\ntry:\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\nexcept ImportError:\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\n\\nNORM_EPS = 1e-8\\n\\n\\ndef split_action(action_7d):\\n    \\\"\\\"\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\n\\n    Works with numpy arrays and torch tensors, including batched inputs.\\n    \\\"\\\"\\\"\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\n\\n\\nclass SmolVLAWrapper:\\n    \\\"\\\"\\\"Frozen SmolVLA for obs_features and K-sample generation.\\\"\\\"\\\"\\n\\n    def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/smolvla_libero/\\\",\\n                 device: str = \\\"cuda\\\"):\\n        self.device = torch.device(device)\\n        self.policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n        self.policy.to(self.device)\\n        self.policy.eval()\\n        for p in self.policy.parameters():\\n            p.requires_grad = False\\n\\n        self.flow: VLAFlowMatching = self.policy.model\\n        self.processor = self.flow.vlm_with_expert.processor\\n        self.tokenizer = self.processor.tokenizer\\n        self.config = self.policy.config\\n\\n        self.vlm_hidden_size = self.flow.vlm_with_expert.config.text_config.hidden_size  # 960\\n        self._to_tensor = T.ToTensor()  # HWC uint8 → CHW float [0,1]\\n\\n        # Load normalizer stats\\n        model_dir = Path(pretrained_path)\\n        pre_stats = load_file(str(model_dir / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"))\\n        post_stats = load_file(str(model_dir / \\\"policy_postprocessor_step_0_unnormalizer_processor.safetensors\\\"))\\n\\n        self.state_mean = pre_stats[\\\"observation.state.mean\\\"].to(self.device)  # (8,)\\n        self.state_std = pre_stats[\\\"observation.state.std\\\"].to(self.device)    # (8,)\\n        self.action_mean = post_stats[\\\"action.mean\\\"].to(self.device)           # (7,)\\n        self.action_std = post_stats[\\\"action.std\\\"].to(self.device)             # (7,)\\n\\n        # Image resize target from config\\n        self.resize_wh = self.config.resize_imgs_with_padding  # [512, 512]\\n\\n    def _preprocess_image(self, img_np: np.ndarray) -> torch.Tensor:\\n        \\\"\\\"\\\"HWC uint8 numpy → (1, C, H, W) float tensor ready for SmolVLA.\\\"\\\"\\\"\\n        img = self._to_tensor(img_np)       # (C, H, W) float [0,1]\\n        img = img.flip(dims=[-2, -1])       # flip H and W (LIBERO convention)\\n        img = img.unsqueeze(0).to(self.device)\\n        if self.resize_wh is not None:\\n            img = resize_with_pad(img, *self.resize_wh, pad_value=0)\\n        img = img * 2.0 - 1.0               # [0,1] → [-1,1] for SigLIP\\n        return img\\n\\n    def _normalize_state(self, state_raw: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD normalize state. state_raw: (..., D) where D <= len(state_mean).\\\"\\\"\\\"\\n        D = state_raw.shape[-1]\\n        mean = self.state_mean[:D]\\n        std = self.state_std[:D]\\n        return (state_raw - mean) / (std + NORM_EPS)\\n\\n    def _unnormalize_action(self, action_norm: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"MEAN_STD unnormalize action. action_norm: (..., 7).\\\"\\\"\\\"\\n        return action_norm * self.action_std + self.action_mean\\n\\n    @torch.no_grad()\\n    def preprocess_obs(self, agentview_rgb: np.ndarray,\\n                       task_name: str,\\n                       robot_state: np.ndarray,\\n                       eye_in_hand_rgb: np.ndarray | None = None):\\n        \\\"\\\"\\\"\\n        Convert raw LIBERO observation into SmolVLA-ready tensors.\\n\\n        Args:\\n            agentview_rgb: (H, W, 3) uint8\\n            task_name: task description string\\n            robot_state: (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\\n            eye_in_hand_rgb: optional (H, W, 3) uint8\\n        Returns:\\n            images: list of (1, C, H, W) float tensors\\n            img_masks: list of (1,) bool tensors\\n            lang_tokens: (1, L) long tensor\\n            lang_masks: (1, L) bool tensor\\n            state: (1, max_state_dim) float tensor (normalized + padded)\\n        \\\"\\\"\\\"\\n        dev = self.device\\n\\n        imgs = [self._preprocess_image(agentview_rgb)]\\n        img_masks = [torch.ones(1, dtype=torch.bool, device=dev)]\\n        if eye_in_hand_rgb is not None:\\n            imgs.append(self._preprocess_image(eye_in_hand_rgb))\\n            img_masks.append(torch.ones(1, dtype=torch.bool, device=dev))\\n\\n        # lerobot SmolVLANewLineProcessor: append \\\\n to task string\\n        task_text = task_name if task_name.endswith(\\\"\\\\n\\\") else f\\\"{task_name}\\\\n\\\"\\n        tokens = self.tokenizer(\\n            task_text,\\n            return_tensors=\\\"pt\\\",\\n            padding=\\\"max_length\\\",\\n            max_length=self.config.tokenizer_max_length,\\n            truncation=True,\\n        )\\n        lang_tokens = tokens[\\\"input_ids\\\"].to(dev)\\n        lang_masks = tokens[\\\"attention_mask\\\"].to(dev).bool()\\n\\n        state_t = torch.tensor(robot_state, dtype=torch.float32, device=dev)\\n        state_t = self._normalize_state(state_t)\\n        state = torch.zeros(1, self.config.max_state_dim, device=dev, dtype=torch.float32)\\n        state[0, :state_t.shape[0]] = state_t\\n\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\n\\n    @torch.no_grad()\\n    def preprocess_obs_batch(self, batch_obs):\\n        dev = self.device\\n        B = len(batch_obs)\\n\\n        agentview_tensors = torch.cat(\\n            [self._preprocess_image(s[\\\"agentview_rgb\\\"]) for s in batch_obs], dim=0\\n        )\\n        imgs = [agentview_tensors]\\n        img_masks = [torch.ones(B, dtype=torch.bool, device=dev)]\\n\\n        if batch_obs[0].get(\\\"eye_in_hand_rgb\\\") is not None:\\n            eih_tensors = torch.cat(\\n                [self._preprocess_image(s[\\\"eye_in_hand_rgb\\\"]) for s in batch_obs], dim=0\\n            )\\n            imgs.append(eih_tensors)\\n            img_masks.append(torch.ones(B, dtype=torch.bool, device=dev))\\n\\n        task_names = [s[\\\"task_name\\\"] if s[\\\"task_name\\\"].endswith(\\\"\\\\n\\\") else f\\\"{s['task_name']}\\\\n\\\"\\n                     for s in batch_obs]\\n        tokens = self.tokenizer(\\n            task_names,\\n            return_tensors=\\\"pt\\\",\\n            padding=\\\"max_length\\\",\\n            max_length=self.config.tokenizer_max_length,\\n            truncation=True,\\n        )\\n        lang_tokens = tokens[\\\"input_ids\\\"].to(dev)\\n        lang_masks = tokens[\\\"attention_mask\\\"].to(dev).bool()\\n\\n        state = torch.zeros(B, self.config.max_state_dim, device=dev, dtype=torch.float32)\\n        for i, s in enumerate(batch_obs):\\n            es = torch.tensor(s[\\\"ee_states\\\"], dtype=torch.float32, device=dev)\\n            es = self._normalize_state(es)\\n            state[i, :es.shape[0]] = es\\n\\n        return imgs, img_masks, lang_tokens, lang_masks, state\\n\\n    @torch.no_grad()\\n    def encode_prefix(self, images, img_masks, lang_tokens, lang_masks, state):\\n        \\\"\\\"\\\"\\n        Encode observation prefix through VLM, return obs_features and KV cache.\\n\\n        Returns:\\n            obs_features: (B, 960)\\n            past_key_values: KV cache for denoising\\n            prefix_pad_masks: (B, seq_len) for denoising attention\\n        \\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LkNpiWjWnL23udAZFFgWsQ`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "grep -n \"precompute_single\\|precompute_step\\|obs_features_and_samples_batch\\|ee_states\\|joint_states\\|gripper\" /root/acr-vla-conformal-refinement/src/train_crm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "b1478779-123c-4148-9e3a-c161e015d643",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jp5t6bzD7Q1ywLpaPjJje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 49476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T07:39:58.979Z_
+
+<details><summary>↩ Tool result · `toolu_01LkNpiWjWnL23udAZFFgWsQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "116d7ced-84d6-42bb-bb04-fc869c184f5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also check whether gripper_qpos is available in the HDF5 data. The `load_libero_demos` function reads `obs/ee_states` (which is 6D: eef_pos(3) + eef_axisangle(3)) and `obs/joint_states` (which is 7D). The runtime `get_robot_state` function in evaluate.py constructs 8D state from eef_pos(3) + eef_axisangle(3) + gripper_qpos(2). But in `build_training_samples`, `ee_states` is only 6D.
+
+
+During training, `preprocess_obs_batch` in smolvla_wrapper.py reads the 6D `ee_states` directly as state and passes it to the normalizer, while the normalizer stats are computed for 8D and handle variable-length inputs by slicing. This creates a mismatch: training uses 6D ee_states but evaluation uses 8D with gripper_qpos included.
+
+To fix this, I need to trace where the data comes from — the HDF5 file in `load_libero_demos` provides 6D `ee_states`, but I should check what other fields are available (like `joint_states`) to see if I can extract the gripper position and augment the state to 8D during preprocessing. I need to check what keys are actually available in the LIBERO HDF5 files. Looking at the evaluate.py code, I can see how the runtime environment structures observations with `robot0_eef_pos`, `robot0_eef_quat`, and `robot0_gripper_qpos`, but the HDF5 data might use different key names. The standard LIBERO HDF5 structure likely stores these observations differently than the runtime format, so I need to verify what's actually in the saved demonstrations.
+
+The fix involves reading the gripper positions from HDF5 if they're stored separately, then concatenating them with the end-effector states to create the full 8D state representation that the wrapper expects. I should also check how `preprocess_obs_batch` currently handles the state tensor...
+
+Still examining the wrapper code...
+
+Since the wrapper's normalization function already adapts to whatever state dimension is provided, I just need to ensure the training samples are built with the full 8D state from the start. For the action selection issue, I'm looking at how `compute_features` generates the mean action that gets used as the base for the policy output.
+
+The alternative approach would be to select the sample closest to the mean rather than using the mean itself, which aligns better with how ReconVLA handles action refinement. This would require modifying either the feature computation or the action selection logic to pick the argmin sample based on Euclidean distance instead of averaging across samples.
+
+For the confidence radius calculation, I'm looking at how the quantile index is computed based on alpha and K—with the default alpha=0.1, this becomes quite permissive and essentially selects near the maximum value, whereas higher alpha values like 0.5 would be more conservative and select from the middle of the distribution.
+
+For the CRM forward pass fix, I need to add L2 norm clipping to the delta corrections to prevent them from becoming too large. I should also check the LIBERO HDF5 fields to see if gripper_qpos is already available, then prepare the complete diff plan.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "804ba81c-451b-4c9a-8f0c-21bc60a40cd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qJg63YNEKbRqMim7rZJSD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3539,
+      "cache_read_input_tokens": 50073,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3539
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+所有代码已读取完毕。现在生成改动方案文档。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "fa7abda1-5893-49a1-a4bc-7e120928b8a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qJg63YNEKbRqMim7rZJSD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3539,
+      "cache_read_input_tokens": 50073,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3539
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01NJkM7nEjxVZ4bbUUMRqVQF`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/fix_plan_code_sketch.md",
+  "content": "# CRM Bug Fix Code Sketch\n\n> 预审查草案，待 Director 批准后执行。基于 2026-05-14 代码快照。\n\n---\n\n## Fix C1: 6D → 8D state in precompute\n\n**问题**: `build_training_samples` 提取 `ee_states` 为 6D (eef_pos + eef_axisangle)，缺少 gripper_qpos。\n评估时 `get_robot_state()` 构造 8D (含 gripper_qpos)，传入 SmolVLA 的 state normalizer 时维度不一致。\n`preprocess_obs_batch` 直接读 `s[\"ee_states\"]`，训练时只送 6D，评估时送 8D → obs_features 编码不一致。\n\n**影响范围**: `src/utils.py` (load_libero_demos + build_training_samples), `src/smolvla_wrapper.py` (preprocess_obs_batch 无需改，自动适配 D)\n\n### 文件: src/utils.py — load_libero_demos\n\n```python\n# ── BEFORE ──\n                traj = {\n                    \"agentview_rgb\": np.array(demo[\"obs/agentview_rgb\"]),\n                    \"eye_in_hand_rgb\": np.array(demo[\"obs/eye_in_hand_rgb\"]),\n                    \"joint_states\": np.array(demo[\"obs/joint_states\"]),\n                    \"ee_states\": np.array(demo[\"obs/ee_states\"]),\n                    \"actions\": np.array(demo[\"actions\"]),\n                    \"task_name\": task_name,\n                }\n\n# ── AFTER ──\n                ee_pos_axisangle = np.array(demo[\"obs/ee_states\"])      # (T, 6)\n                gripper_qpos = np.array(demo[\"obs/gripper_qpos\"])       # (T, 2)\n                traj = {\n                    \"agentview_rgb\": np.array(demo[\"obs/agentview_rgb\"]),\n                    \"eye_in_hand_rgb\": np.array(demo[\"obs/eye_in_hand_rgb\"]),\n                    \"joint_states\": np.array(demo[\"obs/joint_states\"]),\n                    \"ee_states\": np.concatenate([ee_pos_axisangle, gripper_qpos], axis=-1),  # (T, 8)\n                    \"actions\": np.array(demo[\"actions\"]),\n                    \"task_name\": task_name,\n                }\n```\n\n### 文件: src/utils.py — docstrings 和 build_training_samples\n\n```python\n# ── BEFORE (load_libero_demos docstring) ──\n            - \"ee_states\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\n\n# ── AFTER ──\n            - \"ee_states\": (T, 8) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\n```\n\n```python\n# ── BEFORE (build_training_samples docstring) ──\n            - \"ee_states\": (6,) float — eef_pos(3) + eef_axisangle(3)\n\n# ── AFTER ──\n            - \"ee_states\": (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\n```\n\n**验证**: precompute 后检查 cache 中 state 维度是否为 8。`smolvla_wrapper.preprocess_obs_batch` 的 `_normalize_state` 对 D<=8 均正常工作，无需改动。\n\n**注意**: 此改动需要**重新运行 precompute**（Phase 1）以重新缓存 obs_features。旧 cache 用 6D state 编码，与修复后不兼容。\n\n---\n\n## Fix W2: mean → argmin-selected as base action\n\n**问题**: `select_action_crm` 用 `K_samples.mean(dim=0)` 作为 CRM 的 base action (ma)。\nMean 在多模态分布下可能落在低密度区域（\"averaging over modes\"）。\nReconVLA 风格：用 argmin(Euclidean distance to mean) 选最近的真实 sample 作为 base。\n\n**影响范围**: `src/evaluate.py` (select_action_crm), `src/cgs.py` (compute_features)\n\n### 方案 A（推荐）: 改 CGS，返回 argmin-selected base\n\n```python\n# ── 文件: src/cgs.py — compute_features ──\n\n# ── BEFORE ──\n        mean_action = samples.mean(dim=0)  # (H, D)\n        # ... (loop over horizon) ...\n        return uncertainty_features, mean_action.flatten()\n\n# ── AFTER ──\n        mean_action = samples.mean(dim=0)  # (H, D) — still used for uncertainty computation\n\n        # argmin-selected base: pick sample closest to mean (Euclidean)\n        flat_samples = samples.reshape(self.K, -1)      # (K, H*D)\n        flat_mean = mean_action.reshape(1, -1)           # (1, H*D)\n        dists = torch.norm(flat_samples - flat_mean, p=2, dim=1)  # (K,)\n        best_idx = dists.argmin()\n        base_action = samples[best_idx]                  # (H, D)\n\n        # ... (loop uses mean_action for conformal radius center — unchanged) ...\n\n        return uncertainty_features, base_action.flatten()\n```\n\n**关键**: `_conformal_radius` 中 `mean` 参数仍用 `mean_action[h]` 作为参考中心，不改。只是 CRM 的输入 base 从 mean 换成 argmin-selected sample。\n\n### 方案 B（保守）: 只改 evaluate.py，CGS 不动\n\n```python\n# ── 文件: src/evaluate.py — select_action_crm ──\n\n# ── BEFORE ──\n    uf, ma = cgs.compute_features(k_pose)\n    uf = uf.unsqueeze(0).to(device)\n    # ...\n    ma = ma.unsqueeze(0).to(device)\n\n# ── AFTER ──\n    uf, _ma_mean = cgs.compute_features(k_pose)\n    # argmin-select: pick the sample closest to mean\n    flat_samples = k_pose.reshape(K, -1)\n    flat_mean = _ma_mean.unsqueeze(0)\n    dists = torch.norm(flat_samples - flat_mean, p=2, dim=1)\n    best_idx = dists.argmin()\n    ma = k_pose[best_idx].flatten().unsqueeze(0).to(device)\n    uf = uf.unsqueeze(0).to(device)\n```\n\n**推荐方案 A**：在 CGS 内部改，保持训练和评估一致。方案 B 只改评估路径，训练仍用 mean 作为 target → train/eval mismatch。\n\n**注意**: 选方案 A 后需要**重新训练 CRM**，因为训练时 CGS 返回的 base action 也变了。\n\n---\n\n## Fix W3: alpha 调整避免 quantile 退化\n\n**问题**: CGS 默认 `alpha=0.1`，在 `_conformal_radius` 中：\n```\nq_idx = ceil((1 - 0.1) * (10 + 1)) - 1 = ceil(9.9) - 1 = 9\n```\nK=10 时 index=9 即最大值 → conformal radius 退化为 max(mahalanobis distances)，失去区分力。\n\n**各 alpha 值分析**:\n\n| alpha | q_idx = ceil((1-α)*(K+1))-1 | 含义 | 评价 |\n|-------|------------------------------|------|------|\n| 0.10  | ceil(9.9)-1 = 9              | 最大值 (10th/10) | 退化，无区分力 |\n| 0.20  | ceil(8.8)-1 = 8              | 9th/10 | 仍偏高 |\n| 0.30  | ceil(7.7)-1 = 7              | 8th/10 | 适度保守 |\n| 0.40  | ceil(6.6)-1 = 6              | 7th/10 | 中偏保守 |\n| 0.50  | ceil(5.5)-1 = 5              | 6th/10 (中位数上方) | 平衡 |\n\n**推荐**: `alpha=0.3` — 在 K=10 下取第 8 大值，既保留了保守性（conformal guarantee 方向正确），又避免退化到极值。\n\n### 文件: src/cgs.py — __init__\n\n```python\n# ── BEFORE ──\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\n                 alpha: float = 0.1, chunk_size: int = 50):\n\n# ── AFTER ──\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\n                 alpha: float = 0.3, chunk_size: int = 50):\n```\n\n### 文件: src/evaluate.py — CGS 构造处（如果显式传参需同步）\n\n```python\n# ── BEFORE (evaluate 函数中) ──\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\n\n# ── AFTER ──\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM,\n                                        alpha=0.3)\n```\n\n**验证**: 打印修复前后 conformal_radius 特征的 min/max/mean 分布，确认不再退化到常数。\n\n---\n\n## Fix W4: correction magnitude clipping\n\n**问题**: CRM forward `return mean_action + delta` 无任何约束。如果模型对 OOD 输入产生过大的 delta，会导致灾难性的动作偏移。\n\n**max_norm 推荐值分析**:\n\nLIBERO actions 的 6D pose 部分（位移 + 旋转）典型值范围：\n- eef position delta: 通常 ±0.02 per step, 极端 ±0.05\n- eef rotation delta: 通常 ±0.05 rad, 极端 ±0.15\n\n5-step horizon 展平为 30D 向量时，合理的 correction L2 norm:\n- 正常修正: ||delta|| ≈ 0.05–0.15 (每步位移修正 ~0.01, sqrt(30)*0.01 ≈ 0.055)\n- 上界: ||delta|| ≈ 0.5 (每步修正 ~0.1)\n\n**推荐 `max_norm=0.5`** — 足够宽松不干扰正常修正，但能阻止灾难性偏移。\n\n### 文件: src/crm.py — forward\n\n```python\n# ── BEFORE ──\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\n                obs_features: torch.Tensor) -> torch.Tensor:\n        if uncertainty_features is not None:\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\n        else:\n            x = torch.cat([mean_action, obs_features], dim=-1)\n        delta = self.net(x)\n        return mean_action + delta\n\n# ── AFTER ──\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\n                obs_features: torch.Tensor, max_delta_norm: float = 0.5) -> torch.Tensor:\n        if uncertainty_features is not None:\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\n        else:\n            x = torch.cat([mean_action, obs_features], dim=-1)\n        delta = self.net(x)\n        # Clip correction magnitude\n        delta_norm = delta.norm(dim=-1, keepdim=True).clamp(min=1e-8)\n        delta = delta * (delta_norm.clamp(max=max_delta_norm) / delta_norm)\n        return mean_action + delta\n```\n\n### 文件: src/crm.py — __init__ (添加 max_delta_norm 属性，可选)\n\n```python\n# ── BEFORE ──\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\n                 obs_dim: int = 960, hidden_dim: int = 256):\n\n# ── AFTER ──\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\n                 obs_dim: int = 960, hidden_dim: int = 256,\n                 max_delta_norm: float = 0.5):\n```\n\n并将 `max_delta_norm` 存为 `self.max_delta_norm`，forward 中用 `self.max_delta_norm` 代替参数。\n\n**注意**: clipping 在训练和推理时均生效。训练时 clipping 会影响梯度流（梯度在 clip 边界处被投影），但 CRM 的 last layer 初始化为零，训练初期 delta 很小不会触发 clip。\n\n---\n\n## 执行顺序\n\n1. **Fix C1** → 重新 precompute（~2-3h，GPU 密集）\n2. **Fix W3** (alpha) + **Fix W2** (argmin base) → 同时改，因为都在 CGS 内\n3. **Fix W4** (clipping) → 改 CRM forward\n4. **重新训练 CRM**（C1 改了 obs_features，W2 改了 base action，都需要新训练）\n5. 评估验证\n\n## 风险评估\n\n| Fix | 风险 | 备注 |\n|-----|------|------|\n| C1  | 中 — 需确认 HDF5 中有 `obs/gripper_qpos` 字段 | 若无则需从 `joint_states[-2:]` 提取 |\n| W2  | 低 — argmin 是 deterministic 操作 | 训练/评估一致性需确认 |\n| W3  | 低 — 只改默认参数 | 可通过实验扫描 alpha∈{0.2,0.3,0.4,0.5} |\n| W4  | 中 — clipping 影响梯度 | 训练收敛需观察，max_norm 可能需调优 |\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "db81beaf-addf-47a7-a266-552ded16fb87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qJg63YNEKbRqMim7rZJSD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3539,
+      "cache_read_input_tokens": 50073,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3539
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T07:41:41.416Z_
+
+<details><summary>↩ Tool result · `toolu_01NJkM7nEjxVZ4bbUUMRqVQF`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/fix_plan_code_sketch.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "de865a74-a3dd-4254-b1a4-70bfc4155e57",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/fix_plan_code_sketch.md",
+    "content": "# CRM Bug Fix Code Sketch\n\n> 预审查草案，待 Director 批准后执行。基于 2026-05-14 代码快照。\n\n---\n\n## Fix C1: 6D → 8D state in precompute\n\n**问题**: `build_training_samples` 提取 `ee_states` 为 6D (eef_pos + eef_axisangle)，缺少 gripper_qpos。\n评估时 `get_robot_state()` 构造 8D (含 gripper_qpos)，传入 SmolVLA 的 state normalizer 时维度不一致。\n`preprocess_obs_batch` 直接读 `s[\"ee_states\"]`，训练时只送 6D，评估时送 8D → obs_features 编码不一致。\n\n**影响范围**: `src/utils.py` (load_libero_demos + build_training_samples), `src/smolvla_wrapper.py` (preprocess_obs_batch 无需改，自动适配 D)\n\n### 文件: src/utils.py — load_libero_demos\n\n```python\n# ── BEFORE ──\n                traj = {\n                    \"agentview_rgb\": np.array(demo[\"obs/agentview_rgb\"]),\n                    \"eye_in_hand_rgb\": np.array(demo[\"obs/eye_in_hand_rgb\"]),\n                    \"joint_states\": np.array(demo[\"obs/joint_states\"]),\n                    \"ee_states\": np.array(demo[\"obs/ee_states\"]),\n                    \"actions\": np.array(demo[\"actions\"]),\n                    \"task_name\": task_name,\n                }\n\n# ── AFTER ──\n                ee_pos_axisangle = np.array(demo[\"obs/ee_states\"])      # (T, 6)\n                gripper_qpos = np.array(demo[\"obs/gripper_qpos\"])       # (T, 2)\n                traj = {\n                    \"agentview_rgb\": np.array(demo[\"obs/agentview_rgb\"]),\n                    \"eye_in_hand_rgb\": np.array(demo[\"obs/eye_in_hand_rgb\"]),\n                    \"joint_states\": np.array(demo[\"obs/joint_states\"]),\n                    \"ee_states\": np.concatenate([ee_pos_axisangle, gripper_qpos], axis=-1),  # (T, 8)\n                    \"actions\": np.array(demo[\"actions\"]),\n                    \"task_name\": task_name,\n                }\n```\n\n### 文件: src/utils.py — docstrings 和 build_training_samples\n\n```python\n# ── BEFORE (load_libero_demos docstring) ──\n            - \"ee_states\": (T, 6) float — eef_pos(3) + eef_axisangle(3)\n\n# ── AFTER ──\n            - \"ee_states\": (T, 8) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\n```\n\n```python\n# ── BEFORE (build_training_samples docstring) ──\n            - \"ee_states\": (6,) float — eef_pos(3) + eef_axisangle(3)\n\n# ── AFTER ──\n            - \"ee_states\": (8,) float — eef_pos(3) + eef_axisangle(3) + gripper_qpos(2)\n```\n\n**验证**: precompute 后检查 cache 中 state 维度是否为 8。`smolvla_wrapper.preprocess_obs_batch` 的 `_normalize_state` 对 D<=8 均正常工作，无需改动。\n\n**注意**: 此改动需要**重新运行 precompute**（Phase 1）以重新缓存 obs_features。旧 cache 用 6D state 编码，与修复后不兼容。\n\n---\n\n## Fix W2: mean → argmin-selected as base action\n\n**问题**: `select_action_crm` 用 `K_samples.mean(dim=0)` 作为 CRM 的 base action (ma)。\nMean 在多模态分布下可能落在低密度区域（\"averaging over modes\"）。\nReconVLA 风格：用 argmin(Euclidean distance to mean) 选最近的真实 sample 作为 base。\n\n**影响范围**: `src/evaluate.py` (select_action_crm), `src/cgs.py` (compute_features)\n\n### 方案 A（推荐）: 改 CGS，返回 argmin-selected base\n\n```python\n# ── 文件: src/cgs.py — compute_features ──\n\n# ── BEFORE ──\n        mean_action = samples.mean(dim=0)  # (H, D)\n        # ... (loop over horizon) ...\n        return uncertainty_features, mean_action.flatten()\n\n# ── AFTER ──\n        mean_action = samples.mean(dim=0)  # (H, D) — still used for uncertainty computation\n\n        # argmin-selected base: pick sample closest to mean (Euclidean)\n        flat_samples = samples.reshape(self.K, -1)      # (K, H*D)\n        flat_mean = mean_action.reshape(1, -1)           # (1, H*D)\n        dists = torch.norm(flat_samples - flat_mean, p=2, dim=1)  # (K,)\n        best_idx = dists.argmin()\n        base_action = samples[best_idx]                  # (H, D)\n\n        # ... (loop uses mean_action for conformal radius center — unchanged) ...\n\n        return uncertainty_features, base_action.flatten()\n```\n\n**关键**: `_conformal_radius` 中 `mean` 参数仍用 `mean_action[h]` 作为参考中心，不改。只是 CRM 的输入 base 从 mean 换成 argmin-selected sample。\n\n### 方案 B（保守）: 只改 evaluate.py，CGS 不动\n\n```python\n# ── 文件: src/evaluate.py — select_action_crm ──\n\n# ── BEFORE ──\n    uf, ma = cgs.compute_features(k_pose)\n    uf = uf.unsqueeze(0).to(device)\n    # ...\n    ma = ma.unsqueeze(0).to(device)\n\n# ── AFTER ──\n    uf, _ma_mean = cgs.compute_features(k_pose)\n    # argmin-select: pick the sample closest to mean\n    flat_samples = k_pose.reshape(K, -1)\n    flat_mean = _ma_mean.unsqueeze(0)\n    dists = torch.norm(flat_samples - flat_mean, p=2, dim=1)\n    best_idx = dists.argmin()\n    ma = k_pose[best_idx].flatten().unsqueeze(0).to(device)\n    uf = uf.unsqueeze(0).to(device)\n```\n\n**推荐方案 A**：在 CGS 内部改，保持训练和评估一致。方案 B 只改评估路径，训练仍用 mean 作为 target → train/eval mismatch。\n\n**注意**: 选方案 A 后需要**重新训练 CRM**，因为训练时 CGS 返回的 base action 也变了。\n\n---\n\n## Fix W3: alpha 调整避免 quantile 退化\n\n**问题**: CGS 默认 `alpha=0.1`，在 `_conformal_radius` 中：\n```\nq_idx = ceil((1 - 0.1) * (10 + 1)) - 1 = ceil(9.9) - 1 = 9\n```\nK=10 时 index=9 即最大值 → conformal radius 退化为 max(mahalanobis distances)，失去区分力。\n\n**各 alpha 值分析**:\n\n| alpha | q_idx = ceil((1-α)*(K+1))-1 | 含义 | 评价 |\n|-------|------------------------------|------|------|\n| 0.10  | ceil(9.9)-1 = 9              | 最大值 (10th/10) | 退化，无区分力 |\n| 0.20  | ceil(8.8)-1 = 8              | 9th/10 | 仍偏高 |\n| 0.30  | ceil(7.7)-1 = 7              | 8th/10 | 适度保守 |\n| 0.40  | ceil(6.6)-1 = 6              | 7th/10 | 中偏保守 |\n| 0.50  | ceil(5.5)-1 = 5              | 6th/10 (中位数上方) | 平衡 |\n\n**推荐**: `alpha=0.3` — 在 K=10 下取第 8 大值，既保留了保守性（conformal guarantee 方向正确），又避免退化到极值。\n\n### 文件: src/cgs.py — __init__\n\n```python\n# ── BEFORE ──\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\n                 alpha: float = 0.1, chunk_size: int = 50):\n\n# ── AFTER ──\n    def __init__(self, K: int = 10, horizon: int = 5, action_dim: int = CORRECTION_DIM,\n                 alpha: float = 0.3, chunk_size: int = 50):\n```\n\n### 文件: src/evaluate.py — CGS 构造处（如果显式传参需同步）\n\n```python\n# ── BEFORE (evaluate 函数中) ──\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\n\n# ── AFTER ──\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM,\n                                        alpha=0.3)\n```\n\n**验证**: 打印修复前后 conformal_radius 特征的 min/max/mean 分布，确认不再退化到常数。\n\n---\n\n## Fix W4: correction magnitude clipping\n\n**问题**: CRM forward `return mean_action + delta` 无任何约束。如果模型对 OOD 输入产生过大的 delta，会导致灾难性的动作偏移。\n\n**max_norm 推荐值分析**:\n\nLIBERO actions 的 6D pose 部分（位移 + 旋转）典型值范围：\n- eef position delta: 通常 ±0.02 per step, 极端 ±0.05\n- eef rotation delta: 通常 ±0.05 rad, 极端 ±0.15\n\n5-step horizon 展平为 30D 向量时，合理的 correction L2 norm:\n- 正常修正: ||delta|| ≈ 0.05–0.15 (每步位移修正 ~0.01, sqrt(30)*0.01 ≈ 0.055)\n- 上界: ||delta|| ≈ 0.5 (每步修正 ~0.1)\n\n**推荐 `max_norm=0.5`** — 足够宽松不干扰正常修正，但能阻止灾难性偏移。\n\n### 文件: src/crm.py — forward\n\n```python\n# ── BEFORE ──\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\n                obs_features: torch.Tensor) -> torch.Tensor:\n        if uncertainty_features is not None:\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\n        else:\n            x = torch.cat([mean_action, obs_features], dim=-1)\n        delta = self.net(x)\n        return mean_action + delta\n\n# ── AFTER ──\n    def forward(self, mean_action: torch.Tensor, uncertainty_features: torch.Tensor,\n                obs_features: torch.Tensor, max_delta_norm: float = 0.5) -> torch.Tensor:\n        if uncertainty_features is not None:\n            x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\n        else:\n            x = torch.cat([mean_action, obs_features], dim=-1)\n        delta = self.net(x)\n        # Clip correction magnitude\n        delta_norm = delta.norm(dim=-1, keepdim=True).clamp(min=1e-8)\n        delta = delta * (delta_norm.clamp(max=max_delta_norm) / delta_norm)\n        return mean_action + delta\n```\n\n### 文件: src/crm.py — __init__ (添加 max_delta_norm 属性，可选)\n\n```python\n# ── BEFORE ──\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\n                 obs_dim: int = 960, hidden_dim: int = 256):\n\n# ── AFTER ──\n    def __init__(self, action_dim: int = 30, uncertainty_dim: int = 40,\n                 obs_dim: int = 960, hidden_dim: int = 256,\n                 max_delta_norm: float = 0.5):\n```\n\n并将 `max_delta_norm` 存为 `self.max_delta_norm`，forward 中用 `self.max_delta_norm` 代替参数。\n\n**注意**: clipping 在训练和推理时均生效。训练时 clipping 会影响梯度流（梯度在 clip 边界处被投影），但 CRM 的 last layer 初始化为零，训练初期 delta 很小不会触发 clip。\n\n---\n\n## 执行顺序\n\n1. **Fix C1** → 重新 precompute（~2-3h，GPU 密集）\n2. **Fix W3** (alpha) + **Fix W2** (argmin base) → 同时改，因为都在 CGS 内\n3. **Fix W4** (clipping) → 改 CRM forward\n4. **重新训练 CRM**（C1 改了 obs_features，W2 改了 base action，都需要新训练）\n5. 评估验证\n\n## 风险评估\n\n| Fix | 风险 | 备注 |\n|-----|------|------|\n| C1  | 中 — 需确认 HDF5 中有 `obs/gripper_qpos` 字段 | 若无则需从 `joint_states[-2:]` 提取 |\n| W2  | 低 — argmin 是 deterministic 操作 | 训练/评估一致性需确认 |\n| W3  | 低 — 只改默认参数 | 可通过实验扫描 alpha∈{0.2,0.3,0.4,0.5} |\n| W4  | 中 — clipping 影响梯度 | 训练收敛需观察，max_norm 可能需调优 |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_019dkevaRxBGpKzJibcgjddm`</summary>
+
+```json
+{
+  "name": "fix_plan_code_sketch",
+  "type": "report",
+  "description": "CRM bug audit 4项修复的代码改动方案草案 (C1 6D→8D state, W2 mean→argmin base, W3 alpha退化, W4 delta clipping)",
+  "project": "acr-vla-conformal-refinement",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/fix_plan_code_sketch.md",
+  "tags": [
+    "bugfix",
+    "code-sketch",
+    "crm",
+    "cgs"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "9e5625f3-7d2a-42e0-8826-9ec5f44bc731",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Rz54kvG4y8Dk95PNWEfyX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6144,
+      "cache_read_input_tokens": 53612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6144
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T07:41:47.019Z_
+
+<details><summary>↩ Tool result · `toolu_019dkevaRxBGpKzJibcgjddm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_1a5cbb\", \"name\": \"fix_plan_code_sketch\", \"type\": \"report\", \"description\": \"CRM bug audit 4项修复的代码改动方案草案 (C1 6D→8D state, W2 mean→argmin base, W3 alpha退化, W4 delta clipping)\", \"path\": \"projects/acr-vla-conformal-refinement/artifacts/_project/report/fix_plan_code_sketch.md\", \"url\": null, \"project\": \"acr-vla-conformal-refinement\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T07:41:46.981505+00:00\", \"tags\": [\"bugfix\", \"code-sketch\", \"crm\", \"cgs\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "0f162abb-2963-4841-a875-5cb33d605e8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_1a5cbb\\\", \\\"name\\\": \\\"fix_plan_code_sketch\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"CRM bug audit 4项修复的代码改动方案草案 (C1 6D→8D state, W2 mean→argmin base, W3 alpha退化, W4 delta clipping)\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/report/fix_plan_code_sketch.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T07:41:46.981505+00:00\\\", \\\"tags\\\": [\\\"bugfix\\\", \\\"code-sketch\\\", \\\"crm\\\", \\\"cgs\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_1a5cbb\", \"name\": \"fix_plan_code_sketch\", \"type\": \"report\", \"description\": \"CRM bug audit 4项修复的代码改动方案草案 (C1 6D→8D state, W2 mean→argmin base, W3 alpha退化, W4 delta clipping)\", \"path\": \"projects/acr-vla-conformal-refinement/artifacts/_project/report/fix_plan_code_sketch.md\", \"url\": null, \"project\": \"acr-vla-conformal-refinement\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T07:41:46.981505+00:00\", \"tags\": [\"bugfix\", \"code-sketch\", \"crm\", \"cgs\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+方案已写入 `artifacts/fix_plan_code_sketch.md` 并注册。
+
+核心内容：
+
+- **C1**: `load_libero_demos` 额外读 `obs/gripper_qpos`，拼接到 `ee_states` 使其从 6D→8D，消除 train/eval state 维度不一致。需重新 precompute。
+- **W2**: CGS `compute_features` 返回 argmin-selected sample 而非 mean 作为 CRM base action，避免多模态下 mean 落入低密度区域。推荐在 CGS 内部改（方案 A）保持训练/评估一致。
+- **W3**: alpha 从 0.1 → 0.3。当前 alpha=0.1+K=10 时 quantile index=9（最大值），conformal radius 退化。alpha=0.3 → index=7，适度保守。
+- **W4**: CRM forward 加 L2 norm clipping (`max_norm=0.5`) 防止灾难性修正。用 `delta * clamp(norm, max) / norm` 实现，训练推理均生效。
+
+执行顺序：C1(重新precompute) → W2+W3(CGS) → W4(CRM) → 重新训练 → 评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "uuid": "8e5a911d-d3dc-4156-a73f-da488b1ef2b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jLeKmS9hxxktZWtCVaMAb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 595,
+      "cache_read_input_tokens": 59756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 595
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 68_
+
+方案已写入 `artifacts/fix_plan_code_sketch.md` 并注册。
+
+核心内容：
+
+- **C1**: `load_libero_demos` 额外读 `obs/gripper_qpos`，拼接到 `ee_states` 使其从 6D→8D，消除 train/eval state 维度不一致。需重新 precompute。
+- **W2**: CGS `compute_features` 返回 argmin-selected sample 而非 mean 作为 CRM base action，避免多模态下 mean 落入低密度区域。推荐在 CGS 内部改（方案 A）保持训练/评估一致。
+- **W3**: alpha 从 0.1 → 0.3。当前 alpha=0.1+K=10 时 quantile index=9（最大值），conformal radius 退化。alpha=0.3 → index=7，适度保守。
+- **W4**: CRM forward 加 L2 norm clipping (`max_norm=0.5`) 防止灾难性修正。用 `delta * clamp(norm, max) / norm` 实现，训练推理均生效。
+
+执行顺序：C1(重新precompute) → W2+W3(CGS) → W4(CRM) → 重新训练 → 评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 177952,
+  "duration_api_ms": 177276,
+  "num_turns": 26,
+  "stop_reason": "end_turn",
+  "session_id": "60c47e01-b975-47c6-ae48-c9c59aaaae29",
+  "total_cost_usd": 0.8221259999999999,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 48510,
+    "cache_read_input_tokens": 519757,
+    "output_tokens": 10302,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 48510,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 362,
+        "cache_read_input_tokens": 59756,
+        "cache_creation_input_tokens": 595,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 595
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1330,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 10302,
+      "cacheReadInputTokens": 519757,
+      "cacheCreationInputTokens": 48510,
+      "webSearchRequests": 0,
+      "costUSD": 0.8207009999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "22346982-9fc5-476d-8657-e16b62d0b3cf"
+}
+```
+
+</details>
+
+---

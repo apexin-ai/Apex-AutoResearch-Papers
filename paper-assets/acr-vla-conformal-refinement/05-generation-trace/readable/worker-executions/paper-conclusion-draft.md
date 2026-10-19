@@ -1,0 +1,1715 @@
+# paper conclusion draft
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_paper_conclusion-draft_20260517T011132.log`
+- **Structured JSON:** [`5aea2ba60c664db0e108.json`](../../sessions/5a/5aea2ba60c664db0e108.json)
+
+## Before a recorded user message
+
+30 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e6dfe457-44f5-40c1-8402-42e855e187fe",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778987400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "fb287695-b571-4bb5-bf8b-755fe615602c",
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to write a Conclusion section draft for their paper. Let me first read the relevant project files to understand the context better, then write the conclusion following the specified requirements.
+
+Let me check if there are existing artifacts or paper drafts to understand the narrative better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "ebb001c1-26e3-43b5-87f1-e7cc5f1df489",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTjm397SU24AsJ1fW5NKW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12690,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12690
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TbRxz8iMGjovoMkNJFryXu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "8f1a65f5-5530-4d4c-adb9-27edc0244c80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTjm397SU24AsJ1fW5NKW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12690,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12690
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T01:11:48.552Z_
+
+<details><summary>↩ Tool result · `toolu_01TbRxz8iMGjovoMkNJFryXu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "fce509a2-1b81-47e2-b84d-4f90acae24b5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Ck22n8NzYXvNfUsCN9EXM6`</summary>
+
+```json
+{
+  "pattern": "artifacts/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "2b7ca7a9-141a-4943-bbcb-d0b5a18e879f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaTjm397SU24AsJ1fW5NKW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12690,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12690
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T01:11:49.311Z_
+
+<details><summary>↩ Tool result · `toolu_01Ck22n8NzYXvNfUsCN9EXM6`</summary>
+
+```text
+artifacts/mvp-point-reaching/data/mvp_results.log
+artifacts/dream_reports/dream_20260513T015051/logs/phase1_attempt0.log
+artifacts/dream_reports/dream_20260513T015051/logs/phase2_best_attempt0.log
+artifacts/dream_reports/dream_20260513T015051/logs/phase2_median_attempt0.log
+artifacts/dream_reports/dream_20260513T015051/logs/phase2_worst_attempt0.log
+artifacts/dream_reports/dream_20260513T015051/best/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260513T015051/best/experiment_data.json
+artifacts/dream_reports/dream_20260513T015051/best/paper.tex
+artifacts/dream_reports/dream_20260513T015051/best/paper.aux
+artifacts/dream_reports/dream_20260513T015051/best/paper.out
+artifacts/dream_reports/dream_20260513T015051/best/paper.pdf
+artifacts/dream_reports/dream_20260513T015051/best/paper.log
+artifacts/dream_reports/dream_20260513T015051/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260513T015051/median/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260513T015051/median/experiment_data.json
+artifacts/dream_reports/dream_20260513T015051/median/paper.tex
+artifacts/dream_reports/dream_20260513T015051/median/paper.aux
+artifacts/dream_reports/dream_20260513T015051/median/paper.out
+artifacts/dream_reports/dream_20260513T015051/median/paper.pdf
+artifacts/dream_reports/dream_20260513T015051/median/paper.log
+artifacts/dream_reports/dream_20260513T015051/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260513T015051/worst/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260513T015051/worst/experiment_data.json
+artifacts/dream_reports/dream_20260513T015051/worst/paper.tex
+artifacts/dream_reports/dream_20260513T015051/worst/paper.aux
+artifacts/dream_reports/dream_20260513T015051/worst/paper.out
+artifacts/dream_reports/dream_20260513T015051/worst/paper.pdf
+artifacts/dream_reports/dream_20260513T015051/worst/paper.log
+artifacts/dream_reports/dream_20260513T015051/logs/paper_agent_worst.log
+artifacts/dream_reports/dream_20260513T015051/logs/orchestrator.log
+artifacts/dream_reports/dream_20260513T015051/best/review_report.md
+artifacts/dream_reports/dream_20260513T015051/logs/review_best.log
+artifacts/dream_reports/dream_20260513T015051/median/review_report.md
+artifacts/dream_reports/dream_20260513T015051/logs/review_median.log
+artifacts/dream_reports/dream_20260513T015051/logs/review_worst.log
+artifacts/dream_reports/dream_20260513T023849/logs/orchestrator.log
+artifacts/dream_reports/dream_20260513T023849/logs/phase1_attempt0.log
+artifacts/dream_reports/dream_20260513T023849/logs/phase2_best_attempt0.log
+artifacts/dream_reports/dream_20260513T023849/logs/phase2_median_attempt0.log
+artifacts/dream_reports/dream_20260513T023849/logs/phase2_worst_attempt0.log
+artifacts/dream_reports/dream_20260513T023849/best/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260513T023849/best/experiment_data.json
+artifacts/dream_reports/dream_20260513T023849/best/paper_framing.md
+artifacts/libero-smolvla-env-report.md
+artifacts/dream_reports/dream_20260513T023849/best/paper.tex
+artifacts/dream_reports/dream_20260513T023849/best/paper.aux
+artifacts/dream_reports/dream_20260513T023849/best/paper.out
+artifacts/dream_reports/dream_20260513T023849/best/paper.pdf
+artifacts/dream_reports/dream_20260513T023849/best/paper.log
+artifacts/dream_reports/dream_20260513T023849/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260513T023849/median/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260513T023849/median/experiment_data.json
+artifacts/dream_reports/dream_20260513T023849/median/paper_framing.md
+artifacts/dream_reports/dream_20260513T023849/median/paper.tex
+artifacts/dream_reports/dream_20260513T023849/median/paper.aux
+artifacts/dream_reports/dream_20260513T023849/median/paper.out
+artifacts/dream_reports/dream_20260513T023849/median/paper.pdf
+artifacts/dream_reports/dream_20260513T023849/median/paper.log
+artifacts/dream_reports/dream_20260513T023849/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260513T023849/worst/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260513T023849/worst/experiment_data.json
+artifacts/dream_reports/dream_20260513T023849/worst/paper_framing.md
+artifacts/dream_reports/dream_20260513T023849/worst/paper.tex
+artifacts/dream_reports/dream_20260513T023849/worst/paper.aux
+artifacts/dream_reports/dream_20260513T023849/worst/paper.out
+artifacts/dream_reports/dream_20260513T023849/worst/paper.pdf
+artifacts/dream_reports/dream_20260513T023849/worst/paper.log
+artifacts/dream_reports/dream_20260513T023849/logs/paper_agent_worst.log
+artifacts/dream_reports/dream_20260513T023849/best/review_context.yaml
+artifacts/dream_reports/dream_20260513T023849/best/review_report.md
+artifacts/dream_reports/dream_20260513T023849/logs/review_best.log
+artifacts/dream_reports/dream_20260513T023849/median/review_context.yaml
+artifacts/dream_reports/dream_20260513T023849/median/review_report.md
+artifacts/dream_reports/dream_20260513T023849/logs/review_median.log
+artifacts/dream_reports/dream_20260513T023849/worst/review_context.yaml
+artifacts/dream_reports/dream_20260513T023849/worst/review_report.md
+artifacts/dream_reports/dream_20260513T023849/logs/review_worst.log
+artifacts/dream_reports/dream_20260513T023849/meta.yaml
+artifacts/method_section_draft.tex
+artifacts/pipeline-dimension-verification.md
+artifacts/smolvla-libero-finetune-survey.md
+artifacts/smolvla_wrapper_fixed.py
+artifacts/lerobot-pipeline-alignment.md
+artifacts/_project/paper/references_e9d4d2.bib
+artifacts/_project/report/v4_deployment_report.md
+artifacts/eval-reconvla-spatial-v1-diag.md
+artifacts/_project/report/claim-strength-analysis.md
+artifacts/_project/paper/method_section_draft.tex
+artifacts/precompute-k5-analysis.md
+artifacts/precompute-k5/report/precompute-k5-analysis.md
+artifacts/reconvla-comparison-report.md
+artifacts/_project/report/next_batch_plan.md
+artifacts/diag-eval-v6-batch-failure.md
+artifacts/_project/report/object_eval_commands.md
+artifacts/object_eval_commands.md
+artifacts/_project/report/competitor_analysis.md
+artifacts/competitor_analysis.md
+artifacts/_project/report/spatial_comparison_template.md
+artifacts/spatial_comparison_template.md
+artifacts/_project/report/correction_degradation_literature.md
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "4e3a905a-31cc-4fb5-af1d-26851a9c11a4",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/mvp-point-reaching/data/mvp_results.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/phase1_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/phase2_best_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/phase2_median_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/phase2_worst_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T015051/best/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260513T015051/best/experiment_data.json",
+      "artifacts/dream_reports/dream_20260513T015051/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T015051/best/paper.aux",
+      "artifacts/dream_reports/dream_20260513T015051/best/paper.out",
+      "artifacts/dream_reports/dream_20260513T015051/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T015051/best/paper.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260513T015051/median/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260513T015051/median/experiment_data.json",
+      "artifacts/dream_reports/dream_20260513T015051/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T015051/median/paper.aux",
+      "artifacts/dream_reports/dream_20260513T015051/median/paper.out",
+      "artifacts/dream_reports/dream_20260513T015051/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T015051/median/paper.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260513T015051/worst/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260513T015051/worst/experiment_data.json",
+      "artifacts/dream_reports/dream_20260513T015051/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260513T015051/worst/paper.aux",
+      "artifacts/dream_reports/dream_20260513T015051/worst/paper.out",
+      "artifacts/dream_reports/dream_20260513T015051/worst/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T015051/worst/paper.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/paper_agent_worst.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/orchestrator.log",
+      "artifacts/dream_reports/dream_20260513T015051/best/review_report.md",
+      "artifacts/dream_reports/dream_20260513T015051/logs/review_best.log",
+      "artifacts/dream_reports/dream_20260513T015051/median/review_report.md",
+      "artifacts/dream_reports/dream_20260513T015051/logs/review_median.log",
+      "artifacts/dream_reports/dream_20260513T015051/logs/review_worst.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/orchestrator.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/phase1_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/phase2_best_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/phase2_median_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/phase2_worst_attempt0.log",
+      "artifacts/dream_reports/dream_20260513T023849/best/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260513T023849/best/experiment_data.json",
+      "artifacts/dream_reports/dream_20260513T023849/best/paper_framing.md",
+      "artifacts/libero-smolvla-env-report.md",
+      "artifacts/dream_reports/dream_20260513T023849/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T023849/best/paper.aux",
+      "artifacts/dream_reports/dream_20260513T023849/best/paper.out",
+      "artifacts/dream_reports/dream_20260513T023849/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T023849/best/paper.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260513T023849/median/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260513T023849/median/experiment_data.json",
+      "artifacts/dream_reports/dream_20260513T023849/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T023849/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T023849/median/paper.aux",
+      "artifacts/dream_reports/dream_20260513T023849/median/paper.out",
+      "artifacts/dream_reports/dream_20260513T023849/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T023849/median/paper.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260513T023849/worst/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260513T023849/worst/experiment_data.json",
+      "artifacts/dream_reports/dream_20260513T023849/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260513T023849/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260513T023849/worst/paper.aux",
+      "artifacts/dream_reports/dream_20260513T023849/worst/paper.out",
+      "artifacts/dream_reports/dream_20260513T023849/worst/paper.pdf",
+      "artifacts/dream_reports/dream_20260513T023849/worst/paper.log",
+      "artifacts/dream_reports/dream_20260513T023849/logs/paper_agent_worst.log",
+      "artifacts/dream_reports/dream_20260513T023849/best/review_context.yaml",
+      "artifacts/dream_reports/dream_20260513T023849/best/review_report.md",
+      "artifacts/dream_reports/dream_20260513T023849/logs/review_best.log",
+      "artifacts/dream_reports/dream_20260513T023849/median/review_context.yaml",
+      "artifacts/dream_reports/dream_20260513T023849/median/review_report.md",
+      "artifacts/dream_reports/dream_20260513T023849/logs/review_median.log",
+      "artifacts/dream_reports/dream_20260513T023849/worst/review_context.yaml",
+      "artifacts/dream_reports/dream_20260513T023849/worst/review_report.md",
+      "artifacts/dream_reports/dream_20260513T023849/logs/review_worst.log",
+      "artifacts/dream_reports/dream_20260513T023849/meta.yaml",
+      "artifacts/method_section_draft.tex",
+      "artifacts/pipeline-dimension-verification.md",
+      "artifacts/smolvla-libero-finetune-survey.md",
+      "artifacts/smolvla_wrapper_fixed.py",
+      "artifacts/lerobot-pipeline-alignment.md",
+      "artifacts/_project/paper/references_e9d4d2.bib",
+      "artifacts/_project/report/v4_deployment_report.md",
+      "artifacts/eval-reconvla-spatial-v1-diag.md",
+      "artifacts/_project/report/claim-strength-analysis.md",
+      "artifacts/_project/paper/method_section_draft.tex",
+      "artifacts/precompute-k5-analysis.md",
+      "artifacts/precompute-k5/report/precompute-k5-analysis.md",
+      "artifacts/reconvla-comparison-report.md",
+      "artifacts/_project/report/next_batch_plan.md",
+      "artifacts/diag-eval-v6-batch-failure.md",
+      "artifacts/_project/report/object_eval_commands.md",
+      "artifacts/object_eval_commands.md",
+      "artifacts/_project/report/competitor_analysis.md",
+      "artifacts/competitor_analysis.md",
+      "artifacts/_project/report/spatial_comparison_template.md",
+      "artifacts/spatial_comparison_template.md",
+      "artifacts/_project/report/correction_degradation_literature.md"
+    ],
+    "durationMs": 17,
+    "numFiles": 100,
+    "truncated": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the paper framing and any existing paper sections to understand the narrative better before writing the conclusion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "5608f48f-f8b7-4eed-8bfb-e924bd9a0d67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqQboFE9Vx7VqM2DNqeZSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2977,
+      "cache_read_input_tokens": 24531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2977
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01VJRKhC7u6pBvA4iVVrT58j`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "paper_framing.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "5a951633-f16f-489c-9cda-d35d5bbd1bb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqQboFE9Vx7VqM2DNqeZSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2977,
+      "cache_read_input_tokens": 24531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2977
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T01:11:54.637Z_
+
+<details><summary>↩ Tool result · `toolu_01VJRKhC7u6pBvA4iVVrT58j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\", \"content\": \"# Paper Framing — acr-vla-conformal-refinement\\n\\n## Target Venue\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2)\\n- Narrative B (mechanism insight) confirmed as default framing\\n\\n## Core Insight (Narrative B — ACTIVE)\\nMagnitude control is the critical, previously unrecognized factor determining whether learned inference-time corrections help or catastrophically fail on frozen VLA policies. Observation-conditioned corrections remain robust across the full magnitude range, while per-DOF conformal features cause progressive collapse as correction magnitude increases. The sample-then-correct pipeline itself (conformal selection + bounded CRM) is the methodological contribution; the conditioning-magnitude interaction is the scientific contribution.\\n\\n## Headline Metric\\nobs_only: stable 16-19% across all norms (mean approximately 17%, 4 seeds at best coverage norm) vs perdof: progressive collapse from 14% (norm 0.03) to 0% (uncapped). Argmin baseline: 14% (3 seeds). VLA-only: 10-12% (4 seeds).\\n\\n## Core Claims (Narrative B — 3 claims)\\n\\n1. **Sample-then-correct pipeline for inference-time VLA improvement**\\n   - Two-stage: conformal selection (K=10 argmin) + bounded residual correction (CRM, approximately 330K params)\\n   - Consistent non-degradation with task-dependent improvement over frozen VLA baseline\\n   - obs_only CRM mean approximately 17% vs VLA-only 10-12% vs argmin 14%\\n   - Evidence: Table 1 (pooled results), Section 3 (method)\\n\\n2. **Conditioning-magnitude interaction as a previously unidentified failure mode**\\n   - Same CRM architecture succeeds or fails depending solely on conditioning feature x magnitude interaction\\n   - obs_only: stable approximately 17% across norms 0.03 to 1.42 (including uncapped)\\n   - perdof: progressive collapse 14% → 10% → 4% → 0% as norm increases\\n   - Bounded magnitude control is necessary for safe inference-time VLA correction\\n   - Evidence: Figure 2 (magnitude curves), Table 2 (cross-magnitude), Section 4.2-4.3\\n\\n3. **Honest negative result: per-DOF conformal features do not generalize as correction signals**\\n   - Despite theoretical appeal as calibrated per-dimension uncertainty, per-DOF scores fail beyond narrow safe region\\n   - Root cause: K=10 rank-deficient covariance in 30D action space → noisy directional signals\\n   - Spatial benchmark: no method separates from baseline (34-35%), suggesting task-complexity dependence\\n   - Evidence: Section 4.4, Section 3.5 (mechanism analysis)\\n\\n## Story Spine\\n- **Problem**: Frozen VLA policies degrade under distribution shift. Retraining is expensive. Inference-time correction is attractive but under-studied for VLA specifically.\\n- **Gap**: No systematic study of what conditioning signals should drive learned corrections, or how correction magnitude interacts with conditioning features. Existing methods (A2C2, ReconVLA, SC-VLA) address adjacent problems but leave this interaction unexplored.\\n- **Our angle**: First systematic comparison of conditioning strategies across correction magnitudes for frozen VLA correction. Core discovery: the conditioning-magnitude interaction, not architecture or training, determines success vs catastrophic failure.\\n- **Headline**: \\\"Observation-conditioned corrections remain robust across magnitudes (mean approximately 17%), while per-DOF conformal features cause progressive collapse (14% to 0%). This identifies magnitude sensitivity as a critical factor for safe VLA inference-time correction.\\\"\\n\\n## Competitive Landscape\\n\\n### A2C2 — Most similar concurrent work\\nFrozen VLA + offline-trained per-step correction head. Key differences: (1) no multi-sample selection stage; (2) does not study conditioning feature alternatives; (3) no magnitude sensitivity analysis; (4) no explicit norm bounding.\\n\\n### ReconVLA — Same domain, different route\\nConformal quantile regression for UQ + OOD detection on frozen VLA. Does not perform learned correction. Our argmin baseline is our own conformal selection, not ReconVLA's method.\\n\\n### SC-VLA — RL-based refinement\\nResidual RL per-task. Requires online training, not plug-and-play. Different problem setting.\\n\\n### ACR-VLA positioning\\nFirst to combine multi-sample conformal selection with bounded learned correction AND systematically compare conditioning features across magnitudes. The mechanism insight (conditioning-magnitude interaction) is novel.\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"Effect size is small (approximately +3.5pp over argmin, not significant)\\\"**\\n   - Response: Paper does NOT claim statistical significance of SR improvement. Core contribution is the mechanism insight (robustness vs collapse pattern). The approximately +3.5pp improvement is supplementary evidence; the divergent behavior across magnitudes is the finding.\\n\\n2. **\\\"obs_only is just a residual MLP, where is the novelty?\\\"**\\n   - Response: Novelty is in the systematic comparison revealing the conditioning-magnitude interaction failure mode. The architecture is deliberately simple to isolate the conditioning signal's effect. Discovery that obs features suffice (and conformal features harm) is non-obvious.\\n\\n3. **\\\"Spatial benchmark shows nothing works\\\"**\\n   - Response: Honest limitation. At norm 0.1, obs_only and perdof perform comparably (35%) in spatial. Magnitude sensitivity manifests primarily in tasks with larger action distribution shift (object manipulation). This task-dependence is itself informative.\\n\\n4. **CRM approximately 330K params expressivity**\\n   - Response: Intentionally minimal. 3-layer MLP (input→256→256→30), input normalization. Prevents CRM from overriding base policy. approximately 3ms overhead. Architecture is NOT the contribution.\\n\\n5. **Simulation only**\\n   - Response: CoRL accepts sim-only. LIBERO is a recognized benchmark. Real-robot validation noted as future work.\\n\\n6. **K=10 inference cost**\\n   - Response: Multi-sample generation is the dominant cost (approximately 10x VLA forward pass). CRM overhead is negligible (approximately 3ms). Trade-off between compute and robustness is explicit.\\n\\n7. **\\\"Why does per-DOF fail?\\\" — is the explanation sufficient?**\\n   - Response: Section 3.5 provides mechanistic explanation: K=10 samples in 30D → rank-deficient covariance → noisy per-dimension Mahalanobis components → unreliable directional signals at deployment. Low norm masks the noise; high norm exposes it.\\n\\n## Hard Evidence (confirmed)\\n- Object (seed 42): obs_only 0.1=19%, 0.2=22%, 0.3=19%, 1.42=17%; perdof 0.1=11%, 0.2=11%, 0.3=4%, 1.42=0%\\n- Object multi-seed (obs_only ε=0.2): seeds 42/43/44/45 = 22/16/16/16%, mean=17.5%±3.0%\\n- Object multi-seed (argmin): seeds 42/43/44 = 12/17/13%, mean=14.0%±2.6%\\n- Object multi-seed (VLA-only): seeds 42/43/44/45 = 12/12/10/9%, mean=10.8%±1.4%\\n- Spatial (seed 42): obs_only 34-36% across norms; perdof 30-35% (drops to 26% at norm 0.3); argmin 34%\\n- obs_only robust across full norm range; perdof monotonic decline on Object\\n\\n## Pending Evidence (RUNNING — 17 experiments)\\n- argmin seed 45/46/47 (P0: Fisher test with more seeds)\\n- obs_only seed 46/47 at various norms\\n- perdof seeds 44/45 at norms 0.1/0.2/0.3/1.42\\n- scalar seed 45, vla_mean seed 45\\n\", \"total_chars\": 7146, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "502423ef-eea8-4de7-a0db-02b7451be7ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — acr-vla-conformal-refinement\\\\n\\\\n## Target Venue\\\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2)\\\\n- Narrative B (mechanism insight) confirmed as default framing\\\\n\\\\n## Core Insight (Narrative B — ACTIVE)\\\\nMagnitude control is the critical, previously unrecognized factor determining whether learned inference-time corrections help or catastrophically fail on frozen VLA policies. Observation-conditioned corrections remain robust across the full magnitude range, while per-DOF conformal features cause progressive collapse as correction magnitude increases. The sample-then-correct pipeline itself (conformal selection + bounded CRM) is the methodological contribution; the conditioning-magnitude interaction is the scientific contribution.\\\\n\\\\n## Headline Metric\\\\nobs_only: stable 16-19% across all norms (mean approximately 17%, 4 seeds at best coverage norm) vs perdof: progressive collapse from 14% (norm 0.03) to 0% (uncapped). Argmin baseline: 14% (3 seeds). VLA-only: 10-12% (4 seeds).\\\\n\\\\n## Core Claims (Narrative B — 3 claims)\\\\n\\\\n1. **Sample-then-correct pipeline for inference-time VLA improvement**\\\\n   - Two-stage: conformal selection (K=10 argmin) + bounded residual correction (CRM, approximately 330K params)\\\\n   - Consistent non-degradation with task-dependent improvement over frozen VLA baseline\\\\n   - obs_only CRM mean approximately 17% vs VLA-only 10-12% vs argmin 14%\\\\n   - Evidence: Table 1 (pooled results), Section 3 (method)\\\\n\\\\n2. **Conditioning-magnitude interaction as a previously unidentified failure mode**\\\\n   - Same CRM architecture succeeds or fails depending solely on conditioning feature x magnitude interaction\\\\n   - obs_only: stable approximately 17% across norms 0.03 to 1.42 (including uncapped)\\\\n   - perdof: progressive collapse 14% → 10% → 4% → 0% as norm increases\\\\n   - Bounded magnitude control is necessary for safe inference-time VLA correction\\\\n   - Evidence: Figure 2 (magnitude curves), Table 2 (cross-magnitude), Section 4.2-4.3\\\\n\\\\n3. **Honest negative result: per-DOF conformal features do not generalize as correction signals**\\\\n   - Despite theoretical appeal as calibrated per-dimension uncertainty, per-DOF scores fail beyond narrow safe region\\\\n   - Root cause: K=10 rank-deficient covariance in 30D action space → noisy directional signals\\\\n   - Spatial benchmark: no method separates from baseline (34-35%), suggesting task-complexity dependence\\\\n   - Evidence: Section 4.4, Section 3.5 (mechanism analysis)\\\\n\\\\n## Story Spine\\\\n- **Problem**: Frozen VLA policies degrade under distribution shift. Retraining is expensive. Inference-time correction is attractive but under-studied for VLA specifically.\\\\n- **Gap**: No systematic study of what conditioning signals should drive learned corrections, or how correction magnitude interacts with conditioning features. Existing methods (A2C2, ReconVLA, SC-VLA) address adjacent problems but leave this interaction unexplored.\\\\n- **Our angle**: First systematic comparison of conditioning strategies across correction magnitudes for frozen VLA correction. Core discovery: the conditioning-magnitude interaction, not architecture or training, determines success vs catastrophic failure.\\\\n- **Headline**: \\\\\\\"Observation-conditioned corrections remain robust across magnitudes (mean approximately 17%), while per-DOF conformal features cause progressive collapse (14% to 0%). This identifies magnitude sensitivity as a critical factor for safe VLA inference-time correction.\\\\\\\"\\\\n\\\\n## Competitive Landscape\\\\n\\\\n### A2C2 — Most similar concurrent work\\\\nFrozen VLA + offline-trained per-step correction head. Key differences: (1) no multi-sample selection stage; (2) does not study conditioning feature alternatives; (3) no magnitude sensitivity analysis; (4) no explicit norm bounding.\\\\n\\\\n### ReconVLA — Same domain, different route\\\\nConformal quantile regression for UQ + OOD detection on frozen VLA. Does not perform learned correction. Our argmin baseline is our own conformal selection, not ReconVLA's method.\\\\n\\\\n### SC-VLA — RL-based refinement\\\\nResidual RL per-task. Requires online training, not plug-and-play. Different problem setting.\\\\n\\\\n### ACR-VLA positioning\\\\nFirst to combine multi-sample conformal selection with bounded learned correction AND systematically compare conditioning features across magnitudes. The mechanism insight (conditioning-magnitude interaction) is novel.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n1. **\\\\\\\"Effect size is small (approximately +3.5pp over argmin, not significant)\\\\\\\"**\\\\n   - Response: Paper does NOT claim statistical significance of SR improvement. Core contribution is the mechanism insight (robustness vs collapse pattern). The approximately +3.5pp improvement is supplementary evidence; the divergent behavior across magnitudes is the finding.\\\\n\\\\n2. **\\\\\\\"obs_only is just a residual MLP, where is the novelty?\\\\\\\"**\\\\n   - Response: Novelty is in the systematic comparison revealing the conditioning-magnitude interaction failure mode. The architecture is deliberately simple to isolate the conditioning signal's effect. Discovery that obs features suffice (and conformal features harm) is non-obvious.\\\\n\\\\n3. **\\\\\\\"Spatial benchmark shows nothing works\\\\\\\"**\\\\n   - Response: Honest limitation. At norm 0.1, obs_only and perdof perform comparably (35%) in spatial. Magnitude sensitivity manifests primarily in tasks with larger action distribution shift (object manipulation). This task-dependence is itself informative.\\\\n\\\\n4. **CRM approximately 330K params expressivity**\\\\n   - Response: Intentionally minimal. 3-layer MLP (input→256→256→30), input normalization. Prevents CRM from overriding base policy. approximately 3ms overhead. Architecture is NOT the contribution.\\\\n\\\\n5. **Simulation only**\\\\n   - Response: CoRL accepts sim-only. LIBERO is a recognized benchmark. Real-robot validation noted as future work.\\\\n\\\\n6. **K=10 inference cost**\\\\n   - Response: Multi-sample generation is the dominant cost (approximately 10x VLA forward pass). CRM overhead is negligible (approximately 3ms). Trade-off between compute and robustness is explicit.\\\\n\\\\n7. **\\\\\\\"Why does per-DOF fail?\\\\\\\" — is the explanation sufficient?**\\\\n   - Response: Section 3.5 provides mechanistic explanation: K=10 samples in 30D → rank-deficient covariance → noisy per-dimension Mahalanobis components → unreliable directional signals at deployment. Low norm masks the noise; high norm exposes it.\\\\n\\\\n## Hard Evidence (confirmed)\\\\n- Object (seed 42): obs_only 0.1=19%, 0.2=22%, 0.3=19%, 1.42=17%; perdof 0.1=11%, 0.2=11%, 0.3=4%, 1.42=0%\\\\n- Object multi-seed (obs_only ε=0.2): seeds 42/43/44/45 = 22/16/16/16%, mean=17.5%±3.0%\\\\n- Object multi-seed (argmin): seeds 42/43/44 = 12/17/13%, mean=14.0%±2.6%\\\\n- Object multi-seed (VLA-only): seeds 42/43/44/45 = 12/12/10/9%, mean=10.8%±1.4%\\\\n- Spatial (seed 42): obs_only 34-36% across norms; perdof 30-35% (drops to 26% at norm 0.3); argmin 34%\\\\n- obs_only robust across full norm range; perdof monotonic decline on Object\\\\n\\\\n## Pending Evidence (RUNNING — 17 experiments)\\\\n- argmin seed 45/46/47 (P0: Fisher test with more seeds)\\\\n- obs_only seed 46/47 at various norms\\\\n- perdof seeds 44/45 at norms 0.1/0.2/0.3/1.42\\\\n- scalar seed 45, vla_mean seed 45\\\\n\\\", \\\"total_chars\\\": 7146, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\", \"content\": \"# Paper Framing — acr-vla-conformal-refinement\\n\\n## Target Venue\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2)\\n- Narrative B (mechanism insight) confirmed as default framing\\n\\n## Core Insight (Narrative B — ACTIVE)\\nMagnitude control is the critical, previously unrecognized factor determining whether learned inference-time corrections help or catastrophically fail on frozen VLA policies. Observation-conditioned corrections remain robust across the full magnitude range, while per-DOF conformal features cause progressive collapse as correction magnitude increases. The sample-then-correct pipeline itself (conformal selection + bounded CRM) is the methodological contribution; the conditioning-magnitude interaction is the scientific contribution.\\n\\n## Headline Metric\\nobs_only: stable 16-19% across all norms (mean approximately 17%, 4 seeds at best coverage norm) vs perdof: progressive collapse from 14% (norm 0.03) to 0% (uncapped). Argmin baseline: 14% (3 seeds). VLA-only: 10-12% (4 seeds).\\n\\n## Core Claims (Narrative B — 3 claims)\\n\\n1. **Sample-then-correct pipeline for inference-time VLA improvement**\\n   - Two-stage: conformal selection (K=10 argmin) + bounded residual correction (CRM, approximately 330K params)\\n   - Consistent non-degradation with task-dependent improvement over frozen VLA baseline\\n   - obs_only CRM mean approximately 17% vs VLA-only 10-12% vs argmin 14%\\n   - Evidence: Table 1 (pooled results), Section 3 (method)\\n\\n2. **Conditioning-magnitude interaction as a previously unidentified failure mode**\\n   - Same CRM architecture succeeds or fails depending solely on conditioning feature x magnitude interaction\\n   - obs_only: stable approximately 17% across norms 0.03 to 1.42 (including uncapped)\\n   - perdof: progressive collapse 14% → 10% → 4% → 0% as norm increases\\n   - Bounded magnitude control is necessary for safe inference-time VLA correction\\n   - Evidence: Figure 2 (magnitude curves), Table 2 (cross-magnitude), Section 4.2-4.3\\n\\n3. **Honest negative result: per-DOF conformal features do not generalize as correction signals**\\n   - Despite theoretical appeal as calibrated per-dimension uncertainty, per-DOF scores fail beyond narrow safe region\\n   - Root cause: K=10 rank-deficient covariance in 30D action space → noisy directional signals\\n   - Spatial benchmark: no method separates from baseline (34-35%), suggesting task-complexity dependence\\n   - Evidence: Section 4.4, Section 3.5 (mechanism analysis)\\n\\n## Story Spine\\n- **Problem**: Frozen VLA policies degrade under distribution shift. Retraining is expensive. Inference-time correction is attractive but under-studied for VLA specifically.\\n- **Gap**: No systematic study of what conditioning signals should drive learned corrections, or how correction magnitude interacts with conditioning features. Existing methods (A2C2, ReconVLA, SC-VLA) address adjacent problems but leave this interaction unexplored.\\n- **Our angle**: First systematic comparison of conditioning strategies across correction magnitudes for frozen VLA correction. Core discovery: the conditioning-magnitude interaction, not architecture or training, determines success vs catastrophic failure.\\n- **Headline**: \\\"Observation-conditioned corrections remain robust across magnitudes (mean approximately 17%), while per-DOF conformal features cause progressive collapse (14% to 0%). This identifies magnitude sensitivity as a critical factor for safe VLA inference-time correction.\\\"\\n\\n## Competitive Landscape\\n\\n### A2C2 — Most similar concurrent work\\nFrozen VLA + offline-trained per-step correction head. Key differences: (1) no multi-sample selection stage; (2) does not study conditioning feature alternatives; (3) no magnitude sensitivity analysis; (4) no explicit norm bounding.\\n\\n### ReconVLA — Same domain, different route\\nConformal quantile regression for UQ + OOD detection on frozen VLA. Does not perform learned correction. Our argmin baseline is our own conformal selection, not ReconVLA's method.\\n\\n### SC-VLA — RL-based refinement\\nResidual RL per-task. Requires online training, not plug-and-play. Different problem setting.\\n\\n### ACR-VLA positioning\\nFirst to combine multi-sample conformal selection with bounded learned correction AND systematically compare conditioning features across magnitudes. The mechanism insight (conditioning-magnitude interaction) is novel.\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"Effect size is small (approximately +3.5pp over argmin, not significant)\\\"**\\n   - Response: Paper does NOT claim statistical significance of SR improvement. Core contribution is the mechanism insight (robustness vs collapse pattern). The approximately +3.5pp improvement is supplementary evidence; the divergent behavior across magnitudes is the finding.\\n\\n2. **\\\"obs_only is just a residual MLP, where is the novelty?\\\"**\\n   - Response: Novelty is in the systematic comparison revealing the conditioning-magnitude interaction failure mode. The architecture is deliberately simple to isolate the conditioning signal's effect. Discovery that obs features suffice (and conformal features harm) is non-obvious.\\n\\n3. **\\\"Spatial benchmark shows nothing works\\\"**\\n   - Response: Honest limitation. At norm 0.1, obs_only and perdof perform comparably (35%) in spatial. Magnitude sensitivity manifests primarily in tasks with larger action distribution shift (object manipulation). This task-dependence is itself informative.\\n\\n4. **CRM approximately 330K params expressivity**\\n   - Response: Intentionally minimal. 3-layer MLP (input→256→256→30), input normalization. Prevents CRM from overriding base policy. approximately 3ms overhead. Architecture is NOT the contribution.\\n\\n5. **Simulation only**\\n   - Response: CoRL accepts sim-only. LIBERO is a recognized benchmark. Real-robot validation noted as future work.\\n\\n6. **K=10 inference cost**\\n   - Response: Multi-sample generation is the dominant cost (approximately 10x VLA forward pass). CRM overhead is negligible (approximately 3ms). Trade-off between compute and robustness is explicit.\\n\\n7. **\\\"Why does per-DOF fail?\\\" — is the explanation sufficient?**\\n   - Response: Section 3.5 provides mechanistic explanation: K=10 samples in 30D → rank-deficient covariance → noisy per-dimension Mahalanobis components → unreliable directional signals at deployment. Low norm masks the noise; high norm exposes it.\\n\\n## Hard Evidence (confirmed)\\n- Object (seed 42): obs_only 0.1=19%, 0.2=22%, 0.3=19%, 1.42=17%; perdof 0.1=11%, 0.2=11%, 0.3=4%, 1.42=0%\\n- Object multi-seed (obs_only ε=0.2): seeds 42/43/44/45 = 22/16/16/16%, mean=17.5%±3.0%\\n- Object multi-seed (argmin): seeds 42/43/44 = 12/17/13%, mean=14.0%±2.6%\\n- Object multi-seed (VLA-only): seeds 42/43/44/45 = 12/12/10/9%, mean=10.8%±1.4%\\n- Spatial (seed 42): obs_only 34-36% across norms; perdof 30-35% (drops to 26% at norm 0.3); argmin 34%\\n- obs_only robust across full norm range; perdof monotonic decline on Object\\n\\n## Pending Evidence (RUNNING — 17 experiments)\\n- argmin seed 45/46/47 (P0: Fisher test with more seeds)\\n- obs_only seed 46/47 at various norms\\n- perdof seeds 44/45 at norms 0.1/0.2/0.3/1.42\\n- scalar seed 45, vla_mean seed 45\\n\", \"total_chars\": 7146, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PtCinLoLShCGX4aVTLJaT1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/method_section_draft.tex",
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "ae634581-dab3-4d48-9712-da3d1ec69446",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqQboFE9Vx7VqM2DNqeZSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2977,
+      "cache_read_input_tokens": 24531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2977
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T01:11:55.750Z_
+
+<details><summary>↩ Tool result · `toolu_01PtCinLoLShCGX4aVTLJaT1`</summary>
+
+```text
+1	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2	%% Section 3 -- Motivating Experiment
+3	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+4	
+5	\section{Motivating Experiment}
+6	\label{sec:motivating}
+7	
+8	Before committing to the full \textbf{ACR-VLA} pipeline, we ask a targeted question: \emph{does per-DOF uncertainty carry more actionable information for correction than a scalar summary?}  We design a controlled 3D point-reaching experiment that isolates this factor.
+9	
+10	\paragraph{Setup.}
+11	A synthetic policy outputs actions $a\in\mathbb{R}^{3}$ with known anisotropic Gaussian noise: $\sigma_x{=}0.5,\;\sigma_y{=}0.1,\;\sigma_z{=}0.1$, simulating the depth ambiguity a monocular camera introduces along the $x$-axis.  At test time a target shift of $+0.3$ is applied along $x$, creating a systematic perturbation whose correction should be modulated by uncertainty structure.
+12	
+13	We train three correction MLPs (2 layers, hidden dim 64, 20{,}000 training samples), differing only in their uncertainty conditioning:
+14	\begin{itemize}[nosep]
+15	  \item \textbf{Model A} (scalar): conditioned on the average standard deviation $\bar{\sigma}=\tfrac{1}{3}\sum_j\sigma_j$.
+16	  \item \textbf{Model B} (per-DOF): conditioned on the full vector $[\sigma_x,\sigma_y,\sigma_z]$.
+17	  \item \textbf{Model C} (none): conditioned on observation features only, with no uncertainty input.
+18	\end{itemize}
+19	To match the regime of our full pipeline, where ground-truth variances are unavailable, we report results with \emph{estimated} uncertainty computed from $K{=}10$ samples (the same budget used in \textbf{ACR-VLA}).
+20	
+21	\paragraph{Results.}
+22	Table~\ref{tab:motivating} reports per-axis MSE over 5{,}000 test episodes at a 5:1 anisotropy ratio ($\sigma_x/\sigma_y$) with $K{=}10$ estimated uncertainty.
+23	
+24	\begin{table}[t]
+25	\centering
+26	\caption{Per-axis MSE ($\downarrow$) of correction models on the 3D point-reaching task (5:1 anisotropy, $K{=}10$ estimated uncertainty). Model~B, which receives per-DOF uncertainty, preserves accuracy on the low-uncertainty axes ($y,z$) where Model~A and~C over-correct.}
+27	\label{tab:motivating}
+28	\small
+29	\begin{tabular}{lccccc}
+30	\toprule
+31	Model & Conditioning & MSE$_x$ & MSE$_y$ & MSE$_z$ & Total MSE \\
+32	\midrule
+33	A & scalar $\bar\sigma$ & 0.1874 & 0.0247 & 0.0243 & 0.0788 \\
+34	\textbf{B} & \textbf{per-DOF} $[\sigma_x,\sigma_y,\sigma_z]$ & \textbf{0.1829} & \textbf{0.0191} & \textbf{0.0185} & \textbf{0.0735} \\
+35	C & none & 0.2151 & 0.0250 & 0.0246 & 0.0882 \\
+36	\bottomrule
+37	\end{tabular}
+38	\end{table}
+39	
+40	Model~B reduces total MSE by 6.7\% relative to~A and by 16.7\% relative to~C.  The gains concentrate on the non-perturbed axes: $y$- and $z$-axis MSE drop by 22.7\% and 23.9\% versus~A, indicating that Model~B learns to leave low-uncertainty dimensions largely untouched while directing correction effort toward the high-uncertainty $x$-axis.  Model~A, receiving only a scalar average, lacks the information to make this distinction and applies a uniform correction that degrades the already-accurate axes.
+41	
+42	With oracle (ground-truth) variances, the ranking $\text{B}>\text{A}>\text{C}$ is preserved with larger margins (non-perturbed axis improvements of 30--38\% over~A).  Moving from oracle to $K{=}10$ estimation reduces relative gains by roughly 15 percentage points, reflecting finite-sample noise, but does not alter the ordering.  The pattern also holds at weaker anisotropy ratios (2:1 and 1.5:1): across all six conditions tested, Model~B consistently outperforms both baselines.
+43	
+44	\paragraph{Takeaway.}
+45	Even a simple MLP can exploit per-DOF uncertainty structure for dimension-selective correction---a capability that scalar summaries cannot provide.  This motivates the design of \textbf{ACR-VLA}, which extracts rich per-DOF features from a flow-matching VLA and feeds them into a learned correction module (Section~\ref{sec:method}).
+46	
+47	
+48	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+49	%% Section 4 -- Method
+50	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+51	
+52	\section{Method}
+53	\label{sec:method}
+54	
+55	\textbf{ACR-VLA} (Adaptive Conformal Refinement for VLA) is an inference-time, post-hoc module that attaches to any flow-matching VLA without modifying its weights.  It comprises three components (Figure~\ref{fig:pipeline}):
+56	\begin{enumerate}[nosep]
+57	  \item \textbf{Conformalized Gaussian Scoring} (CGS, \S\ref{sec:cgs}): draws $K{=}10$ action samples per step, fits a shrinkage-regularized Gaussian, and extracts a 40-dimensional structured uncertainty feature.
+58	  \item \textbf{Adaptive Conformal Inference with Chunk Overlap Consistency} (ACI+COC, \S\ref{sec:aci}): maintains an online conformal threshold that adapts to distribution shift using a self-referential coverage signal from overlapping action chunks.
+59	  \item \textbf{Conformal Refinement Module} (CRM, \S\ref{sec:crm}): a lightweight MLP that takes the CGS features as conditioning and outputs a dimension-selective residual correction.
+60	\end{enumerate}
+61	
+62	We instantiate \textbf{ACR-VLA} on SmolVLA~\cite{smolvla2025}, a 450M-parameter flow-matching VLA that predicts action chunks of size 50 with action dimension $d{=}6$ (3 translation + 3 rotation; the gripper is handled separately outside the conformal pipeline).
+63	
+64	
+65	%%% 4.1 CGS %%%
+66	\subsection{Conformalized Gaussian Scoring}
+67	\label{sec:cgs}
+68	
+69	CGS converts a set of stochastic action samples from the base VLA into a compact uncertainty descriptor that captures \emph{which} degrees of freedom are uncertain and \emph{how} they co-vary---information that a scalar nonconformity score discards.
+70	
+71	\paragraph{Sampling and truncation.}
+72	At each control step, we draw $K{=}10$ action chunks from the frozen base VLA via independent flow-matching rollouts.  Although SmolVLA predicts 50-step chunks, under receding-horizon execution only the first few steps influence the robot before re-planning.  We therefore retain only the first $H{=}5$ steps, yielding $K$ samples $\{a_h^{(k)}\}_{k=1}^{K}$ with $a_h^{(k)}\in\mathbb{R}^{d}$ for each horizon step $h=1,\dots,H$.
+73	
+74	\paragraph{Shrinkage covariance estimation.}
+75	For each step $h$, we compute the sample mean $\boldsymbol{\mu}_h = \frac{1}{K}\sum_{k=1}^K a_h^{(k)}$ and the Ledoit--Wolf shrinkage covariance~\cite{ledoit2004well}:
+76	\begin{equation}
+77	  \boldsymbol{\Sigma}_h = (1-\alpha_{\mathrm{LW}})\,\hat{\boldsymbol{\Sigma}}_{\mathrm{emp}} + \alpha_{\mathrm{LW}}\,\frac{\mathrm{tr}(\hat{\boldsymbol{\Sigma}}_{\mathrm{emp}})}{d}\,\mathbf{I},
+78	  \label{eq:shrinkage}
+79	\end{equation}
+80	where $\hat{\boldsymbol{\Sigma}}_{\mathrm{emp}}$ is the empirical covariance and $\alpha_{\mathrm{LW}}$ is the analytically optimal shrinkage intensity.  With a dimension-to-sample ratio $p/n = d/K = 0.6$, the eigenvalues of the raw sample covariance suffer 30--40\% estimation error due to the Marchenko--Pastur effect; shrinkage reduces this to below 5\%~\cite{ledoit2004well}.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "9baf798c-b1ae-46cc-b80c-dba6021b0099",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/method_section_draft.tex",
+      "content": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%% Section 3 -- Motivating Experiment\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\\section{Motivating Experiment}\n\\label{sec:motivating}\n\nBefore committing to the full \\textbf{ACR-VLA} pipeline, we ask a targeted question: \\emph{does per-DOF uncertainty carry more actionable information for correction than a scalar summary?}  We design a controlled 3D point-reaching experiment that isolates this factor.\n\n\\paragraph{Setup.}\nA synthetic policy outputs actions $a\\in\\mathbb{R}^{3}$ with known anisotropic Gaussian noise: $\\sigma_x{=}0.5,\\;\\sigma_y{=}0.1,\\;\\sigma_z{=}0.1$, simulating the depth ambiguity a monocular camera introduces along the $x$-axis.  At test time a target shift of $+0.3$ is applied along $x$, creating a systematic perturbation whose correction should be modulated by uncertainty structure.\n\nWe train three correction MLPs (2 layers, hidden dim 64, 20{,}000 training samples), differing only in their uncertainty conditioning:\n\\begin{itemize}[nosep]\n  \\item \\textbf{Model A} (scalar): conditioned on the average standard deviation $\\bar{\\sigma}=\\tfrac{1}{3}\\sum_j\\sigma_j$.\n  \\item \\textbf{Model B} (per-DOF): conditioned on the full vector $[\\sigma_x,\\sigma_y,\\sigma_z]$.\n  \\item \\textbf{Model C} (none): conditioned on observation features only, with no uncertainty input.\n\\end{itemize}\nTo match the regime of our full pipeline, where ground-truth variances are unavailable, we report results with \\emph{estimated} uncertainty computed from $K{=}10$ samples (the same budget used in \\textbf{ACR-VLA}).\n\n\\paragraph{Results.}\nTable~\\ref{tab:motivating} reports per-axis MSE over 5{,}000 test episodes at a 5:1 anisotropy ratio ($\\sigma_x/\\sigma_y$) with $K{=}10$ estimated uncertainty.\n\n\\begin{table}[t]\n\\centering\n\\caption{Per-axis MSE ($\\downarrow$) of correction models on the 3D point-reaching task (5:1 anisotropy, $K{=}10$ estimated uncertainty). Model~B, which receives per-DOF uncertainty, preserves accuracy on the low-uncertainty axes ($y,z$) where Model~A and~C over-correct.}\n\\label{tab:motivating}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nModel & Conditioning & MSE$_x$ & MSE$_y$ & MSE$_z$ & Total MSE \\\\\n\\midrule\nA & scalar $\\bar\\sigma$ & 0.1874 & 0.0247 & 0.0243 & 0.0788 \\\\\n\\textbf{B} & \\textbf{per-DOF} $[\\sigma_x,\\sigma_y,\\sigma_z]$ & \\textbf{0.1829} & \\textbf{0.0191} & \\textbf{0.0185} & \\textbf{0.0735} \\\\\nC & none & 0.2151 & 0.0250 & 0.0246 & 0.0882 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nModel~B reduces total MSE by 6.7\\% relative to~A and by 16.7\\% relative to~C.  The gains concentrate on the non-perturbed axes: $y$- and $z$-axis MSE drop by 22.7\\% and 23.9\\% versus~A, indicating that Model~B learns to leave low-uncertainty dimensions largely untouched while directing correction effort toward the high-uncertainty $x$-axis.  Model~A, receiving only a scalar average, lacks the information to make this distinction and applies a uniform correction that degrades the already-accurate axes.\n\nWith oracle (ground-truth) variances, the ranking $\\text{B}>\\text{A}>\\text{C}$ is preserved with larger margins (non-perturbed axis improvements of 30--38\\% over~A).  Moving from oracle to $K{=}10$ estimation reduces relative gains by roughly 15 percentage points, reflecting finite-sample noise, but does not alter the ordering.  The pattern also holds at weaker anisotropy ratios (2:1 and 1.5:1): across all six conditions tested, Model~B consistently outperforms both baselines.\n\n\\paragraph{Takeaway.}\nEven a simple MLP can exploit per-DOF uncertainty structure for dimension-selective correction---a capability that scalar summaries cannot provide.  This motivates the design of \\textbf{ACR-VLA}, which extracts rich per-DOF features from a flow-matching VLA and feeds them into a learned correction module (Section~\\ref{sec:method}).\n\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%% Section 4 -- Method\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\\section{Method}\n\\label{sec:method}\n\n\\textbf{ACR-VLA} (Adaptive Conformal Refinement for VLA) is an inference-time, post-hoc module that attaches to any flow-matching VLA without modifying its weights.  It comprises three components (Figure~\\ref{fig:pipeline}):\n\\begin{enumerate}[nosep]\n  \\item \\textbf{Conformalized Gaussian Scoring} (CGS, \\S\\ref{sec:cgs}): draws $K{=}10$ action samples per step, fits a shrinkage-regularized Gaussian, and extracts a 40-dimensional structured uncertainty feature.\n  \\item \\textbf{Adaptive Conformal Inference with Chunk Overlap Consistency} (ACI+COC, \\S\\ref{sec:aci}): maintains an online conformal threshold that adapts to distribution shift using a self-referential coverage signal from overlapping action chunks.\n  \\item \\textbf{Conformal Refinement Module} (CRM, \\S\\ref{sec:crm}): a lightweight MLP that takes the CGS features as conditioning and outputs a dimension-selective residual correction.\n\\end{enumerate}\n\nWe instantiate \\textbf{ACR-VLA} on SmolVLA~\\cite{smolvla2025}, a 450M-parameter flow-matching VLA that predicts action chunks of size 50 with action dimension $d{=}6$ (3 translation + 3 rotation; the gripper is handled separately outside the conformal pipeline).\n\n\n%%% 4.1 CGS %%%\n\\subsection{Conformalized Gaussian Scoring}\n\\label{sec:cgs}\n\nCGS converts a set of stochastic action samples from the base VLA into a compact uncertainty descriptor that captures \\emph{which} degrees of freedom are uncertain and \\emph{how} they co-vary---information that a scalar nonconformity score discards.\n\n\\paragraph{Sampling and truncation.}\nAt each control step, we draw $K{=}10$ action chunks from the frozen base VLA via independent flow-matching rollouts.  Although SmolVLA predicts 50-step chunks, under receding-horizon execution only the first few steps influence the robot before re-planning.  We therefore retain only the first $H{=}5$ steps, yielding $K$ samples $\\{a_h^{(k)}\\}_{k=1}^{K}$ with $a_h^{(k)}\\in\\mathbb{R}^{d}$ for each horizon step $h=1,\\dots,H$.\n\n\\paragraph{Shrinkage covariance estimation.}\nFor each step $h$, we compute the sample mean $\\boldsymbol{\\mu}_h = \\frac{1}{K}\\sum_{k=1}^K a_h^{(k)}$ and the Ledoit--Wolf shrinkage covariance~\\cite{ledoit2004well}:\n\\begin{equation}\n  \\boldsymbol{\\Sigma}_h = (1-\\alpha_{\\mathrm{LW}})\\,\\hat{\\boldsymbol{\\Sigma}}_{\\mathrm{emp}} + \\alpha_{\\mathrm{LW}}\\,\\frac{\\mathrm{tr}(\\hat{\\boldsymbol{\\Sigma}}_{\\mathrm{emp}})}{d}\\,\\mathbf{I},\n  \\label{eq:shrinkage}\n\\end{equation}\nwhere $\\hat{\\boldsymbol{\\Sigma}}_{\\mathrm{emp}}$ is the empirical covariance and $\\alpha_{\\mathrm{LW}}$ is the analytically optimal shrinkage intensity.  With a dimension-to-sample ratio $p/n = d/K = 0.6$, the eigenvalues of the raw sample covariance suffer 30--40\\% estimation error due to the Marchenko--Pastur effect; shrinkage reduces this to below 5\\%~\\cite{ledoit2004well}.",
+      "numLines": 80,
+      "startLine": 1,
+      "totalLines": 166
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01K7Het6DS3Kn7RPNa9uiM44`</summary>
+
+```json
+{
+  "project": "acr-vla-conformal-refinement",
+  "file": "memory.md",
+  "max_chars": 5000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "d0306760-6074-450c-a268-3622756adff2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFFhCMTPPbiZ1Uh1dC1yAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4889,
+      "cache_read_input_tokens": 27508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4889
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T01:12:02.634Z_
+
+<details><summary>↩ Tool result · `toolu_01K7Het6DS3Kn7RPNa9uiM44`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## ⚠️ 3-seed Fisher test: p=0.110, 不显著 (2026-05-16 验证)\\n\\n**3-seed 完���数据��已核实 JSON，每 seed N=100）**:\\n- obs_only 0.2: seed42=22/100, seed43=16/100, seed44=16/100 → pooled 54/300 = 18%\\n- argmin: seed42=12/100, seed43=17/100, seed44=13/100 → pooled 42/300 = 14%\\n- **Fisher exact one-sided p = 0.110**\\n\\n**历史误报**:\\n- pooled_fisher_test.py 报 p=0.035 → bug（KNOWN_DATA 翻倍 counts，N=600 是伪造的）\\n- ROADMAP \\\"p≈0.091\\\" → chi-square 近似（非 Fisher exact）\\n- 正确方法：Fisher exact test on 2×2 table [[54,246],[42,258]]\\n\\n**决策**: p>0.10 → 确定进入 Narrative B (robustness-only)。等 seed45+46 看能否翻转到 Narrative A。\\n\\n**种子间方差**: obs_only Δ=6pp (22→16→16)，argmin Δ=5pp (12→17→13)。VLA-only 较稳定 (12/12/10%)。\\n\\n## Spatial Baselines 锁定 (2026-05-15)\\n\\n| 方法 | SR | 来源 |\\n|------|-----|------|\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\n\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%��\\n\\n## Hard Tasks 普遍失败 (2026-05-15)\\n\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%���T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\n\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\n\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\n1. ~~Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点~~ ��� (perdof 全 norm=11% on object)\\n2. ~~Object benchmark 跨域验证~~ ✘ (perdof dead)\\n3. **obs_only CRM → 转向 \\\"learned correction\\\" narrative** ← 唯一路径��但 seed 方��大\\n\\n## Object magnitude curve 完整 (2026-05-16, seed42)\\n\\n| norm | obs_only | perdof | gap |\\n|------|----------|--------|-----|\\n| 0.03 | 16% | 14% | +2pp |\\n| 0.05 | 13% | 14% | -1pp |\\n| 0.1 | 19% | 11% | +8pp |\\n| 0.2 | **22%** | 11% | **+11pp** |\\n| 0.3 | 19% | **4%** | +15pp |\\n| default(~1.42) | 17% | **0%** | +17pp |\\n\\n**两条曲线形态完全不同**：obs_only 倒 U ���（peak ε=0.2），perdof 单调递减（norm>0.1 崩溃）。\\n- obs_only 即使 norm 选错也不 catastrophic（全程 ≥ argmin 12%）\\n- perdof 在 norm≥0.3 时比 argmin 还差，default ��全崩溃到 0%\\n\\n## Object Baseline (2026-05-15)\\n\\nVLA-only K=1 object: seed42=12%, seed43=12%, seed44=10%。三 seed 稳定 10-12%。\\n\\n## bjb2-40593 环境问题 (2026-05-14-15)\\n\\n- 无 .git repo\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\n- Ghost PID 211962 已 kill\\n- scalar seed44 OOM SIGKILL（系统 RAM，非 GPU OOM）— 已在 bjb1-32546 重试\\n\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\n\\ntmux 用 `sh` 而非 `bash` 执行���令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\n\\n## [失败模式] EXIT_CODE=129 (SIGHUP) ≠ 真正失败 (2026-05-16)\\n\\n**案例**: eval-argmin-object-seed44-r2 和 crm-train-v1 都报 EXIT_CODE=129，但实验已完成并保存了完整结果。\\n**根因**: tmux session 在主进程正常退出后收到 SIGHUP（终端断开或 session 被清理）。\\n**规则**: EXIT_CODE=129 时不要直接判定失败。先查日志末尾确认是否已打印 \\\"Results saved\\\" / 完成信息，再检查输出文件完整性。如果都正常，标记 conclusion=success。\\n\\n## [失败模式] Kill 操作前必���逐���数比对 (2026-05-15)\\n\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) ���重复实验，kill 了有��进程。cuda:0 空闲 9 小时。\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐��比���关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\n\\n## [失败模式] pooled_fisher_test.py 翻倍 bug (2026-05-16)\\n\\n**事故**: 脚本 KNOWN_DATA 将所有 counts ×2（假设 n_rollouts=20），输出 p=0.035（实际 p=0.110）。差点导致错误切换到 Narrative A。\\n**规则**: 统计检验必须从 raw JSON 读取实际 trial counts，不能硬编码假设。任何 p<0.05 结果必须交叉验证（检查 N 是否与 registry 一致）。\\n\\n## [命名规范] exp_id ��� norm ��� (2026-05-15)\\n\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\n- output_file 同步使用 `0p3` 格��\\n\\n## [部署规范] GPU 冲��防范 (2026-05-16)\\n\\n**事故**: bjb2-28827 cuda:2/cuda:3 上多次出现双进程共存，互相竞争 compute，效率降低 ~50%。同一 output file 被两进程写入��致数据损坏。\\n**根因**: 部署命令未显式指定 CUDA_VISIBLE_DEVICES，或未确认目标 GPU 无已有进程。\\n**规则**:\\n1. 所有部署命令必须显式设 `CUDA_VISIBLE_DEVICES=N`\\n2. 部署前先 `nvidia-smi -i N` 确认目标 GPU 无进程\\n3. 部署后 20s 内验证进程在目标 GPU 上启动\\n4. 一张 GPU 只跑一个评估实验（除非 Director ���式批准共享）\\n\\n## [Cron 误判] nohup 实验 auto-resolve 为 failed (2026-05-16)\\n\\n**事故**: eval-mag-obsonly-norm03-object 和 eval-mag-perdof-norm005-object 被 cron 误判 failed（5× dead + no W&B sentinel），实际已成功完成。\\n**根因**: nohup 启动的实验��� W&B 集成，正常退出后无 sentinel file。\\n**规则**: bjb2-28827 上的 nohup 实验完成时，必须先派 analysis worker 读 JSON 确��完整性，不依赖 cron auto-resolve。\\n\", \"total_chars\": 4405, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "a51c21dd-2e18-49fd-b610-d3282980f8e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## ⚠️ 3-seed Fisher test: p=0.110, 不显著 (2026-05-16 验证)\\\\n\\\\n**3-seed 完���数据��已核实 JSON，每 seed N=100）**:\\\\n- obs_only 0.2: seed42=22/100, seed43=16/100, seed44=16/100 → pooled 54/300 = 18%\\\\n- argmin: seed42=12/100, seed43=17/100, seed44=13/100 → pooled 42/300 = 14%\\\\n- **Fisher exact one-sided p = 0.110**\\\\n\\\\n**历史误报**:\\\\n- pooled_fisher_test.py 报 p=0.035 → bug（KNOWN_DATA 翻倍 counts，N=600 是伪造的）\\\\n- ROADMAP \\\\\\\"p≈0.091\\\\\\\" → chi-square 近似（非 Fisher exact）\\\\n- 正确方法：Fisher exact test on 2×2 table [[54,246],[42,258]]\\\\n\\\\n**决策**: p>0.10 → 确定进入 Narrative B (robustness-only)。等 seed45+46 看能否翻转到 Narrative A。\\\\n\\\\n**种子间方差**: obs_only Δ=6pp (22→16→16)，argmin Δ=5pp (12→17→13)。VLA-only 较稳定 (12/12/10%)。\\\\n\\\\n## Spatial Baselines 锁定 (2026-05-15)\\\\n\\\\n| 方法 | SR | 来源 |\\\\n|------|-----|------|\\\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\\\n\\\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%��\\\\n\\\\n## Hard Tasks 普遍失败 (2026-05-15)\\\\n\\\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%���T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\\\n\\\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\\\n\\\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\\\n1. ~~Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点~~ ��� (perdof 全 norm=11% on object)\\\\n2. ~~Object benchmark 跨域验证~~ ✘ (perdof dead)\\\\n3. **obs_only CRM → 转向 \\\\\\\"learned correction\\\\\\\" narrative** ← 唯一路径��但 seed 方��大\\\\n\\\\n## Object magnitude curve 完整 (2026-05-16, seed42)\\\\n\\\\n| norm | obs_only | perdof | gap |\\\\n|------|----------|--------|-----|\\\\n| 0.03 | 16% | 14% | +2pp |\\\\n| 0.05 | 13% | 14% | -1pp |\\\\n| 0.1 | 19% | 11% | +8pp |\\\\n| 0.2 | **22%** | 11% | **+11pp** |\\\\n| 0.3 | 19% | **4%** | +15pp |\\\\n| default(~1.42) | 17% | **0%** | +17pp |\\\\n\\\\n**两条曲线形态完全不同**：obs_only 倒 U ���（peak ε=0.2），perdof 单调递减（norm>0.1 崩溃）。\\\\n- obs_only 即使 norm 选错也不 catastrophic（全程 ≥ argmin 12%）\\\\n- perdof 在 norm≥0.3 时比 argmin 还差，default ��全崩溃到 0%\\\\n\\\\n## Object Baseline (2026-05-15)\\\\n\\\\nVLA-only K=1 object: seed42=12%, seed43=12%, seed44=10%。三 seed 稳定 10-12%。\\\\n\\\\n## bjb2-40593 环境问题 (2026-05-14-15)\\\\n\\\\n- 无 .git repo\\\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\\\n- Ghost PID 211962 已 kill\\\\n- scalar seed44 OOM SIGKILL（系统 RAM，非 GPU OOM）— 已在 bjb1-32546 重试\\\\n\\\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\\\n\\\\ntmux 用 `sh` 而非 `bash` 执行���令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\\\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\\\n\\\\n## [失败模式] EXIT_CODE=129 (SIGHUP) ≠ 真正失败 (2026-05-16)\\\\n\\\\n**案例**: eval-argmin-object-seed44-r2 和 crm-train-v1 都报 EXIT_CODE=129，但实验已完成并保存了完整结果。\\\\n**根因**: tmux session 在主进程正常退出后收到 SIGHUP（终端断开或 session 被清理）。\\\\n**规则**: EXIT_CODE=129 时不要直接判定失败。先查日志末尾确认是否已打印 \\\\\\\"Results saved\\\\\\\" / 完成信息，再检查输出文件完整性。如果都正常，标记 conclusion=success。\\\\n\\\\n## [失败模式] Kill 操作前必���逐���数比对 (2026-05-15)\\\\n\\\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) ���重复实验，kill 了有��进程。cuda:0 空闲 9 小时。\\\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐��比���关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\\\n\\\\n## [失败模式] pooled_fisher_test.py 翻倍 bug (2026-05-16)\\\\n\\\\n**事故**: 脚本 KNOWN_DATA 将所有 counts ×2（假设 n_rollouts=20），输出 p=0.035（实际 p=0.110）。差点导致错误切换到 Narrative A。\\\\n**规则**: 统计检验必须从 raw JSON 读取实际 trial counts，不能硬编码假设。任何 p<0.05 结果必须交叉验证（检查 N 是否与 registry 一致）。\\\\n\\\\n## [命名规范] exp_id ��� norm ��� (2026-05-15)\\\\n\\\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\\\n- output_file 同步使用 `0p3` 格��\\\\n\\\\n## [部署规范] GPU 冲��防范 (2026-05-16)\\\\n\\\\n**事故**: bjb2-28827 cuda:2/cuda:3 上多次出现双进程共存，互相竞争 compute，效率降低 ~50%。同一 output file 被两进程写入��致数据损坏。\\\\n**根因**: 部署命令未显式指定 CUDA_VISIBLE_DEVICES，或未确认目标 GPU 无已有进程。\\\\n**规则**:\\\\n1. 所有部署命令必须显式设 `CUDA_VISIBLE_DEVICES=N`\\\\n2. 部署前先 `nvidia-smi -i N` 确认目标 GPU 无进程\\\\n3. 部署后 20s 内验证进程在目标 GPU 上启动\\\\n4. 一张 GPU 只跑一个评估实验（除非 Director ���式批准共享）\\\\n\\\\n## [Cron 误判] nohup 实验 auto-resolve 为 failed (2026-05-16)\\\\n\\\\n**事故**: eval-mag-obsonly-norm03-object 和 eval-mag-perdof-norm005-object 被 cron 误判 failed（5× dead + no W&B sentinel），实际已成功完成。\\\\n**根因**: nohup 启动的实验��� W&B 集成，正常退出后无 sentinel file。\\\\n**规则**: bjb2-28827 上的 nohup 实验完成时，必须先派 analysis worker 读 JSON 确��完整性，不依赖 cron auto-resolve。\\\\n\\\", \\\"total_chars\\\": 4405, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## ⚠️ 3-seed Fisher test: p=0.110, 不显著 (2026-05-16 验证)\\n\\n**3-seed 完���数据��已核实 JSON，每 seed N=100）**:\\n- obs_only 0.2: seed42=22/100, seed43=16/100, seed44=16/100 → pooled 54/300 = 18%\\n- argmin: seed42=12/100, seed43=17/100, seed44=13/100 → pooled 42/300 = 14%\\n- **Fisher exact one-sided p = 0.110**\\n\\n**历史误报**:\\n- pooled_fisher_test.py 报 p=0.035 → bug（KNOWN_DATA 翻倍 counts，N=600 是伪造的）\\n- ROADMAP \\\"p≈0.091\\\" → chi-square 近似（非 Fisher exact）\\n- 正确方法：Fisher exact test on 2×2 table [[54,246],[42,258]]\\n\\n**决策**: p>0.10 → 确定进入 Narrative B (robustness-only)。等 seed45+46 看能否翻转到 Narrative A。\\n\\n**种子间方差**: obs_only Δ=6pp (22→16→16)，argmin Δ=5pp (12→17→13)。VLA-only 较稳定 (12/12/10%)。\\n\\n## Spatial Baselines 锁定 (2026-05-15)\\n\\n| 方法 | SR | 来源 |\\n|------|-----|------|\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\n\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%��\\n\\n## Hard Tasks 普遍失败 (2026-05-15)\\n\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%���T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\n\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\n\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\n1. ~~Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点~~ ��� (perdof 全 norm=11% on object)\\n2. ~~Object benchmark 跨域验证~~ ✘ (perdof dead)\\n3. **obs_only CRM → 转向 \\\"learned correction\\\" narrative** ← 唯一路径��但 seed 方��大\\n\\n## Object magnitude curve 完整 (2026-05-16, seed42)\\n\\n| norm | obs_only | perdof | gap |\\n|------|----------|--------|-----|\\n| 0.03 | 16% | 14% | +2pp |\\n| 0.05 | 13% | 14% | -1pp |\\n| 0.1 | 19% | 11% | +8pp |\\n| 0.2 | **22%** | 11% | **+11pp** |\\n| 0.3 | 19% | **4%** | +15pp |\\n| default(~1.42) | 17% | **0%** | +17pp |\\n\\n**两条曲线形态完全不同**：obs_only 倒 U ���（peak ε=0.2），perdof 单调递减（norm>0.1 崩溃）。\\n- obs_only 即使 norm 选错也不 catastrophic（全程 ≥ argmin 12%）\\n- perdof 在 norm≥0.3 时比 argmin 还差，default ��全崩溃到 0%\\n\\n## Object Baseline (2026-05-15)\\n\\nVLA-only K=1 object: seed42=12%, seed43=12%, seed44=10%。三 seed 稳定 10-12%。\\n\\n## bjb2-40593 环境问题 (2026-05-14-15)\\n\\n- 无 .git repo\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\n- Ghost PID 211962 已 kill\\n- scalar seed44 OOM SIGKILL（系统 RAM，非 GPU OOM）— 已在 bjb1-32546 重试\\n\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\n\\ntmux 用 `sh` 而非 `bash` 执行���令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\n\\n## [失败模式] EXIT_CODE=129 (SIGHUP) ≠ 真正失败 (2026-05-16)\\n\\n**案例**: eval-argmin-object-seed44-r2 和 crm-train-v1 都报 EXIT_CODE=129，但实验已完成并保存了完整结果。\\n**根因**: tmux session 在主进程正常退出后收到 SIGHUP（终端断开或 session 被清理）。\\n**规则**: EXIT_CODE=129 时不要直接判定失败。先查日志末尾确认是否已打印 \\\"Results saved\\\" / 完成信息，再检查输出文件完整性。如果都正常，标记 conclusion=success。\\n\\n## [失败模式] Kill 操作前必���逐���数比对 (2026-05-15)\\n\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) ���重复实验，kill 了有��进程。cuda:0 空闲 9 小时。\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐��比���关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\n\\n## [失败模式] pooled_fisher_test.py 翻倍 bug (2026-05-16)\\n\\n**事故**: 脚本 KNOWN_DATA 将所有 counts ×2（假设 n_rollouts=20），输出 p=0.035（实际 p=0.110）。差点导致错误切换到 Narrative A。\\n**规则**: 统计检验必须从 raw JSON 读取实际 trial counts，不能硬编码假设。任何 p<0.05 结果必须交叉验证（检查 N 是否与 registry 一致）。\\n\\n## [命名规范] exp_id ��� norm ��� (2026-05-15)\\n\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\n- output_file 同步使用 `0p3` 格��\\n\\n## [部署规范] GPU 冲��防范 (2026-05-16)\\n\\n**事故**: bjb2-28827 cuda:2/cuda:3 上多次出现双进程共存，互相竞争 compute，效率降低 ~50%。同一 output file 被两进程写入��致数据损坏。\\n**根因**: 部署命令未显式指定 CUDA_VISIBLE_DEVICES，或未确认目标 GPU 无已有进程。\\n**规则**:\\n1. 所有部署命令必须显式设 `CUDA_VISIBLE_DEVICES=N`\\n2. 部署前先 `nvidia-smi -i N` 确认目标 GPU 无进程\\n3. 部署后 20s 内验证进程在目标 GPU 上启动\\n4. 一张 GPU 只跑一个评估实验（除非 Director ���式批准共享）\\n\\n## [Cron 误判] nohup 实验 auto-resolve 为 failed (2026-05-16)\\n\\n**事故**: eval-mag-obsonly-norm03-object 和 eval-mag-perdof-norm005-object 被 cron 误判 failed（5× dead + no W&B sentinel），实际已成功完成。\\n**根因**: nohup 启动的实验��� W&B 集成，正常退出后无 sentinel file。\\n**规则**: bjb2-28827 上的 nohup 实验完成时，必须先派 analysis worker 读 JSON 确��完整性，不依赖 cron auto-resolve。\\n\", \"total_chars\": 4405, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+I have enough context. Writing the conclusion draft now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "6c16f4c6-9c2f-4d83-90e1-b76f4958ae62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNqg5vJ4XzECkQgqBQNiHJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2959,
+      "cache_read_input_tokens": 32397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2959
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01MpKHdxN6Mj61pHKZdUw8UE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+  "content": "# Conclusion\n\nWe presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies. By combining conformal action selection with a lightweight Conformal Refinement Module (CRM), the pipeline enables post-hoc correction without modifying base policy weights. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% success rate from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as correction magnitude increases. On the LIBERO object manipulation benchmark, the obs_only CRM consistently improves over both argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The absolute effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no separation between methods (34-35%), suggesting that correction benefits are task-dependent.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world deployment. Two extensions are natural: adaptive norm selection that chooses the correction bound per step rather than using a fixed value, and multi-step temporal correction that exploits inter-step dependencies rather than treating each control step independently. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "9ce89131-6043-4973-8336-aa419cc8516b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNqg5vJ4XzECkQgqBQNiHJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2959,
+      "cache_read_input_tokens": 32397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2959
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T01:12:18.557Z_
+
+<details><summary>↩ Tool result · `toolu_01MpKHdxN6Mj61pHKZdUw8UE`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "a32b1f12-19ea-4066-a33a-447c15ba6bd3",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+    "content": "# Conclusion\n\nWe presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies. By combining conformal action selection with a lightweight Conformal Refinement Module (CRM), the pipeline enables post-hoc correction without modifying base policy weights. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% success rate from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as correction magnitude increases. On the LIBERO object manipulation benchmark, the obs_only CRM consistently improves over both argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The absolute effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no separation between methods (34-35%), suggesting that correction benefits are task-dependent.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world deployment. Two extensions are natural: adaptive norm selection that chooses the correction bound per step rather than using a fixed value, and multi-step temporal correction that exploits inter-step dependencies rather than treating each control step independently. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JWeTajfDT8wxAw86bSn8yi`</summary>
+
+```json
+{
+  "command": "grep -n \"—\\|–\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+  "description": "Check for em-dash and en-dash characters"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "3cecf23f-4d55-4dc7-b399-a4e3ea5743d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FeZXX4N7ZEdmnZVz5bZ7Ye",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 35356,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 552
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T01:12:23.591Z_
+
+<details><summary>↩ Tool result · `toolu_01JWeTajfDT8wxAw86bSn8yi`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "46746e57-f374-439c-a101-3fa27095d10b",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "returnCodeInterpretation": "No matches found",
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+No em-dash or en-dash found. Word count check:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "d948c8d4-6a15-4bda-9174-2a17a4285e08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lf1ZS2ydqKBQwV9auPSMbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 145,
+      "cache_read_input_tokens": 35908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 145
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013D4ioYwz48hfzGHyut8dDH`</summary>
+
+```json
+{
+  "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+  "description": "Count words in conclusion draft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "f2167c00-31cf-4bb4-b5a1-b28c837eab81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lf1ZS2ydqKBQwV9auPSMbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 145,
+      "cache_read_input_tokens": 35908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 145
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T01:12:27.907Z_
+
+<details><summary>↩ Tool result · `toolu_013D4ioYwz48hfzGHyut8dDH`</summary>
+
+```text
+235 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "1ec54b87-0681-4f62-8e6e-ace826ce47ae",
+  "tool_use_result": {
+    "stdout": "235 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+235 words, slightly over target. Let me trim it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "f36111e8-8f90-4206-aac4-7c89955fd557",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqpP2nbJ4BVBzJDN9Dkand",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 36053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 290
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BqjRsLH1GtJRVGiGD1LcLk`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+  "old_string": "We presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies. By combining conformal action selection with a lightweight Conformal Refinement Module (CRM), the pipeline enables post-hoc correction without modifying base policy weights. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% success rate from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as correction magnitude increases. On the LIBERO object manipulation benchmark, the obs_only CRM consistently improves over both argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The absolute effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no separation between methods (34-35%), suggesting that correction benefits are task-dependent.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world deployment. Two extensions are natural: adaptive norm selection that chooses the correction bound per step rather than using a fixed value, and multi-step temporal correction that exploits inter-step dependencies rather than treating each control step independently. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.",
+  "new_string": "We presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies, combining conformal action selection with a lightweight Conformal Refinement Module. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as magnitude increases. On LIBERO object manipulation, obs_only CRM consistently improves over argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no method separation (34-35%), indicating task-dependent correction benefits.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world settings. Two natural extensions are adaptive norm selection, choosing the correction bound per step rather than fixing it globally, and multi-step temporal correction that exploits inter-step dependencies. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "1f2289f0-19a9-489f-a23a-a325d15780a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqpP2nbJ4BVBzJDN9Dkand",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 36053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 290
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T01:12:38.478Z_
+
+<details><summary>↩ Tool result · `toolu_01BqjRsLH1GtJRVGiGD1LcLk`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "fef55d94-a0ce-4e47-bec9-9fac42633a18",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+    "oldString": "We presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies. By combining conformal action selection with a lightweight Conformal Refinement Module (CRM), the pipeline enables post-hoc correction without modifying base policy weights. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% success rate from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as correction magnitude increases. On the LIBERO object manipulation benchmark, the obs_only CRM consistently improves over both argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The absolute effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no separation between methods (34-35%), suggesting that correction benefits are task-dependent.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world deployment. Two extensions are natural: adaptive norm selection that chooses the correction bound per step rather than using a fixed value, and multi-step temporal correction that exploits inter-step dependencies rather than treating each control step independently. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.",
+    "newString": "We presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies, combining conformal action selection with a lightweight Conformal Refinement Module. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as magnitude increases. On LIBERO object manipulation, obs_only CRM consistently improves over argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no method separation (34-35%), indicating task-dependent correction benefits.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world settings. Two natural extensions are adaptive norm selection, choosing the correction bound per step rather than fixing it globally, and multi-step temporal correction that exploits inter-step dependencies. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.",
+    "originalFile": "# Conclusion\n\nWe presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies. By combining conformal action selection with a lightweight Conformal Refinement Module (CRM), the pipeline enables post-hoc correction without modifying base policy weights. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% success rate from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as correction magnitude increases. On the LIBERO object manipulation benchmark, the obs_only CRM consistently improves over both argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).\n\nSeveral limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The absolute effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no separation between methods (34-35%), suggesting that correction benefits are task-dependent.\n\nFuture work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world deployment. Two extensions are natural: adaptive norm selection that chooses the correction bound per step rather than using a fixed value, and multi-step temporal correction that exploits inter-step dependencies rather than treating each control step independently. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 7,
+        "lines": [
+          " # Conclusion",
+          " ",
+          "-We presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies. By combining conformal action selection with a lightweight Conformal Refinement Module (CRM), the pipeline enables post-hoc correction without modifying base policy weights. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% success rate from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as correction magnitude increases. On the LIBERO object manipulation benchmark, the obs_only CRM consistently improves over both argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).",
+          "+We presented ACR-VLA, a sample-then-correct pipeline for inference-time improvement of frozen Vision-Language-Action policies, combining conformal action selection with a lightweight Conformal Refinement Module. Our central finding is that the interaction between conditioning features and correction magnitude determines whether learned corrections help or catastrophically fail. Observation-conditioned corrections remain stable across the full norm range (mean 17.5% from norm 0.03 to uncapped), while per-DOF conformal conditioning exhibits progressive collapse (14% to 0%) as magnitude increases. On LIBERO object manipulation, obs_only CRM consistently improves over argmin selection (+4pp, 17.5% vs 13.5%) and the VLA-only baseline (+6.7pp).",
+          " ",
+          "-Several limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The absolute effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no separation between methods (34-35%), suggesting that correction benefits are task-dependent.",
+          "+Several limitations scope these findings. We evaluate on a single VLA backbone (SmolVLA with flow-matching decoder) and a single simulation benchmark (LIBERO). The effect size over argmin selection is modest, with pooled confidence intervals that include zero. The spatial benchmark shows no method separation (34-35%), indicating task-dependent correction benefits.",
+          " ",
+          "-Future work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world deployment. Two extensions are natural: adaptive norm selection that chooses the correction bound per step rather than using a fixed value, and multi-step temporal correction that exploits inter-step dependencies rather than treating each control step independently. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction.",
+          "+Future work should verify whether the conditioning-magnitude interaction generalizes to other VLA architectures (OpenVLA, Pi0) and real-world settings. Two natural extensions are adaptive norm selection, choosing the correction bound per step rather than fixing it globally, and multi-step temporal correction that exploits inter-step dependencies. These findings establish magnitude sensitivity as a key design consideration for safe inference-time VLA correction."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PyUQshnYz2ukbq8jqUSo76`</summary>
+
+```json
+{
+  "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md && grep -n \"—\\|–\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+  "description": "Verify word count and no dashes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "49da1595-520f-4fc9-806c-35fb8f5377dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHAvR57JSgfeN5dw3a3oxb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 36343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 915
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T01:12:42.758Z_
+
+<details><summary>↩ Tool result · `toolu_01PyUQshnYz2ukbq8jqUSo76`</summary>
+
+```text
+203 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "2f9cb726-a680-4331-b685-1871888e2680",
+  "tool_use_result": {
+    "stdout": "203 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/conclusion_draft.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "returnCodeInterpretation": "No matches found",
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+203 words, no em-dash/en-dash. Draft saved to `artifacts/conclusion_draft.md`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "uuid": "acd17a03-5b08-4159-87b5-8580046349da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K9zS6vazVoqUydhLpYEjpt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 226,
+      "cache_read_input_tokens": 37258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 226
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 30_
+
+203 words, no em-dash/en-dash. Draft saved to `artifacts/conclusion_draft.md`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 64271,
+  "duration_api_ms": 64784,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "f9e83bcf-7d98-4072-9dc0-9dff2f36ae84",
+  "total_cost_usd": 0.36050925,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 25643,
+    "cache_read_input_tokens": 277195,
+    "output_tokens": 2410,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25643,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 28,
+        "cache_read_input_tokens": 37258,
+        "cache_creation_input_tokens": 226,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 226
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1263,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001328,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 2410,
+      "cacheReadInputTokens": 277195,
+      "cacheCreationInputTokens": 25643,
+      "webSearchRequests": 0,
+      "costUSD": 0.35918125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d38a1d65-48e2-4ce4-bd25-80e34491d32d"
+}
+```
+
+</details>
+
+---

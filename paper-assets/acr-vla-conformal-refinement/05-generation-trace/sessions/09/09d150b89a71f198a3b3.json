@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09d150b89a71f198a3b3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops full server scan and harvest",
+  "task_key": "worker_ops_full-server-scan-and-harvest_20260516T111045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_full-server-scan-and-harvest_20260516T111045_result.json",
+    "occurrence": 1,
+    "bytes": 2699,
+    "sha256": "b33d9ed994e581c2cc3b0e84962e2ba34fa43b969dc8db772761948a2380ed29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全服务器状态扫描报告\n\n### bjb1-18228 (4 GPU 活跃, 0 空闲)\n| 实验 | GPU | 进度 | 启动时间 |\n|------|-----|------|---------|\n| **eval-obs-only-object-norm02-seed44-r2 (P0)** | cuda:2 | **7/10 tasks** (butter 完成) | 09:32 |\n| **eval-argmin-object-seed44-r2 (P0)** | cuda:3 | **6/10 tasks** (在 butter) | 09:32 |\n| eval-perdof-object-seed44 | cuda:1 | 4/10 tasks | 12:57 |\n| eval-obs-only-object-norm01-seed45 | cuda:0 | 0/10 (task1 进行中) | 17:03 |\n\n**P0 预计 ~2-4h 完成。**\n\n### bjb1-32546 (6 GPU 活跃, 0 空闲)\n| 实验 | GPU | 进度 |\n|------|-----|------|\n| eval-scalar-object-seed44-r2 | cuda:0 | 2/10 |\n| eval-vla-mean-object-seed44 | cuda:1 | 4/10 |\n| eval-obs-only-object-norm03-seed44 | cuda:2 | 3/10 |\n| eval-obs-only-object-norm02-seed45 | cuda:3 | 2/10 |\n| eval-obs-only-object-norm01-seed44 | cuda:4 | 3/10 |\n| eval-obs-only-object-default-seed44 | cuda:5 | 2/10 |\n\n### bjb2-28827 (6 GPU 活跃, 0 空闲)\n| 实验 | GPU | 进度 | 问题 |\n|------|-----|------|------|\n| eval-scalar-object-seed45 | cuda:0 | 0/10 (task1 rollout 15/20) | **20 rollouts!** |\n| eval-perdof-object-norm02-seed45 | cuda:1 | 0/10 (task1 rollout 15/20) | **20 rollouts!** |\n| obs-only-norm03-seed45 | cuda:2 | 0/10 (刚启动) | **未注册 registry** |\n| obs-only-default-seed45 | cuda:3 | 0/10 (刚启动) | **未注册 registry** |\n| eval-vla-only-object-seed45 | cuda:4 | ~6/10 (on butter) | **20 rollouts!** |\n| eval-argmin-object-seed45 | cuda:5 | 2/10 | 正常 10 rollouts |\n\n### bjb2-40593 (1 GPU 活跃, 5 空闲)\n| 实验 | GPU | 进度 |\n|------|-----|------|\n| eval-perdof-object-default-seed44 | cuda:0 | 1/10 |\n| **空闲** | cuda:1-5 | - |\n\n---\n\n### 关键发现\n\n1. **P0 未完成** — obs-only-norm02-seed44-r2 完成 7/10, argmin-seed44-r2 完成 6/10, 预计 2-4h 后可回收\n\n2. **无已完成未回收的 RUNNING 实验** — 全部 15 个 RUNNING registry 条目的进程都在运行\n\n3. **bjb2-28827 有 3 个实验用了 20 rollouts**（scalar-seed45, perdof-norm02-seed45, vla-only-seed45）— 缺少 `--n_rollouts 10` 参数，使用了默认值 20，会花 2x 时间并且和其他实验的 100 rollouts 不可比\n\n4. **bjb2-28827 有 2 个实验未注册 registry**（obs-only-norm03-seed45 cuda:2, obs-only-default-seed45 cuda:3）\n\n5. **bjb2-40593 有 5 个空闲 GPU** (cuda:1-5)\n\n### 3-seed Fisher test 状态\n| seed | obs-only-norm02 | argmin |\n|------|----------------|--------|\n| 42 | 22% ✅ | 12% ✅ |\n| 43 | 16% ✅ | 17% ✅ |\n| 44 | **7/10 运行中** | **6/10 运行中** |\n\n→ **还不能做 3-seed Fisher test，等 seed44 对完成（~2-4h）。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-server-scan-and-harvest.md"
+}

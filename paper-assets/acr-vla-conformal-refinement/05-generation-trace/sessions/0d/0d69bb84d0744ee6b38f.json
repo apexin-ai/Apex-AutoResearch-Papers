@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0d69bb84d0744ee6b38f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "setup westd 49937 pi05",
+  "task_key": "worker_setup_westd-49937-pi05_20260526T041200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_setup_westd-49937-pi05_20260526T041200.jsonl",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "03167d9822396bae1d5d74e51e2d401fb71af6b156c4d841b8d554110587ce78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T04:12:10.239391+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_setup_westd-49937-pi05_20260526T041200"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/setup-westd-49937-pi05.md"
+}

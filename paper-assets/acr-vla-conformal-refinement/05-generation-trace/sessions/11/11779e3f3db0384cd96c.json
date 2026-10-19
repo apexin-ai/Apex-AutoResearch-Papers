@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11779e3f3db0384cd96c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb1 18228 critical exps",
+  "task_key": "worker_check_bjb1-18228-critical-exps_20260524T192333",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb1-18228-critical-exps_20260524T192333_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "8136890957ecbbfff4cab704edcec939708d47b0271df96ac2711b4e276198a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。汇总：\n\n| 实验 | 状态 | 关键指标 |\n|------|------|----------|\n| **train-crm-pi05-unified-3suite-r2** | RUNNING (epoch 25/50) | best_val_loss=0.004854, 预计再~9h完成 |\n| **eval-supp-spatial-vla-only-s42** | DONE | success_rate=**0.80** |\n| **eval-supp-obj-vla-only-s50** | DONE | success_rate=**0.74** |\n| **precompute-pi05-long-2048-r2** (PID 114507) | RUNNING | 174 .pt files cached, GPU 3 active |\n| **precompute-pi05-object-2048-r2** | COMPLETED | 149 .pt files, 训练已在使用 |\n\n**空闲资源**: GPU 1 和 GPU 2 完全空闲，可部署新实验。\n\nRegistry 已更新（两个 eval → DONE, CRM training → RUNNING with metrics）。报告已注册为 artifact `art_20260524_a2f605`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-18228-critical-exps.md"
+}

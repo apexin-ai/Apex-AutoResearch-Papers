@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "412a419d100d2c2eef89",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose full gpu status check",
+  "task_key": "worker_diagnose_full-gpu-status-check_20260514T212022",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_full-gpu-status-check_20260514T212022_result.json",
+    "occurrence": 1,
+    "bytes": 4151,
+    "sha256": "4114023ff00c12ee8176fd9fd1b9369d84db17cd8f94743b8b85cb5f139172f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments are still running. Here's the full status report:\n\n---\n\n## GPU 实时状态\n\n### bjb1-18228 (4× RTX 4090)\n\n| GPU | 显存占用 | 利用率 | 进程 | 实验 |\n|-----|---------|--------|------|------|\n| 0 | 17969/24564 MiB (73%) | 72% | PID 252489 (eval) + PID 256776 (train) | eval-acr-spatial-v4-default + crm-train-obs-only |\n| 1 | 1423/24564 MiB (6%) | 21% | PID 231426 (eval) | eval-argmin-only-spatial |\n| 2 | 1459/24564 MiB (6%) | 23% | PID 232820 (eval) | eval-tiny-correction-spatial |\n| 3 | 2022/24564 MiB (8%) | 71% | PID 253085 (eval) + PID 257091 (train) | eval-acr-spatial-v4-small + crm-train-scalar-unc |\n\n### bjb2-40593 (1× RTX 4090 D)\n\n| GPU | 显存占用 | 利用率 | 进程 | 实验 |\n|-----|---------|--------|------|------|\n| 0 | 1933/24564 MiB (8%) | 11% | PID 143112 (eval) | eval-vla-mean-spatial |\n\n---\n\n## 实验状态\n\n| 实验 | 服务器/GPU | 状态 | 进度 | 关键信息 |\n|------|-----------|------|------|---------|\n| eval-acr-spatial-v4-default | bjb1 cuda:0 | RUNNING | Task 1, rollout 5/10 | crm_v3_norm, max_norm=default |\n| eval-argmin-only-spatial | bjb1 cuda:1 | RUNNING | Task 3 完成, 进行中 | reconvla baseline (argmin) |\n| eval-tiny-correction-spatial | bjb1 cuda:2 | RUNNING | Task 4, rollout 5/10 | crm_v2, max_norm=0.05 |\n| eval-acr-spatial-v4-small | bjb1 cuda:3 | RUNNING | Task 1, rollout 5/10 | crm_v3_norm, max_norm=0.1 |\n| crm-train-obs-only | bjb1 cuda:0 | RUNNING | Epoch 20/50 | best val_loss=0.016765 |\n| crm-train-scalar-unc | bjb1 cuda:3 | RUNNING | Epoch 21/50 | best val_loss=0.041973 |\n| eval-vla-mean-spatial | bjb2 cuda:0 | RUNNING | Task 9, rollout 5/10 | vla_only baseline (mean), 接近完成 |\n\n---\n\n## 各实验详细进度\n\n### eval-acr-spatial-v4-default (bjb1 cuda:0)\n- 模式: acr_vla, CRM: crm_v3_norm/perdof, max_correction_norm=None\n- 刚开始: Task 1 rollout 5/10, 0/5 success\n\n### eval-argmin-only-spatial (bjb1 cuda:1)\n- 模式: reconvla (argmin baseline, 无 CRM)\n- 已完成 3 个 task:\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin | 60% (6/10) |\n| next_to_ramekin | 100% (10/10) |\n| from_table_center | 0% (0/10) |\n\n### eval-tiny-correction-spatial (bjb1 cuda:2)\n- 模式: acr_vla, CRM: crm_v2/perdof, max_correction_norm=0.05\n- 已完成 3 个 task, Task 4 进行中:\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin | 70% (7/10) |\n| next_to_ramekin | 90% (9/10) |\n| from_table_center | 0% (0/10) |\n| on_cookie_box | 进行中 (1/5 at rollout 5) |\n\n### eval-acr-spatial-v4-small (bjb1 cuda:3)\n- 模式: acr_vla, CRM: crm_v3_norm/perdof, max_correction_norm=0.1\n- 刚开始: Task 1 rollout 5/10, 3/5 success\n\n### crm-train-obs-only (bjb1 cuda:0, PID 256771)\n- Epoch 20/50, best val_loss=0.016765 (epoch 20), 持续改善中\n- Checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n\n### crm-train-scalar-unc (bjb1 cuda:3, PID 257086)\n- Epoch 21/50, best val_loss=0.041973 (epoch 20), 仍在收敛\n- Checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt`\n\n### eval-vla-mean-spatial (bjb2 cuda:0) — 最接近完成\n- 模式: vla_only, baseline_mode=mean (无 CRM)\n- 已完成 8 个 task, Task 9 进行中:\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin | 70% (7/10) |\n| next_to_ramekin | **100% (10/10)** |\n| from_table_center | 0% (0/10) |\n| on_cookie_box | 30% (3/10) |\n| in_top_drawer | 0% (0/10) |\n| on_ramekin | 0% (0/10) |\n| next_to_cookie_box | **80% (8/10)** |\n| on_stove | 0% (0/10) |\n| next_to_plate | 进行中 (1/5 at rollout 5) |\n| on_wooden_shelf | 待运行 |\n\n当前累计: 28/80 = 35.0% (前8个task)\n\n---\n\n## Registry 更新记录\n\n无 — 所有 7 个实验仍在运行中，暂无需更新 registry。\n\n**总结**: 所有实验正常运行。bjb2 的 eval-vla-mean-spatial 最接近完成（8/10 tasks done, 当前 ~35% overall）。两个 CRM ablation 训练到 epoch 20-21/50，约 40% 进度。bjb1 的 4 个 eval 实验分布在 task 1-4 不等，预计还需数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-gpu-status-check.md"
+}

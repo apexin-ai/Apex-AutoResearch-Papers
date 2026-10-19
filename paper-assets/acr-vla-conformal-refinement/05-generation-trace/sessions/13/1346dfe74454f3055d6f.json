@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1346dfe74454f3055d6f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix eval vla only k1 bjb2",
+  "task_key": "worker_fix_eval-vla-only-k1-bjb2_20260514T000046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_eval-vla-only-k1-bjb2_20260514T000046_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "adf9ab854b80a279d4871d2198a29fdeb8af30b978dcf46a1c51342e71557ccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常。\n\n**修复内容**: 在 `src/evaluate.py` 第354-356行，`main()` 函数中 `parse_args()` 之后添加：\n```python\nif args.mode == \"vla_only\":\n    args.K = 1\n```\n只影响 vla_only 模式，其他模式（acr_vla/reconvla/crm_*）的 K 值不变。\n\n**新进程**:\n- 父 bash PID: **125823**\n- Python 进程 PID: **125830**\n- 日志路径: `/root/autodl-tmp/eval_results/eval-object-v6.log`\n- 日志已确认 `K: 1` 生效，模型加载完成，正在初始化 LIBERO object 环境"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-vla-only-k1-bjb2.md"
+}

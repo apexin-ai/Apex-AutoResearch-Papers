@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66e316c5e93a4fb5b2cb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh verify direct correction",
+  "task_key": "worker_ssh_verify-direct-correction_20260517T022508",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify-direct-correction_20260517T022508_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "f26e676975d4715e7d4872d83c9dd3087431d54025e891fc790025d1fd395fad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **实验状态**: 正在运行，PID 353384，GPU 1 (RTX 4090, 69% util, 8.9GB/24.6GB)\n- **tmux session**: `eval-direct-correction-object-seed42`（10:23 启动）\n- **输出文件**: 尚未生成（实验进行中，正常）\n- **代码验证**: `direct_correction` 模式已正确集成到 `src/evaluate.py`（mode choices、CRM 加载条件、action function 均已实现）\n- **Registry**: 已注册为 RUNNING，含完整 spec 和 PID"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-direct-correction.md"
+}

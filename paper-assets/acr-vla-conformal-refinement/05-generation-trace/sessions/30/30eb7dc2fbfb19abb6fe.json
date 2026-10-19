@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30eb7dc2fbfb19abb6fe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check crm k1 train session bjb2 28827",
+  "task_key": "worker_ops_check-crm-k1-train-session-bjb2-28827_20260517T223806",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-crm-k1-train-session-bjb2-28827_20260517T223806_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "bcb52f4c541bfeda173c8382a23ed4222ef9ca3e14b0789e9d3a8d4a650357f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **`train-crm-k1-v2` session 已不存在** — tmux 报 \"can't find pane\"，当前只有 3 个其他 session（mag_obs_only_norm01_seed46/47, mag_perdof_norm02_seed43_r3）\n- **GPU0 被其他进程占用** — PID 476536 (python) 占 5645 MiB，属于当前运行的其他实验，非 CRM K=1 训练残留\n\n### 产出\n- 训练是否已完成：**是**（session 已不存在，训练早已结束）\n- tmux session 已关闭：**是**（已被之前清理或自动退出）\n- GPU0 显存释放量：**0 MiB**（当前 GPU0 的 5645 MiB 占用来自其他实验 PID 476536，不是 CRM K=1 残留）\n\n无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-crm-k1-train-session-bjb2-28827.md"
+}

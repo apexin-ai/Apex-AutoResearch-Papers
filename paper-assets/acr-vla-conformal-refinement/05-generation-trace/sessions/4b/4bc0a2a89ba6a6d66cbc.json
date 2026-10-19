@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bc0a2a89ba6a6d66cbc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy remaining experiments",
+  "task_key": "worker_ssh_deploy-remaining-experiments_20260520T063721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-remaining-experiments_20260520T063721_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "dcc8ce9d2369cb560bfe049f0248fae8b34c080ba8e0c406e1f578b3b0de17bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。注意 seed42 和 seed44 的 random selection 是 retry（之前跑过一轮），registry 自动记录了 retry_count=1。\n\n## 汇报\n\n### 部署结果\n\n| 实验 | 服务器:GPU | 优先级 | 状态 |\n|------|-----------|--------|------|\n| eval-random-selection-object-seed42 | bjb2-28827:cuda:0 | P0 | ✓ 已启动，加载环境中 |\n| eval-random-selection-object-seed44 | bjb2-28827:cuda:2 | P0 | ✓ 已启动，加载环境中 |\n| eval-obs-only-object-norm02-seed42 | bjb2-28827:cuda:3 | P1 | ✓ 已启动，加载模型中 |\n\n### eval-adaptive-k-spatial-p50-seed42 确认\n\n✓ 在 bjb2-40593:cuda:0 上运行中（PID 675831，启动于 14:02，已跑约 36 分钟）\n\n### 集群全景\n\n| 服务器 | GPU 总数 | 占用 | 空闲 | 运行中的实验 |\n|--------|---------|------|------|-------------|\n| bjb1-18228 | 4 | 4 | **0** | vla-only-spatial-seed52/53, crm-long-seed53, vla-only-long-seed54 |\n| bjb1-32546 | 6 | 5 | **1** (GPU 5) | crm-long-seed51/54, vla-only-long-seed53/54, vla-only-spatial-seed54 |\n| bjb2-28827 | 6 | 6 | **0** | crm-long-seed52, crm-goal-seed49/50 + 新部署 3 个 |\n| bjb2-40593 | 1 | 1 | **0** | adaptive-k-spatial-p50-seed42 |\n\n**集群总计**: 17 GPU，16 占用，**1 空闲**（bjb1-32546:cuda:5）。\n\n注意：用户命令模板中 `evaluate.py` 路径已修正为 `src/evaluate.py`；CRM 实验补充了 `--crm_checkpoint` 参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-remaining-experiments.md"
+}

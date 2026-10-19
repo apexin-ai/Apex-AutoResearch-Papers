@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "132964d4a193de3e807b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code d088 train with expert deviation",
+  "task_key": "worker_code_d088-train-with-expert-deviation_20260520T162806",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d088-train-with-expert-deviation_20260520T162806_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "06483d260c07dd68d27172344f145ef7abdc2b091f7096ee7ede7cf1cd1ebf32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 训练结果报告\n\n### 数据统计\n| 指标 | 值 |\n|---|---|\n| 样本数 N | 65,223 (K=1 object cache) |\n| Expert deviation 范围 | [0.0338, 3.1002] |\n| Mean / Median | 0.5054 / 0.4276 |\n| P10 / P25 / P75 / P90 / P95 | 0.2047 / 0.2922 / 0.6320 / 0.9038 / 1.1150 |\n| Binary label 比例 (>median) | 50.0% (32611 / 65223) |\n| Unique tasks | 10 |\n\n### 训练结果\n| 指标 | 值 |\n|---|---|\n| Best val loss (BCE) | **0.5217** |\n| Val accuracy (τ=0.42) | **73.15%** |\n| Val F1 | **0.7674** |\n| Val Precision | 0.6816 |\n| Val Recall | 0.8778 |\n| Val AUC | **0.8131** |\n| 训练 epoch | 100 (未 early stop) |\n\n### 校准阈值\n- **τ = 0.42** (最大化 F1 score)\n\n### 模型保存路径\n- Checkpoint: `/root/autodl-tmp/checkpoints/uncertainty_head_v1/uncertainty_head_best.pt`\n- Threshold: `/root/autodl-tmp/checkpoints/uncertainty_head_v1/threshold.json`\n- 模型参数量: 15,665 (960→16→16→1 MLP)\n\n### 关键观察\n- AUC=0.81 说明模型在区分\"VLA 准确\"vs\"VLA 不准确\"方面有较好的判别力\n- Recall=0.88 高于 Precision=0.68，模型倾向于将更多样本标记为\"需要校正\"（保守策略，适合安全关键场景）\n- Prediction 分布 mean=0.51, std=0.27, range=[0.0005, 0.9764]，分布合理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d088-train-with-expert-deviation.md"
+}

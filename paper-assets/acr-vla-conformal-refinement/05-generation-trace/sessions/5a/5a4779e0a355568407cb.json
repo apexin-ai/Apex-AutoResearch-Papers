@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a4779e0a355568407cb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper writing experiments reframe",
+  "task_key": "worker_paper_writing_experiments_reframe_20260520T052606",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_experiments_reframe_20260520T052606_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "24ee1a7ca219b6d6a3b5c49cf283fbc655d189371edf94bc6b95cc90f83929d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No em-dashes. The \"centering\" matches are LaTeX `\\centering` commands and the technical term \"centering\" (not an -ing participial phrase ending), so those are fine.\n\nVerification complete:\n1. All numbers match the task data exactly (Table 1, Table 2, decomposition, OOD, signal correlations)\n2. No em-dashes\n3. All section labels correct (`sec:experiments`, `sec:exp_setup`, `sec:adaptive_k`, `sec:main_results`, `sec:magnitude_results`, `sec:failure_modes`)\n4. Both tables use booktabs (`\\toprule`/`\\midrule`/`\\bottomrule`)\n5. Environments and braces are balanced\n\nThe section is restructured with Adaptive K (Section 4.2) as the core contribution, followed by Main Results (4.3), Conditioning (4.4), and Distribution Shift (4.5) as supporting analysis. Key narrative: the K=2 L2 probe (rho=0.9979) enables P50-threshold adaptive allocation at 87% of fixed-K=10 performance with 38% compute, and the decomposition analysis in 4.3 justifies why correction is the dominant mechanism that the adaptive policy targets."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-reframe.md"
+}

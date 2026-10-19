@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4304458fa8e9d4ca0f24",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp reconvla k2 spatial s42",
+  "task_key": "worker_analyze_eval-supp-reconvla-k2-spatial-s42_20260523T083410",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-reconvla-k2-spatial-s42_20260523T083410_result.json",
+    "occurrence": 1,
+    "bytes": 2078,
+    "sha256": "a6c1abf123d95ec789d2a84159be810340525879c48dc8eaff35b332c3bcf7cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验日志都已读取完毕。\n\n```\n实验: eval-supp-reconvla-k2-spatial-s42\n状态: 正常完成 (return_code=0)\n整体 SR: 160/200 = 80.0%\ntrigger_rate: N/A (reconvla 模式无 trigger_rate)\n各 task SR:\n  1. between_plate_and_ramekin  → 95.0% (19/20)\n  2. next_to_ramekin            → 100.0% (20/20)\n  3. from_table_center          → 100.0% (20/20)\n  4. on_cookie_box              → 95.0% (19/20)\n  5. in_top_drawer              → 75.0% (15/20)\n  6. on_ramekin                 → 0.0% (0/20)\n  7. next_to_cookie_box         → 95.0% (19/20)\n  8. on_stove                   → 75.0% (15/20)\n  9. next_to_plate              → 80.0% (16/20)\n  10. on_wooden_cabinet         → 85.0% (17/20)\n备注: K=2 reconvla 得到 80%，高于预期的 ~78.5% VLA-only baseline。centroid bug 假设（K=2 argmin 退化为 K=1）下仍拿到 80%，说明 CRM correction 本身就提供了改进，但幅度不大（~1.5pp over VLA-only）。这没有达到预期的\"完全等于 K=1\"——80% > 78.5%，CRM correction 仍有少量贡献。\n\n实验: eval-supp-adapt-tau025-spatial-s43\n状态: 正常完成 (return_code=0)\n整体 SR: 160/200 = 80.0%\ntrigger_rate: 19.4% (mean_unc=0.1845, conformal_threshold=0.25)\n各 task SR:\n  1. between_plate_and_ramekin  → 95.0% (19/20)\n  2. next_to_ramekin            → 95.0% (19/20)\n  3. from_table_center          → 95.0% (19/20)\n  4. on_cookie_box              → 100.0% (20/20)\n  5. in_top_drawer              → 70.0% (14/20)\n  6. on_ramekin                 → 0.0% (0/20)\n  7. next_to_cookie_box         → 100.0% (20/20)\n  8. on_stove                   → 80.0% (16/20)\n  9. next_to_plate              → 85.0% (17/20)\n  10. on_wooden_cabinet         → 80.0% (16/20)\n备注: tau=0.25 adaptive CRM seed43 也是 80%。trigger_rate 19.4% 表示只在约 1/5 的 step 触发 CRM correction（max_correction_norm=0.2）。与 seed42 的 full reconvla 80% 一致，说明 adaptive 模式用更少的 intervention（19.4% vs 100%）达到了相同效果。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-reconvla-k2-spatial-s42.md"
+}

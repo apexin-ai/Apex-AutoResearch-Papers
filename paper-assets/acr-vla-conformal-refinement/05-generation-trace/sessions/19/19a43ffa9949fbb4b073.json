@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a43ffa9949fbb4b073",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh diagnose crm long seed47",
+  "task_key": "worker_ssh_diagnose-crm-long-seed47_20260520T002002",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose-crm-long-seed47_20260520T002002_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "527fd3814daeda042f6d7a8c2b2be925c54fafef3a8d62157b1b0d572bb67d5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。结果如下：\n\n**Overall SR: 17%**（10 tasks × 10 rollouts = 100 episodes）\n\n| Task | SR | Succ/Total |\n|------|-----|-----------|\n| KITCHEN_SCENE3 turn on stove & put moka pot | **0.80** | 8/10 |\n| KITCHEN_SCENE6 mug in microwave & close | **0.50** | 5/10 |\n| LIVING_ROOM_SCENE5 mugs on plates | 0.20 | 2/10 |\n| STUDY_SCENE1 book in caddy | 0.20 | 2/10 |\n| LIVING_ROOM_SCENE2 soup & sauce in basket | 0.00 | 0/10 |\n| LIVING_ROOM_SCENE2 cheese & butter in basket | 0.00 | 0/10 |\n| KITCHEN_SCENE4 bowl in drawer & close | 0.00 | 0/10 |\n| LIVING_ROOM_SCENE6 mug on plate & pudding | 0.00 | 0/10 |\n| LIVING_ROOM_SCENE1 soup & cheese in basket | 0.00 | 0/10 |\n| KITCHEN_SCENE8 both moka pots on stove | 0.00 | 0/10 |\n\nBaseline（`eval_long_obs_only_norm02_seed47`）的 JSON 不存在——只有 CRM 的结果文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-crm-long-seed47.md"
+}

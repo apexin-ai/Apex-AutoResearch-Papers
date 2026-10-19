@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14a5ecba364d78b5626a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_20_1779057544.md",
+  "task_key": "loop_20_1779057544",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_20_1779057544.md",
+    "occurrence": 1,
+    "bytes": 4009,
+    "sha256": "1764bde6e7c1d6dbc7148764a42a9e436cd461aad2639a107839ab95b93f3b4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-17T22:38:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-18228 的 GPU 编号是 cuda:0-3（4卡），不是 6 卡\n- LIBERO 并发上限：每台服务器 ≤4 个评估进程（M005 教训）\n- bjb1-18228 刚发生批量 SIGHUP，重新提交前必须确认服务器恢复正常（诊断 Worker 结果）\n- K=10 结果已锁定为 supplementary，主线是 K=1 单采样纠正（D049 方向）\n- OpenVLA baseline 0% SR 问题未解决前，不要动 Claim 3 相关的 paper 内容\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（4×4090）：工作目录 `/root/acr-vla-conformal-refinement/`，checkpoint 在 `/root/autodl-tmp/checkpoints/crm_v3_norm/`（obs_only + perdof），日志在 `~/runs/acr-vla-conformal-refinement/`\n- **bjb1-32546**（6×4090）：同结构，当前跑 6 个评估（cuda:0-5 全占）\n- **bjb2-28827**（6×4090）：cuda:2 跑 perdof-norm02-seed47，cuda:4 跑 perdof-norm02-seed46；cuda:0 跑 plan_701 multi-scale K=1 CRM 训练\n- **bjb2-40593**（6×4090）：cuda:0 跑 random-selection baseline\n- Python: `/root/miniconda3/bin/python`（各服务器）\n- precompute cache: bjb2-28827 `/root/autodl-tmp/` 下 65K samples\n\n### 3. 📊 当前状态\n**刚做完**：收到 bjb1-18228 批量 SIGHUP 失败 CRON 回调，已向 Director 汇报。\n\n**RUNNING（9 个）**：\n| 实验 | 服务器 | GPU |\n|------|--------|-----|\n| eval-perdof-object-norm01-seed46-r2 | bjb1-32546 | cuda:4 |\n| eval-perdof-object-norm01-seed47-bjb1 | bjb1-32546 | cuda:1 |\n| eval-obs-only-object-norm03-seed46 | bjb1-32546 | cuda:2 |\n| eval-obs-only-object-default-seed46 | bjb1-32546 | cuda:3 |\n| eval-perdof-object-default-seed46 | bjb1-32546 | cuda:5 |\n| eval-obs-only-object-norm005-seed43-r2 | bjb1-32546 | cuda:0 |\n| eval-perdof-object-norm02-seed46 | bjb2-28827 | cuda:4 |\n| eval-perdof-object-norm02-seed47 | bjb2-28827 | cuda:2 |\n| eval-random-selection-object-seed42 | bjb2-40593 | cuda:0 |\n\n**等待中**：\n- 2 个诊断 Worker：`diagnose:eval-obs-only-object-norm005-seed43-r3` 和 `diag:bjb1-18228-sighup-batch`\n- Worker `diagnose:openvla-0pct-investigation` + `fix:openvla-0pct-diagnosis`（OpenVLA 0% SR 调查）\n- Worker `code:plan_702-multiscale-eval-deploy`（K=1 multi-scale eval 部署代码）\n- Worker `check:full-gpu-survey-deploy`（GPU 全面摸底）\n- Worker 池 6/6 满\n\n### 4. 📋 待办\n- `diag:bjb1-18228-sighup-batch` 回调 → 确认服务器正常 → 重新提交 4 个失败实验到 bjb1-18228（perdof-norm02-seed45, obs-only-norm005-seed43, K=5 sweep, K=20 sweep）\n- `code:plan_702-multiscale-eval-deploy` 回调 → plan_701 训练完成后立即部署 3-seed K=1 eval\n- OpenVLA 诊断 Worker 回调 → 若 bug 可修 → 修复后重跑 baseline；若真 0% → 向 Director 汇报需替换 backbone 或 drop Claim 3\n- `check:full-gpu-survey-deploy` 回调 → 填满 bjb2-40593 和 bjb2-28827 空闲 GPU\n- 9 个 RUNNING eval 完成 → 更新 magnitude curve 数据 + report.md\n- plan_701 multi-scale 训练完成 → 立即 3-seed eval → 结果决定 Scenario A/B 分叉\n\n### 5. 🎯 战略上下文\n- **核心方向 D049**：Narrative B+，obs_only CRM 单步纠正 frozen VLA。三个 claim：(1) K=1 单采样纠正，(2) conditioning-magnitude interaction，(3) 跨 VLA（OpenVLA）验证\n- **K=10 已锁定**：obs_only 17.5% vs argmin 12.3%，Fisher p=0.0074，放 supplementary\n- **关键分叉点**：plan_701 multi-scale K=1 结果（3-seed mean >13% → Scenario A 可 claim K=1 实用；≤11% → Scenario B 只做 mechanism insight）\n- **D050 确认**：K=1 ACCG fallback = VLA-only（10.0% vs 10.8%），single-scale 无增益，multi-scale 是唯一 rescue\n- **易错**：bjb1-18228 的 4 个失败不是代码问题，是服务器级 SIGHUP，重提交即可（但先等诊断确认）。不要把这些当 negative result 处理\n- **投稿 DDL**：CoRL 2026 abstract ~May 26（~9天），full paper ~Jun 2（~16天）。时间紧迫，每张 GPU 每小时都珍贵\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779057544.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1719640de1fa670fd164",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill bjb2 cuda3 deploy replacement",
+  "task_key": "worker_ops_kill-bjb2-cuda3-deploy-replacement_20260515T193342",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-bjb2-cuda3-deploy-replacement_20260515T193342_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "463be712f612ab2980b61134090b05893eb7ae8dc1ceb1df4f9a90c8fd0014ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果汇总：**\n\n| 操作 | 结果 |\n|------|------|\n| Kill PID 141024 (重复 obs_only) | 已 force kill |\n| cuda:3 释放 | 确认空闲 (1 MiB / 24564 MiB) |\n| 注册 eval-mag-perdof-norm02-seed43-object-r3 | PREPARING → PENDING → QUEUED → ALLOCATED |\n| 提交任务 | PID 144504, tmux session 启动 |\n| GPU 验证 | cuda:3 进程 144513 占用 3132 MiB，正在加载 LIBERO 环境 |\n\n新实验已在 bjb2-28827:cuda:3 上运行，CRM checkpoint 和 VLM 已加载成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-bjb2-cuda3-deploy-replacement.md"
+}

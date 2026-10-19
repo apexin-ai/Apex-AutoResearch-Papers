@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f543a2381a77f4eba7b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_29_1780030149.md",
+  "task_key": "loop_29_1780030149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_29_1780030149.md",
+    "occurrence": 1,
+    "bytes": 3222,
+    "sha256": "748f524b1b4ccb8c41a8bb01331c0f8de358eb6e7dd1e712739bbf528dd50131"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 29\nreason: max_wall_time\nupdated: '2026-05-28T21:36:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文不得自动提交——每次编辑后等 Director/用户确认，不 push 不 submit\n- CoRL 2026 正文 8 页限制含 Limitations section，任何新增内容（图表从附录提上来）必须编译后验证 Limitations 仍在 page 8 内\n- `\\textfloatsep` 已手动设为 10pt（模板默认 20pt），改动在 main.tex:17，不要恢复\n- Figure 1 (fig1_pipeline.pdf) 的 `trim=2 0 7 11, clip` 是经过逐像素分析确定的值，不要随意改\n- 统计图配色已统一为 pastel 色系（VLA-only #C5CDD2, CRM #EDAAA3, ACR-VLA #9DC4DB），新增图表必须沿用\n\n### 2. 🖥️ 基础设施快照\n- 本项目无远程服务器依赖，所有当前工作是本地 LaTeX 编辑\n- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/`\n- 编译命令：`cd docs/paper && pdflatex -interaction=nonstopmode main.tex`（需两遍 for refs）\n- 图表源码：`docs/paper/figures/` 下的 `fig_teaser.py`, `gen_method_bar.py`, `gen_trigger_scatter.py`, `fig_tau_sweep.py`, `fig_magnitude_curve.py`\n- 产出目录：`projects/acr-vla-conformal-refinement/artifacts/`\n- 无活跃 Worker / Cron / GPU 任务\n\n### 3. 📊 当前状态\n刚完成 Director 派发的紧急格式修复（DDL 前最后修改）：\n- Figure 1 间距：裁掉 PDF 顶部 11pt 空白 + `\\textfloatsep` 20→10pt，效果显著\n- AI 使用声明：从 main.tex 正文移到 appendix.tex 末尾\n- Table 3 (efficiency)：float `[h]` → `[t]`\n\n此前完成的大改动（本 session）：\n- Abstract + Introduction 重写：减少数字堆砌，强调 insight 和 motivation\n- Figure 1/2 位置互换：pipeline→intro (Fig 1), teaser→method (Fig 2)\n- 从附录提上来：Table 1 (proxy comparison, page 5), Table 3 (efficiency, page 8)\n- Magnitude curve 因空间不足留在附录（新建 sec:magnitude_sweep）\n- Limitations 独立为 `\\section`\n\nRegistry 中无 RUNNING/PREPARING 实验。无等待中的 Worker/Cron 回调。\n\n### 4. 📋 待办\n- Director 确认当前版本 OK → 等待下一步指令（可能是最终 PDF 提交）\n- 如 Director 要求进一步缩紧 Figure 1 间距 → 可尝试减小 `\\abovecaptionskip`（当前 7pt from template）或进一步加大 trim\n- 如需提交 → 检查 anonymization（当前是 Anonymous Author）、确认 references 完整性、visual review 全 8 页\n\n### 5. 🎯 战略上下文\n- 核心结论：unconditional learned correction 对 frozen VLA 是有害的（SmolVLA 四个 suite 全部下降），calibrated τ-gating 可恢复几乎全部退化\n- 论文 framing 是 diagnostic contribution（\"knowing when not to correct\"），不是 SOTA claim\n- 最易判断错的事：8 页限制极紧，从附录往正文加任何内容都要先编译验证 Limitations 是否溢出。上次 efficiency table 和 magnitude curve 都导致过溢出\n- `\\label` 系统注意：figure/table 编号由出现顺序决定，移动 figure block 时 label 跟着走但编号会变，需全文检查 ref 一致性\n- π₀.₅ 结果是 single-seed preliminary，写作中不能说 \"consistently\" 或 \"significantly\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-29-1780030149.md"
+}

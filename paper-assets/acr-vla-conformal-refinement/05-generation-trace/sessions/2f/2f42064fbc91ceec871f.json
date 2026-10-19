@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f42064fbc91ceec871f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix pi05 action chunk queue",
+  "task_key": "worker_fix_pi05-action-chunk-queue_20260521T052535",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_pi05-action-chunk-queue_20260521T052535_result.json",
+    "occurrence": 1,
+    "bytes": 53,
+    "sha256": "5746acf5b1b01f44e3396f94a427575af15599add4cc85ccdd4a9ceff1ec0a2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job running, will check back in 3 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-pi05-action-chunk-queue.md"
+}

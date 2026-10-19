@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec6f83c87ccdab75ea9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code d088 precompute spatial",
+  "task_key": "worker_code_d088-precompute-spatial_20260520T162453",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d088-precompute-spatial_20260520T162453_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "8144fb82d6b2b767c95b9da108d199a210a924426dc6fe8498bd09096e263d52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Per-sample 文件结构：`obs_features (960,)`, `vla_action (5,6)`, `expert_action (5,6)`, `task_name`。但这是 K=1 数据，无法从单 sample 计算 variance。\n\n**Spatial K=10 聚合 cache 不存在。** 服务器上只有：\n- `crm_cache_k1/object/`: K=1, 72507 samples, object benchmark\n- `crm_cache_k1/spatial/`: 空目录\n- `crm_cache_k1_openvla/object/`: ~46353 samples\n\n两个问题：\n1. **没有 Spatial 数据** — spatial 目录是空的\n2. **K=1 不是 K=10** — 单 sample 无法计算 action variance\n\n**可行替代方案：**\n\n**A) 用 K=1 Object 数据 + expert deviation 作为 uncertainty proxy。** 每个 sample 有 `vla_action` 和 `expert_action`，可以用 `|vla_action - expert_action|` 的 norm 作为 uncertainty label。这是 CPU 操作，数据已经就绪（72507 samples）。需要给 `precompute_uncertainty_labels.py` 加一个 `--mode per_sample` 模式。\n\n**B) 在有 GPU 的时候跑 `--mode sample` 对 spatial benchmark 做 K=10 采样。** 需要 GPU + SmolVLA，不是 CPU 操作。\n\n建议先走 A 跑通整个 pipeline（precompute → train uncertainty head），然后有 GPU 时再补 spatial K=10 数据。需要我执行方案 A 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d088-precompute-spatial.md"
+}

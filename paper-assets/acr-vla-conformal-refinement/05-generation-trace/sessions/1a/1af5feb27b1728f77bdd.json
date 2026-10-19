@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1af5feb27b1728f77bdd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval bjb2 setup object eval",
+  "task_key": "worker_eval_bjb2-setup-object-eval_20260515T014457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_bjb2-setup-object-eval_20260515T014457_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "6b5a85db03e8518110cd498b3adcc7678e8377bca10ed0ef73a2a7f4323a64b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已在 bjb2-40593 上成功启动 `eval-reconvla-object`：**\n\n| 项目 | 值 |\n|------|-----|\n| 实验 | ReconVLA baseline (argmin K=10) on LIBERO object |\n| 服务器 | bjb2-40593, cuda:0 (RTX 4090 D) |\n| Python PID | 211962 |\n| GPU 占用 | ~5 GB |\n| 规模 | 10 tasks × 20 rollouts = 200 episodes |\n| 日志 | `/root/runs/acr-vla-conformal-refinement/eval-reconvla-object.log` |\n| 输出 | `/root/autodl-tmp/eval_results/reconvla_object_K10.json` |\n| 预计时长 | ~10-12h |\n\n**跳过的步骤：**\n- Git 修复：两台服务器都无 .git，但 bjb2 代码比 bjb1 更新，直接可用\n- CRM checkpoint：reconvla 模式不需要\n- v5 cache：reconvla 模式不需要\n\n**此实验的价值：** 为 object benchmark 提供 reconvla argmin baseline，后续可与 VLA mean 和 CRM 变体对比。对应 spatial 上已在跑的 `eval-argmin-only-spatial`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bjb2-setup-object-eval.md"
+}

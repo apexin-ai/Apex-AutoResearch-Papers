@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "498b8fc859bde36d9032",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops harvest stale bjb1 32546",
+  "task_key": "worker_ops_harvest-stale-bjb1-32546_20260519T112208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-stale-bjb1-32546_20260519T112208_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "b874fae8f3fd359a2250074ab0525eba63ac8a9bd4efd181e86bb6e4ce9b9501"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7/8 实验全部更新为 DONE。汇总：\n\n| exp_id | success_rate | conclusion |\n|--------|-------------|------------|\n| eval-obs-only-object-norm01-seed47 | 17% | success |\n| eval-scalar-object-seed46 | 9% | success |\n| eval-obs-only-object-norm03-seed46 | 17% | success |\n| eval-perdof-object-norm03-seed46 | 4% | success |\n| eval-obs-only-object-default-seed47 | 16% | success |\n| eval-perdof-object-norm005-seed46 | 11% | success |\n| eval-perdof-object-norm01-seed48 | 12% | success |\n| eval-perdof-object-norm003-seed48 | **仍在运行** | — |\n\n**eval-perdof-object-norm003-seed48** 仍有活跃 tmux session 和 GPU 进程（pid 719459），正在跑 orange_juice 任务 rollout 9/10，尚未生成 JSON。保持 RUNNING 状态不动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-stale-bjb1-32546.md"
+}

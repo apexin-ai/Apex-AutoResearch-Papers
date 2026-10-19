@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a0f5d2bfc41f077aea4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code wrapper 7d fix",
+  "task_key": "worker_code_wrapper-7d-fix_20260513T104644",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_wrapper-7d-fix_20260513T104644_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "5a36b2d66737da7d007444dab2281fb10f47cbf97b32614cb6eebdb610565994"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改摘要：\n\n### 修改的文件（共 5 个，均在 `/root/acr-vla-conformal-refinement/src/`）\n\n| 文件 | 主要修改 |\n|------|---------|\n| **utils.py** | `ACTION_DIM=6` → `CORRECTION_DIM=6` + 新增 `FULL_ACTION_DIM=7`；`load_libero_demos` 增加 `ee_states`(6D) 字段；`build_training_samples` 改用 `ee_states` 代替 `joint_states` |\n| **smolvla_wrapper.py** | state 参数 `joint_states`(7D) → `eef_state`(6D = ee_pos+ee_axisangle)；`img_transform` 增加 `Resize(256,256)`；`preprocess_obs_batch` 改读 `ee_states`；`generate_k_samples` 输出裁切到 `FULL_ACTION_DIM=7`；新增 `split_action()` 函数 |\n| **evaluate.py** | 删除 `pad_action_to_7d`；新增 `get_eef_state()` (quat→axisangle)；env 渲染改为 256×256；所有 action 函数直接返回 7D；CRM 模式中 CGS 只处理前 6D pose，gripper 取 K 样本均值 pass-through |\n| **cgs.py** | 默认 `action_dim=CORRECTION_DIM`，只对 6D pose 计算 uncertainty |\n| **train_crm.py** | 所有 `ACTION_DIM` → `CORRECTION_DIM`；precompute 中样本切片到 6D；CRM 输入/输出维度 = `H_EFF * CORRECTION_DIM = 30` |\n\n### 验证结果\n- `FULL_ACTION_DIM=7, CORRECTION_DIM=6` ✓\n- `split_action([1,2,3,4,5,6,7])` → `pose=[1,2,3,4,5,6], grip=[7]` ✓\n- package-level + script-level imports ✓\n- CRM 337,438 params (维度不变) ✓\n\n**注意**：当前服务器上的模型是 `smolvla_base`（6D action, SO100 数据训练），不是 LIBERO fine-tuned 版本。路径在 `/root/autodl-tmp/models/SmolVLA/lerobot/smolvla_base/`，而非任务描述中的 `/root/autodl-tmp/models/smolvla_libero/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wrapper-7d-fix.md"
+}

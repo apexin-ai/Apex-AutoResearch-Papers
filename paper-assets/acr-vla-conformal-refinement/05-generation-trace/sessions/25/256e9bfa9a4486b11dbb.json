@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "256e9bfa9a4486b11dbb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "health object experiments",
+  "task_key": "worker_health_object-experiments_20260515T100306",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_health_object-experiments_20260515T100306_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "96832ffec2952b2c27f5337132018b22330b83df693f85862ffaeba837687643"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 registry 全部更新完毕。\n\n---\n\n## 总结\n\n**全部 6 个进程存活**，无卡住或死掉。\n\n**进度排行**（按 tasks done）：\n- GPU 0-3: 均完成 **5/10** tasks（~7h elapsed）\n- GPU 5 (vla_mean): **4/10** tasks\n- GPU 4 (obs-only-norm02): **3/10** tasks（晚启动 2.5h）\n\n**5-task 中期成绩**（关键数据）：\n\n| 方法 | 5-task SR | vs baseline |\n|------|-----------|-------------|\n| **crm_obs_only (norm=0.1)** | **16%** | **+4pp over baseline** |\n| crm_perdof | 10% | ≈ baseline |\n| reconvla (argmin) | 8% | -4pp |\n| crm_scalar | 4% | -8pp |\n| vla_only (single, done) | 12% | baseline |\n\n**obs_only 继续领先**，特别是 bbq_sauce 上 40% 远超其他方法。scalar 表现最差。\n\n**ETA**：\n- GPU 0-3 (5/10 done): **~01:00 May 16**\n- GPU 4-5 (3-4/10 done): **~03:00 May 16**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/health-object-experiments.md"
+}

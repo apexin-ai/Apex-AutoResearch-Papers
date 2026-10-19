@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41207d9b98316d5f8352",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra check 4090 status",
+  "task_key": "worker_infra_check-4090-status_20260513T151621",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_check-4090-status_20260513T151621_result.json",
+    "occurrence": 1,
+    "bytes": 1983,
+    "sha256": "4a7672226477475f9bedd2bd4593b6814d38768cce16dd9a1b7fd7bf230f27f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，汇总如下：\n\n---\n\n## 诊断结果\n\n### 1. 模型下载状态\n- **smolvla_libero** (865MB): ✅ 已下载到 `/root/autodl-tmp/models/smolvla_libero/`\n- **SmolVLM2-500M-Video-Instruct**: ✅ 在 HF cache 中 (`/root/autodl-tmp/.hf_cache/hub/models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/`)，但未单独存到 models 目录\n- **libero assets**: ✅ 已存在于 site-packages 目录\n\n### 2. Eval 执行情况\n- **没有** `eval_vla_object_K1.log` — Worker 从未跑 K=1 object eval\n- 实际跑的是 **reconvla 模式, K=10, n_rollouts=20**（plan_014）\n- `reconvla_object.log` 创建于 14:58，最后修改 17:21（运行约 2.5h），只有 16 行，停在 `[eval] 10 tasks loaded.` 后无任何 rollout 输出\n- **eval 进程当前未运行**，GPU 内存 0 MiB\n\n### 3. 失败根因\n**Worker 超时（3h15m），eval 未完成即被 kill。** 原因：\n\n- K=10 的 reconvla 模式下，每个 step 需要 10 次 VLA forward pass\n- 每个 rollout 最多 300 steps，估计每个 rollout 耗时 30-50 分钟\n- 首次 progress 打印在第 5 个 rollout（`(r+1) % 5 == 0`），约需 2.5-4 小时\n- Worker 在完成第一个 task 的前 5 个 rollouts 之前就超时了，所以日志无 rollout 输出\n\n### 4. 当前服务器状态\n| 项目 | 状态 |\n|------|------|\n| GPU | 空闲，0 MiB / 24564 MiB，0% 利用率 |\n| 根分区 | 18G/30G (58%) — 尚可 |\n| 数据盘 | 99G/250G (40%) — 充裕 |\n| 残留进程 | PID 48594 — libero assets 下载进程仍在运行（已跑 ~8h，疑似卡住） |\n| artifacts/ | 空，无输出 JSON |\n\n### 5. 建议\n\n如果要重跑 K=1 object eval（10 tasks × 3 rollouts），预估时间大幅缩短（K=1 vs K=10，3 rollouts vs 20），约 30-60 分钟可完成。需要：\n1. 先 kill 卡住的 assets 下载进程（PID 48594）\n2. 确认用 `smolvla_libero`（fine-tuned）还是 `smolvla_base`\n3. 用 nohup 启动 eval，避免 SSH 超时问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-4090-status.md"
+}

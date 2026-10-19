@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.0",
+  "id": "5599d7a08849ba4b5724",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook smolvla tau040 long s42 20260528T211523 098476",
+  "task_key": "cron_hook_smolvla-tau040-long-s42_20260528T211523_098476",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_smolvla-tau040-long-s42_20260528T211523_098476.jsonl",
+    "occurrence": 1,
+    "bytes": 34409,
+    "sha256": "7e26d2c105aaa95cfab20f56ae1bd28a1075fb733fa73ae3583614821916ee06"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 3,
+    "tool_calls": 13,
+    "roles": {
+      "user": 3,
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T02:41:31.702948+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: smolvla-tau040-long-s42\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: /root/runs/acr-vla-conformal-refinement/smolvla-tau040-long-s42.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T02:41:56.731489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T02:41:56.826769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 95
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T02:42:00.136480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T02:42:00.641614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T02:42:04.688930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T02:42:04.873297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T02:42:05.834373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (1,898,326 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-c3df408c/74a19eb9-189e-45d1-879c-2fbd3b32652f/tool-results/mcp-agent-ml-research-read_registry-1779936125679.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-c3df408c/74a19eb9-189e-45d1-879c-2fbd3b32652f/tool-results/mcp-agent-ml-research-read_registry-1779936125679.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 5697
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T02:43:13.798715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 7, \\\"results\\\": [{\\\"exp_id\\\": \\\"pi05-crm-always-on-long-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=156008)\\\"]}, {\\\"exp_id\\\": \\\"pi05-crm-always-on-object-s43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=190565)\\\"]}, {\\\"exp_id\\\": \\\"crm-always-on-long-s45\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=423632)\\\"]}, {\\\"exp_id\\\": \\\"smolvla-tau015-long-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=4609)\\\"]}, {\\\"exp_id\\\": \\\"smolvla-tau020-long-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=5160)\\\"]}, {\\\"exp_id\\\": \\\"smolvla-tau030-long-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=5635)\\\"]}, {\\\"exp_id\\\": \\\"smolvla-tau035-long-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=7362)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 73157
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T02:43:13.851811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-28T02:41:41Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 1335 个实验 — ANALYZING 2, DEPLOYED 6, DONE 1150, PREPARING 169, QUEUED 4, RUNNING 4\\\\n**DONE 分布**: failed 114, killed 217, negative 95, success 724\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 4 张 — bjb1-32546:cuda:5(crm-always-on-long-s45), cqa1-32758:cuda:5(pi05-crm-always-on-long-s42), cqa1-32758:cuda:0(pi05-crm-always-on-object-s43), bjb2-28827:cuda:4(smolvla-tau015-spatial-s42-fix)\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb1-18228**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb1-32546**:\\\\n  - `/autodl-pub`: 959G/7.0T 可用（已用 87%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb2-28827**:\\\\n  - `/autodl-pub`: 4.3T/14T 可用（已用 70%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n- **cqa1-32758**:\\\\n  - `/autodl-pub`: 466G/7.0T 可用（已用 94%） ⚠️\\\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\\\n  - `/usr/bin/nvidia-smi`: 76G/98G 可用（已用 19%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `crm-always-on-long-s45` | bjb1-32546 | cuda:5 | 423623 | `…uns/acr-vla-conformal-refinement/crm-always-on-long-s45.log` |\\\\n| `pi05-crm-always-on-long-s42` | cqa1-32758 | cuda:5 | 156008 | `…cr-vla-conformal-refinement/pi05-crm-always-on-long-s42.log` |\\\\n| `pi05-crm-always-on-object-s43` | cqa1-32758 | cuda:0 | 190565 | `…-vla-conformal-refinement/pi05-crm-always-on-object-s43.log` |\\\\n| `smolvla-tau015-spatial-s42-fix` | bjb2-28827 | cuda:4 | 20271 | `…vla-conformal-refinement/smolvla-tau015-spatial-s42-fix.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- \n…[truncated 7468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 69162
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T02:43:13.888287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-28 01:12 UTC | 更新原因: Long CRM always-on 3-seed 到齐 (43.2%), 4/4 suites harmful 确认, 额外 seeds 验证一致性\\\\n\\\\n> 详见 paper_framing.md（D170/D177/D178: K=2 CRM always-on 4/4 harmful + K-matched Table 1）\\\\n\\\\n## 核心方向\\\\n**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-28 20:00 北京时间**。\\\\n\\\\n## 当前进展\\\\n- **Table 1 重构**: K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），消除 K confound\\\\n- **K=2 CRM always-on 数据**: ✅ 全部 4 suites × 3 seeds 完成，额外 seeds (s45/s46) 确认一致性\\\\n- **核心发现**: CRM always-on 在 **4/4 suites** 有害（Object -4.7pp, Spatial -1.3pp, Goal -3.7pp, Long -14.8pp）；Adaptive 全面恢复\\\\n- **叙事**: \\\\\\\"CRM 修正是双刃剑，gating 正确决定何时不干预\\\\\\\" — Long -14.8pp 是最有力单一证据\\\\n- **Table 2 (π0.5)**: CRM always-on 实验 cqa1 运行中，VLA-only baseline ✅ 锁定\\\\n- **Paper Agent**: ✅ 已派单 Table 1 重构 + 叙事 4/4 升级 + 审稿遗留修复\\\\n- **审稿**: ✅ Round 3 完成，W6(ε confound) 和 W7(K=2 argmin) 已解决\\\\n\\\\n## CRM always-on 最终数据（SmolVLA, K=2, n=3）\\\\n| Suite | VLA-only (K=1) | CRM always-on (K=2) | Adaptive (K=2) | Δ CRM vs VLA | Δ Adaptive vs VLA |\\\\n|-------|---------------|--------------------|-----------|----|---|\\\\n| Spatial | 79.3±0.8 | 78.0±1.7 | 80.8±1.1 | -1.3pp | +1.5pp |\\\\n| Goal | 83.7±1.3 | 80.0±0.5 | 85.0±1.3 | -3.7pp | +1.3pp |\\\\n| Object | 77.7±1.3 | 73.0±1.8 | 77.8±2.1 | -4.7pp | +0.1pp |\\\\n| Long | 58.0±1.5 | 43.2±2.3 | 57.7±1.5 | -14.8pp | -0.3pp |\\\\n\\\\n## 近期任务\\\\n- [x] **P0** 收集 Long CRM always-on 3 seeds 结果 → 43.2% (41/45.5/43)\\\\n- [ ] **P0** Paper Agent 完成 Table 1 重构 + 叙事 4/4 升级\\\\n- [ ] **P0** 等待用户确认：title 方案 + CoRL 提交/撤回决定\\\\n- [ ] **P1** Pi05 CRM always-on (cqa1-32758) 运行中 → Table 2\\\\n- [ ] **P1** Bonus seeds (object-s45/s46, long-s45) 自然完成\\\\n- [ ] **P2** 最终论文提交 submit_paper_to_review\\\\n\\\\n## Claim 策略 (D170/D178 updated)\\\\n- *\n…[truncated 2460 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 69014
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T02:43:21.234654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'smolvla-tau040-long-s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T02:43:22.590963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T02:43:26.831826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5631}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 5597
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T02:43:26.861565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 4270
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T02:43:34.035024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "smolvla-tau040-long-s42",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T02:43:34.539346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 25 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/cron_hook_smolvla-tau040-long-s42.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/feishu_group_oc_718f2ee7260b8649b47875a90c263a2a_reviewer.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_ANALYZING_20260528T024117.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_ANALYZING_20260528T024053.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/feishu_group_oc_718f2ee7260b8649b47875a90c263a2a.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/feishu_group_oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/cron_hook_smolvla-tau045-long-s42.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/cron_hook_pi05-crm-always-on-object-s42.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/cron_hook_pi05-crm-always-on-goal-s42.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/cron_hook_pi05-crm-always-on-spatial-s42.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/cron_hook_smolvla-tau005-long-s42.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_fix_register-crons-all-servers_20260528T003848_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/work\n…[truncated 1749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "elapsed_ms": 504
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T02:43:34.891031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "smolvla-tau040-long",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T02:43:35.245457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (68.4KB). Full output saved to: /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-c3df408c/74a19eb9-189e-45d1-879c-2fbd3b32652f/tool-results/toolu_01R8C5QkThDHvxdCDGvt99cq.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-1-{\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json:2:  \"exp_id\": \"smolvla-tau040-long-s42\",\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-3-  \"project\": \"acr-vla-conformal-refinement\",\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-4-  \"state\": \"RUNNING\",\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-5-  \"previous_state\": \"QUEUED\",\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-16-        \"cuda:0\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-17-      ],\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json-18-      \"pid\": \"892506\",\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/smolvla-tau040-long-s42_RUNNING_20260528T002255.json:19:      \"log_path\": \"~/runs/acr-vla-conformal-refinement/smolvla-tau040-long-s42.log\",\n/home/ubunt\n…[truncated 216 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "elapsed_ms": 354
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T02:43:40.173919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "smolvla-tau040-long-s42",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-C": "40"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T02:43:40.224570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "46625-    spec:\n46626-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n46627-        base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py\n46628-        --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed\n46629-        42 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\n46630-        --max_correction_norm 0.2 --conformal_threshold 0.10 --output_file logs/eval_long_adaptive_conformal_crm_smolvla_k2_norm0.2_tau0.1_seed42.json\"\n46631-      server: cqa1-32758\n46632-      gpu:\n46633-      - cuda:4\n46634-      pid: '68353'\n46635-      log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau010-long-s42.log\n46636-      submitted_at: '2026-05-27T18:56:39.162Z'\n46637-      submitted_via: submit_training_job\n46638-      backend: tmux\n46639-      account: root\n46640-      data_path: LIBERO-Long (built-in)\n46641-      data_count: '200'\n46642-      model_name: smolvla\n46643-      seed: 42\n46644-      checkpoint_source: /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\n46645-      eval_data: LIBERO-Long\n46646-      wall_clock_seconds: 21721.2\n46647-      gpu_hours: 6.03\n46648-    hypothesis: SmolVLA adaptive conformal CRM at τ=0.10 on Long s42. Fills tau-sweep\n46649-      curve for complete τ response characterization.\n46650-    reproduce:\n46651-      finished_at: '2026-05-28T00:12:13.288Z'\n46652-    extra:\n46653-      hook_events:\n46654-      - event: on_complete\n46655-        action: agent\n46656-        ts: '2026-05-28T00:12:51.239719+00:00'\n46657-    conclusion: success\n46658-    metrics:\n46659-      success_rate: 0.535\n46660-      trigger_rate: 0.613\n46661-      mean_correction_norm: 0.2\n46662-    checkpoint_path: n/a (eval-only)\n46663-    log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau010-long-s42.log\n46664-    completed_at: '2026-05-28T00:58:40.332Z'\n46665:  smolvla-tau040-long-s42:\n46666-    status: ANALYZING\n46667-    \n…[truncated 2288 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T02:43:52.446571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "smolvla-tau\\d+-long-s42",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "3"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T02:43:52.497211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "42282:  smolvla-tau015-long-s42:\n42283-    status: DONE\n42284-    retry_count: 0\n42285-    created_at: '2026-05-26T22:04:48.552Z'\n--\n42297:      log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau015-long-s42.log\n42298-      submitted_at: '2026-05-27T22:51:23.133Z'\n42299-      submitted_via: submit_training_job\n42300-      backend: tmux\n--\n42320:  smolvla-tau025-long-s42:\n42321-    status: DONE\n42322-    retry_count: 0\n42323-    created_at: '2026-05-26T22:04:56.400Z'\n--\n42366:  smolvla-tau035-long-s42:\n42367-    status: DONE\n42368-    retry_count: 0\n42369-    created_at: '2026-05-26T22:05:07.003Z'\n--\n42381:      log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau035-long-s42.log\n42382-      submitted_at: '2026-05-27T22:51:53.984Z'\n42383-      submitted_via: submit_training_job\n42384-      backend: tmux\n--\n44957:  smolvla-tau020-long-s42:\n44958-    status: PREPARING\n44959-    retry_count: 0\n44960-    created_at: '2026-05-27T08:00:17.799Z'\n--\n44972:      log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau020-long-s42.log\n44973-      submitted_at: '2026-05-27T22:51:33.632Z'\n44974-      submitted_via: submit_training_job\n44975-      backend: tmux\n--\n45122:  smolvla-tau030-long-s42:\n45123-    status: DONE\n45124-    retry_count: 0\n45125-    created_at: '2026-05-27T08:16:23.068Z'\n--\n45137:      log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau030-long-s42.log\n45138-      submitted_at: '2026-05-27T22:51:42.278Z'\n45139-      submitted_via: submit_training_job\n45140-      backend: tmux\n--\n45229:  smolvla-tau030-long-s42-r2:\n45230-    status: DONE\n45231-    retry_count: 0\n45232-    created_at: '2026-05-27T09:08:02.560Z'\n--\n45244:      log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau030-long-s42-r2.log\n45245-      submitted_at: '2026-05-27T12:31:27.378Z'\n45246-      submitted_via: submit_training_job\n45247-      backend: tmux\n--\n45561:  smolvla-tau020-long-s42-r2:\n45562-    status: DONE\n45563-    retry_count: 0\n45564-    created_at: '2026-05-2\n…[truncated 2272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-28T02:44:00.326985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement && python3 -c \"\nimport yaml\nwith open('registry.yaml') as f:\n    reg = yaml.safe_load(f)\nexps = reg.get('experiments', {})\nfor k, v in sorted(exps.items()):\n    if 'smolvla-tau' in k and 'long-s42' in k and not k.endswith('-r2'):\n        m = v.get('metrics', {})\n        s = v.get('status', '')\n        c = v.get('conclusion', '')\n        sr = m.get('success_rate', '?')\n        tr = m.get('trigger_rate', '?')\n        print(f'{k}: status={s} conclusion={c} sr={sr} tr={tr}')\n\"\n",
+              "description": "Extract Long tau-sweep metrics from registry"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-28T02:44:03.596864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "smolvla-tau005-long-s42: status=DONE conclusion=negative sr=0.44 tr=0.9781\nsmolvla-tau010-long-s42: status=DONE conclusion=success sr=0.535 tr=0.613\nsmolvla-tau015-long-s42: status=DONE conclusion=success sr=0.61 tr=0.239\nsmolvla-tau020-long-s42: status=PREPARING conclusion= sr=? tr=?\nsmolvla-tau025-long-s42: status=DONE conclusion=success sr=0.56 tr=0.042\nsmolvla-tau030-long-s42: status=DONE conclusion=failed sr=? tr=?\nsmolvla-tau035-long-s42: status=DONE conclusion=success sr=0.575 tr=0.013\nsmolvla-tau040-long-s42: status=ANALYZING conclusion= sr=? tr=?\nsmolvla-tau045-long-s42: status=ANALYZING conclusion= sr=? tr=?\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_c3df408c"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "Bash",
+            "elapsed_ms": 3269
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T02:44:27.359131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "collect:tau040-tau045-long-results",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\nSSH 到 bjb1-18228 读取两个实验的日志，提取 metrics，然后更新 registry。\n\n## 实验列表\n1. **smolvla-tau040-long-s42** — log: /root/runs/acr-vla-conformal-refinement/smolvla-tau040-long-s42.log\n2. **smolvla-tau045-long-s42** — log: /root/runs/acr-vla-conformal-refinement/smolvla-tau045-long-s42.log\n\n## 操作步骤\n1. SSH (read_only) 到 bjb1-18228，读取两个日志文件的最后 100 行，提取：\n   - success_rate（最终 success rate 数值）\n   - trigger_rate（CRM trigger rate）\n   - mean_correction_norm（如果有的话）\n   - 任何异常/错误信息\n\n2. 对每个实验，用 `update_registry` 更新：\n   - `field=metrics`, `value={success_rate: X, trigger_rate: Y, mean_correction_norm: Z}`\n   - `field=conclusion`, `value=success` 或 `negative`（与 VLA-only baseline 58.0% 比较：如果 success_rate >= 0.55 视为 success，否则 negative）\n   - `field=checkpoint_path`, `value=\"n/a (eval-only)\"`\n   - `field=log_path`, `value=\"~/runs/acr-vla-conformal-refinement/smolvla-tauXXX-long-s42.log\"`\n   - `field=status`, `value=DONE`\n\n3. 最终输出格式：\n```\nsmolvla-tau040-long-s42: success_rate=X, trigger_rate=Y, conclusion=Z\nsmolvla-tau045-long-s42: success_rate=X, trigger_rate=Y, conclusion=Z\n```\n\n## 上下文\n这是 Long suite τ-sweep 实验，测试不同 conformal threshold 对 SmolVLA 的影响。\nVLA-only baseline = 58.0%（Long suite）。\n已有数据点：τ=0.05(44%), τ=0.10(53.5%), τ=0.15(61%), τ=0.25(56%), τ=0.35(57.5%)。\nτ=0.40 和 τ=0.45 是高 threshold 端的数据点，预期 trigger_rate 会很低（接近 0）。\n\n## 环境\n服务器 bjb1-18228 使用 aml-train 镜像，conda 环境。",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-28T02:44:30.876658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_collect_tau040-tau045-long-results_20260528T024428\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_collect_tau040-tau045-long-results_20260528T024428.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_collect_tau040-tau045-long-results_20260528T024428 started. Use get_worker_status('worker_collect_tau040-tau045-long-results_20260528T024428') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3517
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-28T02:44:38.400041+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出收集 τ=0.40 和 τ=0.45 的结果。等待 Worker 回调后更新 registry 并汇报 Director。\n\n当前状态概览：\n- **RUNNING**: 7 个实验仍在跑（3 个 Pi05 CRM always-on + 1 个 CRM always-on Long s45 + 3 个 tau-sweep: τ=0.15/0.20/0.30/0.35）\n- **ANALYZING**: 2 个（τ=0.40、τ=0.45）→ Worker 正在收集\n- **CoRL DDL**: 今天 20:00 北京时间"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T02:44:38.624142+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: smolvla-tau040-long-s42\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: /root/runs/acr-vla-conformal-refinement/smolvla-tau040-long-s42.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "source": "cron:hook"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-28T02:44:48.491174+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在处理中——之前已派 Worker `worker_collect_tau040-tau045-long-results_20260528T024428` 去 bjb1-18228 收集 tau040 和 tau045 的结果。等 Worker 回调后更新 registry 并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-28T21:14:32.450815+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-28T21:15:23.096469+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- **CoRL 2026 DDL: 2026-05-28 20:00 北京时间**——今天截稿\n- GPU 白名单 22 张，分布在 bjb1-18228、bjb1-32546、bjb2-28827、cqa1-32758，不得用白名单外 GPU\n- Table 1 数据已锁定（K-matched 3 列），不得修改已锁定的 baseline 数值\n- westd-49937 数据已确认系统性偏低 4-5pp（D175: LIBERO assets 版本差异），该服务器数据不可混入 Table 1/2\n- Paper 叙事核心：\"CRM always-on 4/4 suites 有害，Adaptive gating 全面恢复\"——不得偏离此 framing\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 工作目录 /root/acr-vla-conformal-refinement，conda base（/root/miniconda3），tau-sweep 实验服务器，磁盘充裕（400G/438G）\n- **bjb1-32546**: crm-always-on-long-s45 运行中（cuda:5, PID 423632）\n- **bjb2-28827**: smolvla-tau015-spatial-s42-fix 运行中（cuda:4, PID 20271）\n- **cqa1-32758**: pi05-crm-always-on-long-s42（cuda:5, PID 156008）+ pi05-crm-always-on-object-s43（cuda:0, PID 190565）\n- CRM checkpoint: /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\n- bjb1-18228 上还有 smolvla-tau015/020/030/035-long-s42 在跑（cron 监控中）\n\n### 3. 📊 当前状态\n**刚做完**: Session 初始化 + reconcile crons。收到 smolvla-tau040-long-s42 完成回调。\n\n**已派 Worker**: `worker_collect_tau040-tau045-long-results_20260528T024428` 去 bjb1-18228 收集 tau040 和 tau045（两个都 ANALYZING）的 metrics，尚未回调。\n\n**RUNNING 实验**:\n| exp_id | server | GPU | 用途 |\n|--------|--------|-----|------|\n| crm-always-on-long-s45 | bjb1-32546 | cuda:5 | Table 1 bonus seed |\n| pi05-crm-always-on-long-s42 | cqa1-32758 | cuda:5 | Table 2 Pi05 Long |\n| pi05-crm-always-on-object-s43 | cqa1-32758 | cuda:0 | Table 2 Pi05 Object |\n| smolvla-tau015-spatial-s42-fix | bjb2-28827 | cuda:4 | Spatial tau-sweep |\n\n**bjb1-18228 上还有 4 个 tau-sweep 在跑** (tau015/020/030/035 Long s42)，cron 监控中。\n\n**等待中**:\n- Worker 回调: tau040+tau045 结果收集\n- Paper Agent 完成 Table 1 重构 + 叙事 4/4 升级（之前已派单）\n- 用户确认: title 方案 + CoRL 提交/撤回决定\n\n### 4. 📋 待办\n- Worker `tau040-tau045-long-results` 回调 → 更新 registry + 补全 Long tau-sweep 曲线数据，汇报 Director\n- bjb1-18228 上剩余 tau-sweep (015/020/030/035) cron 回调 → 同样收集 metrics 更新 registry\n- crm-always-on-long-s45 完成 → 更新 Table 1 bonus seed 数据\n- pi05-crm-always-on-long-s42 + object-s43 完成 → Table 2 Pi05 数据补全，汇报 Director\n- 所有 tau-sweep 到齐 → 生成 τ vs success_rate 曲线（MC2 evidence: trigger_rate ↔ Δ 单调正相关）\n- Director 确认 title + 提交决定 → 最终 paper 提交\n\n### 5. 🎯 战略上下文\n- **核心发现已锁定**: CRM always-on 4/4 suites 有害（Long -14.8pp 最有力），Adaptive 全面恢复。D177/D178 决策链。\n- **Table 1 已重构**: K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），消除 K confound\n- **Long tau-sweep 已有数据点**: τ=0.05(44%) / τ=0.10(53.5%) / τ=0.15(61%) / τ=0.25(56%) / τ=0.35(57.5%)，τ=0.40 和 τ=0.45 待收集。τ=0.15 是 sweet spot（61% vs baseline 58%）\n- **τ=0.20 和 τ=0.30 有问题**: τ=0.20 状态 PREPARING（可能被 reconcile 漏了），τ=0.30 conclusion=failed\n- **易错点**: 不要把不同服务器的 eval 结果直接对比（westd 偏低 4-5pp）；tau-sweep 结论要用同服务器数据\n- **D181**: Table 2 确认 degradation-only 两列（VLA-only + CRM always-on），Pi05 数据还在跑\n- **时间紧迫**: 今天 20:00 北京时间 DDL，Paper Agent 重构任务 + 用户最终确认是关键路径\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau040-long-s42"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-smolvla-tau040-long-s42-20260528t211523-098476.md"
+}

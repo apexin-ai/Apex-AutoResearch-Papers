@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ff97e9755e85a09c347",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest all servers status",
+  "task_key": "worker_harvest_all-servers-status_20260526T213220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_all-servers-status_20260526T213220_result.json",
+    "occurrence": 1,
+    "bytes": 2179,
+    "sha256": "37c8a7513e958bd092a7ebb072b26cd57468c389b5b240aa9f68ff8259d0bd8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总如下：\n\n---\n\n## 服务器状态汇总\n\n### bjb2-24035 (1×4090D)\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| 0 | 0 MiB | **IDLE** |\n\n| 实验 | 状态 | SR | TR | tau |\n|------|------|----|----|-----|\n| eval-k2-tau045-spatial-s42-bjb2 | **DONE** | **78.0%** | 8.05% | 0.45 |\n\n空闲 GPU: **1/1**\n\n---\n\n### bjb1-18228 (4×4090)\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| 0 | 0 MiB | **IDLE** |\n| 1 | 0 MiB | **IDLE** |\n| 2 | 0 MiB | **IDLE** |\n| 3 | 0 MiB | **IDLE** |\n\n| 实验 | 状态 | SR | TR | tau |\n|------|------|----|----|-----|\n| spatial-adaptive-tau035-k2-s42 | **DONE** | **78.0%** | 12.35% | 0.35 |\n| spatial-adaptive-tau045-k2-s42 | **DONE** | **80.0%** | 7.29% | 0.45 |\n| spatial-crm-norm005-s42-d149 | **DONE** | **80.5%** | — | — |\n\n空闲 GPU: **4/4**\n\n---\n\n### bjb1-32546 (6×4090)\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| 0 | 10780 MiB | **BUSY** (adaptive-long-s43) |\n| 1 | 10780 MiB | **BUSY** (adaptive-long-s44) |\n| 2 | 2 MiB | **IDLE** |\n| 3 | 2 MiB | **IDLE** |\n| 4 | 2 MiB | **IDLE** |\n| 5 | 2 MiB | **IDLE** |\n\n| 实验 | 状态 | SR |\n|------|------|-----|\n| pi05-adaptive-long-s43-bjb1 (PID 903950) | **RUNNING** ~75% (7/10 tasks done) | — |\n| pi05-adaptive-long-s44-bjb1 (PID 904305) | **RUNNING** ~75% (7/10 tasks done) | — |\n| eval-crm-spatial-s48-d149-bjb1 | **DONE** | **80.5%** |\n| eval-crm-goal-s43-d149-bjb1 | **DONE** | **82.0%** |\n| eval-crm-object-s42-d149-bjb1 | **DONE** | **77.0%** |\n| eval-crm-object-s43-d149-bjb1 | **DONE** | **78.5%** |\n\n空闲 GPU: **4/6**\n\n---\n\n### cqa1-32758 (6×4090D)\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| 0-5 | 全部 0 MiB | **ALL IDLE** |\n\n空闲 GPU: **6/6**\n\n---\n\n### westd-49937 (6×RTX PRO 6000)\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| 0-5 | 全部 0 MiB | **ALL IDLE** |\n\n空闲 GPU: **6/6**\n\n---\n\n## 总览\n\n| 指标 | 值 |\n|------|-----|\n| 总 GPU | 23 |\n| 空闲 GPU | **21** |\n| 运行中实验 | 2 (bjb1-32546 上的 adaptive-long s43/s44，预计数小时内完成) |\n| 已完成实验 | 7 个有新结果 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-all-servers-status.md"
+}

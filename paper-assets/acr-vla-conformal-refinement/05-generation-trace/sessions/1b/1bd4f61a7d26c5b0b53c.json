@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1bd4f61a7d26c5b0b53c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "eval reconvla baseline spatial",
+  "task_key": "worker_eval_reconvla-baseline-spatial_20260513T201447",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_reconvla-baseline-spatial_20260513T201447.log",
+    "occurrence": 1,
+    "bytes": 597105,
+    "sha256": "213cd113c38de61b37cfed768f38f8dddef98264d837d72d326a518d358f1104"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "1bd4f61a7d26c5b0b53c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1bd4f61a7d26c5b0b53c-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-reconvla-baseline-spatial.md"
+}

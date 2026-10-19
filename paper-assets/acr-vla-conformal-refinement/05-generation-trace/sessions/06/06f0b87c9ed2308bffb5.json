@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06f0b87c9ed2308bffb5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "setup cqa1 32758 env deploy",
+  "task_key": "worker_setup_cqa1-32758-env-deploy_20260523T072225",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_cqa1-32758-env-deploy_20260523T072225_result.json",
+    "occurrence": 1,
+    "bytes": 1707,
+    "sha256": "f104710070d4bc67ee68672dcb99e49641e9f1f2a40ac8b679ebeb25ea8e7e8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments running correctly. Here's the final report:\n\n---\n\n## 部署报告 — cqa1-32758 K=2 Mean 实验\n\n### 环境\n- **Python**: 3.12.3 (miniconda3 conda base)\n- **PyTorch**: 2.8.0+cu128, CUDA 12.8\n- **GPU**: 6× RTX 4090D 24GB, Driver 580.105.08\n- **关键包**: lerobot==0.5.1, libero==0.1.1, transformers==5.9.0, robosuite==1.4.0, wandb==0.27.0, draccus==0.10.0, num2words==0.5.14\n\n### 代码同步\n- 方式: tar + scp from bjb2-40593\n- 路径: `/root/acr-vla-conformal-refinement/`\n- K=2 fix 已验证: `grep \"args.K = 10\"` 无结果\n\n### 模型\n- SmolVLA: `/root/autodl-tmp/models/smolvla_libero/` (865M)\n- SmolVLM2 config: `/root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct/`\n\n### 额外修复\n- `MUJOCO_GL=egl` + 安装 `libegl1` 解决 EGL 渲染问题\n- 手动创建 `~/.libero/config.yaml` 跳过交互式 prompt\n- 从 bjb2 SCP LIBERO assets (226M) 解决缺失场景文件\n- 从 Aliyun 镜像安装大部分包，lerobot 单独从 pypi.org `--no-deps` 安装\n\n### 6 个 tmux 实验\n\n| Session | GPU | Benchmark | Seed | PID | 状态 |\n|---------|-----|-----------|------|-----|------|\n| k2mean_spatial_s43 | cuda:0 | spatial | 43 | 16439 | rollout 5/20, 5/5 success |\n| k2mean_spatial_s44 | cuda:1 | spatial | 44 | 16437 | rollout 5/20, 5/5 success |\n| k2mean_object_s43 | cuda:2 | object | 43 | 16441 | running (tasks loaded) |\n| k2mean_object_s44 | cuda:3 | object | 44 | 16443 | running (tasks loaded) |\n| k2mean_goal_s43 | cuda:4 | goal | 43 | 16445 | running (tasks loaded) |\n| k2mean_goal_s44 | cuda:5 | goal | 44 | 16447 | running (tasks loaded) |\n\n### GPU 使用\n全部 6 张 GPU 占用 5.7-6.5 GiB，利用率 8-30%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-cqa1-32758-env-deploy.md"
+}

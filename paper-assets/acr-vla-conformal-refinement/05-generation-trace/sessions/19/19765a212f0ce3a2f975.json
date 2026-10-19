@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19765a212f0ce3a2f975",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops urgent vlamean check",
+  "task_key": "worker_ops_urgent-vlamean-check_20260515T140505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_urgent-vlamean-check_20260515T140505_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "e5e359250ec1d1240d9dae981aa7d884bd0cf67a42296a82bd65c00a8979cd7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结果\n\n### cuda:5 上的进程\n**PID 18814** — `evaluate.py --mode vla_only --baseline_mode mean --benchmark object --n_rollouts 10 --K 10`\n- 即 **eval-vla-mean-object**，确认就是 Registry 记录的那个实验\n- PID 18808 是父 shell，18814 是实际 Python 进程\n- VRAM 占用：2356 MiB\n\n### VLA-mean 进度\n**正在跑，进度 8/10 tasks**（已完成 7 个 task，第 8 个 `pick_up_the_milk` 在跑 rollout 5/10）\n\n已完成 tasks 的成功率：\n| Task | 成功率 |\n|------|--------|\n| alphabet_soup | 0/10 (0%) |\n| cream_cheese | 0/10 (0%) |\n| salad_dressing | 1/10 (10%) |\n| bbq_sauce | 3/10 (30%) |\n| ketchup | 1/10 (10%) |\n| tomato_sauce | 1/10 (10%) |\n| butter | 0/10 (0%) |\n| milk | 进行中 (2/5 so far) |\n\n### 全卡进程映射（6x RTX 4090）\n\n| GPU | PID | 实验 | VRAM |\n|-----|-----|------|------|\n| 0 | 9659 | reconvla (object, K=10) | 1887 MiB |\n| 1 | 11116 | crm_perdof (object, K=10) | 1923 MiB |\n| 2 | 13806 | crm_obs_only (norm=0.1, K=10) | 1923 MiB |\n| 3 | 14012 | crm_scalar (object, K=10) | 1923 MiB |\n| 4 | 44270 | crm_obs_only (norm=0.2, K=10) | 2856 MiB |\n| 5 | 18814 | **vla_mean** (object, K=10) | 2356 MiB |\n\n6 张卡全满，都在跑 object benchmark 的不同 mode evaluation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-vlamean-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32e70580fb1df475ab14",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix pi05 normalization",
+  "task_key": "worker_fix_pi05-normalization_20260521T032653",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_pi05-normalization_20260521T032653_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "2047c731c3c4268a1123f22d9d5b41da691282a74b887aa98bbda05f081da300"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 已启动（PID 811001），正在加载模型。\n\n总结：\n- **Killed** 旧进程 802634\n- **确认** stats 文件包含 `observation.state.mean/std`（shape [8]）和 `action.mean/std`（shape [7]），norm_map = MEAN_STD\n- **修复** `pi05_wrapper.py`：`_load_normalizer_stats` 加载 mean/std 而非 q01/q99；`_normalize_state` 改用 `(x-mean)/(std+eps)`；`_unnormalize_action` 改用 `x*std+mean`；离散化范围 [-1,1] 不变（与 lerobot PI05 processor 一致）\n- **验证** import + 方法签名检查通过\n- **Registry**: `eval-pi05-baseline-object-seed42` 标记 failed；`eval-pi05-baseline-object-seed42-r2` 已创建并提交\n- **New eval** 运行中：`eval-pi05-baseline-object-seed42-r2`，PID 811001，cuda:0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-pi05-normalization.md"
+}

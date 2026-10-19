@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27e5ca84b4df799f86a1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval vla only long seed45",
+  "task_key": "worker_analysis_eval-vla-only-long-seed45_20260519T192037",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-vla-only-long-seed45_20260519T192037_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "600807afda3288467cc07510aff68b3108220da05a88cd1e9e10f97c0fe28485"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果总结\n\n**eval-vla-only-long-seed45**: overall_success_rate = **17% (17/100)**\n\nPer-task breakdown:\n\n| Task | Success Rate |\n|------|-------------|\n| KITCHEN_SCENE3 (stove + moka pot) | 100% (10/10) |\n| LIVING_ROOM_SCENE5 (mugs on plates) | 20% (2/10) |\n| STUDY_SCENE1 (book in caddy) | 20% (2/10) |\n| KITCHEN_SCENE6 (mug in microwave) | 20% (2/10) |\n| LIVING_ROOM_SCENE6 (mug + pudding) | 10% (1/10) |\n| LIVING_ROOM_SCENE2 (soup + tomato) | 0% |\n| LIVING_ROOM_SCENE2 (cheese + butter) | 0% |\n| KITCHEN_SCENE4 (bowl in drawer) | 0% |\n| LIVING_ROOM_SCENE1 (soup + cheese) | 0% |\n| KITCHEN_SCENE8 (two moka pots) | 0% |\n\n## 4-seed 汇总 (VLA-only, LIBERO-Long)\n\n| Seed | Success Rate |\n|------|-------------|\n| 42 | 11% |\n| 43 | 13% |\n| 44 | 12% |\n| 45 | **17%** |\n\n**Mean ± Std = 13.25% ± 2.63%**\n\nseed45 是 4 个 seed 中最高的（17%），比前 3 个 seed 均值 12.0% 高出 5pp。方差主要来自 seed45，但整体 VLA-only baseline 在 Long suite 上稳定偏低（~13%），符合预期——长 horizon 多步任务对纯 VLA 挑战很大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-vla-only-long-seed45.md"
+}

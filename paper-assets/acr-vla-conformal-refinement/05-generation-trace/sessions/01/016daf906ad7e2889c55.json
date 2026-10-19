@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "016daf906ad7e2889c55",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_1_1778723011.md",
+  "task_key": "loop_1_1778723011",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_1_1778723011.md",
+    "occurrence": 1,
+    "bytes": 4734,
+    "sha256": "c7a3a7f8455c2e044b084ddecd9d3cc8af5c9e20e59fc476a4aca2cbe96185c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-13T23:18:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: bjb1-18228:cuda:0/1/2/3, bjb2-40593:cuda:0。其他卡一律不能用\n- precompute cache 路径必须是 `/root/autodl-tmp/crm_cache/`（v4 版本），不要用 crm_cache_v3（已 killed/无效）\n- AutoDL 服务器必须 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`，否则 AutoProcessor 联网失败导致静默崩溃\n- SmolVLA evaluate.py 必须在 env_args 里指定 `camera_names=[\"agentview\", \"robot0_eye_in_hand\"]`，缺少会导致只收到单摄像头、结果系统性偏低（D015 教训）\n- submit_training_job 的 command 用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && ...\"`，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (autodl-4090x4, 4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base\n  - 模型: `/root/autodl-tmp/models/smolvla_libero/`\n  - 数据: `/root/autodl-tmp/libero_data/` (spatial + object)\n  - Precompute cache: `/root/autodl-tmp/crm_cache/` (v4, 3 shard 已完成)\n  - 活跃进程: eval-spatial-v5-full (PID 73756, cuda:0, tmux session)\n- **bjb2-40593** (autodl-4090, 1× RTX 4090 D): 同样路径结构\n  - 活跃进程: eval-object-v4-full (PID 103778, cuda:0, tmux session)\n- 两台 cron 都在 reconcile 中：eval-spatial-v5-full + eval-object-v4-full\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- GPU 预算 ~200h，已用 ~25h\n\n### 3. 📊 当前状态\n**刚做完**: precompute-v4-shard2 CRON 回调处理。3 个 v4 shard 全部 success（cache 写入 `/root/autodl-tmp/crm_cache/`）。shard2 conclusion=success 已写入 registry（status 卡在 PREPARING，状态机不允许 PREPARING→DONE 跳转，但 conclusion 已正确）。\n\n**正在跑的实验**:\n- `eval-spatial-v5-full` (PREPARING, bjb1 cuda:0) — SmolVLA 修复版 wrapper 在 spatial 上的 10×10 full eval，决定 SFT gate\n- `eval-object-v4-full` (PREPARING, bjb2 cuda:0) — SmolVLA 在 object 上的 full eval\n\n**等待中的 Worker 回调** (4 个 Worker running):\n1. `worker_infra_check-precompute-v4-completion` — 之前 session 遗留的 infra 检查\n2. `worker_analyze_precompute-v4-shard2` — 分析 shard2 日志 + cache 完整性\n3. `worker_code_crm-train-v1-prep` — **关键**: 验证 cache → 提交 CRM 训练到 bjb1 cuda:1\n4. `worker_code_ablation-prep` — 检查 train_crm.py 是否支持 plan_002/003 ablation 模式\n\n**已向 Director 汇报**: precompute 全部完成 + CRM 训练启动中 + 空闲 GPU 利用建议。等 Director 回复。\n\n### 4. 📋 待办（条件触发式）\n- `worker_code_crm-train-v1-prep` 回调 → 确认 CRM 训练已提交（exp_id=crm-train-v1），更新 registry，注册 cron 监控\n- `worker_code_ablation-prep` 回调 → 如果 ablation 已支持 → 立即在 cuda:2/3 提交 plan_002 + plan_003；如果不支持 → 派 Worker 改代码加 `--input_mode` 参数\n- eval-spatial-v5-full cron 回调 → 按 on-experiment-done 分叉：≥80% 按计划推进, 50-80% 可继续调低期望, <30% 换模型（SFT gate）\n- eval-object-v4-full cron 回调 → 同上处理\n- CRM 训练完成（预计 4-6h 后）→ 启动 ACR-VLA full pipeline eval（plan_001 的 eval 阶段）\n- cuda:2/3 空闲超过 30min 且无 ablation 可跑 → 不同 seed CRM 训练 或 plan_014 ReconVLA baseline 重跑\n- Director 回复空闲 GPU 建议 → 按指令执行\n\n### 5. 🎯 战略上下文\n- **核心假设已验证**: MVP (plan_000) 确认 per-DOF > scalar > none，PASS\n- **目标**: ICLR 2027 (DDL Sep-Oct 2026)，CoRL 2026 已放弃 (D011)\n- **关键路径**: Precompute ✅ → CRM 训练 (正在启动) → ACR-VLA Eval → ablations\n- **Wrapper 血泪史**: 前 3 轮实验全部无效（v1 precompute killed, v2 killed, v3 killed），根因是 SmolVLA wrapper 有 7 个 bug（图像翻转/尺寸/归一化, state 6D→8D, state/action normalization, 双摄像头）。D014 完成修复并部署，v4 是第一批有效数据\n- **registry 状态机问题**: 所有 precompute-v4 和 eval-v4/v5 实验的 status 都卡在 PREPARING（submit_training_job 没正确推进），但 conclusion 和 finished_at 是准确的。不要被 status=PREPARING 迷惑\n- **易错点**: (1) 不要用 crm_cache_v3 路径，那是 killed 数据 (2) 不要在 evaluate.py 里漏掉 camera_names 参数 (3) GPU 编号脚本内永远从 0 开始（CUDA_VISIBLE_DEVICES 自动映射）\n- **决策链**: D008(SmolVLA 需 SFT) → D009(先试社区 checkpoint) → D010(SFT fallback) → D012(55.6% 不可靠) → D013(wrapper 需完全对齐 lerobot) → D014(修复部署, v4 启动)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778723011.md"
+}

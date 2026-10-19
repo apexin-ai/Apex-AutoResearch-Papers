@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2545014ec6cc1aeed1db",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze westd vla only spatial s44 long s42",
+  "task_key": "worker_analyze_westd-vla-only-spatial-s44-long-s42_20260526T124859",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_westd-vla-only-spatial-s44-long-s42_20260526T124859_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "55e963e565f6a9acd564a8dcfb0aec5758e982da784928000eb1f16a636afe19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成入库。\n\n**结果摘要：**\n\n| 实验 | success_rate | per-task 非满分 |\n|---|---|---|\n| spatial-s44 | **98.5%** (197/200) | `pick_up_the_black_bowl_on_the_ramekin`: 85.0% (17/20) |\n| long-s42 | **98.0%** (196/200) | `KITCHEN_SCENE8_put_both_moka_pots_on_the_stove`: 90% · `LIVING_ROOM_SCENE2_alphabet_soup+tomato_sauce`: 95% · `KITCHEN_SCENE6_yellow_white_mug_microwave`: 95% |\n\n- 两个实验 EXIT_CODE=0，无异常\n- registry：status=DONE，conclusion=success，metrics 已写入\n- 报告写到 `artifacts/report_fragment.md`（`save_project_file` 白名单不含此文件，已改用本地 Write 写入产出目录）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-westd-vla-only-spatial-s44-long-s42.md"
+}

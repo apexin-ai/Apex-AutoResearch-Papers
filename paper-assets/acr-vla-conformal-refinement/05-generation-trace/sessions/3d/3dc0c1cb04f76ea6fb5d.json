@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dc0c1cb04f76ea6fb5d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep openvla eval rsync",
+  "task_key": "worker_prep_openvla-eval-rsync_20260520T200010",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_openvla-eval-rsync_20260520T200010_result.json",
+    "occurrence": 1,
+    "bytes": 1892,
+    "sha256": "290eeb1c89388bcb7e77f09fb5f4d2be695e80a768c784efcd418cafec65c1c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇总报告：\n\n---\n\n### 1. rsync 状态：**失败 — 跨服务器 SSH 不通**\n\nbjb2-28827 无法解析 `bjb1-32546` 主机名（`Could not resolve hostname`）。AutoDL 实例间没有内网直连。\n\n**替代方案**：需要从本地中转，或通过公网 SSH 跳板（两台机器各自有公网 SSH 端口）做 rsync。命令形式：\n```bash\n# 从本地中转\nrsync -avz bjb2-28827:/root/autodl-tmp/models/openvla-libero-object/ /tmp/openvla-staging/\nrsync -avz /tmp/openvla-staging/ bjb1-32546:/root/autodl-tmp/models/openvla-libero-object/\n```\n\n### 2. evaluate.py OpenVLA 兼容性：**已支持**\n\n- `--openvla` flag 已实现（L81-85），切换使用 OpenVLA 而非 SmolVLA\n- `--openvla_path` 默认指向 `/root/autodl-tmp/models/openvla-libero-object`\n- 有独立的 `openvla_wrapper.py`，`OpenVLAWrapper` 类封装了加载和推理\n- 支持两种模式：\n  - `vla_only`：调用 `select_action_openvla_only`（L627-629）\n  - `crm_obs_only`：调用 `select_action_crm_openvla`（L648-650）\n- **无需修改代码**，直接 `--openvla` 即可\n\n### 3. OpenVLA 模型大小 & 显存需求\n\n| 项目 | 大小 |\n|------|------|\n| 模型权重 | **15 GB**（4 个 safetensors 分片，3×4.6GB + 1×0.25GB） |\n| CRM checkpoint | **69 MB** |\n| 加载精度 | bfloat16（`torch.bfloat16`） |\n| 预估显存 | **~15-16 GB**（bf16 加载） + 推理开销 ≈ **~18-20 GB** |\n\nOpenVLA 7B 以 bfloat16 加载，单卡 24GB GPU 勉强够（无 `device_map=\"auto\"`，是整体 `.to(device)`），但留给 CRM 和推理 buffer 的空间很紧。2 GPU 是更稳妥的选择。\n\n### 结论\n\n- 代码已兼容，无需改动\n- 跨服务器 rsync 不可行，需本地中转或用公网端口做跳板\n- 单卡 24GB 理论上能跑（bf16 ~15GB），但加上 CRM + LIBERO 环境开销会很紧张"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-openvla-eval-rsync.md"
+}

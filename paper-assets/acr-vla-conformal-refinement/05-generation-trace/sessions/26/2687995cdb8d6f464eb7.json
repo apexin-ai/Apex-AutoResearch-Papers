@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2687995cdb8d6f464eb7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "reviewer / loop_21.md",
+  "task_key": "loop_21",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_21.md",
+    "occurrence": 1,
+    "bytes": 4442,
+    "sha256": "e5ee299f74109d89e6ff4eade3e654255097447e797616c1bb2c199a4da6ba17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: max_wall_time\nupdated: '2026-05-22T18:15:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb2-40593 **禁止跑 π0.5 eval** — `create_causal_mask()` 接口不兼容，所有 π0.5 eval 在该服务器上 100% 失败（0.0%）。只用 bjb1-18228 或 bjb1-32546\n- CRM 训练必须带 `--input_mode obs_only`（D113/D115），缺失此参数的训练产出无效。bjb1-32546 GPU 5 曾反复出现无 obs_only 的幽灵进程\n- SmolVLA precompute 用的是 `lerobot_precompute.py`（wrapper-based），**不是** `lerobot_native_precompute.py`（后者 0% SR，chunk_size=50 错误，已确认失败）\n- π0.5 CRM 在 acr_vla（always-correct）模式下会 **退化 ~20pp**（99.3% → ~80%），**必须用 adaptive_conformal_crm 模式**做 no-harm 验证\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**（6×4090）：`/root/acr-vla-conformal-refinement`，conda base，`/root/miniconda3/bin/python`\n  - GPU 3: CRM r4 π0.5 训练（PID 322367），epoch 16/50，output `/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/`\n  - GPU 0: 有新进程 1302 MiB（可能是 Long 相关部署）\n  - GPU 5: 已清理（rogue 进程被 kill）\n- **bjb2-28827**（6×4090）：同路径\n  - GPU 0: SmolVLA CRM 3-suite 训练（PID 344463），epoch 5/50，output `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/`，~7 min/epoch，预计 ~07:30 UTC 完成\n  - GPUs 3-5: 旧 π0.5 precompute（9874 MiB each, PID 206132/206279/206558），可回收\n- **bjb1-18228**（4×4090）：GPU 1 Long seed42 rerun 已完成，GPUs 0-3 大部分空闲\n- **bjb2-40593**（1×4090D）：环境坏，排除\n- SmolVLA precompute cache: `/root/autodl-tmp/crm_cache_smolvla_k10/`（object/spatial/goal 完成，Long 缺）\n- π0.5 precompute cache: `/root/autodl-tmp/crm_cache_v5/`（4-suite 完成）\n\n### 3. 📊 当前状态\n**刚完成**：\n- π0.5 4-suite × 3-seed baseline 全部确认：Object 99.3%±0.8%, Spatial 98.0%±0.5%, Goal 97.8%±0.3%, Long 95.0%±0.9%\n- SmolVLA precompute 3-suite 完成（sanity check PASS）\n- π0.5 CRM Object acr_vla eval 被 kill（已确认 ~20pp 退化，有价值的 negative 证据）\n- 多个 r4-std 标准化重跑在 bjb2-40593 上全部失败（已报告，不再追）\n\n**RUNNING（registry 不准，以下为实际状态）**：\n- `train-crm-unified-4suite-r4`: **实际仍在跑**（epoch 16/50），但 registry 错误标记为 DONE/failed。**必须先修正 registry 状态回 RUNNING**\n- SmolVLA CRM 3-suite: 未注册到 registry，epoch 5/50，PID 344463\n- SmolVLA Long 3-seed baseline + Long wrapper precompute: 刚部署，待确认\n- Registry 中 spatial-r4 × 3 seeds 标记 RUNNING 但**从未实际启动**（幽灵条目）\n\n### 4. 📋 待办（条件触发式）\n- CRM r4 训练完成（~07:00 UTC May 23）→ **立即**部署 π0.5 4-suite adaptive_conformal_crm eval（3 seeds），验证 no-harm。**不要用 acr_vla 模式**\n- SmolVLA CRM 训练完成（~07:30 UTC May 23）→ 部署 SmolVLA 3-suite ACR-VLA eval（3 seeds, adaptive mode），这是论文**正面证据的唯一来源**\n- SmolVLA Long precompute 完成 → 可训练 4-suite SmolVLA CRM（升级 v1 → v2）\n- lerobot_native_precompute 修复（如有 worker 成功）→ 用 native 数据重训 SmolVLA CRM 更 clean\n- π0.5 CRM adaptive eval 若 ≤ baseline → no-harm 成立，写 paper table；若 > baseline 显著 → 可能是 noise，需 3-seed 验证\n\n### 5. 🎯 战略上下文\n- **核心赌注在 SmolVLA CRM**：π0.5 95-99% 饱和无提升空间，SmolVLA baseline 59-75% 有大幅提升可能。如果 SmolVLA CRM 也 fail，论文缺乏正面实验证据\n- **D122 风险**：SmolVLA CRM 用的是 wrapper precompute 数据，wrapper eval 仅 10.8%（6x gap vs lerobot 的 66.5%）。precompute 分布可能与 eval 分布不匹配。如果 CRM eval 结果差，首先排查这个分布 mismatch\n- **决策链**：D113(obs_only) → D115(3-suite) → D118(SmolVLA pivot) → D119(lerobot-native) → D120(禁用 wrapper precompute) → D122(先用 wrapper, native 修复后重训)。注意 D120 和 D122 矛盾——D122 是时间压力下的妥协\n- **最容易判断错的事**：cron 报 train-crm-unified-4suite-r4 failed 是**误报**，进程正常。registry 14 个 RUNNING 中至少 8 个状态不准确。**不要信 registry，信 SSH**\n- **DDL**：CoRL 2026-05-29，剩 ≤7 天。两个 CRM 训练 ~7h 内出结果，eval 各需 ~4-6h，时间可行但无冗余\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-copy-3.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "335e5c43d650ad076a44",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check pi05 crm and gpu scan",
+  "task_key": "worker_check_pi05-crm-and-gpu-scan_20260524T112917",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_pi05-crm-and-gpu-scan_20260524T112917.jsonl",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "e37eb3bc55d1818befe588ec8caa7bf1a99e2231d9bc24e47163a246fc6e777c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T11:29:24.491463+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_pi05-crm-and-gpu-scan_20260524T112917"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-pi05-crm-and-gpu-scan.md"
+}

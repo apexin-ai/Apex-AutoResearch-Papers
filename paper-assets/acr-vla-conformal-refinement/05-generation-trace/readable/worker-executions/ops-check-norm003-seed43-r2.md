@@ -1,0 +1,1616 @@
+# ops check norm003 seed43 r2
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_ops_check-norm003-seed43-r2_20260519T051459.log`
+- **Structured JSON:** [`8157f602024a7b42b279.json`](../../sessions/81/8157f602024a7b42b279.json)
+
+## Before a recorded user message
+
+33 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__delete_cron",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ad77cd4e-3be2-4e05-acf0-a2b769548b7f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The task is to check the experiment results for `eval-obs-only-object-norm003-seed43-r2` on server bjb1-18228. Let me follow the steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "861f5dfa-84f3-4111-94cd-ba0efa30b4e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wsz6MYvufbp7b7hDWSetog",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12569,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12569
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ht1j3x4o3NX6AmHhSAASv3`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "4f9b4323-948f-46b5-8f66-e76a318bafae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wsz6MYvufbp7b7hDWSetog",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12569,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12569
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T05:15:16.202Z_
+
+<details><summary>↩ Tool result · `toolu_01Ht1j3x4o3NX6AmHhSAASv3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__delete_cron"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "1194b858-ab1a-4523-a3fa-dccca8eb3365",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__delete_cron"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779181200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4b5567fc-0a75-4797-8840-32e00ffe3e49",
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7_
+
+查找日志文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "beff8e3c-7055-4471-8969-be9cea19d234",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wNEbAsnbHg58Ev79rktVW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1362,
+      "cache_read_input_tokens": 24410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1362
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DNWTNta84znWb1B8kghSfh`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -la /root/logs/*norm003*seed43* 2>/dev/null; echo \"---\"; ls -la /root/acr-vla-conformal-refinement/logs/*norm003*seed43* 2>/dev/null; echo \"---\"; ls -la ~/runs/acr-vla-conformal-refinement/*norm003*seed43* 2>/dev/null; echo \"---\"; find /root -maxdepth 4 -name \"*norm003*seed43*\" -type f 2>/dev/null | head -20",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "01ffe134-b21c-49cb-8d0d-034f173fff24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wNEbAsnbHg58Ev79rktVW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1362,
+      "cache_read_input_tokens": 24410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1362
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Eff4evLBnuJdReFdnyu4fe`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval-obs-only-object-norm003-seed43-r2"
+  },
+  "project": "acr-vla-conformal-refinement",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "014b875a-3565-4ada-86ac-e46cbb51fc13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wNEbAsnbHg58Ev79rktVW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1362,
+      "cache_read_input_tokens": 24410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1362
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T05:15:21.886Z_
+
+<details><summary>↩ Tool result · `toolu_01DNWTNta84znWb1B8kghSfh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 7008 May 19 12:30 /root/logs/eval_object_obs_only_norm003_seed43.log\\n---\\n-rw-r--r-- 1 root root 1873 May 17 21:25 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.log\\n---\\n-rw-r--r-- 1 root root 5984 May 19 04:38 /root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log\\n---\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.log\\n/root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log\\n/root/logs/eval_object_obs_only_norm003_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "ad25a7a6-40fc-408b-80fd-76a245e96fad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 7008 May 19 12:30 /root/logs/eval_object_obs_only_norm003_seed43.log\\\\n---\\\\n-rw-r--r-- 1 root root 1873 May 17 21:25 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.log\\\\n---\\\\n-rw-r--r-- 1 root root 5984 May 19 04:38 /root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log\\\\n---\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.log\\\\n/root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log\\\\n/root/logs/eval_object_obs_only_norm003_seed43.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 7008 May 19 12:30 /root/logs/eval_object_obs_only_norm003_seed43.log\\n---\\n-rw-r--r-- 1 root root 1873 May 17 21:25 /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.log\\n---\\n-rw-r--r-- 1 root root 5984 May 19 04:38 /root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log\\n---\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.log\\n/root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log\\n/root/logs/eval_object_obs_only_norm003_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T05:15:23.181Z_
+
+<details><summary>↩ Tool result · `toolu_01Eff4evLBnuJdReFdnyu4fe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2718}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "9be0aab1-7606-4d33-9a0c-038c1f687295",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2718}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2718}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found 3 log files. The most recent one is `/root/logs/eval_object_obs_only_norm003_seed43.log` (May 19 12:30). Let me check the tail of each, starting with the most recent. The registry has no entry for this exp_id - let me check with a different filter.
+
+Let me read the most recent log file and also check the registry more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "2ef26e22-0862-4566-8733-bc943c5f2cf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HB1pcEt1m9CZUW3nW2p4b9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 25772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 826
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+找到3个日志文件，最新的是 `/root/logs/eval_object_obs_only_norm003_seed43.log`（今天12:30更新）。读取日志尾部。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "9e6264d6-961c-4600-bad9-986f595f4514",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HB1pcEt1m9CZUW3nW2p4b9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 25772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 826
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012nmWLQSYbi8mCmunfmsbSv`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "echo \"=== /root/logs (newest, 12:30 today) ===\"; tail -100 /root/logs/eval_object_obs_only_norm003_seed43.log; echo \"=== /root/runs (04:38 today) ===\"; tail -50 /root/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed43.log",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "da5d616b-6c10-45c7-939e-3cd7c18732f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HB1pcEt1m9CZUW3nW2p4b9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 25772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 826
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T05:15:30.532Z_
+
+<details><summary>↩ Tool result · `toolu_012nmWLQSYbi8mCmunfmsbSv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== /root/logs (newest, 12:30 today) ===\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm003_seed43.json', 'max_correction_norm': 0.03}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  64%|██████▍   | 314/489 [00:00<00:00, 3139.49it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3574.08it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.03\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 4/10, success so far: 0/4\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 7/10, success so far: 0/7\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 8/10, success so far: 0/8\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 9/10, success so far: 0/9\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 7/10, success so far: 1/7\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 8/10, success so far: 1/8\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 9/10, success so far: 1/9\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pic\\n\\n... [截断: 输出过长，省略 3367 字符] ...\\n\\nasket: rollout 5/10, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 7/10, success so far: 0/7\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 8/10, success so far: 0/8\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 9/10, success so far: 0/9\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 7/10, success so far: 1/7\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 8/10, success so far: 1/8\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 9/10, success so far: 1/9\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 7/10, success so far: 2/7\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 8/10, success so far: 2/8\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 9/10, success so far: 2/9\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/10, success so far: 2/10\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 2/10, success so far: 1/2\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 3/10, success so far: 1/3\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 7/10, success so far: 2/7\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 8/10, success so far: 3/8\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 9/10, success so far: 3/9\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/10, success so far: 4/10\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 40.0% (4/10)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 4/10, success so far: 0/4\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\nEXIT_CODE=129\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "fdf3374c-3d8f-4357-a7a0-7d2de1a076df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== /root/logs (newest, 12:30 today) ===\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm003_seed43.json', 'max_correction_norm': 0.03}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  64%|██████▍   | 314/489 [00:00<00:00, 3139.49it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3574.08it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.03\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 4/10, success so far: 0/4\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 7/10, success so far: 0/7\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 8/10, success so far: 0/8\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 9/10, success so far: 0/9\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 7/10, success so far: 1/7\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 8/10, success so far: 1/8\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 9/10, success so far: 1/9\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\\\n  pic\\\\n\\\\n... [截断: 输出过长，省略 3367 字符] ...\\\\n\\\\nasket: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 7/10, success so far: 0/7\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 8/10, success so far: 0/8\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 9/10, success so far: 0/9\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 7/10, success so far: 1/7\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 8/10, success so far: 1/8\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 9/10, success so far: 1/9\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 7/10, success so far: 2/7\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 8/10, success so far: 2/8\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 9/10, success so far: 2/9\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/10, success so far: 2/10\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 2/10, success so far: 1/2\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 3/10, success so far: 1/3\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 7/10, success so far: 2/7\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 8/10, success so far: 3/8\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 9/10, success so far: 3/9\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/10, success so far: 4/10\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 40.0% (4/10)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 4/10, success so far: 0/4\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\\\nEXIT_CODE=129\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== /root/logs (newest, 12:30 today) ===\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm003_seed43.json', 'max_correction_norm': 0.03}\\n[eval] Mode: crm_obs_only, benchmark: object\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  64%|██████▍   | 314/489 [00:00<00:00, 3139.49it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3574.08it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.03\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 4/10, success so far: 0/4\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 7/10, success so far: 0/7\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 8/10, success so far: 0/8\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 9/10, success so far: 0/9\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 7/10, success so far: 1/7\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 8/10, success so far: 1/8\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 9/10, success so far: 1/9\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pic\\n\\n... [截断: 输出过长，省略 3367 字符] ...\\n\\nasket: rollout 5/10, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 7/10, success so far: 0/7\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 8/10, success so far: 0/8\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 9/10, success so far: 0/9\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 7/10, success so far: 1/7\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 8/10, success so far: 1/8\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 9/10, success so far: 1/9\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 1/10\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 10.0% (1/10)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 7/10, success so far: 2/7\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 8/10, success so far: 2/8\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 9/10, success so far: 2/9\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/10, success so far: 2/10\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 20.0% (2/10)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 2/10, success so far: 1/2\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 3/10, success so far: 1/3\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 4/10, success so far: 1/4\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/10, success so far: 1/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 6/10, success so far: 1/6\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 7/10, success so far: 2/7\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 8/10, success so far: 3/8\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 9/10, success so far: 3/9\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/10, success so far: 4/10\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 40.0% (4/10)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 1/10, success so far: 0/1\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 2/10, success so far: 0/2\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 3/10, success so far: 0/3\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 4/10, success so far: 0/4\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 6/10, success so far: 0/6\\nEXIT_CODE=129\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Jvc4wf2kz73EqYgYZkAm89`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval-obs-only-object-norm003-seed43-r2"
+  },
+  "project": "acr-vla-conformal-refinement",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "9a7ae22d-dfac-498f-a430-481c3c59a931",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HB1pcEt1m9CZUW3nW2p4b9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 25772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 826
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T05:15:31.821Z_
+
+<details><summary>↩ Tool result · `toolu_01Jvc4wf2kz73EqYgYZkAm89`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2715}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "7c9d369a-ca68-48b0-8d97-b9c491aa0785",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2715}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2715}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows EXIT_CODE=129, which means the process was killed by SIGHUP (signal 1 + 128 = 129). The experiment was running through task 6 of 10 (ketchup) and got killed mid-way through rollout 6/10 of that task.
+
+The `/root/runs/` log seems to be from an earlier run. Let me check if there's a JSON output file with partial results, and also check the first log more carefully.
+
+The experiment was definitely killed (EXIT_CODE=129). It completed 5 tasks fully and was partway through task 6 when killed.
+
+
+Looking at the breakdown, only the first task (alphabet_soup) shows 0% completion, while cream_cheese got to 10%, salad_dressing to 20%, and bbq_sauce to 40% before the ketchup task was interrupted at rollout 6 out of 10. Let me search for any JSON output files and check the registry to see if there's any record of this experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "b59b5723-ca20-453f-9d99-e00ad8368823",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TS1kskK4Sj2r3F2xZqHrTZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4339,
+      "cache_read_input_tokens": 26598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4339
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+日志最后显示 `EXIT_CODE=129`（SIGHUP kill），在第6个任务 ketchup 的 rollout 6/10 处中断。检查是否有 JSON 输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "59a44a0c-ff35-4144-9dc3-4c96336b4fd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TS1kskK4Sj2r3F2xZqHrTZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4339,
+      "cache_read_input_tokens": 26598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4339
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NWCycUFNSh3GsjyzXpfXGx`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.json 2>/dev/null; cat /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43.json 2>/dev/null; echo \"---\"; find /root -maxdepth 4 -name \"*norm003*seed43*.json\" 2>/dev/null",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "5f290b51-9df1-49d6-9202-deb0df3ea551",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TS1kskK4Sj2r3F2xZqHrTZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4339,
+      "cache_read_input_tokens": 26598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4339
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T05:15:43.552Z_
+
+<details><summary>↩ Tool result · `toolu_01NWCycUFNSh3GsjyzXpfXGx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "7f13d4e2-9f12-4801-b5a9-356d60c0ea3f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No JSON output file found. The experiment was killed before completion, so no output was written.
+
+Now let me update the registry and delete the cron. The registry returned 0 results for this exp_id, so the experiment might not be registered yet, or it might be under a slightly different name. Let me just update it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "e8136a1e-56cc-4f62-8c34-cbe9ad37109f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YA2KP5Zs2Lv3amFvuPq4UD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 30937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+无 JSON 输出文件。实验被 kill，未完成。更新 registry 并清除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "9577d414-81be-40ad-a51e-54dea7c0e54e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YA2KP5Zs2Lv3amFvuPq4UD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 30937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016yPt16LH1avLR9BRBYLrPZ`</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm003-seed43-r2",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "803e5459-80fc-4bc7-b7c0-b40daec07fe4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YA2KP5Zs2Lv3amFvuPq4UD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 30937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 664
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T05:15:52.664Z_
+
+<details><summary>↩ Tool result · `toolu_016yPt16LH1avLR9BRBYLrPZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm003-seed43-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:45:20.860Z\", \"updated_at\": \"2026-05-19T05:15:49.820Z\", \"hypothesis\": \"obs_only CRM (ε=0.03) seed43 on LIBERO-Object. Retry after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。\", \"spec\": {\"command\": \"timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"tmux_session\": \"eval-obs-only-object-norm003-seed43\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T04:44:43.719Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T04:44:47.174Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T04:44:53.003224+00:00\"}]}}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5126}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "45da4b96-bddb-434a-a1bd-442f2fb14454",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed43-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:45:20.860Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:15:49.820Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed43 on LIBERO-Object. Retry after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。\\\", \\\"spec\\\": {\\\"command\\\": \\\"timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"tmux_session\\\": \\\"eval-obs-only-object-norm003-seed43\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T04:44:43.719Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-19T04:44:47.174Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T04:44:53.003224+00:00\\\"}]}}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5126}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm003-seed43-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:45:20.860Z\", \"updated_at\": \"2026-05-19T05:15:49.820Z\", \"hypothesis\": \"obs_only CRM (ε=0.03) seed43 on LIBERO-Object. Retry after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。\", \"spec\": {\"command\": \"timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"tmux_session\": \"eval-obs-only-object-norm003-seed43\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T04:44:43.719Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T04:44:47.174Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T04:44:53.003224+00:00\"}]}}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.5126}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry entry already existed and was already marked as DONE/failed (auto-resolved by the cron). Let me update the conclusion to "killed" since that's what actually happened, and then delete the cron.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "95bde2f8-72ee-4078-b5bb-a46ae0e61c74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018x7Ds8mGymwUU6ENrZVSBb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 31601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1023
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Registry 已有条目（之前被 cron 自动标记为 failed）。更新 conclusion 为 killed 并清除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "21b0fefc-1d8e-469c-9955-f9d90e58db67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018x7Ds8mGymwUU6ENrZVSBb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 31601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1023
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KkUsnrHtAmX5KUa7SuxNwd`</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm003-seed43-r2",
+  "field": "conclusion",
+  "value": "killed",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "7d8f5f13-5217-4b37-9bca-a11523e03d88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018x7Ds8mGymwUU6ENrZVSBb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 31601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1023
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__delete_cron · `toolu_01KFUXzJ6fJSuvDckynCFZM2`</summary>
+
+```json
+{
+  "exp_id": "eval-obs-only-object-norm003-seed43-r2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "67e71bd9-538b-4a74-a950-d8da8bbe8a84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018x7Ds8mGymwUU6ENrZVSBb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 31601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1023
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T05:15:58.958Z_
+
+<details><summary>↩ Tool result · `toolu_01KkUsnrHtAmX5KUa7SuxNwd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm003-seed43-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:45:20.860Z\", \"updated_at\": \"2026-05-19T05:15:58.303Z\", \"hypothesis\": \"obs_only CRM (ε=0.03) seed43 on LIBERO-Object. Retry after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。\", \"spec\": {\"command\": \"timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"tmux_session\": \"eval-obs-only-object-norm003-seed43\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T04:44:43.719Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-19T04:44:47.174Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T04:44:53.003224+00:00\"}]}}, \"impact_analysis\": {\"change_type\": \"experiment\", \"change_id\": \"eval-obs-only-object-norm003-seed43-r2\", \"affected_decisions\": [], \"cascade_decisions\": [], \"affected_claims\": [], \"affected_figures\": [], \"recommendations\": [\"No downstream impact detected\"]}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.334}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "5df227d3-c693-4caa-a1be-29a27ff8fb9f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed43-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:45:20.860Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:15:58.303Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed43 on LIBERO-Object. Retry after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。\\\", \\\"spec\\\": {\\\"command\\\": \\\"timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"tmux_session\\\": \\\"eval-obs-only-object-norm003-seed43\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T04:44:43.719Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-19T04:44:47.174Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T04:44:53.003224+00:00\\\"}]}}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"eval-obs-only-object-norm003-seed43-r2\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.334}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm003-seed43-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:45:20.860Z\", \"updated_at\": \"2026-05-19T05:15:58.303Z\", \"hypothesis\": \"obs_only CRM (ε=0.03) seed43 on LIBERO-Object. Retry after r1 timed out. 补 magnitude curve 最薄点 ε=0.03。\", \"spec\": {\"command\": \"timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed43.json\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:1\"], \"tmux_session\": \"eval-obs-only-object-norm003-seed43\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T04:44:43.719Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-19T04:44:47.174Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T04:44:53.003224+00:00\"}]}}, \"impact_analysis\": {\"change_type\": \"experiment\", \"change_id\": \"eval-obs-only-object-norm003-seed43-r2\", \"affected_decisions\": [], \"cascade_decisions\": [], \"affected_claims\": [], \"affected_figures\": [], \"recommendations\": [\"No downstream impact detected\"]}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.334}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T05:15:59.053Z_
+
+<details><summary>↩ Tool result · `toolu_01KFUXzJ6fJSuvDckynCFZM2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No cron found for 'eval-obs-only-object-norm003-seed43-r2'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "42ded7db-2eb0-4212-92ac-54cee7f149bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No cron found for 'eval-obs-only-object-norm003-seed43-r2'.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No cron found for 'eval-obs-only-object-norm003-seed43-r2'.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Cron 已不存在（可能之前已被清除）。
+
+**结果报告：**
+
+| 字段 | 值 |
+|---|---|
+| exp_id | `eval-obs-only-object-norm003-seed43-r2` |
+| SR | 无完整结果（未完成） |
+| conclusion | **killed** |
+| status | DONE |
+| 理由 | 进程收到 SIGHUP (EXIT_CODE=129) 被 kill，完成了 5/10 个任务后在第 6 个任务 (ketchup) rollout 6/10 处中断。无 JSON 输出文件。部分可见结果：alphabet_soup 0%, cream_cheese 10%, salad_dressing 20%, bbq_sauce 40%, ketchup 未完成。与预期一致——今天 kill 了 bjb1-18228 上的 norm003 实验给 K=5 腾 GPU。 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "uuid": "76cc01d2-8933-4084-b25b-cc2aef24b10a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iLaCgQ6iitnH1ZxdfcoEj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1139,
+      "cache_read_input_tokens": 32624,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1139
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 33_
+
+Cron 已不存在（可能之前已被清除）。
+
+**结果报告：**
+
+| 字段 | 值 |
+|---|---|
+| exp_id | `eval-obs-only-object-norm003-seed43-r2` |
+| SR | 无完整结果（未完成） |
+| conclusion | **killed** |
+| status | DONE |
+| 理由 | 进程收到 SIGHUP (EXIT_CODE=129) 被 kill，完成了 5/10 个任务后在第 6 个任务 (ketchup) rollout 6/10 处中断。无 JSON 输出文件。部分可见结果：alphabet_soup 0%, cream_cheese 10%, salad_dressing 20%, bbq_sauce 40%, ketchup 未完成。与预期一致——今天 kill 了 bjb1-18228 上的 norm003 实验给 K=5 腾 GPU。 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 53628,
+  "duration_api_ms": 56887,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "1a8c42e2-9cef-4d47-a879-2131dda64b44",
+  "total_cost_usd": 0.29107,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 21922,
+    "cache_read_input_tokens": 183783,
+    "output_tokens": 2436,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 21922,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 259,
+        "cache_read_input_tokens": 32624,
+        "cache_creation_input_tokens": 1139,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1139
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2436,
+      "cacheReadInputTokens": 183783,
+      "cacheCreationInputTokens": 21922,
+      "webSearchRequests": 0,
+      "costUSD": 0.289854,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1081,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0012159999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "de92f037-4949-4e69-b5b8-a3d62fabb33e"
+}
+```
+
+</details>
+
+---

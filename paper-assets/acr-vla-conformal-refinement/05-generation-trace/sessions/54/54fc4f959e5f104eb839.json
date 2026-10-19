@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54fc4f959e5f104eb839",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check cqa1 32758 gpu status",
+  "task_key": "worker_check_cqa1-32758-gpu-status_20260525T082614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cqa1-32758-gpu-status_20260525T082614_result.json",
+    "occurrence": 1,
+    "bytes": 1897,
+    "sha256": "fa63bcb331bbc8e2b53aa4f7e92bfd1ed26b315276c8755a828e457049618c0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1-32758 状态汇总\n\n### GPU 状态（6 × ~24GB）\n全部空闲：GPU 0-5 占用 0 MiB / 利用率 0%，无 compute 进程。\n\n### 进程\n无 `evaluate.py` / `train_crm` 进程在跑。只有系统服务（supervisord/sshd/jupyter-lab/tensorboard/autopanel）。tmux 工具被白名单屏蔽，但 `ps aux` 无 tmux 会话痕迹。\n\n### Uptime / 重启\nPID 1 (`boot.sh`) 已运行 4h03m → **容器约 4 小时前重启过**（约 12:08 之后）。`/proc/uptime` 显示 ~161 天是宿主机时钟，容器是新启的。\n\n### 中断的实验（被重启杀掉）\n`/root/autodl-tmp/logs/` 下 6 个日志在 12:02-12:08 时间窗内全部停止，**全部卡在同一位置**：第 5 个任务 `pick_up_the_black_bowl_in_the_top_drawer...` 的 rollout 15/20。说明 6 个并行任务被同步终止。\n\n| 日志 | 已完成任务 | 进度（task 5） |\n|---|---|---|\n| eval-k2-adaptive-spatial-s42 | 4/10 (95/95/100/95) | rollout 15/20, 12/15 |\n| eval-k2-adaptive-spatial-s43 | 4/10 (95/100/100/100) | rollout 15/20, 12/15 |\n| eval-k2-adaptive-spatial-s44 | 4/10 (95/95/100/95) | rollout 15/20, 12/15 |\n| eval-vla-only-spatial-cqa1-s42 | 4/10 (95/90/95/85) | rollout 15/20, 11/15 |\n| eval-vla-only-spatial-cqa1-s43 | 4/10 (85/100/95/90) | rollout 15/20, 11/15 |\n| eval-vla-only-spatial-cqa1-s44 | 4/10 (95/95/90/95) | rollout 15/20, 11/15 |\n\n### JSON 收割\n近 180 分钟内 `/root/autodl-tmp/logs/` **无新 JSON 输出**——6 个被中断的任务都没来得及写最终结果文件，需要重跑。`/root/acr-vla-conformal-refinement/logs/` 下的 JSON 都是 5/25 之前批次的旧产出。\n\n### 结论\n- 6 张 GPU 全部空闲，可立即下发新任务\n- 12:08 左右的容器重启把 6 个 spatial eval（3 × k2-adaptive + 3 × vla-only，s42/43/44）打断在 task 5 rollout 15/20，需要重跑\n- 没有需要收割的新 JSON"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cqa1-32758-gpu-status.md"
+}

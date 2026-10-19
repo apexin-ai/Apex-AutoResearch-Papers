@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a6ea109f0f3d6281374",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval perdof object seed43",
+  "task_key": "worker_analysis_eval-perdof-object-seed43_20260516T031452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-perdof-object-seed43_20260516T031452_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "3dd485bf9936728787695afca20747a65ffce82cc893066df47d377d1595d620"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## eval-perdof-object-seed43 结果总结\n\n**Overall SR: 12.0%** (12/100)，conclusion: **success**\n\n### Per-task 成绩\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 20% |\n| bbq_sauce | 30% |\n| ketchup | 0% |\n| tomato_sauce | 0% |\n| butter | 0% |\n| milk | 0% |\n| chocolate_pudding | 40% |\n| orange_juice | 30% |\n\n### LIBERO Object seed=43 三方对比\n\n| Method | seed=42 | seed=43 | 2-seed avg |\n|--------|---------|---------|------------|\n| **obs_only** (norm=0.1) | 19% | 12% | 15.5% |\n| **argmin** | 12% | 17% | 14.5% |\n| **perdof** | 11% | **12%** | 11.5% |\n| VLA-only | — | 12% | — |\n\n### 结论\n\nperdof seed=43 = 12%，低于 argmin seed=43 的 17%，**符合预期**——perdof 在 object benchmark 上不优于 argmin。两个 seed 平均 perdof (11.5%) < argmin (14.5%) < obs_only (15.5%)，进一步确认 obs_only 是 object 上最佳 CRM 变体。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-perdof-object-seed43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d639fe0d1644306265f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_29_1780004205.md",
+  "task_key": "loop_29_1780004205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_29_1780004205.md",
+    "occurrence": 1,
+    "bytes": 3915,
+    "sha256": "1b59a013a07f8fe1ba719a81ed9b9253f49538162c25f18c4f2b69f63fb5c6c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 29\nreason: idle_timeout\nupdated: '2026-05-28T21:28:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：22 张，分布在 bjb1-18228, bjb1-32546, bjb2-28827, cqa1-32758 四台服务器\n- CoRL 2026 DDL **2026-05-28 20:00 北京时间**（今天！），DDL 前不再部署新实验，让运行中的自然完成\n- westd-49937 服务器数据系统性偏低 4-5pp（D174/D175），该服务器结果不可用于论文，已隔离\n- Table 1 只用 K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），禁止混 K 对比\n- perdof 数据因训练条件差异不可用于论文对比（D176）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**: 工作目录 /root/autodl-tmp/acr-vla-conformal-refinement, 磁盘 83% 已用\n- **bjb2-28827**: 同上路径, 磁盘 69% 已用, cuda:4 跑 smolvla-tau015-spatial-s42-fix (PID 20271)\n- **cqa1-32758**: 同上路径, 磁盘 94% ⚠️, cuda:5 跑 pi05-crm-always-on-long-s42 (PID 156008)\n- CRM checkpoint: /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt（各服务器同路径）\n- 4 台 tau-sweep 实验在 bjb2-28827 运行中：smolvla-tau015-long-s42, tau020-long-s42, tau030-long-s42, tau035-long-s42\n\n### 3. 📊 当前状态\n**刚收到 cron 回调**: `crm-always-on-long-s45`（bjb1-32546）进程正常退出，已转 ANALYZING。这是 Long CRM always-on 的第 4 个 seed（bonus seed）。已派 Worker `worker_analyze_crm-always-on-long-s45_20260528T032552` 去读日志提取 metrics，**尚未回调**。\n\n**RUNNING 实验**:\n| exp_id | server | GPU | 说明 |\n|--------|--------|-----|------|\n| pi05-crm-always-on-long-s42 | cqa1-32758 | cuda:5 | Pi05 Table 2 Long suite，最后一个 Pi05 数据点 |\n| smolvla-tau015-spatial-s42-fix | bjb2-28827 | cuda:4 | Spatial tau-sweep τ=0.15 |\n| smolvla-tau015-long-s42 | bjb2-28827 | — | Long tau-sweep τ=0.15 |\n| smolvla-tau020-long-s42 | bjb2-28827 | — | Long tau-sweep τ=0.20 |\n| smolvla-tau030-long-s42 | bjb2-28827 | — | Long tau-sweep τ=0.30 |\n| smolvla-tau035-long-s42 | bjb2-28827 | — | Long tau-sweep τ=0.35 |\n\n**等待中**:\n- Worker 回调：analyze:crm-always-on-long-s45 → 收到后更新 registry + 汇报 Director\n- 4 项 QUEUED 实验等 GPU（eval-k2-tau035-spatial-s42, eval-k2-tau025-spatial-s42 等）\n- Paper Agent 在跑 Table 1 重构 + 叙事 4/4 升级 + 审稿遗留修复\n\n### 4. 📋 待办\n- Worker analyze:crm-always-on-long-s45 回调 → 提取 success_rate → update_registry(conclusion=success/negative) → 更新 report.md → 汇报 Director（s45 与已有 s42/s43/s44 对比，4-seed 均值±std）\n- pi05-crm-always-on-long-s42 cron 回调 → 同流程分析 → 这是 Pi05 Table 2 Long 的关键数据，完成后 Table 2 Long 列就齐了\n- tau-sweep 系列（5 个）陆续完成 → 每个回调后提取 metrics → 汇总成 tau-sweep sensitivity analysis 数据\n- Paper Agent 完成回调 → 检查 Table 1 重构质量 → 送审\n- DDL 20:00 前：确认所有论文修改完成，等用户/Director 决定提交\n\n### 5. 🎯 战略上下文\n- **核心结论**: CRM always-on 在 4/4 suites 有害（Long 最严重 -14.8pp），Adaptive conformal gating 全面恢复。这是论文最强 claim（MC1）\n- **Table 1 数据已锁定**: SmolVLA 4 suites × 3 seeds 齐全。Long: VLA-only 58.0±1.5, CRM-always-on 43.2±2.3, Adaptive 57.7±1.5\n- **Table 2 (Pi05)**: Object/Spatial/Goal 已完成，Long (cqa1) 是最后一块。D181 确认 Table 2 只展示 degradation（VLA-only + CRM-always-on 两列）\n- **易错点**: crm-always-on-long-s45 是 bonus seed 不进入主 Table 1 统计（主统计用 s42/s43/s44），只用于 robustness 验证。如果 s45 数值与已有 3 seeds 差异大，需要汇报 Director 但不改 Table\n- **Title 已锁定(D179)**: \"Knowing When Not to Correct: Adaptive Test-Time Correction via Conformal Prediction for Vision-Language-Action Models\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-29-1780004205.md"
+}

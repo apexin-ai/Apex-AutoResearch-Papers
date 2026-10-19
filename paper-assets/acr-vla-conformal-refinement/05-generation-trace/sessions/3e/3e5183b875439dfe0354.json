@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e5183b875439dfe0354",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval mag obsonly norm003 b2",
+  "task_key": "worker_analysis_eval-mag-obsonly-norm003-b2_20260516T004840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-mag-obsonly-norm003-b2_20260516T004840_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "e3c327a77beb0e9d719b888b9a3667463f57ad0aa01b49e372e328a4e22ee857"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，JSON 和 registry 数据一致。Registry 已经是 DONE + success 状态，无需更新。\n\n## eval-mag-obsonly-norm003-b2 最终结果\n\n**Overall SR: 34%** (34/100)\n\n| Task | SR |\n|------|-----|\n| next_to_ramekin | **1.0** |\n| between_plate_and_ramekin | 0.9 |\n| next_to_cookie_box | 0.8 |\n| on_cookie_box | 0.3 |\n| next_to_plate | 0.3 |\n| in_top_drawer | 0.1 |\n| from_table_center | 0.0 |\n| on_ramekin | 0.0 |\n| on_stove | 0.0 |\n| on_wooden_cabinet | 0.0 |\n\n相比 8/10 partial（SR=38.75%），新增两个 task：\n- **next_to_plate**: 0.3\n- **on_wooden_cabinet**: 0.0\n\n最终 10-task SR 从 partial 的 38.75% 降至 **34%**。Registry 已由 hook 自动更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-mag-obsonly-norm003-b2-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4edf484c72c0ed1bf507",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag tau sweep progress",
+  "task_key": "worker_diag_tau-sweep-progress_20260526T012347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_tau-sweep-progress_20260526T012347_result.json",
+    "occurrence": 1,
+    "bytes": 2391,
+    "sha256": "5121fbe62d55f700ca1b23bae258bba415eda6e888bcba81b7d5df19f1d1f754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### bjb1-32546 (Spatial τ-sweep) — **正常运行，接近完成**\n\n所有 6 个进程在最近 5 分钟内有写入，活跃中。Spatial benchmark = 10 任务/run。\n\n| τ | 已完成任务 | 当前进度 |\n|---|---|---|\n| 0.05 | 9/10 | task 10 (wooden_cabinet) rollout 10/20 |\n| 0.10 | 8/10 | task 9 (next_to_plate) rollout 15/20 |\n| 0.15 | 9/10 | task 10 部分 |\n| 0.20 | 9/10 | task 10 rollout 10/20 |\n| 0.30 | 9/10 | task 10 部分 |\n| 0.35 | 9/10 | task 10 部分 |\n\n**关于 6h 异常性**：单 job SmolVLA Spatial 60-90 min 是正常的，但这里 **6 jobs 并发跑在同一 GPU 上**（日志全在 /tmp/eval_tau00X.log），吞吐 ~6× 衰减，6h 完成 ~90% 符合预期，不是异常。剩余 30-60 min。\n\n**输出文件**：暂无最终 JSON。预期路径 `logs/eval_spatial_adaptive_k2_tau0XX_seed42.json`。\n\n---\n\n### bjb2-28827 (Spatial τ=0.40/0.45 + Goal paired) — **正常运行**\n\n6 个进程活跃。\n\n| 实验 | 已完成 | 当前 |\n|---|---|---|\n| tau040 spatial | 8/10 | task 9 rollout 10/20 |\n| tau045 spatial | 8/10 | task 9 rollout 15/20 |\n| goal_vla_s45 | 8/10 | task 9 |\n| goal_vla_s47 | 8/10 | task 9 (turn_on_stove) 完成 |\n| goal_adapt_s45 | 7/10 | task 8 完成 / task 9 开始 |\n| goal_adapt_s47 | 7/10 | task 8 |\n\n剩余 30-90 min。无最终 JSON。\n\n---\n\n### cqa1-32758 (Goal τ-sweep) — **⚠️ 有 3 个停了**\n\n7 jobs，只有 4 个在最近 5 分钟有写入。Goal benchmark = 10 任务。\n\n**活跃** (4 个，所有 3/10 任务完成，刚进 task 4 top_drawer)：\n- tau015, tau020, tau030, tau035\n\n**停滞** (3 个)：\n- **tau005**：mtime 09:23（~10 分钟前停），3/10 完成，停在 task 4 rollout 5/20\n- **tau010**：mtime 09:22（~11 分钟前停），3/10 完成，停在 task 4 rollout 5/20\n- **tau040**：mtime 08:23（**~67 分钟前停**），3/10 完成，停在 task 3 后。**已死**\n\n**整体异常**：7 jobs 并发跑了 6h 只完成 3/10 任务，吞吐严重塌陷（Goal max_steps=300 比 Spatial 大，加上 7 路并发）。即使 4 个活跃 job 继续，按当前速度还要 ~14h 才能跑完，不现实。\n\n**建议**：\n1. cqa1 上 tau040（死掉 1h+）需要重启或放弃\n2. tau005/tau010 也可能已死，确认进程状态\n3. cqa1 的 7 路并发吞吐太低，可能需要分批跑（每次 ≤ 3 路）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-tau-sweep-progress.md"
+}

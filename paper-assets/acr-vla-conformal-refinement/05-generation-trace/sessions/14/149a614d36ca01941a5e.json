@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "149a614d36ca01941a5e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code plan a adaptive conformal crm",
+  "task_key": "worker_code_plan-a-adaptive-conformal-crm_20260520T185941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan-a-adaptive-conformal-crm_20260520T185941_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "3097c8bdf704db8898972a9916d312f4411a313157cf32543c67dbe7095ccaa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "初始化完全成功，但 dry-run 被 180s timeout 终止——GPU 被正在运行的 `random_selection` 评估（PID 759093，seed48，10 rollouts × K=10）占满，无法在超时内完成任何 rollout。\n\n代码实现已验证：\n- `adaptive_conformal_crm` mode 正确注册\n- `conformal_threshold=0.074855` 参数正确解析\n- SmolVLA 加载成功\n- CRM obs_only 加载成功（327,198 params）\n- `max_correction_norm=0.2` 覆盖生效\n- 10 个 LIBERO object tasks 加载成功\n\n**实现摘要（11 处修改全部成功应用到 evaluate.py）：**\n\n| # | 修改 | 状态 |\n|---|------|------|\n| 1 | mode choices 添加 `adaptive_conformal_crm` | ✓ |\n| 2 | 新增 `--conformal_threshold` 参数 (default=0.074855) | ✓ |\n| 3 | 新增 `select_action_conformal_crm()` 函数 | ✓ |\n| 4 | 默认 checkpoint 路径支持 | ✓ |\n| 5 | CRM 加载模式列表 | ✓ |\n| 6 | unc_dim=0 模式列表 | ✓ |\n| 7 | 默认 max_correction_norm=0.2 | ✓ |\n| 8 | rollout 循环 mode dispatch | ✓ |\n| 9 | metadata 路由到 all_unc_head_meta | ✓ |\n| 10 | conformal CRM stats 报告块 | ✓ |\n| 11 | 输出文件命名 `_tau{threshold}` | ✓ |\n\n**Dry-run 结果：** 初始化成功，但因 GPU 被 random_selection 评估占用，180s 内未完成 rollout，未生成 JSON 输出。等 random_selection 跑完后可重跑 dry-run 或直接启动正式评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-a-adaptive-conformal-crm.md"
+}

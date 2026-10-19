@@ -1,0 +1,1778 @@
+{
+  "schema_version": "1.0",
+  "id": "2023ad4bad22a92e7b79",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval acr object v4 obs only 20260516T004318 304596",
+  "task_key": "cron_hook_eval-acr-object-v4-obs-only_20260516T004318_304596",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_eval-acr-object-v4-obs-only_20260516T004318_304596.jsonl",
+    "occurrence": 1,
+    "bytes": 112547,
+    "sha256": "c9a02e5e9ef0fa6ed7556cf8d715432a553a680abd89f583ec9cf5af722cbc2d"
+  },
+  "statistics": {
+    "messages": 90,
+    "user_turns": 2,
+    "tool_calls": 43,
+    "roles": {
+      "user": 2,
+      "tool_call": 43,
+      "tool_result": 43,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:05:13.575807+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #11。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外的 GPU 即使 Director 指令也必须 push back\n- bjb1-32546 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，没有 .venv\n- submit 命令必须自带环境激活，GPU 编号从 0 开始（框架注入 CUDA_VISIBLE_DEVICES）\n- obs_only 是唯一存活路径，perdof claim 已死。不要在 perdof 方向投新实验\n- CoRL 2026 DDL: abstract ~May 26, full paper ~Jun 2，剩余 ~11 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**（6×4090）：工作目录 /root/acr-vla-conformal-refinement，Python /root/miniconda3/bin/python，conda base\n  - 模型：/root/autodl-tmp/models/smolvla_libero/，CRM checkpoint: /root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt\n  - 日志：~/runs/acr-vla-conformal-refinement/\n- **bjb1-18228**（4×4090）：同结构，4 卡满载跑 seed=43 三方对比 + mag sweep\n- **bjb2-28827**（6×4090）：magnitude sweep 6-way（perdof 4 卡 + obsonly 2 卡）\n- **bjb2-40593**（1×4090D）：obsonly-norm003-b2\n- HF cache: /root/autodl-tmp/.hf_cache（所有服务器）\n- W&B: 配置在项目 config 中，entity/project 自动读取\n\n### 3. 📊 当前状态\n**刚发生**：收到 cron 回调，eval-acr-object-v4-obs-only 和 eval-mag-obsonly-norm005 两个实验完成转 ANALYZING。已派出两个分析 Worker：\n- `worker_analysis_eval-acr-object-v4-obs-only_20260515T160113`（SSH bjb1-32546 读最终 10-task 结果）\n- `worker_analysis_eval-mag-obsonly-norm005_20260515T160124`（SSH bjb2-28827 读最终 10-task 结果）\n\n**这两个 Worker 的回调尚未返回，下一个\"你\"会收到 [WORKER DONE] 消息，必须处理。**\n\n**RUNNING 实验（14 个）**：\n| 实验 | 服务器 | GPU | 摘要 |\n|------|--------|-----|------|\n| eval-reconvla-object | bjb1-32546 | cuda:0 | reconvla baseline on object |\n| eval-acr-object-v4-scalar | bjb1-32546 | cuda:3 | scalar CRM on object |\n| eval-vla-mean-object | bjb1-32546 | cuda:5 | VLA-mean baseline on object |\n| eval-vla-mean-object-seed43 | bjb1-32546 | cuda:1 | VLA-mean seed=43 |\n| eval-acr-object-obs-only-norm02 | bjb1-32546 | cuda:4 | obs_only norm=0.2 on object |\n| eval-mag-perdof-norm003/005/02/03 | bjb2-28827 | cuda:0-3 | perdof magnitude sweep spatial |\n| eval-mag-obsonly-norm02 | bjb2-28827 | cuda:5 | obsonly norm=0.2 spatial sweep |\n| eval-mag-obsonly-norm003-b2 | bjb2-40593 | cuda:0 | obsonly norm=0.03 spatial retry |\n| eval-mag-obsonly-norm03-r2 | bjb1-18228 | cuda:0 | obsonly norm=0.3 spatial retry |\n| eval-obs-only-object-seed43 | bjb1-18228 | cuda:2 | 🔑 seed=43 obs_only object |\n| eval-argmin-object-seed43 | bjb1-18228 | cuda:3 | 🔑 seed=43 argmin object |\n| eval-perdof-object-seed43 | bjb1-18228 | cuda:1 | 🔑 seed=43 perdof object |\n\n**另有 1 个 running Worker**：`worker_research_magnitude-robustness-literature_20260515T155457`（文献调研）\n\n### 4. 📋 待办（条件触发式）\n- **Worker 分析回调到达** → 读结果，update_registry(status=DONE)，更新 report.md，向 Director 汇报。eval-acr-object-v4-obs-only 是项目存亡级：10-task obs_only SR vs argmin 6.7% 的差值决定项目生死\n- **eval-acr-object-v4-obs-only 10-task SR ≥ 12%**（维持 +5pp+ vs argmin）→ success，项目存活，等 seed=43 三方确认后做 Fisher exact test\n- **eval-acr-object-v4-obs-only 10-task SR < 10%**（优势消失）→ negative，触发 red-section Framing 提案，项目可能 dead\n- **seed=43 三方完成**（obs_only/argmin/perdof on object）→ 立即做 Fisher exact test + bootstrap CI，这是 CoRL 投稿的统计基础\n- **magnitude sweep 全部完成** → 汇总 norm sensitivity curve，obs_only 鲁棒性 vs perdof 崩塌是论文核心 story\n- **所有 object eval 完成** → 更新 paper_framing.md，启动 CoRL 初稿写作\n- **文献调研 Worker 回调** → 整合 magnitude robustness 相关文献到 literature_map.yaml\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D025 推翻了 perdof 52.5% 的虚高数据 → D027 matched-task 分析确认 perdof≈argmin → D028 argmin locked 34% → D029 perdof locked 35% → D030 spatial ALL CRM dead → D031 统计显著性方案（seed=43 doubling）→ D032 magnitude sweep narrative（obs_only 鲁棒，perdof 高 norm 崩塌）\n- **项目存活唯一路径**：Object obs_only +6pp+ 维持 + seed=43 复现 → p < 0.05。Spatial 已确认全部 CRM 无效（inc obs_only）\n- **论文 story**：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌；object 域 obs_only 显著优于 argmin/perdof\n- **最容易判断错的事**：(1) 不要用 6/10 中期快照数据作为最终结果——必须等 Worker 读回 10-task 完整数据；(2) spatial 上所有 CRM 变体都和 argmin 差不多（±1pp），这不是 bug 是事实，不要试图\"修复\"；(3) eval-acr-object-v4-obs-only 的 6/10 中期 13.3% 看起来不错但 T7-T10 可能全是难 task 导致下降——等完整数据再下结论\n- **resource-saturation skill 要求**：向 Director 汇报时必须开头带 `[资源] GPU 分配 N / 实际跑 M | Worker 池 K` 行\n\n## 项目硬约束 (memory.md 节选)\n\n## bjb2-40593 环境问题 (2026-05-14-15)\n\n- 无 .git repo\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\n\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\n\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\n\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\n\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\n\n## 可查的历史\n前 84 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:05:30.996349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:05:30.996852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:05:35.140311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:05:35.642597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:05:36.110027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (52.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-22463a65/67856e98-56ff-45ae-8525-edbbd3890c94/tool-results/toolu_011mavq9UQMCHDCmewzVywAB.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-vla-only-object-seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:50:14.071Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:01:20.543Z\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.12, \\\"tasks_done\\\": 10, \\\"tasks_total\\\": 10, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0.1, \\\"salad_dressing\\\": 0.1, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0, \\\"milk\\\": 0.1, \\\"chocolate_pudding\\\": 0.4, \\\"orange_juice\\\": 0.2}, \\\"source\\\": \\\"json_file_verified_by_worker\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-mag-perdof-norm0p3-object-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T18:58:30.091Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:44.824Z\\\", \\\"hypothesis\\\": \\\"Object magnitude sweep: perdof CRM v3-norm at norm=0.3 on LIBERO object benchmark. Migrated from bjb1-32546:cuda:4 (GPU conflict) to bjb2-28827:cuda:2. Paired with obs_only norm=0.3 for magnitude comparison figure.\\\", \\\"parent\\\": \\\"eval-mag-perdof-norm0p3-object\\\"}, \\\"eval-obs-only-object-norm02-seed43-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T18:58:27.783Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:42.143Z\\\", \\\"hypothesis\\\": \\\"D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark (r2 retry). P0 critical for statistical significance — seed42=22%, need seed43 pooled to 200 trials. Original crashed after 1 task.\\\", \\\"parent\\\": \\\"eval-obs-only-object-norm02-seed43\\\"}, \\\"eval-mag-perdof-norm0p3-object\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T17:34:52.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:11.790Z\\\", \\\"hypothesis\\\": \\\"Retry of eval-mag-perdof-\n…[truncated 357 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 969
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:05:36.114398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:05:36.316552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:05:57.302488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 13, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-b2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=227434)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=356490)\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=356696)\\\"]}, {\\\"exp_id\\\": \\\"eval-perdof-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=365925)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm03-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=103028)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm005-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=101610)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-mean-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=111709)\\\"]}, {\\\"exp_id\\\": \\\"eval-scalar-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=114664)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=121325)\\\"]}, {\\\"exp_id\\\": \\\"eval-acr-object-v4-default-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=390936)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm02-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=127732)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm005-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=109650)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm003-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=105938)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 21659
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:05:57.353375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval-acr-object-v4-default-r2 | v4-default (no magnitude control, norm≈1.42) on object benchmark — ablation to confirm catastrophic failure | — | — | — |\\\\n| eval-mag-obsonly-norm003-b2 | — | — | — | — |\\\\n| eval-scalar-object-seed43 | D031: scalar_unc CRM v3-norm seed=43 on LIBERO object benchmark. Completes seed=43 six-way comparison table. scalar seed=42 was worst at 4% — seed=43 confirms. | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval-mag-obsonly-norm03-b2: Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Retry of eval-mag-obsonly-norm03 (EXIT_CODE=127). Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade, strong evidence for obs_only robustness.（等待人工审批）\\\\n- eval-acr-object-obs-only-default: obs_only CRM v3-norm with DEFAULT max_correction_norm (~1.42, no magnitude control) on LIBERO object benchmark. Paired with eval-acr-object-v4-default (perdof default). Tests whether obs_only robustness holds even without magnitude capping — if yes, obs_only is fundamentally more robust than perdof regardless of norm setting.（等待人工审批）\\\\n- eval-mag-obsonly-norm03: Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade at same norm, strong evidence for obs_only robustness.（准备中）\\\\n- eval-acr-object-v4-scalar-b2（准备中）\\\\n- eval-acr-object-v4-obs-only-b2（准备中）\\\\n- eval-object-v6-full（准备中）\\\\n- eval-reconvla-spatial-v1（准备中）\\\\n- precompute-v4-shard2（准备中）\\\\n- precompute-v4-shard1（准备中）\\\\n- precompute-v4-shard0（准备中）\\\\n- …另有 7 项\\\\n\\\\n## 近期结论\\\\n- **eval-mag-perdof-norm0p3-object** (killed): Retry of eval-mag-perdof-norm03-obj\n…[truncated 3016 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 21238
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:05:57.353923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 16:25 UTC | 更新原因: obs_only object 10-task final 19.0% (PROJECT HIGH), perdof 11.0%, VLA-only 12%. norm=0.05 spatial finalized 35.0%. seed=43 六方全部部署。\\\\n\\\\n## 核心方向\\\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 2d — Object benchmark + seed=43 doubling 决定项目存亡\\\\n- **MVP**: PASS\\\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\\\n- **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin ~6.7% (+12.3pp, 6/10 partial); perdof 11.0%; VLA-only 12%\\\\n- **Object norm=0.2**: obs_only 0.2: 18.0% (5t partial) — 可能与 norm=0.1 持平或更高\\\\n- **Magnitude sweep**: norm=0.05 finalized 35.0%. obs_only 在所有 norm 下 > perdof（D032）\\\\n- **D031 seed=43 六方全部部署**: obs_only / argmin / perdof / scalar / VLA-mean 已部署，obs-only-norm02-seed43 待 cuda:0\\\\n\\\\n## Spatial 最终结果（LOCKED ✅）\\\\n\\\\n| 方法 | 10-task SR | vs argmin |\\\\n|------|-----------|-----------|\\\\n| argmin K=10 | 34% | baseline |\\\\n| perdof 0.1 | 35% | +1pp |\\\\n| obs_only 0.1 | 35% | +1pp |\\\\n| scalar 0.1 | 32% | -2pp |\\\\n| VLA-only K=1 | 30% | -4pp |\\\\n| VLA-mean K=10 | 32% | -2pp |\\\\n\\\\n## Object Benchmark（seed=42, 部分已 FINAL）\\\\n\\\\n| 方法 | SR | tasks | vs argmin | 状态 |\\\\n|------|-----|-------|-----------|------|\\\\n| **obs_only 0.1** | **19.0%** | 10/10 ✅ | **+7.0pp** | FINAL |\\\\n| obs_only 0.2 | 18.0% | 5/10 | +6.0pp | running |\\\\n| argmin | 12.0% | 10/10 ✅ | baseline | FINAL |\\\\n| VLA-only K=1 | 12.0% | 10/10 ✅ | 0pp | FINAL |\\\\n| perdof 0.1 | 11.0% | 10/10 ✅ | -1.0pp | FINAL |\\\\n| scalar 0.1 | 9.0% | 10/10 ✅ | -3.0pp | FINAL (negative\n…[truncated 3817 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 21037
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:06:28.501867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-22463a65/67856e98-56ff-45ae-8525-edbbd3890c94/tool-results/toolu_011mavq9UQMCHDCmewzVywAB.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:06:28.804151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-vla-only-object-seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:50:14.071Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:01:20.543Z\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.12, \\\"tasks_done\\\": 10, \\\"tasks_total\\\": 10, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0.1, \\\"salad_dressing\\\": 0.1, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0, \\\"milk\\\": 0.1, \\\"chocolate_pudding\\\": 0.4, \\\"orange_juice\\\": 0.2}, \\\"source\\\": \\\"json_file_verified_by_worker\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-mag-perdof-norm0p3-object-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T18:58:30.091Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:44.824Z\\\", \\\"hypothesis\\\": \\\"Object magnitude sweep: perdof CRM v3-norm at norm=0.3 on LIBERO object benchmark. Migrated from bjb1-32546:cuda:4 (GPU conflict) to bjb2-28827:cuda:2. Paired with obs_only norm=0.3 for magnitude comparison figure.\\\", \\\"parent\\\": \\\"eval-mag-perdof-norm0p3-object\\\"}, \\\"eval-obs-only-object-norm02-seed43-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T18:58:27.783Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:42.143Z\\\", \\\"hypothesis\\\": \\\"D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark (r2 retry). P0 critical for statistical significance — seed42=22%, need seed43 pooled to 200 trials. Original crashed after 1 task.\\\", \\\"parent\\\": \\\"eval-obs-only-object-norm02-seed43\\\"}, \\\"eval-mag-perdof-norm0p3-object\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T17:34:52.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:11.790Z\\\", \\\"hypothesis\\\": \\\"Retry of eval-mag-perdof-norm03-object (killed by SIGTERM). Object magnitude sweep: perdof CRM v3-norm at norm=0.3 on LIBERO object benchmark. Paired with obs_only norm=0.3 (running) for magnitude comparison figure.\\\", \\\"parent\\\": \\\"eval-mag-perdof-norm03-object\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-obs-only-object-norm02-seed43\\\": {\\\"status\\\": \\\"DONE\\\"\n…[truncated 52126 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:07:58.550442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:07:58.601124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:08:00.102419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:08:00.153615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_22463a65."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:08:03.188507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:08:04.128930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-b2\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-seed43\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-argmin-object-seed43\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-perdof-object-seed43\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-vla-mean-object-seed43\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-scalar-object-seed43\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-object\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-mag-perdof-norm003-object\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"1\\\", \\\"exp_id\\\": \\\"eval-mag-perdof-norm005-object\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:5\\\", \\\"exp_id\\\": \\\"eval-mag-perdof-norm02-object\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-acr-object-v4-default-r2\\\"}], \\\"allocated_but_idle\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-b2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-obs-only-object-seed43\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-argmin-object-seed43\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-perdof-object-seed43\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-vla-mean-object-seed43\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-scalar-object-seed43\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-object\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm003-object\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-mag-perdof\n…[truncated 431 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 940
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:08:04.129401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:08:04.563679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 434
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:08:04.702459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:08:04.702857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:09:07.537356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:09:07.638395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:10:06.585318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "infra:gpu-audit-20260515",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：检查 4 台服务器的 GPU 实际利用率\n\n### 目标\nSSH 到以下 4 台服务器，运行 nvidia-smi 和 ps 命令，确认每张 GPU 上实际跑的进程。重点找出：\n1. 哪些 GPU 真正空闲（无 python/eval 进程）\n2. 两个\"幽灵\"实验 eval-mag-obsonly-norm03-object (pid=103028) 和 eval-mag-obsonly-norm005-object (pid=101610) 在哪台服务器上\n\n### 服务器列表\n1. **bjb1-32546** — 6×4090，预期占用 cuda:0,1,2,5，cuda:3,4 可能空闲\n2. **bjb2-28827** — 6×4090，预期占用 cuda:0,1，cuda:2-5 可能空闲\n3. **bjb1-18228** — 4×4090，预期 4/4 满载\n4. **bjb2-40593** — 1×4090D，预期 1/1 满载\n\n### 每台服务器执行（用 ssh_read_only）\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader && echo \"---PROCS---\" && ps aux | grep -E 'python.*eval|python.*train' | grep -v grep | awk '{print $2, $11, $12, $13, $14, $15}'\n```\n\n对于 bjb1-32546 和 bjb2-28827，额外执行：\n```bash\n# 查找特定 PID\nps -p 103028 -o pid,args 2>/dev/null || echo \"PID 103028 NOT FOUND\"\nps -p 101610 -o pid,args 2>/dev/null || echo \"PID 101610 NOT FOUND\"\n```\n\n### 产出\n输出一个表格：\n\n| 服务器 | GPU | 状态(占用/空闲) | 进程PID | 实验名(从命令行推断) |\n|--------|-----|-----------------|---------|---------------------|\n\n标注哪些 GPU 确认空闲可以部署新实验。",
+              "tool_groups": "['ssh']",
+              "context": "GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:10:21.907568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_infra_gpu-audit-20260515_20260515T191007\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_infra_gpu-audit-20260515_20260515T191007.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_infra_gpu-audit-20260515_20260515T191007 started. Use get_worker_status('worker_infra_gpu-audit-20260515_20260515T191007') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 15322
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T19:10:22.559710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 17 / 实际跑 13 (追踪 11 + 未追踪 2) | Worker 池 1 (GPU 0 / CPU 1)\n\n## 状态更新\n\n### 新完成\n- **eval-vla-only-object-seed43**: SR=12% (10/10 ✅), conclusion=success。与 seed=42 VLA-only (12%) 完全一致，确认 VLA-only baseline 跨 seed 稳定。\n\n### seed=43 六方进度\n| 方法 | seed=42 | seed=43 进度 | seed=43 partial SR |\n|------|---------|-------------|-------------------|\n| obs_only 0.1 | 19% ✅ | 4/10 | 10% (早期) |\n| argmin | 12% ✅ | 4/10 | 10% (早期) |\n| perdof 0.1 | 11% ✅ | 2/10 | 0% (仅完成 easy tasks 前) |\n| VLA-only | 12% ✅ | **10/10 ✅** | **12%** |\n| VLA-mean | 12% ✅ | 1/10 | 0% |\n| scalar 0.1 | 9% ✅ | 0/10 | — |\n\nseed=43 关键三方（obs_only/argmin/perdof）预计还需 ~6-10h。\n\n### 13 个 RUNNING 实验\n- **bjb1-18228** (4/4)：obs-only-seed43, argmin-seed43, perdof-seed43, v4-default-r2\n- **bjb1-32546** (4-6/6)：mag-obsonly-norm003-object, vla-mean-seed43, scalar-seed43, mag-perdof-norm02-object + 可能 2 个未追踪\n- **bjb2-28827** (2-4/6)：mag-perdof-norm003-object, mag-perdof-norm005-object + 可能 2 个未追踪\n- **bjb2-40593** (1/1)：mag-obsonly-norm003-b2 (spatial)\n\n### GPU 空闲调查中\n已派 Worker SSH 检查所有服务器。两个 object magnitude sweep 实验 (eval-mag-obsonly-norm03-object, eval-mag-obsonly-norm005-object) 在 cron 中显示 RUNNING 但无 GPU 追踪记录，正在定位。\n\n### ⚠️ GPU 分配请求\n2 个 PREPARING 实验需要 GPU 分配：\n1. **eval-obs-only-object-norm02-seed43-r2** (P0): obs_only norm=0.2 seed=43，原 r1 crash after 1 task。seed42=22%，需 seed43 做统计检验\n2. **eval-mag-perdof-norm0p3-object-r2**: perdof norm=0.3 on object，paired with obs_only norm=0.3\n\n调查完空闲 GPU 后立即汇报可用资源，请 Director 分配。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T19:10:26.283423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3723
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T19:11:29.993072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-object-seed43",
+              "field": "notes",
+              "value": "seed=43 VLA-only 12% = seed=42 12%，baseline 跨 seed 完全一致。per-task 分布略有差异（seed43: chocolate_pudding 40% vs seed42: 20%, bbq_sauce 30% vs 20%），但总 SR 相同。确认 VLA-only 作为稳定 baseline。seed=43 六方对比表第一个完成点。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T19:11:30.647151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-object-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:50:14.071Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:11:30.342Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D031: VLA-only baseline (K=1, single sample, no CRM) seed=43 on LIBERO object benchmark. Completes 7-way seed=43 comparison table. VLA-only seed=42 = 12% = argmin.\\\", \\\"parent\\\": \\\"eval-vla-only-object\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode vla_only --benchmark object --n_rollouts 10 --seed 43 --K 1 --output_file logs/eval_object_vla_only_seed43.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 10, \\\"model_name\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"eval_data\\\": \\\"object\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0.12, \\\"tasks_done\\\": 10, \\\"tasks_total\\\": 10, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0.1, \\\"salad_dressing\\\": 0.1, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0, \\\"milk\\\": 0.1, \\\"chocolate_pudding\\\": 0.4, \\\"orange_juice\\\": 0.2}, \\\"source\\\": \\\"json_file_verified_by_worker\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:46:38.180Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:46:39.481Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:46:41.461084+00:00\\\"}]}, \\\"notes\\\": \\\"seed=43 VLA-only 12% = seed=42 12%，baseline 跨 seed 完全一致。per-task 分布略有差异（seed43: chocolate_pudding 40% vs seed42: 20%, bbq_sauce 30% vs 20%），但总 SR 相同。确认 VLA-only 作为稳定 baseline。seed=43 六方对比表第一个完成点。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6227}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 654
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T19:11:51.490494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_eval-acr-object-v4-obs-only_20260515T160113"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T19:11:51.956423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval-acr-object-v4-obs-only_20260515T160113\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:eval-acr-object-v4-obs-only\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-15T16:01:13.838760+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T16:03:09.504433+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 结果：obs_only object 10-task = **19.0%** — 项目存活\\\\n\\\\n### Per-Task\\\\n\\\\n| Task | obs_only | VLA-only | Δ |\\\\n|------|----------|----------|---|\\\\n| alphabet_soup | 0% | 0% | 0 |\\\\n| cream_cheese | 10% | 10% | 0 |\\\\n| salad_dressing | 20% | 20% | 0 |\\\\n| bbq_sauce | **40%** | 20% | **+20** |\\\\n| ketchup | 10% | 0% | +10 |\\\\n| tomato_sauce | 0% | 10% | -10 |\\\\n| butter | 10% | 0% | +10 |\\\\n| milk | 20% | 10% | +10 |\\\\n| chocolate_pudding | **50%** | 20% | **+30** |\\\\n| orange_juice | 30% | 30% | 0 |\\\\n| **Average** | **19.0%** | **12.0%** | **+7.0pp** |\\\\n\\\\n### Baseline 对比\\\\n\\\\n| Method | SR | vs obs_only |\\\\n|--------|-----|-------------|\\\\n| **obs_only** | **19.0%** | — |\\\\n| VLA-only | 12.0% | -7pp |\\\\n| perdof | 11.0% | -8pp |\\\\n| argmin (6/10 partial) | ~6.7% | ~-12pp |\\\\n\\\\n### 判定\\\\n\\\\n**SUCCESS**。obs_only 在 object 上 19% vs VLA-only 12%，+7pp 改进显著超过 +6pp 门槛。chocolate_pudding (+30pp) 和 bbq_sauce (+20pp) 是最大赢家。后 4 个 task 将均值从 13.3% 拉到 19.0%。\\\\n\\\\nRegistry 已更新为 DONE/success，报告已注册。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 465
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T19:11:51.956890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_eval-mag-obsonly-norm005_20260515T160124"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T19:11:51.957135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T19:11:52.111757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval-mag-obsonly-norm005_20260515T160124\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:eval-mag-obsonly-norm005\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-15T16:01:24.815340+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T16:02:39.424417+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新为 DONE。\\\\n\\\\n## 最终结果：eval-mag-obsonly-norm005\\\\n\\\\n**CRM v3-norm obs_only | spatial | max_correction_norm=0.05 | 10 rollouts × 10 tasks**\\\\n\\\\n| Task | SR |\\\\n|---|---|\\\\n| T0: between_plate_ramekin | 80% |\\\\n| T1: next_to_ramekin | 90% |\\\\n| T2: table_center | 0% |\\\\n| T3: on_cookie_box | 40% |\\\\n| T4: top_drawer | 10% |\\\\n| T5: on_ramekin | 0% |\\\\n| T6: next_to_cookie_box | 80% |\\\\n| T7: on_stove | **0%** ← 新 |\\\\n| T8: next_to_plate | **50%** ← 新 |\\\\n| T9: on_wooden_cabinet | **0%** ← 新 |\\\\n| **Overall** | **35.0%** |\\\\n\\\\n## Obs_only magnitude sweep 对比（spatial, 10-task final）\\\\n\\\\n| norm | SR | 备注 |\\\\n|---|---|---|\\\\n| 0.03 | 55.0% (4t 中间值) | 待完成 |\\\\n| **0.05** | **35.0%** | ✅ 完成 |\\\\n| 0.2 | 45.7% (7t 中间值) | 待完成 |\\\\n| 0.3 | 46.0% (5t 中间值) | 待完成 |\\\\n\\\\nnorm=0.05 的最终 10-task SR（35.0%）比 7-task 中间值（42.9%）下降明显，后 3 个 task 仅 T8 有 50%，T7/T9 均为 0%。在当前 sweep 中 norm=0.05 是最低点。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 154
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T19:11:52.112212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "elapsed_ms": 155
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T19:12:13.464480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_research_magnitude-robustness-literature_20260515T155457"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T19:12:18.534678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_magnitude-robustness-literature_20260515T155457\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"research:magnitude-robustness-literature\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-15T15:54:57.665928+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T16:02:09.391403+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Literature map updated with 3 new entries. Here's the summary:\\\\n\\\\n---\\\\n\\\\n**文献覆盖度总结（correction magnitude robustness 角度）**\\\\n\\\\n这个角度的文献覆盖度较低，是一个明确的 novelty 点。具体发现：\\\\n\\\\n1. **无直接先例**：没有任何 prior work 研究过 per-DOF conformal correction 在高 norm bound 下崩塌的现象。最接近的是 TRANSIC（Jiang 2024）发现 ungated residual 导致 model collapse，以及 PLD（Xiao 2026）在 VLA 上做 magnitude scheduling，但它们都是 RL-based 且未涉及 conformal decomposition 方式的对比。\\\\n\\\\n2. **CP 文献提供间接理论支撑**：Sampson (2024) 的 Conformal Multi-Target Hyperrectangles 证明 per-dimension Bonferroni 方法会产生 imbalanced marginal coverage——这从统计角度解释了 perdof 为什么在高 norm bound 下失败：各 DOF 的 interval 独立膨胀，丧失 inter-DOF 方向一致性。TRACE（Fang 2026）展示了 flow matching 中的 scalar transport alignment score 自然保持方向一致性，概念上支持 obs_only 的优势。\\\\n\\\\n3. **Residual RL 文献关注 magnitude 但不关注 direction robustness**：Johannink (2019)、DRC (2025)、DAWN (2026) 都研究 magnitude bound/decay/scale，但无一研究 correction 方向质量与 magnitude 鲁棒性之间的关系。Dodeja (2025) 将 uncertainty 引导 residual correction，但仍是 RL 框架。\\\\n\\\\n4. **我们的 novelty**：首次实证表明 observation-conditioned scalar correction 对 norm bound 天然鲁棒（因为它学到了好的方向），而 per-DOF conformal quantile correction 在高 norm bound 下方向失控导致崩塌。这揭示了 correction parameterization（scalar/joint vs per-DOF）与 magnitude robustness 之间此前未被认识到的联系。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 5070
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T19:12:18.685651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Process GPU audit Worker callback — identify free GPUs and deploy PREPARING experiments', 'status': 'in_progress', 'activeForm': 'Waiting for GPU audit Worker callback'}, {'content': 'Deploy eval-obs-only-object-norm02-seed43-r2 on free GPU (P0 critical)', 'status': 'pending', 'activeForm': 'Deploying obs_only norm=0.2 seed=43 retry'}, {'content': 'Deploy eval-mag-perdof-norm0p3-object-r2 on free GPU', 'status': 'pending', 'activeForm': 'Deploying perdof norm=0.3 object retry'}, {'content': 'Process seed=43 three-way completion when callbacks arrive — Fisher exact test', 'status': 'pending', 'activeForm': 'Processing seed=43 statistical analysis'}, {'content': 'Process object magnitude sweep completions — norm sensitivity curve', 'status': 'pending', 'activeForm': 'Processing magnitude sweep results'}, {'content': 'Integrate literature Worker results into literature_map.yaml', 'status': 'pending', 'activeForm': 'Integrating literature research results'}]"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T19:12:18.686039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T19:12:58.530373+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献 Worker 已完成，发现重要 novelty 支撑：**没有 prior work 研究过 per-DOF conformal correction 在高 norm 下崩塌的现象**。Sampson (2024) 的 CP 理论提供间接解释。3 篇新文献已入 literature_map.yaml。\n\n当前状态总结：\n- **13 个实验 RUNNING**，覆盖 seed=43 六方对比 + object magnitude sweep + default ablation + spatial norm003\n- **GPU audit Worker 运行中**，定位空闲 GPU\n- **Director 已通知**，等待 GPU 分配给 2 个 PREPARING 实验\n- **前轮遗留的 3 个 Worker 回调均已处理**（obs_only 19% ✅, mag-norm005 35% ✅, 文献 3 篇 ✅）\n- **eval-vla-only-object-seed43**: 12%，与 seed=42 一致，baseline 稳定\n\n等待 GPU audit Worker 回调和 Director 响应。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only"
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T00:38:08.843384+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T00:38:31.567037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T00:38:32.611066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/feishu_group_oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4_director.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/study_status.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/feishu_group_oc_718f2ee7260b8649b47875a90c263a2a_reviewer.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/chats/feishu_group_oc_718f2ee7260b8649b47875a90c263a2a.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/mvp-point-reaching_PREPARING_20260513T012210.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/mvp-point-reaching_QUEUED_20260513T014344.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/mvp-point-reaching_RUNNING_20260513T014348.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/mvp-point-reaching_RUNNING_20260513T014355.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/checkpoints/mvp-point-reaching_DONE_20260513T014400.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/mvp-point-reaching/data/mvp_results.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_code_mvp-point-reaching_20260513T012320.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_code_\n…[truncated 13090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Glob",
+            "elapsed_ms": 1044
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T00:38:32.988132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_22463a65/CLAUDE.md",
+              "offset": "0",
+              "limit": "50"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T00:38:33.180707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t## 当前项目\n1\t当前绑定项目：**acr-vla-conformal-refinement**\n2\t\n3\t今天是 **2026-05-16**。\n4\t\n5\t你是 ML 研究团队的 AI 执行层。**始终用中文回复。**\n6\t\n7\t## 身份认知\n8\t\n9\t你是 AI 执行层。**你是调度员,不是执行员**——具体执行由 Worker 做,你负责调度。\n10\t\n11\t**能力边界**:\n12\t- `spawn_worker` **无上限并行**——几乎没有\"开多了\"的问题,只有\"开少了\"的失职\n13\t- 7×24 运行,Cron/Worker 回调立即处理,不拖延\n14\t- 时间瓶颈不是你,是 GPU 排队 + 实验训练时长 + cron 监控延迟(~30-60s)\n15\t\n16\t**你的团队有多快（以此为锚估算工期，不按人类节奏）**:\n17\t- Worker 写代码/改代码: 分钟级,不是天级\n18\t- 多 Worker 同时铺环境+数据+模型: 并行完成,小时级全部就绪\n19\t- 从 Director 审批到实验 RUNNING: 分钟级\n20\t- 实验完成到分析汇报: 即时,不隔夜\n21\t- 你同时管理的 Worker 数: 无上限。**有 N 件事就开 N 个 Worker**\n22\t- 向 Director 汇报时,用这个速度估算\"还需要多久\",不要套人类\"几周\"的直觉\n23\t\n24\t**心智硬约束**:\n25\t- **默认并行,不默认串行**——收到实验计划先问\"能拆几个 Worker 并行做\"\n26\t- 实验在跑 ≠ 你没事做——下一批实验准备、文献调研、log 分析、论文起草都可以**现在**并行铺\n27\t- \"我手头就一件事\"是错觉——Worker 池 < 2 就是失职\n28\t- **你不做 SSH / 代码 / 日志分析 / 文献调研**——这些全部 `spawn_worker` 委派,你只做轻量协调(读写 registry / 注册 cron / 向 Director 汇报)\n29\t- **永远全速推进**——收到任务不犹豫、不等\"更好的时机\"、不留 buffer。GPU 空着就是浪费\n30\t\n31\t**上级关系**: Director 方向决策 + 资源分配, 你执行; Director 的指令你**必须** `main_agent_post_to_director` 汇报结果(不调 = 永远不知道)\n32\t\n33\t## 工作环境\n34\t\n35\t你运行在飞书 IM 的后台。你的纯文本输出只发飞书运维群（Group B），**用户和 Director 都看不到**。与 Director 通信必须调用 `main_agent_post_to_director`。\n36\t\n37\t## 角色\n38\t\n39\t你负责执行研究任务：管理实验、调度 Worker、维护项目知识。Director 是你的上级，负责方向决策和资源分配。\n40\t\n41\t**你做协调，Worker 做执行。** SSH 操作、代码修改、日志分析、文献调研、论文写作——全部 `spawn_worker` 委派。你自己只做轻量操作：读写 registry、注册 cron、提交已分配的实验（`submit_on_allocated`）、向 Director 汇报。\n42\t\n43\t`spawn_worker` 后立即回复 Director（告知已派发），然后结束本轮对话。**不要轮询 Worker 状态**——Worker 完成后系统会通过 `[WORKER DONE]` 消息自动回调你，届时你再处理结果。\n44\t\n45\t**Worker 提交训练必须用 `submit_training_job`**，不要用 Bash nohup。`submit_training_job` 会自动走 tmux + cron 监控（检测进程存活、同步指标、完成回调）。Worker 用 nohup 启动后台任务然后退出会导致 orphan 进程——没人监控、没有回调、需要 spawn 新 Worker 来接力，浪费资源。\n46\t\n47\t## 状态机\n48\t\n49\tPREPARING → PENDING（审批）→ QUEUED → ALLOCATED → RUNNING → ANALYZING → DONE"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 192
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T00:38:41.747778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read project state files",
+              "subagent_type": "Explore",
+              "prompt": "I need to read several project state files to understand the current state of the acr-vla-conformal-refinement project. Please read the following files and report their full contents:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md (if exists)\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md (if exists)\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md (if exists)\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml (if exists)\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/experiment_plan.yaml (if exists)\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/IDEA_BRIEF.md (if exists)\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md (if exists)\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml (if exists)\n9. /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/literature_map.yaml (if exists)\n\nFor each file, report the full content. If a file doesn't exist, note that. Search breadth: very thorough."
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T00:38:43.621442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T00:38:43.813083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-16\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| eval-mag-obsonly-norm003-b2 | — | — | — | — |\n9\t| eval-mag-obsonly-norm03-object | — | — | — | — |\n10\t| eval-mag-obsonly-norm005-object | — | — | — | — |\n11\t\n12\t## 待处理\n13\t- eval-mag-obsonly-norm03-b2: Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Retry of eval-mag-obsonly-norm03 (EXIT_CODE=127). Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade, strong evidence for obs_only robustness.（等待人工审批）\n14\t\n15\t## 近期结论\n16\t- **eval-argmin-object-seed43** (success): D031: argmin baseline (K=10, scalar Euclidean argmin) seed=43 on LIBERO object benchmark. Paired with eval-obs-only-object-seed43 for Fisher exact test. Need both conditions under same seed for valid comparison. ← 基于 eval-reconvla-object\n17\t- **eval-mag-perdof-norm02-seed43-object-r2** (killed): Object magnitude sweep: perdof CRM v3-norm norm=0.2 seed=43. Moved from bjb2-28827:cuda:3 (GPU conflict with obs_only spatial) to cuda:2. Tests perdof norm sensitivity with second seed.\n18\t- **eval-mag-obsonly-norm03** (killed): Magnitude sweep: obs_only CRM v3-norm at norm=0.3 on spatial. Fills obs_only norm=0.3 gap. perdof norm=0.3 shows T1 drop to 50% — if obs_only doesn't degrade at same norm, strong evidence for obs_only robustness. ← 基于 eval-mag-obsonly-norm02\n19\t\n20\t## 趋势\n21\t成功 36 / 负向 5 / 失败 17 / 共 107\n22\t\n23\t## 下一步\n24\t（无活跃 idea，请通过 ideas.md 添加）\n25\t\n26\t## 资源状态\n27\tbjb1-18228: 无 GPU 信息\n28\tbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\n29\tbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\n30\tbjb2-40593: 无 GPU 信息\n31\t\n32\t## 告警\n33\t- plan_001-crm-smolvla: 训练失败 — unknown\n34\t- plan_014-reconvla-baseline: 训练失败 — unknown\n35\t- eval-smolvla-libero-spatial: 训练失败 — unknown\n36\t- eval-spatial-reeval-v2: 已被终止 — unknown\n37\t- precompute-v2-shard0: 已被终止 — unknown\n38\t- precompute-v2-shard1: 已被终止\n…[truncated 2775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 191
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T00:38:44.008340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T00:38:44.008860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# acr-vla-conformal-refinement — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-15 20:48 UTC | 更新原因: 引用审计 PASSED + ±1pp 统一完成 + Discussion/Conclusion 完成; 更新近期任务清单\n4\t\n5\t## 核心方向\n6\tobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：sample-then-correct > sample-then-select，obs features > conformal features（honest negative）。详见 paper_framing.md。\n7\t\n8\t## 投稿目标\n9\t**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\n10\t\n11\t## 当前进展\n12\t- **阶段**: Phase 3 — Paper writing + seed=43 statistical validation\n13\t- **MVP**: PASS\n14\t- **Object 10/10 FINAL ✅**: obs_only 19.0% vs argmin 12.0% (+7.0pp) — 超过 5pp claim 门槛 (D033)\n15\t- **Object obs_only norm=0.2 FINAL ✅**: **22.0%** (+10.0pp over argmin) — **PROJECT HIGH**\n16\t- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\n17\t- **Magnitude sweep**: obs_only stable 35-44% across norms, perdof collapses away from 0.1 (D032)\n18\t- **Seed=43 部署中**: 6 方在跑，obs_only 6/10, argmin 6/10, 预计 ~4-5h\n19\t- **Paper Agent**: Intro ✅ Method ✅ Experiments ✅ Related Work ✅ Discussion/Conclusion ✅ → Figures 进行中 (fig1 WIP, fig2/fig3 pending)\n20\t- **引用审计**: ✅ PASSED — 29 cited keys 全部验证, 22 方法归因验证通过, 0 NEEDS_REVIEW, chen2026reconvla + braun2025cgs 两个 blocking issue 已修复\n21\t- **±1pp 措辞**: ✅ 全文统一为 `best CRM within 1\\,pp of the selection baseline`\n22\t\n23\t## Object Benchmark（seed=42, ALL FINAL ✅）\n24\t\n25\t| 方法 | SR | vs argmin | 状态 |\n26\t|------|-----|-----------|------|\n27\t| **obs_only 0.2** | **22.0%** | **+10.0pp** | FINAL ✅ PROJECT HIGH |\n28\t| **obs_only 0.1** | **19.0%** | **+7.0pp** | FINAL ✅ |\n29\t| argmin K=10 | 12.0% | baseline | FINAL ✅ |\n30\t| VLA-only K=1 | 12.0% | 0pp | FINAL ✅ |\n31\t| VLA-mean K=10 | 12.0% | 0pp | FINAL ✅ |\n32\t| perdof 0.1 | 11.0% | -1.0pp | FINAL ✅ |\n33\t| scalar 0.1 | 9.0% | -3.0pp | FINAL ✅ (negative) |\n34\t\n35\t## Spatial 最终结果（LOCKED ✅）\n36\t\n37\t| 方法 | 10-task SR | vs argmin |\n38\t|------|-----------|-----------|\n39\t| argmin K=10 | 34% | baseline |\n40\t| perdof 0.1 |\n…[truncated 3809 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T00:38:44.033662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T00:38:44.305874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Project Memory\n2\t\n3\t## Spatial Baselines 锁定 (2026-05-15)\n4\t\n5\t| 方法 | SR | 来源 |\n6\t|------|-----|------|\n7\t| VLA-only K=1 | 30% | eval-spatial-v7-full |\n8\t| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\n9\t| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\n10\t\n11\t**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\n12\t\n13\t## Hard Tasks 普遍失败 (2026-05-15)\n14\t\n15\tT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\n16\t\n17\t## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\n18\t\n19\tT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\n20\t1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\n21\t2. Object benchmark 跨域验证\n22\t3. obs_only CRM +5pp 稳定 → 转向 \"learned correction\" narrative\n23\t\n24\t## obs_only 走势 (2026-05-15)\n25\t\n26\tobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \"obs-only CRM correction\" narrative。\n27\t\n28\t## Object magnitude 与 spatial 不同 (2026-05-15)\n29\t\n30\t**关键发现**: obs_only 对 correction norm 的响应跨域差异显著：\n31\t- Spatial: obs_only 在所有 norm (0.05/0.1/0.2/0.3) 下收敛到 ~35%，与 argmin 持平，magnitude 无效应\n32\t- Object: obs_only norm=0.1=19%, norm=0.2=**22%** (PROJECT HIGH)，更大 correction 产生更高 SR\n33\t- **论文角度**: Object 域 CRM correction 有真实增益空间（baseline 12%），spatial 域 VLA backbone 是瓶颈（hard tasks 全 0%）。Paper 应以 object 结果为主故事载体，spatial 作为 robustness/generalization 验证。\n34\t\n35\t## Object Baseline (2026-05-15)\n36\t\n37\tVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\n38\t\n39\t## bjb2-40593 环境问题 (2026-05-14-15)\n40\t\n41\t- 无 .git repo\n42\t- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\n43\t- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\n44\t\n45\t## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\n46\t\n47\ttmux 用 `sh` 而非 `bash` 执\n…[truncated 719 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 272
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T00:38:44.417187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T00:38:44.684459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T00:38:46.001959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (71437 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 1584
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T00:38:46.023617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_000\n3\t  claim: 1\n4\t  description: 'Motivating experiment: 3D point-reaching, per-DOF vs scalar vs no\n5\t    uncertainty conditioning'\n6\t  priority: P0\n7\t  gpu_budget_hours: 0.5\n8\t  deps: []\n9\t  registry_id: mvp-point-reaching\n10\t- id: plan_001\n11\t  claim: 1\n12\t  description: 'ACR-VLA full pipeline on SmolVLA base: CGS + ACI/COC + CRM. Train\n13\t    CRM on LIBERO demos + synthetic augmentation. Evaluate on LIBERO (nominal preservation)\n14\t    + LIBERO-Plus L3-L5 (robustness gain).'\n15\t  priority: P0\n16\t  gpu_budget_hours: 25\n17\t  deps: []\n18\t  registry_id: crm-train-v1\n19\t- id: plan_002\n20\t  claim: 1\n21\t  description: Ablation A3 — CRM without conformal features (observation-conditioned\n22\t    residual only, equivalent to A2C2-style generic residual). MAKE-OR-BREAK for Claim\n23\t    1.\n24\t  priority: P0\n25\t  gpu_budget_hours: 8\n26\t  deps:\n27\t  - plan_001\n28\t  registry_id: crm-train-a3-obs-only\n29\t- id: plan_003\n30\t  claim: 1\n31\t  description: Ablation A4 — CRM with scalar uncertainty (Euclidean distance like\n32\t    ReconVLA) replacing 40D per-DOF features. Validates per-DOF > scalar.\n33\t  priority: P0\n34\t  gpu_budget_hours: 8\n35\t  deps:\n36\t  - plan_001\n37\t- id: plan_004\n38\t  claim: 3\n39\t  description: 'ACR-VLA stacked on SRPO-finetuned VLA. Train new CRM on SRPO checkpoint\n40\t    + LIBERO demos. Evaluate on LIBERO-Plus. Primary impact argument: orthogonal to\n41\t    training-time optimization.'\n42\t  priority: P0\n43\t  gpu_budget_hours: 18\n44\t  deps:\n45\t  - plan_001\n46\t- id: plan_005\n47\t  claim: 2\n48\t  description: 'COC signal validation: (a) Spearman ρ between episode COC coverage\n49\t    fraction and task success, (b) ACI convergence plot, (c) ellipsoid volume comparison\n50\t    vs static calibration at matched coverage.'\n51\t  priority: P1\n52\t  gpu_budget_hours: 15\n53\t  deps:\n54\t  - plan_001\n55\t- id: plan_006\n56\t  claim: 2\n57\t  description: Ablation A1 — CRM without ACI (static CGS calibration, no online adaptation).\n58\t    Isolates ACI contribu\n…[truncated 3117 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 1339
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T00:38:46.153240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/IDEA_BRIEF.md"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T00:38:46.153708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T00:38:46.153954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T00:38:46.257694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/literature_map.yaml"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T00:38:46.258200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — acr-vla-conformal-refinement\n2\t\n3\t## Target Venue\n4\t- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2) — D021\n5\t- ~~ICLR 2027~~ — 不再是首要目标\n6\t\n7\t## Core Insight (Scenario C — ACTIVE, D029+D030 confirmed)\n8\tA lightweight observation-conditioned learned correction module (CRM), applied after conformal sample selection, can synthesize actions better than any individual VLA sample. The key contribution is the **sample-then-correct** pipeline itself and the discovery that **correction magnitude control is critical for closed-loop stability**. Per-DOF conformal features as CRM input offer no additional value over observation features — an honest negative result that challenges the intuition from synthetic experiments.\n9\t\n10\t## Active Framing: Scenario C\n11\t**Confirmed by data**: obs_only CRM > perdof CRM ≈ scalar CRM ≈ argmin on spatial (D029-D030); obs_only CRM **+7.0pp** over argmin on object 10/10 tasks FINAL (19.0% vs 12.0%); magnitude sweep shows obs_only robust to norm while perdof collapses at high norm (D032).\n12\t\n13\tStory: \"Observation-conditioned residual correction is the key contribution. The sample-then-correct pipeline (K=10 conformal selection + learned CRM correction) significantly outperforms pure sample selection on object manipulation tasks. Per-DOF conformal statistics as direct CRM input offer no advantage over observation features — but conformal prediction remains essential for the sample selection stage. Correction magnitude control is a critical and previously unrecognized factor for closed-loop VLA correction.\"\n14\t\n15\t## Core Claims (CoRL 单 Claim 论文)\n16\t\n17\t1. **Observation-conditioned learned correction (CRM) significantly improves VLA robustness beyond sample selection**\n18\t   - **主 claim**: obs_only CRM vs argmin-only ≥ 5pp on object benchmark + p < 0.05\n19\t   - **Spatial**: DEAD — all CRM variants 32-35% vs argmin 34%, no signal (D030)\n20\t   - **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin **12\n…[truncated 6688 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 104
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T00:38:46.478255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Idea Brief: ACR-VLA: Adaptive Conformal Refinement for Robust Vision-Language-Action Execution\n2\t\n3\t\n4\t- **Idea ID**: `idea_006`\n5\t- **Created**: 2026-05-10\n6\t- **Source**: web_research\n7\t- **Level**: top-tier\n8\t- **Target Venues**: CoRL 2026 (abstract: May 26, paper: May 29, 2026) — tight but feasible if auto-research starts immediately; motivating experiment provides early go/no-go signal, AAAI 2027 (deadline expected ~Jul-Aug 2026, TBD), ICRA 2027 (deadline expected ~Sep 2026, TBD), ICLR 2027 (deadline expected ~Sep-Oct 2026, TBD)\n9\t\n10\t## Seed Topic\n11\t\n12\tTarget: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days from today 2026-05-09); paper deadline 2026-05-29 (20 days).\n13\t\n14\tDirection: Robustness of VLA models — methods that make VLAs reliable under realistic perturbations without sacrificing nominal performance. In-scope: visual robustness (distractors, lighting, viewpoint shift, occlusion, sensor noise), language robustness (paraphrasing, ambiguous/underspecified instructions, OOD commands), action-execution robustness (noise injection, controller variance), distribution-shift generalization, compositional generalization, self-recovery from execution failure, calibrated uncertainty for action selection.\n15\t\n16\tRecent landscape (do not duplicate): Helix-style self-correction, TraceVLA, RoboPro, retry/reflection wrappers around VLAs. Robustness as benchmark-only is saturated — must propose a method.\n17\t\n18\tContribution type: METHOD ONLY. New training algorithm (auxiliary objectives, augmentation strategies, adversarial training tailored to VLAs), new inference-time mechanism (test-time adaptation, uncertainty-aware selection, self-recovery loops), or new architectural inductive bias for robustness.\n19\t\n20\tEVAL PROTOCOL — IMPORTANT:\n21\t- TRAIN on standard LIBERO suites (Object/Spatial/Goal/Long/90).\n22\t- EVALUATE on existing LIBERO-PLUS / LIBERO-PRO style perturbation benchmarks (and similar community-released robustness benchmark\n…[truncated 44747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 325
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T00:38:46.539930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t_next_id: 35\n2\tdecisions:\n3\t- id: D001\n4\t  date: 2026-05-13 01:03 UTC\n5\t  summary: MVP 方案确定：3D Point-Reaching Motivating Experiment 验证 per-DOF conformal 特征的信息优势\n6\t  rationale: IDEA_BRIEF 已设计了完美的 go/no-go gate：用合成数据的 3D reaching task 对比 per-DOF vs\n7\t    标量 vs 无不确定性三种 conditioning，直接测试核心假设。成本极低（<0.5 GPU-hours），无需 VLA 基础设施，失败则提前止损。Pass\n8\t    标准明确：B 在非扰动轴 MSE 比 A 低 >10%。\n9\t  related_experiments: []\n10\t  depends_on: []\n11\t- id: D002\n12\t  date: 2026-05-13 01:06 UTC\n13\t  summary: 采纳 Reviewer 建议完善 MVP：增加 B vs C 对比（>5% MSE）、K=10 estimated uncertainty variant、2:1/1.5:1\n14\t    各向异性 sweep\n15\t  rationale: Reviewer 正确指出 (1) 缺少 B vs C 对比会遗漏\"观测特征已足够\"的可能性，这直接关系核心 claim；(2) oracle\n16\t    uncertainty 与实际 pipeline 存在 gap，K=10 variant 几乎零成本可验证；(3) 5:1 比率过极端，需测试更温和情况。三项改进均不增加显著成本。\n17\t  related_experiments: []\n18\t  depends_on:\n19\t  - D001\n20\t- id: D003\n21\t  date: 2026-05-13 01:47 UTC\n22\t  summary: MVP 通过，GO — 进入 research 阶段\n23\t  rationale: 全部 3 条 pass 标准满足且 margin 很大：per-DOF (B) 在非扰动轴 MSE 比标量 (A) 低 22-38%，比无\n24\t    uncertainty (C) 低 15-39%。K=10 estimated 和弱各向异性(1.5:1)下均成立。核心假设\"per-DOF conformal\n25\t    特征携带更多可操作信息\"得到验证。关注风险：oracle→K=10 衰减 ~15pp，真实 7-DOF 场景待验证。\n26\t  related_experiments:\n27\t  - exp_id: mvp-point-reaching\n28\t    role: MVP gate\n29\t    result: PASS — all 6 conditions met criteria\n30\t  depends_on:\n31\t  - D001\n32\t  - D002\n33\t- id: D004\n34\t  date: 2026-05-13 02:59 UTC\n35\t  summary: Horizon 策略：截取 chunk 前 H_eff=5 步，action_dim=6。CGS 输出 40D。\n36\t  rationale: SmolVLA chunk_size=50 远超原假设 H=5。receding-horizon 执行语义下只需关注近期 action 的\n37\t    uncertainty，远期 step 对当前校正无意义。H_eff=5 保持与 IDEA_BRIEF 设计一致，CGS 40D 可控（per-DOF std\n38\t    30 + radius 5 + volume 5），p/n=6/10=0.6 优于原假设 0.7。H_eff=10 留作 ablation。action_dim=6\n39\t    使 Ledoit-Wolf 更稳定。\n40\t  related_experiments: []\n41\t  depends_on:\n42\t  - D003\n43\t- id: D005\n44\t  date: 2026-05-13 03:00 UTC\n45\t  summary: 不等 Dream 重新提交，直接启动 P0 实验。Dream zombie 占槽，Reviewer 已两轮审核通过 framing/plan。\n46\t  rationale: Dream dream_20260513T015051 崩溃在 review 阶段（imagine+write \n…[truncated 27134 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 385
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T00:38:46.540762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpapers:\n2\t  - bibtex_key: \"a2c2_2025\"\n3\t    title: \"Leave No Observation Behind: Real-time Correction for VLA Action Chunks\"\n4\t    authors: \"Sendai et al.\"\n5\t    year: 2025\n6\t    venue: \"arXiv:2509.23224\"\n7\t    url: \"https://arxiv.org/abs/2509.23224\"\n8\t    category: \"inference_correction\"\n9\t    verified: true\n10\t    relevance: \"Proposes A2C2, a lightweight asynchronous action chunk correction head for VLAs. Directly comparable inference-time residual correction approach to ACR-VLA.\"\n11\t    must_cite: true\n12\t\n13\t  - bibtex_key: \"angelopoulos2023gentle\"\n14\t    title: \"A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification\"\n15\t    authors: \"Angelopoulos & Bates\"\n16\t    year: 2023\n17\t    venue: \"Foundations and Trends in Machine Learning\"\n18\t    url: \"https://arxiv.org/abs/2107.07511\"\n19\t    category: \"cp_foundation\"\n20\t    verified: true\n21\t    relevance: \"Canonical tutorial on conformal prediction. Provides theoretical grounding for CGS, ACI, and CQR components used in ACR-VLA.\"\n22\t    must_cite: true\n23\t\n24\t  - bibtex_key: \"barber2023conformal\"\n25\t    title: \"Conformal Prediction Beyond Exchangeability\"\n26\t    authors: \"Barber et al.\"\n27\t    year: 2023\n28\t    venue: \"Annals of Statistics, 51(2):816-845\"\n29\t    url: \"https://arxiv.org/abs/2202.13415\"\n30\t    category: \"cp_foundation\"\n31\t    verified: true\n32\t    relevance: \"Generalizes conformal prediction to non-exchangeable settings via weighted quantiles. Theoretical basis for ACR-VLA's handling of distribution shift in online deployment.\"\n33\t    must_cite: false\n34\t\n35\t  - bibtex_key: \"black2024pi0\"\n36\t    title: \"pi0: A Vision-Language-Action Flow Model for General Robot Control\"\n37\t    authors: \"Black et al.\"\n38\t    year: 2024\n39\t    venue: \"arXiv:2410.24164\"\n40\t    url: \"https://arxiv.org/abs/2410.24164\"\n41\t    category: \"vla_foundation\"\n42\t    verified: true\n43\t    relevance: \"Foundational flow-matching VLA architecture. ACR-VLA's multi-sample inference builds on the f\n…[truncated 40485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Read",
+            "elapsed_ms": 283
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T00:39:05.642769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've successfully read the key project state files for the acr-vla-conformal-refinement project. Here's a comprehensive summary:\n\n## Project Status Summary\n\n### Current Phase\n**Phase 3: Paper writing + seed=43 statistical validation** — targeting CoRL 2026 (abstract DDL ~May 26, paper DDL ~Jun 2, ~11 days remaining)\n\n### Core Findings\n\n**Project Status**: \n- MVP PASSED (3D point-reaching motivating experiment validated core hypothesis with large margins)\n- Object benchmark FINAL: obs_only **19.0% vs argmin 12.0% (+7.0pp)** — exceeds 5pp claim threshold\n- Spatial LOCKED: all CRM variants 34-36% vs argmin 34% — **zero signal on spatial**\n- **Magnitude sweep critical finding**: obs_only robust across norms, perdof collapses at high norm\n\n**Working Experiments** (3 running):\n- eval-mag-obsonly-norm003-b2\n- eval-mag-obsonly-norm03-object\n- eval-mag-obsonly-norm005-object\n\n**Seed=43 Statistical Validation** (deployed, 6 methods @ ~4-5h ETA):\n- obs_only, argmin, perdof, scalar, VLA-mean, VLA-only\n- Target: Fisher exact test p < 0.05 on combined 200 trials (seed 42+43)\n\n### Paper Framing (Scenario C — Active)\n\n**Honest Negative Discovery**: Per-DOF conformal features provide no value over observation features\n- Spatial: perdof 35% = argmin 34% (0pp delta, claim dead)\n- Object: obs_only 19% >> perdof 11%, all CRM magnitude sensitivity shows perdof crashes at norm ≥ 0.2\n\n**Three Core Claims (CoRL single-claim paper)**:\n1. **Observation-conditioned CRM correction +7.0pp on object** (p < 0.05 pending seed=43)\n2. ~~Honest negative: per-DOF conformal features have zero value~~ (incorporated into Claim 1 narrative)\n3. **Magnitude control critical for closed-loop stability** (novel finding: norm=1.42 → 0%, norm=0.1-0.2 → +7-10pp)\n\n### Competitive Landscape\n- ReconVLA repositioned: \"UQ+OOD detection\" (different route) vs ACR-VLA \"selection+correction\"\n- A2C2 (concurrent): residual correction only, no multi-sample selection\n- Spatial limitation acknowledged: perturbation types (posit\n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "Agent",
+            "elapsed_ms": 23894
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T00:39:09.113510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T00:39:09.113977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T00:39:12.694593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T00:39:12.695037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T00:39:13.611468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md",
+              "max_chars": "20000"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T00:39:13.980717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "decisions.yaml",
+              "max_chars": "20000"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T00:39:15.171753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-mag-obsonly-norm003-b2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:20:45.606Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:37:54.341Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_mag_obsonly_norm003.json\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"225139\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-mag-obsonly-norm003-b2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:20:45.407Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/libero_spatial\\\", \\\"data_count\\\": 10, \\\"model_name\\\": \\\"crm_v3_norm_obs_only\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"libero_spatial\\\"}, \\\"pid\\\": 227426, \\\"notes\\\": \\\"Ghost PID 211962 killed, b2 now running solo on bjb2-40593 cuda:0. PID 227434 confirmed alive (15min uptime, model loaded, eval executing, GPU 6185MiB/24564MiB, 12% util).\\\", \\\"metrics\\\": {\\\"tasks_done\\\": 8, \\\"tasks_total\\\": 10, \\\"partial_sr\\\": {\\\"between_plate_and_ramekin\\\": 0.9, \\\"next_to_ramekin\\\": 1, \\\"from_table_center\\\": 0, \\\"on_cookie_box\\\": 0.3, \\\"in_top_drawer\\\": 0.1, \\\"on_ramekin\\\": 0, \\\"next_to_cookie_box\\\": 0.8, \\\"on_stove\\\": 0}, \\\"server\\\": \\\"bjb2-40593\\\", \\\"pid\\\": 227434, \\\"gpu\\\": \\\"cuda:0\\\", \\\"process_status\\\": \\\"alive\\\", \\\"checked_at\\\": \\\"2026-05-16T04:40:00\\\"}}, \\\"eval-mag-obsonly-norm03-object\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:29:02.155Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:37:52.085Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Object magnitude sweep: obs_only CRM v3-norm at norm=0.3 on LIBERO object benchmark. Tests degradation a\n…[truncated 21677 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2477
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T00:41:50.617789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 16, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-b2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=227434)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=356490)\\\"]}, {\\\"exp_id\\\": \\\"eval-perdof-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=365925)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm03-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=103028)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm005-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=101610)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-mean-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=111709)\\\"]}, {\\\"exp_id\\\": \\\"eval-scalar-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=114664)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm003-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=121325)\\\"]}, {\\\"exp_id\\\": \\\"eval-acr-object-v4-default-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=390936)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm02-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=127732)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm005-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=109650)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm003-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=105938)\\\"]}, {\\\"exp_id\\\": \\\"eval-acr-object-obs-only-default\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=134103)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-seed43-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=148788)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm02-seed43-object-r3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=144504)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm03-object-r3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=140759)\\\"]}]}, \\\n…[truncated 35 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 157922
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T00:41:50.679321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-16T00:41:45Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 125 个实验 — ANALYZING 1, DEPLOYED 1, DONE 107, PENDING 1, RUNNING 15\\\\n**DONE 分布**: failed 17, killed 49, negative 5, success 36\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 13 张 — bjb2-40593:cuda:0(eval-mag-obsonly-norm003-b2), bjb1-18228:cuda:1(eval-perdof-object-seed43), bjb1-32546:cuda:1(eval-vla-mean-object-seed43), bjb1-32546:cuda:2(eval-scalar-object-seed43), bjb1-32546:cuda:0(eval-mag-obsonly-norm003-object), bjb2-28827:cuda:0(eval-mag-perdof-norm003-object), bjb2-28827:1(eval-mag-perdof-norm005-object), bjb1-32546:cuda:5(eval-mag-perdof-norm02-object), bjb1-32546:cuda:4(eval-acr-object-obs-only-default), bjb1-18228:cuda:0(eval-acr-object-v4-default-r2), bjb1-32546:cuda:3(eval-obs-only-object-norm02-seed43-r2), bjb2-28827:cuda:2(eval-mag-perdof-norm03-object-r3), bjb2-28827:cuda:3(eval-mag-perdof-norm02-seed43-object-r3)\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-mag-obsonly-norm003-b2` | bjb2-40593 | cuda:0 | 225139 | `…cr-vla-conformal-refinement/eval-mag-obsonly-norm003-b2.log` |\\\\n| `eval-perdof-object-seed43` | bjb1-18228 | cuda:1 | 365925 | `…/acr-vla-conformal-refinement/eval-perdof-object-seed43.log` |\\\\n| `eval-vla-mean-object-seed43` | bjb1-32546 | cuda:1 | 111709 | `…cr-vla-conformal-refinement/eval-vla-mean-object-seed43.log` |\\\\n| `eval-scalar-object-seed43` | bjb1-32546 | cuda:2 | 114664 | `…/acr-vla-conformal-refinement/eval-scalar-object-seed43.log` |\\\\n| `eval-mag-obsonly-norm005-object` | bjb2-28827 | ? | 101610 | `…-conformal-refinement/logs/eval_object_obs_only_norm005.log` |\\\\n| `eval-mag-obsonly-norm03-object` | bjb2-28827 | ? | 103028 | `…a-conformal-refinemen\n…[truncated 6686 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 157067
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T00:41:50.818455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 35\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 01:03 UTC\\\\n  summary: MVP 方案确定：3D Point-Reaching Motivating Experiment 验证 per-DOF conformal 特征的信息优势\\\\n  rationale: IDEA_BRIEF 已设计了完美的 go/no-go gate：用合成数据的 3D reaching task 对比 per-DOF vs\\\\n    标量 vs 无不确定性三种 conditioning，直接测试核心假设。成本极低（<0.5 GPU-hours），无需 VLA 基础设施，失败则提前止损。Pass\\\\n    标准明确：B 在非扰动轴 MSE 比 A 低 >10%。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 01:06 UTC\\\\n  summary: 采纳 Reviewer 建议完善 MVP：增加 B vs C 对比（>5% MSE）、K=10 estimated uncertainty variant、2:1/1.5:1\\\\n    各向异性 sweep\\\\n  rationale: Reviewer 正确指出 (1) 缺少 B vs C 对比会遗漏\\\\\\\"观测特征已足够\\\\\\\"的可能性，这直接关系核心 claim；(2) oracle\\\\n    uncertainty 与实际 pipeline 存在 gap，K=10 variant 几乎零成本可验证；(3) 5:1 比率过极端，需测试更温和情况。三项改进均不增加显著成本。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 01:47 UTC\\\\n  summary: MVP 通过，GO — 进入 research 阶段\\\\n  rationale: 全部 3 条 pass 标准满足且 margin 很大：per-DOF (B) 在非扰动轴 MSE 比标量 (A) 低 22-38%，比无\\\\n    uncertainty (C) 低 15-39%。K=10 estimated 和弱各向异性(1.5:1)下均成立。核心假设\\\\\\\"per-DOF conformal\\\\n    特征携带更多可操作信息\\\\\\\"得到验证。关注风险：oracle→K=10 衰减 ~15pp，真实 7-DOF 场景待验证。\\\\n  related_experiments:\\\\n  - exp_id: mvp-point-reaching\\\\n    role: MVP gate\\\\n    result: PASS — all 6 conditions met criteria\\\\n  depends_on:\\\\n  - D001\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-13 02:59 UTC\\\\n  summary: Horizon 策略：截取 chunk 前 H_eff=5 步，action_dim=6。CGS 输出 40D。\\\\n  rationale: SmolVLA chunk_size=50 远超原假设 H=5。receding-horizon 执行语义下只需关注近期 action 的\\\\n    uncertainty，远期 step 对当前校正无意义。H_eff=5 保持与 IDEA_BRIEF 设计一致，CGS 40D 可控（per-DOF std\\\\n    30 + radius 5 + volume 5），p/n=6/10=0.6 优于原假设 0.7。H_eff=10 留作 ablation。action_dim=6\\\\n    使 Ledoit-Wolf 更稳定。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-13 03:00 UTC\\\\n  summar\n…[truncated 19270 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 156837
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T00:41:55.923991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T00:41:56.380805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 35\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 01:03 UTC\\\\n  summary: MVP 方案确定：3D Point-Reaching Motivating Experiment 验证 per-DOF conformal 特征的信息优势\\\\n  rationale: IDEA_BRIEF 已设计了完美的 go/no-go gate：用合成数据的 3D reaching task 对比 per-DOF vs\\\\n    标量 vs 无不确定性三种 conditioning，直接测试核心假设。成本极低（<0.5 GPU-hours），无需 VLA 基础设施，失败则提前止损。Pass\\\\n    标准明确：B 在非扰动轴 MSE 比 A 低 >10%。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 01:06 UTC\\\\n  summary: 采纳 Reviewer 建议完善 MVP：增加 B vs C 对比（>5% MSE）、K=10 estimated uncertainty variant、2:1/1.5:1\\\\n    各向异性 sweep\\\\n  rationale: Reviewer 正确指出 (1) 缺少 B vs C 对比会遗漏\\\\\\\"观测特征已足够\\\\\\\"的可能性，这直接关系核心 claim；(2) oracle\\\\n    uncertainty 与实际 pipeline 存在 gap，K=10 variant 几乎零成本可验证；(3) 5:1 比率过极端，需测试更温和情况。三项改进均不增加显著成本。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 01:47 UTC\\\\n  summary: MVP 通过，GO — 进入 research 阶段\\\\n  rationale: 全部 3 条 pass 标准满足且 margin 很大：per-DOF (B) 在非扰动轴 MSE 比标量 (A) 低 22-38%，比无\\\\n    uncertainty (C) 低 15-39%。K=10 estimated 和弱各向异性(1.5:1)下均成立。核心假设\\\\\\\"per-DOF conformal\\\\n    特征携带更多可操作信息\\\\\\\"得到验证。关注风险：oracle→K=10 衰减 ~15pp，真实 7-DOF 场景待验证。\\\\n  related_experiments:\\\\n  - exp_id: mvp-point-reaching\\\\n    role: MVP gate\\\\n    result: PASS — all 6 conditions met criteria\\\\n  depends_on:\\\\n  - D001\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-13 02:59 UTC\\\\n  summary: Horizon 策略：截取 chunk 前 H_eff=5 步，action_dim=6。CGS 输出 40D。\\\\n  rationale: SmolVLA chunk_size=50 远超原假设 H=5。receding-horizon 执行语义下只需关注近期 action 的\\\\n    uncertainty，远期 step 对当前校正无意义。H_eff=5 保持与 IDEA_BRIEF 设计一致，CGS 40D 可控（per-DOF std\\\\n    30 + radius 5 + volume 5），p/n=6/10=0.6 优于原假设 0.7。H_eff=10 留作 ablation。action_dim=6\\\\n    使 Ledoit-Wolf 更稳定。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-13 03:00 UTC\\\\n  summar\n…[truncated 26382 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 456
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T00:41:56.381257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T00:41:56.894002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — acr-vla-conformal-refinement\\\\n\\\\n## Target Venue\\\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2) — D021\\\\n- ~~ICLR 2027~~ — 不再是首要目标\\\\n\\\\n## Core Insight (Scenario C — ACTIVE, D029+D030 confirmed)\\\\nA lightweight observation-conditioned learned correction module (CRM), applied after conformal sample selection, can synthesize actions better than any individual VLA sample. The key contribution is the **sample-then-correct** pipeline itself and the discovery that **correction magnitude control is critical for closed-loop stability**. Per-DOF conformal features as CRM input offer no additional value over observation features — an honest negative result that challenges the intuition from synthetic experiments.\\\\n\\\\n## Active Framing: Scenario C\\\\n**Confirmed by data**: obs_only CRM > perdof CRM ≈ scalar CRM ≈ argmin on spatial (D029-D030); obs_only CRM **+7.0pp** over argmin on object 10/10 tasks FINAL (19.0% vs 12.0%); magnitude sweep shows obs_only robust to norm while perdof collapses at high norm (D032).\\\\n\\\\nStory: \\\\\\\"Observation-conditioned residual correction is the key contribution. The sample-then-correct pipeline (K=10 conformal selection + learned CRM correction) significantly outperforms pure sample selection on object manipulation tasks. Per-DOF conformal statistics as direct CRM input offer no advantage over observation features — but conformal prediction remains essential for the sample selection stage. Correction magnitude control is a critical and previously unrecognized factor for closed-loop VLA correction.\\\\\\\"\\\\n\\\\n## Core Claims (CoRL 单 Claim 论文)\\\\n\\\\n1. **Observation-conditioned learned correction (CRM) significantly improves VLA robustness beyond sample selection**\\\\n   - **主 claim**: obs_only CRM vs argmin-only ≥ 5pp on object bench\n…[truncated 6928 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 512
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T00:41:57.387176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T00:41:57.647814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Spatial Baselines 锁定 (2026-05-15)\\\\n\\\\n| 方法 | SR | 来源 |\\\\n|------|-----|------|\\\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\\\n\\\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\\\n\\\\n## Hard Tasks 普遍失败 (2026-05-15)\\\\n\\\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\\\n\\\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\\\n\\\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\\\n2. Object benchmark 跨域验证\\\\n3. obs_only CRM +5pp 稳定 → 转向 \\\\\\\"learned correction\\\\\\\" narrative\\\\n\\\\n## obs_only 走势 (2026-05-15)\\\\n\\\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\\\\\"obs-only CRM correction\\\\\\\" narrative。\\\\n\\\\n## Object magnitude 与 spatial 不同 (2026-05-15)\\\\n\\\\n**关键发现**: obs_only 对 correction norm 的响应跨域差异显著：\\\\n- Spatial: obs_only 在所有 norm (0.05/0.1/0.2/0.3) 下收敛到 ~35%，与 argmin 持平，magnitude 无效应\\\\n- Object: obs_only norm=0.1=19%, norm=0.2=**22%** (PROJECT HIGH)，更大 correction 产生更高 SR\\\\n- **论文角度**: Object 域 CRM correction 有真实增益空间（baseline 12%），spatial 域 VLA backbone 是瓶颈（hard tasks 全 0%）。Paper 应以 object 结果为主故事载体，spatial 作为 robustness/generalization 验证。\\\\n\\\\n## Object Baseline (2026-05-15)\\\\n\\\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\\\n\\\\n## bjb2-40593 环境问题 (2026-05-14-15)\\\\n\\\\n- 无 .git repo\\\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\\\n- Ghost P\n…[truncated 938 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 260
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T00:41:57.648303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T00:41:57.746867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 20:48 UTC | 更新原因: 引用审计 PASSED + ±1pp 统一完成 + Discussion/Conclusion 完成; 更新近期任务清单\\\\n\\\\n## 核心方向\\\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：sample-then-correct > sample-then-select，obs features > conformal features（honest negative）。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 3 — Paper writing + seed=43 statistical validation\\\\n- **MVP**: PASS\\\\n- **Object 10/10 FINAL ✅**: obs_only 19.0% vs argmin 12.0% (+7.0pp) — 超过 5pp claim 门槛 (D033)\\\\n- **Object obs_only norm=0.2 FINAL ✅**: **22.0%** (+10.0pp over argmin) — **PROJECT HIGH**\\\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\\\n- **Magnitude sweep**: obs_only stable 35-44% across norms, perdof collapses away from 0.1 (D032)\\\\n- **Seed=43 部署中**: 6 方在跑，obs_only 6/10, argmin 6/10, 预计 ~4-5h\\\\n- **Paper Agent**: Intro ✅ Method ✅ Experiments ✅ Related Work ✅ Discussion/Conclusion ✅ → Figures 进行中 (fig1 WIP, fig2/fig3 pending)\\\\n- **引用审计**: ✅ PASSED — 29 cited keys 全部验证, 22 方法归因验证通过, 0 NEEDS_REVIEW, chen2026reconvla + braun2025cgs 两个 blocking issue 已修复\\\\n- **±1pp 措辞**: ✅ 全文统一为 `best CRM within 1\\\\\\\\,pp of the selection baseline`\\\\n\\\\n## Object Benchmark（seed=42, ALL FINAL ✅）\\\\n\\\\n| 方法 | SR | vs argmin | 状态 |\\\\n|------|-----|-----------|------|\\\\n| **obs_only 0.2** | **22.0%** | **+10.0pp** | FINAL ✅ PROJECT HIGH |\\\\n| **obs_only 0.1** | **19.0%** | **+7.0pp** | FINAL ✅ |\\\\n| argmin K=10 | 12.0% | baseline | FINAL ✅ |\\\\n| VLA-only K=1 | 12.0% | 0pp | FINAL ✅ |\\\\n| VLA-mean K=10 | 12.0% | 0pp | FINAL ✅ |\\\\n| perdof 0.1 | 11.0% | -1.0pp | FINAL ✅ |\\\\n| scalar 0.1 | 9.0% | -3.0pp | FINAL ✅ (negative) |\\\\n\\\\n## Spatial\n…[truncated 3923 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 98
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T00:42:02.405986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T00:42:02.551555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "ToolSearch",
+            "elapsed_ms": 145
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T00:42:05.088070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "acr-vla-conformal-refinement",
+              "section": "execution"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T00:42:05.300706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"autodl-4090:cuda:0\\\"], \\\"gpu_ids\\\": [\\\"bjb2-40593:cuda:0\\\", \\\"bjb1-18228:cuda:0\\\", \\\"bjb1-18228:cuda:1\\\", \\\"bjb1-18228:cuda:2\\\", \\\"bjb1-18228:cuda:3\\\", \\\"bjb1-32546:cuda:0\\\", \\\"bjb1-32546:cuda:1\\\", \\\"bjb1-32546:cuda:2\\\", \\\"bjb1-32546:cuda:3\\\", \\\"bjb1-32546:cuda:4\\\", \\\"bjb1-32546:cuda:5\\\", \\\"bjb2-28827:cuda:0\\\", \\\"bjb2-28827:cuda:1\\\", \\\"bjb2-28827:cuda:2\\\", \\\"bjb2-28827:cuda:3\\\", \\\"bjb2-28827:cuda:4\\\", \\\"bjb2-28827:cuda:5\\\"], \\\"project_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"servers\\\": [\\\"bjb2-40593\\\", \\\"bjb1-18228\\\", {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-32546\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb2-28827\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 212
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T00:43:18.283317+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**（17 张）：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。白名单外的 GPU 严禁使用，即使 Director 指令也必须 push back。\n- **submit_training_job 命令必须 bash -c 包裹**：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u ...\"`。裸 `python` 会 EXIT_CODE=127。\n- **exp_id 命名**：norm 值用 `p` 替代小数点（norm0p3 = 0.3），禁止 norm03 等歧义缩写。\n- **Kill 操作**：必须 `ps aux | grep` 完整命令行逐参数比对，曾因 norm03/norm003 混淆 kill 错进程空转 9 小时。\n- **Per-DOF conformal claim 已死**（D029-D030）——不要试图复活。obs_only CRM 是唯一存活路径。\n\n### 2. 🖥️ 基础设施快照\n- **服务器 / 工作目录**：全部 `/root/acr-vla-conformal-refinement`，account=root\n  - bjb2-40593（1× 4090D）、bjb1-18228（4× 4090）、bjb1-32546（6× 4090）、bjb2-28827（6× 4090）\n- **Python**：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型 checkpoints**：`/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt`\n- **数据集**：`/root/autodl-tmp/libero_data/`（spatial + object）\n- **HF cache**：`/root/autodl-tmp/.hf_cache`（必须设 HF_HOME 指向此路径）\n- **活跃进程**：16 个 RUNNING 实验，全部 cron 监控正常（reconcile_crons 刚确认全 alive）。分布见第 3 节。\n\n### 3. 📊 当前状态\n**Phase 3：Paper writing + seed=43 statistical validation。CoRL 2026 abstract DDL ~May 26（~10 天）。**\n\n刚完成 session-start 初始化，16 个实验全部 alive，无需干预。Paper 正文 5 章全部完成（Intro/Method/Experiments/RelatedWork/Discussion-Conclusion），引用审计 PASSED。Figures 是论文最后短板（fig1 WIP，fig2/fig3 pending）。\n\n**RUNNING 实验（16 个，3 类）：**\n\n| 类别 | 数量 | 关键实验 | 进度 |\n|------|------|----------|------|\n| Seed=43 统计验证 | 5 | obs_only-seed43 6/10, perdof-seed43 5/10, scalar-seed43 3/10, vla-mean-seed43 3/10, obs-only-norm02-seed43-r2 1/10 | argmin-seed43 已 DONE |\n| Object magnitude sweep | 8 | obs_only norm=0.03/0.05/0.3 + perdof norm=0.03/0.05/0.2/0.3 + perdof-norm02-seed43 | 均 0-2/10 tasks |\n| Default norm ablation + spatial | 3 | obs-only-default 2/10, perdof-default-r2 1/10, spatial-norm003-b2 8/10 | |\n\n**⚠️ 关键风险**：obs_only seed=43 partial SR = 8.3%（6/10 tasks），远低于 seed=42 的 19%。剩余 4 tasks 在 seed=42 中 SR 较高（bbq_sauce 30%, tomato_sauce 10% 等），可能回升。但若 10-task final 仍低，Fisher test 可能 fail。\n\n**等待中**：eval-mag-obsonly-norm03-b2 在 PENDING 等人工审批。\n\n### 4. 📋 待办（条件触发式）\n- **eval-obs-only-object-seed43 完成 → 立即做 Fisher exact test**：combined 200 trials (seed42: 19/100 + seed43: ?/100) vs argmin combined。p<0.05 → 更新 paper claim + abstract；p=0.05-0.10 → 部署 seed=44 第三轮；p>0.10 → 调整 claim 为 \"suggestive improvement\"\n- **6 个 seed=43 全完 → spawn Worker 跑 Fisher + bootstrap CI 脚本 → 结果补入 Experiments section**\n- **Object magnitude sweep 全完 → spawn Worker 绘制 fig3（norm sensitivity curve: obs_only vs perdof across 5 norms）**\n- **obs-only-default + perdof-default-r2 完成 → 确认 norm=1.42 catastrophic failure → 补入 magnitude narrative**\n- **所有 figures 完成 → Abstract 最终版 → 提交前 Reviewer 全文审查**\n- **spatial norm003-b2（8/10）即将完成 → 更新 spatial magnitude sweep 表（obs_only norm=0.03 数据点）**\n\n### 5. 🎯 战略上下文\n**核心结论链**：MVP passed (D003) → per-DOF claim dead on spatial (D027-D029) → per-DOF dead on object too (D030) → obs_only CRM +7.0pp on object is sole signal (D033) → paper pivoted to \"sample-then-correct\" narrative with honest negative about per-DOF features。\n\n**最容易判断错的事**：\n1. **Seed=43 partial SR 低不代表最终低**——LIBERO object tasks SR 分布极不均匀（有的 task 30%，有的 0%），partial 结果取决于已完成的 task 分布。等 10-task final 再下结论。\n2. **不要把 spatial 和 object 的 magnitude 趋势混用**——spatial 全 norm obs_only ≈ 35%（无效应），object 随 norm 增大有真实增益（0.1→19%, 0.2→22%）。论文以 object 为主载体。\n3. **ReconVLA 不是直接竞品**（D034）——它做 UQ+OOD 检测（\"何时不信任\"），ACR-VLA 做 selection+correction（\"如何改进\"）。A2C2 才是最近竞品（correction only，无 selection）。\n4. **论文是 single-claim paper**（D023）——Claim 1: obs_only CRM correction > selection-only。ACI/COC (Claim 2) 和 SRPO stacking (Claim 3) 已砍。不要试图复活。\n5. **bjb2-40593 环境特殊**——无 .git repo，CRM cache 在旧路径 `/root/autodl-tmp/crm_cache/spatial/`。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-acr-object-v4-obs-only"
+          },
+          "id": "event-000090"
+        }
+      ],
+      "message_count": 48
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-acr-object-v4-obs-only-20260516t004318-304596.md"
+}

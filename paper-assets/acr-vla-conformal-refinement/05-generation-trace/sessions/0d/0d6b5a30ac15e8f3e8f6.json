@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d6b5a30ac15e8f3e8f6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix bjb1 18228 cuda0 deploy",
+  "task_key": "worker_ops_fix-bjb1-18228-cuda0-deploy_20260518T194019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-bjb1-18228-cuda0-deploy_20260518T194019_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "3a06c4655961a16cec77ae9733d388ebce4a88d54e90c1afef05d0265482f589"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n## 任务 1: perdof_norm003_seed44 状态\n\n- **`eval-perdof-object-norm003-seed44`**: 正在运行（cuda:2, PID 853864）。已完成 4/10 tasks，当前跑第 5 个 task `pick_up_the_ketchup` (rollout 6/10)。进度正常。\n- **`eval-perdof-object-norm003-seed44-r2`**: session 已不存在，无需手动清理。\n\n## 任务 2: cuda:0 双跑实验 — **无法执行**\n\ncuda:0 **不是 IDLE**，当前已有 2 个实验在跑：\n- `eval-obs-only-object-norm003-seed47` (PID 889257, 5645 MiB)\n- `eval-perdof-object-norm03-seed48` (PID 889453, 5645 MiB)\n\n合计占用 ~11290 MiB，GPU 利用率 99%。\n\n当前 bjb1-18228 全部 4 张卡的分布：\n\n| GPU | 实验 1 | 实验 2 |\n|-----|--------|--------|\n| cuda:0 | obs_only norm003 seed47 | perdof norm03 seed48 |\n| cuda:1 | obs_only norm003 seed43 | obs_only norm003 seed46 |\n| cuda:2 | obs_only norm005 seed46 | **perdof norm003 seed44** |\n| cuda:3 | perdof default seed43 | obs_only norm01 seed48 |\n\n每张卡都在双跑。需要等现有实验完成后才能部署新实验，或者你确认可以 kill 掉 cuda:0 上的某个实验腾位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bjb1-18228-cuda0-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "426715f504ac7509f480",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 spatial baseline",
+  "task_key": "worker_diagnose_pi05-spatial-baseline_20260521T114259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-spatial-baseline_20260521T114259_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "a9712788352b018c79d06632d36ae868b8b353b865c75afd3d61d044028c8f9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断汇总\n\n| exp_id | 状态 | 原因 |\n|--------|------|------|\n| eval-pi05-vla-only-spatial-seed42 | DONE/failed | 进程被 kill，停在 task 10/10 rollout 10/20 |\n| eval-pi05-vla-only-spatial-seed43 | DONE/failed | 同上 |\n| eval-pi05-vla-only-spatial-seed44 | DONE/failed | 同上 |\n\n**关键发现：**\n- 3 个进程全部已死，无结果 JSON\n- 所有 3 个日志停在完全相同的位置（task 10/10, rollout 10/20, 76 行），强烈暗示同时被 kill（可能系统 RAM OOM）\n- 已完成的 9/10 个 task × 3 seeds：**全部 0/20 = 0% SR**\n- 即使实验未完整跑完，结论已清晰：**PI0.5 VLA-only 在 LIBERO-Spatial 上约 0% 成功率**\n\n如需正式指标，可以重跑单 seed 补全；但考虑到 180/180 rollouts 全部失败，重跑的意义不大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-spatial-baseline.md"
+}

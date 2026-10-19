@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d3f63c7fe5262ae87c9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "setup westd vla only prep",
+  "task_key": "worker_setup_westd-vla-only-prep_20260526T110336",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_westd-vla-only-prep_20260526T110336_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "3e4b083d4cd8888f40fdfaf6b525c9ce4166950e3d189cc32c5e9f458dcdd2c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 环境状态 (westd-49937)\n- **GPU**: 6× NVIDIA RTX PRO 6000 Blackwell (97887 MiB each), 全部 0% 利用率，0 MiB 占用\n- **evaluate.py**: 存在 (`/root/acr-vla-conformal-refinement/src/evaluate.py`, 36KB)\n- **conda base**: torch 2.8.0+cu128, CUDA 可用, 6 GPUs 可见\n- **pi05 模型**: `/root/autodl-tmp/models/pi05_libero_finetuned/` 完整 (config.json + model.safetensors + preprocessor/postprocessor)\n\n## QUEUED 转换结果\n6/6 全部成功 (PREPARING → QUEUED)：\n\n| exp_id | status |\n|---|---|\n| westd-pi05-vla-only-goal-s42-paired | QUEUED |\n| westd-pi05-vla-only-goal-s43-paired | QUEUED |\n| westd-pi05-vla-only-goal-s44-paired | QUEUED |\n| westd-pi05-vla-only-object-s42-paired | QUEUED |\n| westd-pi05-vla-only-object-s43-paired | QUEUED |\n| westd-pi05-vla-only-object-s44-paired | QUEUED |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-westd-vla-only-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08475ca3c9cf040c920d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze crm loss conformal",
+  "task_key": "worker_analyze_crm-loss-conformal_20260522T062919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_crm-loss-conformal_20260522T062919_result.json",
+    "occurrence": 1,
+    "bytes": 2429,
+    "sha256": "2bee7beeb0a9ed50b1f901ed856648091293779254cc6c343fa598a3c13a96e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据齐全。以下是分析结果。\n\n---\n\n## CRM Loss 变体实验分析：crm-loss-conformal\n\n### 训练状态\n- **状态**: 正常完成 (50/50 epochs, EXIT_CODE=0)\n- **数据**: 14,570 samples, K=10, obs_dim=960, CRM params=337,438\n- **配置**: loss_type=conformal_guided, lambda_conf=0.1, lr=1e-3, batch_size=32\n\n### 最终 Metrics\n\n| 指标 | 值 |\n|---|---|\n| Final train_loss | 0.016046 |\n| Final val_loss | 0.013343 |\n| **Best val_loss** | **0.013343** (epoch 50) |\n| Best epoch | 50 (仍在持续下降) |\n| Checkpoint | `/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/` |\n\n### 四方对比（Track 2 全部实验）\n\n| 实验 | Loss Type | Best val_loss | Final train_loss | vs MSE baseline |\n|---|---|---|---|---|\n| **crm-loss-perdof** | Per-DOF weighted | **0.000124** | 0.000141 | **16.8x better** |\n| crm-loss-mse-baseline | MSE | 0.002080 | 0.004038 | 1.0x (baseline) |\n| crm-loss-combined | Per-DOF + conformal | 0.005302 | 0.004481 | 2.5x worse |\n| **crm-loss-conformal** | Conformal-guided | 0.013343 | 0.016046 | **6.4x worse** |\n\n### 分析\n\n1. **Conformal-guided loss 表现最差**：val_loss=0.013343 是 MSE baseline (0.002080) 的 6.4 倍。需注意 val_loss 可能包含 auxiliary conformal term（lambda=0.1），所以纯 MSE 差距可能没有 6.4x 那么大，但即使扣除 auxiliary 部分，收敛速度和最终精度仍明显落后。\n\n2. **训练动态对比**：MSE baseline epoch 1 val_loss=0.008373→最终 0.002080（降 4x）；conformal epoch 1 val_loss=0.037526→最终 0.013343（降 2.8x），conformal 收敛效率更低。\n\n3. **Combined 实验佐证**：combined (per-DOF + conformal) val_loss=0.005302，比纯 per-DOF (0.000124) 差 43x，说明 conformal component 确实是拖后腿的因素。\n\n4. **Per-DOF 一枝独秀**：val_loss=0.000124 远超所有变体，验证了\"按 DOF 重要性加权\"的策略有效。\n\n### Conclusion\n\n**negative** — Conformal-guided auxiliary loss 显著降低了 CRM 训练效果。假设不成立：用 nonconformity score 加权校正幅度并不能改善 CRM，反而引入了噪声信号干扰了主 MSE 目标的优化。\n\n### 其他实验状态\n- **crm-loss-perdof**: conclusion=success ✓\n- **crm-loss-combined**: 已完成 (best val_loss=0.005302)，待分析\n- **crm-loss-mse-baseline**: 已完成 (best val_loss=0.002080)，待分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-crm-loss-conformal.md"
+}

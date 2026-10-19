@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61a63b4d8e4aaf8c4079",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 fill 3gpu",
+  "task_key": "worker_deploy_bjb1-18228-fill-3gpu_20260520T172904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-fill-3gpu_20260520T172904_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "1a62663ed0fc2fc0abe58524b2d28991ac9b8166c39cc8aa828df7701a434b96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部启动成功，正在加载模型：\n\n| GPU | exp_id | PID | 状态 |\n|-----|--------|-----|------|\n| cuda:0 | eval-random-selection-spatial-seed42-r3 | 477008 | 运行中 (tmux: eval-random-spatial-r3) |\n| cuda:2 | eval-obs-only-object-norm005-seed44 | 477286 | 运行中 (tmux: eval-norm005-seed44) |\n| cuda:3 | eval-obs-only-object-norm003-seed44 | 477496 | 运行中 (tmux: eval-norm003-seed44) |\n\n**已 harvest 的结果：**\n- `eval-k20-obs-only-object-seed42`: SR = 0.20 → registry DONE\n- `eval-random-selection-object-seed47`: SR = 0.07 → registry DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-fill-3gpu.md"
+}

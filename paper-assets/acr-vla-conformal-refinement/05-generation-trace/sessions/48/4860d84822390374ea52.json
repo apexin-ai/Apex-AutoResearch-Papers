@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4860d84822390374ea52",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "registry backfill 3dir metrics",
+  "task_key": "worker_registry_backfill-3dir-metrics_20260523T034954",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_registry_backfill-3dir-metrics_20260523T034954.log",
+    "occurrence": 1,
+    "bytes": 1003005,
+    "sha256": "e29578056d71309e13606d676553b11c21bfe11387928f9b804031a200e9ee3f"
+  },
+  "statistics": {
+    "messages": 79,
+    "user_turns": 0,
+    "tool_calls": 29,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 29,
+      "tool_result": 29,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "4860d84822390374ea52-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "4860d84822390374ea52-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/registry-backfill-3dir-metrics.md"
+}

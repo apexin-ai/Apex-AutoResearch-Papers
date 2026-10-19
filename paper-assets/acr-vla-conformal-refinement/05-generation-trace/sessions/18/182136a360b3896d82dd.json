@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "182136a360b3896d82dd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779382053.md",
+  "task_key": "loop_22_1779382053",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779382053.md",
+    "occurrence": 1,
+    "bytes": 3777,
+    "sha256": "b367e2ef49920c4f758c48896b205aede31d98795b5625a3195ecf6c5616ba58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T16:39:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `get_project_resource_usage` 返回 `allocated_gpus=[]`，GPU 白名单为空——提交新实验前必须确认 Director 已分配 GPU，不要自行占用\n- eval 脚本不写 W&B/sentinel，cron 报 \"process dead 5× with no sentinel/W&B\" 大概率是 false positive——**必须先 tail 日志确认再改 conclusion**，不要直接标 failed\n- bjb1-32546 上 submit 命令必须带 `source /root/miniconda3/bin/activate`，裸 `python` 找不到（seed52-r2 就因此真正失败）\n- Table 1 数据：norm01 和 norm02 是不同配置，不可混合计算 n 和 mean（历史事故，见 memory.md）\n- evaluate.py 在 `src/` 子目录下，命令必须是 `python -u src/evaluate.py`（非 `python evaluate.py`）\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-28827**: 工作目录 `/root/acr-vla-conformal-refinement/`，conda base (`/root/miniconda3/bin/python`)，6 GPU\n- **bjb1-18228**: 同上路径，conda base，4 GPU 在跑 eval\n- **bjb1-32546**: 同上路径，conda base，1 GPU 在跑 eval\n- 模型：SmolVLA `/root/autodl-tmp/models/smolvla_libero/`，CRM checkpoint `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- 日志统一在 `/root/autodl-tmp/logs/`，output JSON 在项目目录 `logs/` 下（两套路径，cron 监控用前者）\n- 活跃 cron 监控 5 个实验：seed57(bjb1-18228), seed58(bjb1-18228), seed59(bjb1-18228), seed60(bjb1-18228), seed61(bjb1-18228)；另有 seed56(bjb2-28827) 和 seed49-r2(bjb1-32546) 在跑\n\n### 3. 📊 当前状态\n刚完成 5 个 cron 失败回调的诊断：4 个是 false positive（seed46/50/53/54，已修正 conclusion=success 并补录 metrics），1 个真正失败（seed52-r2，python not found）。已向 Director 汇报。\n\n**RUNNING (6)**:\n- eval-obs-only-object-norm003-seed56 (bjb2-28827:cuda:2)\n- eval-obs-only-object-norm01-seed57 (bjb1-18228:cuda:2)\n- eval-obs-only-object-norm005-seed58 (bjb1-18228:cuda:0)\n- eval-obs-only-object-norm003-seed59 (bjb1-18228:cuda:3)\n- eval-obs-only-object-norm005-seed49-r2 (bjb1-32546:cuda:5)\n- eval-obs-only-object-norm005-seed55-r2 (bjb1-18228:cuda:1)\n\n**PREPARING**: ~34 个，多为 norm sweep 补种\n\n**等待**: 无 Worker 回调；等 Director 对 seed52-r2 重提交和 cron sentinel 修复的决策\n\n### 4. 📋 待办（条件触发式）\n- 6 个 RUNNING 实验的 cron 完成回调 → 先 tail 日志确认是否真完成（极可能又是 false positive）→ 修正 conclusion + 补录 metrics\n- Director 批准 seed52-r2 重提交 → 用 `source /root/miniconda3/bin/activate && python -u src/evaluate.py ...` 重新提交到 bjb1-32546\n- norm sweep 全部完成后 → 汇总各 ε 的 mean±std，更新 ROADMAP 的 norm sweep 行\n- bjb2-28827 上 seed56 完成后 → cuda:2 释放，可铺下一个 PREPARING 实验\n- Director 如果分配新 GPU → 从 34 个 PREPARING 中按优先级提交\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL 2026-05-29（8天）**，论文正文已 8 页，核心数据 LOCKED\n- **D092**: Plan A (K=2 conformal + selective CRM) GO，Object 和 Spatial 均已验证\n- **D090**: Learned Uncertainty Head NO-GO，已关闭\n- **D094**: Plan A Spatial 35.0%±1.0% 超过 K=10，强结果\n- 当前 norm sweep 是补充实验，填 ε=0.03/0.05/0.1 的 seed 数量\n- **易错点 1**: cron 报 failed 不要信——这个项目 eval 脚本没有 sentinel，历史上 >10 次 false positive，每次都要 tail 日志人工确认\n- **易错点 2**: norm01 (ε=0.1) 和 norm02 (ε=0.2) 是论文中不同数据系列，seed 不能跨 norm 合并统计\n- **易错点 3**: K=2 L2 distance 是唯一有效的 adaptive K 信号（ρ=0.9979），FMVD 和 CRM magnitude 都 NO-GO，不要再试\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779382053.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2532f2c0567b6a5b7e9b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix bjb2 28827 p2 stale tmux",
+  "task_key": "worker_fix_bjb2-28827-p2-stale-tmux_20260520T122452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_bjb2-28827-p2-stale-tmux_20260520T122452_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "649e9db3e5e903871ed580dc8e54cd73c8fe5e730f73c03b307d6bb8bdbbd071"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 78261 已确认死亡。GPU 3/4/5 显存已释放（从 5248/4607/5148 MiB → 1 MiB）。\n\n**bjb2-28827 最终 GPU 状态：**\n\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| 0 | 2555 / 24564 MiB | 运行中 (PID 307491) |\n| 1 | 3085 / 24564 MiB | 运行中 (PID 307767) |\n| 2 | 2025 / 24564 MiB | 运行中 (PID 308043) |\n| 3 | 1 / 24564 MiB | **空闲** ✓ |\n| 4 | 1 / 24564 MiB | **空闲** ✓ |\n| 5 | 1 / 24564 MiB | **空闲** ✓ |\n\nKill 78261 连带释放了 GPU 3/4/5 上的 3 个 python 子进程（PID 340026, 336621, 336826）。GPU 0-2 上仍有其他任务在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bjb2-28827-p2-stale-tmux.md"
+}

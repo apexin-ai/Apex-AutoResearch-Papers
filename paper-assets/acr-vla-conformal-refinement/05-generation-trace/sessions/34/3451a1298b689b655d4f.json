@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3451a1298b689b655d4f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 batch3",
+  "task_key": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-batch3_20260519T202911_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "0719b50f783328dc00fa814d6a9cb47c22a74b06580e10a5e934adeffe97ec3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部部署完成，registry 已注册为 RUNNING。\n\n| GPU | exp_id | 模式 | Benchmark | Seed | PID |\n|-----|--------|------|-----------|------|-----|\n| cuda:1 | eval-crm-goal-seed44 | crm_obs_only | Goal (OOD) | 44 | 83909 |\n| cuda:3 | eval-crm-goal-seed45 | crm_obs_only | Goal (OOD) | 45 | 85315 |\n| cuda:4 | eval-vla-only-long-seed47 | vla_only | Long | 47 | 86796 |\n| cuda:5 | eval-vla-only-spatial-seed48 | vla_only | Spatial | 48 | 88042 |\n\nGPU 显存已分配（5.6-7.3 GB），日志显示模型和环境加载正常，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-batch3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04937bc78267d2c39742",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 norm01 seed48",
+  "task_key": "worker_deploy_bjb1-18228-norm01-seed48_20260520T183604",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-norm01-seed48_20260520T183604_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "509d4226b9f0de52b662402f46939cef100856a04003449f773c81251b6ee89c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成：\n\n- **PID**: 507385\n- **GPU**: cuda:1 @ bjb1-18228（启动时 0% 利用率，模型加载中）\n- **tmux session**: `eval-norm01-seed48`\n- **Cron**: 已注册，120s 轮询\n- **Registry 状态**: DEPLOYED（状态机不允许从 DONE 重新回到 RUNNING，已走 DONE→DEPLOYING→DEPLOYED 路径，spec/log_path 已更新）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-norm01-seed48.md"
+}

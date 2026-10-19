@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4574b26c6bf5dc34e610",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit gpu status all servers",
+  "task_key": "worker_audit_gpu-status-all-servers_20260526T145300",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_gpu-status-all-servers_20260526T145300_result.json",
+    "occurrence": 1,
+    "bytes": 3401,
+    "sha256": "1a5228dd51e58dcea22608a3be2a09e791484782196061b7aedcc8674f2fdc0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 被 ssh_read_only 白名单拦截，跳过。nvidia-smi 数据已全部拿到，汇总如下：\n\n---\n\n## GPU 状态审计报告 (2026-05-26 22:56 UTC)\n\n### 1. cqa1-32758 (6×4090D, 24GB each)\n\n| GPU | 显存占用 | 状态 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 10317/24564 MiB | **占用** | python PID 216649 |\n| cuda:1 | 1/24564 MiB | **空闲** | — |\n| cuda:2 | 10788/24564 MiB | **占用** | python PID 364803 |\n| cuda:3 | 10319/24564 MiB | **占用** | python PID 350486 |\n| cuda:4 | 11860/24564 MiB | **占用** | python PID 350882 |\n| cuda:5 | 11860/24564 MiB | **占用** | python PID 351448 |\n\n**5 占用 / 1 空闲**\n\n### 2. bjb1-32546 (6×4090, 24GB each)\n\n| GPU | 显存占用 | 状态 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 2/24564 MiB | **空闲** | — |\n| cuda:1 | 2/24564 MiB | **空闲** | — |\n| cuda:2 | 2/24564 MiB | **空闲** | — |\n| cuda:3 | 13063/24564 MiB | **占用** | python PID 872081 |\n| cuda:4 | 2/24564 MiB | **空闲** | — |\n| cuda:5 | 12446/24564 MiB | **占用** | python PID 872370 |\n\n**2 占用 / 4 空闲**\n\n### 3. bjb2-28827 (6×4090, 24GB each)\n\n| GPU | 显存占用 | 状态 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 13606/24564 MiB | **占用** | python PID 443692 |\n| cuda:1 | 13606/24564 MiB | **占用** | python PID 444363 |\n| cuda:2 | 13516/24564 MiB | **占用** | python PID 445988 |\n| cuda:3 | 13516/24564 MiB | **占用** | python PID 448295 |\n| cuda:4 | 14741/24564 MiB | **占用** | python PID 450041 |\n| cuda:5 | 14741/24564 MiB | **占用** | python PID 451711 |\n\n**6 占用 / 0 空闲**\n\n### 4. bjb1-18228 (4×4090, 24GB each)\n\n| GPU | 显存占用 | 状态 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 14062/24564 MiB | **占用** | python PID 338026 |\n| cuda:1 | 14062/24564 MiB | **占用** | python PID 338487 |\n| cuda:2 | 1/24564 MiB | **空闲** | — |\n| cuda:3 | 14062/24564 MiB | **占用** | python PID 339344 |\n\n**3 占用 / 1 空闲**\n\n### 5. westd-49937 (6×RTX PRO 6000, 96GB each)\n\n| GPU | 显存占用 | 状态 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 13030/97887 MiB | **占用** | python PID 491271 |\n| cuda:1 | 13030/97887 MiB | **占用** | python PID 491696 |\n| cuda:2 | 13509/97887 MiB | **占用** | python PID 492088 |\n| cuda:3 | 13443/97887 MiB | **占用** | python PID 492479 |\n| cuda:4 | 12964/97887 MiB | **占用** | python PID 492867 |\n| cuda:5 | 13443/97887 MiB | **占用** | python PID 493251 |\n\n**6 占用 / 0 空闲**（但每卡仅用 ~13GB/96GB，剩余 ~84GB 显存可共享）\n\n### 6. bjb2-24035 (1×4090D, 24GB)\n\n| GPU | 显存占用 | 状态 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 11432/24564 MiB | **占用** | python PID 63656 |\n\n**1 占用 / 0 空闲**\n\n---\n\n## 全集群汇总\n\n| 指标 | 数值 |\n|------|------|\n| 总 GPU 数 | 29 |\n| 占用 | 23 |\n| 空闲 | **6** |\n\n### 空闲 GPU 清单\n\n```\ncqa1-32758:cuda:1      (4090D, 24GB)\nbjb1-32546:cuda:0      (4090, 24GB)\nbjb1-32546:cuda:1      (4090, 24GB)\nbjb1-32546:cuda:2      (4090, 24GB)\nbjb1-32546:cuda:4      (4090, 24GB)\nbjb1-18228:cuda:2      (4090, 24GB)\n```\n\n备注：tmux ls 不在 ssh_read_only 白名单内，无法查询。westd-49937 全部 6 卡虽有进程但每卡仅占 ~13%显存（13GB/96GB），如需可共享使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-gpu-status-all-servers.md"
+}

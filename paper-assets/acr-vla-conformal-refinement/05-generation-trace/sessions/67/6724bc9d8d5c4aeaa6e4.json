@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6724bc9d8d5c4aeaa6e4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check bjb2 40593 pid388460",
+  "task_key": "worker_ssh_check-bjb2-40593-pid388460_20260517T112920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-bjb2-40593-pid388460_20260517T112920_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "f2e2098d3b51c4c5ab170bb6fc1815c44933966edd8445cbb917adf2345e3348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：保留，进程正常运行中。**\n\n证据：\n- **PID 388460** 存活，运行 1h33m，RSS ~10GB\n- **日志** `/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed47.log`（17 行）\n- **最后一行有 rollout 输出**：\n  ```\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\n  ```\n  第一个 task 已完成 5/10 rollouts，正在继续推进。\n- **日志最后修改** 19:16（约 14 分钟前），robosuite 每个 rollout 最多 300 步，单个 rollout 耗时数分钟属正常\n- **GPU**：RTX 4090D，12% util，5628MiB 占用，PID 388460 在使用 GPU。eval 模式下 GPU 利用率低是正常的（大部分时间在 CPU 端跑仿真）\n\nReviewer 之前检查时可能只看到初始化阶段（16 行无 rollout），但现在第 17 行已有 rollout 进展。进程未挂死。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-bjb2-40593-pid388460.md"
+}

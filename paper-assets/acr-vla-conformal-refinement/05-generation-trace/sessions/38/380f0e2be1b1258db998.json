@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "380f0e2be1b1258db998",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill cqa1 zombies p0",
+  "task_key": "worker_ops_kill-cqa1-zombies-p0_20260526T102815",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-cqa1-zombies-p0_20260526T102815_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "99b913bc294cd2b634e37f87d7ae516539ac5a65bf023316fd08a1a7f6279da3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## Kill 结果\n\n| PID | 任务 | 结果 |\n|-----|------|------|\n| 197917 | GPU 3 旧 Adaptive Object s44 | 已不存在（先前已清理） |\n| 198442 | GPU 4 旧 Adaptive Long s43 | KILL_SENT → DEAD |\n| 199049 | GPU 5 旧 Adaptive Long s44 | KILL_SENT → DEAD |\n| 286851 | GPU 3 新 Adaptive Object s44 | KILL_SENT → DEAD |\n\n## nvidia-smi 对比\n\n| GPU | Kill 前 | Kill 后 |\n|-----|---------|---------|\n| 3 | 13176MiB (PID 286851) | **1MiB / P8 / 0%** ✅ |\n| 4 | 11860MiB (PID 198442) | **1MiB / P8 / 0%** ✅ |\n| 5 | 11860MiB (PID 199049) | **1MiB / P8 / 0%** ✅ |\n\n## GPU 0/1/2 存活状态（未受影响）\n\n- GPU 0: PID 216649，12728MiB，P2，22% util — 运行中 ✅\n- GPU 1: PID 219043，10770MiB，P2，44% util — 运行中 ✅\n- GPU 2: PID 219679，10307MiB，P2，62% util — 运行中 ✅\n\nGPU 3/4/5 已完全释放，可投放新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cqa1-zombies-p0.md"
+}

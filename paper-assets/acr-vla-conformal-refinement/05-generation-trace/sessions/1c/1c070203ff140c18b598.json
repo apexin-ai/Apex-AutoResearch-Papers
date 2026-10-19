@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c070203ff140c18b598",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval scalar object seed43",
+  "task_key": "worker_analyze_eval-scalar-object-seed43_20260516T060326",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-scalar-object-seed43_20260516T060326_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "c6d306634aa4e6c6431b8a1866e9c305d338008b04078dab7674a4188d09b96b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE/success。\n\n**结果汇总：scalar seed=43 = 10% SR**\n\n| Task | SR |\n|------|-----|\n| bbq_sauce | 30% |\n| chocolate_pudding | 30% |\n| orange_juice | 30% |\n| milk | 10% |\n| 其余 6 tasks | 0% |\n\nSeed=43 的 10% 与 seed=42 的 9% 基本一致，确认 scalar 是最差 CRM variant。Seed=43 object benchmark 对比表：\n\n| Method | SR |\n|--------|-----|\n| argmin | 17% |\n| obs_only 0.1 | 12% |\n| perdof | 12% |\n| **scalar** | **10%** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-scalar-object-seed43.md"
+}

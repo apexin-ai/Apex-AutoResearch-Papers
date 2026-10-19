@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c9cea5ab6ef0c0a25f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval supp k2mean spatial s42",
+  "task_key": "worker_analysis_eval-supp-k2mean-spatial-s42_20260523T093827",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-supp-k2mean-spatial-s42_20260523T093827_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "e8fcb131f2afb96e8f2c313c83ff1f24db7fd0950deda7a314d3082391036923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)，产出已注册。\n\n**结论**: K=2 mean SR = **81.5%**，比 VLA-only (78.5%) 高 3pp。Hypothesis 被否定——multi-sample averaging 本身就是主要改进来源，CRM correction 仅贡献约 0.5pp 的增量 (81.5% → 82.0%)。改进分解：\n\n- 78.5% → 81.5% (+3.0pp): 来自 2-sample averaging\n- 81.5% → 82.0% (+0.5pp): 来自 CRM correction\n\n这意味着 paper narrative 需要调整：不能把 CRM 作为核心改进机制，averaging/sampling diversity 才是主要贡献。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-supp-k2mean-spatial-s42.md"
+}

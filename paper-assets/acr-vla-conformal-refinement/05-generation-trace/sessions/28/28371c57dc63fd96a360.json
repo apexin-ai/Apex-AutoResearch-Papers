@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "28371c57dc63fd96a360",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diag bjb1 18228 recovery",
+  "task_key": "worker_diag_bjb1-18228-recovery_20260526T031747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diag_bjb1-18228-recovery_20260526T031747.jsonl",
+    "occurrence": 1,
+    "bytes": 165,
+    "sha256": "ef05aafbda17928d9aa7323673c3cb28100589ac25cff22e7a31ce4581e94e97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T03:18:02.767188+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_bjb1-18228-recovery_20260526T031747"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diag-bjb1-18228-recovery.md"
+}

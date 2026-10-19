@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d2c346215ee61b6744",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis precompute v4 shard01",
+  "task_key": "worker_analysis_precompute-v4-shard01_20260513T200541",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_precompute-v4-shard01_20260513T200541_result.json",
+    "occurrence": 1,
+    "bytes": 1583,
+    "sha256": "8d5c561e1570330e6582e16549df9556c1a0ee4a5ec97019bf5a8893dc3667c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### Shard 完成情况\n\n| Shard | 状态 | 样本进度 | EXIT_CODE | Error |\n|-------|------|---------|-----------|-------|\n| shard0 | **完成** | object 4857/4857 | 0 | 无 |\n| shard1 | **完成** | object 4857/4857 | 0 | 无 |\n| shard2 | **运行中** | object 4600/4856 | — | 无 |\n\n- shard0/shard1 均正常退出，无 error/traceback\n- 两者完成后各自尝试 merge，发现 shard2 未完成，跳过了 merge 步骤\n- shard2 剩余 256 样本 × 0.48s/sample ≈ **~2 分钟内完成**（从最后一条日志算起，可能已经完成了）\n\n### Cache 文件\n\n**总大小：190MB**\n\n| 目录 | 文件数 | 说明 |\n|------|--------|------|\n| spatial/ | 33 | 3 shard × 9 partial + 已合并的 obs_features.pt(46.7MB) / k_samples.pt(14.6MB) / expert_actions.pt(1.4MB) / manifest.json |\n| object/ | 29 | 3 shard 的 partial 文件（shard0 10个 ✓, shard1 10个 ✓, shard2 9个，缺最后一块 4500-4856） |\n\n- **spatial 已完成 merge**（合并文件已生成）\n- **object 未 merge**，等 shard2 完成后由其触发合并\n\n### Eval 进度\n\n| Eval | 状态 |\n|------|------|\n| eval-spatial-v5-full | 运行中，第 1/10 个任务完成，success rate 90% (9/10) |\n| eval-object-v4-full | 日志文件不存在，**未启动** |\n\n### 结论\n\n**shard0/shard1 可标记 DONE(success)**。shard2 预计已完成或即将完成，完成后会触发 object cache 的 merge。spatial 的 precompute+merge 已全部就绪。eval-spatial 刚开始跑第一个任务，eval-object 尚未启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-precompute-v4-shard01.md"
+}

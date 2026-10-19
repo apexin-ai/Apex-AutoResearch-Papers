@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4c6c3cd1e6452eeae436",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "collect bjb1 32546 results",
+  "task_key": "worker_collect_bjb1-32546-results_20260528T001531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_bjb1-32546-results_20260528T001531.log",
+    "occurrence": 1,
+    "bytes": 619072,
+    "sha256": "57f9dfb78c2bdf084990cc792f3b8c66cd2b6f2d994315778248d35cb92cad6c"
+  },
+  "statistics": {
+    "messages": 175,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 175,
+      "chunks": [
+        {
+          "path": "4c6c3cd1e6452eeae436-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "4c6c3cd1e6452eeae436-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/collect-bjb1-32546-results.md"
+}

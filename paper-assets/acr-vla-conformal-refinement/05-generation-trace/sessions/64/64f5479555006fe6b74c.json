@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64f5479555006fe6b74c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 adaptive object s44 cqa1 r2",
+  "task_key": "worker_diagnose_pi05-adaptive-object-s44-cqa1-r2_20260526T103520",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-adaptive-object-s44-cqa1-r2_20260526T103520_result.json",
+    "occurrence": 1,
+    "bytes": 2296,
+    "sha256": "bec7bf63726ea802f7ead6ebbab9fa39393aaeaf35e8882f0611f4da69272327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 失败根因（三个实验各不相同）\n\n| 实验 | GPU | 退出码 | 真实原因 |\n|---|---|---|---|\n| pi05-adaptive-object-s44-cqa1-r2 | cuda:3 | **143 (SIGTERM)** | 完成第一个 task (20/20 success) 后被**外部 kill**。wrapper 的 `trap 'exit 143' TERM` 捕获到 SIGTERM。dmesg/journalctl 无 OOM killer 记录——不是系统杀的，是某个 orchestrator / 用户 / reconcile 主动发的 TERM |\n| pi05-adaptive-long-s43-cqa1-r2 | cuda:4 | 0 | **进程内 CUDA OOM**，所有 200 个 rollout 在 step 0 立即 OOM，最终 0/200。脚本跑完才退出，所以 EXIT_CODE=0（误导）|\n| pi05-adaptive-long-s44-cqa1-r2 | cuda:5 | 0 | 同 s43，进程内 CUDA OOM，0/200 |\n\n**OOM 性质**：是 Python `torch.AcceleratorError: CUDA error: out of memory`（应用内 allocator 失败），不是 Linux OOM killer。dmesg/journalctl 干净。\n\nPI05 模型单进程占 ~13GB（看现在 GPU0/1 上的 216649/219043 实际占用 12.7GB/10.7GB）。24GB 4090D 只能塞 1 个 pi05 进程。s43/s44 OOM 的最可能解释：提交时 cuda:4/5 上有残留显存或并发分配冲突。\n\n### 当前 cqa1-32758 状态\n\n**GPU**：\n- GPU 0: pi05-crm-k2-long-s44-cqa1 (pid 216649, 12.7GB, 14:52 起跑，**健康**)\n- GPU 1: pi05-adaptive-object-s42-cqa1 (pid 219043, 10.7GB, 14:55 起跑，**健康**)\n- **GPU 2, 3, 4, 5：全部空闲**（task 描述里说 cuda:2 也在跑，但实际 GPU2 完全空——空闲可用）\n\n**tmux**：只有上述 2 个 session 存活（`pi05-crm-k2-long-s44-cqa1`、`pi05-adaptive-object-s42-cqa1`）；3 个失败实验的 session 都已清理。\n\n**ps**：3 个失败实验无任何残留 python 进程。\n\n### 重新提交建议\n\n**可以直接重新提交**这 3 个实验，但注意：\n\n1. **GPU 2/3/4/5 全空闲、4 卡可用**。重新提交时确保每张卡只跑一个 pi05 进程（每个吃 ~13GB）。\n2. **object-s44 是被外部 SIGTERM 杀的**——重提之前先确认是不是当时有 reconcile/手动操作触发了 TERM，否则可能再被杀一次。\n3. **s43/s44 long 是 CUDA OOM**——重提时只要 GPU 干净（现在 cuda:3/4/5 已经 1MiB 残留），应该不会再 OOM。也可以加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 兜底。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-adaptive-object-s44-cqa1-r2.md"
+}

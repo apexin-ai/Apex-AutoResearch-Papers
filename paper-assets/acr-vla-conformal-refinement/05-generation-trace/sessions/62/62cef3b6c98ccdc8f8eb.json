@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62cef3b6c98ccdc8f8eb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy vla only object seed43",
+  "task_key": "worker_deploy_vla-only-object-seed43_20260515T165031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_vla-only-object-seed43_20260515T165031_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "52ae1bc748cc9ff7543609e92ed27e46534260db42dd15bd5f6b1a1b76f4ea46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **PID**: 123057 on bjb1-32546 cuda:0\n- **状态**: 模型已加载，10 tasks 已载入，正在跑 rollouts\n- **日志**: `/root/runs/acr-vla-conformal-refinement/eval-vla-only-object-seed43.log`\n- **输出**: `logs/eval_object_vla_only_seed43.json`\n- **Registry**: RUNNING，spec 已更新\n\n注意：GPU 0 上还有一个 `eval_object_obs_only_norm003` 进程（PID 121334, 5.6GB），两者共享 GPU 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-vla-only-object-seed43.md"
+}

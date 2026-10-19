@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5edbd902776354ca11d0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "collect smolvla long seed1 result",
+  "task_key": "worker_collect_smolvla-long-seed1-result_20260522T154005",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_smolvla-long-seed1-result_20260522T154005_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "3a642e2fad661174a181f39234c002b59d8d93a18fe9b19b476b3281048a6297"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 所有 6 个 eval 进程均被中途 kill，未生成 JSON 结果文件\n\n**vla-only eval（10 rollouts/task）— 仅完成 2/10 tasks：**\n\n| Task | seed0 | seed1 | seed2 |\n|------|-------|-------|-------|\n| put_alphabet_soup_and_tomato_sauce_in_basket | 0% (0/10) | 10% (1/10) | 10% (1/10) |\n| put_cream_cheese_box_and_butter_in_basket | 80% (8/10) | 90% (9/10) | 70% (7/10) |\n| turn_on_stove_and_put_moka_pot (task 2) | 开始执行后被 kill | 开始执行后被 kill | 开始执行后被 kill |\n\n日志最后修改时间：~22:59（运行约 54 min）\n\n**lerobot eval（20 episodes/task）— 完成 6/10 tasks：**\n\n| Task # | seed0 | seed1 | seed2 |\n|--------|-------|-------|-------|\n| 0 | 25% | 10% | 10% |\n| 1 | 40% | 45% | 55% |\n| 2 | 85% | 70% | 80% |\n| 3 | 70% | 85% | 85% |\n| 4 | 45% | 35% | 35% |\n| 5 | 75% | 70% | 60% |\n| 6-9 | killed mid-task | killed mid-task | killed mid-task |\n\n日志最后修改时间：~23:45（运行约 40 min）\n\n**kill 原因**：无法读取 dmesg（容器限制）。6 个 eval 进程并行跑在 6×4090 上（3个 vla-only + 3个 lerobot），可能是 CPU/RAM OOM 或被平台调度终止。当前 GPU 仍有 3 块占用 ~10GB（可能是残留进程）。\n\n**结论**：seed1（及 seed0/seed2）均为 **failed — 被 kill，未完成**。需要重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-smolvla-long-seed1-result.md"
+}

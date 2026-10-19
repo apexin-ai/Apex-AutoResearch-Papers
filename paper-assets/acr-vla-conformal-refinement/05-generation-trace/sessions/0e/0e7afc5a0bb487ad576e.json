@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e7afc5a0bb487ad576e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "figure tau sweep redraw",
+  "task_key": "worker_figure_tau-sweep-redraw_20260528T133805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_tau-sweep-redraw_20260528T133805_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "e6187f3c64ac3629bfc463b00832533a3a982e37e4d21c9b9b6da768a377d12f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure looks clean and publication-ready. All requested elements are in place:\n\n- **Times New Roman** font with `pdf.fonttype: 42`\n- **4-suite color palette**: Spatial (#2C3E50), Object (#27AE60), Goal (#E67E22), Long (#8E44AD)\n- **Recommended range** bracket at τ=0.15–0.35 with light gray shading\n- **Inline suite labels** at curve endpoints + legend\n- **Trigger rate annotations** at key τ points (74%, 52%, 33%, 24%, 12%, 1.3%)\n- **CRM always-on** markers at τ→0 with annotation\n- **VLA-only baselines** as dashed lines\n- Left+bottom spines only, y-axis grid, figsize (5.5, 3.2)\n\nPDF and PNG saved to `docs/paper/figures/fig_tau_sweep.{pdf,png}`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-tau-sweep-redraw.md"
+}

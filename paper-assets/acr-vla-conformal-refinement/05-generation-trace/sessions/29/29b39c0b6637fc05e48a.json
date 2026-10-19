@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "29b39c0b6637fc05e48a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analysis pi05 spatial batch",
+  "task_key": "worker_analysis_pi05-spatial-batch_20260526T134314",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_pi05-spatial-batch_20260526T134314.jsonl",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "8b1d18817bf2394ba54af070d427664175cca031f2b0b6aee63c2ae242320415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T13:43:37.526719+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_pi05-spatial-batch_20260526T134314"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-pi05-spatial-batch.md"
+}

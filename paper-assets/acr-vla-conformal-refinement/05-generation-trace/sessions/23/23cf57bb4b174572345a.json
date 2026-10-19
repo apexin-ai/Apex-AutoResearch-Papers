@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23cf57bb4b174572345a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose smolvla long seed1 exit",
+  "task_key": "worker_diagnose_smolvla-long-seed1-exit_20260522T153740",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_smolvla-long-seed1-exit_20260522T153740_result.json",
+    "occurrence": 1,
+    "bytes": 1357,
+    "sha256": "b7de5356394d7cba1a2cb4a4b7f033d41206f4808f64e355b5feb73e046fce72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论清晰了。\n\n## 结论\n\n### seed1 (PID 232884): 异常退出\n\n**原始 eval-vla-only 进程全部异常退出**（seed0/1/2 三个都死了，不只是 seed1）：\n- 三个 PID（232609/232884/233564）均已不存在\n- 各 seed 只跑完了 **2/10 tasks**，日志截断在 task 3 进行中\n- **无结果 JSON 文件**生成\n- 日志中**无 error/exception/traceback**\n- 三个进程几乎同时死亡（seed1 最后写入 22:59，seed0/seed2 约 23:01）\n- 无法确认 OOM（dmesg 无权限，journalctl 无记录），但同时死亡 + 无错误日志 + 无 swap 的容器环境高度怀疑 **cgroup OOM kill**\n\n已完成的部分结果（seed1）：\n| Task | SR |\n|------|-----|\n| put_alphabet_soup_and_tomato_sauce_in_basket | 10% (1/10) |\n| put_cream_cheese_box_and_butter_in_basket | 90% (9/10) |\n\n### 已有替代进程在运行\n\n原始 eval-vla-only tmux session 已不存在，但在 **23:05** 已有人启动了新的 `eval-lerobot-long-seed{0,1,2}` tmux sessions，使用的是 **lerobot.scripts.lerobot_eval**（不是原来的自定义 evaluate.py），跑的是 `libero_10`，已运行 ~34 分钟，GPU 0-2 各占 1.8GB。\n\n### seed0 / seed2 状态\n与 seed1 一样——**都异常退出了**，同样只完成 2/10 tasks，无结果文件。新的 lerobot_eval 替代进程正在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-smolvla-long-seed1-exit.md"
+}

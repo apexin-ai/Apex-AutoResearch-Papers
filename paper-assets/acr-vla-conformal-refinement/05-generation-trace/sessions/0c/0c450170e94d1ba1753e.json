@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "0c450170e94d1ba1753e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix oft libero version fix",
+  "task_key": "worker_fix_oft-libero-version-fix_20260522T130347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_oft-libero-version-fix_20260522T130347_result.json",
+    "occurrence": 1,
+    "bytes": 2348202,
+    "sha256": "8276863d088ac3373533b7f90967b619109e1a75eaa7a510313a67027b6c9970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0c450170e94d1ba1753e-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/fix-oft-libero-version-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a8c381d67c164a97f70",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze batch analyzing 4",
+  "task_key": "worker_analyze_batch-analyzing-4_20260520T105117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_batch-analyzing-4_20260520T105117_result.json",
+    "occurrence": 1,
+    "bytes": 2699,
+    "sha256": "2f28dddf17341c606855021d46b5cd5e5ee785f4456888c1d3fe2b1444321bfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常完成，日志中均无 W&B run ID。结果如下：\n\n---\n\n```\nexp_id: eval-obs-only-object-norm003-seed44\nsuccess_rate: 15.0% (15/100)\nper_task: [alphabet_soup: 0/10, cream_cheese: 0/10, salad_dressing: 3/10,\n           bbq_sauce: 2/10, ketchup: 0/10, tomato_sauce: 1/10,\n           butter: 1/10, milk: 2/10, chocolate_pudding: 3/10, orange_juice: 3/10]\nwandb_run_id: 无\nconclusion: success (15.0% > 11.6% VLA-only)\n备注: ε=0.03 K=10。与 seed42 的 16% 基本一致，seed 间方差小。\n```\n\n```\nexp_id: eval-crm-object-k20-seed44\nsuccess_rate: 18.0% (18/100)\nper_task: [alphabet_soup: 0/10, cream_cheese: 0/10, salad_dressing: 3/10,\n           bbq_sauce: 3/10, ketchup: 0/10, tomato_sauce: 1/10,\n           butter: 1/10, milk: 3/10, chocolate_pudding: 4/10, orange_juice: 3/10]\nwandb_run_id: 无\nconclusion: success (18.0% > 11.6% VLA-only)\n备注: 实际参数 K=20 + max_correction_norm=0.2（非 ε=0.03）。\n      output_file = logs/eval_object_obs_only_norm02_K20_seed44.json。\n      K=20(18%) > K=10(15%/16%) > K=5(16.7%)，K=20 是目前 Object 最高。\n```\n\n```\nexp_id: eval-adaptive-k-spatial-p25-seed43\nsuccess_rate: 30.0% (30/100)\nper_task: [between_plate_ramekin: 6/10, next_to_ramekin: 10/10,\n           from_table_center: 0/10, on_cookie_box: 3/10,\n           in_top_drawer: 1/10, on_ramekin: 0/10,\n           next_to_cookie_box: 8/10, on_stove: 0/10,\n           next_to_plate: 2/10, on_wooden_cabinet: 0/10]\nwandb_run_id: 无\nconclusion: success (30.0% > 11.6% VLA-only)\n备注: adaptive_k τ=P25, fast_path=29.5%, avg_k=7.6, mean_l2=0.0890\n```\n\n```\nexp_id: eval-adaptive-k-spatial-p25-seed42\nsuccess_rate: 33.0% (33/100)\nper_task: [between_plate_ramekin: 7/10, next_to_ramekin: 10/10,\n           from_table_center: 0/10, on_cookie_box: 3/10,\n           in_top_drawer: 1/10, on_ramekin: 0/10,\n           next_to_cookie_box: 9/10, on_stove: 0/10,\n           next_to_plate: 3/10, on_wooden_cabinet: 0/10]\nwandb_run_id: 无\nconclusion: success (33.0% > 11.6% VLA-only)\n备注: adaptive_k τ=P25, fast_path=29.4%, avg_k=7.7, mean_l2=0.0892\n```\n\n---\n\n**要点总结：**\n\n| 实验 | 成功率 | 对比基准 |\n|------|--------|----------|\n| obs_only ε=0.03 K=10 seed44 | 15.0% | ≈seed42(16%)，稳定 |\n| obs_only K=20 ε=0.2 seed44 | **18.0%** | > K=10(15-16%), Object 新高 |\n| adaptive_k spatial P25 seed43 | 30.0% | seed 间一致 |\n| adaptive_k spatial P25 seed42 | **33.0%** | seed 间一致 |\n\nAdaptive-K 两个 seed 结果高度一致（30% vs 33%，fast_path ≈29.5%，avg_k ≈7.6-7.7），方差可控。实验 2 注意实际用的是 ε=0.2 而非 0.03。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-batch-analyzing-4.md"
+}

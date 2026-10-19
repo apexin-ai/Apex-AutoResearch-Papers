@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "552b47f3ec2f8c0e72b3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh scan bjb2 28827",
+  "task_key": "worker_ssh_scan-bjb2-28827_20260520T024054",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scan-bjb2-28827_20260520T024054_result.json",
+    "occurrence": 1,
+    "bytes": 2694,
+    "sha256": "94f6f807815944ea8d55942a3a34a0212f5a90886f06ebbe2e273e47195ae7e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-28827 全面状态扫描\n\n### GPU 状态 (6× 24GB)\n\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 0% | 1 MiB | **空闲** |\n| 1 | 0% | 1 MiB | **空闲** |\n| 2 | 25% | 1961 MiB | **运行中** — PID 85772 |\n| 3 | 0% | 1 MiB | **空闲** |\n| 4 | 0% | 1 MiB | **空闲** |\n| 5 | 0% | 1 MiB | **空闲** |\n\n### 唯一在跑的进程\n\n**PID 85772** (cuda:2) — `eval-adaptive-k-p25-seed43`\n- `--adaptive_threshold 0.054959 --k_full 10 --benchmark object --seed 43`\n- 日志进度：正在跑 `pick_up_the_milk_and_place_it_in_the_basket` (2/10 success)\n\n### 已完成的已知部署\n\n| 任务 | Exit | 完成时间 | JSON |\n|------|------|----------|------|\n| eval-vla-only-goal-seed44-r2 | 0 | 05-19 18:20 | eval_goal_vla_only_seed44_r2.json (1.3KB) |\n| eval-argmin-object-k5-seed44-r2 | 0 | 05-19 19:14 | eval_object_argmin_k5_seed44_r2.json (1.5KB) |\n| eval-obs-only-spatial-norm02-seed46-r2 | 0 | 05-19 18:50 | eval_spatial_obs_only_norm02_seed46_r2.json (1.7KB) |\n| eval-openvla-object-baseline-seed42 | **1 (失败)** | 05-19 23:07 | **无 JSON** |\n| eval-perdof-object-norm02-seed48 | 0 | 05-18 14:34 | eval_object_perdof_norm02_seed48.json |\n| eval-adaptive-k-p90-seed43 | 0 | 05-20 02:25 | eval_adaptive_k_p90_seed43.json |\n| eval-adaptive-k-p75-seed42 | 0 | 05-20 02:29 | eval_adaptive_k_p75_seed42.json |\n| eval-adaptive-k-p75-seed43 | 0 | 05-20 02:30 | eval_adaptive_k_p75_seed43.json |\n| eval-adaptive-k-p50-seed42 | 0 | 05-20 02:34 | eval_adaptive_k_p50_seed42.json |\n| eval-adaptive-k-p90-seed44 | 0 | 05-20 02:36 | eval_adaptive_k_p90_seed44.json |\n\n- **eval-obs-only-object-norm005-seed43**: 无 exit 文件、无 JSON — 可能未在此服务器启动\n- **eval-openvla-object-baseline-seed42**: exit code 1，失败，未产出 JSON\n\n### Adaptive-K JSON 结果汇总\n\n| 配置 | overall_SR | avg_actual_k | fast_path_ratio |\n|------|-----------|--------------|-----------------|\n| **p50_seed42** | **0.16** | 3.72 | 78.5% |\n| **p75_seed42** | 0.12 | 3.07 | 86.6% |\n| **p75_seed43** | 0.13 | 3.15 | 85.6% |\n| **p90_seed43** | 0.14 | 2.61 | 92.3% |\n| **p90_seed44** | 0.14 | 2.58 | 92.8% |\n| **p25_seed43** | 运行中 | — | — |\n\n趋势：更高 percentile 阈值 → 更高 fast_path_ratio（更多跳过 refinement）、更低 avg_k，但 SR 差异不大（0.12-0.16）。p50 反而 SR 最高（0.16）。\n\n### 需关注\n\n1. **eval-openvla-object-baseline-seed42** exit code 1，需要查日志排查失败原因\n2. **5 张 GPU 空闲**（0/1/3/4/5），可以部署新任务\n3. **eval-adaptive-k-p25-seed43** 是唯一在跑的，预计还需一段时间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scan-bjb2-28827.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d1e55404f9b1ed2e1bd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fix w2 w4 eval pipeline",
+  "task_key": "worker_code_fix-w2-w4-eval-pipeline_20260514T074040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-w2-w4-eval-pipeline_20260514T074040_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "f7dc9e1f9e9609d6498803a934db2b529e066b54f682f5513cb0c5fd545721de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，import 验证通过。总结：\n\n**Fix W2 — argmin-selected base action（3 个文件）：**\n- `crm.py`: `mean_action` 参数重命名为 `base_action`，残差连接 `base_action + delta`\n- `evaluate.py:178-184`: `select_action_crm` 用 argmin Euclidean 距离选取最近 mean 的 sample 作为 base，替代原来的 `K_samples.mean(dim=0)`\n- `train_crm.py:285-292`: 新增 `_argmin_base_action()` 辅助函数；训练循环（行401）和验证循环（行447）均用 argmin base 替代 mean\n- gripper 处理不变（仍为 mean-aggregated）\n\n**Fix W4 — delta L2 norm clipping（crm.py）：**\n- `__init__` 新增 `max_correction_norm` 参数，默认 1.42（训练数据 argmin delta 的 combined p95）\n- `forward` 中 `delta = self.net(x)` 后加 L2 clipping：`delta * clamp(max_norm / (norm + eps), max=1.0)`\n- 可通过构造函数或命令行传参调优"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-w2-w4-eval-pipeline.md"
+}

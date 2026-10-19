@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d820452ca0b41955f3f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval perdof object norm003 seed47",
+  "task_key": "worker_analysis_eval-perdof-object-norm003-seed47_20260519T184803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-perdof-object-norm003-seed47_20260519T184803_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "b762d300670e15f6383be5b9b316c9d3dc072651bc7417142b897a6d776eb38b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval-perdof-object-norm003-seed47 结果\n\n**Overall**: success rate = **15.0%** (15/100)\n\n| Task | Success Rate | Successes/Total |\n|------|-------------|-----------------|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 0% | 0/10 |\n| ketchup | 0% | 0/10 |\n| tomato_sauce | 10% | 1/10 |\n| milk | 10% | 1/10 |\n| salad_dressing | 20% | 2/10 |\n| butter | 20% | 2/10 |\n| bbq_sauce | 30% | 3/10 |\n| chocolate_pudding | 30% | 3/10 |\n| orange_juice | 30% | 3/10 |\n\n- **n_tasks**: 10\n- **n_rollouts**: 10 per task\n- **total_rollouts**: 100\n- **mode**: crm_perdof, baseline_mode=single, benchmark=object\n- **异常**: 无错误，EXIT_CODE=0（有一条无害的 DeprecationWarning: swigvarlink）\n- **wandb run ID**: 无（日志中未找到 wandb 相关记录）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-perdof-object-norm003-seed47.md"
+}

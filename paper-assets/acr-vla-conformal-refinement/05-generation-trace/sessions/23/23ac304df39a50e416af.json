@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "23ac304df39a50e416af",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops fix spatial cache and retrain",
+  "task_key": "worker_ops_fix-spatial-cache-and-retrain_20260521T213031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_fix-spatial-cache-and-retrain_20260521T213031.jsonl",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "e8f0fa1a08084ea3bb15ddf671777121ecdfd481c533bb564b282a1ad511f55b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T21:31:23.390005+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_fix-spatial-cache-and-retrain_20260521T213031"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-fix-spatial-cache-and-retrain.md"
+}

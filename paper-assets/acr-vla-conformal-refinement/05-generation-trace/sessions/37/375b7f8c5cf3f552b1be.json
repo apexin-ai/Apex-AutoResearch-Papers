@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "375b7f8c5cf3f552b1be",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 crm ao bjb1 32546",
+  "task_key": "worker_deploy_pi05-crm-ao-bjb1-32546_20260528T030705",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-crm-ao-bjb1-32546_20260528T030705_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "b843dddfd88b22ca2561cf818bacd3b8b20e44216206d9f359d7438948e331be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部部署成功。\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| pi05-crm-always-on-goal-s43 | cuda:0 | 510334 | RUNNING |\n| pi05-crm-always-on-goal-s44 | cuda:1 | 510700 | RUNNING |\n| pi05-crm-always-on-object-s44 | cuda:2 | 510990 | RUNNING |\n\n服务器：bjb1-32546，cuda:3/4 仍空闲，cuda:5 被已有任务占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-crm-ao-bjb1-32546.md"
+}

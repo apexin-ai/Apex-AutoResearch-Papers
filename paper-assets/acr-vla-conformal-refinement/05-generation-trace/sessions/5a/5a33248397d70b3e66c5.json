@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a33248397d70b3e66c5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy bjb1 32546 batch",
+  "task_key": "worker_ssh_deploy-bjb1-32546-batch_20260520T081923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-bjb1-32546-batch_20260520T081923_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "bc329ddc8704268373de2635eb654edf2aca171261f7c04622057e13e62e6b5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个实验全部提交成功。\n\n| # | exp_id | GPU | PID |\n|---|--------|-----|-----|\n| 1 | `eval-adaptive-k-spatial-p75-seed43` | cuda:1 | 313740 |\n| 2 | `eval-adaptive-k-spatial-p25-seed43` | cuda:2 | 314014 |\n| 3 | `eval-crm-object-k20-seed43` | cuda:3 | 314608 |\n| 4 | `eval-obs-only-object-norm003-seed43-r2` | cuda:4 | 314884 |\n| 5 | `eval-obs-only-object-norm005-seed44` | cuda:5 | 315473 |\n\n服务器 bjb1-32546，cuda:0 未触碰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-bjb1-32546-batch.md"
+}

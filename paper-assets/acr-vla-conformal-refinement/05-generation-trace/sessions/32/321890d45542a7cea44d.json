@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "321890d45542a7cea44d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy perdof norm02 seed44",
+  "task_key": "worker_ssh_deploy-perdof-norm02-seed44_20260517T003526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-perdof-norm02-seed44_20260517T003526_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "038dce8abf804425bc8cd7d496a42246f1c591587faca6b099733a401d8c6a14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n- **实验**: `eval-perdof-object-norm02-seed44`\n- **服务器**: bjb2-28827, cuda:5\n- **PID**: 326081\n- **tmux session**: `eval-perdof-object-norm02-seed44`\n- **日志**: `~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm02-seed44.log`\n- **命令**: `crm_perdof --benchmark object --seed 44 --K 10 --max_correction_norm 0.2 --crm_checkpoint .../perdof/crm_best.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-perdof-norm02-seed44.md"
+}

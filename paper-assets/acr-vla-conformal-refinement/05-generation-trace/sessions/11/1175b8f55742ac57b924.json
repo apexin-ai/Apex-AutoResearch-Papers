@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1175b8f55742ac57b924",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify 3suite crm checkpoint scope",
+  "task_key": "worker_verify_3suite-crm-checkpoint-scope_20260528T042002",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_3suite-crm-checkpoint-scope_20260528T042002_result.json",
+    "occurrence": 1,
+    "bytes": 1976,
+    "sha256": "a3cfed31e9d413d063563c05888f931da6919deeb7ca4135fb3ccd7bddab6b64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "证据已完整。以下是结论：\n\n---\n\n## 结论\n\n### 1. `crm_smolvla_3suite_v1` 训练了哪些 benchmark？\n\n**object + spatial + goal，不包含 long。**\n\n### 2. 证据来源\n\n| 证据 | 详情 |\n|------|------|\n| pi05 3suite 训练 log | `train-crm-pi05-unified-3suite-r2.log` 首行明确记录 `benchmark: ['object', 'spatial', 'goal']` |\n| 4suite 训练 log 对比 | `train-crm-unified-4suite.log` 记录 `benchmark: ['object', 'spatial', 'goal', 'long']`，224,555 samples |\n| eval log 交叉验证 | 3suite checkpoint = 327,198 params；4suite = 337,438 params，参数量不同 |\n| crm-always-on eval log | `crm-always-on-object-s42.log` 确认使用 `crm_smolvla_3suite_v1/crm_best.pt` |\n| evaluate.py:541 | 默认 checkpoint 硬编码为 `crm_smolvla_3suite_v1` |\n\n### 3. 是否存在 4suite checkpoint？\n\n**存在。** `/root/autodl-tmp/checkpoints/crm_unified_4suite/`（May 22 创建，比 3suite v1 更早），训练数据：\n- object: 14,570 + spatial: 12,167 + goal: 61,728 + long: 136,090 = **224,555 samples**\n\n但 SmolVLA 的 `crm-always-on-*` 主实验**没有使用 4suite checkpoint**，用的是 3suite。\n\n### 4. 论文 claim 准确性判断\n\n如果论文写 **\"4 suites (40 tasks, ~224K samples)\"** 来描述 CRM 训练：\n\n- **\"~224K samples\" — 错误**：3suite 实际只有 ~88K samples（14,570 + 12,167 + 61,728）\n- **\"4 suites\" — 部分错误**：CRM 训练只用了 3 suites（object/spatial/goal）；long 虽然有评估（`crm-always-on-long-s42~s45`），但 CRM 并未在 long 数据上训练——这实际上是 **cross-suite zero-shot 泛化**，而非 in-distribution evaluation\n- **\"40 tasks\" — 错误**：3 suites 只有 30 tasks（每 suite 10 tasks）\n\n**需要修正论文表述**，明确区分 CRM 训练范围（3 suites, 30 tasks, ~88K samples）和评估范围（4 suites, 40 tasks），并将 long 上的结果标注为 cross-suite generalization。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-3suite-crm-checkpoint-scope.md"
+}

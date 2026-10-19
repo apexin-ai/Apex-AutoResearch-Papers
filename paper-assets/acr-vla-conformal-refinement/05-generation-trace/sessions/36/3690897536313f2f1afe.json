@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3690897536313f2f1afe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest long s46 and goal reconvla s46",
+  "task_key": "worker_harvest_long-s46-and-goal-reconvla-s46_20260524T061600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_long-s46-and-goal-reconvla-s46_20260524T061600_result.json",
+    "occurrence": 1,
+    "bytes": 2382,
+    "sha256": "f769d80e6696e247a3296e4958db8dca5de4650641e3f9755af3f8e496c4a038"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有完整数据了。\n\n---\n\n## A: Long s46 — 仍在运行中\n\n4 个 eval 全部仍在跑，已完成 **6/10 tasks**，当前在第 7 个 task（LIVING_ROOM_SCENE6），估计还需 ~1-1.5h。\n\n当前中间结果（Adaptive τ=0.25 s46 已完成的 6 tasks）：\n\n| Task | Adaptive s46 |\n|------|-------------|\n| LIVING_ROOM_SCENE2_alphabet_soup_and_tomato | 20% |\n| LIVING_ROOM_SCENE2_cream_cheese_and_butter | 75% |\n| KITCHEN_SCENE3_stove_and_moka_pot | 100% |\n| KITCHEN_SCENE4_bowl_in_drawer | 95% |\n| LIVING_ROOM_SCENE5_mugs_on_plates | 50% |\n| STUDY_SCENE1_book_in_caddy | 95% |\n\n**不可收割，需要后续再来取结果。**\n\n---\n\n## B: Goal Reconvla s46 Per-Task 分析\n\n**Overall: Reconvla 79% vs VLA-only 83%（同 seed46）**\n\n| Task | Reconvla | VLA-only | Δ |\n|------|----------|----------|---|\n| open_middle_drawer | 75% | 75% | 0 |\n| bowl_on_stove | 95% | 100% | -5 |\n| wine_on_cabinet_top | 85% | 90% | -5 |\n| **open_top_drawer_put_bowl** | **65%** | 60% | **+5** |\n| bowl_on_cabinet_top | 85% | 90% | -5 |\n| plate_to_front_stove | 85% | 90% | -5 |\n| **cream_cheese_in_bowl** | **55%** | **55%** | **0** |\n| turn_on_stove | 95% | 100% | -5 |\n| bowl_on_plate | 85% | 90% | -5 |\n| **wine_bottle_on_rack** | **65%** | **80%** | **-15** |\n\n### 异常低分原因\n\n1. **put_the_wine_bottle_on_the_rack** (-15%)：最大单项拖累。Reconvla 的 CRM correction 对这个任务产生了明显干扰，导致比 VLA-only 下降了 3 个 episode。\n\n2. **累积微降**：6 个 task 各 -5%（1 个 episode），加总贡献 -3%。这些都是 VLA-only 接近完美（90-100%）的 task，CRM 少量误判触发了不必要的 correction。\n\n3. **cream_cheese_in_bowl (55%)**：这不是 Reconvla 的问题——VLA-only 也是 55%。这是 seed46 上的 intrinsic hard task。\n\n4. 唯一改善的是 open_top_drawer (+5%)，但不足以弥补。\n\n### 结论\n\n79% vs 83% 的 gap 来源：\n- wine_bottle_on_rack 贡献 -1.5%（占总 gap 的 37%）\n- 6 个近满分 task 的微弱干扰贡献 -3%\n- +0.5% 被一个小改善抵消\n\n**根因**：Reconvla 在 s46 上产生了轻微 CRM 过度干预（false positive correction），尤其对 wine_bottle_on_rack。这不是系统性 bug，更像是 seed 级别的方差放大——前 4 seed 均值 ~83% 说明这个 seed 恰好运气较差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-long-s46-and-goal-reconvla-s46.md"
+}

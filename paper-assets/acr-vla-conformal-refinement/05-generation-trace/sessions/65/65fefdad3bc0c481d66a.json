@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65fefdad3bc0c481d66a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_27_1779858963.md",
+  "task_key": "loop_27_1779858963",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_27_1779858963.md",
+    "occurrence": 1,
+    "bytes": 4002,
+    "sha256": "86a15c6accc26ddedec9f829edd772bcb4b8c83c75d2119995f51c3b9bd98128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 27\nreason: idle_timeout\nupdated: '2026-05-27T05:15:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-49937 (RTX PRO 6000 Blackwell) 与 4090 有 ~3pp 系统性偏差（D158），Table 2 数据必须 same-server paired，不能混用 westd 和 bjb/cqa 数据\n- evaluate.py 必须用 commit a594db5 版本（D163），所有补跑用旧代码确保 Table 一致性\n- π0.5 Table 2 实验 CRM checkpoint 路径：`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`，obs_dim=2048，unified_obs_dim=2088\n- bjb1-32546 上 CRM K=2 用 `--max_correction_norm 0.05`；cqa1 上 Adaptive 用 `--max_correction_norm 0.2 --conformal_threshold 0.25`\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4×4090): 工作目录 `/root/acr-vla-conformal-refinement/`，1 GPU 活跃 (pi05-adaptive-goal-s43, PID 42110, cuda:?)\n- **bjb1-32546** (6×4090): 同上目录，6 GPU 全空（6 个 CRM K=2 实验全部 failed）\n- **cqa1-32758** (6×4090D): 同上目录，3 GPU 活跃 — pi05-crm-k2-long-s44 (PID 216644, cuda:0), pi05-adaptive-object-s42 (PID 219038, cuda:1), pi05-adaptive-goal-s42 (PID 219674, cuda:2)\n- **westd-49937** (6×RTX PRO 6000): 5 busy, 1 idle (cuda:4)，⚠️ Blackwell 偏差\n- **bjb2-28827** (6×4090), **bjb2-24035** (1×4090D): 状态需确认\n- 模型：`/root/autodl-tmp/models/pi05_libero_finetuned`\n- CRM checkpoint：`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`\n- Python 环境：需 SSH 探查（conda vs venv 因服务器而异）\n\n### 3. 📊 当前状态\n- **刚做完**：收到 pi05-crm-k2-goal-s44-bjb1 失败 CRON，执行了 session-start（read_registry + reconcile_crons + read report.md + read ROADMAP），已派 Worker `worker_diagnose_bjb1-32546-batch-failure_20260526T092841` 诊断 bjb1-32546 批量失败根因\n- **RUNNING (3)**：pi05-crm-k2-long-s44-cqa1, pi05-adaptive-object-s42-cqa1, pi05-adaptive-goal-s42-cqa1（均在 cqa1-32758）\n- **另有 1 个**：pi05-adaptive-goal-s43-bjb1-18228 (PID 42110, bjb1-18228)\n- **批量 failed (9)**：bjb1-32546 上 6 个 CRM K=2（goal s42/43/44 + object s42/43/44）+ cqa1 上 3 个 Adaptive（long s43/44 + object s44），全部 \"process dead 5× with no sentinel/W&B\"\n- **等待中**：Worker 诊断回调（`worker_diagnose_bjb1-32546-batch-failure`），**尚未向 Director 汇报本轮失败**\n- **PREPARING**: ~156 个实验排队；QUEUED: 14 个\n\n### 4. 📋 待办（条件触发式）\n- Worker 诊断回调到达 → 读诊断结论，update_registry 补充 failure_reason，向 Director 汇报（附 [资源] 行 + 失败根因 + 重跑建议）\n- 诊断结论=环境/代码可修 → 派 Worker 修复后重跑 bjb1-32546 的 6 个 CRM K=2 实验\n- 诊断结论=服务器不可用 → 向 Director 申请将 bjb1-32546 实验迁移到其他服务器\n- cqa1 上 3 个 RUNNING 实验完成 → on-experiment-done 流程（分析 + 更新 registry + 汇报）\n- bjb1-32546 6 GPU 空闲 → 修复后立即重新部署，DDL 仅剩 ~48h\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL: 2026-05-29（~48h）**，π0.5 Table 2 是最后的关键数据\n- **D155**: π0.5 CRM/Adaptive 全 suite 负向 → MC3 已 reframe 为\"模型能力依赖性分析\"，不 claim cross-model generalization\n- **D158**: westd Blackwell 偏差确认，Table 2 必须 same-server paired\n- **D163**: evaluate.py revert 到 a594db5，所有补跑统一代码版本\n- **Table 1 (SmolVLA)**: 36/36 完成。核心 pattern: CRM always-on 在 Object/Long 有害 → Adaptive gating 必要性\n- **MC1**: consistency claim（Adaptive ≥ CRM on ALL 4 suites），n=3 p≈0.27 n.s.，附录 8-seed p=0.017\n- **易错点**：bjb1-32546 批量失败根因未确认前不要盲目重跑——可能是环境问题（模型文件损坏/磁盘/CUDA）而非偶发\n- **易错点**：cqa1-32758 磁盘 94% 已用 ⚠️，提交新实验前必须检查磁盘\n- **尚未完成**：未向 Director 汇报这批 9 个实验的批量失败，下一个\"你\"必须在拿到诊断结果后立即汇报\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-27-1779858963.md"
+}

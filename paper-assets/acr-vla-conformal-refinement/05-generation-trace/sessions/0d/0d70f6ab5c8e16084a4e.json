@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d70f6ab5c8e16084a4e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix kill old crm object eval",
+  "task_key": "worker_fix_kill-old-crm-object-eval_20260522T171918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-old-crm-object-eval_20260522T171918_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "b4cc93c7ffdab29fbfd73c5174c46faab5057c2a9eb88f5cacae973a3637bfe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果：**\n- 3 个旧 eval 进程（seed42/43/44）及其子进程已全部 kill\n- cuda:0/1/2 已释放（均 1 MiB）\n- cuda:3 上的 CRM r4 训练未受影响（542 MiB）\n- Registry 已更新：3 个实验均标记为 `conclusion=killed, status=DONE`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-old-crm-object-eval.md"
+}

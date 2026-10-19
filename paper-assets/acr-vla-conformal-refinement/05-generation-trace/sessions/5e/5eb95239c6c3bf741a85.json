@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5eb95239c6c3bf741a85",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779380141.md",
+  "task_key": "loop_22_1779380141",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779380141.md",
+    "occurrence": 1,
+    "bytes": 3810,
+    "sha256": "dc6fce7f3476e25f5f63cee9b378cb7a1ab585e29d1efcba507251ab47baad79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T16:15:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，不可越权使用未分配 GPU\n- bjb1-32546 cuda:0, cuda:1 刚从失败实验释放，**尚未被 Director 重新分配**——不可自行占用，需等 Director 批复\n- CRM checkpoint 唯一路径：`/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`（所有服务器），不要用旧版 v1/v2 checkpoint\n- Object CRM K=10 norm02 seed42 (SR=20%) 已被 D084 排除出 Table，不可引用\n- Norm sweep 数据 LOCKED 的不动：Object CRM K=10 norm02 = 16.8%±1.8% (n=7)，Spatial CRM K=10 = 34.5%±1.5% (n=9)\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**：`/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base。3 GPU 在跑 (cuda:3/4/5 norm sweep)，cuda:0/1/2 空闲\n- **bjb2-28827**：同上路径和环境。5 GPU 在跑 (cuda:0-4 norm sweep)，cuda:5 空闲\n- **bjb1-18228**：同上。4 GPU 在跑 (cuda:0-3 norm sweep)\n- **bjb2-40593**：磁盘几乎满 (89%)，谨慎使用\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- 数据集: LIBERO-Spatial / LIBERO-Object / LIBERO-Goal，通过 `src/evaluate.py` 自动加载\n- 无活跃 tmux session 需要接管（失败实验进程已死）\n\n### 3. 📊 当前状态\n**刚做完**：收到 eval-plan-a-spatial-seed42/seed43 失败 cron 回调，已派 Worker (`worker_diag_plan-a-spatial-seed43-fail_20260521T000354`) SSH 诊断日志。已向 Director 汇报失败 + 提议用释放的 cuda:0/1 跑 OpenVLA CRM eval (plan_802)。\n\n**RUNNING (13)**：全部是 norm sweep eval-obs-only-object 系列（seed46/49-61，覆盖 ε=0.03/0.05/0.1），分布在 bjb1-32546、bjb2-28827、bjb1-18228 三台机器上。\n\n**PREPARING (34)**：大量 norm sweep 补种 + adaptive-k 跨 benchmark seeds，等 GPU 释放后提交。\n\n**等待中**：\n- Worker 诊断回调（plan-a-spatial-seed42/43 失败根因）\n- Director 决策：是否用 bjb1-32546 cuda:0/1 跑 plan_802 OpenVLA CRM eval\n- 13 个 norm sweep eval 的 cron 完成回调\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读根因 → 更新 registry failure_reason → 汇报 Director，若可重试则建议重提交\n- Director 批准 plan_802 → 派 Worker 在 bjb1-32546 cuda:0/1 部署 OpenVLA 7B + CRM eval（需确认 rsync 是否已完成，ROADMAP 提到 \"rsync 到 bjb1-32546 进行中\"）\n- norm sweep eval 完成回调 → 聚合 ε=0.03/0.05/0.1 各 seed 结果 → 更新 Table → 汇报 Director\n- 所有 norm sweep 完成 → 计算 coverage matrix → 确认 Claim 1/2 证据充分性\n- GPU 释放 → 从 PREPARING 队列中按优先级提交下一批\n\n### 5. 🎯 战略上下文\n- **投稿目标 CoRL 2026，DDL 2026-05-29，剩 8 天**\n- 核心方向：Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 作为不确定性信号\n- D088→D090：Learned Uncertainty Head NO-GO，fallback 到 Plan A (K=2 conformal + selective CRM)。Plan A Object 3 seed 已过 (D092 GO)，Spatial seed44 成功但 seed42/43 失败待诊断\n- D093：OpenVLA CRM eval 0% — 定性为 applicability boundary（negative 结果纳入论文）\n- Norm sweep 是当前最大并行任务，补齐 ε=0.03/0.05/0.1 的 seed 数据以支撑 Table\n- **易错点**：Plan A Spatial 失败可能是 OOM（K=10 + adaptive 模式内存峰值高于普通 eval）——重试前确认 GPU 显存够用。不要假设 seed44 成功就意味着所有 seed 都能跑，可能是 GPU 共享负载导致的间歇性 OOM\n- **易错点**：OpenVLA 需要 2 GPU（7B 模型），单卡放不下。bjb1-32546 cuda:0+1 是最佳选择但需 Director 分配\n- paper_framing.md 尚未更新 D087-D090 变化（ROADMAP P1 待办）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779380141.md"
+}

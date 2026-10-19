@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ea8d51270352c809ada",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_29_1780033166.md",
+  "task_key": "loop_29_1780033166",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_29_1780033166.md",
+    "occurrence": 1,
+    "bytes": 3873,
+    "sha256": "d158c47acdcd6253efa146ace7746638a3b911427c6ca1afd851d97819991557"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 29\nreason: idle_timeout\nupdated: '2026-05-29T04:49:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5, cqa1-32758:cuda:0-5。其中仅 bjb1-18228 可达，其余 3 台截至 05-28 均不可达\n- Pi05 实验使用 `crm_pi05_unified_3suite` checkpoint 时**必须**传 `--obs_dim 2048 --unified_obs_dim 2088`，否则维度不匹配（2118 vs 990）直接 crash\n- **全面停机状态**：用户 05-28 指令停机，0 实验运行。恢复实验需 Director/用户明确授权\n- CoRL 2026 DDL 已过（2026-05-28 20:00 北京时间），论文是否已提交 / 是否转投尚未确认\n- westd 系列服务器数据有偏差（LIBERO assets 版本差异，D175），该服务器实验结果不可用于论文\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**：可达，1× RTX 4090（配置写 4 卡但实测仅 1 卡），工作目录 `/root/acr-vla-conformal-refinement`，account=root\n- **bjb1-32546**：❌ 不可达（port 32546），6× GPU\n- **bjb2-28827**：❌ 不可达（port 28827），6× GPU\n- **cqa1-32758**：❌ 不可达（port 32758），6× GPU\n- 模型 checkpoint 路径（Pi05）：`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`\n- 活跃进程：无（全部已 kill/cancel）\n- 活跃 Cron：无（reconcile = 0）\n- 活跃 Worker：无\n\n### 3. 📊 当前状态\n**项目处于完全停机状态。** 05-28 用户指令全面停机后，1423 个实验全部 DONE/killed/cancelled，0 RUNNING / 0 PREPARING / 0 Worker / 0 Cron。\n\n论文已就绪：编译通过，8 页正文 + 6 页附录，Table 1（K-matched 3 列）+ Table 3（Pi05）完整，叙事一致性已审查。核心 claim：CRM always-on 4/4 suites 有害 + Adaptive gating 恢复。\n\n**最终数据汇总（SmolVLA K=2, n=3 seeds）：**\n| Suite | VLA-only(K=1) | CRM always-on(K=2) | Adaptive(K=2) |\n|-------|--------------|--------------------:|-------------:|\n| Spatial | 79.3±0.8 | 78.0±1.7 | 80.8±1.1 |\n| Goal | 83.7±1.3 | 80.0±0.5 | 85.0±1.3 |\n| Object | 77.7±1.3 | 73.0±1.8 | 77.8±2.1 |\n| Long | 58.0±1.5 | 43.2±2.3 | 57.7±1.5 |\n\n统计：成功 768 / 负向 97 / 失败 130 / 共 1230。\n\n**未处理事项：**\n- 等待用户/Director 确认：论文是否已提交 CoRL、是否转投其他会议\n- 等待用户确认：3 台不可达服务器是否释放\n\n### 4. 📋 待办（条件触发式）\n- 用户确认\"已提交 CoRL\" → 项目进入等 review 阶段，可提前准备 rebuttal 素材\n- 用户确认\"转投其他会议\" → 查新 DDL，按目标会议调整格式/页数限制/Limitations 段，重新编译\n- 用户确认\"未提交\" → 确认是否继续本项目，若继续则需明确新目标会议和时间线\n- 3 台服务器恢复可达 → 用户需提供新 SSH 端口，更新 `~/.ssh/config`\n- Director 指示恢复实验 → 先确认 GPU 可用性（仅 bjb1-18228 可达且实测 1 卡），不足则申请云 GPU\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D170→D177→D178→D184。CRM always-on 在 K-matched 条件下 4/4 suites 有害（Long 最剧烈 -14.8pp），Adaptive gating 恢复到 VLA-only 水平或略优。这是论文 MC1 的核心证据\n- **Pi05 cross-VLA 验证**（Table 3）：4/4 suites degradation-only（Long 94→77, Δ=-17pp），仅验证 CRM always-on 有害性，未跑 Adaptive（因 DDL 时间不够）\n- **OpenVLA**：已从贡献列表移除（D183），仅保留 §4.5 discussion + Appendix\n- **易踩的坑**：\n  - bjb1-18228 配置写 4 卡但实测仅 1 卡，不要按 4 卡排实验\n  - westd 服务器的实验结果因 LIBERO assets 版本差异有偏差（D175/D176），不可用于论文数据\n  - Pi05 的 `--obs_dim` / `--unified_obs_dim` 参数容易遗漏导致 crash（memory.md 有详细记录）\n  - GC4-par (parallel) 和 GC4-seq (sequential) 不可直接对比\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-29-1780033166.md"
+}

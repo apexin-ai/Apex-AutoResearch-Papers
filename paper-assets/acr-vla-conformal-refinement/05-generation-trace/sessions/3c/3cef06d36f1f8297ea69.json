@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cef06d36f1f8297ea69",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy vla only seed45 rerun",
+  "task_key": "worker_ops_deploy-vla-only-seed45-rerun_20260518T114418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-vla-only-seed45-rerun_20260518T114418_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "1e68bc321c0d735ad078a1c48cb13bb5911d035e61be8fd5c4faa35ea20f51fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 项目 | 值 |\n|---|---|\n| **exp_id** | `eval-vla-only-object-seed45-r2` |\n| **服务器** | bjb1-18228, cuda:1 |\n| **PID** | 839546 |\n| **tmux session** | `eval_vla_only_seed45_r2` |\n| **命令** | `--mode vla_only --benchmark object --n_rollouts 10 --seed 45 --K 1` |\n| **输出** | `logs/eval_object_vla_only_seed45_r2.json` |\n| **Registry 状态** | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-vla-only-seed45-rerun.md"
+}

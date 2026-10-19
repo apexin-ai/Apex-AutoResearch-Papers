@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eebcdf985d38cb5e3f2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "director / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4444,
+    "sha256": "e49bc46d61672ed41ba13e9b766c00bb702155daa841039c496c89bd2d8a086b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-15T17:03:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-32546 cuda:0-5, bjb1-18228 cuda:0-3, bjb2-28827 cuda:0-5, bjb2-40593 cuda:0\n- bjb1-32546 cuda:0 当前双占（两个实验共享），不要再往上部署第三个\n- evaluate.py 的 `--output_file` 在 acr_vla mode 下有 bug（传了参数但实际 None），所有已完成实验的 JSON 都需要用 parse_log_to_json.py 从日志提取\n- 统计分析脚本 dry-run 数据全部过时（6-7 task partial），正式分析必须用 10-task FINAL 数据替换\n- Fisher test 不要 pool 不同 norm 条件（Reviewer 已 flag L240-243 方法论问题），每个 norm 单独检验\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**：6 GPU A6000, 工作目录 /root/acr-vla-conformal-refinement, 分析脚本在 /root/acr-vla-conformal-refinement/scripts/（parse_log_to_json.py, analyze_fisher_exact.py, plot_magnitude_curve.py, summarize_object_table.py）\n- **bjb1-18228**：4 GPU, 同工作目录\n- **bjb2-28827**：6 GPU, 同工作目录，注意 scripts/ 目录未同步（只在 bjb1-32546 上有）\n- **bjb2-40593**：1 GPU (cuda:0)\n- 日志路径：`/root/runs/acr-vla-conformal-refinement/` 或 `/root/acr-vla-conformal-refinement/logs/`\n- CRM checkpoint：crm-train-v3-norm-perdof (337,438 params), crm-train-v3-norm-obsonly\n\n### 3. 📊 当前状态\n**已锁定结果（seed=42, 10-task FINAL）**：\n- Object 6-way：obs_only 0.1 = **19%** (+7pp vs argmin 12%) ✅, perdof 11%, scalar 9%, VLA-only K=1 12%\n- Spatial perdof magnitude sweep 完成：norm 0.03/0.05/0.1/0.3 = 30/31/35/26%（倒 U 型，仅 0.1 ≈ argmin）\n- Spatial obs_only magnitude sweep：norm 0.05/0.1/0.2 全部 35%（flat line，norm-robust）\n\n**RUNNING 实验（~17 个）**：\n- **seed=43 六方 object eval**（bjb1-18228 cuda:1-3 + bjb1-32546 cuda:1-3）：obs_only/argmin/perdof/scalar/VLA-mean/obs-only-norm02，进度 0-3.5/10，ETA 6-12h。**这是 go/no-go gate**——合并双 seed 后 Fisher test 决定统计显著性\n- VLA-only-object-seed43（bjb1-32546 cuda:0，与 mag-obsonly-norm003-object 双占）\n- Object magnitude sweep：bjb2-28827 上 obs_only norm=0.05/0.3 + perdof norm=0.05（刚部署）\n- VLA-mean object seed=42（bjb1-32546 cuda:5，7.5/10）\n- obs_only object norm=0.2 seed=42（bjb1-32546 cuda:4，5/10）\n- eval-acr-object-v4-default（bjb2-28827，待 GPU 释放部署）\n- obsonly-norm003-b2 spatial（bjb2-40593 cuda:0，4/10）\n\n### 4. 📋 待办\n- seed=43 obs_only + argmin 完成 → 立即跑 Fisher exact test（合并 200 trials），p < 0.05 则核心 claim 成立\n- seed=43 gap < +5pp → 警告 Director，可能需要额外 seed 或降低 claim 强度\n- VLA-mean object seed=42 完成 → 如果 ≈12%（= argmin），强化 \"obs_only 优势来自 learned correction 而非 sample selection\" 的论点\n- magnitude sweep 全部完成 → 用 plot_magnitude_curve.py 生成 fig3（先修 xlabel \"Perturbation norm\" → \"Correction magnitude (ε)\"）\n- eval-acr-object-v4-default 完成 → 证明 magnitude control 价值的 ablation 数据\n- GPU 释放 → 优先部署 seed=43 缺失条件或 object magnitude 配对实验，不要空卡 >10min\n- output_file bug 修复 → 在 seed=43 批量完成前修好，避免再手动 parse\n\n### 5. 🎯 战略上下文\n- **核心结论 Scenario C 已确认**：obs_only CRM 是唯一有效的 conditioning 方式（object +7pp, spatial flat but robust）；perdof/scalar 无价值甚至有害\n- **论文 narrative 需调整**：spatial magnitude 是 null result（obs_only flat at 35%），magnitude sensitivity story 必须基于 object benchmark；perdof 不只是\"高 norm 崩塌\"，而是\"仅 norm=0.1 勉强持平，其余全低于 argmin\"\n- **obs_only 19% 超出 writing_plan 预测 16%**，但 argmin 也从 6.7%→12% 升高，gap 从 +12.3pp 压缩到 +7pp\n- **统计显著性是最大风险**：单 seed p ≈ 0.18，必须等 seed=43 合并。如果 seed=43 obs_only < 16%，合并后可能不达标\n- **T1 崩塌证据**：perdof norm=0.3 让 T1（最简单 task）从 100% 跌到 50%，obs_only 保持 100%——论文 case study 用\n- **CoRL DDL 还剩 ~11 天**，seed=43 是 critical path\n- **易错点**：(1) 不要用 dry-run 的过时数据做正式结论 (2) 不要 pool 不同 norm 做 Fisher test (3) plot xlabel 是 correction magnitude 不是 perturbation norm (4) 部署前必须 nvidia-smi 查 GPU 空闲\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "672ca499c39eb600db28",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only spatial norm02 seed46 r2",
+  "task_key": "worker_analyze_eval-obs-only-spatial-norm02-seed46-r2_20260519T185433",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-spatial-norm02-seed46-r2_20260519T185433_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "866154d6e10940580fad88fc4044e157f2f9865643678df1112e1bd8d5cff628"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结论: SUCCESS** — SR=33.0%，高于 VLA-only baseline (29.3%±1.7%)。\n\n**关键数据**:\n- 100 rollouts (10 tasks × 10)，正常结束无异常\n- 4-seed 均值 33.75% (seed44=36%, seed45=34%, seed46=33%, seed47=32%)\n- seed46 与其他 seeds 一致，落在 32%-36% 范围内\n\n**Per-task 特征**: 强二分性——3 个 task ≥80% (next_to_ramekin 100%, between_plate_and_ramekin 90%, next_to_cookie_box 80%)，4 个 task 稳定 0% (from_table_center, on_ramekin, on_stove, on_wooden_cabinet)。这是跨 seed 稳定的系统性模式，非随机波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-spatial-norm02-seed46-r2.md"
+}

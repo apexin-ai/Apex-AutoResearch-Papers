@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bf8899800732ea9ab50",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix tau015 spatial monitoring",
+  "task_key": "worker_fix_tau015-spatial-monitoring_20260527T235348",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_tau015-spatial-monitoring_20260527T235348_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "f5dcd9e78ad66c8165f837b662f1430940ab97c2788cd770cfe4079a1360c329"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。汇总：\n\n**实验 `smolvla-tau015-spatial-s42-fix`**\n- **PID**: 20271\n- **GPU**: cuda:4 (CUDA_VISIBLE_DEVICES=4), 占用 5136 MiB\n- **tmux**: 在 tmux 中运行（server PID 660857, pane %25），无法通过 read-only 命令确定 session name，但进程在 pts/4 上\n- **log_path**: `~/runs/acr-vla-conformal-refinement/smolvla-tau015-spatial-s42-fix.log`\n- **命令**: `python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark spatial --K 2 --seed 42 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.15 --output_file logs/eval_spatial_adaptive_conformal_crm_smolvla_k2_norm0.2_tau0.15_seed42.json`\n- **进度**: 正在评估中，task 1 完成 20/20 (100%)，task 2 完成 18/20 (90%)，task 3 进行中 5/20\n\n另注：旧的 `smolvla-tau015-spatial-s42` (PID 13505) 也在 PREPARING 状态，且其 command 有 bug（`--benchmark long` 而非 `--benchmark spatial`），应该是被 `-fix` 版替代了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tau015-spatial-monitoring.md"
+}

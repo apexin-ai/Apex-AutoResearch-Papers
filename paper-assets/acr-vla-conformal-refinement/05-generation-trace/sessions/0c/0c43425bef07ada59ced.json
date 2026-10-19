@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c43425bef07ada59ced",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check bjb1 32546 gpu status",
+  "task_key": "worker_ops_check-bjb1-32546-gpu-status_20260518T164850",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-bjb1-32546-gpu-status_20260518T164850_result.json",
+    "occurrence": 1,
+    "bytes": 2315,
+    "sha256": "c3bfbb1e6d757e3e0998dc80ec1fc8e3215a4e4630f782391c04e12bdde6c0ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 张 GPU 均双跑满载（98-99% util）。每张 GPU 上 2 个 eval 进程：\n\n### GPU 0 — 10862 MiB / 24564 MiB\n\n| PID | tmux session | 实验 | 显存 |\n|---|---|---|---|\n| 651466 | eval-obs-only-object-norm003-seed44 | crm_obs_only, norm=0.03, seed44 | 5182 MiB |\n| 662825 | eval-perdof-object-norm005-seed46 | crm_perdof, norm=0.05, seed46 | 5645 MiB |\n\n### GPU 1 — 10397 MiB / 24564 MiB\n\n| PID | tmux session | 实验 | 显存 |\n|---|---|---|---|\n| 642305 | eval-perdof-object-norm005-seed43 | crm_perdof, norm=0.05, seed43 | 4717 MiB |\n| 663022 | eval-obs-only-object-default-seed47 | crm_obs_only, default norm, seed47 | 5645 MiB |\n\n### GPU 2 — 10397 MiB / 24564 MiB\n\n| PID | tmux session | 实验 | 显存 |\n|---|---|---|---|\n| 640624 | eval-perdof-object-norm003-seed43 | crm_perdof, norm=0.03, seed43 | 4717 MiB |\n| 663285 | eval-perdof-object-norm03-seed46 | crm_perdof, norm=0.3, seed46 | 5645 MiB |\n\n### GPU 3 — 10381 MiB / 24564 MiB\n\n| PID | tmux session | 实验 | 显存 |\n|---|---|---|---|\n| 651806 | eval-obs-only-object-norm003-seed45 | crm_obs_only, norm=0.03, seed45 | 4711 MiB |\n| 663550 | eval-obs-only-object-norm03-seed46 | crm_obs_only, norm=0.3, seed46 | 5645 MiB |\n\n### GPU 4 — 9465 MiB / 24564 MiB\n\n| PID | tmux session | 实验 | 显存 |\n|---|---|---|---|\n| 626277 | eval_perdof_default_seed45 | crm_perdof, default norm, seed45 | 3785 MiB |\n| 663877 | eval-scalar-object-seed46 | crm_scalar, norm=0.1, seed46 | 5645 MiB |\n\n### GPU 5 — 10862 MiB / 24564 MiB\n\n| PID | tmux session | 实验 | 显存 |\n|---|---|---|---|\n| 652415 | eval-perdof-object-norm003-seed45 | crm_perdof, norm=0.03, seed45 | 5182 MiB |\n| 664271 | eval-obs-only-object-norm01-seed47 | crm_obs_only, norm=0.1, seed47 | 5645 MiB |\n\n---\n\n**关于你关注的两张卡：**\n- **cuda:0**: 确认 eval-obs-only-object-norm003-seed44 (PID 651466) 仍在跑，双跑 Worker 加上了 eval-perdof-object-norm005-seed46 (PID 662825)\n- **cuda:3**: 确认 eval-obs-only-object-norm003-seed45 (PID 651806) 仍在跑，双跑 Worker 加上了 eval-obs-only-object-norm03-seed46 (PID 663550)（不是 norm03-seed46 perdof，而是 obs_only）\n\n另有 1 个无 GPU 进程的 tmux session: `eval-dc-r2`（创建于 5/17，可能已完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-bjb1-32546-gpu-status.md"
+}

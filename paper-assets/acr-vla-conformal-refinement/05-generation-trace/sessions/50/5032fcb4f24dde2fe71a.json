@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5032fcb4f24dde2fe71a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp crm norm005 spatial s43",
+  "task_key": "worker_analyze_eval-supp-crm-norm005-spatial-s43_20260523T083401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-crm-norm005-spatial-s43_20260523T083401_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "1554c465e4a9ac0704cd528cc5d3815c280c183a863db29e016c45fb0d729036"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## 总结\n\n**eval-supp-crm-norm005-spatial-s43** — CRM obs_only, norm=0.05, Spatial, seed=43\n\n| Task | SR | 详情 |\n|------|-----|------|\n| between_plate_and_ramekin | 100% | 20/20 |\n| next_to_ramekin | 95% | 19/20 |\n| from_table_center | 95% | 19/20 |\n| on_cookie_box | 100% | 20/20 |\n| in_top_drawer_wooden_cabinet | 75% | 15/20 |\n| on_ramekin | 0% | 0/20 |\n| next_to_cookie_box | 95% | 19/20 |\n| on_stove | 85% | 17/20 |\n| next_to_plate | 70% | 14/20 |\n| on_wooden_cabinet | 95% | 19/20 |\n| **Overall** | **81.0%** | **162/200** |\n\n**与 seed42 对比**：seed42 = 80.0%, seed43 = 81.0%, **+1.0pp**。两个 seed 均高于 VLA-only baseline (78.5%)，cross-seed 一致性良好。\n\n**结论**：**success** — SR 81.0% > VLA-only baseline 78.5%，已标记 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-crm-norm005-spatial-s43.md"
+}

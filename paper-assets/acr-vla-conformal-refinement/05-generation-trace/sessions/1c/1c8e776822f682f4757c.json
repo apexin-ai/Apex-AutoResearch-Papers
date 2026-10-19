@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8e776822f682f4757c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 40593 kill dup deploy k2mean",
+  "task_key": "worker_deploy_bjb2-40593-kill-dup-deploy-k2mean_20260523T225813",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-40593-kill-dup-deploy-k2mean_20260523T225813_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "cdb15b6117d444093541adf84a1f24bd5014454ae0181bea74a4f39d7015c965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 操作 | 结果 |\n|------|------|\n| Kill PID 201029 (重复 adapt-s45) | force_killed, tmux session 已清理 |\n| GPU 释放 | cuda:0 → 0 MiB |\n| 部署 k2mean-s45 | PID 204339, tmux `eval-spatial-k2mean-s45`, 模型加载中 |\n| Registry: `eval-supp-spatial-adapt-tau025-s45` | status=DONE, conclusion=killed |\n| Registry: `eval-supp-spatial-k2mean-s45` | status=RUNNING, server=bjb2-40593, gpu=cuda:0 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-40593-kill-dup-deploy-k2mean.md"
+}

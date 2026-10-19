@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0eac3940b7914444623a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "monitor fix cron gaps all servers",
+  "task_key": "worker_monitor_fix-cron-gaps-all-servers_20260523T082329",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_fix-cron-gaps-all-servers_20260523T082329.log",
+    "occurrence": 1,
+    "bytes": 810003,
+    "sha256": "fad670238735428ddbb389dc84d9f9a665c52d34234972477efce970332aeef5"
+  },
+  "statistics": {
+    "messages": 116,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 42,
+      "tool_result": 42,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "0eac3940b7914444623a-part-0001.json",
+          "message_count": 58
+        },
+        {
+          "path": "0eac3940b7914444623a-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-fix-cron-gaps-all-servers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2faf04a8f2bcda4b5205",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check eval smolvla acr goal seed43 exit",
+  "task_key": "worker_check_eval-smolvla-acr-goal-seed43-exit_20260522T055347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_eval-smolvla-acr-goal-seed43-exit_20260522T055347_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "122842cffba83f62aa1777c3726137b9dd3e06341a9da9288866780853cd201c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/failed，cron 不存在（可能已被删除）。\n\n**故障原因**：`crm_best.pt` checkpoint 的输入维度（990）与 evaluate.py 构建的 CRM 模型输入维度（1030）不匹配。差值 40 说明 `obs_dim` 参数传的是 960，但模型架构代码期望的 obs 维度更大（可能近期代码改动了 obs 拼接逻辑，增加了额外特征）。需要用匹配的 `obs_dim` 重新训练 CRM 或修正 evaluate.py 的模型构建参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-smolvla-acr-goal-seed43-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5282e2891961f081324a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code pi05 n action steps fix",
+  "task_key": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pi05-n-action-steps-fix_20260522T105018_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "bbfd657a9599bb2ef46e28591101b974882dee66c6c353d8be8086b9bd8c24c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**代码修改（4 台服务器均已部署并验证语法）：**\n- `pi05_wrapper.py`: `__init__` 新增 `n_action_steps=10` 参数，`predict_action()` 中 action queue 只取前 `n_action_steps` 步（原来取全部 50 步）\n- `evaluate.py`: 新增 `--n_action_steps` CLI 参数，传递给 `Pi05Wrapper` 构造函数\n\n**已部署服务器：** bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593\n\n**已提交实验（bjb1-18228，GPU 1/2/3）：**\n\n| 实验 ID | Seed | GPU | PID | 日志 |\n|---------|------|-----|-----|------|\n| eval-pi05-vla-only-object-seed42-r4 | 42 | cuda:1 | 905242 | /tmp/eval_pi05_seed42_r4.log |\n| eval-pi05-vla-only-object-seed43-r4 | 43 | cuda:2 | 905874 | /tmp/eval_pi05_seed43_r4.log |\n| eval-pi05-vla-only-object-seed44-r4 | 44 | cuda:3 | 906424 | /tmp/eval_pi05_seed44_r4.log |\n\n配置：`n_action_steps=10, K=10, max_steps=280, 20 rollouts/task, vla_only mode`。因 GPU 0 有占用，改用 GPU 1/2/3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pi05-n-action-steps-fix.md"
+}

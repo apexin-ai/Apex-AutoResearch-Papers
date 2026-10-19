@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12475573c675079162e1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_14_1778931747.md",
+  "task_key": "loop_14_1778931747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1778931747.md",
+    "occurrence": 1,
+    "bytes": 3995,
+    "sha256": "3c63a3e7107ac6ae745e605358ad610f08232076e1a4567ac47fb51ae7891b72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T11:25:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 17 张：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。白名单外绝对不能用\n- obs_only norm=0.2 是唯一存活路径，perdof/scalar 已确认 dead。不要在这两个方向上追加新实验\n- seed=43 obs_only 0.1 已确认 negative (12%, pooled Δ=1pp, p=0.44)——不要重跑这个配置\n- 所有实验命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- CoRL 2026 DDL: abstract ~May 26, full paper ~Jun 2。剩 ~11 天，不能浪费 GPU 时间\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546** (6×4090): 工作目录 `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base\n- **bjb1-18228** (4×4090): 同上结构\n- **bjb2-28827** (6×4090): 同上结构\n- **bjb2-40593** (1×4090D): 同上结构\n- 模型 checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt` (obs_only), `scalar_unc/crm_best.pt` (scalar)\n- 数据: `/root/autodl-tmp/libero_data/` (object/spatial benchmarks)\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 活跃 cron 监控 12 个实验（详见 reconcile 结果）\n\n### 3. 📊 当前状态\n**刚收到回调**: `eval-obs-only-object-norm02-seed43-r2` 进程退出，状态 ANALYZING。这是 P0 关键实验（obs_only 0.2 seed=43，seed=42=22% PROJECT HIGH）。\n\n**已派 Worker 未回调**:\n1. `worker_analysis_eval-obs-only-object-norm02-seed43-r2` — SSH 读日志+JSON，提取 10-task SR，更新 registry\n2. `worker_check_preparing-experiments-bjb1-32546` — 检查 3 个 PREPARING 实验（PID 226869/227077/229742）是否存活\n\n**RUNNING (12 个)**:\n- bjb2-28827: mag-obsonly-norm005, mag-obsonly-norm03, mag-perdof-norm003/005/03-r3/02-seed43-r3 (magnitude sweep 补全)\n- bjb1-18228: acr-object-v4-default-r2, argmin-object-seed44-r2, obs-only-object-norm02-seed44-r2, perdof-object-seed44\n- bjb1-32546: vla-mean-object-seed44, obs-only-object-norm03-seed44\n- bjb2-40593: perdof-object-default-seed44\n\n**PREPARING (3 个，状态待确认)**:\n- eval-scalar-object-seed44-r2 (bjb1-32546:cuda:0)\n- eval-obs-only-object-norm01-seed44 (bjb1-32546:cuda:4)\n- eval-obs-only-object-default-seed44 (bjb1-32546:cuda:5)\n\n### 4. 📋 待办\n- Worker 1 回调（obs_only 0.2 seed=43 结果）→ 看 SR：≥17% = success，<17% = negative。然后：\n  - 计算 pooled 2-seed Fisher exact test (obs_only 0.2 vs argmin)\n  - 如果 p<0.05 → 向 Director 汇报 claim 成立，推进 paper abstract 最终版\n  - 如果 p=0.05-0.10 → 需要 seed=44 数据（已在跑 eval-obs-only-object-norm02-seed44-r2）\n  - 如果 p>0.10 或 SR 很低 → red-section framing 提案\n- Worker 2 回调（PREPARING 检查）→ 死进程重提交，活进程注册 cron\n- bjb1-32546:cuda:3 已空闲（刚完成的实验）→ 分配新 seed44 实验或 magnitude sweep\n- seed=44 实验陆续完成 → 3-seed pooled 统计分析\n- magnitude sweep 全部完成 → norm sensitivity curve figure\n\n### 5. 🎯 战略上下文\n- **核心结论**: obs_only CRM 是唯一存活方法。Object benchmark: obs_only 0.2 seed=42=22% vs argmin 12% (+10pp)。Spatial 所有 CRM 变体确认 dead（全在 argmin ±1pp 内）\n- **论文 story**: sample-then-correct > sample-then-select; obs features > conformal features (honest negative for perdof)\n- **D035 kill criterion**: obs_only 0.1 pooled Δ=1pp 已触发 kill → 所有希望在 norm=0.2 上\n- **关键风险**: argmin baseline 方差大（seed42=12%, seed43=17%）。obs_only 0.2 seed=43 如果 <17%，pooled 优势会大幅缩水\n- **易错点**: \n  - 不要把 spatial 结果和 object 结果混淆——spatial 全 dead，只有 object 有正向结果\n  - seed=43 obs_only 0.1 的 negative 不影响 obs_only 0.2 的 claim（不同 norm）\n  - 3 个 PREPARING 实验可能是 orphan（有 PID 无 cron），必须先确认再决定是否重提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778931747.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "401d0186adbb150668ce",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 batch r2",
+  "task_key": "worker_deploy_bjb1-18228-batch-r2_20260528T061736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-batch-r2_20260528T061736_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "52528975786197fd600a5e4f44afee7d159cc6d28058833e3d7ddfb032c7e054"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 部署结果\n\n**全部 4 个实验无法按计划部署，原因如下：**\n\n### 问题 1：GPU 被占用（C001 约束）\n\n| GPU | 显存占用 | PID | 状态 |\n|-----|---------|-----|------|\n| cuda:0 | 12757 MiB | 982389 | **占用** |\n| cuda:1 | 1 MiB | — | 空闲 |\n| cuda:2 | 13120 MiB | 983106 | **占用** |\n| cuda:3 | 10429 MiB | 983396 | **占用** |\n\ncuda:0/2/3 上有 python 进程在跑，按 C001 约束禁止提交。\n\n### 问题 2：evaluate.py 不存在\n\n唯一空闲的 cuda:1 已提交但立即失败——`/root/acr-vla-conformal-refinement/evaluate.py` 不存在（EXIT_CODE=2）。\n\n项目目录下实际有的脚本：\n- `run_eval_gpu.py`\n- `benchmark_batched.py`\n- `smoke_test.py`\n- `scripts/` 目录\n\n### 需要你确认\n\n1. **GPU 占用**：cuda:0/2/3 上的进程是否可以 kill？还是等它们跑完？\n2. **正确的评估命令**：应该用 `run_eval_gpu.py` 还是其他脚本？请提供正确的命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-batch-r2.md"
+}

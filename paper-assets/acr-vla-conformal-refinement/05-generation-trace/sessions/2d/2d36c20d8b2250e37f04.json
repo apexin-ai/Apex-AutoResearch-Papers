@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d36c20d8b2250e37f04",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_3_1778782438.md",
+  "task_key": "loop_3_1778782438",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_3_1778782438.md",
+    "occurrence": 1,
+    "bytes": 5946,
+    "sha256": "debb68b405018dea8b45cd6269532de39f330f7774ba486121d05cc876e756db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T18:13:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`bjb1-18228:cuda:0/1/2/3` + `bjb2-40593:cuda:0`，共 5 卡。白名单外的 GPU 绝对不能用，即使 Director 指令也要 push back\n- CRM 训练超参：ablation 系列（plan_002/003/006/007/009/010/011）**必须用 bs=32/lr=1e-3**（与 crm-train-v1 baseline 对齐），bs≥512 仅限探索性实验\n- SmolVLA wrapper 预处理：必须用 `resize_with_pad(512,512)` + `flip(H,W)` + `[-1,1]` 值域 + 8D state + 反归一化 action。任何 eval 前先确认 wrapper 版本\n- precompute/CRM/eval 三阶段数据一致性：precompute 用的 wrapper 版本必须和 eval 一致，否则 CRM 在错误分布上训练\n- AutoDL 上必须 `source /etc/network_turbo` + `HF_HUB_OFFLINE=1` + `HF_HOME=/root/autodl-tmp/.hf_cache`\n- EXIT_CODE=129 和 EXIT_CODE=1 不一定是真失败——前者是 tmux SIGHUP，后者可能是 Python 3.12 SWIG DeprecationWarning。确认前看 log 最后输出\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base 环境\n- **bjb2-40593** (1× RTX 4090 D): 同上路径和环境\n- 模型：`lerobot/smolvla_libero` (450M, 7D action) + VLM backbone `SmolVLM2-500M-Video-Instruct`（均需本地缓存）\n- CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_v2/perdof/crm_best.pt`（v2，有 normalization bug）；v3 正在训练中，输出到 `/root/autodl-tmp/checkpoints/crm_v3/{perdof,scalar_unc,obs_only}/`\n- Precompute cache: `/root/autodl-tmp/crm_cache/`\n- CRM v3 norm stats: `/root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt`\n- 数据集: `/root/autodl-tmp/libero_data/`（spatial + object, 10 demos/task）\n- 活跃进程:\n  - `eval-acr-spatial-v3` (PID 197057, bjb1 cuda:0) — 核心 claim 实验，用 CRM v2\n  - `eval-argmin-only-spatial` (PID 231421, bjb1 cuda:1) — 诊断：隔离 argmin selection vs CRM correction\n  - `eval-tiny-correction-spatial` (PID 232815, bjb1 cuda:2) — 诊断：max_norm=0.05 极保守 correction\n  - `eval-acr-object-v3` (PID 197803, bjb1 cuda:3) — object benchmark 交叉验证，CRM v2\n  - `eval-vla-mean-spatial` (PID 143106, bjb2 cuda:0) — K=10 mean baseline\n- Cron: eval-vla-mean-spatial 有活跃 cron 监控\n- Worker: `worker_verify_crm-v3-training-data_20260514T180836` 正在运行（验证 CRM v3 训练数据）\n\n### 3. 📊 当前状态\n**刚做完**: D018 确认 CRM 失败根因是输入未归一化（1030D 特征 1500x scale 差异），批准 CRM v3 方案（嵌入 per-feature mean/std standardization）。Kill 了 scalar-unc-v2 和 obs-only-v3（0% 无继续价值）。提交了 3 个 CRM v3 训练任务（perdof/scalar_unc/obs_only，均在 bjb2-40593，状态 PREPARING）。\n\n**正在做**:\n- 5 路 eval 全部在跑（见上方活跃进程），但其中 4 路用的是 CRM v2（有 normalization bug），结果预期仍然 negative\n- CRM v3 训练 3 路已提交到 bjb2-40593 但状态还是 PREPARING（可能与 eval-vla-mean-spatial 争 GPU）\n- Worker 正在验证 CRM v3 训练数据\n\n**等待中**:\n- Worker `verify_crm-v3-training-data` 回调 → 确认数据正确后推进 CRM v3 训练\n- eval-vla-mean-spatial cron 回调 → 完成后 bjb2 GPU 释放给 CRM v3 训练\n- 5 路 eval 完成 → 汇总对比表（但 v2 结果主要用于确认 normalization bug 影响范围）\n- CRM v3 训练完成后 → 重跑 eval（这才是真正的 core claim 验证）\n\n### 4. 📋 待办（条件触发式）\n- **eval-vla-mean-spatial 完成** → 记录 K=10 mean baseline 数值，释放 bjb2 cuda:0 给 CRM v3 训练\n- **CRM v3 训练 3 路全完成** → 立即启动 eval-acr-spatial-v4（CRM v3 perdof）+ eval-scalar-unc-v3 + eval-obs-only-v4，这是真正的 core claim 验证\n- **eval-acr-spatial-v3（v2）完成** → 记录为 \"pre-normalization-fix baseline\"，与 v4（v3 CRM）对比量化 normalization 修复效果\n- **eval-argmin-only-spatial 完成** → 如果 argmin-only ≈ VLA mean (~40%)，确认 CRM correction 是唯一问题；如果 argmin-only << VLA mean，argmin selection 本身也有问题\n- **eval-tiny-correction-spatial 完成** → 如果 tiny >> full correction，说明 compounding error 是主因，支持 Gated CRM 方向\n- **CRM v3 eval 全部出结果** → 如果 per-DOF v3 > baseline 30% → success narrative，铺 ablation 和 object benchmark；如果仍 < baseline → 触发 Framing 调整（red-section），考虑 Gated CRM 或 pivot\n\n### 5. 🎯 战略上下文\n- **核心假设**: per-DOF conformal statistics > scalar > none for dimension-selective action correction。MVP 在合成数据上验证通过（D003），但闭环 LIBERO 评估中 CRM correction 持续拖累 baseline（D017）\n- **关键决策链**: D003(MVP pass) → D012(wrapper fix) → D015(30% SFT gate pass) → D016(train/eval维度bug) → D017(CRM全面拖累,kill ablation) → D018(根因=normalization,批准v3)\n- **CRM v3 是 make-or-break**: 如果 normalization 修复后 ACR-VLA 仍低于 30% baseline，那问题不是 feature scale 而是 CRM correction 机制本身（compounding error in closed-loop）。此时需要 Gated CRM（低 uncertainty 时 correction→0）或 pivot\n- **最容易判断错的事**: (1) 不要把 v2 CRM 的 eval 结果当作最终结论——v2 有 normalization bug，v3 才是真正的验证；(2) SampleConsensus baseline 34% 不等于 ReconVLA——ReconVLA 用 CQR 分位数回归，我们的实现只是 raw argmin Euclidean；(3) CRM v3 训练 3 路都提交到了 bjb2 但 bjb2 只有 1 卡，需要等 eval-vla-mean-spatial 完成释放 GPU 或重新调度到 bjb1\n- **Gated CRM 代码据 D017 称已就绪**，但我没有验证——下一个\"我\"接手后如果需要 Gated CRM，先确认代码存在且正确\n- **投稿目标 ICLR 2027** (Sep-Oct 2026 DDL)，时间充裕，不要有 fallback 思维\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778782438.md"
+}

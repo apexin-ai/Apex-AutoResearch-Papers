@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fe320934f695d08a3f2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops p0 argmin seed44 final",
+  "task_key": "worker_ops_p0-argmin-seed44-final_20260516T144501",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_p0-argmin-seed44-final_20260516T144501_result.json",
+    "occurrence": 1,
+    "bytes": 1773,
+    "sha256": "9c56776741d98813f2f2b02b72235c98379b71db557da86c8fb795a47883962c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. argmin seed44 — 未完成，9/10 tasks done\n\nPID 428117 仍在运行（13h13m），GPU3 活跃（1906 MiB, 22%）。最后一个 task 进行中，预计 **~1h 内完成**。\n\n当前 9 tasks 累计：**11/90 成功**，最终 arg_44 将在 **11-16%** 范围。\n\n### 2. Fisher test 预分析\n\n| 最后 task SR | arg_44 | arg pooled | delta | p-value (one-sided) | sig@.05 | sig@.10 | Narrative |\n|-------------|--------|------------|-------|---------------------|---------|---------|-----------|\n| 0/10 | 11% | 40/300=13.3% | +4.7pp | **0.0720** | No | **Yes** | B (robustness) |\n| 1/10 | 12% | 41/300=13.7% | +4.3pp | **0.0897** | No | **Yes** | B (robustness) |\n| 2/10 | 13% | 42/300=14.0% | 0.1102 | No | No | C (non-sig) |\n| 3/10 | 14% | 43/300=14.3% | 0.1337 | No | No | C (non-sig) |\n| 4/10 | 15% | 44/300=14.7% | 0.1601 | No | No | C (non-sig) |\n| 5/10 | 16% | 45/300=15.0% | 0.1895 | No | No | C (non-sig) |\n\n**关键判断**：在任何场景下都 **不显著 at p<0.05**。只有最后 task ≤1/10 时才 marginal significant at p<0.10。大概率 **Narrative B or C**。\n\n### 3. 服务器 GPU 状态 (bjb1-18228, 4×RTX 4090)\n\n| GPU | Memory | Util |\n|-----|--------|------|\n| 0 | 4735/24564 MiB | 21% |\n| 1 | 2410/24564 MiB | 22% |\n| 2 | 1/24564 MiB | **0% (空闲)** |\n| 3 | 1906/24564 MiB | 22% (argmin seed44) |\n\n### 4. bjb1-18228 最近完成的 eval JSON\n\n- `eval_object_obs_only_norm02_seed44.json` (22:38 today)\n- `eval_object_perdof_default_norm_r2.json` (16:57)\n- `eval_object_perdof_seed43.json` (11:10)\n- `eval_object_obs_only_seed43.json` (08:40)\n- `eval_object_reconvla_seed43.json` (08:34)\n\n**需要等 ~1h 后重新检查拿最终 arg_44 数字再跑 Fisher exact test。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-argmin-seed44-final.md"
+}

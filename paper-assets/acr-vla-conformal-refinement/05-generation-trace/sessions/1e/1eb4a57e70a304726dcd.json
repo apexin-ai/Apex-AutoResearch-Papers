@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb4a57e70a304726dcd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779357162.md",
+  "task_key": "loop_22_1779357162",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779357162.md",
+    "occurrence": 1,
+    "bytes": 4557,
+    "sha256": "2193f47f2831f658df51793bd53241aaa21d5bc96d1cc57bbb6b144bb9fbb26c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T08:05:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单由 `get_project_status` 的 `execution.gpu_ids` 决定，当前分布在 bjb1-18228、bjb1-32546、bjb2-28827、bjb2-40593 四台服务器上，**不得使用白名单外的 GPU**（即使 Director 指令也必须 push back）\n- Table 1 Object CRM K=10 数据锁定为 **norm02-only n=6**（D080），seed42 的 SR=20% 被排除（D084 判定为异常值）\n- Long OOD 只能用 cautious wording（MW-U p=0.061 不显著，D081）\n- OpenVLA 实验线已恢复（D087 撤回 D086），v2 baseline SR=69%，不要再标记 OpenVLA 为 boundary neg\n- CRM correction magnitude 信号已 NO-GO（ρ=0.15，D079），**唯一可用不确定性信号是 K=2 L2 distance**\n- Adaptive K P50 是 Pareto 最优（D078），论文核心贡献是 Adaptive K 方法（D077 用户硬要求）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**：`/root/acr-vla-conformal-refinement`，conda base（`/root/miniconda3/bin/python`），HF_HOME=/root/autodl-tmp/.hf_cache，磁盘 400G/438G 可用\n- **bjb1-18228**：同上路径和环境，磁盘 400G/438G 可用\n- **bjb2-28827**：同上路径和环境，磁盘 399G/439G 可用\n- **bjb2-40593**：磁盘紧张 46G/437G（89% 已用）⚠️\n- CRM checkpoint：`/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt`（perdof 模式）和对应 obs_only 路径\n- W&B：项目配置中有 entity/project，用 `load_project_config` 获取\n- 活跃 cron 14 个（全部 RUNNING 状态，reconcile 已确认）\n\n### 3. 📊 当前状态\n**刚收到 cron 回调**：`eval-perdof-object-norm02-seed49` 进程正常退出进入 ANALYZING。Registry 显示 conclusion=killed（可能误标），已派 Worker `worker_analyze_eval-perdof-object-norm02-seed49_20260520T155840` 去 bjb1-32546 读日志+W&B 确认真实结果。**该 Worker 回调尚未返回，下一个\"我\"需要处理它。**\n\n**RUNNING 实验（13 个）**：\n- bjb1-18228: eval-k20-obs-only-object-seed42, eval-random-selection-object-seed46-r3, eval-random-selection-object-seed47, eval-random-selection-spatial-seed43-r2\n- bjb1-32546: eval-random-selection-spatial-seed44, eval-k5-obs-only-object-seed43, eval-k20-obs-only-object-seed43, eval-obs-only-object-norm005-seed43\n- bjb2-28827: openvla-precompute-k1, eval-crm-k1-object-seed42/43/44-plan702, eval-obs-only-spatial-norm02-seed42-r2\n- bjb1-18228 还有: eval-random-selection-object-seed43, eval-random-selection-object-seed45\n\n**PREPARING**：33 个实验待部署\n\n**总计**：469 实验，253 success / 33 negative / 46 failed / 86 killed\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_analyze_eval-perdof-object-norm02-seed49_20260520T155840` 回调 → 根据分析结果 update_registry（修正 conclusion + 填 metrics）→ 刷新 report.md → 汇报 Director\n- 任一 RUNNING eval 的 cron 回调到达 → 按 on-experiment-done 流程处理（分析→更新→汇报→铺下一格）\n- openvla-precompute-k1 完成 → 触发 CRM K=1 Object 评估（plan702 的 3 seed 已在跑，但需确认 precompute 结果是否正确）\n- Random selection baseline 实验（seed43/45/46-r3/47）完成 → 汇总与 CRM 对比数据，更新 Table 对应列\n- 33 个 PREPARING 实验中有 GPU 空出 → 按优先级提交（Spatial Adaptive K P50 × 3 seeds 最高优先）\n- CoRL DDL 2026-05-29（剩余 ~8 天）→ 所有实验需在 ~5 天内完成以留写作时间\n\n### 5. 🎯 战略上下文\n- **核心 story**：Adaptive K（K=2 L2 distance 做不确定性信号）是论文方法贡献，CRM K=10 分析是 supporting evidence。P50 阈值为默认配置。\n- **决策链关键节点**：D077（Adaptive K 升核心）→ D078（P50 Pareto 最优）→ D079（CRM magnitude NO-GO）→ D080（Table 1 norm02 n=6）→ D081（Long OOD 降级）→ D082（batched inference 确认）→ D083（Spatial CRM clean n=8）→ D084（seed42 排除）→ D085（跨 benchmark 阈值迁移）→ D087（OpenVLA 恢复）\n- **易错点**：\n  - perdof 和 obs_only 是两种 CRM 模式，对应不同 checkpoint，不要混用\n  - norm02 = max_correction_norm 0.2，这是主对比配置；norm01/norm03/norm005 是 ablation\n  - seed42 Object CRM SR=20% 已被 D084 排除，不纳入 Table 1 均值\n  - bjb2-40593 磁盘只剩 46G，提交实验前必须检查\n  - Registry 中大量 killed/failed 实验是历史迭代产物，不影响当前分析\n  - Spatial CRM K=10 应该是 n=8（D083），如果 registry 只查到 7 个需要溯源第 8 个\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779357162.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ec41b462d8acb23f181",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops resubmit perdof norm005 seed45 bjb2 28827",
+  "task_key": "worker_ops_resubmit-perdof-norm005-seed45-bjb2-28827_20260518T215555",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_resubmit-perdof-norm005-seed45-bjb2-28827_20260518T215555_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "f2fcee1a8172126249cab5122c357add988f719a86df350af4f3925f8ef504b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **tmux session**: `eval-perdof-norm005-seed45-t16`\n- **cuda:0 VRAM**: 4233 MiB → 7823 MiB，已加载模型\n- **启动日志**: CRM checkpoint 加载成功 (337,438 params)，`max_correction_norm=0.05`，正在加载 LIBERO object 环境 (10 tasks)\n- **timeout**: 57600s (16h)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-perdof-norm005-seed45-bjb2-28827.md"
+}

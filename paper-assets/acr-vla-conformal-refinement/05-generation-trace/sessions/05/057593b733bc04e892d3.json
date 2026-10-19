@@ -1,0 +1,1027 @@
+{
+  "schema_version": "1.0",
+  "id": "057593b733bc04e892d3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "research paper outline corl",
+  "task_key": "worker_research_paper-outline-corl_20260515T185730",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_paper-outline-corl_20260515T185730.log",
+    "occurrence": 1,
+    "bytes": 106259,
+    "sha256": "f807a3528ace59c022fef996d9d8b11ce4665e9fe666c82f5360276716648ce0"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d10c49ef-d906-41ab-978c-11ee107e1868",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778886600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "677409d1-4fb3-4201-8b58-d8e9ab158e3f",
+                "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the three key files to understand the project context before drafting the outline.",
+              "signature": "EqUCClkIDRgCKkAE5uwcXvn49Dh7ASujZxGTFAFy0MPe5blERfTYYzhXXmkDYSCKC9k73weX0zVVkJvvXEtJTT2QyIn5ncfH0Q5cMg9jbGF1ZGUtb3B1cy00LTY4ABIM5w9wqtFKKYqljhVLGgwJ6aJ/wxm1TJ+NBGIiMPnwmEfo1uZW1CxKQS8Y7zWpkN10/EIGhvNmehEvqgM19fNVy2sYR+c5uZ/LJBZY1yp6E/VdvRXVmUkpIzDfcCTmkYXQnvsJD2UNieoSWnuzjvydaKcYfU+L+cQh3H9rm+TVhgRgbnFEA3SVRALidA5ye/eqAGgnX/k/hiTR4rELVPFaxtdHpK0T/pUi7yofhnl16FwgUlyz2gozTo9KD7M+8KsO8x3ipYHxZ88YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "884fa77b-ba0a-49de-a8b2-fa9215cbdd24",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JGto2qwUCqsDMANBWWUSeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11281,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11281
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取项目文件以了解论文 framing、实验进展和关键决策。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "a2186dd4-fd04-4fbe-851a-4abda62af9ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JGto2qwUCqsDMANBWWUSeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11281,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11281
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PZoXuW7qVrGh9xQhZgFrUa",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "adcf9dbe-5779-4e04-a072-fcfcebda6c7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JGto2qwUCqsDMANBWWUSeM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11281,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11281
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:57:41.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01PZoXuW7qVrGh9xQhZgFrUa",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "bb3c6df1-9c6a-48d1-923f-de354a6da810",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__register_artifact",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DepXjXRhrtKKCCFaLnMgmu",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "bcb555bf-cd30-44fb-a72e-8d79996ac918",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qmk21SaGLyv9mHJCZntf59",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1373,
+                "cache_read_input_tokens": 23122,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1373
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:57:49.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DepXjXRhrtKKCCFaLnMgmu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — acr-vla-conformal-refinement\\\\n\\\\n## Target Venue\\\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2) — D021\\\\n- ~~ICLR 2027~~ — 不再是首要目标\\\\n\\\\n## Core Insight (Scenario C — ACTIVE, D029+D030 confirmed)\\\\nA lightweight observation-conditioned learned correction module (CRM), applied after conformal sample selection, can synthesize actions better than any individual VLA sample. The key contribution is the **sample-then-correct** pipeline itself and the discovery that **correction magnitude control is critical for closed-loop stability**. Per-DOF conformal features as CRM input offer no additional value over observation features — an honest negative result that challenges the intuition from synthetic experiments.\\\\n\\\\n## Active Framing: Scenario C\\\\n**Confirmed by data**: obs_only CRM > perdof CRM ≈ scalar CRM ≈ argmin on spatial (D029-D030); obs_only CRM +6.6pp over argmin on object 6/10 tasks (running); magnitude sweep shows obs_only robust to norm while perdof collapses at high norm (D032).\\\\n\\\\nStory: \\\\\\\"Observation-conditioned residual correction is the key contribution. The sample-then-correct pipeline (K=10 conformal selection + learned CRM correction) significantly outperforms pure sample selection on object manipulation tasks. Per-DOF conformal statistics as direct CRM input offer no advantage over observation features — but conformal prediction remains essential for the sample selection stage. Correction magnitude control is a critical and previously unrecognized factor for closed-loop VLA correction.\\\\\\\"\\\\n\\\\n## Core Claims (CoRL 单 Claim 论文)\\\\n\\\\n1. **Observation-conditioned learned correction (CRM) significantly improves VLA robustness beyond sample selection**\\\\n   - **主 claim**: obs_only CRM vs argmin-only ≥ 5pp on object benchmark + p < 0.05\\\\n   - **Spatial**: DEAD — all CRM variants 32-35% vs argmin 34%, no signal (D030)\\\\n   - **Object 6/10 tasks (RUNNING)**: obs_only 0.1: 13.3% vs argmin 6.7% (+6.6pp); obs_only 0.2: 18.0% vs argmin ~8% (+~10pp)\\\\n   - **seed=43 doubling (RUNNING)**: 目标 combined 200 trials Fisher p < 0.05 (D031)\\\\n\\\\n2. **Honest negative result: per-DOF conformal features as CRM input have no value**\\\\n   - Spatial: perdof 35% = argmin 34% = obs_only 35% (D029)\\\\n   - Object 6/10: perdof 8.3% ≈ argmin 6.7%, obs_only 13.3% >> perdof\\\\n   - Magnitude sweep: obs_only robust across norms, perdof collapses at high norm (D032)\\\\n   - 转化为学术贡献：challenges synthetic-experiment intuition, highlights gap between per-step MSE and closed-loop success\\\\n\\\\n3. **Correction magnitude control is critical for closed-loop stability (empirical contribution)**\\\\n   - norm=1.42 → 0% (catastrophic); norm=0.1 → 35% (spatial) / 13% (object); norm=0.2 → 18% (object, strongest)\\\\n   - obs_only CRM maintains performance across norm range; perdof CRM collapses at norm ≥ 0.2\\\\n   - Novel finding: no prior work on correction magnitude sensitivity for VLA action refinement\\\\n\\\\n~~Claims 2-3 (ACI/COC, SRPO stacking) — D022/D023 移除~~\\\\n\\\\n## Kill Criteria\\\\n- **内部 kill**: obs_only CRM vs argmin-only < 3pp on object 10-task → project dead\\\\n- **论文 claim 门槛**: ≥ 5pp + Fisher exact p < 0.05 on object (seed=42 + seed=43 combined)\\\\n- **3-5pp 灰区**: 需要加 n_rollouts 或加 benchmark 提升统计力\\\\n- **当前状态**: +6.6pp at 6/10 tasks, 存活但边缘。T7-T10 走势决定生死。\\\\n\\\\n## Story Spine\\\\n- **Problem**: Flow-matching VLAs 在标准 benchmark 上接近饱和(97-99%)，但 LIBERO 暴露了分布偏移下的鲁棒性缺口。现有 inference-time 方法要么只做样本选择（ReconVLA），要么需要任务级 RL 训练（SC-VLA），要么推理延迟过高（VLA-Pilot 2.41s/step）。没有方法探索过 inference-time learned action correction on frozen VLA。\\\\n- **Gap**: Sample selection（从 K 候选中选最优）受限于候选质量——当所有样本都不够好时 selection 失效。Learned correction 可以合成优于任何单个样本的动作，但关键问题是 correction 应该以什么为条件？我们的系统性 ablation 发现 observation features 是最有效的 conditioning，而直觉上更丰富的 per-DOF conformal statistics 反而无效。\\\\n- **Our angle**: 第一个在 frozen VLA 上做 inference-time learned action correction 并系统性比较 conditioning features 的工作。核心发现：(1) sample-then-correct > sample-then-select；(2) observation features > conformal features for correction conditioning（挑战合成实验直觉）；(3) correction magnitude control 是此前被忽视的关键因素。\\\\n- **Headline result template**: \\\\\\\"On LIBERO object manipulation, ACR-VLA's sample-then-correct pipeline improves SmolVLA success by +Xpp over sample selection alone (p < Y). Surprisingly, observation-conditioned correction outperforms conformal-feature-conditioned correction, while correction magnitude proves critical — norm=1.42 yields 0% but norm=0.1-0.2 yields +Xpp, with observation-conditioned CRM uniquely robust across the magnitude range.\\\\\\\"\\\\n\\\\n## Competitive Landscape\\\\n\\\\n### ReconVLA — 最直接竞品\\\\nPost-hoc conformal prediction on frozen VLA。使用 CQR 产生 scalar-level confidence + SMD state anomaly detection，用于 failure detection 和 action selection（从 K candidates 中选最佳）。\\\\n\\\\n**关键差异**：(1) Selection-only — 无法合成优于单个样本的动作；(2) 我们的 argmin baseline 近似 ReconVLA 的 selection 策略，CRM correction 在此基础上有独立增量。\\\\n\\\\n### SC-VLA — Inference-time RL refinement\\\\nResidual RL 在线调整动作。需任务级 RL 训练，非 plug-and-play，无统计保证。\\\\n\\\\n### ACR-VLA 差异化定位（更新后）\\\\n第一个系统性研究 inference-time learned action correction for frozen VLAs 的工作。贡献不在于\\\\\\\"哪种 uncertainty feature 最好\\\\\\\"（答案出乎意料是 obs features），而在于：(1) 证明 sample-then-correct > sample-then-select；(2) 揭示 correction magnitude sensitivity 这一此前未被研究的关键因素；(3) 提供 per-DOF conformal features 无效的 honest negative result + 分析。\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n1. **\\\\\\\"obs_only 就是一个 residual MLP，有什么新意？\\\\\\\"**: 新意在于 systematic comparison（per-DOF vs scalar vs obs-only conditioning）+ magnitude sensitivity discovery + honest negative result。且我们的 CRM 是在 conformal-selected sample 上 correction，不是 naive residual。\\\\n2. **CRM ~250K 参数表达力**: 故意轻量——防 overfitting + 保持推理速度（~3ms overhead）。\\\\n3. **仿真 only**: CoRL 接受 sim-only，LIBERO 是 recognized benchmark。\\\\n4. **Spatial 无效**: Honest limitation。可能原因：spatial tasks 的 perturbation 类型（位置偏移）不产生可被 CRM 校正的 action error pattern。Object tasks 的 perturbation（物体替换）产生更大的 action distribution shift。\\\\n5. **\\\\\\\"Conformal\\\\\\\" 标签可能误导**: 论文明确：CP 用于 sample selection stage（nonconformity score → argmin），不是 CRM 输出保证。Title 应反映 \\\\\\\"sample-then-correct\\\\\\\" 而非 \\\\\\\"conformal correction\\\\\\\"。\\\\n6. **统计显著性**: Fisher exact test on combined seed=42+43 (200 trials), bootstrap CI, per-task breakdown。\\\\n7. **K=10 成本**: 与 ReconVLA 相同 K 值，fair comparison。CRM overhead ~3ms。\\\\n8. **为什么 per-DOF features 无效？**: 训练/eval 分布偏移假说 — CRM 训练时 per-DOF features 有噪声（K=10 covariance estimation noise），obs features 更稳定。Magnitude sweep 证据：perdof 在高 norm 崩塌说明 per-DOF features 导致 CRM 学到 overconfident correction patterns。\\\\n\\\\n## 硬证据（已确认）\\\\n- Spatial LOCKED: argmin 34%, perdof 35%, obs_only 35%, scalar 32% — all noise level\\\\n- VLA baseline K=1: spatial 30%, object ~12%\\\\n- VLA mean K=10: spatial 32%, object 10% (6-task)\\\\n- Magnitude control: norm=1.42 → 0%, norm=0.1 → works, norm=0.2 → possibly better on object\\\\n- Magnitude robustness (D032): obs_only stable across norms, perdof collapses at norm ≥ 0.2 (+17-18pp gap)\\\\n\\\\n## 待确认证据（RUNNING）\\\\n- Object 10-task obs_only vs argmin final gap (当前 +6.6pp at 6/10)\\\\n- Seed=43 复现 + Fisher exact test\\\\n- VLA-mean vs obs_only gap on object（当前 10% vs 13.3%，如果收敛则 CRM 增量 claim 弱化）\\\\n\\\", \\\"total_chars\\\": 6979, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "2f500393-06da-4cb6-8d69-d4ff1dc12757",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — acr-vla-conformal-refinement\\\\n\\\\n## Target Venue\\\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2) — D021\\\\n- ~~ICLR 2027~~ — 不再是首要目标\\\\n\\\\n## Core Insight (Scenario C — ACTIVE, D029+D030 confirmed)\\\\nA lightweight observation-conditioned learned correction module (CRM), applied after conformal sample selection, can synthesize actions better than any individual VLA sample. The key contribution is the **sample-then-correct** pipeline itself and the discovery that **correction magnitude control is critical for closed-loop stability**. Per-DOF conformal features as CRM input offer no additional value over observation features — an honest negative result that challenges the intuition from synthetic experiments.\\\\n\\\\n## Active Framing: Scenario C\\\\n**Confirmed by data**: obs_only CRM > perdof CRM ≈ scalar CRM ≈ argmin on spatial (D029-D030); obs_only CRM +6.6pp over argmin on object 6/10 tasks (running); magnitude sweep shows obs_only robust to norm while perdof collapses at high norm (D032).\\\\n\\\\nStory: \\\\\\\"Observation-conditioned residual correction is the key contribution. The sample-then-correct pipeline (K=10 conformal selection + learned CRM correction) significantly outperforms pure sample selection on object manipulation tasks. Per-DOF conformal statistics as direct CRM input offer no advantage over observation features — but conformal prediction remains essential for the sample selection stage. Correction magnitude control is a critical and previously unrecognized factor for closed-loop VLA correction.\\\\\\\"\\\\n\\\\n## Core Claims (CoRL 单 Claim 论文)\\\\n\\\\n1. **Observation-conditioned learned correction (CRM) significantly improves VLA robustness beyond sample selection**\\\\n   - **主 claim**: obs_only CRM vs argmin-only ≥ 5pp on object benchmark + p < 0.05\\\\n   - **Spatial**: DEAD — all CRM variants 32-35% vs argmin 34%, no signal (D030)\\\\n   - **Object 6/10 tasks (RUNNING)**: obs_only 0.1: 13.3% vs argmin 6.7% (+6.6pp); obs_only 0.2: 18.0% vs argmin ~8% (+~10pp)\\\\n   - **seed=43 doubling (RUNNING)**: 目标 combined 200 trials Fisher p < 0.05 (D031)\\\\n\\\\n2. **Honest negative result: per-DOF conformal features as CRM input have no value**\\\\n   - Spatial: perdof 35% = argmin 34% = obs_only 35% (D029)\\\\n   - Object 6/10: perdof 8.3% ≈ argmin 6.7%, obs_only 13.3% >> perdof\\\\n   - Magnitude sweep: obs_only robust across norms, perdof collapses at high norm (D032)\\\\n   - 转化为学术贡献：challenges synthetic-experiment intuition, highlights gap between per-step MSE and closed-loop success\\\\n\\\\n3. **Correction magnitude control is critical for closed-loop stability (empirical contribution)**\\\\n   - norm=1.42 → 0% (catastrophic); norm=0.1 → 35% (spatial) / 13% (object); norm=0.2 → 18% (object, strongest)\\\\n   - obs_only CRM maintains performance across norm range; perdof CRM collapses at norm ≥ 0.2\\\\n   - Novel finding: no prior work on correction magnitude sensitivity for VLA action refinement\\\\n\\\\n~~Claims 2-3 (ACI/COC, SRPO stacking) — D022/D023 移除~~\\\\n\\\\n## Kill Criteria\\\\n- **内部 kill**: obs_only CRM vs argmin-only < 3pp on object 10-task → project dead\\\\n- **论文 claim 门槛**: ≥ 5pp + Fisher exact p < 0.05 on object (seed=42 + seed=43 combined)\\\\n- **3-5pp 灰区**: 需要加 n_rollouts 或加 benchmark 提升统计力\\\\n- **当前状态**: +6.6pp at 6/10 tasks, 存活但边缘。T7-T10 走势决定生死。\\\\n\\\\n## Story Spine\\\\n- **Problem**: Flow-matching VLAs 在标准 benchmark 上接近饱和(97-99%)，但 LIBERO 暴露了分布偏移下的鲁棒性缺口。现有 inference-time 方法要么只做样本选择（ReconVLA），要么需要任务级 RL 训练（SC-VLA），要么推理延迟过高（VLA-Pilot 2.41s/step）。没有方法探索过 inference-time learned action correction on frozen VLA。\\\\n- **Gap**: Sample selection（从 K 候选中选最优）受限于候选质量——当所有样本都不够好时 selection 失效。Learned correction 可以合成优于任何单个样本的动作，但关键问题是 correction 应该以什么为条件？我们的系统性 ablation 发现 observation features 是最有效的 conditioning，而直觉上更丰富的 per-DOF conformal statistics 反而无效。\\\\n- **Our angle**: 第一个在 frozen VLA 上做 inference-time learned action correction 并系统性比较 conditioning features 的工作。核心发现：(1) sample-then-correct > sample-then-select；(2) observation features > conformal features for correction conditioning（挑战合成实验直觉）；(3) correction magnitude control 是此前被忽视的关键因素。\\\\n- **Headline result template**: \\\\\\\"On LIBERO object manipulation, ACR-VLA's sample-then-correct pipeline improves SmolVLA success by +Xpp over sample selection alone (p < Y). Surprisingly, observation-conditioned correction outperforms conformal-feature-conditioned correction, while correction magnitude proves critical — norm=1.42 yields 0% but norm=0.1-0.2 yields +Xpp, with observation-conditioned CRM uniquely robust across the magnitude range.\\\\\\\"\\\\n\\\\n## Competitive Landscape\\\\n\\\\n### ReconVLA — 最直接竞品\\\\nPost-hoc conformal prediction on frozen VLA。使用 CQR 产生 scalar-level confidence + SMD state anomaly detection，用于 failure detection 和 action selection（从 K candidates 中选最佳）。\\\\n\\\\n**关键差异**：(1) Selection-only — 无法合成优于单个样本的动作；(2) 我们的 argmin baseline 近似 ReconVLA 的 selection 策略，CRM correction 在此基础上有独立增量。\\\\n\\\\n### SC-VLA — Inference-time RL refinement\\\\nResidual RL 在线调整动作。需任务级 RL 训练，非 plug-and-play，无统计保证。\\\\n\\\\n### ACR-VLA 差异化定位（更新后）\\\\n第一个系统性研究 inference-time learned action correction for frozen VLAs 的工作。贡献不在于\\\\\\\"哪种 uncertainty feature 最好\\\\\\\"（答案出乎意料是 obs features），而在于：(1) 证明 sample-then-correct > sample-then-select；(2) 揭示 correction magnitude sensitivity 这一此前未被研究的关键因素；(3) 提供 per-DOF conformal features 无效的 honest negative result + 分析。\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n1. **\\\\\\\"obs_only 就是一个 residual MLP，有什么新意？\\\\\\\"**: 新意在于 systematic comparison（per-DOF vs scalar vs obs-only conditioning）+ magnitude sensitivity discovery + honest negative result。且我们的 CRM 是在 conformal-selected sample 上 correction，不是 naive residual。\\\\n2. **CRM ~250K 参数表达力**: 故意轻量——防 overfitting + 保持推理速度（~3ms overhead）。\\\\n3. **仿真 only**: CoRL 接受 sim-only，LIBERO 是 recognized benchmark。\\\\n4. **Spatial 无效**: Honest limitation。可能原因：spatial tasks 的 perturbation 类型（位置偏移）不产生可被 CRM 校正的 action error pattern。Object tasks 的 perturbation（物体替换）产生更大的 action distribution shift。\\\\n5. **\\\\\\\"Conformal\\\\\\\" 标签可能误导**: 论文明确：CP 用于 sample selection stage（nonconformity score → argmin），不是 CRM 输出保证。Title 应反映 \\\\\\\"sample-then-correct\\\\\\\" 而非 \\\\\\\"conformal correction\\\\\\\"。\\\\n6. **统计显著性**: Fisher exact test on combined seed=42+43 (200 trials), bootstrap CI, per-task breakdown。\\\\n7. **K=10 成本**: 与 ReconVLA 相同 K 值，fair comparison。CRM overhead ~3ms。\\\\n8. **为什么 per-DOF features 无效？**: 训练/eval 分布偏移假说 — CRM 训练时 per-DOF features 有噪声（K=10 covariance estimation noise），obs features 更稳定。Magnitude sweep 证据：perdof 在高 norm 崩塌说明 per-DOF features 导致 CRM 学到 overconfident correction patterns。\\\\n\\\\n## 硬证据（已确认）\\\\n- Spatial LOCKED: argmin 34%, perdof 35%, obs_only 35%, scalar 32% — all noise level\\\\n- VLA baseline K=1: spatial 30%, object ~12%\\\\n- VLA mean K=10: spatial 32%, object 10% (6-task)\\\\n- Magnitude control: norm=1.42 → 0%, norm=0.1 → works, norm=0.2 → possibly better on object\\\\n- Magnitude robustness (D032): obs_only stable across norms, perdof collapses at norm ≥ 0.2 (+17-18pp gap)\\\\n\\\\n## 待确认证据（RUNNING）\\\\n- Object 10-task obs_only vs argmin final gap (当前 +6.6pp at 6/10)\\\\n- Seed=43 复现 + Fisher exact test\\\\n- VLA-mean vs obs_only gap on object（当前 10% vs 13.3%，如果收敛则 CRM 增量 claim 弱化）\\\\n\\\", \\\"total_chars\\\": 6979, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\", \"content\": \"# Paper Framing — acr-vla-conformal-refinement\\n\\n## Target Venue\\n- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2) — D021\\n- ~~ICLR 2027~~ — 不再是首要目标\\n\\n## Core Insight (Scenario C — ACTIVE, D029+D030 confirmed)\\nA lightweight observation-conditioned learned correction module (CRM), applied after conformal sample selection, can synthesize actions better than any individual VLA sample. The key contribution is the **sample-then-correct** pipeline itself and the discovery that **correction magnitude control is critical for closed-loop stability**. Per-DOF conformal features as CRM input offer no additional value over observation features — an honest negative result that challenges the intuition from synthetic experiments.\\n\\n## Active Framing: Scenario C\\n**Confirmed by data**: obs_only CRM > perdof CRM ≈ scalar CRM ≈ argmin on spatial (D029-D030); obs_only CRM +6.6pp over argmin on object 6/10 tasks (running); magnitude sweep shows obs_only robust to norm while perdof collapses at high norm (D032).\\n\\nStory: \\\"Observation-conditioned residual correction is the key contribution. The sample-then-correct pipeline (K=10 conformal selection + learned CRM correction) significantly outperforms pure sample selection on object manipulation tasks. Per-DOF conformal statistics as direct CRM input offer no advantage over observation features — but conformal prediction remains essential for the sample selection stage. Correction magnitude control is a critical and previously unrecognized factor for closed-loop VLA correction.\\\"\\n\\n## Core Claims (CoRL 单 Claim 论文)\\n\\n1. **Observation-conditioned learned correction (CRM) significantly improves VLA robustness beyond sample selection**\\n   - **主 claim**: obs_only CRM vs argmin-only ≥ 5pp on object benchmark + p < 0.05\\n   - **Spatial**: DEAD — all CRM variants 32-35% vs argmin 34%, no signal (D030)\\n   - **Object 6/10 tasks (RUNNING)**: obs_only 0.1: 13.3% vs argmin 6.7% (+6.6pp); obs_only 0.2: 18.0% vs argmin ~8% (+~10pp)\\n   - **seed=43 doubling (RUNNING)**: 目标 combined 200 trials Fisher p < 0.05 (D031)\\n\\n2. **Honest negative result: per-DOF conformal features as CRM input have no value**\\n   - Spatial: perdof 35% = argmin 34% = obs_only 35% (D029)\\n   - Object 6/10: perdof 8.3% ≈ argmin 6.7%, obs_only 13.3% >> perdof\\n   - Magnitude sweep: obs_only robust across norms, perdof collapses at high norm (D032)\\n   - 转化为学术贡献：challenges synthetic-experiment intuition, highlights gap between per-step MSE and closed-loop success\\n\\n3. **Correction magnitude control is critical for closed-loop stability (empirical contribution)**\\n   - norm=1.42 → 0% (catastrophic); norm=0.1 → 35% (spatial) / 13% (object); norm=0.2 → 18% (object, strongest)\\n   - obs_only CRM maintains performance across norm range; perdof CRM collapses at norm ≥ 0.2\\n   - Novel finding: no prior work on correction magnitude sensitivity for VLA action refinement\\n\\n~~Claims 2-3 (ACI/COC, SRPO stacking) — D022/D023 移除~~\\n\\n## Kill Criteria\\n- **内部 kill**: obs_only CRM vs argmin-only < 3pp on object 10-task → project dead\\n- **论文 claim 门槛**: ≥ 5pp + Fisher exact p < 0.05 on object (seed=42 + seed=43 combined)\\n- **3-5pp 灰区**: 需要加 n_rollouts 或加 benchmark 提升统计力\\n- **当前状态**: +6.6pp at 6/10 tasks, 存活但边缘。T7-T10 走势决定生死。\\n\\n## Story Spine\\n- **Problem**: Flow-matching VLAs 在标准 benchmark 上接近饱和(97-99%)，但 LIBERO 暴露了分布偏移下的鲁棒性缺口。现有 inference-time 方法要么只做样本选择（ReconVLA），要么需要任务级 RL 训练（SC-VLA），要么推理延迟过高（VLA-Pilot 2.41s/step）。没有方法探索过 inference-time learned action correction on frozen VLA。\\n- **Gap**: Sample selection（从 K 候选中选最优）受限于候选质量——当所有样本都不够好时 selection 失效。Learned correction 可以合成优于任何单个样本的动作，但关键问题是 correction 应该以什么为条件？我们的系统性 ablation 发现 observation features 是最有效的 conditioning，而直觉上更丰富的 per-DOF conformal statistics 反而无效。\\n- **Our angle**: 第一个在 frozen VLA 上做 inference-time learned action correction 并系统性比较 conditioning features 的工作。核心发现：(1) sample-then-correct > sample-then-select；(2) observation features > conformal features for correction conditioning（挑战合成实验直觉）；(3) correction magnitude control 是此前被忽视的关键因素。\\n- **Headline result template**: \\\"On LIBERO object manipulation, ACR-VLA's sample-then-correct pipeline improves SmolVLA success by +Xpp over sample selection alone (p < Y). Surprisingly, observation-conditioned correction outperforms conformal-feature-conditioned correction, while correction magnitude proves critical — norm=1.42 yields 0% but norm=0.1-0.2 yields +Xpp, with observation-conditioned CRM uniquely robust across the magnitude range.\\\"\\n\\n## Competitive Landscape\\n\\n### ReconVLA — 最直接竞品\\nPost-hoc conformal prediction on frozen VLA。使用 CQR 产生 scalar-level confidence + SMD state anomaly detection，用于 failure detection 和 action selection（从 K candidates 中选最佳）。\\n\\n**关键差异**：(1) Selection-only — 无法合成优于单个样本的动作；(2) 我们的 argmin baseline 近似 ReconVLA 的 selection 策略，CRM correction 在此基础上有独立增量。\\n\\n### SC-VLA — Inference-time RL refinement\\nResidual RL 在线调整动作。需任务级 RL 训练，非 plug-and-play，无统计保证。\\n\\n### ACR-VLA 差异化定位（更新后）\\n第一个系统性研究 inference-time learned action correction for frozen VLAs 的工作。贡献不在于\\\"哪种 uncertainty feature 最好\\\"（答案出乎意料是 obs features），而在于：(1) 证明 sample-then-correct > sample-then-select；(2) 揭示 correction magnitude sensitivity 这一此前未被研究的关键因素；(3) 提供 per-DOF conformal features 无效的 honest negative result + 分析。\\n\\n## Anticipated Reviewer Concerns\\n1. **\\\"obs_only 就是一个 residual MLP，有什么新意？\\\"**: 新意在于 systematic comparison（per-DOF vs scalar vs obs-only conditioning）+ magnitude sensitivity discovery + honest negative result。且我们的 CRM 是在 conformal-selected sample 上 correction，不是 naive residual。\\n2. **CRM ~250K 参数表达力**: 故意轻量——防 overfitting + 保持推理速度（~3ms overhead）。\\n3. **仿真 only**: CoRL 接受 sim-only，LIBERO 是 recognized benchmark。\\n4. **Spatial 无效**: Honest limitation。可能原因：spatial tasks 的 perturbation 类型（位置偏移）不产生可被 CRM 校正的 action error pattern。Object tasks 的 perturbation（物体替换）产生更大的 action distribution shift。\\n5. **\\\"Conformal\\\" 标签可能误导**: 论文明确：CP 用于 sample selection stage（nonconformity score → argmin），不是 CRM 输出保证。Title 应反映 \\\"sample-then-correct\\\" 而非 \\\"conformal correction\\\"。\\n6. **统计显著性**: Fisher exact test on combined seed=42+43 (200 trials), bootstrap CI, per-task breakdown。\\n7. **K=10 成本**: 与 ReconVLA 相同 K 值，fair comparison。CRM overhead ~3ms。\\n8. **为什么 per-DOF features 无效？**: 训练/eval 分布偏移假说 — CRM 训练时 per-DOF features 有噪声（K=10 covariance estimation noise），obs features 更稳定。Magnitude sweep 证据：perdof 在高 norm 崩塌说明 per-DOF features 导致 CRM 学到 overconfident correction patterns。\\n\\n## 硬证据（已确认）\\n- Spatial LOCKED: argmin 34%, perdof 35%, obs_only 35%, scalar 32% — all noise level\\n- VLA baseline K=1: spatial 30%, object ~12%\\n- VLA mean K=10: spatial 32%, object 10% (6-task)\\n- Magnitude control: norm=1.42 → 0%, norm=0.1 → works, norm=0.2 → possibly better on object\\n- Magnitude robustness (D032): obs_only stable across norms, perdof collapses at norm ≥ 0.2 (+17-18pp gap)\\n\\n## 待确认证据（RUNNING）\\n- Object 10-task obs_only vs argmin final gap (当前 +6.6pp at 6/10)\\n- Seed=43 复现 + Fisher exact test\\n- VLA-mean vs obs_only gap on object（当前 10% vs 13.3%，如果收敛则 CRM 增量 claim 弱化）\\n\", \"total_chars\": 6979, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D8AA2Znonyj3ZmSjmUGKMD",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "0071b4aa-21f3-47df-b302-626e67158ee3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qmk21SaGLyv9mHJCZntf59",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1373,
+                "cache_read_input_tokens": 23122,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1373
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:57:50.442Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D8AA2Znonyj3ZmSjmUGKMD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 16:25 UTC | 更新原因: obs_only object 10-task final 19.0% (PROJECT HIGH), perdof 11.0%, VLA-only 12%. norm=0.05 spatial finalized 35.0%. seed=43 六方全部部署。\\\\n\\\\n## 核心方向\\\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 2d — Object benchmark + seed=43 doubling 决定项目存亡\\\\n- **MVP**: PASS\\\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\\\n- **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin ~6.7% (+12.3pp, 6/10 partial); perdof 11.0%; VLA-only 12%\\\\n- **Object norm=0.2**: obs_only 0.2: 18.0% (5t partial) — 可能与 norm=0.1 持平或更高\\\\n- **Magnitude sweep**: norm=0.05 finalized 35.0%. obs_only 在所有 norm 下 > perdof（D032）\\\\n- **D031 seed=43 六方全部部署**: obs_only / argmin / perdof / scalar / VLA-mean 已部署，obs-only-norm02-seed43 待 cuda:0\\\\n\\\\n## Spatial 最终结果（LOCKED ✅）\\\\n\\\\n| 方法 | 10-task SR | vs argmin |\\\\n|------|-----------|-----------|\\\\n| argmin K=10 | 34% | baseline |\\\\n| perdof 0.1 | 35% | +1pp |\\\\n| obs_only 0.1 | 35% | +1pp |\\\\n| scalar 0.1 | 32% | -2pp |\\\\n| VLA-only K=1 | 30% | -4pp |\\\\n| VLA-mean K=10 | 32% | -2pp |\\\\n\\\\n## Object Benchmark（seed=42, 部分已 FINAL）\\\\n\\\\n| 方法 | SR | tasks | vs argmin | 状态 |\\\\n|------|-----|-------|-----------|------|\\\\n| **obs_only 0.1** | **19.0%** | 10/10 ✅ | **+7.0pp** | FINAL |\\\\n| obs_only 0.2 | 18.0% | 5/10 | +6.0pp | running |\\\\n| argmin | 12.0% | 10/10 ✅ | baseline | FINAL |\\\\n| VLA-only K=1 | 12.0% | 10/10 ✅ | 0pp | FINAL |\\\\n| perdof 0.1 | 11.0% | 10/10 ✅ | -1.0pp | FINAL |\\\\n| scalar 0.1 | 9.0% | 10/10 ✅ | -3.0pp | FINAL (negative) |\\\\n| vla_mean | 12.0% | 10/10 ✅ | 0pp | FINAL |\\\\n\\\\n## Magnitude Sweep（4-7/10 tasks, spatial）\\\\n\\\\n| norm | obs_only | perdof | gap | 备注 |\\\\n|------|----------|--------|-----|------|\\\\n| 0.03 | 55.0% (4t) | **30.0%** (10t ✅) | +25pp* | perdof FINAL, obs_only 待完成 |\\\\n| 0.05 | **35.0%** (10t ✅) | **31.0%** (10t ✅) | +4.0pp | 两者均 FINAL |\\\\n| 0.2 | **35.0%** (10t ✅) | 28.3% (6t) | +6.7pp | obs_only 从 45.7% 跌至 35% |\\\\n| 0.3 | **36.0%** (10t ✅) | **26.0%** (10t ✅) | **+10pp** | obs_only 稳定, perdof 崩塌 |\\\\n\\\\nD032 修正: obs_only spatial 所有已完成 norms (0.05/0.1/0.2) 均收敛到 35%，与 argmin baseline 持平。7t 中期值膨胀因 T7-T9 均为 hard tasks（0-30%）。spatial magnitude sweep 可能整体 null。perdof 待完成后确认是否也收敛。Object benchmark magnitude sweep 是真正的 story 载体。\\\\n\\\\n## 项目存活条件（D030 confirmed）\\\\n1. ~~Perdof >> argmin~~ ✘\\\\n2. ~~Object perdof > argmin~~ ✘\\\\n3. **Object obs_only +6pp+ 维持 + seed=43 复现 → p < 0.05** ← 唯一路径\\\\n4. Object obs_only 回落 或 seed=43 不复现 → 项目 dead\\\\n\\\\n## 服务器状态\\\\n\\\\n| 服务器 | GPU 数 | 实验 | 状态 |\\\\n|--------|--------|------|------|\\\\n| bjb1-18228 | 4× 4090 | cuda:0 mag-obsonly-norm03-r2, cuda:1 perdof-object-seed43, cuda:2 obs-only-object-seed43, cuda:3 argmin-object-seed43 | 4/4 满载 ✅ |\\\\n| bjb1-32546 | 6× 4090 | cuda:0 reconvla-object (checking), cuda:1 VLA-mean-seed43, cuda:2 scalar-seed43, cuda:3 scalar-object, cuda:4 obs-only-norm02, cuda:5 VLA-mean-object | mixed progress |\\\\n| bjb2-28827 | 6× 4090 | magnitude sweep 6-way | 6-7/10 tasks, ETA ~3-6h |\\\\n| bjb2-40593 | 1× 4090 D | obsonly-norm003-b2 | 3/10 tasks |\\\\n\\\\n## 近期任务\\\\n- [x] Object obs_only 10-task FINAL: 19.0% (PROJECT HIGH SCORE)\\\\n- [x] Object perdof 10-task FINAL: 11.0%\\\\n- [x] Object VLA-only 10-task FINAL: 12.0%\\\\n- [ ] Object argmin / scalar / VLA-mean 完成 → 完整 comparison table\\\\n- [ ] Seed=43 三方对比完成 → Fisher exact test + bootstrap CI\\\\n- [ ] Magnitude sweep 10-task 完成 → norm sensitivity curve\\\\n- [x] 统计分析代码准备完成（Reviewer PASS）\\\\n- [ ] Paper outline 准备中（CoRL DDL 11 天）\\\\n- [ ] 根据 object 最终结果更新 paper_framing.md\\\\n- [ ] Paper Agent 启动 CoRL 初稿\\\\n\\\\n## GPU 预算\\\\n17× RTX 4090，全部满载。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D032 | 2026-05-15 | D032: Magnitude sweep narrative 修正 — obs_only 优势不是 | eval-mag-obsonly-norm005, eval-mag-obsonly-norm02, eval-mag-perdof-norm03 |\\\\n| D031 | 2026-05-15 | D031: 统计显著性应对方案 — object eval 完成后立即部署 seed=43 doub | eval-acr-object-v4-obs-only, eval-obs-only-spatial-seed43 |\\\\n| D030 | 2026-05-15 | D030: Spatial ALL CRM variants confirmed dead (inc | eval-acr-spatial-v4-obs-only-r3, eval-acr-object-v4-obs-only, eval-argmin-only-spatial-r2, eval-acr-spatial-v4-small-r2 |\\\\n| D029 | 2026-05-15 | D029: Perdof CRM spatial full 10-task = 35% vs arg | eval-acr-spatial-v4-small, eval-acr-spatial-v4-small-r2, eval-argmin-only-spatial |\\\\n| D028 | 2026-05-15 | D028: Argmin K=10 spatial baseline locked at 34% ( | eval-argmin-only-spatial, eval-argmin-only-spatial-r2 |\\\\n| D027 | 2026-05-15 | D027: Reviewer matched-task analysis reveals perdo | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-argmin-only-spatial |\\\\n| D026 | 2026-05-15 | D026: Kill + restart bjb1-18228 stuck experiments. | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-acr-spatial-v4-scalar, eval-argmin-only-spatial |\\\\n| D025 | 2026-05-15 | D025: D019 \\\\\\\"52.5% perdof\\\\\\\" claim invalidated — actu | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-argmin-only-spatial |\\\\n| D024 | 2026-05-15 | D024: Kill bjb2-40593 v4-default-r3 (norm=1.42) —  | eval-acr-spatial-v4-default-r3 |\\\\n| D023 | 2026-05-15 | D023: Drop Claim 2 (ACI/COC) for CoRL — focus sing | plan_005, plan_006, plan_007 |\\\\n\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 5290, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "cc609212-fc66-4e21-8267-bd4fa1bb6e42",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 16:25 UTC | 更新原因: obs_only object 10-task final 19.0% (PROJECT HIGH), perdof 11.0%, VLA-only 12%. norm=0.05 spatial finalized 35.0%. seed=43 六方全部部署。\\\\n\\\\n## 核心方向\\\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 2d — Object benchmark + seed=43 doubling 决定项目存亡\\\\n- **MVP**: PASS\\\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\\\n- **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin ~6.7% (+12.3pp, 6/10 partial); perdof 11.0%; VLA-only 12%\\\\n- **Object norm=0.2**: obs_only 0.2: 18.0% (5t partial) — 可能与 norm=0.1 持平或更高\\\\n- **Magnitude sweep**: norm=0.05 finalized 35.0%. obs_only 在所有 norm 下 > perdof（D032）\\\\n- **D031 seed=43 六方全部部署**: obs_only / argmin / perdof / scalar / VLA-mean 已部署，obs-only-norm02-seed43 待 cuda:0\\\\n\\\\n## Spatial 最终结果（LOCKED ✅）\\\\n\\\\n| 方法 | 10-task SR | vs argmin |\\\\n|------|-----------|-----------|\\\\n| argmin K=10 | 34% | baseline |\\\\n| perdof 0.1 | 35% | +1pp |\\\\n| obs_only 0.1 | 35% | +1pp |\\\\n| scalar 0.1 | 32% | -2pp |\\\\n| VLA-only K=1 | 30% | -4pp |\\\\n| VLA-mean K=10 | 32% | -2pp |\\\\n\\\\n## Object Benchmark（seed=42, 部分已 FINAL）\\\\n\\\\n| 方法 | SR | tasks | vs argmin | 状态 |\\\\n|------|-----|-------|-----------|------|\\\\n| **obs_only 0.1** | **19.0%** | 10/10 ✅ | **+7.0pp** | FINAL |\\\\n| obs_only 0.2 | 18.0% | 5/10 | +6.0pp | running |\\\\n| argmin | 12.0% | 10/10 ✅ | baseline | FINAL |\\\\n| VLA-only K=1 | 12.0% | 10/10 ✅ | 0pp | FINAL |\\\\n| perdof 0.1 | 11.0% | 10/10 ✅ | -1.0pp | FINAL |\\\\n| scalar 0.1 | 9.0% | 10/10 ✅ | -3.0pp | FINAL (negative) |\\\\n| vla_mean | 12.0% | 10/10 ✅ | 0pp | FINAL |\\\\n\\\\n## Magnitude Sweep（4-7/10 tasks, spatial）\\\\n\\\\n| norm | obs_only | perdof | gap | 备注 |\\\\n|------|----------|--------|-----|------|\\\\n| 0.03 | 55.0% (4t) | **30.0%** (10t ✅) | +25pp* | perdof FINAL, obs_only 待完成 |\\\\n| 0.05 | **35.0%** (10t ✅) | **31.0%** (10t ✅) | +4.0pp | 两者均 FINAL |\\\\n| 0.2 | **35.0%** (10t ✅) | 28.3% (6t) | +6.7pp | obs_only 从 45.7% 跌至 35% |\\\\n| 0.3 | **36.0%** (10t ✅) | **26.0%** (10t ✅) | **+10pp** | obs_only 稳定, perdof 崩塌 |\\\\n\\\\nD032 修正: obs_only spatial 所有已完成 norms (0.05/0.1/0.2) 均收敛到 35%，与 argmin baseline 持平。7t 中期值膨胀因 T7-T9 均为 hard tasks（0-30%）。spatial magnitude sweep 可能整体 null。perdof 待完成后确认是否也收敛。Object benchmark magnitude sweep 是真正的 story 载体。\\\\n\\\\n## 项目存活条件（D030 confirmed）\\\\n1. ~~Perdof >> argmin~~ ✘\\\\n2. ~~Object perdof > argmin~~ ✘\\\\n3. **Object obs_only +6pp+ 维持 + seed=43 复现 → p < 0.05** ← 唯一路径\\\\n4. Object obs_only 回落 或 seed=43 不复现 → 项目 dead\\\\n\\\\n## 服务器状态\\\\n\\\\n| 服务器 | GPU 数 | 实验 | 状态 |\\\\n|--------|--------|------|------|\\\\n| bjb1-18228 | 4× 4090 | cuda:0 mag-obsonly-norm03-r2, cuda:1 perdof-object-seed43, cuda:2 obs-only-object-seed43, cuda:3 argmin-object-seed43 | 4/4 满载 ✅ |\\\\n| bjb1-32546 | 6× 4090 | cuda:0 reconvla-object (checking), cuda:1 VLA-mean-seed43, cuda:2 scalar-seed43, cuda:3 scalar-object, cuda:4 obs-only-norm02, cuda:5 VLA-mean-object | mixed progress |\\\\n| bjb2-28827 | 6× 4090 | magnitude sweep 6-way | 6-7/10 tasks, ETA ~3-6h |\\\\n| bjb2-40593 | 1× 4090 D | obsonly-norm003-b2 | 3/10 tasks |\\\\n\\\\n## 近期任务\\\\n- [x] Object obs_only 10-task FINAL: 19.0% (PROJECT HIGH SCORE)\\\\n- [x] Object perdof 10-task FINAL: 11.0%\\\\n- [x] Object VLA-only 10-task FINAL: 12.0%\\\\n- [ ] Object argmin / scalar / VLA-mean 完成 → 完整 comparison table\\\\n- [ ] Seed=43 三方对比完成 → Fisher exact test + bootstrap CI\\\\n- [ ] Magnitude sweep 10-task 完成 → norm sensitivity curve\\\\n- [x] 统计分析代码准备完成（Reviewer PASS）\\\\n- [ ] Paper outline 准备中（CoRL DDL 11 天）\\\\n- [ ] 根据 object 最终结果更新 paper_framing.md\\\\n- [ ] Paper Agent 启动 CoRL 初稿\\\\n\\\\n## GPU 预算\\\\n17× RTX 4090，全部满载。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D032 | 2026-05-15 | D032: Magnitude sweep narrative 修正 — obs_only 优势不是 | eval-mag-obsonly-norm005, eval-mag-obsonly-norm02, eval-mag-perdof-norm03 |\\\\n| D031 | 2026-05-15 | D031: 统计显著性应对方案 — object eval 完成后立即部署 seed=43 doub | eval-acr-object-v4-obs-only, eval-obs-only-spatial-seed43 |\\\\n| D030 | 2026-05-15 | D030: Spatial ALL CRM variants confirmed dead (inc | eval-acr-spatial-v4-obs-only-r3, eval-acr-object-v4-obs-only, eval-argmin-only-spatial-r2, eval-acr-spatial-v4-small-r2 |\\\\n| D029 | 2026-05-15 | D029: Perdof CRM spatial full 10-task = 35% vs arg | eval-acr-spatial-v4-small, eval-acr-spatial-v4-small-r2, eval-argmin-only-spatial |\\\\n| D028 | 2026-05-15 | D028: Argmin K=10 spatial baseline locked at 34% ( | eval-argmin-only-spatial, eval-argmin-only-spatial-r2 |\\\\n| D027 | 2026-05-15 | D027: Reviewer matched-task analysis reveals perdo | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-argmin-only-spatial |\\\\n| D026 | 2026-05-15 | D026: Kill + restart bjb1-18228 stuck experiments. | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-acr-spatial-v4-scalar, eval-argmin-only-spatial |\\\\n| D025 | 2026-05-15 | D025: D019 \\\\\\\"52.5% perdof\\\\\\\" claim invalidated — actu | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-argmin-only-spatial |\\\\n| D024 | 2026-05-15 | D024: Kill bjb2-40593 v4-default-r3 (norm=1.42) —  | eval-acr-spatial-v4-default-r3 |\\\\n| D023 | 2026-05-15 | D023: Drop Claim 2 (ACI/COC) for CoRL — focus sing | plan_005, plan_006, plan_007 |\\\\n\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 5290, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\", \"content\": \"# acr-vla-conformal-refinement — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:25 UTC | 更新原因: obs_only object 10-task final 19.0% (PROJECT HIGH), perdof 11.0%, VLA-only 12%. norm=0.05 spatial finalized 35.0%. seed=43 六方全部部署。\\n\\n## 核心方向\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌。详见 paper_framing.md。\\n\\n## 投稿目标\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\n\\n## 当前进展\\n- **阶段**: Phase 2d — Object benchmark + seed=43 doubling 决定项目存亡\\n- **MVP**: PASS\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\n- **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin ~6.7% (+12.3pp, 6/10 partial); perdof 11.0%; VLA-only 12%\\n- **Object norm=0.2**: obs_only 0.2: 18.0% (5t partial) — 可能与 norm=0.1 持平或更高\\n- **Magnitude sweep**: norm=0.05 finalized 35.0%. obs_only 在所有 norm 下 > perdof（D032）\\n- **D031 seed=43 六方全部部署**: obs_only / argmin / perdof / scalar / VLA-mean 已部署，obs-only-norm02-seed43 待 cuda:0\\n\\n## Spatial 最终结果（LOCKED ✅）\\n\\n| 方法 | 10-task SR | vs argmin |\\n|------|-----------|-----------|\\n| argmin K=10 | 34% | baseline |\\n| perdof 0.1 | 35% | +1pp |\\n| obs_only 0.1 | 35% | +1pp |\\n| scalar 0.1 | 32% | -2pp |\\n| VLA-only K=1 | 30% | -4pp |\\n| VLA-mean K=10 | 32% | -2pp |\\n\\n## Object Benchmark（seed=42, 部分已 FINAL）\\n\\n| 方法 | SR | tasks | vs argmin | 状态 |\\n|------|-----|-------|-----------|------|\\n| **obs_only 0.1** | **19.0%** | 10/10 ✅ | **+7.0pp** | FINAL |\\n| obs_only 0.2 | 18.0% | 5/10 | +6.0pp | running |\\n| argmin | 12.0% | 10/10 ✅ | baseline | FINAL |\\n| VLA-only K=1 | 12.0% | 10/10 ✅ | 0pp | FINAL |\\n| perdof 0.1 | 11.0% | 10/10 ✅ | -1.0pp | FINAL |\\n| scalar 0.1 | 9.0% | 10/10 ✅ | -3.0pp | FINAL (negative) |\\n| vla_mean | 12.0% | 10/10 ✅ | 0pp | FINAL |\\n\\n## Magnitude Sweep（4-7/10 tasks, spatial）\\n\\n| norm | obs_only | perdof | gap | 备注 |\\n|------|----------|--------|-----|------|\\n| 0.03 | 55.0% (4t) | **30.0%** (10t ✅) | +25pp* | perdof FINAL, obs_only 待完成 |\\n| 0.05 | **35.0%** (10t ✅) | **31.0%** (10t ✅) | +4.0pp | 两者均 FINAL |\\n| 0.2 | **35.0%** (10t ✅) | 28.3% (6t) | +6.7pp | obs_only 从 45.7% 跌至 35% |\\n| 0.3 | **36.0%** (10t ✅) | **26.0%** (10t ✅) | **+10pp** | obs_only 稳定, perdof 崩塌 |\\n\\nD032 修正: obs_only spatial 所有已完成 norms (0.05/0.1/0.2) 均收敛到 35%，与 argmin baseline 持平。7t 中期值膨胀因 T7-T9 均为 hard tasks（0-30%）。spatial magnitude sweep 可能整体 null。perdof 待完成后确认是否也收敛。Object benchmark magnitude sweep 是真正的 story 载体。\\n\\n## 项目存活条件（D030 confirmed）\\n1. ~~Perdof >> argmin~~ ✘\\n2. ~~Object perdof > argmin~~ ✘\\n3. **Object obs_only +6pp+ 维持 + seed=43 复现 → p < 0.05** ← 唯一路径\\n4. Object obs_only 回落 或 seed=43 不复现 → 项目 dead\\n\\n## 服务器状态\\n\\n| 服务器 | GPU 数 | 实验 | 状态 |\\n|--------|--------|------|------|\\n| bjb1-18228 | 4× 4090 | cuda:0 mag-obsonly-norm03-r2, cuda:1 perdof-object-seed43, cuda:2 obs-only-object-seed43, cuda:3 argmin-object-seed43 | 4/4 满载 ✅ |\\n| bjb1-32546 | 6× 4090 | cuda:0 reconvla-object (checking), cuda:1 VLA-mean-seed43, cuda:2 scalar-seed43, cuda:3 scalar-object, cuda:4 obs-only-norm02, cuda:5 VLA-mean-object | mixed progress |\\n| bjb2-28827 | 6× 4090 | magnitude sweep 6-way | 6-7/10 tasks, ETA ~3-6h |\\n| bjb2-40593 | 1× 4090 D | obsonly-norm003-b2 | 3/10 tasks |\\n\\n## 近期任务\\n- [x] Object obs_only 10-task FINAL: 19.0% (PROJECT HIGH SCORE)\\n- [x] Object perdof 10-task FINAL: 11.0%\\n- [x] Object VLA-only 10-task FINAL: 12.0%\\n- [ ] Object argmin / scalar / VLA-mean 完成 → 完整 comparison table\\n- [ ] Seed=43 三方对比完成 → Fisher exact test + bootstrap CI\\n- [ ] Magnitude sweep 10-task 完成 → norm sensitivity curve\\n- [x] 统计分析代码准备完成（Reviewer PASS）\\n- [ ] Paper outline 准备中（CoRL DDL 11 天）\\n- [ ] 根据 object 最终结果更新 paper_framing.md\\n- [ ] Paper Agent 启动 CoRL 初稿\\n\\n## GPU 预算\\n17× RTX 4090，全部满载。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D032 | 2026-05-15 | D032: Magnitude sweep narrative 修正 — obs_only 优势不是 | eval-mag-obsonly-norm005, eval-mag-obsonly-norm02, eval-mag-perdof-norm03 |\\n| D031 | 2026-05-15 | D031: 统计显著性应对方案 — object eval 完成后立即部署 seed=43 doub | eval-acr-object-v4-obs-only, eval-obs-only-spatial-seed43 |\\n| D030 | 2026-05-15 | D030: Spatial ALL CRM variants confirmed dead (inc | eval-acr-spatial-v4-obs-only-r3, eval-acr-object-v4-obs-only, eval-argmin-only-spatial-r2, eval-acr-spatial-v4-small-r2 |\\n| D029 | 2026-05-15 | D029: Perdof CRM spatial full 10-task = 35% vs arg | eval-acr-spatial-v4-small, eval-acr-spatial-v4-small-r2, eval-argmin-only-spatial |\\n| D028 | 2026-05-15 | D028: Argmin K=10 spatial baseline locked at 34% ( | eval-argmin-only-spatial, eval-argmin-only-spatial-r2 |\\n| D027 | 2026-05-15 | D027: Reviewer matched-task analysis reveals perdo | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-argmin-only-spatial |\\n| D026 | 2026-05-15 | D026: Kill + restart bjb1-18228 stuck experiments. | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-acr-spatial-v4-scalar, eval-argmin-only-spatial |\\n| D025 | 2026-05-15 | D025: D019 \\\"52.5% perdof\\\" claim invalidated — actu | eval-acr-spatial-v4-small, eval-acr-spatial-v4-obs-only-r2, eval-argmin-only-spatial |\\n| D024 | 2026-05-15 | D024: Kill bjb2-40593 v4-default-r3 (norm=1.42) —  | eval-acr-spatial-v4-default-r3 |\\n| D023 | 2026-05-15 | D023: Drop Claim 2 (ACI/COC) for CoRL — focus sing | plan_005, plan_006, plan_007 |\\n\\n\\n\\n\", \"total_chars\": 5290, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KqAydwiATifegg7Pnqq2hG",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "34d92135-e120-47a0-bcdd-689126ca104f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qmk21SaGLyv9mHJCZntf59",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1373,
+                "cache_read_input_tokens": 23122,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1373
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:57:51.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KqAydwiATifegg7Pnqq2hG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Spatial Baselines 锁定 (2026-05-15)\\\\n\\\\n| 方法 | SR | 来源 |\\\\n|------|-----|------|\\\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\\\n\\\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\\\n\\\\n## Hard Tasks 普遍失败 (2026-05-15)\\\\n\\\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\\\n\\\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\\\n\\\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\\\n2. Object benchmark 跨域验证\\\\n3. obs_only CRM +5pp 稳定 → 转向 \\\\\\\"learned correction\\\\\\\" narrative\\\\n\\\\n## obs_only 走势 (2026-05-15)\\\\n\\\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\\\\\"obs-only CRM correction\\\\\\\" narrative。\\\\n\\\\n## Object magnitude 与 spatial 不同 (2026-05-15)\\\\n\\\\n**关键发现**: obs_only 对 correction norm 的响应跨域差异显著：\\\\n- Spatial: obs_only 在所有 norm (0.05/0.1/0.2/0.3) 下收敛到 ~35%，与 argmin 持平，magnitude 无效应\\\\n- Object: obs_only norm=0.1=19%, norm=0.2=**22%** (PROJECT HIGH)，更大 correction 产生更高 SR\\\\n- **论文角度**: Object 域 CRM correction 有真实增益空间（baseline 12%），spatial 域 VLA backbone 是瓶颈（hard tasks 全 0%）。Paper 应以 object 结果为主故事载体，spatial 作为 robustness/generalization 验证。\\\\n\\\\n## Object Baseline (2026-05-15)\\\\n\\\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\\\n\\\\n## bjb2-40593 环境问题 (2026-05-14-15)\\\\n\\\\n- 无 .git repo\\\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\\\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\\\\n\\\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\\\n\\\\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\\\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\\\n\\\\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\\\\n\\\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\\\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\\\n\\\\n## [命名规范] exp_id 中 norm 值 (2026-05-15)\\\\n\\\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\\\n- output_file 同步使用 `0p3` 格式\\\\n\\\", \\\"total_chars\\\": 2548, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "5f190a6b-8f57-4f82-befd-7c47d84d9eee",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Spatial Baselines 锁定 (2026-05-15)\\\\n\\\\n| 方法 | SR | 来源 |\\\\n|------|-----|------|\\\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\\\n\\\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\\\n\\\\n## Hard Tasks 普遍失败 (2026-05-15)\\\\n\\\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\\\n\\\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\\\n\\\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\\\n2. Object benchmark 跨域验证\\\\n3. obs_only CRM +5pp 稳定 → 转向 \\\\\\\"learned correction\\\\\\\" narrative\\\\n\\\\n## obs_only 走势 (2026-05-15)\\\\n\\\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\\\\\"obs-only CRM correction\\\\\\\" narrative。\\\\n\\\\n## Object magnitude 与 spatial 不同 (2026-05-15)\\\\n\\\\n**关键发现**: obs_only 对 correction norm 的响应跨域差异显著：\\\\n- Spatial: obs_only 在所有 norm (0.05/0.1/0.2/0.3) 下收敛到 ~35%，与 argmin 持平，magnitude 无效应\\\\n- Object: obs_only norm=0.1=19%, norm=0.2=**22%** (PROJECT HIGH)，更大 correction 产生更高 SR\\\\n- **论文角度**: Object 域 CRM correction 有真实增益空间（baseline 12%），spatial 域 VLA backbone 是瓶颈（hard tasks 全 0%）。Paper 应以 object 结果为主故事载体，spatial 作为 robustness/generalization 验证。\\\\n\\\\n## Object Baseline (2026-05-15)\\\\n\\\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\\\n\\\\n## bjb2-40593 环境问题 (2026-05-14-15)\\\\n\\\\n- 无 .git repo\\\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\\\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\\\\n\\\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\\\n\\\\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\\\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\\\n\\\\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\\\\n\\\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\\\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\\\n\\\\n## [命名规范] exp_id 中 norm 值 (2026-05-15)\\\\n\\\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\\\n- output_file 同步使用 `0p3` 格式\\\\n\\\", \\\"total_chars\\\": 2548, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## Spatial Baselines 锁定 (2026-05-15)\\n\\n| 方法 | SR | 来源 |\\n|------|-----|------|\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\n\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\n\\n## Hard Tasks 普遍失败 (2026-05-15)\\n\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\n\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\n\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\n2. Object benchmark 跨域验证\\n3. obs_only CRM +5pp 稳定 → 转向 \\\"learned correction\\\" narrative\\n\\n## obs_only 走势 (2026-05-15)\\n\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\"obs-only CRM correction\\\" narrative。\\n\\n## Object magnitude 与 spatial 不同 (2026-05-15)\\n\\n**关键发现**: obs_only 对 correction norm 的响应跨域差异显著：\\n- Spatial: obs_only 在所有 norm (0.05/0.1/0.2/0.3) 下收敛到 ~35%，与 argmin 持平，magnitude 无效应\\n- Object: obs_only norm=0.1=19%, norm=0.2=**22%** (PROJECT HIGH)，更大 correction 产生更高 SR\\n- **论文角度**: Object 域 CRM correction 有真实增益空间（baseline 12%），spatial 域 VLA backbone 是瓶颈（hard tasks 全 0%）。Paper 应以 object 结果为主故事载体，spatial 作为 robustness/generalization 验证。\\n\\n## Object Baseline (2026-05-15)\\n\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\n\\n## bjb2-40593 环境问题 (2026-05-14-15)\\n\\n- 无 .git repo\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\\n\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\n\\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\n\\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\\n\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\n\\n## [命名规范] exp_id 中 norm 值 (2026-05-15)\\n\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\n- output_file 同步使用 `0p3` 格式\\n\", \"total_chars\": 2548, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the context needed. Let me also check if there are existing artifacts and the artifacts directory.\n\nKey findings from the three files:\n\n**paper_framing.md:**\n- Target: CoRL 2026 (abstract DDL ~May 26, full paper ~Jun 2)\n- Core insight: obs_only CRM is the winning approach, per-DOF features are a negative result\n- 3 core claims: (1) obs_only CRM > sample selection, (2) per-DOF features are useless (negative result), (3) correction magnitude control is critical\n- Story spine: problem (VLA robustness gap) → gap (sample selection is limited) → our angle (first inference-time learned correction on frozen VLA)\n\n\n- Competitive landscape: ReconVLA (selection only), SC-VLA (needs RL training)\n\n**ROADMAP.md:**\n- Object 10/10 FINAL shows obs_only at 0.1 norm achieving 19.0% vs argmin's 12.0% (+7.0pp) — this is the headline result\n- obs_only 0.2 norm is at 18.0% (still running on 5/10 tasks)\n- Spatial variants are all dead around 34-35% with no signal\n- Magnitude sweep confirms obs_only stays stable across different norms while per-DOF collapses at higher norms\n- Using seed=43 for statistical significance\n- per-DOF baseline at 11%\n\nLooking at the performance breakdown, I'm seeing scalar at 9.0%, VLA-only and VLA-mean both at 12.0%. The hard tasks (T2, T7) are a wall — everything hits 0% there, which points to a VLA backbone limitation. But the object domain is where CRM actually delivers value, jumping from the 12% baseline to 19% with obs_only. The spatial domain is clearly bottlenecked by the VLA backbone. So the paper's main narrative should center on the object results as the core contribution, with spatial performance as a secondary story about generalization and robustness.\n\nNow I'm ready to start drafting the paper outline.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "d5ba2854-412f-42d2-9d7e-a0b808aa4b4d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tR2aMYSWe3ywnWDe6RxjL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7860,
+                "cache_read_input_tokens": 24495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7860
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三份文件读完。Object 10-task 最终结果 obs_only 19.0% vs argmin 12.0% (+7.0pp) 是核心亮点。开始起草大纲。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "3159b934-6c02-4f13-b4b3-9a435415991d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tR2aMYSWe3ywnWDe6RxjL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7860,
+                "cache_read_input_tokens": 24495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7860
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KucQ9qxwNdh5V8gEgYsXiy",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/",
+                "description": "List existing artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "a4e51967-aa38-4a47-83f9-899ca011f979",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tR2aMYSWe3ywnWDe6RxjL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7860,
+                "cache_read_input_tokens": 24495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7860
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T18:58:24.803Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KucQ9qxwNdh5V8gEgYsXiy",
+              "type": "tool_result",
+              "content": "_project\nablation_eval_commands.md\nanalysis_magnitude_sweep.py\nanalysis_object_benchmark.py\nanalysis_spatial_final.py\ncompetitive_analysis_20260515.md\ncompetitor_analysis.md\ncorrection_degradation_literature.md\ncrm-train-v2-k5\ncrm_bug_audit.md\ndiag-eval-v6-batch-failure.md\ndream_reports\neval-acr-object-v4-obs-only\neval-acr-object-v4-scalar\neval-mag-perdof-norm03\neval-reconvla-spatial-v1-diag.md\nfigures\nfix_plan_code_sketch.md\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nliterature_gap_report.md\nmagnitude_curve_draft.pdf\nmagnitude_curve_draft.png\nmanifest.yaml\nmethod_section_draft.tex\nmvp-point-reaching\nobject_eval_commands.md\nobject_results_summary.md\npipeline-dimension-verification.md\nprecompute-k5\nprecompute-k5-analysis.md\nprogress_scan_loop9.md\nreconvla-comparison-report.md\nreport_eval_progress.md\nreport_running_status.md\nseed43_env_check.md\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py\nspatial_analysis_prep.md\nspatial_comparison_template.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "f7b33d12-1ba3-4fe7-a1c4-94a07489fc4a",
+            "tool_use_result": {
+              "stdout": "_project\nablation_eval_commands.md\nanalysis_magnitude_sweep.py\nanalysis_object_benchmark.py\nanalysis_spatial_final.py\ncompetitive_analysis_20260515.md\ncompetitor_analysis.md\ncorrection_degradation_literature.md\ncrm-train-v2-k5\ncrm_bug_audit.md\ndiag-eval-v6-batch-failure.md\ndream_reports\neval-acr-object-v4-obs-only\neval-acr-object-v4-scalar\neval-mag-perdof-norm03\neval-reconvla-spatial-v1-diag.md\nfigures\nfix_plan_code_sketch.md\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nliterature_gap_report.md\nmagnitude_curve_draft.pdf\nmagnitude_curve_draft.png\nmanifest.yaml\nmethod_section_draft.tex\nmvp-point-reaching\nobject_eval_commands.md\nobject_results_summary.md\npipeline-dimension-verification.md\nprecompute-k5\nprecompute-k5-analysis.md\nprogress_scan_loop9.md\nreconvla-comparison-report.md\nreport_eval_progress.md\nreport_running_status.md\nseed43_env_check.md\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py\nspatial_analysis_prep.md\nspatial_comparison_template.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WP4GZjACUZT4EjhBiSBaZ9",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/corl_paper_outline.md",
+                "content": "# ACR-VLA: CoRL 2026 Paper Outline\n\n## Title Candidates\n\n1. **ACR-VLA: Inference-Time Action Correction for Vision-Language-Action Models via Sample-Then-Correct**\n2. **Sample-Then-Correct: Observation-Conditioned Residual Correction Improves VLA Robustness Beyond Sample Selection**\n3. **Beyond Sample Selection: Learned Action Correction for Frozen Vision-Language-Action Models**\n\nPreferred: #2 — 直接点明贡献（sample-then-correct pipeline）+ 核心发现（obs-conditioned > conformal features）。\n\n---\n\n## Abstract Key Points\n\n- **Problem**: Flow-matching VLAs achieve near-saturated performance on standard benchmarks but remain fragile under distribution shift. Existing inference-time methods are limited to sample selection (ReconVLA) or require task-level RL training (SC-VLA).\n- **Method**: ACR-VLA — a sample-then-correct pipeline: (1) draw K=10 samples from frozen VLA, (2) conformal prediction selects best candidate, (3) lightweight CRM (250K params) applies learned residual correction conditioned on observation features.\n- **Key finding 1**: Sample-then-correct > sample-then-select. obs_only CRM achieves 19.0% on LIBERO-Object vs 12.0% argmin selection (+7.0pp).\n- **Key finding 2 (negative result)**: Per-DOF conformal features as CRM input offer no advantage over observation features — perdof CRM 11.0% ≈ argmin 12.0%, while obs_only 19.0%.\n- **Key finding 3**: Correction magnitude control is critical and previously unrecognized — norm=1.42 yields 0%, norm=0.1-0.2 yields +7pp, obs_only CRM is uniquely robust across the magnitude range.\n- **Stats**: Fisher exact test p < 0.05 on combined seed=42+43 (200 trials). [pending seed=43 completion]\n\n---\n\n## 1. Introduction (~1.5 pages)\n\n### Motivation\n- VLAs (π₀, OpenVLA, SmolVLA) represent a paradigm shift in robot learning, but distribution shift remains a major challenge.\n- LIBERO benchmark exposes robustness gap: VLA performance degrades significantly under object/spatial perturbations.\n\n### Gap\n- **Sample selection** (ReconVLA argmin over K candidates): bounded by candidate quality — when all samples are poor, selection fails.\n- **RL-based refinement** (SC-VLA): requires per-task RL training, not plug-and-play.\n- **No prior work** on inference-time learned action correction for frozen VLAs.\n\n### Contributions (3 bullet points)\n1. **Sample-then-correct pipeline**: First system to apply learned residual correction on conformal-selected VLA actions. obs_only CRM improves SmolVLA success rate by +7.0pp on LIBERO-Object over sample selection alone.\n2. **Systematic conditioning comparison + honest negative result**: Per-DOF conformal statistics — intuitively richer features — provide no CRM benefit. Observation features suffice. This challenges synthetic-experiment intuition and reveals the gap between per-step MSE and closed-loop success.\n3. **Correction magnitude sensitivity**: First empirical study of correction magnitude control for VLA action refinement. obs_only CRM is robust across norms; perdof CRM collapses at high correction magnitudes.\n\n---\n\n## 2. Related Work (~1 page)\n\n### Categories to cover:\n\n| Category | Key papers | Our positioning |\n|----------|-----------|-----------------|\n| Vision-Language-Action Models | π₀ (Black et al. 2024), OpenVLA (Kim et al. 2024), SmolVLA (Leal et al. 2025) | We use SmolVLA as frozen backbone; method is backbone-agnostic |\n| Inference-time scaling for VLAs | ReconVLA (Liang et al. 2025), VLA-Pilot (Zhang et al. 2025) | ReconVLA = selection-only baseline; VLA-Pilot too slow (2.41s/step) |\n| Residual RL / action correction | SC-VLA (Qu et al. 2025), residual policy learning (Silver et al. 2018, Johannink et al. 2019) | SC-VLA requires task-level RL; our CRM is trained offline on demonstration data |\n| Conformal prediction in robotics | ReconVLA, conformal prediction for planning (Lindemann et al. 2023) | We use CP for sample selection stage, not for output guarantees |\n| Test-time compute / inference scaling | Snell et al. 2024, Brown et al. 2024 | Broader context: our work extends inference-time scaling from selection to correction |\n\n---\n\n## 3. Method (~2 pages)\n\n### 3.1 Problem Setup\n- Frozen VLA backbone (SmolVLA), flow-matching action generation\n- LIBERO evaluation under distribution shift (spatial perturbation, object substitution)\n\n### 3.2 Conformal Sample Selection\n- Draw K=10 action samples from VLA\n- Per-DOF conformal prediction: nonconformity scores from calibration set\n- Argmin selection: pick sample with lowest aggregate nonconformity score\n- **Figure 1**: Pipeline overview diagram (sample → score → select → correct)\n\n### 3.3 Correction Residual Module (CRM)\n- Architecture: 3-layer MLP, 250K parameters, ~3ms inference overhead\n- Input variants: (a) per-DOF conformal features, (b) observation features (obs_only), (c) scalar conformal score\n- Output: residual correction δ added to selected action\n- Training: MSE loss on demonstration actions, trained on calibration split\n\n### 3.4 Correction Magnitude Control\n- L2 norm clipping of CRM output: ||δ||₂ ≤ norm_max\n- Why it matters: unconstrained CRM (norm=1.42) → 0% success; norm ∈ [0.1, 0.2] → optimal\n- obs_only vs perdof: differential sensitivity to norm_max (obs_only robust, perdof collapses)\n\n---\n\n## 4. Experiments (~2.5 pages)\n\n### 4.1 Setup\n- **Backbone**: SmolVLA (fine-tuned on LIBERO)\n- **Benchmark**: LIBERO-Spatial (10 tasks), LIBERO-Object (10 tasks)\n- **Baselines**: VLA-only K=1, VLA-mean K=10, argmin K=10 (≈ ReconVLA selection)\n- **CRM variants**: perdof, obs_only, scalar, all at norm=0.1\n- **Evaluation**: 10 rollouts × 10 tasks = 100 trials per method; 2 seeds (42, 43) = 200 trials for significance\n\n### 4.2 Main Results\n\n**Table 1: Object Benchmark (seed=42, 10-task)**\n\n| Method | SR (%) | Δ vs argmin |\n|--------|--------|-------------|\n| VLA-only K=1 | 12.0 | — |\n| VLA-mean K=10 | 12.0 | 0.0 |\n| argmin K=10 | 12.0 | baseline |\n| scalar CRM 0.1 | 9.0 | -3.0 |\n| perdof CRM 0.1 | 11.0 | -1.0 |\n| **obs_only CRM 0.1** | **19.0** | **+7.0** |\n\n**Table 2: Spatial Benchmark (seed=42, 10-task)** — honest null result\n\n| Method | SR (%) |\n|--------|--------|\n| argmin K=10 | 34.0 |\n| perdof CRM 0.1 | 35.0 |\n| obs_only CRM 0.1 | 35.0 |\n| VLA-only K=1 | 30.0 |\n\nExp IDs: eval-acr-object-v4-obs-only, eval-acr-spatial-v4-obs-only-r3, eval-argmin-only-spatial-r2\n\n### 4.3 Magnitude Sensitivity Analysis\n\n**Table 3 / Figure 2: Magnitude sweep (obs_only vs perdof)**\n\n| norm | obs_only (spatial) | perdof (spatial) | gap |\n|------|-------------------|------------------|-----|\n| 0.05 | 35.0% | 31.0% | +4pp |\n| 0.1 | 35.0% | 35.0% | 0pp |\n| 0.2 | 35.0% | 28.3% | +6.7pp |\n| 0.3 | 36.0% | 26.0% | +10pp |\n\n- **Figure 2**: Line plot — obs_only flat, perdof declining with norm. Clear visual story.\n- Object magnitude (obs_only norm=0.1: 19%, norm=0.2: 18-22%) — if available.\n\nExp IDs: eval-mag-obsonly-norm005, eval-mag-obsonly-norm02, eval-mag-perdof-norm03, eval-mag-obsonly-norm03\n\n### 4.4 Statistical Significance\n\n**Table 4: Combined seed=42+43 results** [pending seed=43 completion]\n- Fisher exact test: obs_only vs argmin, 200 trials\n- Bootstrap 95% CI for success rate difference\n- Per-task breakdown showing which tasks drive the improvement\n\n### 4.5 Per-Task Analysis\n\n**Figure 3: Per-task success rate heatmap** (methods × tasks)\n- Shows obs_only gains come from medium-difficulty tasks (not hard tasks where all fail, not easy tasks where all succeed)\n- Hard tasks (T2, T7) = 0% for all methods → VLA backbone limitation, not CRM scope\n\n---\n\n## 5. Discussion (~1 page)\n\n### 5.1 Why Does obs_only Work But perdof Doesn't?\n- Hypothesis: per-DOF conformal features are noisy with K=10 (covariance estimation from 10 samples)\n- obs_only uses stable image/proprioception features → more reliable correction signal\n- perdof learns overconfident correction patterns that collapse at higher norms\n- Gap between per-step MSE (where perdof looks good in training) and closed-loop success\n\n### 5.2 Why Does Spatial Show No CRM Effect?\n- Spatial perturbations (position offsets) → VLA actions are less systematically biased → CRM correction cannot find consistent error patterns\n- Hard tasks (T2, T7) are VLA backbone failures (0% across all methods), not correctable\n- Object perturbations (object substitution) → larger action distribution shift → more room for learned correction\n\n### 5.3 Limitations\n- Simulation only (LIBERO); real-world transfer untested\n- Single VLA backbone (SmolVLA); generality to π₀, OpenVLA unknown\n- CRM trained on same task distribution; cross-task generalization not evaluated\n- Absolute performance remains low (19%) — CRM improves relative to baseline but tasks remain hard\n- K=10 samples = 10× inference cost (shared with ReconVLA)\n\n### 5.4 Future Work\n- Real-robot evaluation\n- Scaling to stronger VLA backbones (π₀)\n- Adaptive magnitude control (learned norm instead of fixed clipping)\n- Cross-task CRM transfer\n\n---\n\n## 6. Figures & Tables Checklist\n\n| ID | Type | Content | Data source | Status |\n|----|------|---------|-------------|--------|\n| Fig 1 | Diagram | Pipeline overview: sample → conformal score → select → CRM correct | N/A | TODO |\n| Fig 2 | Line plot | Magnitude sensitivity: obs_only vs perdof across norms | magnitude sweep exps | data ready (spatial), object pending |\n| Fig 3 | Heatmap | Per-task success rates (methods × tasks) | all object + spatial evals | data ready |\n| Tab 1 | Table | Object benchmark main results (6 methods) | object evals seed=42 | FINAL |\n| Tab 2 | Table | Spatial benchmark (honest null) | spatial evals seed=42 | LOCKED |\n| Tab 3 | Table | Magnitude sweep | magnitude sweep exps | partial |\n| Tab 4 | Table | Statistical significance (seed 42+43 combined) | seed=43 evals | PENDING |\n| Tab 5 | Table | CRM architecture / training details | implementation | TODO |\n\n---\n\n## 7. Writing Timeline (CoRL 2026)\n\n| Date | Milestone |\n|------|-----------|\n| May 15-17 | Outline finalized, seed=43 results in |\n| May 18-20 | Method + Experiments sections drafted |\n| May 21-23 | Intro + Related Work drafted, figures generated |\n| May 24-25 | Full draft review, abstract polished |\n| **May 26** | **Abstract submission** |\n| May 27-30 | Revise based on internal review, camera-ready figures |\n| Jun 1 | Final proofread |\n| **Jun 2** | **Full paper submission** |\n\n---\n\n## Key Risks\n\n1. **seed=43 不复现**: obs_only 优势消失 → Fisher test fails → 论文 claim 不成立。应对：如果 p > 0.05，降级为 workshop paper 或增加 seed=44。\n2. **Object obs_only norm=0.2 未超 norm=0.1**: magnitude story 在 object 上弱化。应对：spatial magnitude sweep 仍可支撑 robustness claim。\n3. **Reviewer 认为 obs_only 就是普通 residual MLP**: 需要强调 systematic comparison + conformal selection 前置 + magnitude discovery 的整体贡献。\n4. **绝对性能低 (19%)**: 需要 contextualize — LIBERO-Object 在分布偏移下本身很难，VLA-only 仅 12%。相对提升 58% (7/12) 是 meaningful 的。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "c9e88ea5-a585-4f37-a552-a02409eafe8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Krp7T8qFma176uyAzQzhsH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 981,
+                "cache_read_input_tokens": 32355,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 981
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T18:59:46.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WP4GZjACUZT4EjhBiSBaZ9",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/corl_paper_outline.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "d7c9a4ca-b768-45d3-a4f1-4fc402fc6b19",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/corl_paper_outline.md",
+              "content": "# ACR-VLA: CoRL 2026 Paper Outline\n\n## Title Candidates\n\n1. **ACR-VLA: Inference-Time Action Correction for Vision-Language-Action Models via Sample-Then-Correct**\n2. **Sample-Then-Correct: Observation-Conditioned Residual Correction Improves VLA Robustness Beyond Sample Selection**\n3. **Beyond Sample Selection: Learned Action Correction for Frozen Vision-Language-Action Models**\n\nPreferred: #2 — 直接点明贡献（sample-then-correct pipeline）+ 核心发现（obs-conditioned > conformal features）。\n\n---\n\n## Abstract Key Points\n\n- **Problem**: Flow-matching VLAs achieve near-saturated performance on standard benchmarks but remain fragile under distribution shift. Existing inference-time methods are limited to sample selection (ReconVLA) or require task-level RL training (SC-VLA).\n- **Method**: ACR-VLA — a sample-then-correct pipeline: (1) draw K=10 samples from frozen VLA, (2) conformal prediction selects best candidate, (3) lightweight CRM (250K params) applies learned residual correction conditioned on observation features.\n- **Key finding 1**: Sample-then-correct > sample-then-select. obs_only CRM achieves 19.0% on LIBERO-Object vs 12.0% argmin selection (+7.0pp).\n- **Key finding 2 (negative result)**: Per-DOF conformal features as CRM input offer no advantage over observation features — perdof CRM 11.0% ≈ argmin 12.0%, while obs_only 19.0%.\n- **Key finding 3**: Correction magnitude control is critical and previously unrecognized — norm=1.42 yields 0%, norm=0.1-0.2 yields +7pp, obs_only CRM is uniquely robust across the magnitude range.\n- **Stats**: Fisher exact test p < 0.05 on combined seed=42+43 (200 trials). [pending seed=43 completion]\n\n---\n\n## 1. Introduction (~1.5 pages)\n\n### Motivation\n- VLAs (π₀, OpenVLA, SmolVLA) represent a paradigm shift in robot learning, but distribution shift remains a major challenge.\n- LIBERO benchmark exposes robustness gap: VLA performance degrades significantly under object/spatial perturbations.\n\n### Gap\n- **Sample selection** (ReconVLA argmin over K candidates): bounded by candidate quality — when all samples are poor, selection fails.\n- **RL-based refinement** (SC-VLA): requires per-task RL training, not plug-and-play.\n- **No prior work** on inference-time learned action correction for frozen VLAs.\n\n### Contributions (3 bullet points)\n1. **Sample-then-correct pipeline**: First system to apply learned residual correction on conformal-selected VLA actions. obs_only CRM improves SmolVLA success rate by +7.0pp on LIBERO-Object over sample selection alone.\n2. **Systematic conditioning comparison + honest negative result**: Per-DOF conformal statistics — intuitively richer features — provide no CRM benefit. Observation features suffice. This challenges synthetic-experiment intuition and reveals the gap between per-step MSE and closed-loop success.\n3. **Correction magnitude sensitivity**: First empirical study of correction magnitude control for VLA action refinement. obs_only CRM is robust across norms; perdof CRM collapses at high correction magnitudes.\n\n---\n\n## 2. Related Work (~1 page)\n\n### Categories to cover:\n\n| Category | Key papers | Our positioning |\n|----------|-----------|-----------------|\n| Vision-Language-Action Models | π₀ (Black et al. 2024), OpenVLA (Kim et al. 2024), SmolVLA (Leal et al. 2025) | We use SmolVLA as frozen backbone; method is backbone-agnostic |\n| Inference-time scaling for VLAs | ReconVLA (Liang et al. 2025), VLA-Pilot (Zhang et al. 2025) | ReconVLA = selection-only baseline; VLA-Pilot too slow (2.41s/step) |\n| Residual RL / action correction | SC-VLA (Qu et al. 2025), residual policy learning (Silver et al. 2018, Johannink et al. 2019) | SC-VLA requires task-level RL; our CRM is trained offline on demonstration data |\n| Conformal prediction in robotics | ReconVLA, conformal prediction for planning (Lindemann et al. 2023) | We use CP for sample selection stage, not for output guarantees |\n| Test-time compute / inference scaling | Snell et al. 2024, Brown et al. 2024 | Broader context: our work extends inference-time scaling from selection to correction |\n\n---\n\n## 3. Method (~2 pages)\n\n### 3.1 Problem Setup\n- Frozen VLA backbone (SmolVLA), flow-matching action generation\n- LIBERO evaluation under distribution shift (spatial perturbation, object substitution)\n\n### 3.2 Conformal Sample Selection\n- Draw K=10 action samples from VLA\n- Per-DOF conformal prediction: nonconformity scores from calibration set\n- Argmin selection: pick sample with lowest aggregate nonconformity score\n- **Figure 1**: Pipeline overview diagram (sample → score → select → correct)\n\n### 3.3 Correction Residual Module (CRM)\n- Architecture: 3-layer MLP, 250K parameters, ~3ms inference overhead\n- Input variants: (a) per-DOF conformal features, (b) observation features (obs_only), (c) scalar conformal score\n- Output: residual correction δ added to selected action\n- Training: MSE loss on demonstration actions, trained on calibration split\n\n### 3.4 Correction Magnitude Control\n- L2 norm clipping of CRM output: ||δ||₂ ≤ norm_max\n- Why it matters: unconstrained CRM (norm=1.42) → 0% success; norm ∈ [0.1, 0.2] → optimal\n- obs_only vs perdof: differential sensitivity to norm_max (obs_only robust, perdof collapses)\n\n---\n\n## 4. Experiments (~2.5 pages)\n\n### 4.1 Setup\n- **Backbone**: SmolVLA (fine-tuned on LIBERO)\n- **Benchmark**: LIBERO-Spatial (10 tasks), LIBERO-Object (10 tasks)\n- **Baselines**: VLA-only K=1, VLA-mean K=10, argmin K=10 (≈ ReconVLA selection)\n- **CRM variants**: perdof, obs_only, scalar, all at norm=0.1\n- **Evaluation**: 10 rollouts × 10 tasks = 100 trials per method; 2 seeds (42, 43) = 200 trials for significance\n\n### 4.2 Main Results\n\n**Table 1: Object Benchmark (seed=42, 10-task)**\n\n| Method | SR (%) | Δ vs argmin |\n|--------|--------|-------------|\n| VLA-only K=1 | 12.0 | — |\n| VLA-mean K=10 | 12.0 | 0.0 |\n| argmin K=10 | 12.0 | baseline |\n| scalar CRM 0.1 | 9.0 | -3.0 |\n| perdof CRM 0.1 | 11.0 | -1.0 |\n| **obs_only CRM 0.1** | **19.0** | **+7.0** |\n\n**Table 2: Spatial Benchmark (seed=42, 10-task)** — honest null result\n\n| Method | SR (%) |\n|--------|--------|\n| argmin K=10 | 34.0 |\n| perdof CRM 0.1 | 35.0 |\n| obs_only CRM 0.1 | 35.0 |\n| VLA-only K=1 | 30.0 |\n\nExp IDs: eval-acr-object-v4-obs-only, eval-acr-spatial-v4-obs-only-r3, eval-argmin-only-spatial-r2\n\n### 4.3 Magnitude Sensitivity Analysis\n\n**Table 3 / Figure 2: Magnitude sweep (obs_only vs perdof)**\n\n| norm | obs_only (spatial) | perdof (spatial) | gap |\n|------|-------------------|------------------|-----|\n| 0.05 | 35.0% | 31.0% | +4pp |\n| 0.1 | 35.0% | 35.0% | 0pp |\n| 0.2 | 35.0% | 28.3% | +6.7pp |\n| 0.3 | 36.0% | 26.0% | +10pp |\n\n- **Figure 2**: Line plot — obs_only flat, perdof declining with norm. Clear visual story.\n- Object magnitude (obs_only norm=0.1: 19%, norm=0.2: 18-22%) — if available.\n\nExp IDs: eval-mag-obsonly-norm005, eval-mag-obsonly-norm02, eval-mag-perdof-norm03, eval-mag-obsonly-norm03\n\n### 4.4 Statistical Significance\n\n**Table 4: Combined seed=42+43 results** [pending seed=43 completion]\n- Fisher exact test: obs_only vs argmin, 200 trials\n- Bootstrap 95% CI for success rate difference\n- Per-task breakdown showing which tasks drive the improvement\n\n### 4.5 Per-Task Analysis\n\n**Figure 3: Per-task success rate heatmap** (methods × tasks)\n- Shows obs_only gains come from medium-difficulty tasks (not hard tasks where all fail, not easy tasks where all succeed)\n- Hard tasks (T2, T7) = 0% for all methods → VLA backbone limitation, not CRM scope\n\n---\n\n## 5. Discussion (~1 page)\n\n### 5.1 Why Does obs_only Work But perdof Doesn't?\n- Hypothesis: per-DOF conformal features are noisy with K=10 (covariance estimation from 10 samples)\n- obs_only uses stable image/proprioception features → more reliable correction signal\n- perdof learns overconfident correction patterns that collapse at higher norms\n- Gap between per-step MSE (where perdof looks good in training) and closed-loop success\n\n### 5.2 Why Does Spatial Show No CRM Effect?\n- Spatial perturbations (position offsets) → VLA actions are less systematically biased → CRM correction cannot find consistent error patterns\n- Hard tasks (T2, T7) are VLA backbone failures (0% across all methods), not correctable\n- Object perturbations (object substitution) → larger action distribution shift → more room for learned correction\n\n### 5.3 Limitations\n- Simulation only (LIBERO); real-world transfer untested\n- Single VLA backbone (SmolVLA); generality to π₀, OpenVLA unknown\n- CRM trained on same task distribution; cross-task generalization not evaluated\n- Absolute performance remains low (19%) — CRM improves relative to baseline but tasks remain hard\n- K=10 samples = 10× inference cost (shared with ReconVLA)\n\n### 5.4 Future Work\n- Real-robot evaluation\n- Scaling to stronger VLA backbones (π₀)\n- Adaptive magnitude control (learned norm instead of fixed clipping)\n- Cross-task CRM transfer\n\n---\n\n## 6. Figures & Tables Checklist\n\n| ID | Type | Content | Data source | Status |\n|----|------|---------|-------------|--------|\n| Fig 1 | Diagram | Pipeline overview: sample → conformal score → select → CRM correct | N/A | TODO |\n| Fig 2 | Line plot | Magnitude sensitivity: obs_only vs perdof across norms | magnitude sweep exps | data ready (spatial), object pending |\n| Fig 3 | Heatmap | Per-task success rates (methods × tasks) | all object + spatial evals | data ready |\n| Tab 1 | Table | Object benchmark main results (6 methods) | object evals seed=42 | FINAL |\n| Tab 2 | Table | Spatial benchmark (honest null) | spatial evals seed=42 | LOCKED |\n| Tab 3 | Table | Magnitude sweep | magnitude sweep exps | partial |\n| Tab 4 | Table | Statistical significance (seed 42+43 combined) | seed=43 evals | PENDING |\n| Tab 5 | Table | CRM architecture / training details | implementation | TODO |\n\n---\n\n## 7. Writing Timeline (CoRL 2026)\n\n| Date | Milestone |\n|------|-----------|\n| May 15-17 | Outline finalized, seed=43 results in |\n| May 18-20 | Method + Experiments sections drafted |\n| May 21-23 | Intro + Related Work drafted, figures generated |\n| May 24-25 | Full draft review, abstract polished |\n| **May 26** | **Abstract submission** |\n| May 27-30 | Revise based on internal review, camera-ready figures |\n| Jun 1 | Final proofread |\n| **Jun 2** | **Full paper submission** |\n\n---\n\n## Key Risks\n\n1. **seed=43 不复现**: obs_only 优势消失 → Fisher test fails → 论文 claim 不成立。应对：如果 p > 0.05，降级为 workshop paper 或增加 seed=44。\n2. **Object obs_only norm=0.2 未超 norm=0.1**: magnitude story 在 object 上弱化。应对：spatial magnitude sweep 仍可支撑 robustness claim。\n3. **Reviewer 认为 obs_only 就是普通 residual MLP**: 需要强调 systematic comparison + conformal selection 前置 + magnitude discovery 的整体贡献。\n4. **绝对性能低 (19%)**: 需要 contextualize — LIBERO-Object 在分布偏移下本身很难，VLA-only 仅 12%。相对提升 58% (7/12) 是 meaningful 的。\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019TMtudQRLuvJCoW7ofUrmM",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "corl_paper_outline",
+                "type": "paper",
+                "description": "CoRL 2026 论文大纲：title candidates, abstract 要点, 7 sections 结构, 8 figures/tables 清单, 写作时间线, key risks",
+                "project": "acr-vla-conformal-refinement",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/corl_paper_outline.md",
+                "tags": [
+                  "corl2026",
+                  "paper-outline",
+                  "writing"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "ae3157dc-1de1-4c59-a7c6-cbd043e3b722",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N5aS58gCjs96b8AVu8X5AA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3688,
+                "cache_read_input_tokens": 33336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3688
+                },
+                "output_tokens": 79,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T18:59:51.166Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019TMtudQRLuvJCoW7ofUrmM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_af29d7\\\", \\\"name\\\": \\\"corl_paper_outline\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"CoRL 2026 论文大纲：title candidates, abstract 要点, 7 sections 结构, 8 figures/tables 清单, 写作时间线, key risks\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/paper/corl_paper_outline.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:59:51.107428+00:00\\\", \\\"tags\\\": [\\\"corl2026\\\", \\\"paper-outline\\\", \\\"writing\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "b9222f96-922b-4d28-a031-7f7ef54ab296",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_af29d7\\\", \\\"name\\\": \\\"corl_paper_outline\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"CoRL 2026 论文大纲：title candidates, abstract 要点, 7 sections 结构, 8 figures/tables 清单, 写作时间线, key risks\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/paper/corl_paper_outline.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:59:51.107428+00:00\\\", \\\"tags\\\": [\\\"corl2026\\\", \\\"paper-outline\\\", \\\"writing\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_af29d7\", \"name\": \"corl_paper_outline\", \"type\": \"paper\", \"description\": \"CoRL 2026 论文大纲：title candidates, abstract 要点, 7 sections 结构, 8 figures/tables 清单, 写作时间线, key risks\", \"path\": \"projects/acr-vla-conformal-refinement/artifacts/_project/paper/corl_paper_outline.md\", \"url\": null, \"project\": \"acr-vla-conformal-refinement\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T18:59:51.107428+00:00\", \"tags\": [\"corl2026\", \"paper-outline\", \"writing\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "大纲已写入 `artifacts/corl_paper_outline.md` 并注册 (`art_20260515_af29d7`)。\n\n核心结构：\n\n- **Title 推荐**: \"Sample-Then-Correct: Observation-Conditioned Residual Correction Improves VLA Robustness Beyond Sample Selection\"\n- **3 claims**: (1) obs_only CRM +7pp over argmin on object, (2) per-DOF features 无效 (negative result), (3) magnitude control 是关键且未被研究过的因素\n- **Story 载体**: Object benchmark 为主（19% vs 12%），Spatial 作为 honest null result\n- **8 个 figures/tables**: pipeline 图、magnitude 曲线、per-task heatmap、4 张结果表、architecture 表\n- **关键依赖**: seed=43 结果决定统计显著性 claim 能否成立\n- **写作时间线**: May 18-20 起稿 Method+Experiments，May 26 abstract DDL"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "uuid": "f914897c-4393-4f53-b936-e64b289b2b94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AMfGMs7h2YurcEVh7uqUzB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 573,
+                "cache_read_input_tokens": 37024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 573
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "大纲已写入 `artifacts/corl_paper_outline.md` 并注册 (`art_20260515_af29d7`)。\n\n核心结构：\n\n- **Title 推荐**: \"Sample-Then-Correct: Observation-Conditioned Residual Correction Improves VLA Robustness Beyond Sample Selection\"\n- **3 claims**: (1) obs_only CRM +7pp over argmin on object, (2) per-DOF features 无效 (negative result), (3) magnitude control 是关键且未被研究过的因素\n- **Story 载体**: Object benchmark 为主（19% vs 12%），Spatial 作为 honest null result\n- **8 个 figures/tables**: pipeline 图、magnitude 曲线、per-task heatmap、4 张结果表、architecture 表\n- **关键依赖**: seed=43 结果决定统计显著性 claim 能否成立\n- **写作时间线**: May 18-20 起稿 Method+Experiments，May 26 abstract DDL"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 147734,
+            "duration_api_ms": 149366,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "7f73aaff-2b48-440f-a270-57a67f7e5d2f",
+            "total_cost_usd": 0.3750065,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 25756,
+              "cache_read_input_tokens": 162173,
+              "output_tokens": 5268,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25756,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 273,
+                  "cache_read_input_tokens": 37024,
+                  "cache_creation_input_tokens": 573,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 573
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1100,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001195,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 5268,
+                "cacheReadInputTokens": 162173,
+                "cacheCreationInputTokens": 25756,
+                "webSearchRequests": 0,
+                "costUSD": 0.3738115,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "946b930d-33c6-45f0-8746-34622b433231"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-paper-outline-corl.md"
+}

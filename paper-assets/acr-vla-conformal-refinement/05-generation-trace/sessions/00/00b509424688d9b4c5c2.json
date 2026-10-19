@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00b509424688d9b4c5c2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops eval v4 small log check",
+  "task_key": "worker_ops_eval-v4-small-log-check_20260515T050353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_eval-v4-small-log-check_20260515T050353_result.json",
+    "occurrence": 1,
+    "bytes": 1463,
+    "sha256": "04703d358d2d1bf9886324c29257ca7cbf2f0e5b38103f1bdc8315b817d0a457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验的 registry 已经由之前的 Worker 正确更新，无需再改。以下是验证结果：\n\n---\n\n### eval-acr-spatial-v4-small (D018)\n\n- **状态**: DONE / failed\n- **死因**: Task 8 (on_stove) env init hang 8+ 小时后被 kill\n- **进程**: PID 253085 已死，无 sentinel\n- **完成度**: 7/10 tasks，running avg **42.9% (30/70)**\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin | 60% (6/10) |\n| next_to_ramekin | **100%** (10/10) |\n| from_table_center | 10% (1/10) |\n| on_cookie_box | 40% (4/10) |\n| in_top_drawer | 0% (0/10) |\n| on_ramekin | 0% (0/10) |\n| next_to_cookie_box | **90%** (9/10) |\n\n---\n\n### eval-acr-spatial-v4-obs-only-r2 (D020)\n\n- **状态**: DONE / failed\n- **死因**: Task 7 (next_to_cookie_box) rollout 处理中被 kill（实际日志显示 rollout 5/10 时 5/5 成功，进程仍在推进，非 hang）\n- **进程**: PID 270097 已死，无 sentinel\n- **完成度**: 6/10 tasks，running avg **40.0% (24/60)**\n- Task 7 有未完成的 partial 数据：5/5 at rollout 5/10\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin | **90%** (9/10) |\n| next_to_ramekin | **100%** (10/10) |\n| from_table_center | 0% (0/10) |\n| on_cookie_box | 40% (4/10) |\n| in_top_drawer | 10% (1/10) |\n| on_ramekin | 0% (0/10) |\n\n---\n\nRegistry 两条均已是 DONE/failed，metrics 和 failure_reason 与日志一致，无需更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-v4-small-log-check.md"
+}

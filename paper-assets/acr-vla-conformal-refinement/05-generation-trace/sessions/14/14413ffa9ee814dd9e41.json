@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14413ffa9ee814dd9e41",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit bjb1 18228 gpu status",
+  "task_key": "worker_audit_bjb1-18228-gpu-status_20260520T140259",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_bjb1-18228-gpu-status_20260520T140259_result.json",
+    "occurrence": 1,
+    "bytes": 2220,
+    "sha256": "97a250b7e443796026a060b9dd83e92124ea18d8c171be406228bd929948487e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-18228 GPU 审计报告\n\n### 当前实际进程（全部于 21:07 今天启动）\n\n| GPU | PID | 实验 | 输出文件 | 状态 |\n|-----|-----|------|----------|------|\n| **0** | 384503 | `adaptive_k` spatial p90 seed44 | `eval_adaptive_k_spatial_p90_seed44.json` | **RUNNING** — 正在跑 spatial tasks |\n| **1** | 384777 | `random_selection` spatial seed42 **r2** | `eval_random_selection_spatial_seed42_r2.json` | **RUNNING** — 正在跑 spatial tasks |\n| **2** | 385308 | `crm_obs_only` spatial seed48 norm02 | `eval_obs_only_spatial_norm02_seed48.json` | **RUNNING** — 正在跑 spatial tasks |\n| **3** | 385902 | `vla_only` spatial seed48 | `eval_vla_only_spatial_seed48.json` | **RUNNING** — 正在跑 spatial tasks |\n\nGPU 利用率 22-34%，显存各占 ~3.1-3.6 GB / 24 GB，均为活跃进程。\n\n---\n\n### Registry 中 4 个实验的状态\n\n| Registry exp_id | 原 GPU | 原 PID | 实际状态 | JSON |\n|----------------|--------|--------|----------|------|\n| eval-random-selection-spatial-seed42 | cuda:0 | 346801 | **已结束** — PID 不存在 | **COMPLETE** `eval_random_selection_spatial_seed42.json` (May 20 20:27) — overall_sr=**0.34** |\n| eval-random-selection-spatial-seed44 | cuda:2 | 348897 | **已结束** — PID 不存在 | **COMPLETE** `eval_random_selection_spatial_seed44.json` (May 20 20:31) — overall_sr=**0.28** |\n| eval-perdof-object-norm02-seed45-r3 | cuda:3 | unknown | **已结束** — PID 不存在 | **COMPLETE** `eval_object_perdof_norm02_seed45_r3.json` (May 18 18:14) — overall_sr=**0.12** |\n| (unknown harvest-deploy) | cuda:1 | unknown | **已结束** — 无法确认原始进程 | 无法确定对应 JSON |\n\n---\n\n### 推荐操作\n\n- **GPU 0-3**：4 个新实验在正常运行，不要干预。等待完成后收割结果。\n- **Registry 3 个命名实验**：全部已完成且有完整 JSON 输出，应标记为 **COMPLETED**。\n- **harvest-deploy worker (cuda:1)**：进程已消失，无法回溯。如果 registry 有对应条目，标记为 COMPLETED 或 UNKNOWN。\n- **当前 4 个运行实验**：如果 registry 中没有对应条目，需要补录（它们是 21:07 今天部署的新一批）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bjb1-18228-gpu-status.md"
+}

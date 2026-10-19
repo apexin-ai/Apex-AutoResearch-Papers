@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b0b4addd9e408007276",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check obs only norm02 seed46",
+  "task_key": "worker_ssh_check-obs-only-norm02-seed46_20260517T050611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-obs-only-norm02-seed46_20260517T050611_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "ce133e73c04888af37196169f19169caa38c634c4447c818755c447320c925fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果: eval-obs-only-object-norm02-seed46\n\n**Overall Success Rate: 15.0% (15/100)**\n\n### Per-task Breakdown\n\n| Task | SR | Successes |\n|------|-----|-----------|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 0% | 0/10 |\n| salad_dressing | 20% | 2/10 |\n| bbq_sauce | 30% | 3/10 |\n| ketchup | 0% | 0/10 |\n| tomato_sauce | 10% | 1/10 |\n| butter | 10% | 1/10 |\n| milk | 10% | 1/10 |\n| chocolate_pudding | 40% | 4/10 |\n| orange_juice | 30% | 3/10 |\n\n### Conclusion: **negative**\n\n实验正常完成（exit code 0，JSON 已保存），但 SR=15.0% 略低于 obs_only 预期范围（16-22%）。表现分布不均匀：3 个 task 完全失败（0%），2 个 task 表现较好（30-40%），其余在 10-20%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-obs-only-norm02-seed46.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f147a6798b2ca882801",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix kill bad processes deploy crm test",
+  "task_key": "worker_fix_kill-bad-processes-deploy-crm-test_20260522T162924",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-bad-processes-deploy-crm-test_20260522T162924_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "bcb05481793162e0b7f87d1ea4909a917e3a2982f59c834fd83121fe689daea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### Kill 确认\n- **bjb2-28827**: PID 314354, 326502, 326643 (native precompute) — **已 kill**，tmux sessions precompute-spatial-fixed / precompute-goal-fixed 已清理\n- **bjb1-32546**: PID 448061 (cuda:5 未注册 CRM 训练) — **已 kill**，cuda:5 已释放 (2 MiB)\n\n### Wrapper Precompute 进度 (bjb2-28827)\n| Suite | 进度 | 速率 | ETA |\n|-------|------|------|-----|\n| object | 18000/28950 (62%) | 15.0 samples/s | ~12 min |\n| spatial | 18500/24133 (77%) | 14.5 samples/s | ~6.5 min |\n| goal | 18500/24752 (75%) | 15.0 samples/s | ~7 min |\n\n**spatial 和 goal 约 7 分钟完成，object 约 12 分钟完成。**\n\n### CRM 测试训练\n**暂时无法启动** — bjb1-32546 上不存在 `crm_cache_smolvla_k10/` 目录，需等 bjb2-28827 precompute 全部完成后 rsync 过去。预计 ~12 分钟后数据就绪，之后可 rsync + 启动训练。\n\n需要我等数据跑完后自动执行 rsync + 部署训练吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-bad-processes-deploy-crm-test.md"
+}

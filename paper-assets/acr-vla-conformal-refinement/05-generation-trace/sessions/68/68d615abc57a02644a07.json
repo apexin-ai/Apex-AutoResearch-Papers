@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "68d615abc57a02644a07",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only object norm03 seed48",
+  "task_key": "worker_diagnose_eval-obs-only-object-norm03-seed48_20260518T132245",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-object-norm03-seed48_20260518T132245_result.json",
+    "occurrence": 1,
+    "bytes": 1587,
+    "sha256": "48077b541dac843630bff09ba12746b1294bebd613439f95734ef8003d33e93a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**误报（false positive）**。实验正常完成，EXIT_CODE=0，结果已写入 JSON。\n\n监控系统将其标记为失败的原因是：进程正常退出后 PID 消失，但该评估脚本不写 sentinel 文件也不上报 W&B，监控连续 5 次检测到 \"process dead\" 就自动判定失败。\n\n```json\n{\"root_cause\":\"False positive: process completed successfully (EXIT_CODE=0, overall success rate 16.0% (16/100), results saved to eval_object_obs_only_norm03_seed48.json) but monitoring detected 'process dead' because eval script writes no sentinel/W&B\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"No fix needed — experiment already completed successfully\",\"Retrieve results from /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03_seed48.json\",\"Consider adding sentinel file or W&B logging to evaluate.py to prevent future false positives\"],\"can_auto_fix\":false}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "False positive: process completed successfully (EXIT_CODE=0, overall success rate 16.0% (16/100), results saved to eval_object_obs_only_norm03_seed48.json) but monitoring detected 'process dead' because eval script writes no sentinel/W&B",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "No fix needed — experiment already completed successfully",
+                "Retrieve results from /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03_seed48.json",
+                "Consider adding sentinel file or W&B logging to evaluate.py to prevent future false positives"
+              ],
+              "can_auto_fix": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-object-norm03-seed48.md"
+}

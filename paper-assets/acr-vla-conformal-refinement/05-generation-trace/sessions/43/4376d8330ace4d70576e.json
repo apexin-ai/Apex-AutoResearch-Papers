@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4376d8330ace4d70576e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb2 28827 kill check bf16",
+  "task_key": "worker_ops_bjb2-28827-kill-check-bf16_20260524T192652",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb2-28827-kill-check-bf16_20260524T192652_result.json",
+    "occurrence": 1,
+    "bytes": 1777,
+    "sha256": "0f862980905ac488028244ade583518b2d254bf3ad8b04df8deb58f072d392f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. Kill 结果\nPID 388593 已成功终止（SIGTERM 即停，无需 force kill）。cuda:1 已释放至 1 MiB。\n\n### 2. cuda:2/cuda:3 内存状态\n\n| GPU | 已用 | 总量 | 占比 | 利用率 |\n|-----|------|------|------|--------|\n| cuda:2 (Goal) | 13,966 MiB | 24,564 MiB | 57% | 20% |\n| cuda:3 (Object) | 14,088 MiB | 24,564 MiB | 57% | 21% |\n\n**OOM 风险评估**：~10GB 余量，暂无 OOM 风险。模型加载后推理的 KV cache 会动态增长，但 57% 占比是稳态，应可跑完。\n\n### 3. 实验进度\n- **Goal**: Task 1/10 `open_the_middle_drawer_of_the_cabinet` — rollout 5/20, 成功 4/5\n- **Object**: Task 1/10 `pick_up_the_alphabet_soup_and_place_it_in_the_basket` — rollout 5/20, 成功 3/5\n\n两个都还在第一个 task 上（共 10 tasks × 20 rollouts = 200 rollouts），进展正常。\n\n### 4. evaluate.py 的 dtype/bf16 支持\n\n**不支持。** 代码中：\n- `evaluate.py`：无 `--dtype`/`--bf16` 参数\n- `pi05_wrapper.py`：无任何 bf16/bfloat16/half 引用\n- 模型加载（line 67）：`self.policy.to(self.device)` — 纯 fp32\n\n要支持 bf16，需修改 `Pi05Wrapper.__init__`：\n```python\n# 改 line 67 附近\nself.policy.to(self.device, dtype=torch.bfloat16)\n```\n并确保输入 tensor（line 214 的 `state_t = torch.tensor(..., dtype=torch.float32)`）也 cast 到 bf16。\n\n### 5. 建议\n\n- **不 kill cuda:2/cuda:3**，让它们继续跑完。57% 内存占比是安全的。\n- **Spatial 需用 bf16 重试**：fp32 14.4GB 在 24GB 卡上 inference 时 KV cache 膨胀导致 OOM。bf16 可降至 ~7.2GB 模型参数，给 KV cache 留充足空间。\n- 需要在 `pi05_wrapper.py` 和 `evaluate.py` 中添加 dtype 支持后再重启 Spatial 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb2-28827-kill-check-bf16.md"
+}

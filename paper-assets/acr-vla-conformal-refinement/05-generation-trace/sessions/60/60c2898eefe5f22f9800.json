@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60c2898eefe5f22f9800",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only object norm005 seed44",
+  "task_key": "worker_analyze_eval-obs-only-object-norm005-seed44_20260520T103648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-object-norm005-seed44_20260520T103648_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "c439d802b3829d92db0d985cb6cdd14fa626c04c053b9cf3d4e6c69d0380d19d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果摘要\n\n**eval-obs-only-object-norm005-seed44** — CRM obs_only ε=0.05, LIBERO-Object, seed=44\n\n### Overall SR: **12%** (12/100)\n\n### Per-task 分布\n\n| Task | SR |\n|---|---|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 0% (0/10) |\n| salad_dressing | 0% (0/10) |\n| **bbq_sauce** | **30%** (3/10) |\n| ketchup | 0% (0/10) |\n| tomato_sauce | 10% (1/10) |\n| butter | 10% (1/10) |\n| milk | 20% (2/10) |\n| chocolate_pudding | 20% (2/10) |\n| **orange_juice** | **30%** (3/10) |\n\n无错误，EXIT_CODE=0，100 episodes 全部完成。\n\n### 对比\n\n| Seed | SR | 来源 |\n|---|---|---|\n| seed44 (前次) | 16% | previous_failure 记录 |\n| **seed44 (本次)** | **12%** | 本次重试 |\n| seed45 | 14% | 已有数据 |\n| seed47 | 14% | 已有数据 |\n\n本次 seed44 SR=12%，比前次 16% 低 4pp，但与其他 norm005 seed（14%、14%）在同一量级。ε=0.05 修正幅度极小，三个 seed 的 SR 范围 12%-14%，方差合理，可用于 Figure 2 error bars。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-object-norm005-seed44.md"
+}

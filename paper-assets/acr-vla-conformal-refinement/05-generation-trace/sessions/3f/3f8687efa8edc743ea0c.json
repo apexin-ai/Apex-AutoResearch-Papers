@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f8687efa8edc743ea0c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose smolvla long seed2 exit",
+  "task_key": "worker_diagnose_smolvla-long-seed2-exit_20260522T153836",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_smolvla-long-seed2-exit_20260522T153836_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "9893560002179a706f2ce5e7080a0614e2260bfd59f560b67f9a28d57c031082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### SmolVLA Long seed2 (vla-only eval)\n**异常终止** — 被外部强制 kill，不是正常退出也不是程序报错。\n\n证据：\n- 日志仅 19 行，只完成 2/10 个 task 就中断，正在跑第 3 个 task 时停止\n- 无 traceback、无 error、无 EXIT_CODE\n- 无退出码文件 (`/tmp/agent-ml-exit/` 中没有对应文件)\n- tmux session 已不存在\n\n**seed0、seed1 情况相同** — 都在 23:01 前后同时停止，都只完成了 2 个 task。\n\n已完成的部分结果（seed2）：\n- Task 1 (alphabet_soup+tomato_sauce): 10% (1/10)\n- Task 2 (cream_cheese+butter): 70% (7/10)\n\n### 原因推断\nvla-only eval 在 ~23:01 被 kill，4 分钟后（23:05）lerobot eval 在相同 GPU (0/1/2) 上启动。大概率是另一个 agent session 杀掉 vla-only session 后启动了 lerobot baseline eval。\n\n### lerobot eval（当前在跑）\n| seed | 进度 | running SR |\n|------|------|-----------|\n| seed0 | 18/20 | 77.8% |\n| seed1 | 17/20 | 64.7% |\n| seed2 | 17/20 | 58.8% |\n\nGPU 3/4/5 上还有 pi05 goal precompute 任务在跑。\n\n**vla-only long seed0/1/2 需要重跑。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-smolvla-long-seed2-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c6f3729c03f48ac3c9f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code plan015 k5 crm prep",
+  "task_key": "worker_code_plan015-k5-crm-prep_20260513T235543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan015-k5-crm-prep_20260513T235543_result.json",
+    "occurrence": 1,
+    "bytes": 1921,
+    "sha256": "a09d7e3bd9ce9864f4f5c3d06cfb93f09cd580b162967d05a1fc32a3b5557e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=5 CRM 训练就绪状态报告\n\n### 1. K=5 Cache: **完整可用**\n\n| Benchmark | 样本数 | K | obs_dim | manifest |\n|-----------|--------|---|---------|----------|\n| spatial | 12,167 | 5 | 960 | OK |\n| object | 14,570 | 5 | 960 | OK |\n\n总大小 233MB，两个子目录均有 `obs_features.pt` / `k_samples.pt` / `expert_actions.pt` + `manifest.json`。\n\n### 2. 训练命令格式确认\n\n`--cache_dir` 和 `--output_dir` 均支持。`--K` 参数仅在 precompute 阶段和 manifest 记录中使用，训练阶段直接从 cache 加载，传 `--K 5` 用于元数据一致性。\n\n### 3. 输出目录\n\nK=10 结果在默认目录 `/root/autodl-tmp/checkpoints/crm/`（已完成 50 epochs）。`scalar_unc/` 下有另一个训练进行中（3 epochs）。K=5 应用独立目录避免冲突。\n\n### 4. GPU 状态\n\nGPU 0 占用 15.7GB（有任务运行中），GPU 1-3 基本空闲。\n\n### 5. 推荐提交命令\n\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=0 nohup python src/train_crm.py \\\n  --benchmark spatial object \\\n  --epochs 50 \\\n  --batch_size 32 \\\n  --lr 1e-3 \\\n  --K 5 \\\n  --seed 42 \\\n  --cache_dir /root/autodl-tmp/crm_cache_k5/ \\\n  --output_dir /root/autodl-tmp/checkpoints/crm/k5/ \\\n  > /root/autodl-tmp/checkpoints/crm/k5/train.log 2>&1 &\n```\n\n### 6. 潜在问题\n\n- **GPU 0 被占用**（15.7GB），需等当前任务结束或改用空闲 GPU（`CUDA_VISIBLE_DEVICES=1`）\n- **输出目录 `/root/autodl-tmp/checkpoints/crm/k5/` 尚不存在**，需提交前 `mkdir -p` 或依赖脚本的 `mkdir(parents=True)`（代码中 output_dir 未见自动创建，需确认）\n- scalar_unc 训练正在 GPU 0 上跑，如果要等它跑完再提交 K=5，用 `CUDA_VISIBLE_DEVICES=0` 即可；如果想并行，用 `CUDA_VISIBLE_DEVICES=1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan015-k5-crm-prep.md"
+}

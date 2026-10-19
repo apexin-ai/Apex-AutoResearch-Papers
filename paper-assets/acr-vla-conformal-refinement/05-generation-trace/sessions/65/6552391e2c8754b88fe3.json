@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "6552391e2c8754b88fe3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "eval pi05 official lerobot last attempt 20260521T060804 retry2",
+  "task_key": "worker_eval_pi05-official-lerobot-last-attempt_20260521T060804_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_pi05-official-lerobot-last-attempt_20260521T060804_retry2.log",
+    "occurrence": 1,
+    "bytes": 798413,
+    "sha256": "48518a93b8ee58672cc976932fc1d584e0ea0a182207880ab21bb07e3bfde54e"
+  },
+  "statistics": {
+    "messages": 433,
+    "user_turns": 0,
+    "tool_calls": 158,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 158,
+      "tool_result": 158,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 433,
+      "chunks": [
+        {
+          "path": "6552391e2c8754b88fe3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6552391e2c8754b88fe3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6552391e2c8754b88fe3-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-pi05-official-lerobot-last-attempt-20260521t060804-retry2.md"
+}

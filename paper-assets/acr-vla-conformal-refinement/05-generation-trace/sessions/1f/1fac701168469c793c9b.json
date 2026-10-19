@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fac701168469c793c9b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "exec precompute v5 diagnose relaunch",
+  "task_key": "worker_exec_precompute-v5-diagnose-relaunch_20260514T092627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_precompute-v5-diagnose-relaunch_20260514T092627_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "7a59fe0604ad3aad39d63ab9cc758a8791bae516c27adb3d12c643c1a923f560"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：precompute-v5 已成功完成，无需重启\n\n三个 shard 全部正常退出（EXIT_CODE=0），数据已合并：\n\n| benchmark | samples | 大小 | 状态 |\n|-----------|---------|------|------|\n| spatial | 12,167 | 120MB | merged ✓ |\n| object | 14,570 | 144MB | merged ✓ |\n\n**之前判断\"失败\"的原因是误判**：\n- 日志文件存在于 `/root/runs/acr-vla-conformal-refinement/precompute-v5-shard{0,1,2}.log`\n- cache 目录 `/root/autodl-tmp/crm_cache_v5/` 存在，包含 `spatial/` 和 `object/` 两个完整子目录\n- 每个子目录都有合并后的 `obs_features.pt`、`k_samples.pt`、`expert_actions.pt` 和 `manifest.json`\n\n**合并逻辑**：shard 0 和 1 先完成，检测到 shard 2 未完成所以跳过 merge（正常行为）；shard 2 最后完成后触发了合并，写入了最终文件。\n\n**时间线**：spatial 约 16:00-16:27 完成，object 约 16:30-17:05 完成。\n\n参数确认：K=10, obs_dim=960, max_demos_per_task=10, input_mode=full，与 v5 预期一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-precompute-v5-diagnose-relaunch.md"
+}

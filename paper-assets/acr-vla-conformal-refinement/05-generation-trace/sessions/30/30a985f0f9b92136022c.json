@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "30a985f0f9b92136022c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops n rollouts audit and perdof verify",
+  "task_key": "worker_ops_n-rollouts-audit-and-perdof-verify_20260518T104245",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_n-rollouts-audit-and-perdof-verify_20260518T104245.log",
+    "occurrence": 1,
+    "bytes": 869185,
+    "sha256": "4a426f51b16ec0ebed82ae36a53517712748acdaed7ea6b9257715959aef4c11"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 2,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 55,
+      "tool_result": 55,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "30a985f0f9b92136022c-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "30a985f0f9b92136022c-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 146,
+      "chunks": [
+        {
+          "path": "30a985f0f9b92136022c-part-0001.json",
+          "message_count": 43
+        },
+        {
+          "path": "30a985f0f9b92136022c-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-n-rollouts-audit-and-perdof-verify.md"
+}

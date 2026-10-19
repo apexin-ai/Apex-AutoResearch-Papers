@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "480c073e6f73dea113f9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy perdof norm01 seed47",
+  "task_key": "worker_ssh_deploy-perdof-norm01-seed47_20260517T095530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-perdof-norm01-seed47_20260517T095530_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "127390e46f58e556a468cecdc72148c7cf55fb000b1738ba6b7dabe4572dbfe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**实验状态总结：**\n- 实验: `eval-perdof-object-norm01-seed47`\n- 服务器: bjb2-40593, cuda:0\n- PID: 388460\n- GPU 占用: 1263 MiB\n- 状态: RUNNING，CRM 模型已加载，正在执行 LIBERO-Object 评估\n- Cron 监控: 每 5 分钟检查一次（job `5cb2c9e7`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-perdof-norm01-seed47.md"
+}

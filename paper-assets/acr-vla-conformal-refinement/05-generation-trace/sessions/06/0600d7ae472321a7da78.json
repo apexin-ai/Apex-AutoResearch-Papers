@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0600d7ae472321a7da78",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest bjb1 32546 vla baselines",
+  "task_key": "worker_harvest_bjb1-32546-vla-baselines_20260524T210940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_bjb1-32546-vla-baselines_20260524T210940.jsonl",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "f509c289fd93a7c2a20f7630d10025b208b62cfcdb7cb7c6c0d95b1284162c27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T21:09:51.539211+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb1-32546-vla-baselines_20260524T210940"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-bjb1-32546-vla-baselines.md"
+}

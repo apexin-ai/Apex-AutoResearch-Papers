@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca1d6660ee5b4779997",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval smolvla vla only dryrun",
+  "task_key": "worker_eval_smolvla-vla-only-dryrun_20260522T193038",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smolvla-vla-only-dryrun_20260522T193038_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "dc49db70ea0d30b912e528cf82e6e46a2bd3e5ce27f55aa225e329f32b94afdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry Run 报告\n\n| 项目 | 结果 |\n|------|------|\n| **状态** | 成功 |\n| **Overall success rate** | 100.0% (10/10 tasks) |\n| **执行耗时** | ~18 分钟（10 tasks × 1 rollout each, 280 max steps） |\n| **GPU 显存峰值** | ~11.3 GB（运行中稳定 ~5.6 GB，进程已释放） |\n| **错误/警告** | 无错误。仅 1 个无害 DeprecationWarning（`swigvarlink has no __module__`） |\n\n10 个 task 全部 1/1 成功，eval pipeline 正常工作。JSON 已保存到 `logs/eval_object_vla_only_seed42.json`。\n\n注意：n_rollouts=1 的 100% 成功率不代表实际性能——object suite 本身较简单，且单次 rollout 有随机性。正式 eval 需 n_rollouts=20。CRM eval 部署就绪，无阻塞问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-smolvla-vla-only-dryrun.md"
+}

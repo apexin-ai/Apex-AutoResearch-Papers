@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "28c09b476ee9529b38a1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix pi05 wrapper vision tower final",
+  "task_key": "worker_fix_pi05-wrapper-vision-tower-final_20260521T063854",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_pi05-wrapper-vision-tower-final_20260521T063854_result.json",
+    "occurrence": 1,
+    "bytes": 2361184,
+    "sha256": "d96c274cafc5295e10f3c9d511e4c54cb4ab62d043c906d132d8e32e70f9c962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "28c09b476ee9529b38a1-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/fix-pi05-wrapper-vision-tower-final.md"
+}

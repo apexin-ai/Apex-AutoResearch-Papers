@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07b779ddf65c4c394a11",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check gpu bjb1 32546",
+  "task_key": "worker_ssh_check-gpu-bjb1-32546_20260523T032920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-gpu-bjb1-32546_20260523T032920_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "e16abb67d979eda51b1e357b40360d7e2a8e0d710232cbc4c3157c1db3a5c387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**全部 6 块 GPU 均被占用，无空闲 GPU。**\n\n- **GPU 0/1/2/4/5**：5 个新 eval 进程（11:24 启动），包括 3 个 adaptive_conformal_crm（τ=0.15/0.25/0.35 on spatial）和 2 个 crm_obs_only（norm=0.2 on spatial, norm=0.05 on object）。均在 task 1/10 早期阶段，预计 1-2 小时完成。\n- **GPU 3**：4-suite CRM 训练，epoch 38/50 batch 2250/6316，val_loss 持续下降至 0.005903。预计 ~16:45 完成（剩余 ~5.3 小时）。\n\n之前的 3-direction eval（dirA/B/C）已于 11:10-11:19 全部完成，CRM Spatial eval 确实已在运行（不是 PREPARING 状态）。\n\n报告已写入 `artifacts/gpu_status_bjb1_32546.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-bjb1-32546.md"
+}

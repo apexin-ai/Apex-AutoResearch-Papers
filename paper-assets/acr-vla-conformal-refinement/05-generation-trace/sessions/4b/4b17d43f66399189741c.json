@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b17d43f66399189741c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops audit bjb1 18228 after tmux crash",
+  "task_key": "worker_ops_audit-bjb1-18228-after-tmux-crash_20260518T204434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_audit-bjb1-18228-after-tmux-crash_20260518T204434_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "049804a1cb1820a13f13f4901d497e953bb43f2280dd6bcc46f0ef387433a488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。最终状态汇报：\n\n## 审计结果\n\n### 存活进程（未受 tmux 崩溃影响，3个）\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 1 | obs_only norm003 seed43 | tmux 运行中（之前已重新部署） |\n| 2 | perdof norm003 seed44 | orphan 进程运行中 |\n| 3 | perdof default seed43 | orphan 进程运行中 |\n\n### 已完成（1个）\n| GPU | 实验 | JSON 写入时间 |\n|-----|------|--------------|\n| 3 | obs_only norm01 seed48 | May 18 19:39 ✓ |\n\n### 重新部署（4个）\n| GPU | 实验 | tmux session |\n|-----|------|-------------|\n| 0 | obs_only norm=0.03 seed47 | `eval-obs-only-norm003-seed47` |\n| 0 | perdof norm=0.3 seed48 | `eval-perdof-norm03-seed48` |\n| 1 | obs_only norm=0.03 seed46 | `eval-obs-only-norm003-seed46` |\n| 2 | obs_only norm=0.05 seed46 | `eval-obs-only-norm005-seed46` |\n\n### GPU 状态（验证通过）\n| GPU | 进程数 | VRAM |\n|-----|--------|------|\n| 0 | 2 | 10771MiB / 24564MiB |\n| 1 | 2 | 10945MiB / 24564MiB |\n| 2 | 2 | 7909MiB / 24564MiB |\n| 3 | 1 | 2410MiB / 24564MiB |\n\n共 5 个 tmux session + 2 个 orphan 进程 = 7 个实验在跑，1 个已完成。8 个实验全部覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-audit-bjb1-18228-after-tmux-crash.md"
+}

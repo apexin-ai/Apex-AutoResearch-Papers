@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11bb8b107fe91699a049",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 40593 fix redeploy k2mean",
+  "task_key": "worker_deploy_bjb2-40593-fix-redeploy-k2mean_20260523T083034",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-40593-fix-redeploy-k2mean_20260523T083034_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "ec6c981a4c52149315b1ee018e0752d8f11e77b6050f0db4ebd48d51d4b2fbfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功，运行正常：\n\n- **GPU**: RTX 4090 D, 5774MiB 占用, 13% utilization, PID 127177\n- **进度**: SmolVLA 已加载, LIBERO goal 10 个 task 已加载，即将开始 rollout\n- **参数**: K=2, mean, goal, seed=42, 20 rollouts\n- **根因**: 原失败是 conda 未激活导致 `python: command not found`（exit 127），evaluate.py 本身已修复无需改动\n- **修正**: `--suite` 改为 `--benchmark`（代码实际参数名）\n- **Registry**: `eval-supp-k2mean-goal-s42-r2` 已注册为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-40593-fix-redeploy-k2mean.md"
+}

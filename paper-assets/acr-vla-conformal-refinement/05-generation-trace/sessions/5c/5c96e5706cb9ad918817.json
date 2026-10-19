@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c96e5706cb9ad918817",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_17_1779015829.md",
+  "task_key": "loop_17_1779015829",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_17_1779015829.md",
+    "occurrence": 1,
+    "bytes": 5261,
+    "sha256": "99301f00cb109c7995747d4a429aaf7eeddfd03238908c26fd0fc230035aec32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-17T10:16:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前 4 台服务器：bjb2-28827、bjb2-40593、bjb1-18228、bjb1-32546，共 17 张卡\n- ε=0.2 是锁定配置（D038），不要跑其他 ε 做 obs_only 主实验\n- Narrative B 已锁定（D043）：mechanism insight（magnitude robustness）为核心贡献，+4pp 一致性改进为 supplementary evidence，不 claim significance\n- Negative 结果禁止默默跑下一个实验——必须先产 Framing 提案给 Director\n- `submit_training_job` 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**（4 台，全部 RTX 4090）:\n  - bjb2-28827: 工作目录 `/root/acr-vla-conformal-refinement`，6 卡\n  - bjb2-40593: 工作目录 `/root/acr-vla-conformal-refinement`，1 卡（磁盘 90% ⚠️）\n  - bjb1-18228: 工作目录 `/root/acr-vla-conformal-refinement`，多卡\n  - bjb1-32546: 工作目录 `/root/acr-vla-conformal-refinement`，6 卡\n- **Python**: `/root/miniconda3/bin/python`，conda env = base\n- **HF cache**: `HF_HOME=/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **eval 命令模板**: `python -u src/evaluate.py --benchmark object --mode {mode} --n_rollouts 10 --K 10 --seed {seed} --output_file logs/{output}.json`\n- **结果文件**: `logs/eval_*.json`（per-task SR JSON）\n- **活跃 cron**: 14 个，全部对应 RUNNING 实验的进程监控\n\n### 3. 📊 当前状态\n**刚做完**: Session 初始化（read_registry + reconcile_crons + 读 report/ROADMAP）。\n\n**正在处理**: `eval-vla-mean-object-seed45` cron 回调（ANALYZING 状态）。已 spawn Worker `worker_analysis_eval-vla-mean-object-seed45_20260517T033117` 去 bjb2-28827 读结果 JSON，**Worker 尚未回调**。\n\n**RUNNING 实验（16 个）**:\n| 实验 | 服务器 | 用途 |\n|------|--------|------|\n| eval-obs-only-object-norm02-seed46 | bjb1-18228 | 6-seed pooled 扩样本 |\n| eval-obs-only-object-norm02-seed47 | bjb1-32546 | 6-seed pooled 扩样本 |\n| eval-argmin-object-seed46 | bjb1-32546 | seed46 argmin baseline |\n| eval-argmin-object-seed47 | bjb1-32546 | seed47 argmin baseline |\n| eval-scalar-object-seed45 | bjb2-28827 | scalar CRM seed45 |\n| eval-obs-only-object-default-seed45 | bjb2-28827 | obs_only default norm seed45 |\n| eval-obs-only-object-norm03-seed45-r2 | bjb2-28827 | obs_only ε=0.3 seed45 |\n| eval-perdof-object-norm01-seed44 | bjb1-18228 | perdof collapse curve 低 norm |\n| eval-perdof-object-norm01-seed45 | bjb1-32546 | perdof collapse curve 低 norm |\n| eval-perdof-object-norm02-seed44 | bjb2-28827 | perdof collapse curve 中 norm |\n| eval-perdof-object-norm02-seed45 | bjb2-28827 | perdof collapse curve 中 norm |\n| eval-perdof-object-norm03-seed44 | bjb1-18228 | perdof collapse curve 高 norm |\n| eval-perdof-object-norm03-seed45-r2 | bjb1-32546 | perdof collapse curve 高 norm |\n| eval-perdof-object-default-seed44 | bjb2-40593 | perdof default norm |\n| eval-obs-only-object-norm01-seed45 | bjb1-18228 | obs_only ε=0.1 seed45 |\n| eval-direct-correction-object-seed42-r3 | bjb1-32546 | direct correction ablation |\n\n**等待中**:\n- Worker 回调: `worker_analysis_eval-vla-mean-object-seed45_20260517T033117`（读 vla_mean seed45 结果）\n- 16 个 RUNNING 实验的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调到达（vla_mean seed45 结果）→ 读取 SR%，update_registry(status=DONE, conclusion=success/negative, metrics={...})，更新 report.md，向 Director 汇报 seed45 六方对比表\n- seed46 pair（obs_only + argmin）完成 → 计算 5-seed pooled Fisher p-value，更新 ROADMAP 表格\n- seed47 pair 完成 → 计算 6-seed pooled 最终统计，这是论文 final number\n- perdof norm sweep 各点完成 → 更新 magnitude curve 多 seed 数据，为 error bar 提供支撑\n- eval-direct-correction-object-seed42-r3 完成 → 论文 ablation table 中 \"direct correction\" 行\n- 所有 17 个实验完成 → 向 Director 汇报最终全矩阵结果 + 建议激活 Paper Agent\n\n### 5. 🎯 战略上下文\n- **核心结论**: obs_only CRM（仅用观测预测不确定性，不用动作信息）在所有 correction magnitude 下保持安全（16-22% SR），而 perdof CRM（用动作信息）在 norm 增大时单调崩溃至 0%。这个 mechanism insight 是论文核心贡献。\n- **决策链**: D038（ε=0.2 锁定）→ D042（claim 结构确定）→ D043（Narrative B 锁定，mechanism insight 为主线）\n- **当前 pooled 统计**: 4-seed obs_only 17.5% vs argmin 13.5%, +4pp, Fisher p=0.118。6-seed 完成后 p 值可能降到显著水平。\n- **CoRL DDL**: abstract ~May 26, full paper ~Jun 2，剩 ~10 天\n- **易错点**:\n  - vla_mean 是 baseline（取 K=10 样本均值），不是 CRM 方法。seed42=12%, seed43=15%, seed44=10%，预期 seed45 在 10-15% 范围\n  - bjb2-40593 磁盘 90%，不要在上面启动新实验\n  - 论文草稿全部 section 都有 draft，但 Conclusion 有 3 处待修正（Agent 队列中）\n  - P1 diagnostic（Training Loss vs Closed-Loop SR Disconnect）尚未完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779015829.md"
+}

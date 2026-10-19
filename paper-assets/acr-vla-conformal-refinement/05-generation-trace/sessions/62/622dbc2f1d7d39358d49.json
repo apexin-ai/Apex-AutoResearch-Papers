@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "622dbc2f1d7d39358d49",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops crm pipeline v2",
+  "task_key": "worker_ops_crm-pipeline-v2_20260521T171919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_crm-pipeline-v2_20260521T171919.jsonl",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "88fd844df3449b0763d503332e65a3649df503994f370838f41675a6a2a89cbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:19:30.913880+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_crm-pipeline-v2_20260521T171919"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-crm-pipeline-v2.md"
+}

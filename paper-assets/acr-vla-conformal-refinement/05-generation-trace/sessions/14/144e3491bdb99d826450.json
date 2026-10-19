@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "144e3491bdb99d826450",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag eval vla only object seed48",
+  "task_key": "worker_diag_eval-vla-only-object-seed48_20260519T234612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval-vla-only-object-seed48_20260519T234612_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "56c6713a08597d46c3dbde56a4f1eaec6538b3d47eba96e91947a9ac59c34d15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：实验实际已成功完成，不是真正的失败\n\n日志和输出文件均显示实验已正常跑完全部 10 个任务 × 10 rollouts = 100 次评估。\n\n**根因：监控系统误判。** 实验进程在监控系统检测窗口外正常退出（进程完成后自然消失），被误判为\"process dead\"。没有 sentinel 文件或 W&B 上报，因此监控系统在 5 次检测不到进程后自动标记为失败。\n\n### 关键证据\n\n- **输出文件** `logs/eval_object_vla_only_seed48.json` 存在（1485字节，时间戳 May 20 07:36）\n- **日志文件** `logs/eval_object_vla_only_seed48.log` 完整，末尾打印了最终结果：`Overall success rate (vla_only): 10.0% (10/100)` 并显示 `Results saved to logs/eval_object_vla_only_seed48.json`\n- **无报错**，无 OOM、无 CUDA error、无 crash traceback\n\n### 实验结果\n- 模式: vla_only, benchmark: object, seed: 48, K=1\n- 总体成功率: **10.0%** (10/100)\n- 各任务成功率范围: 0%–30%\n\n### 服务器当前状态\n- **磁盘**: 根分区 30G 中已用 8.9G（30%），可用 22G — 磁盘充足，之前报告的 89% 已不适用\n- **GPU**: RTX 4090D, 0MiB 占用, 0% 利用率 — 空闲\n- **进程**: 无 Python 实验进程残留\n\n### 是否需要重试\n**不需要。** 实验已成功完成，结果已保存。需要做的是将此实验的状态从\"failed\"更正为\"completed\"，并采集已有结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-vla-only-object-seed48.md"
+}

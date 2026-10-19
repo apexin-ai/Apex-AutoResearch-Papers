@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32aa239c3bc5fa7287ef",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis magnitude curve consolidation",
+  "task_key": "worker_analysis_magnitude-curve-consolidation_20260517T224156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_magnitude-curve-consolidation_20260517T224156_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "df67bcc4186c1c75295be9e3b8c63e7ff2aaa2e045b6fb7881ad21126080f93c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。数据已写入 `artifacts/magnitude_curve_data.md`。\n\n核心发现：\n- **obs_only**: 全 ε 范围平坦（13–17.5%），即使 default uncapped 也不崩溃\n- **perdof**: 从 ε=0.05 的 14% 逐步下降到 default 的 0%（progressive collapse）\n- **统计充足度**: ε=0.10 和 ε=0.20 两模型均 ≥3 seeds；ε=0.30 和 default 也够 3 seeds\n- **关键缺口**: ε=0.03 和 ε=0.05 两模型都只有 1 seed（当前仅 obs_only ε=0.05 seed43 在跑），perdof ε=0.05 完全无补充计划"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-magnitude-curve-consolidation.md"
+}

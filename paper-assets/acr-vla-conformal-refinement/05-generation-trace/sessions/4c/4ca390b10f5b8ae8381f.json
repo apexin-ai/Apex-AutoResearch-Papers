@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ca390b10f5b8ae8381f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh diagnose crm goal seed44 r2",
+  "task_key": "worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "4e7a8ffb454cb00c09f2ccb1db1df7cf20f9c1d62f220df6825e14fb133b9352"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功完成。结果如下：\n\n**Overall SR: 0.64** (64/100 episodes, 10 tasks × 10 rollouts)\n\n**Per-task breakdown:**\n\n| Task | SR | Successes |\n|------|----|-----------|\n| turn_on_the_stove | **1.0** | 10/10 |\n| put_the_bowl_on_the_plate | **1.0** | 10/10 |\n| put_the_bowl_on_the_stove | **0.9** | 9/10 |\n| push_the_plate_to_the_front_of_the_stove | **0.8** | 8/10 |\n| put_the_bowl_on_top_of_the_cabinet | **0.7** | 7/10 |\n| open_the_middle_drawer_of_the_cabinet | **0.6** | 6/10 |\n| put_the_wine_bottle_on_top_of_the_cabinet | **0.5** | 5/10 |\n| put_the_wine_bottle_on_the_rack | **0.4** | 4/10 |\n| put_the_cream_cheese_in_the_bowl | **0.3** | 3/10 |\n| open_the_top_drawer_and_put_the_bowl_inside | **0.2** | 2/10 |\n\n配置: `mode=crm_obs_only`, `baseline_mode=single`, `benchmark=goal`, `n_rollouts=10`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-crm-goal-seed44-r2.md"
+}

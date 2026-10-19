@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "409871d7690a02ae90be",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops eval server prep",
+  "task_key": "worker_ops_eval-server-prep_20260521T191017",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_eval-server-prep_20260521T191017_result.json",
+    "occurrence": 1,
+    "bytes": 1523,
+    "sha256": "d17d1eee8523df7203bc9879140f68c42e21c0a7c8e84337a7bb52948451e442"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 就绪状态汇报\n\n### 关键发现：无需 git pull\n两台服务器 `src/evaluate.py` / `pi05_wrapper.py` / `crm.py` 的 **md5 完全一致**，代码状态相同。任务前提（bjb2 旧于 bjb1）不成立。\n- bjb1-32546：`/root/acr-vla-conformal-refinement` 不是 git 仓库（无 .git），项目以 rsync 同步而非 git\n- bjb2-28827：是本地 git repo 但**未配置 origin remote**，git pull 也不可行（且有大量未提交本地改动 + 未跟踪文件）\n\n### bjb1-32546 ✅ 完全就绪\n- torch=2.10.0+cu128，CUDA OK，6× RTX 4090（24GB）\n- pi05 模型完整（model.safetensors 7.47GB，全部配置文件齐全）\n- evaluate.py 存在（33058 bytes，2026-05-21 23:49 更新）\n- **GPU 全部空闲**（6/6 显存 1 MiB，利用率 0%）\n\n### bjb2-28827 ⚠️ 部分占用\n- torch=2.10.0+cu128，CUDA OK，6× RTX 4090（24GB）\n- pi05 模型完整（注意：`policy_preprocessor.json` 1937 bytes，比 bjb1 多 34 字节，时间戳 14:31——可能是某次调试改动，但 md5 未对比，若 eval 报 normalizer 异常需排查）\n- evaluate.py 存在（与 bjb1 完全相同）\n- **GPU 0/1/3/5 被占用**（各 9.8GB，20-43% 利用率，疑似 CRM training）；GPU 2/4 空闲\n\n### 部署建议\n- bjb1-32546 可立即跑 3 个 seed（GPU 0/1/2）\n- bjb2-28827 需等 CRM training 完成腾出 GPU 0/1/3/5，或仅用空闲的 GPU 2/4 跑 2 个 seed\n- 若 bjb2 的 `policy_preprocessor.json` 差异引发问题，从 bjb1 同步过去即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-server-prep.md"
+}

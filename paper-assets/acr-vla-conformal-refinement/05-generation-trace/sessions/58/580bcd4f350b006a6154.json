@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "580bcd4f350b006a6154",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit deploy bjb1 32546 full audit",
+  "task_key": "worker_audit-deploy_bjb1-32546-full-audit_20260523T101221",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit-deploy_bjb1-32546-full-audit_20260523T101221_result.json",
+    "occurrence": 1,
+    "bytes": 1382,
+    "sha256": "9bd49a137b3011336694135504f1fe17b8e53c60001b915fe8f62dfa5b41dbc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验已全部注册为 RUNNING。\n\n## 审计结果汇总\n\n**bjb1-32546 全部 6 GPU 占满，无空闲 GPU 可部署新实验。**\n\n| GPU | exp_id | 实验 | 状态 | 运行时长 |\n|-----|--------|------|------|---------|\n| cuda:0 | eval-supp-adapt-tau025-obj-s43 | Object Adaptive tau=0.25 s43 | RUNNING (新注册) | ~1.5h |\n| cuda:1 | eval-supp-crm-norm005-goal-s43 | Goal CRM norm=0.05 s43 | RUNNING (新注册) | ~1.5h |\n| cuda:2 | eval-supp-adapt-tau025-goal-s43 | Goal Adaptive tau=0.25 s43 | RUNNING (新注册) | ~1.5h |\n| cuda:3 | eval-supp-long-vla-only-s42 | Long VLA-only s42 | RUNNING (已注册) | ~48min |\n| cuda:4 | eval-supp-crm-norm005-obj-s43 | Object CRM norm=0.05 s43 | RUNNING (新注册) | ~1.5h |\n| cuda:5 | eval-supp-adapt-tau025-goal-s44 | Goal Adaptive tau=0.25 s44 | RUNNING (已注册) | ~1.1h |\n\n**P1 部署选项对照：**\n- #1 Long K=2 mean s42 — **无空闲 GPU，无法部署**\n- #2 Goal CRM norm=0.05 s43 — **已在 cuda:1 运行**（由之前 Worker 启动）\n- #3 Goal Adaptive tau=0.25 s43 — **已在 cuda:2 运行**（由之前 Worker 启动）\n- #4 Goal Reconvla s44 — **无空闲 GPU，无法部署**\n\n已为 cuda:0/1/2/4 上的 4 个未注册实验补建了 registry 条目（RUNNING）。这些实验预计还需 ~10-12h 完成（20 rollouts × 10 tasks 的 eval 通常需 12-14h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-deploy-bjb1-32546-full-audit.md"
+}

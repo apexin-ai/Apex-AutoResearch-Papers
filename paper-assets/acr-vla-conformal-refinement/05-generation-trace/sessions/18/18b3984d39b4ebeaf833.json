@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18b3984d39b4ebeaf833",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "redeploy killed experiments 5gpu",
+  "task_key": "worker_redeploy_killed-experiments-5gpu_20260520T120713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_redeploy_killed-experiments-5gpu_20260520T120713_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "33aa8561d2fc34b55bcf752f2d91265240937f0d549189390441a756fb2950c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个实验全部部署完成，registry 状态已更新为 RUNNING。\n\n| # | exp_id | 服务器 | GPU | PID | 状态 |\n|---|--------|--------|-----|-----|------|\n| 1 | eval-obs-only-spatial-norm02-seed42 | bjb2-28827 | cuda:3 | 340026 | RUNNING |\n| 2 | eval-vla-only-goal-seed47 | bjb2-28827 | cuda:4 | 336621 | RUNNING |\n| 3 | eval-vla-only-spatial-seed48 | bjb2-28827 | cuda:5 | 336826 | RUNNING |\n| 4 | eval-obs-only-goal-norm02-seed51 | bjb1-32546 | cuda:1 | 401661 | RUNNING |\n| 5 | eval-obs-only-object-norm02-seed43-r3 | bjb1-32546 | cuda:2 | 401735 | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/redeploy-killed-experiments-5gpu.md"
+}

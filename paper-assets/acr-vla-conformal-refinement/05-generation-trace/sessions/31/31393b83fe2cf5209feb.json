@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "31393b83fe2cf5209feb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval supp long reconvla s45",
+  "task_key": "cron_hook_eval-supp-long-reconvla-s45",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_eval-supp-long-reconvla-s45.jsonl",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "8452fc4c8b412d1b487c8ef477cecda661298511d0c0080b95aacd263890ecb4"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "user": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T01:10:27.277459+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: eval-supp-long-reconvla-s45\n- project: acr-vla-conformal-refinement\n- server: bjb1-32546"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-supp-long-reconvla-s45",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T01:11:16.150634+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "⏰ API 当前限速（所有账号），请稍后重试。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-supp-long-reconvla-s45"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-supp-long-reconvla-s45.md"
+}

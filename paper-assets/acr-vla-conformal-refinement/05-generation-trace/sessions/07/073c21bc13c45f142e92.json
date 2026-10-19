@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "073c21bc13c45f142e92",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit deploy cqa1 32758 fill gaps",
+  "task_key": "worker_audit-deploy_cqa1-32758-fill-gaps_20260523T112852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit-deploy_cqa1-32758-fill-gaps_20260523T112852_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "f0a7a3e8026ee24f3562c1a39cf50949030a8e06c4d707b9ea2c862f218a1496"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 已在加载模型 (1263 MiB)，cuda:5 正在初始化。\n\n## 审计总结\n\n**cqa1-32758 GPU 状态 (6/6 占用)**：\n\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | eval-supp-obj-reconvla-s44 (PID 180864) | **新部署** |\n| cuda:1 | eval-supp-k2mean-spatial-s44 (PID 174449) | 运行中 |\n| cuda:2 | eval-supp-k2mean-object-s43 (PID 16441) | 运行中 |\n| cuda:3 | eval-supp-k2mean-object-s44 (PID 177864) | 运行中 |\n| cuda:4 | eval-supp-long-k2mean-s42 (PID 172251) | 运行中 |\n| cuda:5 | eval-supp-spatial-vla-only-s43 (PID 181168) | **新部署** |\n\n**已完成实验结果提取**：\n- **goal-reconvla-s43**: 81.0% (s42=81.0%, 两 seed 一致)\n- **k2mean-spatial-s43**: 78.0% (已在 registry 中)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-deploy-cqa1-32758-fill-gaps.md"
+}

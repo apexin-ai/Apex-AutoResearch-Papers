@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30261450f47a68396265",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy smolvla goal long bjb1",
+  "task_key": "worker_deploy_smolvla-goal-long-bjb1_20260522T050738",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-goal-long-bjb1_20260522T050738_result.json",
+    "occurrence": 1,
+    "bytes": 156,
+    "sha256": "edf57eb1a6577ebd7052ad1bb8e807aeb78faeaa6d130c8bd5a7c13d1212b522"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 529 Overloaded. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-smolvla-goal-long-bjb1.md"
+}

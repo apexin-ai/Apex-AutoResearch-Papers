@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "466dce02a2d09e46758b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 baseline 6gpu direct",
+  "task_key": "worker_deploy_pi05-baseline-6gpu-direct_20260521T080717",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-baseline-6gpu-direct_20260521T080717_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "50d5931e46e14de1abb79a386028a6d1376c7608a617ed868a7612a3b361b1d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个进程存活，GPU 全部占用，正在进行首轮 rollout（首次推理较慢）。部署完成。\n\n---\n\n**部署汇报**\n\n| # | exp_id | GPU | PID | Benchmark | Seed | 状态 |\n|---|--------|-----|-----|-----------|------|------|\n| 1 | `eval-pi05-vla-only-object-seed42` | cuda:0 | 943180 | Object | 42 | RUNNING |\n| 2 | `eval-pi05-vla-only-object-seed43` | cuda:1 | 943547 | Object | 43 | RUNNING |\n| 3 | `eval-pi05-vla-only-object-seed44` | cuda:2 | 943899 | Object | 44 | RUNNING |\n| 4 | `eval-pi05-vla-only-spatial-seed42` | cuda:3 | 944264 | Spatial | 42 | RUNNING |\n| 5 | `eval-pi05-vla-only-spatial-seed43` | cuda:4 | 945459 | Spatial | 43 | RUNNING |\n| 6 | `eval-pi05-vla-only-spatial-seed44` | cuda:5 | 946612 | Spatial | 44 | RUNNING |\n\n**额外工作：**\n- 模型下载：从 HuggingFace 下载 `lerobot/pi05_libero_finetuned`（7GB）到 bjb1\n- Tokenizer 下载：`unsloth/gemma-2b` tokenizer 到 `/root/autodl-tmp/models/gemma-2b-tokenizer/`\n- Bug 修复：前 4 个实验因 `torch._inductor` 的 `duplicate template name` 断言错误崩溃，添加 `TORCHDYNAMO_DISABLE=1` 后成功启动\n- 代码同步：bjb1 上 `pi05_wrapper.py` 已有 `torch.flip` 修复，无需同步\n- Registry：6 个实验全部注册为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-baseline-6gpu-direct.md"
+}

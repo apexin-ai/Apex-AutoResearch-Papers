@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "594fba663e295b253859",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze westd pi05 vla only object paired",
+  "task_key": "worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "d98206e89bc09771faae6e8f135ca3b7c48d791465bc3c48187c8bbad4ab555f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T11:58:32.705442+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-westd-pi05-vla-only-object-paired.md"
+}

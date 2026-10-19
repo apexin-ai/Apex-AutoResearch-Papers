@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "525f528df4475654010f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh read calibration results urgent",
+  "task_key": "worker_ssh_read-calibration-results-urgent_20260520T045324",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_read-calibration-results-urgent_20260520T045324_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "8a3ce5538071e2988408ba350357f313d88bf0cad1974a9441e0c5ac779abdb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**`crm_magnitude_calibration.json` 尚未生成——脚本仍在运行。**\n\n日志确认目标文件为 `logs/crm_magnitude_calibration.json`，但 JSON 在所有 episode 完成后才写入。\n\n### 当前进度\n\n| 项目 | 值 |\n|------|-----|\n| 总 episodes | 10 tasks × 10 eps = **100** |\n| 已完成 | ~82 episodes（97 行日志 - 15 行 header） |\n| 当前位置 | `pick_up_the_chocolate_pudding` ep 4/10 |\n| 已用时间 | 6651s (~111 min) |\n| 预估剩余 | ~18 episodes × ~80s ≈ **24 分钟** |\n| 进度 | **~82%**，非之前预估的 95% |\n\n### 已有的相关 calibration 数据\n\n`k2_l2_calibration.json` 包含 3 个 Spearman 相关性（基于 5 eps/task 的先前 run）：\n\n| 对 | ρ | p-value |\n|----|---|---------|\n| ρ(FMVD, K10_var) | **0.0825** | 2.33e-23 |\n| ρ(K2_L2, K10_var) | **0.9979** | 0.0 |\n| ρ(K2_L2, FMVD) | **0.0925** | 6.03e-29 |\n\n其中 K2_L2 vs K10_var ≈ 0.998 符合预期 sanity check。\n\n**但关键的 K1_correction_mag 相关性需要等当前脚本跑完。** 预计约 24 分钟后产出 JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-read-calibration-results-urgent.md"
+}

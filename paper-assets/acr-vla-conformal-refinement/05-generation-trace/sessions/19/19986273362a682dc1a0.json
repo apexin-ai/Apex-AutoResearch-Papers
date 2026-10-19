@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "19986273362a682dc1a0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check pi05 eval readiness",
+  "task_key": "worker_check_pi05-eval-readiness_20260524T145907",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_pi05-eval-readiness_20260524T145907.jsonl",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "6b2e78be2917c4e464a7bc294668de83721a4c31f0ace72aa18101457edd001d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T14:59:16.002150+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_pi05-eval-readiness_20260524T145907"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-pi05-eval-readiness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17c787a69e9cb04b8f2e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy k20 spatial and check gpu",
+  "task_key": "worker_deploy_k20-spatial-and-check-gpu_20260521T050417",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_k20-spatial-and-check-gpu_20260521T050417_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "f5f40711da8b4b6769c9df7ccc7ca3eca489508c23bb07c79da9542f50926eb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个任务全部启动成功，正在加载模型/环境。\n\n## 部署结果\n\n| 任务 | 服务器 | GPU | 状态 |\n|------|--------|-----|------|\n| K=20 Spatial seed42 | bjb1-32546 | cuda:2 | 运行中，加载 SmolVLA |\n| K=20 Spatial seed43 | bjb1-18228 | cuda:1 | 运行中，加载 LIBERO spatial 环境 |\n| K=20 Spatial seed44 | bjb1-18228 | cuda:2 | 运行中，加载 LIBERO spatial 环境 |\n| K=20 Object seed45 | bjb2-28827 | cuda:5 | 运行中，加载 LIBERO object 环境 |\n\n**未部署**（GPU 不足）：\n- K=20 Object seed46, seed47 — bjb2-28827 仅 1 个空闲 GPU，需等当前 5 个 eval 任务完成后部署"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-k20-spatial-and-check-gpu.md"
+}

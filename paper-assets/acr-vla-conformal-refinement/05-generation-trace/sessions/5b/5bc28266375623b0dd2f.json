@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bc28266375623b0dd2f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only spatial norm02 k5 seed44 r2",
+  "task_key": "worker_diagnose_eval-obs-only-spatial-norm02-k5-seed44-r2_20260519T162741",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-spatial-norm02-k5-seed44-r2_20260519T162741_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "07e9892a233303b44a2f5346b1c9d54f895a4cb06b145da4f3bac6cc6131abe3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diagnose_spatial_k5_seed44_r2.md`。\n\n**核心发现：**\n\n- **spatial-K5-seed44 实际已完成**，success_rate = **37.0%**（JSON 时间 May 19 23:45）。ROADMAP 提到的 GPU2 untracked 进程就是它，已正常跑完。\n- spatial-K5-seed45 也已完成：**34.0%**\n- object random-selection K5 seed43 也已完成：**11.0%**\n\n这 3 个实验都是 untracked 手动进程完成的，不写 sentinel 文件，所以 managed r2 重试检测不到，自动判定失败。**是误报，不需要重试。**\n\n**真正缺失的是：**\n- object random-selection K5 seed44 — 无 JSON，需重试\n- object random-selection K5 seed45 — 无 JSON，需重试\n\n当前 GPU 0/4/5 空闲，可用于重试这两个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-spatial-norm02-k5-seed44-r2.md"
+}

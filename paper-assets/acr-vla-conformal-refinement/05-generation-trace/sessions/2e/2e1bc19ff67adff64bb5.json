@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e1bc19ff67adff64bb5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code k2 calibration deploy",
+  "task_key": "worker_code_k2-calibration-deploy_20260519T202852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_k2-calibration-deploy_20260519T202852_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "2eca6e746ce54a51b59cf9254b2709f5bbda825d307f9620aa39133c548af06b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动并注册。\n\n**修改内容**：在 `compute_k10_variance()` 中利用已有的 K=10 samples 计算所有 C(10,2)=45 对的 L2 距离均值（向量化实现），存入 `k2_l2` 字段，最后输出 3 组 Spearman ρ：\n- ρ(FMVD, K10_var) — 原有\n- ρ(K2_L2, K10_var) — 核心 go/no-go 指标\n- ρ(K2_L2, FMVD) — 两信号间关系\n\n**运行状态**：模型已加载，10 tasks 就绪，正在 bjb2-28827 cuda:1 上跑。PID=995735，日志在 `/tmp/k2_l2_calibration.log`，结果输出到 `logs/k2_l2_calibration.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-k2-calibration-deploy.md"
+}

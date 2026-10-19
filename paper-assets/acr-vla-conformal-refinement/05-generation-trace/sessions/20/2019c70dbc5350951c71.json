@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2019c70dbc5350951c71",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval vla only spatial seed42",
+  "task_key": "worker_analyze_eval-vla-only-spatial-seed42_20260519T143753",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-vla-only-spatial-seed42_20260519T143753_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "a6c846ed987316b40839de58903a4c214988dfeefd154bcc142060cb0d167d46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp_id: eval-vla-only-spatial-seed42\nconclusion: success\nsuccess_rate: 30%\nper_task:\n  between_plate_and_ramekin: 60%\n  next_to_ramekin: 100%\n  from_table_center: 0%\n  on_cookie_box: 20%\n  in_top_drawer: 0%\n  on_ramekin: 0%\n  next_to_cookie_box: 90%\n  on_stove: 0%\n  next_to_plate: 30%\n  on_wooden_cabinet: 0%\n对标: obs_only spatial K=10 seed42 = 35%\n改进幅度: -5pp（VLA-only 30% < obs_only 35%）\n```\n\n符合预期：VLA-only baseline（30%）低于 obs_only + CRM（35%），说明 CRM 在 Spatial benchmark 上提供了 +5pp 的改进。任务方差很大——`next_to_ramekin` 和 `next_to_cookie_box` 接近满分，而 5 个任务完全失败（0%），说明 VLA 在需要精确空间定位的任务上存在系统性缺陷。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-vla-only-spatial-seed42.md"
+}

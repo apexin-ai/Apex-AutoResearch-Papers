@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44c8a1a80088b30d9bd6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 cuda0 reuse",
+  "task_key": "worker_deploy_bjb1-18228-cuda0-reuse_20260515T172721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-cuda0-reuse_20260515T172721_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "b9d099f84deac7229536477e4e230f0d8ae8b4f0c3aecd31eaed720130795b85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 确认空闲。** GPU-79a1ce73 无进程占用。cuda:1/2/3 分别跑着 perdof-seed43、obs-only-seed43、argmin-seed43。\n\nperdof checkpoint 也存在（1.3MB）。\n\n但两个候选实验都已在跑：\n- `eval-mag-perdof-norm003-object` → bjb2-28827 cuda:0 (RUNNING)\n- `eval-mag-perdof-norm02-object` → bjb1-32546 cuda:5 (RUNNING)\n\nobject magnitude sweep 的 perdof 全部 norm 点都已覆盖：\n| norm | server | status |\n|------|--------|--------|\n| 0.03 | bjb2-28827 | RUNNING |\n| 0.05 | bjb2-28827 | RUNNING |\n| 0.1 (default) | bjb2-28827 | RUNNING |\n| 0.2 | bjb1-32546 | RUNNING |\n| 0.3 | bjb2-28827 | RUNNING |\n\ncuda:0 空闲但没有未部署的 object magnitude sweep 实验可以放上去。需要你指定新的部署任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-cuda0-reuse.md"
+}

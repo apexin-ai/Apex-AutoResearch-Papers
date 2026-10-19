@@ -1,0 +1,416 @@
+{
+  "schema_version": "1.0",
+  "id": "19e124a0940c34992166",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops kill orphans and deploy",
+  "task_key": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_kill-orphans-and-deploy_20260517T234509.jsonl",
+    "occurrence": 1,
+    "bytes": 16152,
+    "sha256": "ae63888adb59132c0e063e47c0ce6b454969248d91abe6ae3b8734f5cb52c785"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T23:46:22.123369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T23:46:22.123804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T23:46:22.124039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ps aux | grep -E \"449059|448773|422526|434871\" | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T23:46:22.124186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ps aux | grep 649967 | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T23:46:22.124392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     448773  0.0  0.0   4496  3660 pts/1    Ss+  02:04   0:00 bash -c rm -f /tmp/agent-ml-exit/mag_obs_only_norm01_seed47.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/mag_obs_only_norm01_seed47.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/mag_obs_only_norm01_seed47.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_obs_only_norm01_seed47.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/mag_obs_only_norm01_seed47.log 2>&1\\\\nroot     449059  0.0  0.0   4496  3644 pts/2    Ss+  02:04   0:00 bash -c rm -f /tmp/agent-ml-exit/mag_obs_only_norm01_seed46.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/mag_obs_only_norm01_seed46.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/mag_obs_only_norm01_seed46.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.\n…[truncated 632 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T23:46:22.124564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T23:46:22.124733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ps aux | grep -E \"422526|434871\" | grep -v grep; echo \"---\"; kill 448773 449059 2>&1; ps aux | grep -E \"422526|434871\" | grep -v grep | awk '{print $2}' | head -5",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T23:46:22.124890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T23:46:22.125031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "sleep 5 && nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T23:46:22.125154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T23:46:22.125401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 07:45:46 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:52:00.0 Off |                  Off |\\\\n| 30%   37C    P2             79W /  450W |    5628MiB /  24564MiB |     18%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:56:00.0 Off |                  Off |\\\\n| 30%   35C    P2             78W /  450W |    4268MiB /  24564MiB |     18%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:57:00.0 Off |                  Off |\\\\n| 30%   36C    P2             81W /  450W |    2875MiB /  24564MiB |     17%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D1:00.0 Off |                  Off |\\\\n| 30%   36C    P2             \n…[truncated 2239 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T23:46:22.125607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 07:45:47 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:98:00.0 Off |                  Off |\\\\n| 30%   41C    P2             77W /  450W |    2410MiB /  24564MiB |     24%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:A8:00.0 Off |                  Off |\\\\n| 30%   39C    P2             69W /  450W |    5664MiB /  24564MiB |     23%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:B8:00.0 Off |                  Off |\\\\n| 30%   37C    P2             75W /  450W |    5664MiB /  24564MiB |     22%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D8:00.0 Off |                  Off |\\\\n| 30%   39C    P2             \n…[truncated 1298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T23:46:22.125921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ps aux | grep -E \"448782|449068\" | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T23:46:22.126076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     448782  158  1.0 71335264 11201052 pts/1 Rl 02:04 541:16 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_obs_only_norm01_seed47.json\\\\nroot     449068  158  1.0 71279836 11195344 pts/2 Rl 02:04 540:29 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_obs_only_norm01_seed46.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T23:46:22.126225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "kill 448782 449068",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T23:46:22.126394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T23:46:22.126521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "sleep 5 && nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T23:46:22.126682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 07:46:08 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:52:00.0 Off |                  Off |\\\\n| 30%   37C    P2             80W /  450W |    5628MiB /  24564MiB |     18%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090        On  |   00000000:56:00.0 Off |                  Off |\\\\n| 30%   32C    P8             17W /  450W |       1MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090        On  |   00000000:57:00.0 Off |                  Off |\\\\n| 30%   36C    P2             81W /  450W |    2875MiB /  24564MiB |     17%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090        On  |   00000000:D1:00.0 Off |                  Off |\\\\n| 30%   33C    P8             \n…[truncated 2051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T23:46:22.126872+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 和 3 已成功释放。汇总如下：\n\n---\n\n## 汇总\n\n### bjb2-28827 (6× RTX 4090)\n\n| PID | 实验 | 状态 |\n|-----|------|------|\n| 449059 + 子进程 449068 | mag_obs_only_norm01_seed46 (cuda:3) | **已 kill** |\n| 448773 + 子进程 448782 | mag_obs_only_norm01_seed47 (cuda:1) | **已 kill** |\n| 422526 | plan_701-crm-k1-train (cuda:1) | 已自然结束 |\n| 434871 | train-crm-k1-accg-object-seed42-full (cuda:0) | 已自然结束 |\n\n**GPU 状态：**\n\n| GPU | 状态 | 占用进程 |\n|-----|------|----------|\n| cuda:0 | 占用 (5628 MiB) | PID 492545 — 合法实验 |\n| cuda:1 | **空闲** | — |\n| cuda:2 | 占用 (2875 MiB) | PID 404983 — 合法实验 |\n| cuda:3 | **空闲** | — |\n| cuda:4 | 占用 (1941 MiB) | PID 389051 — 合法实验 |\n| cuda:5 | 占用 (5664 MiB) | PID 488665 — 合法实验 |\n\n**可部署新实验：cuda:1, cuda:3**\n\n---\n\n### bjb1-18228 (4× RTX 4090)\n\n| PID | 实验 | 状态 |\n|-----|------|------|\n| 649967 | plan_701-precompute-k1-spatial (cuda:0) | 已自然结束 |\n\n**GPU 状态：**\n\n| GPU | 状态 | 占用进程 |\n|-----|------|----------|\n| cuda:0 | 占用 (2410 MiB) | PID 713405 — 合法实验 |\n| cuda:1 | 占用 (5645 MiB) | PID 774342 — 合法实验 |\n| cuda:2 | 占用 (5645 MiB) | PID 774543 — 合法实验 |\n| cuda:3 | 占用 (5182 MiB) | PID 749547 — 合法实验 |\n\n**可部署新实验：无（全部占用）**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-orphans-and-deploy_20260517T234509"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/ops-kill-orphans-and-deploy.md"
+}

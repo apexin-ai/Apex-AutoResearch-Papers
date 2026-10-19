@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62d54ededede2f449b72",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check pi05 crm and gpu scan",
+  "task_key": "worker_check_pi05-crm-and-gpu-scan_20260524T112917",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_pi05-crm-and-gpu-scan_20260524T112917_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "5e3eed5c54a1ffad7c08faabbfcbfa33cfb49dc9b402ba88b50445473c3b0c54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## π0.5 CRM 训练\n\n- 当前进度: **Epoch 2/50, batch 650/684**\n- 运行时长: 52 min\n- Epoch 1 结果: train_loss=0.014627, val_loss=0.008004 (best)\n- Epoch 2 最新 loss: ~0.0126\n- 速率: ~25.5 batches/min → ~26.8 min/epoch\n- 剩余: 34 batches + 48 epochs ≈ **21.4 小时**\n- 预估 ETA: **~2026-05-25 04:00 UTC**\n\n## GPU 空闲扫描\n\n| 服务器 | 总GPU | 空闲GPU | 空闲编号 |\n|--------|-------|---------|----------|\n| bjb1-18228 | 4 | 1 | cuda:2 |\n| bjb1-32546 | 6 | 4 | cuda:0,1,2,3 |\n| bjb2-28827 | 6 | 0 | — |\n| bjb2-40593 | 1 | 0 | — |\n| cqa1-32758 | 6 | 0 | — |\n\n**空闲判定标准**: 显存 < 100 MiB 且利用率 0%\n\n**备注**:\n- bjb1-18228 cuda:0 跑 CRM 训练 (580 MiB)，cuda:1/3 被占用\n- bjb1-32546 cuda:4,5 各占 ~1.9 GB（有轻量任务）\n- bjb2-28827 全部 GPU 占用 1.9-4.7 GB\n- cqa1-32758 全部 GPU 占用 2.0-4.9 GB\n- bjb2-40593 占用 5.4 GB\n\n**可调度资源: bjb1-32546 有 4 块空闲 4090 可用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pi05-crm-and-gpu-scan.md"
+}

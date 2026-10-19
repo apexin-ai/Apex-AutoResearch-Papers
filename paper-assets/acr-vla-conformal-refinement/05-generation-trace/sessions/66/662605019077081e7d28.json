@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "662605019077081e7d28",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy plan802 openvla crm eval",
+  "task_key": "worker_deploy_plan802-openvla-crm-eval_20260528T033809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_plan802-openvla-crm-eval_20260528T033809.log",
+    "occurrence": 1,
+    "bytes": 751981,
+    "sha256": "b61bfb84760da170cd04c775d15ece4b272963240173536388945789bd0f0b8e"
+  },
+  "statistics": {
+    "messages": 269,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "662605019077081e7d28-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "662605019077081e7d28-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-plan802-openvla-crm-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15447db17dac01d30724",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval vla only long seed43",
+  "task_key": "worker_analyze_eval-vla-only-long-seed43_20260519T183306",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-vla-only-long-seed43_20260519T183306_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "97b4dcadf497648760f89e415648f3dfad760e0754cf5a376e6be00419341757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## eval-vla-only-long-seed43 Metrics Summary\n\n**Overall success rate: 13% (13/100 rollouts)**\n\n| Task | Success Rate |\n|------|-------------|\n| KITCHEN_SCENE3 — stove + moka pot | **70%** |\n| LIVING_ROOM_SCENE5 — white mug left, yellow mug right | **30%** |\n| KITCHEN_SCENE6 — yellow/white mug in microwave | **20%** |\n| LIVING_ROOM_SCENE6 — white mug on plate + chocolate pudding | **10%** |\n| LIVING_ROOM_SCENE2 — alphabet soup + tomato sauce | 0% |\n| LIVING_ROOM_SCENE2 — cream cheese + butter | 0% |\n| KITCHEN_SCENE4 — black bowl in drawer | 0% |\n| STUDY_SCENE1 — book in caddy | 0% |\n| LIVING_ROOM_SCENE1 — alphabet soup + cream cheese | 0% |\n| KITCHEN_SCENE8 — both moka pots on stove | 0% |\n\nVLA-only baseline 在 LIBERO-Long 上表现很弱，10 个 task 中 6 个完全失败，仅 KITCHEN_SCENE3 达到 70%。这为 CRM 校正留出了很大的提升空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-vla-only-long-seed43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "689781e69017b69a5820",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper experiments refinement v1",
+  "task_key": "worker_paper_experiments-refinement-v1_20260517T040633",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_experiments-refinement-v1_20260517T040633_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "239c5d839774c4ca847da12cbb6ddabc9f9aacec35063d6c5556015aafb9a534"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成：\n\n1. **Section 4.2 (lines 117-123)**: 在 `\\paragraph{Why does richer conditioning fail?}` 之前加入了 scalar < perdof ordering 的解释段落，包含 cross-seed 数据和 noise origin 论点。\n\n2. **Section 4.1 (lines 86-88)**: 替换了原来带 em-dash 的 \"Three baselines---\" 句，加入 VLA-mean 含义的两句解释。另在 statistical protocol 段落 (line 51) 补充了 multi-seed VLA-mean 数据 (12.5%, seeds 42/43/44/45 = 12/15/10/13%)。\n\n3. **Section 4.4 (lines 198-236)**: 完整替换 placeholder 为实际 per-task 分析表格和两段分析文字，核心论点是 improvement 集中在 medium-difficulty tasks。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-refinement-v1.md"
+}

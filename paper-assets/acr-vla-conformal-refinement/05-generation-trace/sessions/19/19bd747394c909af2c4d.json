@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "19bd747394c909af2c4d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose seed66 failed",
+  "task_key": "worker_diagnose_seed66-failed_20260521T014338",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_seed66-failed_20260521T014338_result.json",
+    "occurrence": 1,
+    "bytes": 3032,
+    "sha256": "573f29e79a20623344d275c3b8b5bd370458bc6b303b1c2c4c697b2a1de92cbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。所有证据汇总如下：\n\n## 诊断结果\n\n**原始实验（PID 638171/638251/638518）已死亡。**\n\n**根因：SSH 会话断开导致 SIGHUP 杀死进程。**\n\n证据链：\n- dmesg 无 OOM/kill 记录 — 排除内核 OOM killer\n- 系统资源充足：927GB RAM 可用、磁盘 53%/61%、GPU 正常\n- **无 tmux/screen 会话** — 进程没有 session 保护\n- 三个进程在 2 分钟窗口内同时死亡 — 与 SSH 断连行为一致\n- 日志无 traceback/error — SIGHUP 直接终止，不产生 Python 异常\n- 原始日志已被重启实验覆盖\n\n**重启实验已在运行且健康：**\n\n| PID | GPU | norm | 启动时间(CST) | CPU% | GPU内存 |\n|-----|-----|------|-------------|------|---------|\n| 642428 | 0 | 0.03 | 09:30 | 387% | 5711 MiB |\n| 642506 | 2 | 0.05 | 09:30 | 404% | 5711 MiB |\n| 642775 | 3 | 0.1 | 09:31 | 412% | 5711 MiB |\n\n重启版本 PPID=1（已正确脱离终端），但 **log 文件停滞**：启动时没用 `python -u`，stdout 块缓冲未 flush。进程实际在跑，日志会在完成时一次性写出。\n\n```json\n{\"root_cause\":\"SSH session disconnected ~01:37 UTC sending SIGHUP to all 3 child processes. No tmux/screen/nohup protection. Evidence: no OOM in dmesg, no traceback, all 3 died simultaneously within 2min window, system resources healthy (927GB RAM free, disk 53%/61%, GPUs fine). Relaunched experiments with PPID=1 are running successfully on same hardware, confirming infrastructure is OK.\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"No action needed — experiments already relaunched (PID 642428/642506/642775) and running ~1h with healthy CPU/GPU\",\"Log files appear stalled due to missing python -u flag (stdout block-buffered); process will flush on completion\",\"Future launches: use tmux/screen + nohup + python -u to prevent recurrence\"],\"can_auto_fix\":true,\"affected_exps\":[\"eval-obs-only-object-norm003-seed66\",\"eval-obs-only-object-norm005-seed66\",\"eval-obs-only-object-norm01-seed66\"]}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "SSH session disconnected ~01:37 UTC sending SIGHUP to all 3 child processes. No tmux/screen/nohup protection. Evidence: no OOM in dmesg, no traceback, all 3 died simultaneously within 2min window, system resources healthy (927GB RAM free, disk 53%/61%, GPUs fine). Relaunched experiments with PPID=1 are running successfully on same hardware, confirming infrastructure is OK.",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "No action needed — experiments already relaunched (PID 642428/642506/642775) and running ~1h with healthy CPU/GPU",
+                "Log files appear stalled due to missing python -u flag (stdout block-buffered); process will flush on completion",
+                "Future launches: use tmux/screen + nohup + python -u to prevent recurrence"
+              ],
+              "can_auto_fix": true,
+              "affected_exps": [
+                "eval-obs-only-object-norm003-seed66",
+                "eval-obs-only-object-norm005-seed66",
+                "eval-obs-only-object-norm01-seed66"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed66-failed.md"
+}

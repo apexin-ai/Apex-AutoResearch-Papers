@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3de587ce050d102e84bc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research pi05 crm pipeline prep",
+  "task_key": "worker_research_pi05-crm-pipeline-prep_20260521T110149",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_pi05-crm-pipeline-prep_20260521T110149_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "181238ce9dfe34a446f85497af182df62daca82642e0f29c36cc70e9e8401288"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案已更新至 `artifacts/pi05_crm_pipeline_plan.md`。\n\n关键发现和方案要点：\n\n**当前阻塞**：π0.5 baseline 全线 0% SR，根因不是 vision tower（437 keys 已修），而是 **language_model + multi_modal_projector 的 376 个 key 仍然 missing**，导致 LM 在随机权重下运行。官方 lerobot-eval patched 版 3/3 = 100%，证明模型有效。\n\n**Pipeline 5 步**：\n1. **Step 0**：修复 376 key remap → 验证 missing_keys=0 + quick verify SR > 0%（阻塞性）\n2. **Step 1**：重跑 baseline eval（3 seeds × 2 benchmarks，6 GPU 并行，~8h）\n3. **Step 2**：Precompute π0.5 features（obs_dim=2048，K=1，~2h）\n4. **Step 3**：训练 obs_dim=2048 的新 CRM（~30-40 min，~580K params）\n5. **Step 4**：CRM + π0.5 eval（6 experiments，~8h）\n\n**核心决策**：采用方案 A（obs_dim=2048 新 CRM），不复用 SmolVLA CRM；第一版只用 single obs feature，不做 multi-scale；总 wallclock 约 10-12h（并行优化后）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pi05-crm-pipeline-prep.md"
+}

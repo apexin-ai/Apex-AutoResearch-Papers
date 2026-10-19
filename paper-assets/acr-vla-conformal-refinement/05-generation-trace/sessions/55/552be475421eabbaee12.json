@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "552be475421eabbaee12",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 pi05 crm k2",
+  "task_key": "worker_harvest_bjb1-32546-pi05-crm-k2_20260526T084700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-pi05-crm-k2_20260526T084700_result.json",
+    "occurrence": 1,
+    "bytes": 1400,
+    "sha256": "050ac8f27be68536b0de5a103ec1af9f3e587bc6312998da105b1f7b3a6ad7d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：cron 误报，6 个实验均未完成，仍在运行\n\n**关键证据：**\n- `ps -ef` 显示 6 个 `python -u src/evaluate.py` 进程全部活跃，CPU 时间 7+ 小时\n- `tmux ls` 列出全部 6 个 session（名称无 `-bjb1` 后缀 — 这是 cron 检测失败的原因）\n- 6 个 GPU 显存 10-11GB 占用，利用率 21-43%\n- JSON 输出文件均不存在（eval 脚本仅在最后写入）\n\n**当前任务进度（LIBERO 每 suite 10 个任务 × 20 rollouts）：**\n\n| exp_id | tasks done | 当前任务进度 | status |\n|--------|-----------|--------------|--------|\n| pi05-crm-k2-goal-s42-bjb1 | 8/10 | put_the_bowl_on_the_plate 10/20 | RUNNING |\n| pi05-crm-k2-goal-s43-bjb1 | 8/10 | put_the_bowl_on_the_plate 5/20 | RUNNING |\n| pi05-crm-k2-goal-s44-bjb1 | 8/10 | put_the_bowl_on_the_plate 10/20 | RUNNING |\n| pi05-crm-k2-object-s42-bjb1 | 7/10 | butter task 完成 | RUNNING |\n| pi05-crm-k2-object-s43-bjb1 | 6/10 | butter 10/20 | RUNNING |\n| pi05-crm-k2-object-s44-bjb1 | 7/10 | butter 15/20 | RUNNING |\n\n**建议处置：**\n- **不要 kill，不要改 registry**。所有实验都还在跑，预计还需 1-2 小时（每个任务约 30-50 分钟）。\n- cron 监控规则需修复：当前应在搜索 `pi05-crm-k2-*-bjb1` 但实际 tmux session 名是 `pi05-crm-k2-*`（无 `-bjb1` 后缀）。\n- 等待 JSON 文件生成后再 harvest。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-pi05-crm-k2.md"
+}

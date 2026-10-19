@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "588d12053eddebb13bac",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 24035 pi05",
+  "task_key": "worker_deploy_bjb2-24035-pi05_20260526T041343",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-24035-pi05_20260526T041343_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "34b0cd83e771d99e5ee0378244921f4f9ea18c056bf6a43028c79ed06e4f01fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并运行：\n\n- **模型加载完成**：PI05 + CRM checkpoint (615,966 params) 已加载\n- **10 个 object tasks 已加载**\n- **GPU 利用率 51%**，显存 14044MiB / 24564MiB\n- PID 3035 正在执行评估\n\n全部完成：\n1. ✅ Checkpoint 从 bjb1-18228 传输到 bjb2-24035\n2. ✅ Checkpoint 验证通过\n3. ✅ 环境确认（numpy 兼容性已修复）\n4. ✅ `westd-pi05-adaptive-object-s43` 已提交并运行中（registry 状态 RUNNING）\n5. ✅ GPU 有利用率，进程正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-24035-pi05.md"
+}

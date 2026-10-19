@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2882ac027736e26ad1e7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper related work draft",
+  "task_key": "worker_paper_related-work-draft_20260517T002147",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_related-work-draft_20260517T002147_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "686114575f0f8d0853122d57220dff41b8f474d062d2c54db5f1e6e4f0ee2320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 草稿已写入 `artifacts/related_work_draft.md`，666 words，4 个主题段落：\n\n1. **Conformal Prediction in Robotics** — CP 基础 + 机器人应用 + ACR-VLA 的 selection 用法区别\n2. **Inference-Time VLA Refinement** — A2C2/ReconVLA/SC-VLA/VLA-Pilot/SAFE/UPS 定位 + ACR-VLA 的 sample-then-correct 两阶段区分\n3. **Residual Policies and Action Correction** — residual RL 传统 + VLA 扩展 + ACR-VLA 三点区别（selection 前置、offline MSE、explicit magnitude bounding）\n4. **Correction Magnitude Sensitivity** — 短段落，指出 conditioning-magnitude interaction 是 novel contribution\n\n无 em-dash，无解释性 en-dash，无 -ing 短语结尾句。引用用 `\\cite{key}` 占位，所有 key 来自 literature_map.yaml 中已验证条目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-draft.md"
+}

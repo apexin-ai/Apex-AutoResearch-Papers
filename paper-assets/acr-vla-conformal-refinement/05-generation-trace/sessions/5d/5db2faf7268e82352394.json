@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5db2faf7268e82352394",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code crm normalization and retrain",
+  "task_key": "worker_code_crm-normalization-and-retrain_20260514T175717",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_crm-normalization-and-retrain_20260514T175717_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "6e2840ac3c799780f484188cf55a9ca5d7906b7ee4df22f28f9d9c59518d0d33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。简报：\n\n### 执行结果\n\n**1. norm_stats.pt 已计算并保存**  \n路径：`/root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt`  \n数据来源：2402 spatial 样本（object cache 在 bjb2-40593 上不存在）\n\n关键数值：\n| 组件 | 维度 | mean abs | std 范围 |\n|------|------|---------|---------|\n| base_action | 30 | 0.808 | [0.285, 1.313] |\n| per_dof_std | 30 | 0.887 | [0.189, 0.722] |\n| conf_radius | 5 | 1.865 | [0.197, 0.278] |\n| log_volume | 5 | 1.612 | [1.633, 2.137] |\n| obs_features | 960 | 0.361 | [0.033, 0.741] |\n\nobs_features 的 std 平均仅 0.10，远小于 ba(0.66) 和 uf(0.48)，normalization 有意义。\n\n**2. crm.py 已修改** — `norm_mean`/`norm_std` 注册为 buffer，默认 identity（mean=0, std=1），forward 中统一做 `(x - mean) / std`\n\n**3. train_crm.py 已修改** — 新增 `--norm_stats` 参数，按 `input_mode` 组装对应维度的 norm 向量\n\n**4. evaluate.py 已修改** — `load_state_dict` 改为 `strict=False`，v2/v3 checkpoint 均兼容\n\n**5. 3 组 CRM v3 训练已启动** — 共享 cuda:0（eval 仅占 2.4GB），epoch 3 loss 稳定下降：\n- `crm-train-v3-perdof` (full): val_loss=1.260\n- `crm-train-v3-scalar-unc`: val_loss=1.266\n- `crm-train-v3-obs-only`: val_loss=1.267\n\n**注意**：`--benchmark` 仅用 `spatial`（此服务器无 object cache）。如需 object 数据需先 precompute。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-crm-normalization-and-retrain.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c4f122a339b8d148afd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval obs only object norm02 seed42",
+  "task_key": "worker_analysis_eval-obs-only-object-norm02-seed42_20260520T084353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-obs-only-object-norm02-seed42_20260520T084353_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "3ce12e04827d3b863ba02a5b4446ccda05ddd9de09cda74dcc7d0748d98bf927"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n## eval-obs-only-object-norm02-seed42 结果\n\n**Overall SR: 20% (20/100)**\n\n| Task | SR | Successes |\n|---|---|---|\n| salad_dressing | 40% | 4/10 |\n| bbq_sauce | 40% | 4/10 |\n| milk | 30% | 3/10 |\n| orange_juice | 30% | 3/10 |\n| butter | 20% | 2/10 |\n| chocolate_pudding | 20% | 2/10 |\n| cream_cheese | 10% | 1/10 |\n| tomato_sauce | 10% | 1/10 |\n| alphabet_soup | 0% | 0/10 |\n| ketchup | 0% | 0/10 |\n\n## n=7 统计更新\n\n| Seed | SR |\n|---|---|\n| 既有 6 seeds | 16%, 16%, 16%, 15%, 20%, 18% |\n| **seed42 (新)** | **20%** |\n\n- **n=7 均值: 17.3%**（原 n=6 均值 16.8%）\n- **n=7 标准差: 2.1%**\n- **范围: 15%–20%**\n\nseed42 的 20% 处于已有 seeds 范围上沿，无异常。conclusion=success，status=DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-obs-only-object-norm02-seed42.md"
+}

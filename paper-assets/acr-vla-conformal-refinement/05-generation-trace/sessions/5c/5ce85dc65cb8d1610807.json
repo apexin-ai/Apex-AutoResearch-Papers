@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5ce85dc65cb8d1610807",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check all servers status and fill",
+  "task_key": "worker_check_all-servers-status-and-fill_20260525T075349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_all-servers-status-and-fill_20260525T075349.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "f3988c264a7389bc818efb81e86b81e62c87f9831574de7d4ee623d9832a2d5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T07:53:59.759777+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_all-servers-status-and-fill_20260525T075349"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-all-servers-status-and-fill.md"
+}

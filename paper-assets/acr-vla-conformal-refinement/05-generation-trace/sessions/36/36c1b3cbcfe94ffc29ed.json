@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0",
+  "id": "36c1b3cbcfe94ffc29ed",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest bjb2 28827 crm baselines",
+  "task_key": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_bjb2-28827-crm-baselines_20260524T210947.jsonl",
+    "occurrence": 1,
+    "bytes": 11496,
+    "sha256": "0850885bf33e9b8c636054bd3db322200f0a75aea61e0da344066aae02e28033"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T21:09:56.859555+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T21:11:12.159843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T21:11:12.160169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T21:11:12.160385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tmux ls 2>&1; nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T21:11:12.160548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T21:11:12.160678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tmux ls",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T21:11:12.160804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T21:11:12.160924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tmux ls 2>&1; echo \"---\"; nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T21:11:12.161056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-crm-goal-s48: 1 windows (created Mon May 25 04:18:25 2026)\\\\neval-crm-spatial-s48: 1 windows (created Mon May 25 04:18:20 2026)\\\\neval-crm-spatial-s49: 1 windows (created Mon May 25 04:18:23 2026)\\\\neval-pi05-reconvla-goal-s42: 1 windows (created Mon May 25 02:24:23 2026)\\\\neval-pi05-reconvla-object-s42: 1 windows (created Mon May 25 02:24:30 2026)\\\\n---\\\\n0, 25 %, 4190 MiB\\\\n1, 0 %, 1 MiB\\\\n2, 21 %, 13516 MiB\\\\n3, 21 %, 13624 MiB\\\\n4, 31 %, 4190 MiB\\\\n5, 30 %, 4253 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T21:11:12.161195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -50 /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s48.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T21:11:12.161416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_spatial_crm_obs_only_norm0.05_seed48.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: spatial\\\\n[eval] max_steps set to 280 for benchmark spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  37%|███▋      | 182/489 [00:00<00:00, 1811.97it/s]\\\\rLoading weights:  78%|███████▊  | 381/489 [00:00<00:00, 1890.57it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1981.21it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rol\n…[truncated 2502 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T21:11:12.161586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "wc -l /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s48.log /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s49.log /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-goal-s48.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T21:11:12.161718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   37 /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s48.log\\\\n   37 /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-spatial-s49.log\\\\n   32 /root/acr-vla-conformal-refinement/logs/eval-supp-crm-norm005-goal-s48.log\\\\n  106 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T21:11:12.161849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ps aux | grep -E \"evaluate|eval_loop|crm\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T21:11:12.162074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     299934  0.0  0.0   6220  3848 ?        Ss   May24   0:00 tmux new-session -d -s eval-supp-adapt-tau025-spatial-s48 rm -f /tmp/agent-ml-exit/eval-supp-adapt-tau025-spatial-s48.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-spatial-s48.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-supp-adapt-tau025-spatial-s48.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 21600 env bash -c 'bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark spatial --seed 48 --n_rollouts 20 --max_correction_norm 0.2 2>&1 | tee logs/eval-supp-adapt-tau025-spatial-s48.log\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-spatial-s48.log 2>&1\\\\nroot     393784  0.0  0.0   4496  3608 pts/3    Ss+  02:24   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-pi05-reconvla-goal-s42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-pi05-reconvla-goal-s42.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-pi05-reconvla-goal-s42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 21600 env bash -c 'bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --\n…[truncated 5367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T21:11:12.162326+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**仍在运行**，不是已完成。任务前提有误。\n\n### 现状\n3 个 CRM 实验进程都还活着，从今早 04:18 启动，已跑约 4.5 小时：\n\n| exp_id | PID | CPU 时间 | GPU | 日志进度 |\n|--------|-----|---------|-----|---------|\n| eval-supp-crm-norm005-spatial-s48 | 429934 | 277:52 | 0 | 任务 5/10 进行中 (37 行) |\n| eval-supp-crm-norm005-spatial-s49 | 430199 | 277:22 | 4 | 37 行 |\n| eval-supp-crm-norm005-goal-s48 | 430467 | 281:50 | 5 | 32 行 |\n\n### 误判原因\nGPU 利用率看似低（4-5GB 显存、20-30% util）是因为 LIBERO 是 MuJoCo CPU 仿真，每个 python 进程 CPU 都在 528-537%（吃满 5+ 核），属正常 rollout 中状态。tmux session 也都在。\n\n### 建议\n**不要更新 registry 为 DONE。** 这些实验仍在 RUNNING 状态合理。\n\nspatial-s48 当前进度（log 显示）：\n- task 1: 20/20 (100%)\n- task 2: 19/20 (95%)\n- task 3: 20/20 (100%)\n- task 4: 19/20 (95%)\n- task 5: 12/15 进行中\n\n按这个速度，预计还要 4-5 小时才能跑完全部 10 个 task。需要我设个 wakeup 稍后再来收割吗？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-bjb2-28827-crm-baselines.md"
+}

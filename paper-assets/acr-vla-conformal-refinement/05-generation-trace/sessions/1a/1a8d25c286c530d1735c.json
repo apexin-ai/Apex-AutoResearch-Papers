@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "1a8d25c286c530d1735c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval perdof object norm01 seed44",
+  "task_key": "worker_diagnose_eval-perdof-object-norm01-seed44_20260517T105221",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-perdof-object-norm01-seed44_20260517T105221_result.json",
+    "occurrence": 1,
+    "bytes": 1628,
+    "sha256": "d4c5e2e214e320d85f361ffcd5f9c6902a77132682c8cc58e669c06a4d8bd7fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**已完整运行并成功结束**。所有 10 个任务 × 10 rollouts = 100 rollouts 全部完成，结果已写入 JSON。\n\n```json\n{\"root_cause\":\"nohup 实验无 W&B 集成，cron 监控 5 次检测不到活跃进程/W&B heartbeat，误判为失败。实际 log 末尾显示 'Overall success rate (crm_perdof): 8.0% (8/100)' 并正常写入 JSON\",\"error_type\":\"cron_misdiagnosis\",\"actually_completed\":true,\"metrics\":{\"overall_sr\":0.08,\"per_task_sr\":{\"alphabet_soup\":0.0,\"cream_cheese\":0.0,\"salad_dressing\":0.2,\"bbq_sauce\":0.1,\"ketchup\":0.0,\"tomato_sauce\":0.0,\"butter\":0.0,\"milk\":0.0,\"chocolate_pudding\":0.2,\"orange_juice\":0.3}},\"fix_steps\":[\"无需修复，实验已正常完成\",\"将结果 overall_sr=0.08 录入汇总表\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "nohup 实验无 W&B 集成，cron 监控 5 次检测不到活跃进程/W&B heartbeat，误判为失败。实际 log 末尾显示 'Overall success rate (crm_perdof): 8.0% (8/100)' 并正常写入 JSON",
+              "error_type": "cron_misdiagnosis",
+              "actually_completed": true,
+              "metrics": {
+                "overall_sr": 0.08,
+                "per_task_sr": {
+                  "alphabet_soup": 0.0,
+                  "cream_cheese": 0.0,
+                  "salad_dressing": 0.2,
+                  "bbq_sauce": 0.1,
+                  "ketchup": 0.0,
+                  "tomato_sauce": 0.0,
+                  "butter": 0.0,
+                  "milk": 0.0,
+                  "chocolate_pudding": 0.2,
+                  "orange_juice": 0.3
+                }
+              },
+              "fix_steps": [
+                "无需修复，实验已正常完成",
+                "将结果 overall_sr=0.08 录入汇总表"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-perdof-object-norm01-seed44.md"
+}

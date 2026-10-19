@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45d8ca30de1f7ab5f907",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper figure fig3 kvalue",
+  "task_key": "worker_paper_figure_fig3_kvalue_20260518T091732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig3_kvalue_20260518T091732_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "524cedb226374d7ee81423d5eb7b7ead04c247779ab8df87a82f45e2d9aa4b9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n**输出文件**:\n- PDF: `artifacts/figures/paper/fig3_kvalue.pdf` (41.7 KB)\n- PNG: `artifacts/figures/paper/fig3_kvalue.png` (123.8 KB)\n\n**设计要素**:\n- 蓝色主线 K=1→5→10 (10.3%→14%→17.5%)，monotonic scaling 清晰\n- 两条 baseline 参考线：VLA-only 灰色虚线 (10.75%)、Argmin 绿色点线 (12.4%)\n- K=5 空心 marker + \"n=1\" 标注（低置信度）\n- K=1 和 K=10 有 error bars，K=1 处 italic 注释 \"correction alone ≈ baseline\"\n- 直接标注替代 legend，无 title，top/right spines 已去除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-kvalue.md"
+}

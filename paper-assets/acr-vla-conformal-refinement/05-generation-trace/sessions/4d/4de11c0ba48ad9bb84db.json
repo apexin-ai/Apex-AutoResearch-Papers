@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4de11c0ba48ad9bb84db",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops harvest results and refresh figure",
+  "task_key": "worker_ops_harvest-results-and-refresh-figure_20260518T054842",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-results-and-refresh-figure_20260518T054842.log",
+    "occurrence": 1,
+    "bytes": 776304,
+    "sha256": "2b74984cc9139d6b435f88a4fdb82c7257e3b4346423e760e075883967b5b34f"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 51,
+      "tool_result": 51,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "4de11c0ba48ad9bb84db-part-0001.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 73,
+      "chunks": [
+        {
+          "path": "4de11c0ba48ad9bb84db-part-0001.json",
+          "message_count": 33
+        },
+        {
+          "path": "4de11c0ba48ad9bb84db-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-harvest-results-and-refresh-figure.md"
+}

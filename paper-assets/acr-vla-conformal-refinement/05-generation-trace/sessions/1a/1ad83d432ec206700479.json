@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad83d432ec206700479",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3608,
+    "sha256": "d94e0f98ea472d0872aeb8085e1c5ae54dd2b7c4ac1b14866407e84df8bbc182"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-13T22:45:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 分配由 `get_project_status` 的 gpu_ids 决定，当前两台服务器 bjb2-40593 和 bjb1-18228，不要在未分配的卡上跑实验\n- CRM 训练已完成（crm-train-v1 假失败，val_loss=0.009046），registry 需更新为 DONE/success——不要重新训练\n- ReconVLA (arXiv:2604.16677) 是 conformal prediction 方法（CQR + argmin selection），不是 \"scalar Euclidean distance selection\"。论文中所有对 ReconVLA 的描述必须准确，之前 4 个 .tex 文件有错误描述，Paper Agent 已知悉但暂未全部修改\n- baseline 已重命名为 SampleConsensus（原来错误地叫 ReconVLA baseline）\n\n### 2. 🖥️ 基础设施快照\n- 服务器 1：bjb2-40593 (connect.bjb2.seetacloud.com) [root]，工作目录 /root/acr-vla-conformal-refinement\n- 服务器 2：bjb1-18228 (connect.bjb1.seetacloud.com) [root]，工作目录 /root/acr-vla-conformal-refinement\n- CRM checkpoint：/root/autodl-tmp/checkpoints/crm/crm_best.pt（bjb2 上）\n- 审稿 C 群：oc_416d453a45869a9406db62186b1e3ef7\n\n### 3. 📊 当前状态\n**刚完成的关键决策**：\n- Reviewer 确认 Agent 对 ReconVLA 的深度分析完全准确，三个差异化论点（per-DOF vs scalar / correction vs selection / online vs offline calibration）全部成立\n- Reviewer 确认 crm-train-v1 假失败，CRM 可直接用于 eval pipeline\n- Paper Agent 已修正 experiments.tex 中虚假的 augmentation 描述（删除不存在的 camera viewpoint shifts）\n- 已向 Agent 发出综合指令（CRM registry 更新 + Reviewer 补充风险点），在 reset 后的新 session 中处理\n\n**Registry 状态**：\n- RUNNING: eval-reconvla-spatial-v2, eval-object-v4-full, eval-spatial-v5-full\n- PREPARING: precompute-v4-shard0/1/2, precompute-v3-shard0/1/2, eval-reconvla-spatial-v1, eval-spatial-v4-full, precompute-v2-shard1/2\n- 已审批待执行：K=3 precompute（CRM 完成后 cuda:1 启动，完成后串 K=20）\n\n### 4. 📋 待办\n- Agent reset 完成 → 确认新 session 收到 CRM 假失败更新 + Reviewer 补充风险指令\n- eval-object-v4-full 完成 → 若整体 <20% 成功率，需调整 Object benchmark claim 策略（Reviewer 风险点 4b）\n- eval-spatial-v5-full 完成 → 对比 CRM correction vs SampleConsensus selection，验证 \"better-than-best-sample\" claim\n- 差异化分析报告完成 → 规划 ReconVLA Medium baseline 实现（CQR + argmin selection，Reviewer 认为必须实现否则审稿人必问）\n- K=3/K=20 precompute 完成 → 汇报 claim 强度分析\n\n### 5. 🎯 战略上下文\n**核心 story**：ACR-VLA 将 conformal prediction 从决策工具（selection）提升为 correction conditioning signal（per-DOF CP features → learned correction → online adaptation），vs ReconVLA 的（scalar CQR → selection → offline calibration）。\n\n**Reviewer 补充的三个风险**（已发给 Agent 但 reset 前可能未处理）：\n1. ReconVLA 有双模块（action + failure detection），ACR-VLA 只有 correction → 论文需定位 scope 为互补关系\n2. SmolVLA 在 Object 上 baseline 可能极弱（Task 1 = 0%） → 可能需要只在 Spatial 上报主实验\n3. ReconVLA Medium baseline（CQR + argmin）必须实现，否则审稿人必问\n\n**易错点**：\n- 不要把 crm-train-v1 当成失败重新训练——已确认是假失败\n- Paper Agent 知道 ReconVLA 描述有误但暂未全部修改，等 Agent 差异化分析完成 + Director 下一步指令后再统一改\n- 决策链参考 decisions.yaml（14 条记录）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

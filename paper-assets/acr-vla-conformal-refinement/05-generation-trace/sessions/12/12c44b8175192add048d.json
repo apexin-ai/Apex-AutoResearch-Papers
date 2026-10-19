@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12c44b8175192add048d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "scan all servers p4 sync",
+  "task_key": "worker_scan_all-servers-p4-sync_20260520T124556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_scan_all-servers-p4-sync_20260520T124556_result.json",
+    "occurrence": 1,
+    "bytes": 2019,
+    "sha256": "3b87731a6fdef7c9847a39c49b3e04523496c1369bba6d82e9305dac0204fa54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 GPU 地图如下：\n\n## GPU 状态全景表\n\n### bjb2-28827 (6× RTX 4090)\n\n| GPU | 状态 | PID | 显存占用 | 实验 |\n|-----|------|-----|---------|------|\n| cuda:0 | **运行中** | 307491 | 1470/24564 MiB | `adaptive_k` / spatial / p75 / seed44 |\n| cuda:1 | **运行中** | 307767 | 2536/24564 MiB | `adaptive_k` / spatial / p25 / seed44 |\n| cuda:2 | **运行中** | 308043 | 2007/24564 MiB | `adaptive_k` / spatial / p90 / seed42 |\n| cuda:3 | 空闲 | — | 1/24564 MiB | — |\n| cuda:4 | 空闲 | — | 1/24564 MiB | — |\n| cuda:5 | 空闲 | — | 1/24564 MiB | — |\n\n### bjb1-18228 (4× RTX 4090)\n\n| GPU | 状态 | PID | 显存占用 | 实验 |\n|-----|------|-----|---------|------|\n| cuda:0 | 空闲 | — | 0/24564 MiB | — |\n| cuda:1 | 空闲 | — | 0/24564 MiB | — |\n| cuda:2 | 空闲 | — | 0/24564 MiB | — |\n| cuda:3 | 空闲 | — | 0/24564 MiB | — |\n\n### bjb1-32546 (6× RTX 4090)\n\n| GPU | 状态 | PID | 显存占用 | 实验 |\n|-----|------|-----|---------|------|\n| cuda:0 | 空闲 | — | 2/24564 MiB | — |\n| cuda:1 | **运行中** | 401661 | 3785/24564 MiB | `crm_obs_only` / goal / norm02 / seed51 |\n| cuda:2 | **运行中** | 401735 | 4316/24564 MiB | `crm_obs_only` / object / norm02 / seed43 (r3) |\n| cuda:3 | 空闲 | — | 2/24564 MiB | — |\n| cuda:4 | 空闲 | — | 2/24564 MiB | — |\n| cuda:5 | 空闲 | — | 2/24564 MiB | — |\n\n### bjb2-40593 (1× RTX 4090)\n\n| GPU | 状态 | PID | 显存占用 | 实验 |\n|-----|------|-----|---------|------|\n| cuda:0 | 空闲 | — | 0/24564 MiB | — |\n\n## 汇总\n\n- **活跃进程**: 5 个（bjb2-28827 上 3 个，bjb1-32546 上 2 个）\n- **空闲 GPU**: 12 块（bjb2-28827×3, bjb1-18228×4, bjb1-32546×4, bjb2-40593×1）\n- bjb2-28827 跑的是 **adaptive_k 评估**（spatial benchmark, 不同 percentile/seed 组合）\n- bjb1-32546 跑的是 **crm_obs_only 评估**（goal 和 object benchmark, norm0.2）\n- bjb1-18228 **全部空闲**，4 块 GPU 可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scan-all-servers-p4-sync.md"
+}

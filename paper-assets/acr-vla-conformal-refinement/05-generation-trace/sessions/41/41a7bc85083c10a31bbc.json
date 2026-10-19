@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41a7bc85083c10a31bbc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 6gpu backfill",
+  "task_key": "worker_deploy_bjb1-32546-6gpu-backfill_20260523T201046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-6gpu-backfill_20260523T201046_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "e3e1fb106fc74d115c1a8a1dfb328b64b61ea95fec1fec566762b3acf296cbc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇总：\n\n| GPU | 实验 | Registry ID | PID | GPU 显存 |\n|-----|------|-------------|-----|----------|\n| cuda:0 | Object CRM s46 | eval-supp-crm-norm005-obj-s46 | 102927 | 5731 MiB |\n| cuda:1 | Long VLA-only s45 | eval-supp-long-vla-only-s45 | 103128 | 5481 MiB |\n| cuda:2 | Long Adaptive s45 | eval-supp-long-adapt-tau025-s45 | 103397 | 6138 MiB |\n| cuda:3 | Long CRM s45 | eval-supp-long-crm-norm005-s45 | 103675 | 5284 MiB |\n| cuda:4 | Long Reconvla s45 | eval-supp-long-reconvla-s45 | 103942 | 4584 MiB |\n| cuda:5 | Goal Adaptive s45 | eval-supp-goal-adapt-tau025-s45 | 104216 | 4937 MiB |\n\n6/6 GPU 满载，6/6 日志正常（10 tasks loaded），6/6 Registry 已标记 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-6gpu-backfill.md"
+}

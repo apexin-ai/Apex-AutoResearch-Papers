@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "530ba257c93a3592d705",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill zombie bjb2 28827",
+  "task_key": "worker_ops_kill-zombie-bjb2-28827_20260518T151906",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-zombie-bjb2-28827_20260518T151906_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "fa529f75d2901aa5ad669b8230964cefa44011bd791cc3852657e4e6489f343b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**PID 497445 (eval-obs-only-norm01-s42)**：已经自行退出，无需 kill。\n\n**cuda:1 状态**：现在只有 PID 578945 一个进程，显存占用 5182MiB / 24564MiB，冲突已解除。\n\n**cuda:5 状态**：PID 594156 在运行，显存 5645MiB，正常工作。（注意 PID 是 594156 而非你预期的 594147，可能是 wrapper/子进程关系）\n\n**各 GPU 汇总**：\n| GPU | PID | 显存 |\n|-----|-----|------|\n| 0 | 492545 | 1887MiB |\n| 1 | 578945 | 5182MiB |\n| 2 | 575343 | 4717MiB |\n| 3 | 579221 | 5182MiB |\n| 4 | 514350 | 1887MiB |\n| 5 | 594156 | 5645MiB |\n\n6 张卡各一个进程，无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-bjb2-28827.md"
+}

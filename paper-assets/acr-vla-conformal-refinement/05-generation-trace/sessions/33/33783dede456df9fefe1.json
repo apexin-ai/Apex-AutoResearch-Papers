@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33783dede456df9fefe1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep plan a eval commands",
+  "task_key": "worker_prep_plan-a-eval-commands_20260521T173642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_plan-a-eval-commands_20260521T173642_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "1fbd6de9cfdf10b145ecf269b623c5a7a389f4348d1d57055791b3bae6e029ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**验证结果**：\n- eval 脚本是 `src/evaluate.py`（非 `eval_crm.py`），三台服务器均存在\n- `--mode acr_vla` 确认可用（= crm_perdof 别名）\n- π0.5 必须传 `--model pi05 --obs_dim 2048`（脚本有 ValueError 校验）\n- 无 `--cache_dir` 参数\n\n**6 个命令已写入** artifact `pi05_eval_commands.md`，唯一占位符 `<CRM_CKPT>` 待 CRM training 完成后替换。\n\n**部署前注意 3 件事**：\n1. bjb2-28827 的 evaluate.py 版本旧（30140 vs 33058 bytes），必须先 `git pull`\n2. CRM checkpoint 可能需要 rsync 到 bjb1-32546 和 bjb2-28827\n3. 确认 `/root/autodl-tmp/models/pi05_libero_finetuned/` 在各服务器存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan-a-eval-commands.md"
+}

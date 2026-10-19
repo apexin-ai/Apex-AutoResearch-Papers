@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2117307178ad57d9a829",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp reconvla spatial s44",
+  "task_key": "worker_analyze_eval-supp-reconvla-spatial-s44_20260523T112334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-reconvla-spatial-s44_20260523T112334_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "060cbbdd69b17d4bcf2109f1be492598f827c3aeec8a320ac4d40fa7a47feccc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-supp-reconvla-spatial-s44 完成。**\n\n- **SR = 79.5%** (seed 44)，≥ VLA-only baseline 78.5%\n- **3-seed Reconvla Spatial**: s42=80.0%, s43=81.5%, s44=79.5% → **mean = 80.3% ± 1.0%**\n- \"on_ramekin\" task 依然是 0%（所有 seed 一致的失败 task），其余 9 个 task SR 70%-100%\n- Registry 已更新为 DONE/success，cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-reconvla-spatial-s44.md"
+}

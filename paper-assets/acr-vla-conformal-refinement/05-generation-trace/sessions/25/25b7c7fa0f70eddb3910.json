@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25b7c7fa0f70eddb3910",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval openvla v2 deploy",
+  "task_key": "worker_eval_openvla-v2-deploy_20260517T221057",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_openvla-v2-deploy_20260517T221057_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "11f381aa39c5dd04b110359339da83cc0d820fcf71b1f8a0ecaa599f2845de17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已完成。实验 `eval-openvla-object-vla-only-seed42-v2` 已在 bjb1-18228 上运行中，registry 已更新为 RUNNING。\n\n**当前状态：**\n- 进度：50%（5/10 tasks completed, 90/100 episodes done）\n- 当前总 SR：68.9%（62/90）\n- 最新 task SR：80%（pick up chocolate pudding → basket）\n- 预计剩余时间：~2-3 min（基于 32s/task pace）\n\n**实验参数：**\n- Model: `openvla-7b-libero-object` (4× safetensors, transformers 4.40.1)\n- Task suite: `libero_object`, 10 tasks × 10 trials\n- Seed: 42, center_crop=True\n- Server: bjb1-18228, cuda:1\n- Log dir: `/root/acr-vla-conformal-refinement/results/eval-openvla-object-vla-only-seed42-v2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-openvla-v2-deploy.md"
+}

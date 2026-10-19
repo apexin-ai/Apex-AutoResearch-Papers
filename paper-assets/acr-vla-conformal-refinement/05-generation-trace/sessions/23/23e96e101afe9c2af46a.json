@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23e96e101afe9c2af46a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research batched vla inference",
+  "task_key": "worker_research_batched-vla-inference_20260519T040329",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_batched-vla-inference_20260519T040329_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "96a2ed69358c219f91819962625f230a021387517bce158dfec5b49f2edeb10a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/batched_inference_feasibility_report.md`。\n\n核心结论：\n\n1. **支持 batch > 1**: YES。`denoise_step` 和底层 `SmolVLMWithExpertModel.forward()` 全部以 batch 维度运算，无 B=1 硬编码。当前 K sample 的瓶颈是 `generate_k_samples()` 中的 `for _ in range(K)` 循环。\n\n2. **Flow-matching batch 化**: YES。K 个 sample 只是不同初始噪声的确定性 ODE 积分。KV cache 在 denoising 中是只读的（self_attn 层的 `torch.cat` 创建新张量，cross_attn 层直接读 cached KV），可安全 `repeat_interleave` 到 B*K 后共享。\n\n3. **VRAM**: K=5 额外 ~215 MB，K=10 额外 ~500 MB。当前总占用 ~13.5 GB，RTX 4090 24GB 完全无压力。\n\n4. **改动量**: **~27 行，仅改 `src/smolvla_wrapper.py`**。核心操作：`repeat_interleave` KV cache 和 masks 从 B→B*K，生成 B*K 噪声，跑一次 10-step denoising loop，reshape 回 `(B, K, ...)`。不需要改 lerobot 源码。\n\n5. **推荐实现**。K=5 时 denoising 从 50 次 forward → 10 次，预期 3-4x 加速，风险极低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-batched-vla-inference.md"
+}

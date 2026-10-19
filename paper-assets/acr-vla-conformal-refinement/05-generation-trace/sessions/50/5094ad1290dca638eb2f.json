@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5094ad1290dca638eb2f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose k2 l2 calibration check",
+  "task_key": "worker_diagnose_k2-l2-calibration-check_20260519T205631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_k2-l2-calibration-check_20260519T205631_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "fa808dbe61a69570b15c95ad39122325b8e2aa8cb526d5413ffff18d7bf66185"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：运行中\n\n| 项目 | 状态 |\n|------|------|\n| PID 995736 | **存活**，已运行 23m57s |\n| JSON 输出 | 尚未生成 |\n| GPU 1 | 21% 利用率，5236/24564 MiB |\n\n**进度**：10 个任务 × 5 episodes = 50 episodes 总计\n- Task 1 `pick_up_alphabet_soup`: 5/5 done\n- Task 2 `pick_up_cream_cheese`: 4/5 done (当前)\n- 已完成 **9/50 episodes (18%)**\n\n**速度**：每 episode ~151s，剩余 41 episodes ≈ **103 分钟**（预计 ~1.7 小时后完成）。\n\n目前全部 episode 都是 FAIL (300 steps)，这是预期行为——calibration 脚本在收集 FMVD 分数，不依赖 success rate。进程正常运行，无需干预，等待 JSON 输出即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-k2-l2-calibration-check.md"
+}

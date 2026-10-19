@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "394acd028ae63c536384",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4448,
+    "sha256": "25121ac10863267f6aa9584ec0e81fae3173f67d19feaac7d6ceec5d7c7e6a76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-14T22:16:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb2-40593 上的 `/root/autodl-tmp/crm_cache/` 是 v4 cache（6D state，D016 修复前），**不可用于有效训练**。有效 cache 只有 bjb1-18228 上的 `/root/autodl-tmp/crm_cache_v5/`（8D state，post-D016）\n- eval-acr-spatial-v4-obs-only 当前使用了**错误 checkpoint**（bjb2 invalidated `/root/autodl-tmp/checkpoints/crm_v3/obs_only/crm_best.pt`），正确的是 bjb1 `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`——已报 Director，等其决策是否 kill\n- eval-acr-spatial-v4-default 已确认：v3-norm perdof + default max_correction_norm=1.42 仍然 0/5 失败。**default correction 在任何 checkpoint 下都有害**，eval 必须用 clipped norm（0.05-0.1）\n- 无项目级 gpu_ids 约束（constraints.yaml 为空），但两服务器资源紧张，注意不要踩其他项目的卡\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4×24GB GPU, conda base, `/root/acr-vla-conformal-refinement/`\n  - 有效 checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n  - 有效 cache: `/root/autodl-tmp/crm_cache_v5/spatial/`（12167 samples）\n  - SmolVLA: `/root/autodl-tmp/models/smolvla_libero/`\n  - LIBERO data: `/root/autodl-tmp/libero_data/`\n  - 活跃进程: eval-acr-spatial-v4-small (cuda:3, PID 253085), eval-tiny-correction-spatial (cuda:2, PID 232815), eval-argmin-only-spatial (cuda:1, PID 231421)\n- **bjb2-40593**: 1×24GB GPU, conda base, `/root/acr-vla-conformal-refinement/`\n  - 活跃进程: eval-acr-spatial-v4-obs-only (cuda:0, PID 199257) — **用的是错误 checkpoint**\n  - eval-vla-mean-spatial 已完成（DONE, 31% estimated）\n- 无 W&B 配置\n\n### 3. 📊 当前状态\n刚完成：v3-norm 全系列训练 ablation 审查。核心发现：obs_only val_loss=0.0165 远优于 perdof=0.0358（54% better）——已报 Director CRITICAL。Director 提出反驳逻辑（distribution shift 下 conformal 更有价值），我给出了评估。\n\nRUNNING 实验（4个）:\n- `eval-acr-spatial-v4-small`（v3-norm perdof, norm=0.1）: 1/10 tasks, T1=60%, eta ~8h\n- `eval-tiny-correction-spatial`（v2 perdof, norm=0.05）: 3/10 tasks, avg 53.3%, eta ~8h  \n- `eval-argmin-only-spatial`（K=10 argmin, no CRM）: 3/10 tasks, avg 53.3%, eta ~8h\n- `eval-acr-spatial-v4-obs-only`（**错误 checkpoint**, bjb2）: 刚启动\n\n等待：Director 对 obs_only checkpoint 错误的处理决策；三个诊断 eval 的完整结果\n\n### 4. 📋 待办（条件触发式）\n- eval-acr-spatial-v4-small 完成 → 核心判断：v3-norm perdof + 0.1 correction 是否 > baseline 34%。如果 < 34% → CRM correction 机制根本无效，需要 Gated CRM 或放弃 CRM\n- eval-tiny-correction-spatial 完成 → 对比 argmin-only；如果 tiny-correction ≈ argmin-only → CRM correction 在 0.05 norm 下等效于 passthrough，价值为零\n- eval-argmin-only-spatial 完成 → 对比 VLA mean (31%)；如果 argmin >> mean → 样本选择本身有价值，paper framing 可转向 \"sample selection + gated correction\"\n- Director 决定 obs_only eval 重启 → 核实用正确 checkpoint (`crm_v3_norm/obs_only`) + max_norm=0.1\n- obs_only eval 完成（正确版本） → 与 v4-small (perdof) 对比：obs_only ≥ perdof → 核心 claim 需根本重构\n\n### 5. 🎯 战略上下文\n**决策链**: D016(state bug fix) → D017(CRM correction 全面拖累) → D018(归一化修复) → D019(归一化不够, 需 clip) → 当前等 v4-small 结果\n\n**核心悬念**: CRM correction 到底能不能超过 baseline？目前所有证据（v2 full=2.5%, v3-norm default=0%, tiny-correction 53% ≈ argmin-only 53%）都指向 CRM correction 的边际贡献接近零或为负。唯一希望是 v4-small (norm=0.1) 的完整 10-task 结果。\n\n**最容易判错的事**:\n1. 不要把 bjb2 `/crm_v3/` 和 bjb1 `/crm_v3_norm/` 混淆——前者全部 invalidated\n2. 不要把 \"training loss 好\" 等同于 \"eval 会好\"——obs_only training loss 最低但 closed-loop 可能不行\n3. VLA K=10 mean = 31%，SampleConsensus = 34%，VLA K=1 = 30%——多采样 mean 几乎没提升，argmin selection (53% at 3 tasks) 目前看起来比任何 CRM correction 都强\n4. eval-vla-mean-spatial 的 per-task 分布是双峰的：next_to 类 80-100%，精确空间类 0%。评审时注意 \"overall rate\" 可能被几个容易 task 拉高\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

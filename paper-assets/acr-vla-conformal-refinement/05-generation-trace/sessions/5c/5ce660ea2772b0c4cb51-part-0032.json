@@ -1,0 +1,3651 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5ce660ea2772b0c4cb51",
+  "rounds": [
+    {
+      "number": 420,
+      "messages": [
+        {
+          "source_line": 5581,
+          "timestamp": "2026-05-19T22:53:04.461035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p25-seed42",
+              "field": "hypothesis",
+              "value": "Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed42. ~75% steps trigger K=10+CRM. 低阈值极端——接近 fixed K=10，验证 SR 上限。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005581"
+        },
+        {
+          "source_line": 5582,
+          "timestamp": "2026-05-19T22:53:05.569698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p25-seed43",
+              "field": "hypothesis",
+              "value": "Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed43. ~75% steps trigger K=10+CRM. P25 sweep 第二个 seed。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005582"
+        },
+        {
+          "source_line": 5583,
+          "timestamp": "2026-05-19T22:53:06.323466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p25-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:05.392Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:05.392Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed42. ~75% steps trigger K=10+CRM. 低阈值极端——接近 fixed K=10，验证 SR 上限。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.554}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1862
+          },
+          "id": "event-005583"
+        },
+        {
+          "source_line": 5584,
+          "timestamp": "2026-05-19T22:53:08.030796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p25-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:06.901Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:06.901Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed43. ~75% steps trigger K=10+CRM. P25 sweep 第二个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4893}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2461
+          },
+          "id": "event-005584"
+        },
+        {
+          "source_line": 5585,
+          "timestamp": "2026-05-19T22:53:08.031248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p25-seed44",
+              "field": "hypothesis",
+              "value": "Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed44. ~75% steps trigger K=10+CRM. P25 sweep 第三个 seed。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005585"
+        },
+        {
+          "source_line": 5586,
+          "timestamp": "2026-05-19T22:53:08.333036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed42",
+              "field": "hypothesis",
+              "value": "Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005586"
+        },
+        {
+          "source_line": 5587,
+          "timestamp": "2026-05-19T22:53:09.672192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p25-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:09.016Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:09.016Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed44. ~75% steps trigger K=10+CRM. P25 sweep 第三个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6452}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1640
+          },
+          "id": "event-005587"
+        },
+        {
+          "source_line": 5588,
+          "timestamp": "2026-05-19T22:53:09.723696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed43",
+              "field": "hypothesis",
+              "value": "Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed43. ~10% steps trigger K=10+CRM. P90 sweep 第二个 seed。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005588"
+        },
+        {
+          "source_line": 5589,
+          "timestamp": "2026-05-19T22:53:10.532719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed44",
+              "field": "hypothesis",
+              "value": "Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed44. ~10% steps trigger K=10+CRM. P90 sweep 第三个 seed。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005589"
+        },
+        {
+          "source_line": 5590,
+          "timestamp": "2026-05-19T22:53:11.289980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:10.641Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:10.641Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5741}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2956
+          },
+          "id": "event-005590"
+        },
+        {
+          "source_line": 5591,
+          "timestamp": "2026-05-19T22:53:12.747065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:12.128Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:12.128Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed43. ~10% steps trigger K=10+CRM. P90 sweep 第二个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3023
+          },
+          "id": "event-005591"
+        },
+        {
+          "source_line": 5592,
+          "timestamp": "2026-05-19T22:53:14.503379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:13.788Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:53:13.788Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed44. ~10% steps trigger K=10+CRM. P90 sweep 第三个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7166}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3970
+          },
+          "id": "event-005592"
+        },
+        {
+          "source_line": 5593,
+          "timestamp": "2026-05-19T22:53:17.830224+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "12 个 sweep 实验 registry 条目全部创建。等待 dry-run worker 返回后立即在释放的 GPU 上部署。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005593"
+        }
+      ]
+    },
+    {
+      "number": 421,
+      "messages": [
+        {
+          "source_line": 5594,
+          "timestamp": "2026-05-19T22:57:43.405665+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ssh_adaptive-k-dryrun_20260519T225112 已完成（status=done）。用 `get_worker_status('worker_ssh_adaptive-k-dryrun_20260519T225112')` 读取结果，然后处理。\n\n- worker_id: worker_ssh_adaptive-k-dryrun_20260519T225112\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-005594"
+        },
+        {
+          "source_line": 5595,
+          "timestamp": "2026-05-19T22:57:53.722436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_adaptive-k-dryrun_20260519T225112"
+            }
+          },
+          "id": "event-005595"
+        },
+        {
+          "source_line": 5596,
+          "timestamp": "2026-05-19T22:57:53.915717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_adaptive-k-dryrun_20260519T225112\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ssh:adaptive-k-dryrun\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-19T22:51:13.001255+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:57:40.543646+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"可以确认每一步都记录了 `meta` 到 `step_metadata`，包含 `actual_k`, `path` (fast/full), `l2_distance` 等信息。\\\\n\\\\n等全部完成后还需要等很久（剩余8个task约16分钟），不必在这里一直等。已经可以给出结论了。\\\\n\\\\n## Dry-run 验证报告\\\\n\\\\n### 1. 参数解析 ✓\\\\n- `--adaptive_k` 是独立 flag（非 `--mode adaptive_k`），可叠加在任何mode上\\\\n- 相关参数: `--adaptive_k`, `--adaptive_threshold`, `--k_init`(默认2), `--k_full`(默认5)\\\\n- 解析输出确认: `adaptive_k: True, adaptive_threshold: 0.074855, k_init: 2, k_full: 5`\\\\n\\\\n### 2. 启动成功 ✓\\\\n- SmolVLA 加载 ✓\\\\n- CRM 加载 ✓（337,438 params from perdof/crm_best.pt）\\\\n- Adaptive K CGS map 创建 ✓（k=2 和 k=5 两个 CGS 实例）\\\\n- LIBERO 10 tasks 加载 ✓\\\\n- Rollout 正常执行（已完成 2/10 tasks，进程 PID 58491 在 GPU 5 上运行，5657 MiB 显存）\\\\n\\\\n### 3. JSON 输出字段\\\\n代码确认输出 JSON 会包含 `adaptive_stats`：\\\\n- `fast_path_ratio` — fast path 占比（k_init 就够的比例）\\\\n- `avg_actual_k` — 平均实际 K\\\\n- `mean_l2_distance` — 平均 L2 距离\\\\n- `total_steps`, `fast_steps`, `full_steps`\\\\n\\\\n注意：字段名与任务描述中的略有不同（`fast_path_ratio` 而非 `adaptive_trigger_rate`，`avg_actual_k` 而非 `avg_K`）。没有独立的 `per_step_K` 字段（per-step数据在内存中但未写入JSON）和 `threshold` 字段。\\\\n\\\\n### 4. 无错误\\\\n全程无 crash/exception。进程仍在后台运行（PID 58491），预计 ~16 分钟后全部10 tasks完成，JSON 将写入 `logs/test_adaptive_k_dryrun.json`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 193
+          },
+          "id": "event-005596"
+        },
+        {
+          "source_line": 5597,
+          "timestamp": "2026-05-19T22:58:39.360364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "text": "[资源] GPU 17/17 | 在跑 ~15 | Worker 0\n\n## Adaptive K Dry-run 通过 ✅ — Step 2 可启动\n\n### Dry-run 结果\n- SmolVLA 加载 ✓, CRM 加载 ✓ (337K params), LIBERO 10 tasks ✓\n- Rollout 正常执行（已完成 2/10 tasks，无 crash）\n- Adaptive K CGS map 创建 ✓（k_init=2 和 k_full 两个 CGS 实例）\n\n### ⚠️ 实现细节需确认\n\n1. **接口差异**: 代码实现为 `--adaptive_k` flag（非 `--mode adaptive_k`），可叠加在现有 mode 上\n2. **k_full 默认值=5**（非 K=10）。D076 指令说\"再生成 8 个 samples 总共 K=10\"，但 D066 将 K=5 定为 primary。\n   - **Sweep 命令用 `--k_full 5` 还是 `--k_full 10`？** 建议先 K=5（与 primary config 一致），如需 K=10 可追加\n3. **输出字段名**: `fast_path_ratio`(非 adaptive_trigger_rate), `avg_actual_k`(非 avg_K), `mean_l2_distance`\n\n### Sweep 部署命令模板（待确认 k_full）\n```\npython -u src/evaluate.py --mode acr_vla --adaptive_k \\\n  --adaptive_threshold {τ} --k_full {5或10} \\\n  --benchmark object --seed {seed} --n_rollouts 10 \\\n  --output_file logs/eval_adaptive_k_p{XX}_seed{YY}.json\n```\n\n### 12 个实验 Registry 已创建\nP75/P50 优先部署。**当前 17 GPU 全部占用**，CRM-Goal/Long 完成后（预计 1-2h）释放 GPU 立即铺上。\n\n请确认 k_full=5 或 10。"
+            }
+          },
+          "id": "event-005597"
+        },
+        {
+          "source_line": 5598,
+          "timestamp": "2026-05-19T22:58:43.064097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3703
+          },
+          "id": "event-005598"
+        },
+        {
+          "source_line": 5599,
+          "timestamp": "2026-05-19T22:58:44.934215+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。代码有几个实现细节需要确认。立即向 Director 汇报并准备部署。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005599"
+        }
+      ]
+    },
+    {
+      "number": 422,
+      "messages": [
+        {
+          "source_line": 5600,
+          "timestamp": "2026-05-19T22:59:14.814812+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **k_full=10 确认。**\n\n理由：adaptive K 的价值在于低频触发时投入最大 K 获取最佳校正。trigger rate 低（P75=25%, P90=10%）时 avg_K 本身就低，k_full=10 vs 5 对 avg_K 影响不大（差 ~1-2），但触发时的校正质量差 +1.6pp。\n\nSweep 命令用 `--k_full 10`。输出字段名差异不影响，只要 JSON 里有 per-step K 和 avg_K 即可。\n\nGPU 释放后立即部署 P75 和 P50 优先。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-005600"
+        },
+        {
+          "source_line": 5601,
+          "timestamp": "2026-05-19T22:59:59.323883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-adaptive-k-code",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：同步 adaptive_k 代码到所有服务器 + 清理 dry-run\n\n### 背景\nadaptive_k 代码刚在 bjb2-28827 上的 evaluate.py 中实现。需要同步到其他服务器以便在所有服务器上运行 sweep 实验。\n\n### 步骤 1: 在 bjb2-28827 上 commit + push\n```bash\ncd /root/acr-vla-conformal-refinement\ngit add src/evaluate.py\ngit diff --cached --stat\ngit commit -m \"feat: add adaptive_k mode with K2 L2 threshold trigger\n\n- --adaptive_k flag enables adaptive inference\n- --adaptive_threshold sets L2 trigger threshold\n- --k_init (default 2) and --k_full (default 5, override with 10) control K range\n- Fast path: L2 <= threshold -> K=2 mean, no CRM\n- Full path: L2 > threshold -> K=k_full argmin + CRM obs_only correction\n- Output JSON includes adaptive_stats (fast_path_ratio, avg_actual_k, etc.)\"\ngit push\n```\n\n### 步骤 2: 同步到其他服务器\nSSH 到 bjb1-32546 和 bjb1-18228，执行 git pull：\n```bash\ncd /root/acr-vla-conformal-refinement && git pull\n```\n\n对 bjb2-40593 也做同样操作。\n\n### 步骤 3: 清理 dry-run 进程\n在 bjb2-28827 上，检查 dry-run 测试进程 PID 58491 是否还在跑：\n```bash\nps -p 58491 -o pid,etime --no-headers 2>/dev/null\n```\n如果还在跑，kill 它（这只是测试）：\n```bash\nkill 58491 2>/dev/null\ntmux kill-session -t test_adaptive_k 2>/dev/null\n```\n删除测试输出：\n```bash\nrm -f /root/acr-vla-conformal-refinement/logs/test_adaptive_k_dryrun.json\n```\n\n### 步骤 4: 验证\n在 bjb1-32546 上验证代码同步成功：\n```bash\ncd /root/acr-vla-conformal-refinement\npython -c \"import importlib; exec(open('src/evaluate.py').read()[:200])\" 2>/dev/null\ngrep -c \"adaptive_k\" src/evaluate.py\n```\n\n### 输出\n报告：\n1. commit hash\n2. 各服务器 git pull 结果\n3. dry-run 清理状态\n4. bjb2-28827 cuda:5 是否空闲可部署",
+              "tool_groups": "['ssh', 'git']"
+            }
+          },
+          "id": "event-005601"
+        },
+        {
+          "source_line": 5602,
+          "timestamp": "2026-05-19T23:00:06.606476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-adaptive-k-code_20260519T230000\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_sync-adaptive-k-code_20260519T230000.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_sync-adaptive-k-code_20260519T230000 started. Use get_worker_status('worker_ssh_sync-adaptive-k-code_20260519T230000') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 7282
+          },
+          "id": "event-005602"
+        },
+        {
+          "source_line": 5603,
+          "timestamp": "2026-05-19T23:00:19.938695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "text": "[资源] GPU 17/17 | 在跑 ~15 | Worker 1 (代码同步)\n\n## k_full=10 确认 ✅\n\nSweep 命令模板：\n```\nbash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode acr_vla --adaptive_k --adaptive_threshold {τ} --k_full 10 --benchmark object --seed {seed} --n_rollouts 10 --output_file logs/eval_adaptive_k_p{XX}_seed{YY}.json\"\n```\n\n## 执行计划\n\n1. **代码同步** Worker 正在 commit+push + git pull 到 4 台服务器\n2. **12 个实验 Registry 已创建** (PREPARING)\n3. **GPU 释放顺序预估**：\n   - bjb2-28827 CRM-Goal/Long (~1-2h) → 释放 cuda:0/1/2/3 → 立即铺 4 个 P75/P50\n   - bjb1-32546 Goal baselines (~1-2h) → 释放 cuda:1/3 → 铺 2 个 P50/P75\n   - bjb1-18228 实验完成 → 铺剩余 sweep\n4. **每个实验完成立即报告 SR + avg_actual_k + fast_path_ratio**"
+            }
+          },
+          "id": "event-005603"
+        },
+        {
+          "source_line": 5604,
+          "timestamp": "2026-05-19T23:00:21.395179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1456
+          },
+          "id": "event-005604"
+        },
+        {
+          "source_line": 5605,
+          "timestamp": "2026-05-19T23:00:23.745749+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "k_full=10 确认。需要确保代码同步到所有服务器。Spawn worker 同步代码 + 清理 dry-run 测试进程。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005605"
+        }
+      ]
+    },
+    {
+      "number": 423,
+      "messages": [
+        {
+          "source_line": 5606,
+          "timestamp": "2026-05-19T23:04:14.909408+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ssh_sync-adaptive-k-code_20260519T230000 已完成（status=done）。用 `get_worker_status('worker_ssh_sync-adaptive-k-code_20260519T230000')` 读取结果，然后处理。\n\n- worker_id: worker_ssh_sync-adaptive-k-code_20260519T230000\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-005606"
+        },
+        {
+          "source_line": 5607,
+          "timestamp": "2026-05-19T23:04:21.796467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_sync-adaptive-k-code_20260519T230000"
+            }
+          },
+          "id": "event-005607"
+        },
+        {
+          "source_line": 5608,
+          "timestamp": "2026-05-19T23:04:21.948536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-adaptive-k-code_20260519T230000\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ssh:sync-adaptive-k-code\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-19T23:00:00.498132+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T23:04:13.099771+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"发现版本差异——**bjb2-40593 才是最新版本**，不是 bjb2-28827：\\\\n\\\\n| 服务器 | 文件大小 | 行数 | adaptive_k 匹配 | 版本 |\\\\n|--------|---------|------|-----------------|------|\\\\n| bjb2-40593 | 23157 B | 593 | 19 | **最新** — `adaptive_k` 作为独立 mode，含 `select_action_adaptive_k()`, 默认 checkpoint/norm, trigger_rate 统计 |\\\\n| bjb2-28827 | 19685 B | 511 | 4 | 旧版 — `adaptive_k` 仅作 flag |\\\\n| bjb1-32546 | 19685 B | 511 | 4 | 旧版（同 bjb2-28827） |\\\\n| bjb1-18228 | 19685 B | 511 | 4 | 旧版（同 bjb2-28827） |\\\\n\\\\nbjb2-40593 的版本包含 bjb2-28827 所没有的：\\\\n- `adaptive_k` 作为 `--mode` 选项（不仅是 flag）\\\\n- 独立的 `select_action_adaptive_k()` 函数\\\\n- 默认 CRM checkpoint 和 `max_correction_norm=0.2`\\\\n- `adaptive_trigger_rate` 统计\\\\n\\\\n**应该从 bjb2-40593 同步到其他 3 台服务器。** 需要确认是否按此执行，还是你确实想用 bjb2-28827 的版本？\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 152
+          },
+          "id": "event-005608"
+        },
+        {
+          "source_line": 5609,
+          "timestamp": "2026-05-19T23:04:51.900100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-from-40593",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：从 bjb2-40593 同步 adaptive_k 代码到其他 3 台服务器\n\n### 背景\nadaptive_k 的完整实现（593 行，含 select_action_adaptive_k()、--mode adaptive_k、默认 CRM checkpoint 等）在 bjb2-40593 上。其他 3 台服务器（bjb2-28827, bjb1-32546, bjb1-18228）还是旧版（511 行）。\n\n### 步骤 1: 在 bjb2-40593 上确认 + commit + push\n```bash\ncd /root/acr-vla-conformal-refinement\ngit status\ngit add src/evaluate.py\ngit diff --cached --stat\ngit commit -m \"feat: add --mode adaptive_k with K2 L2 threshold-based adaptive inference\n\n- select_action_adaptive_k(): K=2 L2 distance -> threshold -> K=10 + CRM\n- Fast path (L2 <= tau): K=2 mean, no CRM\n- Full path (L2 > tau): K=10 argmin + CRM obs_only (eps=0.2)\n- Default CRM checkpoint: crm_v3_norm/obs_only/crm_best.pt\n- Output: adaptive_trigger_rate, avg_actual_k, per_step metadata\n\nCo-Authored-By: Claude Code <noreply@anthropic.com>\"\ngit push origin main\n```\n\n如果已经 committed 但未 push，只需 push。如果有 conflict，先 pull --rebase 再 push。\n\n### 步骤 2: 在其他 3 台服务器 git pull\n依次 SSH 到：\n1. bjb2-28827: `cd /root/acr-vla-conformal-refinement && git pull`\n2. bjb1-32546: `cd /root/acr-vla-conformal-refinement && git pull`\n3. bjb1-18228: `cd /root/acr-vla-conformal-refinement && git pull`\n\n### 步骤 3: 验证\n在每台服务器上确认 evaluate.py 行数 = 593 且含 adaptive_k：\n```bash\nwc -l src/evaluate.py\ngrep -c \"adaptive_k\" src/evaluate.py\ngrep -c \"select_action_adaptive_k\" src/evaluate.py\n```\n\n### 步骤 4: 清理 bjb2-28827 dry-run 测试\n```bash\n# Kill dry-run test process if still running\nps aux | grep \"test_adaptive_k\" | grep -v grep\nkill 58491 2>/dev/null\nrm -f /root/acr-vla-conformal-refinement/logs/test_adaptive_k_dryrun.json\n```\n\n### 输出\n报告每台服务器的 sync 结果（行数、adaptive_k 匹配数）和 commit hash。",
+              "tool_groups": "['ssh', 'git']"
+            }
+          },
+          "id": "event-005609"
+        },
+        {
+          "source_line": 5610,
+          "timestamp": "2026-05-19T23:05:01.668226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-from-40593_20260519T230454\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_sync-code-from-40593_20260519T230454.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_sync-code-from-40593_20260519T230454 started. Use get_worker_status('worker_ssh_sync-code-from-40593_20260519T230454') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 9768
+          },
+          "id": "event-005610"
+        },
+        {
+          "source_line": 5611,
+          "timestamp": "2026-05-19T23:05:06.190769+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码同步 Worker 已派出。等待完成后所有服务器都能跑 adaptive_k sweep。GPU 释放后立即部署 P75/P50 实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005611"
+        }
+      ]
+    },
+    {
+      "number": 424,
+      "messages": [
+        {
+          "source_line": 5612,
+          "timestamp": "2026-05-19T23:05:10.419968+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 3 件事：\n\n**1. bjb2-28827 GPU4/5 空闲——立即部署 adaptive K sweep**\nOpenVLA 被 cron 超时 kill 了。GPU4/5 现在空闲，优先部署：\n- cuda:4 → eval-adaptive-k-p75-seed42 (τ=0.098735, k_full=10)\n- cuda:5 → eval-adaptive-k-p50-seed42 (τ=0.074855, k_full=10)\n\n代码同步完成了吗？如果完成了立即部署这两个。\n\n**2. OpenVLA 降低优先级**\nOpenVLA baseline 暂时搁置。Adaptive K Phase 2 是当前最高优先级。等 sweep 铺完有空闲卡再重启 OpenVLA（用 nohup + n_rollouts=10）。\n\n**3. CRM-Goal/Long 完成了吗？**\n如果 CRM-Goal seed44/45 或 CRM-Long seed47 已完成，报告 SR 并释放 GPU 给 sweep。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-005612"
+        },
+        {
+          "source_line": 5613,
+          "timestamp": "2026-05-19T23:05:23.317479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_sync-code-from-40593_20260519T230454"
+            }
+          },
+          "id": "event-005613"
+        },
+        {
+          "source_line": 5614,
+          "timestamp": "2026-05-19T23:05:23.468442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-from-40593_20260519T230454\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ssh:sync-code-from-40593\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-19T23:04:54.779215+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 150
+          },
+          "id": "event-005614"
+        },
+        {
+          "source_line": 5615,
+          "timestamp": "2026-05-19T23:05:23.468864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-005615"
+        },
+        {
+          "source_line": 5616,
+          "timestamp": "2026-05-19T23:05:47.709769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 8, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-vla-only-object-seed48\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-vla-only-object-seed48)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-long-seed46\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-crm-long-seed46)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-only-long-seed48\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-vla-only-long-seed48)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-only-object-seed50\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-vla-only-object-seed50)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-goal-seed44-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=24694)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-goal-seed45-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=24959)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-long-seed47\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=25274)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-goal-seed46\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=50120)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 24240
+          },
+          "id": "event-005616"
+        },
+        {
+          "source_line": 5617,
+          "timestamp": "2026-05-19T23:06:08.448745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005617"
+        },
+        {
+          "source_line": 5618,
+          "timestamp": "2026-05-19T23:06:10.733405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-object-baseline-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:53:24.027Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:06:09.325Z\\\", \\\"hypothesis\\\": \\\"OpenVLA-7B fine-tuned on LIBERO-Object baseline eval (seed42). 复现官方 88.4% SR，获取 per-task breakdown 与 SmolVLA 对比。如果 SR 符合预期，验证 CRM 路线的 base policy 基线可用性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/openvla-repo && CUDA_VISIBLE_DEVICES=4 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /root/autodl-tmp/models/openvla-libero-object --task_suite_name libero_object --center_crop True --seed 42 --num_trials_per_task 50 --use_wandb False\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"900134\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-openvla-object-baseline-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:03:26.372Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"OpenVLA-7B-finetuned-libero-object\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"conclusion=killed is STALE from M023 incident. Process alive (PID 900134, 22967 MiB). Cron will overwrite conclusion on completion.\\\", \\\"wall_clock_seconds\\\": 21610.5, \\\"gpu_hours\\\": 6.0}, \\\"conclusion\\\": \\\"killed\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T23:03:35.338Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"completed_at\\\": \\\"2026-05-19T23:03:36.901Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T23:03:50.026732+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: EXIT_CODE=124 timeout。完成 400/500 episodes (8/10 tasks)，SR=68.0% (272/400)。第9个task (pick_up_milk) 4/50时被kill。每episode ~60s，\n…[truncated 419 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2284
+          },
+          "id": "event-005618"
+        },
+        {
+          "source_line": 5619,
+          "timestamp": "2026-05-19T23:06:34.288096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "text": "[资源] GPU 17/17 | 在跑 12 | Worker 1 (代码同步中) | cuda:4/5 空闲待部署\n\n## 1. bjb2-28827 cuda:4/5 部署\n\n代码同步 Worker 正在将 adaptive_k 完整实现从 bjb2-40593 → 其他 3 台服务器。发现代码最新版在 bjb2-40593（593 行），bjb2-28827 还是旧版（511 行）。**Worker 完成后立即部署**：\n- cuda:4 → eval-adaptive-k-p75-seed42\n- cuda:5 → eval-adaptive-k-p50-seed42\n\n## 2. OpenVLA 状态\n\n被 cron 超时 kill（EXIT_CODE=124, timeout 6h < 需要 8.3h）。部分数据：400/500 episodes 完成，前 8 个 task SR=68.0%。Registry 已标记 killed，降低优先级。\n\n## 3. CRM-Goal/Long 状态\n\n全部仍在运行，无一完成：\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| crm-goal-seed44-r2 | cuda:0 | 24694 | 🔄 运行中 |\n| crm-goal-seed45-r2 | cuda:2 | 24959 | 🔄 运行中 |\n| crm-goal-seed46 | cuda:1 | 50120 | 🔄 运行中 |\n| crm-long-seed47 | cuda:3 | 25274 | 🔄 运行中 |\n\n预计 1-2h 内完成，届时 cuda:0/1/2/3 全部释放给 sweep。"
+            }
+          },
+          "id": "event-005619"
+        },
+        {
+          "source_line": 5620,
+          "timestamp": "2026-05-19T23:06:38.123437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3835
+          },
+          "id": "event-005620"
+        },
+        {
+          "source_line": 5621,
+          "timestamp": "2026-05-19T23:06:40.878967+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码同步 worker 仍在跑。CRM 实验全部仍在运行。先更新 OpenVLA registry，sync 完成立即部署 sweep。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005621"
+        }
+      ]
+    },
+    {
+      "number": 425,
+      "messages": [
+        {
+          "source_line": 5622,
+          "timestamp": "2026-05-19T23:08:18.681625+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **纠正：OpenVLA r2 不该自动重试。** 我明确说了 OpenVLA 降低优先级，等 sweep 完后再跑。\n\n**立即执行：**\n\n1. **Kill OpenVLA r2** (bjb2-28827 cuda:4 PID 67464)，释放给 sweep\n\n2. **代码同步完成了吗？** adaptive_k 代码是否已在 4 台服务器上就位？如果完成，立即在 8 张空闲卡上部署 sweep：\n\n| 服务器 | GPU | 实验 |\n|--------|-----|------|\n| bjb2-28827 | cuda:1 | eval-adaptive-k-p75-seed42 (τ=0.098735) |\n| bjb2-28827 | cuda:4 | eval-adaptive-k-p75-seed43 (τ=0.098735) |\n| bjb2-28827 | cuda:5 | eval-adaptive-k-p50-seed42 (τ=0.074855) |\n| bjb1-18228 | cuda:3 | eval-adaptive-k-p50-seed43 (τ=0.074855) |\n| bjb1-32546 | cuda:0 | eval-adaptive-k-p75-seed44 (τ=0.098735) |\n| bjb1-32546 | cuda:2 | eval-adaptive-k-p50-seed44 (τ=0.074855) |\n| bjb1-32546 | cuda:4 | eval-adaptive-k-p90-seed42 (τ=0.126512) |\n| bjb1-32546 | cuda:5 | eval-adaptive-k-p25-seed42 (τ=0.054959) |\n\nP75 和 P50 优先（3 seeds 全铺），P90 和 P25 各 1 seed 先探路。\n\n如果代码同步未完成，立刻用多 Worker 并行同步所有服务器，不要等串行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-005622"
+        },
+        {
+          "source_line": 5623,
+          "timestamp": "2026-05-19T23:08:28.929948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_sync-code-from-40593_20260519T230454"
+            }
+          },
+          "id": "event-005623"
+        },
+        {
+          "source_line": 5624,
+          "timestamp": "2026-05-19T23:08:29.077301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-from-40593_20260519T230454\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ssh:sync-code-from-40593\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-19T23:04:54.779215+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 147
+          },
+          "id": "event-005624"
+        },
+        {
+          "source_line": 5625,
+          "timestamp": "2026-05-19T23:11:14.666410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons",
+              "max_results": "3"
+            }
+          },
+          "id": "event-005625"
+        },
+        {
+          "source_line": 5626,
+          "timestamp": "2026-05-19T23:11:14.666751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-005626"
+        },
+        {
+          "source_line": 5627,
+          "timestamp": "2026-05-19T23:11:18.361978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_sync-code-from-40593_20260519T230454",
+              "verbose": "True"
+            }
+          },
+          "id": "event-005627"
+        },
+        {
+          "source_line": 5628,
+          "timestamp": "2026-05-19T23:11:18.813987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-from-40593_20260519T230454\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ssh:sync-code-from-40593\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-19T23:04:54.779215+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"换策略：检查服务器间是否能直连。\\\", \\\"turn_count\\\": 15}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 452
+          },
+          "id": "event-005628"
+        },
+        {
+          "source_line": 5629,
+          "timestamp": "2026-05-19T23:11:20.721281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'pid', 'hypothesis']"
+            }
+          },
+          "id": "event-005629"
+        },
+        {
+          "source_line": 5630,
+          "timestamp": "2026-05-19T23:11:20.721618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-005630"
+        },
+        {
+          "source_line": 5631,
+          "timestamp": "2026-05-19T23:11:20.772086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-obs-only-spatial-norm02-seed46-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"obs_only CRM with epsilon=0.2 and K=10 improves LIBERO-Spatial success rate by applying observation-conditioned conformal corrections to fix spatial reasoning errors, seed46 rerun for statistical robustness\\\"}, \\\"eval-vla-only-goal-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed44 establishes reference success rate for comparing against CRM-augmented methods on goal-conditioned tasks, rerun for statistical robustness\\\"}, \\\"eval-argmin-object-k5-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"ReConVLA argmin mode with K=5 candidates improves LIBERO-Object success rate over VLA-only baseline by selecting the best action from multiple VLA samples using conformal scoring, seed44 rerun for statistical robustness\\\"}, \\\"eval-openvla-object-baseline-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"OpenVLA baseline on LIBERO-Object seed42 establishes reference success rate for comparing against SmolVLA and CRM-augmented methods on object manipulation tasks\\\"}, \\\"eval-perdof-object-norm02-seed48\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"perdof CRM with ε=0.2 on LIBERO-Object seed48. Additional seed for perdof magnitude curve at primary comparison norm. Running on bjb2-28827 cuda:5 PID 488665.\\\"}, \\\"eval-obs-only-object-norm005-seed43\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-perdof-object-norm02-seed45-r3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.2) seed45 on LIBERO-Object. Rerun after SIGHUP kill. Original result on bjb2-28827 was 9%. This confirms reproducibility on different server.\\\"}}, \\\"count\\\": 7, \\\"total\\\": 7, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.047}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-005631"
+        },
+        {
+          "source_line": 5632,
+          "timestamp": "2026-05-19T23:12:02.498121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 8, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-vla-only-object-seed48\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-vla-only-object-seed48)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-long-seed46\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\\\", \\\"Cron deleted\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-only-long-seed48\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-vla-only-long-seed48)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-only-object-seed50\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-vla-only-object-seed50)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-goal-seed44-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 1/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-goal-seed45-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=24959)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-long-seed47\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=25274)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-goal-seed46\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=50120)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 41776
+          },
+          "id": "event-005632"
+        },
+        {
+          "source_line": 5633,
+          "timestamp": "2026-05-19T23:12:31.651408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-005633"
+        },
+        {
+          "source_line": 5634,
+          "timestamp": "2026-05-19T23:12:31.701983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-005634"
+        },
+        {
+          "source_line": 5635,
+          "timestamp": "2026-05-19T23:12:40.185078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__kill_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "pid": "67464",
+              "reason": "Director指令：OpenVLA r2不该自动重试，立即kill释放cuda:4给sweep实验"
+            }
+          },
+          "id": "event-005635"
+        },
+        {
+          "source_line": 5636,
+          "timestamp": "2026-05-19T23:12:40.637181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-crm-long-seed46'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-005636"
+        },
+        {
+          "source_line": 5637,
+          "timestamp": "2026-05-19T23:12:41.089129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"67464\\\", \\\"reason\\\": \\\"Director指令：OpenVLA r2不该自动重试，立即kill释放cuda:4给sweep实验\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__kill_job",
+            "elapsed_ms": 904
+          },
+          "id": "event-005637"
+        },
+        {
+          "source_line": 5638,
+          "timestamp": "2026-05-19T23:12:41.089573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0464}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-005638"
+        },
+        {
+          "source_line": 5639,
+          "timestamp": "2026-05-19T23:12:41.592444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-crm-goal-seed44-r2'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-005639"
+        },
+        {
+          "source_line": 5640,
+          "timestamp": "2026-05-19T23:12:41.944127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0507}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-005640"
+        },
+        {
+          "source_line": 5641,
+          "timestamp": "2026-05-19T23:12:41.944558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['exp_id', 'status', 'hypothesis']"
+            }
+          },
+          "id": "event-005641"
+        },
+        {
+          "source_line": 5642,
+          "timestamp": "2026-05-19T23:12:41.995106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.051}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-005642"
+        },
+        {
+          "source_line": 5643,
+          "timestamp": "2026-05-19T23:12:49.638142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-005643"
+        },
+        {
+          "source_line": 5644,
+          "timestamp": "2026-05-19T23:12:50.090622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0469}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-005644"
+        },
+        {
+          "source_line": 5645,
+          "timestamp": "2026-05-19T23:12:50.392194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "30",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'conclusion']"
+            }
+          },
+          "id": "event-005645"
+        },
+        {
+          "source_line": 5646,
+          "timestamp": "2026-05-19T23:12:50.442969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-random-selection-object-seed46-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-obs-only-spatial-norm02-seed46-r2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-vla-only-goal-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-argmin-object-k5-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-openvla-object-baseline-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-obs-only-spatial-norm02-seed47\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-vla-only-spatial-seed45\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-obs-only-spatial-norm02-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-obs-only-object-norm003-seed43-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval-obs-only-object-norm03-seed48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-obs-only-object-norm01-seed48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-obs-only-object-norm02-k5-seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-perdof-object-norm01-seed46\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-perdof-object-default-seed46\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval-perdof-object-norm02-seed48\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-obs-only-object-default-seed46\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval-obs-only-object-norm01-seed46\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval-k1-crm-multiscale-object-seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval-k1-crm-multiscale-object-seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval-obs-only-object-norm005-seed43\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-perdof-object-norm02-seed45-r3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-k1-crm-multiscale-object-seed44-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval-mag-perdof-norm03-object-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"co\n…[truncated 320 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-005646"
+        },
+        {
+          "source_line": 5647,
+          "timestamp": "2026-05-19T23:13:02.269032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-crm-long-seed46",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "glob": "*.yaml",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-005647"
+        },
+        {
+          "source_line": 5648,
+          "timestamp": "2026-05-19T23:13:02.319665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 1 file\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-005648"
+        },
+        {
+          "source_line": 5649,
+          "timestamp": "2026-05-19T23:13:03.375486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "adaptive-k",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "glob": "*.yaml",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-005649"
+        },
+        {
+          "source_line": 5650,
+          "timestamp": "2026-05-19T23:13:03.375962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 2 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-005650"
+        },
+        {
+          "source_line": 5651,
+          "timestamp": "2026-05-19T23:13:06.788468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-crm-long-seed46",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-C": "3"
+            }
+          },
+          "id": "event-005651"
+        },
+        {
+          "source_line": 5652,
+          "timestamp": "2026-05-19T23:13:07.290883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13723-      gpu_hours: 0.46\n13724-    conclusion: killed\n13725-    completed_at: '2026-05-19T22:08:11.590Z'\n13726:  eval-crm-long-seed46:\n13727-    status: ANALYZING\n13728-    retry_count: 0\n13729-    created_at: '2026-05-19T21:24:13.996Z'\n--\n13739-      gpu:\n13740-      - cuda:0\n13741-      pid: '160883'\n13742:      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log\n13743-      submitted_at: '2026-05-19T21:24:28.772Z'\n13744-      submitted_via: submit_training_job\n13745-      backend: tmux"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-005652"
+        },
+        {
+          "source_line": 5653,
+          "timestamp": "2026-05-19T23:13:07.592555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-adaptive-k",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-C": "2"
+            }
+          },
+          "id": "event-005653"
+        },
+        {
+          "source_line": 5654,
+          "timestamp": "2026-05-19T23:13:07.643356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14008-      backend: tmux\n14009-      account: root\n14010:  eval-adaptive-k-p75-seed42:\n14011-    status: PREPARING\n14012-    retry_count: 0\n--\n14015-    hypothesis: Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed42. ~25% steps\n14016-      trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\n14017:  eval-adaptive-k-p75-seed43:\n14018-    status: PREPARING\n14019-    retry_count: 0\n--\n14022-    hypothesis: Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed43. ~25% steps\n14023-      trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第二个 seed。\n14024:  eval-adaptive-k-p75-seed44:\n14025-    status: PREPARING\n14026-    retry_count: 0\n--\n14029-    hypothesis: Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed44. ~25% steps\n14030-      trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第三个 seed。\n14031:  eval-adaptive-k-p50-seed42:\n14032-    status: PREPARING\n14033-    retry_count: 0\n--\n14036-    hypothesis: Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed42. ~50% steps\n14037-      trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\n14038:  eval-adaptive-k-p50-seed43:\n14039-    status: PREPARING\n14040-    retry_count: 0\n--\n14043-    hypothesis: Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps\n14044-      trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\n14045:  eval-adaptive-k-p50-seed44:\n14046-    status: PREPARING\n14047-    retry_count: 0\n--\n14050-    hypothesis: Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed44. ~50% steps\n14051-      trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第三个 seed。\n14052:  eval-adaptive-k-p25-seed42:\n14053-    status: PREPARING\n14054-    retry_count: 0\n--\n14057-    hypothesis: Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed42. ~75% steps\n14058-      trigger K=10+CRM. 低阈值极端——接近 fixed K=10，验证 SR 上限。\n14059:  eval-adaptive-k-p25-seed43:\n14060-    status: PREPARING\n14061-    retry_count: 0\n--\n14064-    hypothesis: Adaptive K with τ=P25 (0.054\n…[truncated 887 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-005654"
+        },
+        {
+          "source_line": 5655,
+          "timestamp": "2026-05-19T23:13:34.955178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "offset": "13726",
+              "limit": "40"
+            }
+          },
+          "id": "event-005655"
+        },
+        {
+          "source_line": 5656,
+          "timestamp": "2026-05-19T23:13:35.005896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13726\t  eval-crm-long-seed46:\n13727\t    status: ANALYZING\n13728\t    retry_count: 0\n13729\t    created_at: '2026-05-19T21:24:13.996Z'\n13730\t    updated_at: '2026-05-19T23:11:30.379Z'\n13731\t    hypothesis: CRM obs_only (ε=0.2, K=10) on LIBERO-Long seed46. OOD 泛化测试：CRM 仅在\n13732\t      Object+Spatial 训练，Long 是未见过的 suite。补齐 CRM-Long 第 5 个 seed。\n13733\t    spec:\n13734\t      command: bash -c \"cd /root/acr-vla-conformal-refinement && /root/miniconda3/bin/python\n13735\t        -u src/evaluate.py --mode crm_obs_only --benchmark long --n_rollouts 10 --seed\n13736\t        46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n13737\t        --max_correction_norm 0.2 --output_file logs/eval_long_obs_only_norm02_seed46.json\"\n13738\t      server: bjb1-18228\n13739\t      gpu:\n13740\t      - cuda:0\n13741\t      pid: '160883'\n13742\t      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log\n13743\t      submitted_at: '2026-05-19T21:24:28.772Z'\n13744\t      submitted_via: submit_training_job\n13745\t      backend: tmux\n13746\t      account: root\n13747\t      data_path: LIBERO-Long (OOD)\n13748\t      data_count: 100 (10 tasks x 10 rollouts)\n13749\t      model_name: CRM obs_only + SmolVLA\n13750\t      seed: 46\n13751\t    reproduce:\n13752\t      finished_at: '2026-05-19T23:11:28.326Z'\n13753\t    extra:\n13754\t      hook_events:\n13755\t      - event: on_complete\n13756\t        action: agent\n13757\t        ts: '2026-05-19T23:11:42.503998+00:00'\n13758\t  eval-vla-only-long-seed48:\n13759\t    status: RUNNING\n13760\t    retry_count: 0\n13761\t    created_at: '2026-05-19T21:24:15.951Z'\n13762\t    updated_at: '2026-05-19T21:46:24.002Z'\n13763\t    hypothesis: VLA-only baseline on LIBERO-Long seed48. 补齐 Long VLA-only 样本量 (n→7)，增强\n13764\t      baseline 统计可靠性。\n13765\t    spec:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-005656"
+        },
+        {
+          "source_line": 5657,
+          "timestamp": "2026-05-19T23:14:16.951472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-005657"
+        },
+        {
+          "source_line": 5658,
+          "timestamp": "2026-05-19T23:14:16.951941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-005658"
+        },
+        {
+          "source_line": 5659,
+          "timestamp": "2026-05-19T23:14:50.046316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_ssh_sync-code-from-40593_20260519T230454"
+            }
+          },
+          "id": "event-005659"
+        },
+        {
+          "source_line": 5660,
+          "timestamp": "2026-05-19T23:14:50.549685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-from-40593_20260519T230454\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 503
+          },
+          "id": "event-005660"
+        },
+        {
+          "source_line": 5661,
+          "timestamp": "2026-05-19T23:14:53.611432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005661"
+        },
+        {
+          "source_line": 5662,
+          "timestamp": "2026-05-19T23:14:53.712203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005662"
+        },
+        {
+          "source_line": 5663,
+          "timestamp": "2026-05-19T23:14:53.712628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005663"
+        },
+        {
+          "source_line": 5664,
+          "timestamp": "2026-05-19T23:14:54.415705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005664"
+        },
+        {
+          "source_line": 5665,
+          "timestamp": "2026-05-19T23:14:54.767335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005665"
+        },
+        {
+          "source_line": 5666,
+          "timestamp": "2026-05-19T23:14:55.723076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005666"
+        },
+        {
+          "source_line": 5667,
+          "timestamp": "2026-05-19T23:14:56.677377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005667"
+        },
+        {
+          "source_line": 5668,
+          "timestamp": "2026-05-19T23:14:57.130226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-object-baseline-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:53:24.027Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:14:54.566Z\\\", \\\"hypothesis\\\": \\\"OpenVLA-7B fine-tuned on LIBERO-Object baseline eval (seed42). 复现官方 88.4% SR，获取 per-task breakdown 与 SmolVLA 对比。如果 SR 符合预期，验证 CRM 路线的 base policy 基线可用性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/openvla-repo && CUDA_VISIBLE_DEVICES=4 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /root/autodl-tmp/models/openvla-libero-object --task_suite_name libero_object --center_crop True --seed 42 --num_trials_per_task 50 --use_wandb False\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"900134\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-openvla-object-baseline-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:03:26.372Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"OpenVLA-7B-finetuned-libero-object\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"conclusion=killed is STALE from M023 incident. Process alive (PID 900134, 22967 MiB). Cron will overwrite conclusion on completion.\\\", \\\"wall_clock_seconds\\\": 21610.5, \\\"gpu_hours\\\": 6.0}, \\\"conclusion\\\": \\\"killed\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T23:03:35.338Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"completed_at\\\": \\\"2026-05-19T23:03:36.901Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T23:03:50.026732+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: EXIT_CODE=124 timeout。完成 400/500 episodes (8/10 tasks)，SR=68.0% (272/400)。第9个task (pick_up_milk) 4/50时被kill。每episode ~60s，\n…[truncated 144 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3518
+          },
+          "id": "event-005668"
+        },
+        {
+          "source_line": 5669,
+          "timestamp": "2026-05-19T23:14:57.632749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p25-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005669"
+        },
+        {
+          "source_line": 5670,
+          "timestamp": "2026-05-19T23:14:58.285312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005670"
+        },
+        {
+          "source_line": 5671,
+          "timestamp": "2026-05-19T23:15:00.304471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:49.558Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:14:57.753Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed42. ~25% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3693}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 6592
+          },
+          "id": "event-005671"
+        },
+        {
+          "source_line": 5672,
+          "timestamp": "2026-05-19T23:15:04.405451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:51.298Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:01.899Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed43. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第二个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1036}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10692
+          },
+          "id": "event-005672"
+        },
+        {
+          "source_line": 5673,
+          "timestamp": "2026-05-19T23:15:07.565386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:52.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:05.252Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed44. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第三个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.136}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13149
+          },
+          "id": "event-005673"
+        },
+        {
+          "source_line": 5674,
+          "timestamp": "2026-05-19T23:15:10.833464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:54.375Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:08.475Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed42. ~50% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2556}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 16066
+          },
+          "id": "event-005674"
+        },
+        {
+          "source_line": 5675,
+          "timestamp": "2026-05-19T23:15:14.097533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:55.910Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:11.770Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2439}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 18374
+          },
+          "id": "event-005675"
+        },
+        {
+          "source_line": 5676,
+          "timestamp": "2026-05-19T23:15:17.480468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:57.407Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:14.930Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed44. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第三个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3691}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 20803
+          },
+          "id": "event-005676"
+        },
+        {
+          "source_line": 5677,
+          "timestamp": "2026-05-19T23:15:20.691237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p25-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:05.392Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:18.319Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed42. ~75% steps trigger K=10+CRM. 低阈值极端——接近 fixed K=10，验证 SR 上限。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2116}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 23058
+          },
+          "id": "event-005677"
+        },
+        {
+          "source_line": 5678,
+          "timestamp": "2026-05-19T23:15:24.003739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:10.641Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:21.572Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2725}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 25718
+          },
+          "id": "event-005678"
+        },
+        {
+          "source_line": 5679,
+          "timestamp": "2026-05-19T23:15:37.654001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb2-28827', 'gpu': ['cuda:1']}"
+            }
+          },
+          "id": "event-005679"
+        },
+        {
+          "source_line": 5680,
+          "timestamp": "2026-05-19T23:15:38.608430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed43",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb2-28827', 'gpu': ['cuda:4']}"
+            }
+          },
+          "id": "event-005680"
+        },
+        {
+          "source_line": 5681,
+          "timestamp": "2026-05-19T23:15:40.015444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb2-28827', 'gpu': ['cuda:5']}"
+            }
+          },
+          "id": "event-005681"
+        },
+        {
+          "source_line": 5682,
+          "timestamp": "2026-05-19T23:15:41.016665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed43",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-18228', 'gpu': ['cuda:3']}"
+            }
+          },
+          "id": "event-005682"
+        },
+        {
+          "source_line": 5683,
+          "timestamp": "2026-05-19T23:15:41.461800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:49.558Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:38.523Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed42. ~25% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:1\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.7194}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3807
+          },
+          "id": "event-005683"
+        },
+        {
+          "source_line": 5684,
+          "timestamp": "2026-05-19T23:15:42.393354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed44",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:0']}"
+            }
+          },
+          "id": "event-005684"
+        },
+        {
+          "source_line": 5685,
+          "timestamp": "2026-05-19T23:15:43.373406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed44",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:2']}"
+            }
+          },
+          "id": "event-005685"
+        },
+        {
+          "source_line": 5686,
+          "timestamp": "2026-05-19T23:15:44.321695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:4']}"
+            }
+          },
+          "id": "event-005686"
+        },
+        {
+          "source_line": 5687,
+          "timestamp": "2026-05-19T23:15:45.300743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p25-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:5']}"
+            }
+          },
+          "id": "event-005687"
+        },
+        {
+          "source_line": 5688,
+          "timestamp": "2026-05-19T23:15:46.004598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:51.298Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:42.684Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed43. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.5866}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 7396
+          },
+          "id": "event-005688"
+        },
+        {
+          "source_line": 5689,
+          "timestamp": "2026-05-19T23:15:49.383774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:54.375Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:47.028Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed42. ~50% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3422}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9368
+          },
+          "id": "event-005689"
+        },
+        {
+          "source_line": 5690,
+          "timestamp": "2026-05-19T23:15:52.595245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:55.910Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:50.327Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2382}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11578
+          },
+          "id": "event-005690"
+        },
+        {
+          "source_line": 5691,
+          "timestamp": "2026-05-19T23:15:55.856034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:52.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:53.451Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed44. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2285}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13462
+          },
+          "id": "event-005691"
+        },
+        {
+          "source_line": 5692,
+          "timestamp": "2026-05-19T23:15:59.117152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:57.407Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:56.712Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed44. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2453}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 15743
+          },
+          "id": "event-005692"
+        },
+        {
+          "source_line": 5693,
+          "timestamp": "2026-05-19T23:16:02.695847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:10.641Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:15:59.957Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5568}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 18374
+          },
+          "id": "event-005693"
+        },
+        {
+          "source_line": 5694,
+          "timestamp": "2026-05-19T23:16:07.580203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p25-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:05.392Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:16:04.196Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P25 (0.054959) on LIBERO-Object seed42. ~75% steps trigger K=10+CRM. 低阈值极端——接近 fixed K=10，验证 SR 上限。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8777}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 22279
+          },
+          "id": "event-005694"
+        },
+        {
+          "source_line": 5695,
+          "timestamp": "2026-05-19T23:16:38.001713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-bjb2-28827",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "同步 adaptive_k 代码到 bjb2-28827。\n\n**步骤**：\n1. SSH 到 bjb2-40593 (root)，读取 /root/acr-vla-conformal-refinement/src/evaluate.py 的完整内容\n2. SSH 到 bjb2-28827 (root)，将该文件写入 /root/acr-vla-conformal-refinement/src/evaluate.py（覆盖旧版本）\n3. 验证：在 bjb2-28827 上运行 `wc -l /root/acr-vla-conformal-refinement/src/evaluate.py`，确认行数 ≥ 590（新版约 593 行，旧版 511 行）\n4. 验证：`grep -c \"adaptive_k\" /root/acr-vla-conformal-refinement/src/evaluate.py` 确认包含 adaptive_k 相关代码\n\n如果直接 cat 太长，可以用 scp 方式或分段传输。关键是确保 bjb2-28827 上的 evaluate.py 与 bjb2-40593 上的完全一致。\n\n**输出**：报告同步是否成功，行数验证结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005695"
+        },
+        {
+          "source_line": 5696,
+          "timestamp": "2026-05-19T23:16:41.316756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-bjb1-18228",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "同步 adaptive_k 代码到 bjb1-18228。\n\n**步骤**：\n1. SSH 到 bjb2-40593 (root)，读取 /root/acr-vla-conformal-refinement/src/evaluate.py 的完整内容\n2. SSH 到 bjb1-18228 (root)，将该文件写入 /root/acr-vla-conformal-refinement/src/evaluate.py（覆盖旧版本）\n3. 验证：在 bjb1-18228 上运行 `wc -l /root/acr-vla-conformal-refinement/src/evaluate.py`，确认行数 ≥ 590（新版约 593 行，旧版 511 行）\n4. 验证：`grep -c \"adaptive_k\" /root/acr-vla-conformal-refinement/src/evaluate.py` 确认包含 adaptive_k 相关代码\n\n如果直接 cat 太长，可以用 scp 方式或分段传输。关键是确保 bjb1-18228 上的 evaluate.py 与 bjb2-40593 上的完全一致。\n\n**输出**：报告同步是否成功，行数验证结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005696"
+        },
+        {
+          "source_line": 5697,
+          "timestamp": "2026-05-19T23:16:41.668326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-bjb2-28827_20260519T231638\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_sync-code-bjb2-28827_20260519T231638.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_sync-code-bjb2-28827_20260519T231638 started. Use get_worker_status('worker_ssh_sync-code-bjb2-28827_20260519T231638') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3666
+          },
+          "id": "event-005697"
+        },
+        {
+          "source_line": 5698,
+          "timestamp": "2026-05-19T23:16:44.630335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-bjb1-32546",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "同步 adaptive_k 代码到 bjb1-32546。\n\n**步骤**：\n1. SSH 到 bjb2-40593 (root)，读取 /root/acr-vla-conformal-refinement/src/evaluate.py 的完整内容\n2. SSH 到 bjb1-32546 (root)，将该文件写入 /root/acr-vla-conformal-refinement/src/evaluate.py（覆盖旧版本）\n3. 验证：在 bjb1-32546 上运行 `wc -l /root/acr-vla-conformal-refinement/src/evaluate.py`，确认行数 ≥ 590（新版约 593 行，旧版 511 行）\n4. 验证：`grep -c \"adaptive_k\" /root/acr-vla-conformal-refinement/src/evaluate.py` 确认包含 adaptive_k 相关代码\n\n如果直接 cat 太长，可以用 scp 方式或分段传输。关键是确保 bjb1-32546 上的 evaluate.py 与 bjb2-40593 上的完全一致。\n\n**输出**：报告同步是否成功，行数验证结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005698"
+        },
+        {
+          "source_line": 5699,
+          "timestamp": "2026-05-19T23:16:53.956533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:analyze-crm-long-seed46",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "分析刚完成的 eval-crm-long-seed46 实验结果。\n\n**服务器**：bjb1-18228 (root)\n**实验信息**：CRM obs_only (ε=0.2, K=10) on LIBERO-Long seed46，OOD 泛化测试\n\n**步骤**：\n1. SSH 到 bjb1-18228 (ssh_read_only)\n2. 读取输出 JSON: `cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed46.json`\n3. 如果 JSON 不存在，检查 log: `cat ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log | tail -50`\n4. 提取关键指标：\n   - 总体 success rate (SR)\n   - 每个 task 的 success rate breakdown\n   - 总 episodes / 成功 episodes\n5. 计算 SR = 成功 episodes / 总 episodes × 100%\n\n**上下文**：CRM-Long 已有 4 个 seed 结果：seed42=17%, seed43=15%, seed44=20%, seed45=18%, 均值=17.5%。这是第 5 个 seed。\n\n**输出**：报告 seed46 的 SR、per-task breakdown、以及更新后的 CRM-Long 5-seed 均值。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005699"
+        },
+        {
+          "source_line": 5700,
+          "timestamp": "2026-05-19T23:17:03.843590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:diagnose-crm-goal-seed44-r2",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "诊断 eval-crm-goal-seed44-r2 实验状态。Cron 报告 \"Process gone, no sentinel\"。\n\n**服务器**：bjb2-28827 (root)\n**PID**: 24694\n**实验信息**：CRM obs_only (ε=0.2, K=10) on LIBERO-Goal seed44, rerun\n\n**步骤**：\n1. SSH 到 bjb2-28827 (ssh_read_only)\n2. 检查进程是否存在：`ps -p 24694 -o pid,stat,etime,cmd`\n3. 如果进程不存在，检查是否有 tmux session：`tmux ls 2>/dev/null | grep -i \"seed44\\|crm-goal\"`\n4. 检查输出 JSON 是否存在：\n   - `ls -la /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed44*.json 2>/dev/null`\n   - `ls -la /root/acr-vla-conformal-refinement/logs/*goal*seed44*.json 2>/dev/null`\n5. 检查 log：`cat ~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed44-r2.log | tail -30`\n6. 如果找到 JSON，读取并提取 SR\n\n**上下文**：之前 crm-long-seed45 也出现过类似 \"Process gone, no sentinel\" 的误报，最后证实实验已成功完成（SR=18%），只是没通过标准 job system 提交所以 cron 找不到 sentinel 文件。这次可能是同类情况。\n\n**输出**：报告实验是否完成（成功/失败/仍在运行），如完成则报告 SR 和 per-task breakdown。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005700"
+        },
+        {
+          "source_line": 5701,
+          "timestamp": "2026-05-19T23:28:21.283403+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "8 个实验全部 ALLOCATED。现在并行派 5 个 Worker：3 个同步代码（每服务器一个），1 个分析 crm-long-seed46，1 个诊断 crm-goal-seed44-r2。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005701"
+        }
+      ]
+    },
+    {
+      "number": 426,
+      "messages": [
+        {
+          "source_line": 5702,
+          "timestamp": "2026-05-19T23:28:21.859037+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] eval-crm-goal-seed44-r2 进程退出，cron 报告。SSH 到 bjb2-28827 检查：\n1. `ls -la logs/eval_crm_goal_seed44*.json` 看 JSON 是否生成\n2. 如果有 JSON，读取 SR\n3. 更新 registry（success/failed + metrics）\n4. delete_cron('eval-crm-goal-seed44-r2')\n5. cuda:0 释放后部署 adaptive K sweep 实验（从我上条指令的表里选下一个未部署的）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-005702"
+        },
+        {
+          "source_line": 5703,
+          "timestamp": "2026-05-19T23:28:37.910599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:diagnose-crm-goal-seed44-r2",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "检查 eval-crm-goal-seed44-r2 实验结果。\n\n**步骤**：\n1. SSH 到 bjb2-28827 (root)，运行：\n   ```\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed44*.json\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed44*.json\n   ```\n   （输出文件名可能是 eval_goal_obs_only_norm02_seed44.json 或 eval_crm_goal_seed44.json）\n\n2. 如果找到 JSON 文件，读取内容（ssh_read_only cat 文件）。重点提取：\n   - overall success_rate\n   - per_task_results（每个 task 的 success_rate）\n   - 总 episodes 数\n\n3. 如果没有 JSON，检查 log 文件：\n   ```\n   tail -50 ~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed44-r2.log\n   ```\n   看是否正常完成还是出错。\n\n4. 也检查 tmux session 状态：\n   ```\n   tmux list-sessions 2>/dev/null | grep -i \"crm\\|goal\\|seed44\"\n   ```\n\n**输出**：报告实验是否成功完成，SR 数值，per-task breakdown（如有）。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005703"
+        },
+        {
+          "source_line": 5704,
+          "timestamp": "2026-05-19T23:28:43.886632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838 started. Use get_worker_status('worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5976
+          },
+          "id": "event-005704"
+        },
+        {
+          "source_line": 5705,
+          "timestamp": "2026-05-19T23:29:06.128436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005705"
+        },
+        {
+          "source_line": 5706,
+          "timestamp": "2026-05-19T23:29:07.134947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005706"
+        },
+        {
+          "source_line": 5707,
+          "timestamp": "2026-05-19T23:29:07.988155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005707"
+        },
+        {
+          "source_line": 5708,
+          "timestamp": "2026-05-19T23:29:08.945314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005708"
+        },
+        {
+          "source_line": 5709,
+          "timestamp": "2026-05-19T23:29:09.900817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:51.298Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:29:07.164Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed43. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5653}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3772
+          },
+          "id": "event-005709"
+        },
+        {
+          "source_line": 5710,
+          "timestamp": "2026-05-19T23:29:09.901249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005710"
+        },
+        {
+          "source_line": 5711,
+          "timestamp": "2026-05-19T23:29:15.228219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:54.375Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:29:10.582Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed42. ~50% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4333}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8093
+          },
+          "id": "event-005711"
+        },
+        {
+          "source_line": 5712,
+          "timestamp": "2026-05-19T23:29:15.733579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-bjb1-32546",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "同步 adaptive_k 代码到 bjb1-32546。\n\n**步骤**：\n1. SSH 到 bjb2-40593 (root)，读取 /root/acr-vla-conformal-refinement/src/evaluate.py 的完整内容\n2. SSH 到 bjb1-32546 (root)，将该文件写入 /root/acr-vla-conformal-refinement/src/evaluate.py（覆盖旧版本）\n3. 验证：在 bjb1-32546 上运行 `wc -l /root/acr-vla-conformal-refinement/src/evaluate.py`，确认行数 ≥ 590（新版约 593 行，旧版 511 行）\n4. 验证：`grep -c \"adaptive_k\" /root/acr-vla-conformal-refinement/src/evaluate.py` 确认包含 adaptive_k 相关代码\n\n关键是确保 bjb1-32546 上的 evaluate.py 与 bjb2-40593 上的完全一致。\n\n**输出**：报告同步是否成功，行数验证结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005712"
+        },
+        {
+          "source_line": 5713,
+          "timestamp": "2026-05-19T23:29:18.546777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:55.910Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:29:13.997Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.8092}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10558
+          },
+          "id": "event-005713"
+        },
+        {
+          "source_line": 5714,
+          "timestamp": "2026-05-19T23:29:18.998425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-bjb1-18228",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "同步 adaptive_k 代码到 bjb1-18228。\n\n**步骤**：\n1. SSH 到 bjb2-40593 (root)，读取 /root/acr-vla-conformal-refinement/src/evaluate.py 的完整内容\n2. SSH 到 bjb1-18228 (root)，将该文件写入 /root/acr-vla-conformal-refinement/src/evaluate.py（覆盖旧版本）\n3. 验证：在 bjb1-18228 上运行 `wc -l /root/acr-vla-conformal-refinement/src/evaluate.py`，确认行数 ≥ 590（新版约 593 行，旧版 511 行）\n4. 验证：`grep -c \"adaptive_k\" /root/acr-vla-conformal-refinement/src/evaluate.py` 确认包含 adaptive_k 相关代码\n\n关键是确保 bjb1-18228 上的 evaluate.py 与 bjb2-40593 上的完全一致。\n\n**输出**：报告同步是否成功，行数验证结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005714"
+        },
+        {
+          "source_line": 5715,
+          "timestamp": "2026-05-19T23:29:26.163600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:52.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:29:18.180Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed44. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.7461}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 17218
+          },
+          "id": "event-005715"
+        },
+        {
+          "source_line": 5716,
+          "timestamp": "2026-05-19T23:29:26.164160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:57.407Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:29:22.921Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed44. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3464}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 16262
+          },
+          "id": "event-005716"
+        },
+        {
+          "source_line": 5717,
+          "timestamp": "2026-05-19T23:29:26.220108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:analyze-crm-long-seed46",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "分析刚完成的 eval-crm-long-seed46 实验结果。\n\n**背景**：CRM obs_only (ε=0.2, K=10) 在 LIBERO-Long (OOD) 上的评估，seed46。已有 CRM-Long 结果：seed42=17%, seed43=15%, seed44=20%, seed45=18%。VLA-only Long baseline 约 14.8%。\n\n**步骤**：\n1. SSH 到 bjb1-18228 (root)，查找输出 JSON：\n   ```\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed46.json\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_crm_long_seed46*.json\n   ```\n\n2. 读取 JSON 内容，提取：\n   - overall success_rate\n   - per_task_results（每个 task 的 success_rate）\n   - 总 episodes 数\n\n3. 如果没有 JSON，检查 log：\n   ```\n   tail -100 ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log\n   ```\n\n4. 也检查 tmux session：\n   ```\n   tmux list-sessions 2>/dev/null | grep -i seed46\n   ```\n\n**输出**：报告 SR、per-task breakdown、与已有 CRM-Long 结果的对比。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005717"
+        },
+        {
+          "source_line": 5718,
+          "timestamp": "2026-05-19T23:29:29.405669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-bjb1-32546_20260519T232926\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_sync-code-bjb1-32546_20260519T232926.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_sync-code-bjb1-32546_20260519T232926 started. Use get_worker_status('worker_ssh_sync-code-bjb1-32546_20260519T232926') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13672
+          },
+          "id": "event-005718"
+        },
+        {
+          "source_line": 5719,
+          "timestamp": "2026-05-19T23:48:22.236309+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出诊断 crm-goal-seed44-r2。同时继续推进剩余 sweep 实验状态和代码同步。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005719"
+        }
+      ]
+    },
+    {
+      "number": 427,
+      "messages": [
+        {
+          "source_line": 5720,
+          "timestamp": "2026-05-19T23:48:22.759166+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-crm-goal-seed44-r2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb2-28827 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-crm-goal-seed44-r2')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-005720"
+        },
+        {
+          "source_line": 5721,
+          "timestamp": "2026-05-19T23:48:34.661076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838",
+              "verbose": "True"
+            }
+          },
+          "id": "event-005721"
+        },
+        {
+          "source_line": 5722,
+          "timestamp": "2026-05-19T23:48:34.762095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_diagnose-crm-goal-seed44-r2_20260519T232838\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ssh:diagnose-crm-goal-seed44-r2\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-19T23:28:38.689738+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T23:29:16.992854+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"实验已成功完成。结果如下：\\\\n\\\\n**Overall SR: 0.64** (64/100 episodes, 10 tasks × 10 rollouts)\\\\n\\\\n**Per-task breakdown:**\\\\n\\\\n| Task | SR | Successes |\\\\n|------|----|-----------|\\\\n| turn_on_the_stove | **1.0** | 10/10 |\\\\n| put_the_bowl_on_the_plate | **1.0** | 10/10 |\\\\n| put_the_bowl_on_the_stove | **0.9** | 9/10 |\\\\n| push_the_plate_to_the_front_of_the_stove | **0.8** | 8/10 |\\\\n| put_the_bowl_on_top_of_the_cabinet | **0.7** | 7/10 |\\\\n| open_the_middle_drawer_of_the_cabinet | **0.6** | 6/10 |\\\\n| put_the_wine_bottle_on_top_of_the_cabinet | **0.5** | 5/10 |\\\\n| put_the_wine_bottle_on_the_rack | **0.4** | 4/10 |\\\\n| put_the_cream_cheese_in_the_bowl | **0.3** | 3/10 |\\\\n| open_the_top_drawer_and_put_the_bowl_inside | **0.2** | 2/10 |\\\\n\\\\n配置: `mode=crm_obs_only`, `baseline_mode=single`, `benchmark=goal`, `n_rollouts=10`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-005722"
+        },
+        {
+          "source_line": 5723,
+          "timestamp": "2026-05-19T23:48:45.091998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-005723"
+        },
+        {
+          "source_line": 5724,
+          "timestamp": "2026-05-19T23:48:45.142640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-005724"
+        },
+        {
+          "source_line": 5725,
+          "timestamp": "2026-05-19T23:48:48.455320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed44-r2",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005725"
+        },
+        {
+          "source_line": 5726,
+          "timestamp": "2026-05-19T23:48:49.411509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005726"
+        },
+        {
+          "source_line": 5727,
+          "timestamp": "2026-05-19T23:48:50.315093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed44-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:49:31.838Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:48:49.369Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2, K=10) on LIBERO-Goal seed44. OOD 泛化测试：CRM 仅在 Object+Spatial 训练，Goal 是未见过的 suite。重跑（前次 crash）。\\\", \\\"parent\\\": \\\"eval-crm-goal-seed44\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_obs_only --benchmark goal --seed 44 --K 10 --max_correction_norm 0.2 --checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --n_rollouts 10\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"24694\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": \\\"100 (10 tasks x 10 rollouts)\\\", \\\"model_name\\\": \\\"SmolVLA + CRM obs_only\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Goal (10 tasks x 10 rollouts)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T23:17:53.707Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T23:18:01.172Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T23:18:12.623102+00:00\\\"}]}}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"eval-crm-goal-seed44-r2\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7173}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1859
+          },
+          "id": "event-005727"
+        },
+        {
+          "source_line": 5728,
+          "timestamp": "2026-05-19T23:48:50.365709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005728"
+        },
+        {
+          "source_line": 5729,
+          "timestamp": "2026-05-19T23:48:56.651104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:55.910Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:48:51.095Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2758}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 7239
+          },
+          "id": "event-005729"
+        },
+        {
+          "source_line": 5730,
+          "timestamp": "2026-05-19T23:48:57.103500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:52.859Z\\\", \\\"updated_at\\\": \\\"2026-05-19T23:48:54.348Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed44. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3389}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 6737
+          },
+          "id": "event-005730"
+        },
+        {
+          "source_line": 5731,
+          "timestamp": "2026-05-19T23:48:57.103839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:sync-code-bjb1-18228",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "同步 adaptive_k 代码到 bjb1-18228。\n\n**步骤**：\n1. SSH 到 bjb2-40593 (root)，读取 /root/acr-vla-conformal-refinement/src/evaluate.py 的完整内容\n2. SSH 到 bjb1-18228 (root)，将该文件写入 /root/acr-vla-conformal-refinement/src/evaluate.py（覆盖旧版本）\n3. 验证：在 bjb1-18228 上运行 `wc -l /root/acr-vla-conformal-refinement/src/evaluate.py`，确认行数 ≥ 590（新版约 593 行，旧版 511 行）\n4. 验证：`grep -c \"adaptive_k\" /root/acr-vla-conformal-refinement/src/evaluate.py` 确认包含 adaptive_k 相关代码\n\n**输出**：报告同步是否成功，行数验证结果。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005731"
+        },
+        {
+          "source_line": 5732,
+          "timestamp": "2026-05-19T23:49:02.840372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:analyze-crm-long-seed46",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "分析 eval-crm-long-seed46 实验结果。该实验已完成（ANALYZING 状态）。\n\n**步骤**：\n1. SSH 到 bjb1-18228 (root)，查找输出 JSON：\n   ```\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed46.json\n   ```\n\n2. 读取 JSON 文件内容，提取：\n   - overall success_rate\n   - per_task_results（每个 task 的 success_rate）\n   - 总 episodes 数\n\n3. 如果没有 JSON，检查 log：\n   ```\n   tail -50 ~/runs/acr-vla-conformal-refinement/eval-crm-long-seed46.log\n   ```\n\n**输出**：SR 数值 + per-task breakdown。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005732"
+        },
+        {
+          "source_line": 5733,
+          "timestamp": "2026-05-19T23:49:03.193477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_sync-code-bjb1-18228_20260519T234857\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_sync-code-bjb1-18228_20260519T234857.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_sync-code-bjb1-18228_20260519T234857 started. Use get_worker_status('worker_ssh_sync-code-bjb1-18228_20260519T234857') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6089
+          },
+          "id": "event-005733"
+        },
+        {
+          "source_line": 5734,
+          "timestamp": "2026-05-20T00:08:23.218165+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "crm-goal-seed44-r2 成功完成，SR=64%。更新 registry 并继续推进 sweep 实验状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005734"
+        }
+      ]
+    },
+    {
+      "number": 428,
+      "messages": [
+        {
+          "source_line": 5735,
+          "timestamp": "2026-05-20T00:08:23.239015+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-crm-goal-seed45-r2** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb2-28827 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-crm-goal-seed45-r2')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-005735"
+        },
+        {
+          "source_line": 5736,
+          "timestamp": "2026-05-20T00:08:38.804085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:diagnose-crm-goal-seed45-r2",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "检查 eval-crm-goal-seed45-r2 实验结果。\n\n**步骤**：\n1. SSH 到 bjb2-28827 (root)，运行：\n   ```\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed45*.json\n   ls -la /root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed45*.json\n   ```\n\n2. 如果找到 JSON 文件，读取内容。重点提取：\n   - overall success_rate\n   - per_task_results（每个 task 的 success_rate）\n   - 总 episodes 数\n\n3. 如果没有 JSON，检查 log 文件：\n   ```\n   tail -50 ~/runs/acr-vla-conformal-refinement/eval-crm-goal-seed45-r2.log\n   ```\n\n4. 检查 tmux session：\n   ```\n   tmux list-sessions 2>/dev/null | grep -i \"seed45\"\n   ```\n\n**输出**：报告实验是否成功完成，SR 数值，per-task breakdown（如有）。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-005736"
+        },
+        {
+          "source_line": 5737,
+          "timestamp": "2026-05-20T00:08:44.932331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_diagnose-crm-goal-seed45-r2_20260520T000839\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_diagnose-crm-goal-seed45-r2_20260520T000839.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_diagnose-crm-goal-seed45-r2_20260520T000839 started. Use get_worker_status('worker_ssh_diagnose-crm-goal-seed45-r2_20260520T000839') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6128
+          },
+          "id": "event-005737"
+        },
+        {
+          "source_line": 5738,
+          "timestamp": "2026-05-20T00:09:12.888474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005738"
+        },
+        {
+          "source_line": 5739,
+          "timestamp": "2026-05-20T00:09:13.793489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005739"
+        },
+        {
+          "source_line": 5740,
+          "timestamp": "2026-05-20T00:09:14.749960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005740"
+        },
+        {
+          "source_line": 5741,
+          "timestamp": "2026-05-20T00:09:15.152593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed43",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005741"
+        },
+        {
+          "source_line": 5742,
+          "timestamp": "2026-05-20T00:09:17.110523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:51.298Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:14.135Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed43. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1858}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4222
+          },
+          "id": "event-005742"
+        },
+        {
+          "source_line": 5743,
+          "timestamp": "2026-05-20T00:09:22.502688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:55.910Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:18.839Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3606}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8709
+          },
+          "id": "event-005743"
+        },
+        {
+          "source_line": 5744,
+          "timestamp": "2026-05-20T00:09:26.033473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:57.407Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:23.459Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed44. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5083}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11283
+          },
+          "id": "event-005744"
+        },
+        {
+          "source_line": 5745,
+          "timestamp": "2026-05-20T00:09:29.413062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:12.128Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:26.939Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed43. ~10% steps trigger K=10+CRM. P90 sweep 第二个 seed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3592}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 14260
+          },
+          "id": "event-005745"
+        },
+        {
+          "source_line": 5746,
+          "timestamp": "2026-05-20T00:09:37.884421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed43",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb2-28827', 'gpu': ['cuda:4']}"
+            }
+          },
+          "id": "event-005746"
+        },
+        {
+          "source_line": 5747,
+          "timestamp": "2026-05-20T00:09:38.839280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb2-28827', 'gpu': ['cuda:5']}"
+            }
+          },
+          "id": "event-005747"
+        },
+        {
+          "source_line": 5748,
+          "timestamp": "2026-05-20T00:09:40.297670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed43",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-18228', 'gpu': ['cuda:3']}"
+            }
+          },
+          "id": "event-005748"
+        },
+        {
+          "source_line": 5749,
+          "timestamp": "2026-05-20T00:09:41.201833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p75-seed44",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:0']}"
+            }
+          },
+          "id": "event-005749"
+        },
+        {
+          "source_line": 5750,
+          "timestamp": "2026-05-20T00:09:42.160023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:51.298Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:39.483Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed43. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0841}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4275
+          },
+          "id": "event-005750"
+        },
+        {
+          "source_line": 5751,
+          "timestamp": "2026-05-20T00:09:42.210642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p50-seed44",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:2']}"
+            }
+          },
+          "id": "event-005751"
+        },
+        {
+          "source_line": 5752,
+          "timestamp": "2026-05-20T00:09:43.567496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb1-32546', 'gpu': ['cuda:4']}"
+            }
+          },
+          "id": "event-005752"
+        },
+        {
+          "source_line": 5753,
+          "timestamp": "2026-05-20T00:09:44.270909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-k-p90-seed43",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'server': 'bjb2-28827', 'gpu': ['cuda:0']}"
+            }
+          },
+          "id": "event-005753"
+        },
+        {
+          "source_line": 5754,
+          "timestamp": "2026-05-20T00:09:45.629611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:54.375Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:43.150Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed42. ~50% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:5\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.6033}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 6790
+          },
+          "id": "event-005754"
+        },
+        {
+          "source_line": 5755,
+          "timestamp": "2026-05-20T00:09:48.894076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:55.910Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:46.490Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2553}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8596
+          },
+          "id": "event-005755"
+        },
+        {
+          "source_line": 5756,
+          "timestamp": "2026-05-20T00:09:52.256610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p75-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:52.859Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:49.770Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P75 (0.098735) on LIBERO-Object seed44. ~25% steps trigger K=10+CRM, rest use K=2 fast path. P75 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3329}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11054
+          },
+          "id": "event-005756"
+        },
+        {
+          "source_line": 5757,
+          "timestamp": "2026-05-20T00:09:55.570236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p50-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:52:57.407Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:53.160Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed44. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第三个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2926}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13359
+          },
+          "id": "event-005757"
+        },
+        {
+          "source_line": 5758,
+          "timestamp": "2026-05-20T00:09:59.683894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:10.641Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:09:56.415Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed42. ~10% steps trigger K=10+CRM. 高阈值极端——接近 K=2 only，验证 SR 下限。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1354}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 16116
+          },
+          "id": "event-005758"
+        },
+        {
+          "source_line": 5759,
+          "timestamp": "2026-05-20T00:10:02.948627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-p90-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:53:12.128Z\\\", \\\"updated_at\\\": \\\"2026-05-20T00:10:00.634Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.126512) on LIBERO-Object seed43. ~10% steps trigger K=10+CRM. P90 sweep 第二个 seed。\\\", \\\"spec\\\": {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:0\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2224}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 18677
+          },
+          "id": "event-005759"
+        },
+        {
+          "source_line": 5760,
+          "timestamp": "2026-05-20T00:10:13.632888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_sync-code-bjb2-28827_20260519T231638",
+              "verbose": "True"
+            }
+          },
+          "id": "event-005760"
+        }
+      ]
+    }
+  ]
+}

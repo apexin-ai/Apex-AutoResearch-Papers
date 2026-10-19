@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "5c85ee993f9c16ac8237",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy pi05 extra seeds bjb2 28827",
+  "task_key": "worker_deploy_pi05-extra-seeds-bjb2-28827_20260521T095215",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_pi05-extra-seeds-bjb2-28827_20260521T095215.jsonl",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "a62f5a97bde2c4f60905f56380c185cc5b3b7a4fd5df5be84d2c218667f06799"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T09:52:23.995811+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_pi05-extra-seeds-bjb2-28827_20260521T095215"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T09:52:41.560604+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "待命中。当前上下文包含 P1 任务（π0.5 额外 baseline seeds 部署到 bjb2-28827）的描述，请确认是否现在执行该任务，或有其他指令。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_pi05-extra-seeds-bjb2-28827_20260521T095215"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-pi05-extra-seeds-bjb2-28827.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4336d880eee9752b74ac",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra check precompute v3 status",
+  "task_key": "worker_infra_check-precompute-v3-status_20260513T182942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_check-precompute-v3-status_20260513T182942_result.json",
+    "occurrence": 1,
+    "bytes": 1792,
+    "sha256": "cc8b5321470c80560bdee88626e014c23be6f50baedb1ffd54aaaac4acd6142d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 进程状态：全部存活\n\n| 进程 | PID | GPU | 状态 | 运行时间 |\n|------|-----|-----|------|----------|\n| eval-spatial-v3-full | 62654 (子进程 62664) | cuda:0 | **存活** | 51min |\n| precompute-v3-shard0 | 62930 (子进程 62935) | cuda:1 | **存活** | 51min |\n| precompute-v3-shard1 | 63075 (子进程 63080) | cuda:2 | **存活** | 51min |\n| precompute-v3-shard2 | 63218 (子进程 63223) | cuda:3 | **存活** | 51min |\n\n### GPU 使用\n4 张 4090 各约 1.4GB 显存占用，GPU 利用率 22-24%，运行正常。\n\n### Precompute 进度（object benchmark 阶段）\n\n| shard | 进度 | 速度 | 预计剩余 |\n|-------|------|------|----------|\n| shard0 | 2900/4857 (~60%) | 0.43s/sample | ~14min |\n| shard1 | 2800/4857 (~58%) | 0.44s/sample | ~15min |\n| shard2 | 2600/4856 (~54%) | 0.46s/sample | ~17min |\n\n**spatial benchmark 已完成**：`/root/autodl-tmp/crm_cache_v3/spatial/` 已有完整输出（`manifest.json` + `obs_features.pt` + `k_samples.pt` + `expert_actions.pt`，所有 3 个 shard 的 partial 文件也在）。\n\n**object benchmark 进行中**：`/root/autodl-tmp/crm_cache_v3/object/` 目前只有 partial 文件，每个 shard 已保存到 2000-2500 区间，尚未 merge。\n\n### Eval 进度\ntask 1 `pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate`：rollout 5/10，已完成 5 次中成功 0 次。还在第 1 个 task（共 10 个 task），进度较慢。\n\n### --cache_dir 参数\n**有效**。`train_crm.py` 第 56 行定义了 `--cache_dir` 参数，代码中大量使用，precompute 正常写入 `/root/autodl-tmp/crm_cache_v3/`。\n\n### 旧 cache\n`/root/autodl-tmp/crm_cache/spatial/` 存在（上一版缓存），仅有 spatial 子目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-precompute-v3-status.md"
+}

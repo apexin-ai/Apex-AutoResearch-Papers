@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a17b60fcf23c336473a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy d088 fix nrollouts",
+  "task_key": "worker_deploy_d088-fix-nrollouts_20260520T171807",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_d088-fix-nrollouts_20260520T171807_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "b55335dd8fb42e72d25c11c6c1a91298b29ada83d9ceb97df6c8027cf28349c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| eval-adaptive-unc-head-object-seed42 | cuda:0 | 741948 | 运行中，10 tasks loaded |\n| eval-adaptive-unc-head-object-seed43 | cuda:1 | 742213 | 运行中，10 tasks loaded |\n| eval-obs-only-object-norm003-seed43 | cuda:4 | 742545 | 运行中，10 tasks loaded |\n| eval-adaptive-unc-head-object-seed44 (保留) | cuda:5 | 728278 | 运行中 (21:51 elapsed) |\n\n- 3 个错误进程 (n_rollouts=100) 已 kill\n- 无异常 exit files\n- 3 个新进程全部正常启动，UncHead/CRM 模型加载成功，10 tasks loaded\n- seed44 (cuda:5) 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-d088-fix-nrollouts.md"
+}

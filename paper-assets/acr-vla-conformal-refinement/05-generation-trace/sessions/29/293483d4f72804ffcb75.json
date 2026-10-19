@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293483d4f72804ffcb75",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp k2mean object s42",
+  "task_key": "worker_analyze_eval-supp-k2mean-object-s42_20260523T100431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-k2mean-object-s42_20260523T100431_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "683bcf702dfc2308031ee7a28cf14f484eae1530659a9ca3ce016ca09ce192a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。结果如下：\n\n## Overall\n\n**Success Rate: 79.5% (159/200)** — mode: vla_only, K=2, baseline_mode=mean\n\n## Per-Task Results\n\n| Task | SR | Successes/Rollouts |\n|------|----|--------------------|\n| alphabet_soup | 75.0% | 15/20 |\n| cream_cheese | 70.0% | 14/20 |\n| salad_dressing | 85.0% | 17/20 |\n| bbq_sauce | 90.0% | 18/20 |\n| ketchup | 95.0% | 19/20 |\n| tomato_sauce | 85.0% | 17/20 |\n| butter | 60.0% | 12/20 |\n| milk | 70.0% | 14/20 |\n| chocolate_pudding | 70.0% | 14/20 |\n| orange_juice | 95.0% | 19/20 |\n\n## 对比\n\n| Method | Object s42 |\n|--------|-----------|\n| VLA-only | 79.0% |\n| K=2 mean (本实验) | **79.5%** |\n| CRM | 77.0% |\n| Reconvla | 79.0% |\n\nK=2 mean baseline 略高于 VLA-only 0.5pp，基本持平。JSON 结果已保存到 `logs/eval_object_vla_only_seed42.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-k2mean-object-s42.md"
+}

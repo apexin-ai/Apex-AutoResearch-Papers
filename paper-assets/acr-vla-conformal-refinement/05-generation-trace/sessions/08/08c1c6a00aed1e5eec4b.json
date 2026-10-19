@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08c1c6a00aed1e5eec4b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag bjb2 object eval alive",
+  "task_key": "worker_diag_bjb2-object-eval-alive_20260513T235404",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_bjb2-object-eval-alive_20260513T235404_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "e846e64fd81d22ef1794a7fba5a5a17d9f4547ff779b0a2525163a92f1e5c1e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-object-v5-full 状态：正在运行**\n\n| 项目 | 状态 |\n|------|------|\n| PID 117697 | **存活**，运行约 19 分钟 (07:35 启动)，CPU 170% |\n| GPU | 12% 利用率，5592 / 24564 MiB 显存占用 |\n| 进度 | 模型已加载完成，10 个 LIBERO object tasks 已加载，正在执行 rollouts |\n\n日志显示已完成：模型加载 → 环境加载 → 10 个 task 就绪。当前正在跑 rollouts（每 task 10 次，共 100 次），GPU 利用率偏低说明仿真环境 CPU-bound 居多。\n\n另外注意：还有一个 `test_crash.py` 进程 (PID 120566) 也在跑，占用 1.8GB 显存、CPU 154%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb2-object-eval-alive.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "241cb501786658604688",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm train v1 failure",
+  "task_key": "worker_diagnose_crm-train-v1-failure_20260513T224511",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-train-v1-failure_20260513T224511_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "e450dec648922f6201799e3007e964b402501fe6662357e0fb7936d2c592b9a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**训练实际上完全成功了，不需要恢复或重启。**\n\n### 详情\n\n| 项目 | 结果 |\n|------|------|\n| 训练完成度 | **50/50 epoch 全部完成** |\n| 最终 best val_loss | **0.009046**（epoch 50，比之前 epoch 31 的 0.009412 更好） |\n| Checkpoint | `crm_best.pt` (1.3MB) + 5 个 epoch checkpoint (epoch 46-50, 各 ~4MB) |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints/crm/` |\n| 进程状态 | 已正常退出，不在运行 |\n\n### EXIT_CODE=129 原因\n\n训练脚本的 trap 设置了 `trap 'exit 129' HUP`。训练在 epoch 50 完成并打印 `[train] Done` 后，tmux session 收到了 SIGHUP（可能是 SSH 连接断开或 tmux session 被关闭），触发 trap 返回 129。**这发生在训练完成之后**，不影响结果。\n\n### 结论\n\n- **无需重启**，训练已跑完全部 50 个 epoch\n- **`crm_best.pt` 可直接使用**，对应 epoch 50 的 val_loss=0.009046\n- EXIT_CODE=129 是误报，训练逻辑本身正常退出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-train-v1-failure.md"
+}

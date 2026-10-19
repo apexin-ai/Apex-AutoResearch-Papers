@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b9a4c52e74d43a5f35e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "gpu scan bjb2 40593",
+  "task_key": "worker_gpu-scan_bjb2-40593_20260520T103616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu-scan_bjb2-40593_20260520T103616_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "7282c2de8a159605c3ba644e9725fd57fdb3294ad004a8e0a2a83cd9c62e2f39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSERVER: bjb2-40593\nGPU_STATUS: RTX 4090 D | 2267MiB/24564MiB | 18% util | 37°C | PID 681823 占用 2249MiB\nPID 681823: ALIVE | stat=Rl+ | etime=03:22:00 | python -u src/evaluate.py --mode adaptive_k --benchmark spatial --seed 42\nOUTPUT_JSON: NOT_FOUND（尚未生成，实验仍在运行）\nLOG: /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log (2362B, last modified 15:10)\n  - 已完成 3/10 tasks:\n    - pick_up_the_black_bowl_between_the_plate_and_the_ramekin: 70.0% (7/10)\n    - pick_up_the_black_bowl_next_to_the_ramekin: 100.0% (10/10)\n    - pick_up_the_black_bowl_from_table_center: 0.0% (0/10)\n  - 当前正在运行第 4 个 task: pick_up_the_black_bowl_on_the_cookie_box (5/10 rollouts, 1 success)\nTMUX: eval-adaptive-k-spatial-p50-seed42 session 存在（tmux ls 被 read_only 拦截，但 ps 显示 tmux PID 681816）\nEXIT_FILE: NOT_FOUND（无 spatial-p50-seed42 的 exit file）\nCONCLUSION: STILL_RUNNING — 已运行 3h22m，完成 3/10 tasks，预计还需约 7 小时完成剩余 7 个 tasks。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-scan-bjb2-40593.md"
+}

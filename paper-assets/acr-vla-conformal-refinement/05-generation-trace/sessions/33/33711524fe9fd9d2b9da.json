@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33711524fe9fd9d2b9da",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops spatial precompute check and train",
+  "task_key": "worker_ops_spatial-precompute-check-and-train_20260521T183332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_spatial-precompute-check-and-train_20260521T183332_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "d5d75676942279ae9e4ead0dd9537f540d836aa1ed9781e3ac681e1c7f943c59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux session alive, process running. Normalization on 60K×2048 takes a few minutes — GPU is engaged (14.5GB VRAM, 24% util).\n\n**Summary:**\n\n- **Spatial precompute**: All 7 shards (s0-s6) completed on bjb2-28827, auto-merge produced 60,250 samples (100%)\n- **Data transfer**: Merged files (547MB total) transferred bjb2-28827 → management host → bjb1-18228\n- **Spatial CRM training**: Submitted via `submit_training_job` on bjb1-18228 cuda:1, exp_id=`crm-train-pi05-spatial-full`, 50 epochs, batch_size=32, lr=1e-3\n- **Registry**: Updated to RUNNING with full spec metadata\n- **Object CRM training**: Continues on cuda:0 (epoch 4/50)\n\nBoth CRM training jobs now running in parallel on bjb1-18228."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spatial-precompute-check-and-train.md"
+}

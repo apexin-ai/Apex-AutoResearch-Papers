@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a9aa0591c122c0d0d3e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779331945.md",
+  "task_key": "loop_22_1779331945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779331945.md",
+    "occurrence": 1,
+    "bytes": 5029,
+    "sha256": "1826614f3367a072ed8be7bd4274b10733f6db5669214ac0ee0f28d33f0bed21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T02:46:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：必须查 `get_project_status` 的 `execution.gpu_ids`，只能用白名单内的 GPU。即使 Director 指定白名单外的 GPU 也必须 push back\n- **服务器 Python 路径**：bjb1-32546 和 bjb1-18228 用 conda（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 `python` 在 PATH 中。bjb2-28827/bjb2-40593 用 `python3`\n- **CoRL DDL 2026-05-29**：剩余 8 天。Plan A LOCKED（Object 18.3%±2.1%, Spatial 35.0%±1.0%），不要动 LOCKED 数据\n- **OpenVLA CRM 线已 CLOSED (D093)**：0% SR，near-deterministic，不要再投入 GPU\n- **Cron false positive 是系统性问题**：eval 脚本不写 sentinel/W&B → cron 5× 检测无标记 → 误判 failed。**不要盲信 cron 的 failed 标记**，必须 tail 日志 + 检查 output JSON 确认实际状态\n- **Table 1 只用 norm02 数据**：seed42 的 norm02 结果 (20%) 不纳入主分析 (D084)，保持 n=6 (16.8%±1.8%)\n- **submit_training_job 命令必须自带环境激活前缀**：不能裸 `python`\n\n### 2. 🖥️ 基础设施快照\n- **4 台服务器**：\n  - `bjb2-40593`：cuda:0 跑 π0.5 baseline (PID 802634)。工作目录 `/root/acr-vla-conformal-refinement/`。磁盘根分区 89% ⚠️ 仅 46GB 可用\n  - `bjb1-32546`：6 GPU。conda 环境。工作目录 `/root/acr-vla-conformal-refinement/`。磁盘 400GB 可用 (4%)\n  - `bjb1-18228`：3 GPU 活跃 (cuda:0/2/3)。conda 环境。磁盘根分区 92% ⚠️\n  - `bjb2-28827`：5 GPU 活跃 (cuda:0-4)。工作目录 `/root/acr-vla-conformal-refinement/`。磁盘 399GB 可用 (5%)\n- **模型路径**：CRM checkpoint `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`；SmolVLA 各服务器已部署\n- **π0.5 模型**：`/root/autodl-tmp/models/pi05_libero_finetuned`（bjb2-40593）\n- **代码**：`src/evaluate.py`（注意 `src/` 前缀），`src/train_crm.py`\n- **活跃进程**：19 RUNNING（见 report.md 表），含 norm sweep seeds (64-75) + seed66 (bjb1-18228) + π0.5 baseline\n\n### 3. 📊 当前状态\n- **刚完成**：D092 Plan A Object GO (18.3%±2.1%)，D094 Plan A Spatial GO (35.0%±1.0%)，D093 OpenVLA CRM CLOSED (0%)，D095/D096 π0.5 实验线启动\n- **RUNNING (19)**：\n  - Norm sweep 补种：bjb1-32546 上 10 个（norm003/norm01/norm005 seeds 51-65），bjb2-28827 上 5 个（seeds 71-75），bjb1-18228 上 3 个（seed66 × 3 norms）\n  - **π0.5 baseline**：bjb2-40593 cuda:0 (PID 802634)，结果决定是否启动 CRM pipeline\n- **ANALYZING (1)**：eval-vla-only-object-seed49\n- **PREPARING (34)**：大量 norm sweep 补种队列\n- **DEPLOYED (5)**：历史遗留，未清理\n- **等待中**：\n  - π0.5 baseline 结果 → 若 SR > 30% 且 stochastic → 启动 CRM precompute + train + Plan A eval\n  - norm sweep seeds 完成 → 更新 Figure 2 magnitude curve\n  - seed66 × 3 进程（bjb1-18228）被 cron 误标 failed，实际仍在跑\n\n### 4. 📋 待办（条件触发式）\n- **π0.5 baseline 完成** → 检查 SR + action diversity → SR > 30% 且 stochastic → spawn Worker 做 CRM 适配（projection layer 2048D→960D）+ precompute + train + Plan A eval\n- **π0.5 baseline SR < 30% 或 near-deterministic** → 向 Director 汇报 boundary，关闭实验线\n- **seed66 (bjb1-18228) 3 个进程完成** → 手动修正 conclusion=success，从 output JSON 补录 metrics\n- **norm sweep 全部完成** → 生成 Figure 2 magnitude curve（ε vs SR 多 seed），更新论文\n- **eval-vla-only-object-seed49 ANALYZING** → 需要 Worker 读结果 → 更新 registry\n- **所有 eval 数据收齐** → Paper Agent 开始写论文各章节（P0 任务）\n- **DDL 前 3 天 (~5/26)** → 论文必须完成初稿，送 Reviewer\n\n### 5. 🎯 战略上下文\n- **核心决策链**：D043 Narrative B (mechanism insight) → D077 Adaptive K 升级为核心 → D088 Learned Head NO-GO → D090 fallback Plan A → D092 Plan A GO → D095/D096 π0.5 新线\n- **论文 story**：\"Correction Over Selection\" — 分析论文，correction 是主动机制，multi-sampling 是 enabling condition，Adaptive K (K=2 L2 probe) 实现高效推理\n- **Plan A 是论文核心方法**：K=2 batched forward → L2 distance → if high: argmin + CRM → 80% compute reduction vs K=10，SR 持平或更高\n- **π0.5 是最后的 scope 扩展机会**：解决 M1 (narrow scope) + R2-W1-new (low absolute perf)。若 π0.5 CRM 有效，论文从 \"single weak VLA\" 升级为 \"works across VLA families\"\n- **易错点**：\n  - 不要把 norm01 和 norm02 数据混用（Table 1 数据混淆事故 D080）\n  - 不要信 cron 的 failed 标记——必须实际检查日志和 JSON\n  - Adaptive K trigger_rate 在 Plan A scale 上约 84%（Object）/ 98%（Spatial），τ 校准问题 acknowledged 但未解决（D094）\n  - FMVD (ρ=0.08) 和 CRM magnitude (ρ=0.15) 都是 dead ends，不要重试\n  - bjb2-40593 磁盘 89%，提交新实验前必须检查空间\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779331945.md"
+}

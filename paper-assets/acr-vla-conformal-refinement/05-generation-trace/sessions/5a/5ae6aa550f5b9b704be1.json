@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ae6aa550f5b9b704be1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose bjb2 28827 failures",
+  "task_key": "worker_diagnose_bjb2-28827-failures_20260521T003110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_bjb2-28827-failures_20260521T003110_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "830f2997d6c1bf4bbe6f3e9cb9e042202e68efe93c186028cfa3034ff0f29718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 诊断报告：bjb2-28827 上 4 个实验进程消失\n\n### 结论：全部正常完成，非失败\n\n所有 4 个实验均**成功跑完并正常退出**，不需要重跑。Reconcile 误判为 failed 是因为进程完成后 PID 消失，而 reconcile 用 PID 存活作为健康信号，无法区分\"正常退出\"和\"崩溃\"。\n\n### 各实验结果\n\n| 实验 | Norm | Seed | Overall SR | JSON 产出 | 完成时间 |\n|------|------|------|-----------|-----------|---------|\n| norm01_seed53 | 0.1 | 53 | **19.0%** (19/100) | `eval_obs_only_object_norm01_seed53.json` | 08:18 |\n| norm01_seed54 | 0.1 | 54 | **15.0%** (15/100) | `eval_obs_only_object_norm01_seed54.json` | 08:19 |\n| norm005_seed50 | 0.05 | 50 | **13.0%** (13/100) | `eval_obs_only_object_norm005_seed50.json` | 08:19 |\n| norm003_seed46 | 0.03 | 46 | **15.0%** (15/100) | `eval_obs_only_object_norm003_seed46.json` | 08:19 |\n\n结果 JSON 文件均位于 `/root/acr-vla-conformal-refinement/logs/`，结构完整（包含 per_task 分解）。\n\n### seed56 状态\n\nseed56（pid=865274）也已**正常完成**，结果：15.0% (15/100)，JSON 写入于 08:30。reconcile 之前没报 miss 可能只是因为它完成得稍晚，timing 上恰好错过了检测窗口。\n\n### 当前服务器状态\n\n- GPU 0-4：空闲（0% util，1MiB）\n- GPU 5：正在跑 **seed60 norm01**（pid=890017，已运行 ~1h05m，3389MiB）\n- 磁盘充裕：数据盘 213GB 可用，根盘 18GB 可用\n- 无 OOM/kill 记录\n\n### 建议\n\n- **不需要重跑**——直接将 4 个实验标记为 completed，结果从上述 JSON 文件提取\n- Reconcile 逻辑可考虑增加对结果文件的检查：PID 消失时先看 output JSON 是否存在且完整，再决定标记 failed 还是 completed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bjb2-28827-failures.md"
+}

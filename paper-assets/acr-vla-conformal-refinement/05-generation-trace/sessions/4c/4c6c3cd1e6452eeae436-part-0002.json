@@ -1,0 +1,528 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4c6c3cd1e6452eeae436",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-28T00:25:23.792Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Cp9rWfx8zeP7GKECLJNxh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4718}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "12118608-0d75-4bee-954c-f8eb593bfeef",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4718}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 5.4718}}"
+              }
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "These are still PREPARING and they're currently running. I need PREPARING → QUEUED → RUNNING. Let me try that.",
+              "signature": "ErkCCmMIDhgCKkAI0vKD4ICdxKWiU49z7GEt7vAMfisnvtZBYHo/gAYwuv5hwraGKd210+QXUtCC7YbMNtI2QpVQtNrRejF0lBq4Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLLj5Mu6IlAAI1MFbxoMFGGt1mLVXKjETHvkIjCkvkKgKVoXfT+f6GM31l/fw8/Skfc5Xo+Cv7y3JTWS9k56hNnJxeNJsNoeoYj9sUMqgwEmw78V5DdxDTyujzmhjdW8fi0yGJnUhjXQXZWQIY4H1Fc5+NZYrp6bMsHi693Q6mWwex7zKD+237iQUi4j3wc0xQjmTr8OFLfFjGDYMuggOv7FjgFk6Tm+hmWt3dZjNWcN+7mr4IVdg/6RzbGzxsmrqjtXZ/CiMf9rB4chkZVMtRGpgBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "686df8b4-0f8a-4b73-81ba-90439cfa9eef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xd1hrBE4ViEULGQajYQswA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 954,
+                "cache_read_input_tokens": 85947,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 954
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ESiMJPShwRWsB46fRxxrDM",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "crm-always-on-object-s46",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "0c2a11b6-838d-4752-bf74-b600eb2025a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xd1hrBE4ViEULGQajYQswA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 954,
+                "cache_read_input_tokens": 85947,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 954
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XPsDTdHoSHKvxqB2m8WXh8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "crm-always-on-long-s45",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "2caba770-c1dc-4928-bda5-9246ec022fa0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xd1hrBE4ViEULGQajYQswA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 954,
+                "cache_read_input_tokens": 85947,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 954
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-28T00:25:42.129Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ESiMJPShwRWsB46fRxxrDM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-object-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:08.683Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:25:34.484Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_object_crm_always_on_k2_norm0.2_seed46.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"420749\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:05.824Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.8941}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "fbff2936-d846-4fa8-aec6-fe23317236ac",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-object-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:08.683Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:25:34.484Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_object_crm_always_on_k2_norm0.2_seed46.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"420749\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:05.824Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.8941}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"crm-always-on-object-s46\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T21:53:08.683Z\", \"updated_at\": \"2026-05-28T00:25:34.484Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_object_crm_always_on_k2_norm0.2_seed46.json\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:2\"], \"pid\": \"420749\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log\", \"submitted_at\": \"2026-05-27T21:53:05.824Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.8941}}"
+              }
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-28T00:25:51.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XPsDTdHoSHKvxqB2m8WXh8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-long-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:35.149Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:25:45.096Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_long_crm_always_on_k2_norm0.2_seed45.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"423623\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-long-s45.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:32.049Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.6524}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "f5458a68-1fb6-435d-b8fc-f30fcf5641a3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-long-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:35.149Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:25:45.096Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_long_crm_always_on_k2_norm0.2_seed45.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"423623\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-long-s45.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:32.049Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.6524}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"crm-always-on-long-s45\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T21:53:35.149Z\", \"updated_at\": \"2026-05-28T00:25:45.096Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001 --output_file logs/eval_long_crm_always_on_k2_norm0.2_seed45.json\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"423623\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-always-on-long-s45.log\", \"submitted_at\": \"2026-05-27T21:53:32.049Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.6524}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014xJMiMehEuPdFtnybefXcm",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "crm-always-on-object-s46",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "acr-vla-conformal-refinement",
+                "spec": {
+                  "command": "python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001",
+                  "server": "bjb1-32546",
+                  "data_path": "LIBERO-Object (built-in)",
+                  "data_count": "200",
+                  "model_name": "smolvla",
+                  "seed": 46,
+                  "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+                  "eval_data": "LIBERO-Object"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "8740a848-8ff8-4176-bd54-505be54d26f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169ptJJKUhceX6MuuEe1A3L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1269,
+                "cache_read_input_tokens": 86901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1269
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJacfe5CmTs6Q3HAGnEqTg",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "crm-always-on-long-s45",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "acr-vla-conformal-refinement",
+                "spec": {
+                  "command": "python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001",
+                  "server": "bjb1-32546",
+                  "data_path": "LIBERO-Long (built-in)",
+                  "data_count": "200",
+                  "model_name": "smolvla",
+                  "seed": 45,
+                  "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+                  "eval_data": "LIBERO-Long"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "0f550037-1712-4f6f-bd23-36c9f37a79b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169ptJJKUhceX6MuuEe1A3L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1269,
+                "cache_read_input_tokens": 86901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1269
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-28T00:26:13.292Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014xJMiMehEuPdFtnybefXcm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-object-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:08.683Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:26:02.020Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"420749\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:05.824Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (built-in)\\\", \\\"data_count\\\": \\\"200\\\", \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.1076}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "9d505042-504d-4383-92d3-2eb21a99b709",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-object-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:08.683Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:26:02.020Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"420749\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:05.824Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (built-in)\\\", \\\"data_count\\\": \\\"200\\\", \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.1076}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"crm-always-on-object-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T21:53:08.683Z\", \"updated_at\": \"2026-05-28T00:26:02.020Z\", \"spec\": {\"command\": \"python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark object --K 2 --seed 46 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:2\"], \"pid\": \"420749\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-always-on-object-s46.log\", \"submitted_at\": \"2026-05-27T21:53:05.824Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (built-in)\", \"data_count\": \"200\", \"model_name\": \"smolvla\", \"seed\": 46, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO-Object\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.1076}}"
+              }
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-28T00:26:24.772Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJacfe5CmTs6Q3HAGnEqTg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-long-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:35.149Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:26:18.335Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"423623\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-long-s45.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:32.049Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Long (built-in)\\\", \\\"data_count\\\": \\\"200\\\", \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 45, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Long\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.4658}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "4ab7baf7-6587-4d4c-b154-656d6cbe340b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-always-on-long-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T21:53:35.149Z\\\", \\\"updated_at\\\": \\\"2026-05-28T00:26:18.335Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"423623\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-always-on-long-s45.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T21:53:32.049Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Long (built-in)\\\", \\\"data_count\\\": \\\"200\\\", \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 45, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Long\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.4658}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"crm-always-on-long-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T21:53:35.149Z\", \"updated_at\": \"2026-05-28T00:26:18.335Z\", \"spec\": {\"command\": \"python -u src/evaluate.py --model smolvla --mode adaptive_conformal_crm --benchmark long --K 2 --seed 45 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --max_correction_norm 0.2 --conformal_threshold 0.001\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": \"423623\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/crm-always-on-long-s45.log\", \"submitted_at\": \"2026-05-27T21:53:32.049Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Long (built-in)\", \"data_count\": \"200\", \"model_name\": \"smolvla\", \"seed\": 45, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"eval_data\": \"LIBERO-Long\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.4658}}"
+              }
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All registry updates done. Here's the summary:\n\n## bjb1-32546 调查结果\n\n### 已完成实验（已更新 registry → DONE）\n\n| Exp ID | Benchmark | Seed | SR | Trigger Rate | Exit Code | 日志清洁 |\n|--------|-----------|------|----|-------------|-----------|---------|\n| crm-always-on-long-s44 | Long | 44 | **43.0%** | 100% | 0 | 无 OOM/CUDA error |\n| crm-always-on-goal-s45 | Goal | 45 | **82.0%** | 100% | 0 | 无 OOM/CUDA error |\n| crm-always-on-goal-s46 | Goal | 46 | **80.0%** | 100% | 0 | 无 OOM/CUDA error |\n| crm-always-on-spatial-s46 | Spatial | 46 | **78.5%** | 100% | 0 | 无 OOM/CUDA error |\n\n### 正在运行（已更新 registry → RUNNING）\n\n| Exp ID | Benchmark | Seed | GPU | 进度 |\n|--------|-----------|------|-----|------|\n| crm-always-on-object-s46 | Object | 46 | cuda:2 (1914MiB) | 进行中（pick_up tasks） |\n| crm-always-on-long-s45 | Long | 45 | cuda:5 (4305MiB) | 进行中（~task 6-7/10） |\n\n### 未部署的 PREPARING 实验\n\n- `crm-always-on-spatial-s45`、`crm-always-on-object-s45` 仍在 PREPARING，本机无运行痕迹\n\n### GPU 状态（6x RTX 4090）\n\n| GPU | 状态 |\n|-----|------|\n| 0 | 空闲 |\n| 1 | 空闲 |\n| 2 | 占用（object-s46） |\n| 3 | 空闲 |\n| 4 | 空闲 |\n| 5 | 占用（long-s45） |\n\n**4 个 GPU 空闲可用**（cuda:0, 1, 3, 4）。两个正在运行的实验预计数小时内完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "uuid": "719f361b-fe7c-46d2-9d76-65574a222a3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CdHfngvGG5jSxPYZvxu7Jg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1807,
+                "cache_read_input_tokens": 88170,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1807
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All registry updates done. Here's the summary:\n\n## bjb1-32546 调查结果\n\n### 已完成实验（已更新 registry → DONE）\n\n| Exp ID | Benchmark | Seed | SR | Trigger Rate | Exit Code | 日志清洁 |\n|--------|-----------|------|----|-------------|-----------|---------|\n| crm-always-on-long-s44 | Long | 44 | **43.0%** | 100% | 0 | 无 OOM/CUDA error |\n| crm-always-on-goal-s45 | Goal | 45 | **82.0%** | 100% | 0 | 无 OOM/CUDA error |\n| crm-always-on-goal-s46 | Goal | 46 | **80.0%** | 100% | 0 | 无 OOM/CUDA error |\n| crm-always-on-spatial-s46 | Spatial | 46 | **78.5%** | 100% | 0 | 无 OOM/CUDA error |\n\n### 正在运行（已更新 registry → RUNNING）\n\n| Exp ID | Benchmark | Seed | GPU | 进度 |\n|--------|-----------|------|-----|------|\n| crm-always-on-object-s46 | Object | 46 | cuda:2 (1914MiB) | 进行中（pick_up tasks） |\n| crm-always-on-long-s45 | Long | 45 | cuda:5 (4305MiB) | 进行中（~task 6-7/10） |\n\n### 未部署的 PREPARING 实验\n\n- `crm-always-on-spatial-s45`、`crm-always-on-object-s45` 仍在 PREPARING，本机无运行痕迹\n\n### GPU 状态（6x RTX 4090）\n\n| GPU | 状态 |\n|-----|------|\n| 0 | 空闲 |\n| 1 | 空闲 |\n| 2 | 占用（object-s46） |\n| 3 | 空闲 |\n| 4 | 空闲 |\n| 5 | 占用（long-s45） |\n\n**4 个 GPU 空闲可用**（cuda:0, 1, 3, 4）。两个正在运行的实验预计数小时内完成。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 649361,
+            "duration_api_ms": 228915,
+            "num_turns": 72,
+            "stop_reason": "end_turn",
+            "session_id": "f9727406-140e-47ac-bfe4-f75afaf8cf41",
+            "total_cost_usd": 1.5556094999999996,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 78526,
+              "cache_read_input_tokens": 1327862,
+              "output_tokens": 15966,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 78526,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 629,
+                  "cache_read_input_tokens": 88170,
+                  "cache_creation_input_tokens": 1807,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1807
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1521,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001616,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 25,
+                "outputTokens": 15966,
+                "cacheReadInputTokens": 1327862,
+                "cacheCreationInputTokens": 78526,
+                "webSearchRequests": 0,
+                "costUSD": 1.5539934999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a04703f1-0406-4476-9556-a911ad69e849"
+          },
+          "id": "event-000175"
+        }
+      ]
+    }
+  ]
+}

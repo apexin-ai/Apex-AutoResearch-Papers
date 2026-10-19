@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8abeaaef898854fc97",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "scan bjb2 28827 and 40593 harvest",
+  "task_key": "worker_scan_bjb2-28827-and-40593-harvest_20260523T214852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_scan_bjb2-28827-and-40593-harvest_20260523T214852_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "9f767e8d6929d85d64aae180c54804b6546aca45429d3ec3af2c57f679193683"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### bjb2-28827\n\n**新完成（今天 04:09-04:12 写入 JSON）：**\n\n| 实验 | SR |\n|------|-----|\n| Object Adaptive Conformal CRM τ=0.25 **s46** | **0.775** |\n| Object Adaptive Conformal CRM τ=0.25 **s45** | **0.78** |\n| Object VLA-only **s45** | **0.76** |\n\n**运行中：**\n\n| GPU | 实验 | 进度 | ETA |\n|-----|------|------|-----|\n| cuda:0 | Goal VLA-only s45 | 6/10 tasks (60%) | ~5-6h |\n| cuda:1 | Goal CRM s45 | 6/10 tasks, rollout 15/20 (60%) | ~5-6h |\n| cuda:2 | Goal Reconvla s45 | 6/10 tasks done (60%) | ~5-6h |\n| cuda:3 | Long Reconvla s44 | 9/10 tasks, rollout 5/20 (85%) | ~2-3h |\n| cuda:4 | Long K2mean s45 | 3/10 tasks, rollout 10/20 (25%) | ~20+h |\n| cuda:5 | Long K2mean s44 | 8/10 tasks done (80%) | ~3h |\n\nLong Reconvla s44 和 Long K2mean s44 即将完成（2-3h）。Goal 系列约 60% 进度。Long K2mean s45 最慢，才 25%。\n\n---\n\n### bjb2-40593\n\n**运行中：**\n\n| GPU | 实验 | 进度 | ETA |\n|-----|------|------|-----|\n| cuda:0 | Object CRM s45 | 9/10 tasks, rollout 15/20 (~93%) | ~30-60min |\n\nObject CRM s45 即将完成，只差最后 1.5 个 task 的 rollouts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scan-bjb2-28827-and-40593-harvest.md"
+}

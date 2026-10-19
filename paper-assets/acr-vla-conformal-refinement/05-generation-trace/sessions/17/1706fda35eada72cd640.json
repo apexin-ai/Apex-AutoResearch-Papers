@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1706fda35eada72cd640",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis plan702 k1 crm results",
+  "task_key": "worker_analysis_plan702-k1-crm-results_20260520T143123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_plan702-k1-crm-results_20260520T143123_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "48bfb03f1a17f507c7d74a40ad1b31618bf29305b5a91d41d9a45ae4425f278e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**plan_702 的三个原始 seed 全部失败**，没有产出任何评估结果。\n\n### 失败原因\n三个 seed 都在 `src/evaluate.py:466` 崩溃，报错一致：\n```\nUnboundLocalError: cannot access local variable 'unc_dim' where it is not associated with a value\n```\n模型加载成功，但在构建评估环境时 `unc_dim` 变量未定义就被引用。\n\n### 当前状态\n代码已修复，**r2 重试已启动**（三个 seed 都在跑）：\n- `eval-crm-k1-object-seed42-plan702-r2` — GPU 0, 已加载模型, 10 tasks loaded\n- `eval-crm-k1-object-seed43-plan702-r2` — GPU 1, 已加载模型, 10 tasks loaded  \n- `eval-crm-k1-object-seed44-plan702-r2` — GPU 2(?), 已加载模型, 10 tasks loaded\n\n三个 r2 run 都在 ~22:32 启动，刚开始执行 rollouts，尚无结果输出（output buffer 未 flush）。10 tasks × 10 rollouts = 100 episodes/seed，预计需要 1-2 小时完成。\n\n### 结论\n**现在无法提取 metrics**——原始 run 全部 crash，r2 retry 刚开始跑。需要等 r2 完成后再分析。建议 1-2 小时后回来检查 `logs/eval_crm_k1_object_seed4{2,3,4}_plan702_r2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan702-k1-crm-results.md"
+}

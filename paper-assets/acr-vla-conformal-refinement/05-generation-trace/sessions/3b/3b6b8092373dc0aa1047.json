@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b6b8092373dc0aa1047",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval acr spatial v4 small",
+  "task_key": "worker_eval_acr-spatial-v4-small_20260514T202909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_acr-spatial-v4-small_20260514T202909_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "584c5938b6d9ce79f6fb9fab0a1269b90811c2eaf9f0f34591a852e592428f22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-acr-spatial-v4-small 已启动。**\n\n| 项目 | 值 |\n|------|-----|\n| 服务器 | bjb1-18228, cuda:3 |\n| PID | 253085 |\n| Checkpoint | crm_v3_norm/perdof/crm_best.pt |\n| max_correction_norm | 0.1 |\n| Benchmark | LIBERO spatial, 10 tasks × 10 rollouts |\n| 日志 | `/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log` |\n\n注：cuda:3 上原有残留进程 197808（旧 eval-acr-object-v3，用 v2 checkpoint）已 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acr-spatial-v4-small.md"
+}

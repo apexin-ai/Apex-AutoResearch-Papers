@@ -1,0 +1,491 @@
+{
+  "schema_version": "1.0",
+  "session_id": "22cd303d08595340cf1e",
+  "rounds": [
+    {
+      "number": 37,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-17T01:16:13.986783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3674
+          },
+          "id": "event-000541"
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "messages": [
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-17T01:21:18.709178+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_training-loss-analysis_20260517T011458]:\nWorker worker_ssh_training-loss-analysis_20260517T011458 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "worker_done:worker_ssh_training-loss-analysis_20260517t011458"
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-17T01:21:27.708890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_ssh_training-loss-analysis_20260517T011458_result.json"
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-17T01:21:27.759607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"分析已写入 `artifacts/training_loss_analysis.md`。\\n\\n核心发现与任务预期的\\\"disconnect\\\"假设相反：**训练 MSE 和闭环 SR 是正相关的**（低 MSE → 高 SR），排序完全一致。真正的 insight 不是\\\"离线指标预测失败\\\"，而是：\\n\\n1. **obs_only 在两个指标上都最优**（val MSE=0.0165, Object SR=19%）\\n2. **conformal features 同时伤害了训练和部署**（perdof val MSE 2.2x worse, Object SR -8pp）\\n3. 论文叙事应聚焦\\\"observation-conditioned correction is sufficient; conformal features are an honest negative result\\\"\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-17T01:21:31.084772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/training_loss_analysis.md"
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-17T01:21:31.135417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Training Loss vs Closed-Loop SR Analysis\n2\t\n3\t## Data Source\n4\t\n5\t- **Training loss**: Extracted from project decision logs (`decisions.yaml`), progress reports, and running status snapshots. Original training stdout was not saved to file (printed to tmux, lost after session). Checkpoint files (`crm_best.pt`) contain only `state_dict` without metrics history.\n6\t- **Key sources**: `decisions.yaml` (best_epoch, val_loss), `report_running_status.md` (mid-training snapshots with train_loss), `results_tables.md` (closed-loop SR)\n7\t- **Training config**: 50 epochs, batch_size=32, lr=1e-3 (cosine decay), val_split=0.1, aug_ratio=0.5, 26,737 samples (spatial 12,167 + object 14,570)\n8\t- **Checkpoint location**: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt` on bjb1-18228\n9\t- **Version**: CRM v3-norm (with input normalization via input_mean/input_std, post-D018 fix)\n10\t\n11\t## Results Table\n12\t\n13\t| Variant | Val MSE (best) | Best Epoch | Train MSE (ep24 snapshot) | Object SR seed42 | Object SR (multi-seed mean) | Spatial SR seed42 |\n14\t|---------|:-:|:-:|:-:|:-:|:-:|:-:|\n15\t| **obs_only** | **0.0165** | 48 | 0.0265 | **19%** | **17.5%** (4 seeds, ε=0.2) | **35%** |\n16\t| perdof (full) | 0.0358 | 47 | ~0.054 (est.) | 11% | 10.3% (3 seeds) | 35% |\n17\t| scalar (scalar_unc) | 0.0374 | 46 | 0.0592 | 9% | 8.0% (2 seeds) | 32% |\n18\t\n19\t### Baselines (no CRM correction)\n20\t\n21\t| Baseline | Object SR seed42 | Object SR (multi-seed) | Spatial SR seed42 |\n22\t|----------|:-:|:-:|:-:|\n23\t| argmin (K=10 selection) | 12% | 14.0% (3 seeds) | 34% |\n24\t| VLA-mean (K=10 average) | 12% | 12.3% (3 seeds) | 32% |\n25\t| VLA-only (K=1, no ensemble) | 12% | 10.8% (4 seeds) | 30% |\n26\t\n27\t### Notes on Train MSE\n28\t\n29\t- Train MSE includes synthetic augmentation (aug_ratio=0.5, noise injected to base action), inflating train loss vs val loss by ~1.5x\n30\t- perdof train_loss not directly captured; estimated from obs_only/scalar_unc train/val ratio pattern\n31\t- Mid-t\n…[truncated 3659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-17T01:23:31.219941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-17T01:23:31.231985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 12
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-17T01:23:56.379155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] Training Loss Analysis 审查 — 叙事影响评估\n\n## 核心发现\n\nWorker 的 training-loss-analysis 结论正确：**Val MSE 与 closed-loop SR 完全正相关**（obs_only 0.0165 最优 → SR 最高；perdof 0.0358 / scalar 0.0374 → SR 递减）。排序一致，无 disconnect。\n\n## 对 Narrative B 的影响\n\n**好消息**：这实际上让故事更干净。原来可能需要解释\"为什么离线好但在线差\"（复杂），现在变成\"conformal features 是噪声输入，同时伤害训练和部署\"（简单直接）。\n\n**需要调整的地方**：\n\n1. **method_draft Section 3.5 的 rank-deficiency 解释需要修改**：之前试图用\"K=10 in 30-D → rank-deficient covariance\"解释 perdof 为何差。但 training loss 数据说明问题更根本——conformal features 作为 CRM 输入本身就是噪声，网络花 capacity 学忽略它们。不需要复杂的 rank-deficiency 论证（且那个论证本身就是错的，实际是 per-step 6×6）。\n\n2. **experiments_draft 不应暗示 offline-online gap**：如果有任何段落暗示\"尽管训练 loss 相似但部署表现不同\"，必须删除。三个 variant 的 val MSE 差异巨大（2.2x），不是\"相似\"。\n\n3. **论文可以增加一个强 claim**：\"Observation-conditioned CRM achieves both lowest training error and best deployment performance, suggesting that conformal score features introduce optimization noise rather than useful inductive bias.\" 这比原来的 framing 更有说服力。\n\n## Narrative B 是否需要修改？\n\n**不需要大改**。当前 abstract 和 introduction 聚焦\"conditioning feature choice determines success/failure\"，training loss correlation 只是补充证据（解释 WHY），不改变 WHAT（magnitude sensitivity + obs_only robustness）。建议在 experiments 的 analysis section 加一段 training dynamics 证据即可。\n\n## 一个潜在风险\n\n如果审稿人问\"为什么不直接用 val MSE 做 model selection 而要跑 closed-loop\"——答案是：(1) val MSE 只在同架构内 predictive，跨架构无意义；(2) magnitude sensitivity 现象只能在 closed-loop 中观察；(3) CRM 目标是在线部署性能，不是最小化 MSE。建议论文提前回答这个问题。\n\n## 建议\n\n- experiments_draft 加入 Table: Val MSE vs Object SR 对比（当前 training_loss_analysis.md 的数据足够）\n- method_draft Section 3.5 的\"为什么 perdof 差\"论证从 rank-deficiency 改为 optimization noise（与实际数据一致）\n- 不需要单独的 \"Training Loss Analysis\" section，融入 Section 4.3 Analysis 即可",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-17T01:23:59.992970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-17T01:24:06.029888+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 提交 training-loss-analysis 审查报告。核心结论：MSE-SR 正相关的发现不破坏 Narrative B，反而让故事更简洁（conformal features 是同时损害训练和部署的噪声输入）。建议在 experiments 中融入 training dynamics 证据，并修正 method_draft 中错误的 rank-deficiency 解释。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-000551"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "messages": [
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-17T01:24:06.534096+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：seed45 FINAL (obs=16%, argmin=12%), D043 confirmed, all 17 GPUs verified active），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-17T01:24:13.380398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-17T01:24:13.380813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000554"
+        },
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-17T01:24:16.239394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-17T01:24:16.290065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 01:21 UTC | 更新原因: seed45 FINAL (obs=16%, argmin=12%), D043 confirmed, all 17 GPUs verified active\\\\n\\\\n## 核心方向\\\\nobs_only CRM 是唯一存活路径。**ε=0.2 是最优配置**（D038）。**Narrative B 已锁定**（D043）：mechanism insight（obs_only magnitude robustness vs perdof collapse）为核心贡献，+4pp 一致性改进为 supplementary evidence（不 claim significance）。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~10 天。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 4 — Narrative B 锁定，论文骨架完成，等待 diagnostic 分析 + 剩余 ablation\\\\n- **4-seed Pooled ε=0.2**: obs_only **17.5%** (70/400) vs argmin **13.5%** (54/400), **+4.0pp, Fisher p=0.118**\\\\n- **Magnitude curves**: obs_only 全程安全 (16-22%) / perdof 单调崩溃 (14%→0%)\\\\n- **GPU**: 17/17 满载（已确认 2026-05-17 all 4 servers active）\\\\n- **论文草稿**: Abstract, Introduction, Method, Related Work, Experiments, Conclusion 全部有 draft\\\\n\\\\n## Object Benchmark — obs_only ε=0.2（关键配置）\\\\n\\\\n| Seed | obs_only ε=0.2 | argmin | vla_only | obs vs argmin | 状态 |\\\\n|------|----------------|--------|----------|---------------|------|\\\\n| 42 | **22%** | 12% | 12% | **+10pp** | FINAL ✅ |\\\\n| 43 | **16%** | 17% | 12% | **-1pp** | FINAL ✅ |\\\\n| 44 | **16%** | 13% | 10% | **+3pp** | FINAL ✅ |\\\\n| 45 | **16%** | 12% | 9% | **+4pp** | FINAL ✅ |\\\\n| 46 | running | running | — | — | ⏳ |\\\\n| 47 | running | running | — | — | ⏳ |\\\\n| **Pooled 4-seed** | **17.5%** (70/400) | **13.5%** (54/400) | — | **+4.0pp** | **p=0.118** |\\\\n\\\\n## Object Magnitude Sweep — 双曲线完整 ✅（seed42, 论文核心 figure）\\\\n\\\\n| norm | obs_only | perdof | gap | 论文叙事 |\\\\n|------|----------|--------|-----|----------|\\\\n| 0.03 | 16% | 14% | +2pp | 低 norm: 两者接近 |\\\\n| 0.05 | ~13% | 14% | -1pp | 低 norm: 两者接近 |\\\\n| 0.10 | 19% | 11% | +8pp | obs_only 起飞，perdof 开始退化 |\\\\n| 0.20 | **22%** | 11% | **\n…[truncated 3223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-17T01:24:20.204100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md",
+              "limit": "60"
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-17T01:24:20.455578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — acr-vla-conformal-refinement\n2\t\n3\t## Target Venue\n4\t- **Primary: CoRL 2026** (Abstract DDL ~May 26, Full paper DDL ~Jun 2)\n5\t- Narrative B (mechanism insight) confirmed as default framing\n6\t\n7\t## Core Insight (Narrative B — ACTIVE)\n8\tMagnitude control is the critical, previously unrecognized factor determining whether learned inference-time corrections help or catastrophically fail on frozen VLA policies. Observation-conditioned corrections remain robust across the full magnitude range, while per-DOF conformal features cause progressive collapse as correction magnitude increases. The sample-then-correct pipeline itself (conformal selection + bounded CRM) is the methodological contribution; the conditioning-magnitude interaction is the scientific contribution.\n9\t\n10\t## Headline Metric\n11\tobs_only: stable 16-19% across all norms (mean approximately 17%, 4 seeds at best coverage norm) vs perdof: progressive collapse from 14% (norm 0.03) to 0% (uncapped). Argmin baseline: 14% (3 seeds). VLA-only: 10-12% (4 seeds).\n12\t\n13\t## Core Claims (Narrative B — 3 claims)\n14\t\n15\t1. **Sample-then-correct pipeline for inference-time VLA improvement**\n16\t   - Two-stage: conformal selection (K=10 argmin) + bounded residual correction (CRM, approximately 330K params)\n17\t   - Consistent non-degradation with task-dependent improvement over frozen VLA baseline\n18\t   - obs_only CRM mean approximately 17% vs VLA-only 10-12% vs argmin 14%\n19\t   - Evidence: Table 1 (pooled results), Section 3 (method)\n20\t\n21\t2. **Conditioning-magnitude interaction as a previously unidentified failure mode**\n22\t   - Same CRM architecture succeeds or fails depending solely on conditioning feature x magnitude interaction\n23\t   - obs_only: stable approximately 17% across norms 0.03 to 1.42 (including uncapped)\n24\t   - perdof: progressive collapse 14% → 10% → 4% → 0% as norm increases\n25\t   - Bounded magnitude control is necessary for safe inference-time VLA correction\n26\t   - Evidence: Figure 2\n…[truncated 3287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-17T01:24:26.026040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md",
+              "offset": "60"
+            }
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-17T01:24:26.077096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t   - Response: Novelty is in the systematic comparison revealing the conditioning-magnitude interaction failure mode. The architecture is deliberately simple to isolate the conditioning signal's effect. Discovery that obs features suffice (and conformal features harm) is non-obvious.\n61\t\n62\t3. **\"Spatial benchmark shows nothing works\"**\n63\t   - Response: Honest limitation. At norm 0.1, obs_only and perdof perform comparably (35%) in spatial. Magnitude sensitivity manifests primarily in tasks with larger action distribution shift (object manipulation). This task-dependence is itself informative.\n64\t\n65\t4. **CRM approximately 330K params expressivity**\n66\t   - Response: Intentionally minimal. 3-layer MLP (input→256→256→30), input normalization. Prevents CRM from overriding base policy. approximately 3ms overhead. Architecture is NOT the contribution.\n67\t\n68\t5. **Simulation only**\n69\t   - Response: CoRL accepts sim-only. LIBERO is a recognized benchmark. Real-robot validation noted as future work.\n70\t\n71\t6. **K=10 inference cost**\n72\t   - Response: Multi-sample generation is the dominant cost (approximately 10x VLA forward pass). CRM overhead is negligible (approximately 3ms). Trade-off between compute and robustness is explicit.\n73\t\n74\t7. **\"Why does per-DOF fail?\" — is the explanation sufficient?**\n75\t   - Response: Section 3.5 provides mechanistic explanation: K=10 samples in 30D → rank-deficient covariance → noisy per-dimension Mahalanobis components → unreliable directional signals at deployment. Low norm masks the noise; high norm exposes it.\n76\t\n77\t## Hard Evidence (confirmed)\n78\t- Object (seed 42): obs_only 0.1=19%, 0.2=22%, 0.3=19%, 1.42=17%; perdof 0.1=11%, 0.2=11%, 0.3=4%, 1.42=0%\n79\t- Object multi-seed (obs_only ε=0.2): seeds 42/43/44/45 = 22/16/16/16%, mean=17.5%±3.0%\n80\t- Object multi-seed (argmin): seeds 42/43/44 = 12/17/13%, mean=14.0%±2.6%\n81\t- Object multi-seed (VLA-only): seeds 42/43/44/45 = 12/12/10/9%, mean=10.8%±1.4%\n82\t- Spatial (seed 42): obs\n…[truncated 407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-17T01:25:04.007455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] ROADMAP 审查 — 2026-05-17 01:21 更新\n\n## 整体评估：方向合理，细节需更新\n\nROADMAP 结构清晰，Narrative B 锁定正确，GPU 饱和运行，实验规划合理。以下两处需要修正：\n\n### 1. P1 Diagnostic 任务描述过时\n\nROADMAP 近期任务列表中仍写：\n> \"P1 diagnostic: Training Loss vs Closed-Loop SR **Disconnect**\"\n\n但 training-loss-analysis worker 的结论恰恰相反：**MSE 和 SR 是正相关的，不存在 disconnect**。任务已执行完成，但描述反映的是旧假设。建议标记为 done 并注明实际结论：\"conformal features 同时伤害训练和部署（非 disconnect，而是 correlation）\"。\n\n### 2. paper_framing.md Claim 3 仍包含已证伪的 root cause 解释\n\npaper_framing.md 第 30 行：\n> \"Root cause: K=10 rank-deficient covariance in 30D action space → noisy directional signals\"\n\n这在两个层面上已被证伪：\n- **代码实现层面**：实际是 per-step 6×6 covariance + Ledoit-Wolf shrinkage（不是 30-D rank-deficient）——已在 method_draft 审查中标 critical\n- **训练动态层面**：training loss analysis 证明 perdof 的问题更根本——conformal features 作为 CRM 输入就是噪声（val MSE 2.2x worse），不需要 rank-deficiency 解释\n\n**建议更新 Claim 3 root cause 为**：\n> \"Root cause: per-DOF conformal features introduce optimization noise (2.2x higher val MSE), forcing CRM to waste capacity learning to ignore unreliable signals. Low correction norms mask this damage; high norms amplify faulty directions.\"\n\n这与实际代码实现和 training loss 数据都一致。\n\n### 3. 其余无异常\n\n- 投稿时间线合理（AI 速度下 10 天充足）\n- 17 GPU 满载，实验规划（seed46/47 扩池 + perdof multi-seed collapse curve）合理\n- Narrative B 三条 claim 的证据链（除 Claim 3 root cause 措辞外）与实际数据匹配\n- Spatial benchmark 诚实标注\"no method separation\"，未过度宣传",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-17T01:25:07.942973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3935
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-17T01:25:13.759245+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 审查已提交。核心问题：paper_framing.md 的 Claim 3 root cause 需要从\"30-D rank-deficient covariance\"更新为\"optimization noise\"（与代码实现和 training loss 数据一致）。其余方向、GPU 利用、实验规划均合理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-000563"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "messages": [
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-17T01:25:20.080247+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-17T01:26:08.230213+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须核对 `execution.gpu_ids`——之前未发现越界但每次新实验部署必查\n- perdof/scalar CRM checkpoint 路径在 bjb1-18228: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n- 论文数据引用必须交叉验证 registry + `artifacts/magnitude_curve_data.json`，不信 Worker 自述数字\n- method_draft 中\"30-D rank-deficient covariance\"是已证伪的错误描述——实际是 per-step 6×6 + Ledoit-Wolf shrinkage，任何论文章节重复此错误 → critical\n\n### 2. 🖥️ 基础设施快照\n- 4 台服务器：bjb2-40593(root) / bjb1-18228(root) / bjb1-32546(root) / bjb2-28827(root)\n- 代码根目录（远程）：`/root/acr-vla-conformal-refinement`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/`\n- 17× RTX 4090 跨 4 台服务器全部在线\n- 无 W&B 配置（不检查 wandb）\n- 活跃实验：seed46/47 pairs + perdof multi-seed magnitude sweep + multi-variant seed45（具体 PID/tmux 需 ssh 确认，每台服务器多个 eval session）\n\n### 3. 📊 当前状态\n刚完成两项审查并已 post to Director：\n1. **Training loss analysis 审查**：Worker 证明 val MSE 与 SR 正相关（无 disconnect），conformal features 同时伤害训练和部署。已建议 paper narrative 调整方向。\n2. **ROADMAP 审查**：标注 paper_framing.md Claim 3 root cause 需更新（rank-deficiency → optimization noise），P1 diagnostic 任务描述过时。\n\n等待中：\n- seed46/47 完成回调（将扩大 pooled 统计到 6-seed）\n- perdof seed44/45 magnitude sweep 多点完成（支撑 collapse curve error bar）\n- Director 对我两份审查报告的回应 / 决策\n\n### 4. 📋 待办\n- seed46/47 cron 回调 → 独立核实数据 + 重算 6-seed pooled Fisher p-value\n- 论文任何 section 重新提交审查 → 验证 method 中 covariance 描述已修正为 per-step 6×6\n- experiments_draft 重写提交 → 验证 p=0.048 已删除 + \"no reversal\" 已修正 + training loss correlation 证据已融入\n- paper_framing.md 更新通知 → 确认 Claim 3 root cause 改为 optimization noise 解释\n- 任何新部署实验 → ssh nvidia-smi 核对 GPU 设备号是否在白名单内\n\n### 5. 🎯 战略上下文\n- **Narrative B 已锁定 (D043)**：核心贡献是 conditioning-magnitude interaction mechanism insight，不是 SR improvement significance\n- **4-seed pooled**: obs_only 17.5% vs argmin 13.5%, +4pp, Fisher p=0.118（不显著，论文不 claim significance）\n- **关键证据链**：magnitude curve (seed42) 展示 obs_only 稳定 vs perdof 崩溃 → 多 seed 确认 obs_only 一致性 → training loss 证明 conformal features 是噪声\n- **下一个\"我\"最易判断错的事**：\n  1. 不要被\"rank-deficient covariance in 30-D\"说法误导——代码实现是 per-step 6×6（H=5步，每步 d=6 DOF），不是 30-D joint\n  2. 不要假设 training loss 与 SR 之间存在 disconnect——它们是正相关的\n  3. seed43 存在 obs_only < argmin 的 reversal（16% vs 17%），论文不能说\"no seed reversal\"\n  4. CRM 输入维度：obs_only=990 (960 obs + 30 action), perdof=1030 (+40 uncertainty), scalar=993 (+3 uncertainty)\n  5. Fisher p=0.118 是正确的（不是之前错算的 0.048 或 0.091）\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-000565"
+        }
+      ]
+    }
+  ]
+}

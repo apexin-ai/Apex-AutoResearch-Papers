@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fc37c633ecd0281a9c8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check pi05 precompute bjb1 18228",
+  "task_key": "worker_ssh_check-pi05-precompute-bjb1-18228_20260524T004901",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-pi05-precompute-bjb1-18228_20260524T004901_result.json",
+    "occurrence": 1,
+    "bytes": 1566,
+    "sha256": "91f12f67455c9c161771ba56a8b91c4b4399ea0aa751030eebae7307c93ade3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## π0.5 Precompute 状态报告\n\n### 当前活跃缓存：`/root/autodl-tmp/crm_cache_pi05/`\n\n**配置**：10 shards, input_mode=full, 4 GPU 运行 shards 1-4, benchmarks=['object', 'spatial']\n\n| Benchmark | 状态 | 详情 |\n|-----------|------|------|\n| **spatial** | **已完成** | 60,250 samples，merged files 就绪 (obs_features/k_samples/expert_actions.pt) |\n| **object** | **进行中** | shards 0,5-9 已完成，shards 1-4 运行中；已有 merged (69,303/72,507 = 95.6%) |\n| **long** | **未完成** | 仅 s0 的 36 个 partial (0.2GB)，当前无进程处理 |\n| **goal** | **未开始** | 目录不存在 |\n\n### Object 各 shard 进度\n\n| Shard | 进度 | 速度 | 剩余时间 |\n|-------|------|------|----------|\n| 1 | 5300/7251 (73%) | 1.84s/sample | ~60 min |\n| 2 | 4700/7251 (65%) | 2.07s/sample | ~88 min |\n| 3 | 5100/7251 (70%) | 1.88s/sample | ~67 min |\n| 4 | 5000/7251 (69%) | 1.93s/sample | ~72 min |\n\n**Object ETA**：最慢 shard (2) 约 88 分钟 → 预计 ~14:30 UTC 完成\n\n### 关键问题\n\n**long 和 goal 的 precompute 尚未配置在当前运行中。** 当前 4 个 shard 仅处理 `['object', 'spatial']`。object 完成后这 4 个进程会结束（spatial 已完成无需重跑）。\n\n需要额外启动 long 和 goal 的 precompute 才能开始完整的 CRM 训练。\n\n### 另有旧缓存 `crm_cache_pi05_2048/`\n4 个 benchmark 各有 s0 单 shard 的 partial 文件（long 53K, goal 51.5K, spatial 51.5K, object 54.5K），似乎是更早的单 GPU 预计算，已被弃用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-pi05-precompute-bjb1-18228.md"
+}

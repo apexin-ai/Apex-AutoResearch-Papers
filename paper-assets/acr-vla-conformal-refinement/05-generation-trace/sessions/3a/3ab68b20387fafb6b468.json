@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ab68b20387fafb6b468",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 crm always on object s43",
+  "task_key": "worker_analyze_pi05-crm-always-on-object-s43_20260528T030206",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-crm-always-on-object-s43_20260528T030206_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "2897d2fe959de43782a6a7b39054e233658e0b627580324df13449ee6a6fb64a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总如下：\n\n## pi05-crm-always-on-object-s43 结果\n\n| 指标 | 值 |\n|------|-----|\n| **overall SR** | **92.0%** (184/200) |\n| trigger_rate | 100% (符合预期, τ=0.001) |\n| mean_unc | 0.0789 |\n| total_rollouts | 200 |\n\n### Per-task 成功率及与 s42 对比\n\n| Task | s43 | s42 | Δ |\n|------|-----|-----|---|\n| alphabet_soup | 95 | 100 | -5 |\n| cream_cheese | 90 | 100 | -10 |\n| salad_dressing | 90 | 95 | -5 |\n| bbq_sauce | 85 | 85 | 0 |\n| **ketchup** | **75** | **55** | **+20** |\n| tomato_sauce | 95 | 90 | +5 |\n| butter | 100 | 100 | 0 |\n| milk | 100 | 100 | 0 |\n| chocolate_pudding | 95 | 95 | 0 |\n| **orange_juice** | **95** | **85** | **+10** |\n| **Overall** | **92.0** | **90.5** | **+1.5** |\n\n### 分析\n\n- s43 整体 92% 略高于 s42 的 90.5%，两 seed 均值 = **91.25%**\n- ketchup 从 55→75 提升显著（+20），orange_juice 从 85→95（+10）\n- cream_cheese 从 100→90 下降 10 个点，alphabet_soup 从 100→95\n- 无异常：无 OOM、无 CUDA error、无 0% SR task，日志正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-crm-always-on-object-s43.md"
+}

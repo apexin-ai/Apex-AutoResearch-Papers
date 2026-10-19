@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03bcb45b397a735dd455",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_6_1778821928.md",
+  "task_key": "loop_6_1778821928",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_6_1778821928.md",
+    "occurrence": 1,
+    "bytes": 5454,
+    "sha256": "76f0c6a09a246ba037d9d90d4039c37f71610869a075a3cfc2fdf03b24081b04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T05:11:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **D027 per-DOF claim 在 spatial 已死**：matched-task T0-T6 perdof = argmin = 42.9%（0pp delta）。禁止在汇报中声称 \"perdof CRM 在 spatial 上优于 argmin\"\n- **+6.2pp 是 artifact**（不同 task 完成数的偏差），禁止引用此数字\n- GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，D024 事故后不可假设\n- bjb1-32546 的 cuda:1 已部署 acr-object-v4-perdof（PID 11116），但 registry 最后快照显示 1/10 tasks，不要重复部署\n- bjb2-40593 环境异常：无 .git repo，CRM cache 路径是旧版。v4-default-r3 待 kill (D024) 但可能已自行结束\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base。**诊断中**——spatial 4 路 eval 被 premature kill (EXIT_CODE=143, MuJoCo/EGL init hang)，上一个 session 派了 2 个 worker 诊断存活状态\n- **bjb1-32546** (6× RTX 4090): 同上路径/环境。Object 4-way eval 运行中：cuda:0 reconvla-object (PID 9659), cuda:1 acr-object-v4-perdof (PID 11116), cuda:2 acr-object-v4-obs-only (PID 13806), cuda:3 acr-object-v4-scalar (PID 14003), cuda:5 vla-mean-object (PID 18808)。**cuda:4 空闲**\n- **bjb2-28827** (6× RTX 4090): magnitude sweep 6/6 满载。perdof norm={0.03,0.05,0.2,0.3} on cuda:0-3, obs_only norm={0.05,0.2} on cuda:4-5。PID 13185-15190\n- **bjb2-40593** (1× RTX 4090 D): v4-default-r3 待 kill，reconvla-object n=20 状态未确认\n- 模型路径: `/root/autodl-tmp/models/smolvla_libero/`\n- CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n- 数据: `/root/autodl-tmp/libero_data/`\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 无 W&B 集成（metrics 从 log 文件和 JSON output 手工采集）\n\n### 3. 📊 当前状态\n上一个 session 的核心动作是 D027 matched-task 分析——确认 per-DOF claim 在 spatial 上死了（0pp delta）。session 结束时正在：\n1. 诊断 bjb1-18228 被 kill 的 spatial experiments（2 个 worker 在查）\n2. 等 bjb1-32546 object 4-way eval（均 1/10 tasks，每个 task ~1-2h，ETA ~10-20h）\n3. 等 bjb2-28827 magnitude sweep（仅 T1-T2 partial 数据，ETA ~8-10h）\n\n**Registry RUNNING 实验**:\n- bjb1-32546: eval-reconvla-object, eval-acr-object-v4-perdof, eval-acr-object-v4-obs-only, eval-acr-object-v4-scalar, eval-vla-mean-object（5 个 object eval）\n- bjb2-28827: eval-mag-perdof-norm{003,005,02,03}, eval-mag-obsonly-norm{005,02}（6 个 magnitude sweep）\n- bjb1-18228: 4 路 spatial eval 状态未定（可能已被 kill）\n\n**PREPARING 积压**: precompute-v2/v3/v4 shards, eval-spatial-v4-full, eval-object-v6-full, eval-reconvla-spatial-v1, eval-acr-object-v4-obs-only-b2, eval-acr-object-v4-scalar-b2 等。大部分是旧计划遗留，不一定需要执行。\n\n**等待中**: 诊断 Worker 回调（bjb1-18228 存活状态）、magnitude sweep 和 object eval 的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- bjb1-18228 诊断 Worker 回调 → 若 v4-small/obs-only-r2 已死 → 用 `--start_task_idx` 重启（argmin 从 T9, scalar 从 T3, perdof 从 T7, obs_only 从 T6）\n- Magnitude sweep 完成 → 关键裁决：若某 norm 下 perdof >> argmin (+5pp) → per-DOF claim 可能复活，向 Director 汇报；若全部 norm 下 perdof ≈ argmin → per-DOF claim 终审死亡\n- Object eval 完成 → 若 perdof > argmin on object (+5pp) → spatial 是 anomaly，per-DOF claim 可能转 object-specific story；若 perdof ≈ argmin → per-DOF 彻底完蛋\n- 三线数据全部到齐 → 最终 framing 裁决：(a) per-DOF 复活 → 原 story，(b) obs_only CRM 稳定 +5pp → 转向 \"observation-conditioned learned correction\"（弱化 conformal novelty），(c) 全部 ≈ argmin → 项目 dead\n- framing 裁决完成 → 更新 paper_framing.md（当前严重 stale）→ 启动 Paper Agent 写 CoRL 初稿\n- bjb1-32546 cuda:4 空闲 → 部署实验（建议 K=1 baseline on object 或 argmin-only-object）\n\n### 5. 🎯 战略上下文\n**项目处于生死关头**。核心 per-DOF conformal claim 在 spatial 上已死（D027, 0pp），目前靠三线并行数据判决最终方向。CoRL abstract DDL May 26（剩 11 天），full paper Jun 2（剩 18 天）。\n\n**决策链关键节点**: D003(MVP pass) → D012(wrapper fix) → D015(30% baseline 继续) → D016-D018(CRM bug 修复) → D019(magnitude control 必要) → D020(obs_only 训练 loss 更好) → D027(**per-DOF 0pp, kill criteria triggered**)\n\n**最易判断错的事**:\n1. **不要把 partial task 数据当最终结论**——此前 +6.2pp (D019→D025 修正) 和 obs_only 57.5% (降至 40%) 都是 partial bias\n2. **obs_only +5pp 看似希望，但仅来自 T0 一个 task (90% vs 60%)**——单 task 驱动的差异不足以支撑 claim\n3. **不要混淆 argmin-only 和 reconvla**——D014 已明确 reconvla 是 strawman 命名，实际实现是 argmin-Euclidean，真正的 ReconVLA 是 CQR-based\n4. **bjb1-18228 的 MuJoCo/EGL hang 是 recurring issue**——任务之间的 env.reset() 会卡死，需要 `--start_task_idx` 跳过已完成 task 重启\n5. **paper_framing.md 当前极度 stale**——仍写着 \"per-DOF features encode richer information\"，但 D027 已否定这一点。写论文前必须先大幅更新 framing\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778821928.md"
+}

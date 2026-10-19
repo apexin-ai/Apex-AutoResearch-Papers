@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3f8f8b09be4c2cdccc27",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "investigate pi05 object s43 conflict 20260524T192714 retry1",
+  "task_key": "worker_investigate_pi05-object-s43-conflict_20260524T192714_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_pi05-object-s43-conflict_20260524T192714_retry1.log",
+    "occurrence": 1,
+    "bytes": 1170358,
+    "sha256": "777050185f5cc831f93e123f4c8509edac58b51a5e395e3e8e03429ba2ec3912"
+  },
+  "statistics": {
+    "messages": 130,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 130,
+      "chunks": [
+        {
+          "path": "3f8f8b09be4c2cdccc27-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "3f8f8b09be4c2cdccc27-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "3f8f8b09be4c2cdccc27-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigate-pi05-object-s43-conflict-20260524t192714-retry1.md"
+}

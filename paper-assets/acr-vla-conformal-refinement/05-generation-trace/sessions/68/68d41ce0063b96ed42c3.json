@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68d41ce0063b96ed42c3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor mag sweep progress",
+  "task_key": "worker_monitor_mag-sweep-progress_20260515T051416",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_mag-sweep-progress_20260515T051416_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "d37037b86f09908710a8673c9708eee3e80fe80ce024b61be8bab654555d6b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Magnitude Sweep 实时进度 — bjb2-28827\n\n**运行时间**: ~2h | **所有 6 进程存活** | **GPU 利用率**: 18-20%, ~5.2 GB/卡\n\n### 进度总表\n\n| exp_id | norm | mode | tasks_done | per-task SR | running_avg | current | ETA |\n|--------|------|------|-----------|-------------|-------------|---------|-----|\n| perdof-norm003 | 0.03 | perdof | 2/10 | T0=60%, T1=100% | **80.0%** | 等待 T2 启动 | ~8h |\n| perdof-norm005 | 0.05 | perdof | 2/10 | T0=50%, T1=100% | **75.0%** | 等待 T2 启动 | ~8h |\n| perdof-norm02 | 0.2 | perdof | 2/10 | T0=60%, T1=90% | **75.0%** | 等待 T2 启动 | ~8h |\n| perdof-norm03 | 0.3 | perdof | **1/10** | T0=70% | **70.0%** | T1: 5/10 rollouts (1/5) | ~9h |\n| obsonly-norm005 | 0.05 | obs_only | 2/10 | T0=80%, T1=90% | **85.0%** | 等待 T2 启动 | ~8h |\n| obsonly-norm02 | 0.2 | obs_only | 2/10 | T0=90%, T1=100% | **95.0%** | 等待 T2 启动 | ~8h |\n\n### 关键发现（初步，仅 T0-T1）\n\n**所有实验当前 SR 远高于 argmin baseline (42.9%)**——但只完成了 2 个最简单的 task，后续 task 难度递增，SR 会下降。\n\n**更值得关注的信号：obs_only 在同 norm 下一致性地优于 perdof：**\n- norm=0.05: obs_only **85%** vs perdof **75%** (+10pp)\n- norm=0.2: obs_only **95%** vs perdof **75%** (+20pp)\n\n如果这个趋势在 T2-T9 上延续，per-DOF conformal claim 不仅不会复活，反而可能成为 negative result——perdof CRM 比 obs_only CRM 更差。但只有 2 个 task，**过早下结论**。需要等到至少 T0-T6 完成（匹配 argmin baseline 的 task 范围）才能做裁决。\n\n预计完成时间：约 8-9 小时后（今晚深夜/明早凌晨）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-mag-sweep-progress.md"
+}

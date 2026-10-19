@@ -1,0 +1,5659 @@
+# monitor register crons all servers
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 119
+- **Recorded user turns:** 0
+- **Tool calls:** 49
+- **Original source:** `logs/workers/worker_monitor_register-crons-all-servers_20260523T222703.log`
+- **Structured JSON:** [`dffdb687cbc8c9235c78.json`](../../sessions/df/dffdb687cbc8c9235c78.json)
+
+## Before a recorded user message
+
+119 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__register_cron",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "933c3a99-1315-4440-9c5e-f43454fc1c23",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779634800,
+    "rateLimitType": "seven_day",
+    "utilization": 0.94,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "a95568a3-a31c-4d7f-9856-ea38a0b77930",
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by loading the necessary tool schemas and then SSH to each server to check the running processes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "6232fdb1-28b0-4c87-abe0-9f04ff375baa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CEfmcEhfRY3A4bz2DZFsvH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12130,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12130
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先加载需要的工具，然后并行 SSH 到 4 台服务器探测进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "e5381234-b99e-4c73-bc43-580bf4bfc0b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CEfmcEhfRY3A4bz2DZFsvH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12130,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12130
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01C7NcbksXFthZBaW4S18wnN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 7
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "c4700b54-9e88-435e-a1c1-426168039cf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CEfmcEhfRY3A4bz2DZFsvH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12130,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12130
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T22:27:16.532Z_
+
+<details><summary>↩ Tool result · `toolu_01C7NcbksXFthZBaW4S18wnN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_cron"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "27817e80-ae60-41f4-bb9c-dba6372fc54b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me first read the registry to see current state, and simultaneously SSH to all 4 servers to check running processes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "6e90e8cf-ad4a-43e2-b296-53aa322fd876",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+先并行读 registry 和探测 4 台服务器的进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "b6f91ffe-f030-4e44-a469-6c892ef7369b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MHZaiZFVwDRH5xDrvcVkR1`</summary>
+
+```json
+{
+  "filters": {
+    "status": "RUNNING"
+  },
+  "project": "acr-vla-conformal-refinement",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "status",
+    "server",
+    "pid",
+    "gpu"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "170cf544-d1ae-48b7-af1a-865a5cbb251d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015az31a7LP4Dv2NVvQMhC71`</summary>
+
+```json
+{
+  "filters": {
+    "status": "PREPARING"
+  },
+  "project": "acr-vla-conformal-refinement",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "status",
+    "server",
+    "pid",
+    "gpu"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "c0eadcea-1b0d-42cb-b524-2fb497211748",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FX3pK1Ms2TNYZifcm4Yp39`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "68fef653-2fd6-40b2-8c6a-ffee46af4374",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QjBuPBVQHreH7Z1rrmsdVU`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9ae52194-13c9-4e4f-891e-03f912a60c29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T22:27:26.933Z_
+
+<details><summary>↩ Tool result · `toolu_01MHZaiZFVwDRH5xDrvcVkR1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-spatial-reconvla-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-spatial-crm-norm005-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-spatial-vla-only-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-k2mean-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-reconvla-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-crm-norm005-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-vla-only-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-k2mean-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-adapt-tau025-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-reconvla-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-crm-norm005-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-adapt-tau025-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-vla-only-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-crm-norm005-obj-s46\": {\"status\": \"RUNNING\"}, \"eval-supp-reconvla-obj-s46\": {\"status\": \"RUNNING\"}, \"eval-supp-crm-norm005-obj-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-k2mean-s44\": {\"status\": \"RUNNING\"}, \"eval-supp-long-reconvla-s44\": {\"status\": \"RUNNING\"}}, \"count\": 18, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.3885}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "22e96444-5472-4d71-934e-2cc0fc4c9451",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-supp-spatial-reconvla-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-spatial-crm-norm005-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-spatial-vla-only-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-goal-k2mean-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-goal-reconvla-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-goal-crm-norm005-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-goal-vla-only-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-k2mean-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-goal-adapt-tau025-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-reconvla-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-crm-norm005-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-adapt-tau025-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-vla-only-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-crm-norm005-obj-s46\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-reconvla-obj-s46\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-crm-norm005-obj-s45\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-k2mean-s44\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval-supp-long-reconvla-s44\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 18, \\\"total\\\": 18, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.3885}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-spatial-reconvla-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-spatial-crm-norm005-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-spatial-vla-only-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-k2mean-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-reconvla-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-crm-norm005-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-vla-only-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-k2mean-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-goal-adapt-tau025-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-reconvla-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-crm-norm005-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-adapt-tau025-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-vla-only-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-crm-norm005-obj-s46\": {\"status\": \"RUNNING\"}, \"eval-supp-reconvla-obj-s46\": {\"status\": \"RUNNING\"}, \"eval-supp-crm-norm005-obj-s45\": {\"status\": \"RUNNING\"}, \"eval-supp-long-k2mean-s44\": {\"status\": \"RUNNING\"}, \"eval-supp-long-reconvla-s44\": {\"status\": \"RUNNING\"}}, \"count\": 18, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.3885}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018WxRStmM4msZVhJMG1ynMS`</summary>
+
+```json
+{
+  "server": "cqa1-32758",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "7ae6bbf4-c459-4b1c-be20-8a9505d184a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B6TnZehwF2f5RX46jkSgMk`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "cb537c29-8bf9-4d7e-a34e-caddeafa7e8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019E5GRVdzc4uEeVqZkHzryK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 23971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2799
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T22:27:31.699Z_
+
+<details><summary>↩ Tool result · `toolu_015az31a7LP4Dv2NVvQMhC71`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-spatial-adapt-tau025-s45\": {\"status\": \"PREPARING\"}, \"eval-pi05-vla-only-long-seed42-r4-std\": {\"status\": \"PREPARING\"}, \"precompute-smolvla-goal-k10\": {\"status\": \"PREPARING\"}, \"precompute-smolvla-spatial-k10\": {\"status\": \"PREPARING\"}, \"precompute-smolvla-object-k10\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed2\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed1\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed0\": {\"status\": \"PREPARING\"}, \"precompute-pi05-long-bjb1-18228\": {\"status\": \"PREPARING\"}, \"precompute-pi05-goal-bjb2-28827-s2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-goal-bjb2-28827-s1\": {\"status\": \"PREPARING\"}, \"precompute-pi05-goal-bjb2-28827-s0\": {\"status\": \"PREPARING\"}, \"eval-smolvla-crm-long-seed44\": {\"status\": \"PREPARING\"}, \"eval-smolvla-crm-long-seed43\": {\"status\": \"PREPARING\"}, \"crm-pipeline-auto\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s6-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s9-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s8-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s7-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s0-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s5-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s4-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s3-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s2-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s1-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s9-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s8-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s7-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s6-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s5-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard9\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard8\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard7\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard6\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard5\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard6\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard5\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard4\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard3\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard1\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard0\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard0\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard9\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard8\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard7\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard6\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard5\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard4\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard3\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard1\": {\"status\": \"PREPARING\"}, \"eval-pi05-baseline-object-seed42-r2\": {\"status\": \"PREPARING\"}, \"eval-random-selection-object-seed42-r3\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed49\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed44\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed43\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed76\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm01-seed77\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm01-seed76\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm005-seed77\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed63-r3\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm005-seed76\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed62-r3\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed78\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed77\": {\"status\": \"PREPARING\"}, \"eval-obs-only-goal-norm02-seed53\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed54\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed54\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed54\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed53\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed53\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed52\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed49\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed52\": {\"status\": \"PREPARING\"}, \"eval-vla-only-goal-seed52\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed53\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-goal-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed49\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed48\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed48\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed47\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-seed48\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed49\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p25-seed44\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-seed47\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed49-r2\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed49-r2\": {\"status\": \"PREPARING\"}}, \"count\": 95, \"total\": 95, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.7424}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "bd4aec6a-5ec5-493b-8be3-02f7da01a988",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-supp-spatial-adapt-tau025-s45\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-pi05-vla-only-long-seed42-r4-std\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-smolvla-goal-k10\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-smolvla-spatial-k10\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-smolvla-object-k10\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-long-seed2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-long-seed1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-long-seed0\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-long-bjb1-18228\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-goal-bjb2-28827-s2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-goal-bjb2-28827-s1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-goal-bjb2-28827-s0\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-smolvla-crm-long-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-smolvla-crm-long-seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"crm-pipeline-auto\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s6-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s9-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s8-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s7-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s0-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s5-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s4-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s3-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s2-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s1-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s9-fix\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s8-fix\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s7-fix\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s6-fix\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-s5-fix\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-shard9\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-shard8\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-shard7\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-shard6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-obj-shard5\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard5\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-spatial-shard0\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard0\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard9\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard8\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard7\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard5\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"precompute-pi05-shard1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-pi05-baseline-object-seed42-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-random-selection-object-seed42-r3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-spatial-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-spatial-k10-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-spatial-k10-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm02-k20-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm02-k20-seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm02-k20-seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm003-seed76\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm01-seed77\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm01-seed76\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm005-seed77\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm003-seed63-r3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm005-seed76\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm003-seed62-r3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm003-seed78\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-object-norm003-seed77\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-obs-only-goal-norm02-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-long-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-long-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-spatial-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-long-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-spatial-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-spatial-seed52\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-goal-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-goal-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-long-seed52\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-goal-seed52\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-long-seed53\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-long-seed51\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-goal-seed50\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-long-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-long-seed48\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-goal-seed48\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-goal-seed47\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-spatial-seed48\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-spatial-seed51\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-object-seed51\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-long-seed49\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-adaptive-k-p25-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-crm-spatial-seed47\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-object-seed49-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval-vla-only-spatial-seed49-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}}, \\\"count\\\": 95, \\\"total\\\": 95, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.7424}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval-supp-spatial-adapt-tau025-s45\": {\"status\": \"PREPARING\"}, \"eval-pi05-vla-only-long-seed42-r4-std\": {\"status\": \"PREPARING\"}, \"precompute-smolvla-goal-k10\": {\"status\": \"PREPARING\"}, \"precompute-smolvla-spatial-k10\": {\"status\": \"PREPARING\"}, \"precompute-smolvla-object-k10\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed2\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed1\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed0\": {\"status\": \"PREPARING\"}, \"precompute-pi05-long-bjb1-18228\": {\"status\": \"PREPARING\"}, \"precompute-pi05-goal-bjb2-28827-s2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-goal-bjb2-28827-s1\": {\"status\": \"PREPARING\"}, \"precompute-pi05-goal-bjb2-28827-s0\": {\"status\": \"PREPARING\"}, \"eval-smolvla-crm-long-seed44\": {\"status\": \"PREPARING\"}, \"eval-smolvla-crm-long-seed43\": {\"status\": \"PREPARING\"}, \"crm-pipeline-auto\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s6-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s9-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s8-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s7-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s0-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s5-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s4-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s3-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s2-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s1-r2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s9-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s8-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s7-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s6-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-s5-fix\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard9\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard8\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard7\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard6\": {\"status\": \"PREPARING\"}, \"precompute-pi05-obj-shard5\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard6\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard5\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard4\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard3\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard1\": {\"status\": \"PREPARING\"}, \"precompute-pi05-spatial-shard0\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard0\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard9\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard8\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard7\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard6\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard5\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard4\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard3\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard2\": {\"status\": \"PREPARING\"}, \"precompute-pi05-shard1\": {\"status\": \"PREPARING\"}, \"eval-pi05-baseline-object-seed42-r2\": {\"status\": \"PREPARING\"}, \"eval-random-selection-object-seed42-r3\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed49\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed44\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed43\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed76\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm01-seed77\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm01-seed76\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm005-seed77\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed63-r3\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm005-seed76\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed62-r3\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed78\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm003-seed77\": {\"status\": \"PREPARING\"}, \"eval-obs-only-goal-norm02-seed53\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed54\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed54\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed54\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed53\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed53\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed52\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed49\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed52\": {\"status\": \"PREPARING\"}, \"eval-vla-only-goal-seed52\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed53\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-goal-seed50\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed49\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed48\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed48\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed47\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-seed48\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed49\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p25-seed44\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-seed47\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed49-r2\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed49-r2\": {\"status\": \"PREPARING\"}}, \"count\": 95, \"total\": 95, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.7424}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T22:27:31.732Z_
+
+<details><summary>↩ Tool result · `toolu_01FX3pK1Ms2TNYZifcm4Yp39`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "21e6a3bf-281e-4be4-98cc-0513e8da9755",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T22:27:31.771Z_
+
+<details><summary>↩ Tool result · `toolu_01QjBuPBVQHreH7Z1rrmsdVU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9a8da665-620d-4fbe-b21c-e3642795663a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T22:27:31.806Z_
+
+<details><summary>↩ Tool result · `toolu_018WxRStmM4msZVhJMG1ynMS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "16a0aebe-0e2a-4ca7-b1ee-f01f7dd6c50d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T22:27:31.850Z_
+
+<details><summary>↩ Tool result · `toolu_01B6TnZehwF2f5RX46jkSgMk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "99cc6127-9f3c-497d-bf34-a0ea23791ead",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+ssh_read_only doesn't allow pipe characters. I need to use ssh_execute for the process listing, or use a simpler command without pipes. Let me use ssh_execute to run the combined commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "7a5a95c8-62d4-4393-87e7-0c0f80bdf804",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyfTPquCZGsPTbCbUGfSic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4322,
+      "cache_read_input_tokens": 26770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+ssh_read_only 不允许管道符，改用 ssh_execute 探测所有 4 台服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "468f69e1-5457-44b3-9944-bfcd6aace956",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyfTPquCZGsPTbCbUGfSic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4322,
+      "cache_read_input_tokens": 26770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01J2BAd51LDDSpSp4ZpBoSy4`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep; echo \"---NVIDIA---\"; nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---TMUX---\"; tmux ls 2>/dev/null || echo \"NO_TMUX\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "2287a4e1-cbde-4cd2-83fd-9d4bce108a33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyfTPquCZGsPTbCbUGfSic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4322,
+      "cache_read_input_tokens": 26770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T22:27:43.145Z_
+
+<details><summary>↩ Tool result · `toolu_01J2BAd51LDDSpSp4ZpBoSy4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     102924  0.0  0.0   6232  3940 ?        Ss   04:11   0:00 tmux new-session -d -s eval-crm-obj-s46 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_crm_obj_s46.log\\nroot     102925  0.0  0.0   4364  3284 pts/0    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_crm_obj_s46.log\\nroot     102927  358  0.9 60194128 9617928 pts/0 Rl+ 04:11 489:46 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     103126  0.0  0.0   4364  3192 pts/1    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_long_vla_s45.log\\nroot     103128  382  1.0 66990220 11144412 pts/1 Rl+ 04:11 522:20 python -u src/evaluate.py --benchmark long --mode vla_only --seed 45 --n_rollouts 20 --K 1\\nroot     103395  0.0  0.0   4364  3260 pts/2    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_adapt_s45.log\\nroot     103397  371  1.0 67047208 11158216 pts/2 Rl+ 04:11 506:57 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\nroot     103673  0.0  0.0   4364  3172 pts/3    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_crm_s45.log\\nroot     103675  363  1.0 67541672 11231372 pts/3 Rl+ 04:11 495:53 python -u src/evaluate.py --benchmark long --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\nroot     103940  0.0  0.0   4364  3192 pts/4    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_reconvla_s45.log\\nroot     103942  363  1.1 69181016 12190640 pts/4 Rl+ 04:11 495:51 python -u src/evaluate.py --benchmark long --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\n---NVIDIA---\\n102927, GPU-220671b6-4e9c-db2d-1361-6ed090a1f3af, 1989 MiB\\n103128, GPU-ade291cb-7e13-f292-1714-09ef80919436, 3430 MiB\\n103397, GPU-4f00bf04-f4ff-96b6-3f56-723337f44abf, 3436 MiB\\n103675, GPU-00ae24f3-53b1-cd05-f561-fe7adbb64e72, 3530 MiB\\n103942, GPU-563702d3-df96-d375-0303-c9b9f202bdd2, 4342 MiB\\n---TMUX---\\neval-crm-obj-s46: 1 windows (created Sun May 24 04:11:16 2026)\\neval-long-adapt-s45: 1 windows (created Sun May 24 04:11:20 2026)\\neval-long-crm-s45: 1 windows (created Sun May 24 04:11:22 2026)\\neval-long-reconvla-s45: 1 windows (created Sun May 24 04:11:24 2026)\\neval-long-vla-s45: 1 windows (created Sun May 24 04:11:18 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "fb9e16c8-e1bb-4f1c-bbf2-6b30d544f446",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     102924  0.0  0.0   6232  3940 ?        Ss   04:11   0:00 tmux new-session -d -s eval-crm-obj-s46 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_crm_obj_s46.log\\\\nroot     102925  0.0  0.0   4364  3284 pts/0    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_crm_obj_s46.log\\\\nroot     102927  358  0.9 60194128 9617928 pts/0 Rl+ 04:11 489:46 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\nroot     103126  0.0  0.0   4364  3192 pts/1    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_long_vla_s45.log\\\\nroot     103128  382  1.0 66990220 11144412 pts/1 Rl+ 04:11 522:20 python -u src/evaluate.py --benchmark long --mode vla_only --seed 45 --n_rollouts 20 --K 1\\\\nroot     103395  0.0  0.0   4364  3260 pts/2    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_adapt_s45.log\\\\nroot     103397  371  1.0 67047208 11158216 pts/2 Rl+ 04:11 506:57 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\\\nroot     103673  0.0  0.0   4364  3172 pts/3    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_crm_s45.log\\\\nroot     103675  363  1.0 67541672 11231372 pts/3 Rl+ 04:11 495:53 python -u src/evaluate.py --benchmark long --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\\\nroot     103940  0.0  0.0   4364  3192 pts/4    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_reconvla_s45.log\\\\nroot     103942  363  1.1 69181016 12190640 pts/4 Rl+ 04:11 495:51 python -u src/evaluate.py --benchmark long --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\\\n---NVIDIA---\\\\n102927, GPU-220671b6-4e9c-db2d-1361-6ed090a1f3af, 1989 MiB\\\\n103128, GPU-ade291cb-7e13-f292-1714-09ef80919436, 3430 MiB\\\\n103397, GPU-4f00bf04-f4ff-96b6-3f56-723337f44abf, 3436 MiB\\\\n103675, GPU-00ae24f3-53b1-cd05-f561-fe7adbb64e72, 3530 MiB\\\\n103942, GPU-563702d3-df96-d375-0303-c9b9f202bdd2, 4342 MiB\\\\n---TMUX---\\\\neval-crm-obj-s46: 1 windows (created Sun May 24 04:11:16 2026)\\\\neval-long-adapt-s45: 1 windows (created Sun May 24 04:11:20 2026)\\\\neval-long-crm-s45: 1 windows (created Sun May 24 04:11:22 2026)\\\\neval-long-reconvla-s45: 1 windows (created Sun May 24 04:11:24 2026)\\\\neval-long-vla-s45: 1 windows (created Sun May 24 04:11:18 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     102924  0.0  0.0   6232  3940 ?        Ss   04:11   0:00 tmux new-session -d -s eval-crm-obj-s46 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_crm_obj_s46.log\\nroot     102925  0.0  0.0   4364  3284 pts/0    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_crm_obj_s46.log\\nroot     102927  358  0.9 60194128 9617928 pts/0 Rl+ 04:11 489:46 python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 46 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     103126  0.0  0.0   4364  3192 pts/1    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark long --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_long_vla_s45.log\\nroot     103128  382  1.0 66990220 11144412 pts/1 Rl+ 04:11 522:20 python -u src/evaluate.py --benchmark long --mode vla_only --seed 45 --n_rollouts 20 --K 1\\nroot     103395  0.0  0.0   4364  3260 pts/2    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_adapt_s45.log\\nroot     103397  371  1.0 67047208 11158216 pts/2 Rl+ 04:11 506:57 python -u src/evaluate.py --benchmark long --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\nroot     103673  0.0  0.0   4364  3172 pts/3    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_crm_s45.log\\nroot     103675  363  1.0 67541672 11231372 pts/3 Rl+ 04:11 495:53 python -u src/evaluate.py --benchmark long --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\nroot     103940  0.0  0.0   4364  3192 pts/4    Ss+  04:11   0:00 bash -c CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee /tmp/eval_long_reconvla_s45.log\\nroot     103942  363  1.1 69181016 12190640 pts/4 Rl+ 04:11 495:51 python -u src/evaluate.py --benchmark long --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\n---NVIDIA---\\n102927, GPU-220671b6-4e9c-db2d-1361-6ed090a1f3af, 1989 MiB\\n103128, GPU-ade291cb-7e13-f292-1714-09ef80919436, 3430 MiB\\n103397, GPU-4f00bf04-f4ff-96b6-3f56-723337f44abf, 3436 MiB\\n103675, GPU-00ae24f3-53b1-cd05-f561-fe7adbb64e72, 3530 MiB\\n103942, GPU-563702d3-df96-d375-0303-c9b9f202bdd2, 4342 MiB\\n---TMUX---\\neval-crm-obj-s46: 1 windows (created Sun May 24 04:11:16 2026)\\neval-long-adapt-s45: 1 windows (created Sun May 24 04:11:20 2026)\\neval-long-crm-s45: 1 windows (created Sun May 24 04:11:22 2026)\\neval-long-reconvla-s45: 1 windows (created Sun May 24 04:11:24 2026)\\neval-long-vla-s45: 1 windows (created Sun May 24 04:11:18 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JujXYCcCmjjdrJozethXHW`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep; echo \"---NVIDIA---\"; nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---TMUX---\"; tmux ls 2>/dev/null || echo \"NO_TMUX\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "2dbdfa35-8f02-484c-bdff-e25d0b44bf1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyfTPquCZGsPTbCbUGfSic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4322,
+      "cache_read_input_tokens": 26770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T22:27:44.503Z_
+
+<details><summary>↩ Tool result · `toolu_01JujXYCcCmjjdrJozethXHW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     849124  0.0  0.0   6312  3968 ?        Ss   01:26   0:00 tmux new-session -d -s eval-supp-adapt-tau025-obj-s45 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-obj-s45.log\\nroot     849671  0.0  0.0   4364  3164 pts/3    Ss+  01:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode reconvla --seed 44 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s44.log\\nroot     849677  566  0.9 60629204 10344556 pts/3 Rl+ 01:26 1707:08 python -u src/evaluate.py --benchmark long --mode reconvla --seed 44 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\nroot     850276  0.0  0.0   4364  3152 pts/5    Ss+  01:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-long-k2mean-s44.log\\nroot     850410  573  0.9 60554476 10110384 pts/5 Rl+ 01:26 1726:33 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean\\nroot     924224  0.0  0.0   4364  3076 pts/0    Ss+  04:19   0:00 bash -c CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json 2>&1 | tee /tmp/eval_long_k2mean_s45.log\\nroot     924226  556  1.1 69156068 11857592 pts/0 Rl+ 04:19 710:42 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json\\nroot     926764  0.0  0.0   4364  3228 pts/1    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_goal_vla_s45.log\\nroot     926766  571  0.7 58986816 7739248 pts/1 Rl+ 04:27 685:58 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 45 --n_rollouts 20 --K 1\\nroot     927028  0.0  0.0   4364  3184 pts/2    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_goal_crm_s45.log\\nroot     927030  544  0.7 59366704 7778420 pts/2 Rl+ 04:27 652:59 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     927235  0.0  0.0   4364  3216 pts/4    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_goal_reconvla_s45.log\\nroot     927237  542  0.7 59034228 7775268 pts/4 Rl+ 04:27 650:13 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\n---NVIDIA---\\n926766, GPU-d7423c53-447e-0c0f-dd10-076e4989d991, 1876 MiB\\n927030, GPU-3ca0dfcc-ade3-2eb8-0f77-59f6aae6ac44, 1976 MiB\\n927237, GPU-cd6008a7-b242-51e0-5f10-49dfd6d5651d, 1938 MiB\\n849677, GPU-a0d22891-1964-0f75-4962-81994416abaf, 1912 MiB\\n924226, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 4284 MiB\\n850410, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 1854 MiB\\n---TMUX---\\neval-goal-crm-s45: 1 windows (created Sun May 24 04:27:49 2026)\\neval-goal-reconvla-s45: 1 windows (created Sun May 24 04:27:51 2026)\\neval-goal-vla-s45: 1 windows (created Sun May 24 04:27:47 2026)\\neval-long-k2mean-s45: 1 windows (created Sun May 24 04:19:55 2026)\\neval-supp-long-k2mean-s44: 1 windows (created Sun May 24 01:26:36 2026)\\neval-supp-long-reconvla-s44: 1 windows (created Sun May 24 01:26:33 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "1d906b40-28e5-4af7-9584-d813ab5bc96a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     849124  0.0  0.0   6312  3968 ?        Ss   01:26   0:00 tmux new-session -d -s eval-supp-adapt-tau025-obj-s45 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-obj-s45.log\\\\nroot     849671  0.0  0.0   4364  3164 pts/3    Ss+  01:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode reconvla --seed 44 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s44.log\\\\nroot     849677  566  0.9 60629204 10344556 pts/3 Rl+ 01:26 1707:08 python -u src/evaluate.py --benchmark long --mode reconvla --seed 44 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\\\nroot     850276  0.0  0.0   4364  3152 pts/5    Ss+  01:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-long-k2mean-s44.log\\\\nroot     850410  573  0.9 60554476 10110384 pts/5 Rl+ 01:26 1726:33 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean\\\\nroot     924224  0.0  0.0   4364  3076 pts/0    Ss+  04:19   0:00 bash -c CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json 2>&1 | tee /tmp/eval_long_k2mean_s45.log\\\\nroot     924226  556  1.1 69156068 11857592 pts/0 Rl+ 04:19 710:42 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json\\\\nroot     926764  0.0  0.0   4364  3228 pts/1    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_goal_vla_s45.log\\\\nroot     926766  571  0.7 58986816 7739248 pts/1 Rl+ 04:27 685:58 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 45 --n_rollouts 20 --K 1\\\\nroot     927028  0.0  0.0   4364  3184 pts/2    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_goal_crm_s45.log\\\\nroot     927030  544  0.7 59366704 7778420 pts/2 Rl+ 04:27 652:59 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\nroot     927235  0.0  0.0   4364  3216 pts/4    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_goal_reconvla_s45.log\\\\nroot     927237  542  0.7 59034228 7775268 pts/4 Rl+ 04:27 650:13 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\n---NVIDIA---\\\\n926766, GPU-d7423c53-447e-0c0f-dd10-076e4989d991, 1876 MiB\\\\n927030, GPU-3ca0dfcc-ade3-2eb8-0f77-59f6aae6ac44, 1976 MiB\\\\n927237, GPU-cd6008a7-b242-51e0-5f10-49dfd6d5651d, 1938 MiB\\\\n849677, GPU-a0d22891-1964-0f75-4962-81994416abaf, 1912 MiB\\\\n924226, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 4284 MiB\\\\n850410, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 1854 MiB\\\\n---TMUX---\\\\neval-goal-crm-s45: 1 windows (created Sun May 24 04:27:49 2026)\\\\neval-goal-reconvla-s45: 1 windows (created Sun May 24 04:27:51 2026)\\\\neval-goal-vla-s45: 1 windows (created Sun May 24 04:27:47 2026)\\\\neval-long-k2mean-s45: 1 windows (created Sun May 24 04:19:55 2026)\\\\neval-supp-long-k2mean-s44: 1 windows (created Sun May 24 01:26:36 2026)\\\\neval-supp-long-reconvla-s44: 1 windows (created Sun May 24 01:26:33 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     849124  0.0  0.0   6312  3968 ?        Ss   01:26   0:00 tmux new-session -d -s eval-supp-adapt-tau025-obj-s45 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark object --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-obj-s45.log\\nroot     849671  0.0  0.0   4364  3164 pts/3    Ss+  01:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark long --mode reconvla --seed 44 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-long-reconvla-s44.log\\nroot     849677  566  0.9 60629204 10344556 pts/3 Rl+ 01:26 1707:08 python -u src/evaluate.py --benchmark long --mode reconvla --seed 44 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt\\nroot     850276  0.0  0.0   4364  3152 pts/5    Ss+  01:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean 2>&1 | tee ~/runs/acr-vla-conformal-refinement/eval-supp-long-k2mean-s44.log\\nroot     850410  573  0.9 60554476 10110384 pts/5 Rl+ 01:26 1726:33 python -u src/evaluate.py --benchmark long --mode vla_only --seed 44 --n_rollouts 20 --K 2 --baseline_mode mean\\nroot     924224  0.0  0.0   4364  3076 pts/0    Ss+  04:19   0:00 bash -c CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json 2>&1 | tee /tmp/eval_long_k2mean_s45.log\\nroot     924226  556  1.1 69156068 11857592 pts/0 Rl+ 04:19 710:42 python -u src/evaluate.py --benchmark long --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_long_k2mean_seed45.json\\nroot     926764  0.0  0.0   4364  3228 pts/1    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_goal_vla_s45.log\\nroot     926766  571  0.7 58986816 7739248 pts/1 Rl+ 04:27 685:58 python -u src/evaluate.py --benchmark goal --mode vla_only --seed 45 --n_rollouts 20 --K 1\\nroot     927028  0.0  0.0   4364  3184 pts/2    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_goal_crm_s45.log\\nroot     927030  544  0.7 59366704 7778420 pts/2 Rl+ 04:27 652:59 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     927235  0.0  0.0   4364  3216 pts/4    Ss+  04:27   0:00 bash -c CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_goal_reconvla_s45.log\\nroot     927237  542  0.7 59034228 7775268 pts/4 Rl+ 04:27 650:13 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\n---NVIDIA---\\n926766, GPU-d7423c53-447e-0c0f-dd10-076e4989d991, 1876 MiB\\n927030, GPU-3ca0dfcc-ade3-2eb8-0f77-59f6aae6ac44, 1976 MiB\\n927237, GPU-cd6008a7-b242-51e0-5f10-49dfd6d5651d, 1938 MiB\\n849677, GPU-a0d22891-1964-0f75-4962-81994416abaf, 1912 MiB\\n924226, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 4284 MiB\\n850410, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 1854 MiB\\n---TMUX---\\neval-goal-crm-s45: 1 windows (created Sun May 24 04:27:49 2026)\\neval-goal-reconvla-s45: 1 windows (created Sun May 24 04:27:51 2026)\\neval-goal-vla-s45: 1 windows (created Sun May 24 04:27:47 2026)\\neval-long-k2mean-s45: 1 windows (created Sun May 24 04:19:55 2026)\\neval-supp-long-k2mean-s44: 1 windows (created Sun May 24 01:26:36 2026)\\neval-supp-long-reconvla-s44: 1 windows (created Sun May 24 01:26:33 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HeJR3XzW2F7Vpr85Z9Mqdm`</summary>
+
+```json
+{
+  "server": "cqa1-32758",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep; echo \"---NVIDIA---\"; nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---TMUX---\"; tmux ls 2>/dev/null || echo \"NO_TMUX\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "00e5fb87-6c28-46c3-b134-c7e795a60ff3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyfTPquCZGsPTbCbUGfSic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4322,
+      "cache_read_input_tokens": 26770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T22:27:46.402Z_
+
+<details><summary>↩ Tool result · `toolu_01HeJR3XzW2F7Vpr85Z9Mqdm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      16395  0.0  0.0   6524  4264 ?        Ss   May23   0:01 tmux new-session -d -s k2mean_spatial_s43 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache python src/evaluate.py --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --mode vla_only --baseline_mode mean --K 2 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_k2mean_spatial_seed43.json 2>&1 | tee logs/eval_k2mean_spatial_seed43.log\\nroot     456785  0.0  0.0   4364  2988 pts/0    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed45.json 2>&1 | tee /tmp/eval_goal_k2mean_s45.log\\nroot     456787  834  0.9 71006388 9587072 pts/0 Rl+ 05:30 479:15 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed45.json\\nroot     456945  0.0  0.0   4364  3072 pts/1    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_spatial_vla_s45.log\\nroot     456947  779  1.0 70115052 10623080 pts/1 Rl+ 05:30 447:17 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1\\nroot     457403  0.0  0.0   4364  3084 pts/3    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_spatial_crm_s45.log\\nroot     457405  771  1.0 70891028 10917344 pts/3 Rl+ 05:30 442:19 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     457483  0.0  0.0   4364  2988 pts/5    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_spatial_reconvla_s45.log\\nroot     457485  802  1.0 70286820 10629596 pts/5 Rl+ 05:30 460:05 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     502816  0.0  0.0   4496  3544 pts/2    Ss+  06:23   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-spatial-adapt-tau025-s45.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-spatial-adapt-tau025-s45.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=4 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log 2>&1\\nroot     502820  0.0  0.0   2800  1040 pts/2    S    06:23   0:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\"\\nroot     502821  645  1.0 77673624 10935940 pts/2 Rl 06:23  24:31 python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\n---NVIDIA---\\n456787, GPU-af367752-8d96-3c4c-dc38-61825cda8b44, 4401 MiB\\n456947, GPU-ba10092b-ae5d-3f64-ca99-577eff7e82fa, 4333 MiB\\n457405, GPU-15afec65-0329-7b90-bab1-71f6cece4e98, 4399 MiB\\n502821, GPU-6387c137-7bb7-0b31-62aa-a9d053c1131b, 6453 MiB\\n457485, GPU-ff8b978d-a2c7-3671-da21-dc8cc894970f, 4365 MiB\\n---TMUX---\\neval-goal-k2mean-s45: 1 windows (created Sun May 24 05:30:19 2026)\\neval-spatial-crm-s45: 1 windows (created Sun May 24 05:30:23 2026)\\neval-spatial-reconvla-s45: 1 windows (created Sun May 24 05:30:25 2026)\\neval-spatial-vla-s45: 1 windows (created Sun May 24 05:30:21 2026)\\neval-supp-spatial-adapt-tau025-s45: 1 windows (created Sun May 24 06:23:58 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "ea9dd3e9-be1a-4909-ad47-9fd011f4ad7e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      16395  0.0  0.0   6524  4264 ?        Ss   May23   0:01 tmux new-session -d -s k2mean_spatial_s43 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache python src/evaluate.py --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --mode vla_only --baseline_mode mean --K 2 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_k2mean_spatial_seed43.json 2>&1 | tee logs/eval_k2mean_spatial_seed43.log\\\\nroot     456785  0.0  0.0   4364  2988 pts/0    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed45.json 2>&1 | tee /tmp/eval_goal_k2mean_s45.log\\\\nroot     456787  834  0.9 71006388 9587072 pts/0 Rl+ 05:30 479:15 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed45.json\\\\nroot     456945  0.0  0.0   4364  3072 pts/1    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_spatial_vla_s45.log\\\\nroot     456947  779  1.0 70115052 10623080 pts/1 Rl+ 05:30 447:17 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1\\\\nroot     457403  0.0  0.0   4364  3084 pts/3    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_spatial_crm_s45.log\\\\nroot     457405  771  1.0 70891028 10917344 pts/3 Rl+ 05:30 442:19 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\nroot     457483  0.0  0.0   4364  2988 pts/5    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_spatial_reconvla_s45.log\\\\nroot     457485  802  1.0 70286820 10629596 pts/5 Rl+ 05:30 460:05 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\nroot     502816  0.0  0.0   4496  3544 pts/2    Ss+  06:23   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-spatial-adapt-tau025-s45.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval-supp-spatial-adapt-tau025-s45.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=4 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log 2>&1\\\\nroot     502820  0.0  0.0   2800  1040 pts/2    S    06:23   0:00 timeout 43200 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\\\\"\\\\nroot     502821  645  1.0 77673624 10935940 pts/2 Rl 06:23  24:31 python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\n---NVIDIA---\\\\n456787, GPU-af367752-8d96-3c4c-dc38-61825cda8b44, 4401 MiB\\\\n456947, GPU-ba10092b-ae5d-3f64-ca99-577eff7e82fa, 4333 MiB\\\\n457405, GPU-15afec65-0329-7b90-bab1-71f6cece4e98, 4399 MiB\\\\n502821, GPU-6387c137-7bb7-0b31-62aa-a9d053c1131b, 6453 MiB\\\\n457485, GPU-ff8b978d-a2c7-3671-da21-dc8cc894970f, 4365 MiB\\\\n---TMUX---\\\\neval-goal-k2mean-s45: 1 windows (created Sun May 24 05:30:19 2026)\\\\neval-spatial-crm-s45: 1 windows (created Sun May 24 05:30:23 2026)\\\\neval-spatial-reconvla-s45: 1 windows (created Sun May 24 05:30:25 2026)\\\\neval-spatial-vla-s45: 1 windows (created Sun May 24 05:30:21 2026)\\\\neval-supp-spatial-adapt-tau025-s45: 1 windows (created Sun May 24 06:23:58 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root      16395  0.0  0.0   6524  4264 ?        Ss   May23   0:01 tmux new-session -d -s k2mean_spatial_s43 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache python src/evaluate.py --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --mode vla_only --baseline_mode mean --K 2 --benchmark spatial --seed 43 --n_rollouts 20 --output_file logs/eval_k2mean_spatial_seed43.json 2>&1 | tee logs/eval_k2mean_spatial_seed43.log\\nroot     456785  0.0  0.0   4364  2988 pts/0    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed45.json 2>&1 | tee /tmp/eval_goal_k2mean_s45.log\\nroot     456787  834  0.9 71006388 9587072 pts/0 Rl+ 05:30 479:15 python -u src/evaluate.py --benchmark goal --mode vla_only --baseline_mode mean --K 2 --seed 45 --n_rollouts 20 --output_file logs/eval_goal_k2mean_seed45.json\\nroot     456945  0.0  0.0   4364  3072 pts/1    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1 2>&1 | tee /tmp/eval_spatial_vla_s45.log\\nroot     456947  779  1.0 70115052 10623080 pts/1 Rl+ 05:30 447:17 python -u src/evaluate.py --benchmark spatial --mode vla_only --seed 45 --n_rollouts 20 --K 1\\nroot     457403  0.0  0.0   4364  3084 pts/3    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_spatial_crm_s45.log\\nroot     457405  771  1.0 70891028 10917344 pts/3 Rl+ 05:30 442:19 python -u src/evaluate.py --benchmark spatial --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     457483  0.0  0.0   4364  2988 pts/5    Ss+  05:30   0:00 bash -c CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee /tmp/eval_spatial_reconvla_s45.log\\nroot     457485  802  1.0 70286820 10629596 pts/5 Rl+ 05:30 460:05 python -u src/evaluate.py --benchmark spatial --mode reconvla --seed 45 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\nroot     502816  0.0  0.0   4496  3544 pts/2    Ss+  06:23   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-supp-spatial-adapt-tau025-s45.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval-supp-spatial-adapt-tau025-s45.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=4 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\"'; } > ~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log 2>&1\\nroot     502820  0.0  0.0   2800  1040 pts/2    S    06:23   0:00 timeout 43200 env bash -c bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\"\\nroot     502821  645  1.0 77673624 10935940 pts/2 Rl 06:23  24:31 python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\n---NVIDIA---\\n456787, GPU-af367752-8d96-3c4c-dc38-61825cda8b44, 4401 MiB\\n456947, GPU-ba10092b-ae5d-3f64-ca99-577eff7e82fa, 4333 MiB\\n457405, GPU-15afec65-0329-7b90-bab1-71f6cece4e98, 4399 MiB\\n502821, GPU-6387c137-7bb7-0b31-62aa-a9d053c1131b, 6453 MiB\\n457485, GPU-ff8b978d-a2c7-3671-da21-dc8cc894970f, 4365 MiB\\n---TMUX---\\neval-goal-k2mean-s45: 1 windows (created Sun May 24 05:30:19 2026)\\neval-spatial-crm-s45: 1 windows (created Sun May 24 05:30:23 2026)\\neval-spatial-reconvla-s45: 1 windows (created Sun May 24 05:30:25 2026)\\neval-spatial-vla-s45: 1 windows (created Sun May 24 05:30:21 2026)\\neval-supp-spatial-adapt-tau025-s45: 1 windows (created Sun May 24 06:23:58 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YJWEXoMGBtpZKQnLZrUmkN`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "ps aux --no-header -w -w | grep 'python.*evaluate' | grep -v grep; echo \"---NVIDIA---\"; nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---TMUX---\"; tmux ls 2>/dev/null || echo \"NO_TMUX\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "6e5021b8-1bfb-4183-9a58-e8e69d008b96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyfTPquCZGsPTbCbUGfSic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4322,
+      "cache_read_input_tokens": 26770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4322
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T22:27:47.220Z_
+
+<details><summary>↩ Tool result · `toolu_01YJWEXoMGBtpZKQnLZrUmkN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---NVIDIA---\\n---TMUX---\\nNO_TMUX\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "044d34d1-44de-42c5-a67e-e3f555f64343",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---NVIDIA---\\\\n---TMUX---\\\\nNO_TMUX\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---NVIDIA---\\n---TMUX---\\nNO_TMUX\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the results:
+
+**bjb1-32546** - 5 processes running on GPUs 0-4:
+- cuda:0: PID 102927 - benchmark object, mode crm_obs_only, seed 46 → eval-supp-crm-norm005-obj-s46 ✓
+- cuda:1: PID 103128 - benchmark long, mode vla_only, seed 45 → eval-supp-long-vla-only-s45 ✓
+
+
+- cuda:2: PID 103397 - benchmark long, mode adaptive_conformal_crm, seed 45 → eval-supp-long-adapt-tau025-s45 ✓
+- cuda:3: PID 103675 - benchmark long, mode crm_obs_only, seed 45 → eval-supp-long-crm-norm005-s45 ✓
+- cuda:4: PID 103942 - benchmark long, mode reconvla, seed 45 → eval-supp-long-reconvla-s45 ✓
+
+But cuda:5 is empty—eval-supp-goal-adapt-tau025-s45 isn't running.
+
+Now checking the other node, bjb2-28827, which has 6 processes across GPUs 0-5. The goal benchmark variants are running there, though the last one appears to be cut off. Looking back at the GPU 0 process more carefully—there's PID 926766 running the goal vla_only mode, but the tmux session eval-supp-adapt-tau025-obj-s45 doesn't actually have a corresponding Python process executing, just the tmux session itself with PID 849124.
+
+Wait, that experiment isn't even on my list of 18 running tasks. Let me cross-check against the actual task list—the ones I should be tracking are eval-supp-goal-vla-only-s45, eval-supp-goal-crm-norm005-s45, eval-supp-goal-reconvla-s45, and the others under bjb2-28827. So eval-supp-adapt-tau025-obj-s45 must be from a different experiment entirely, not one I'm monitoring.
+
+Now looking at cqa1-32758, I'm seeing 6 processes spread across GPUs 0-5. GPU 0 has the benchmark goal experiment with vla_only mode and K=2, which matches eval-supp-goal-k2mean-s45. GPU 1 is running the spatial benchmark with vla_only mode for seed 45. But when I check the nvidia-smi output, I'm only seeing 5 GPUs listed, and GPU 3 appears to be cut off—let me verify what's actually allocated there.
+
+Looking more carefully at the nvidia-smi data, GPU 3 has PID 457405 running, GPU 4 has PID 502821, and GPU 5 has PID 457485. But GPU 2 is completely missing from the output, which means eval-supp-reconvla-obj-s46 that should be on cuda:2 isn't actually running. The ps output shows processes on CUDA_VISIBLE_DEVICES with indices 0,1,3,5,2,4, but the nvidia-smi output doesn't match up cleanly with what the task expects. I need to check the logs for those two missing experiments and then update the status of the spatial adapt experiment from PREPARING to RUNNING. I should also register cron jobs for all the active processes once I've confirmed their status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9eccd5ae-9bb0-4e3f-a54f-f4d200ccb646",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXREVAT4mdL9537mPWppXf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+发现 bjb2-40593 上没有任何 eval 进程，bjb1-32546 缺少 cuda:5 的进程，cqa1-32758 缺少 cuda:2 的进程。检查这些已完成实验的日志，同时查现有 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "cb0c2a11-8b56-4764-a21f-09b3c108f3be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXREVAT4mdL9537mPWppXf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015LPYCEjbHs8NhcMBivGPAm`</summary>
+
+```json
+{
+  "query": "select:CronList",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "42990aff-6bad-4458-80e9-f6419cc8bbad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXREVAT4mdL9537mPWppXf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T22:28:28.954Z_
+
+<details><summary>↩ Tool result · `toolu_015LPYCEjbHs8NhcMBivGPAm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronList"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "0fa45333-f9f3-462a-a3b2-75246686e058",
+  "tool_use_result": {
+    "matches": [
+      "CronList"
+    ],
+    "query": "select:CronList",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0132HeZTfFx7H4pZEt5wJcGC`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /tmp/eval_goal_adapt_s45.log 2>/dev/null | tail -30; echo \"---ALT---\"; ls ~/runs/acr-vla-conformal-refinement/*goal*adapt* 2>/dev/null; cat ~/runs/acr-vla-conformal-refinement/*goal*adapt*s45* 2>/dev/null | tail -30",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "a50f4c79-ff8a-4853-bd4e-6f839afe34a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXREVAT4mdL9537mPWppXf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T22:28:31.622Z_
+
+<details><summary>↩ Tool result · `toolu_0132HeZTfFx7H4pZEt5wJcGC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 12/15\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 16/20\\n[push_the_plate_to_the_front_of_the_stove] success rate: 80.0% (16/20)\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 1/5\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 2/10\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 6/15\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 10/20\\n[put_the_cream_cheese_in_the_bowl] success rate: 50.0% (10/20)\\n  turn_on_the_stove: rollout 5/20, success so far: 4/5\\n  turn_on_the_stove: rollout 10/20, success so far: 9/10\\n  turn_on_the_stove: rollout 15/20, success so far: 14/15\\n  turn_on_the_stove: rollout 20/20, success so far: 19/20\\n[turn_on_the_stove] success rate: 95.0% (19/20)\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 19/20\\n[put_the_bowl_on_the_plate] success rate: 95.0% (19/20)\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 3/5\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 8/10\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 13/15\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 15/20\\n[put_the_wine_bottle_on_the_rack] success rate: 75.0% (15/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1493, trigger_rate=9.4%\\n[eval] Results saved to logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n---ALT---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "725d2d08-d9b3-4dd3-93f6-52a35ad74c44",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 12/15\\\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 16/20\\\\n[push_the_plate_to_the_front_of_the_stove] success rate: 80.0% (16/20)\\\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 1/5\\\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 2/10\\\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 6/15\\\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 10/20\\\\n[put_the_cream_cheese_in_the_bowl] success rate: 50.0% (10/20)\\\\n  turn_on_the_stove: rollout 5/20, success so far: 4/5\\\\n  turn_on_the_stove: rollout 10/20, success so far: 9/10\\\\n  turn_on_the_stove: rollout 15/20, success so far: 14/15\\\\n  turn_on_the_stove: rollout 20/20, success so far: 19/20\\\\n[turn_on_the_stove] success rate: 95.0% (19/20)\\\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 19/20\\\\n[put_the_bowl_on_the_plate] success rate: 95.0% (19/20)\\\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 3/5\\\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 8/10\\\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 13/15\\\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 15/20\\\\n[put_the_wine_bottle_on_the_rack] success rate: 75.0% (15/20)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\\\n============================================================\\\\n[eval] Conformal CRM stats: mean_unc=0.1493, trigger_rate=9.4%\\\\n[eval] Results saved to logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n---ALT---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  push_the_plate_to_the_front_of_the_stove: rollout 15/20, success so far: 12/15\\n  push_the_plate_to_the_front_of_the_stove: rollout 20/20, success so far: 16/20\\n[push_the_plate_to_the_front_of_the_stove] success rate: 80.0% (16/20)\\n  put_the_cream_cheese_in_the_bowl: rollout 5/20, success so far: 1/5\\n  put_the_cream_cheese_in_the_bowl: rollout 10/20, success so far: 2/10\\n  put_the_cream_cheese_in_the_bowl: rollout 15/20, success so far: 6/15\\n  put_the_cream_cheese_in_the_bowl: rollout 20/20, success so far: 10/20\\n[put_the_cream_cheese_in_the_bowl] success rate: 50.0% (10/20)\\n  turn_on_the_stove: rollout 5/20, success so far: 4/5\\n  turn_on_the_stove: rollout 10/20, success so far: 9/10\\n  turn_on_the_stove: rollout 15/20, success so far: 14/15\\n  turn_on_the_stove: rollout 20/20, success so far: 19/20\\n[turn_on_the_stove] success rate: 95.0% (19/20)\\n  put_the_bowl_on_the_plate: rollout 5/20, success so far: 5/5\\n  put_the_bowl_on_the_plate: rollout 10/20, success so far: 10/10\\n  put_the_bowl_on_the_plate: rollout 15/20, success so far: 15/15\\n  put_the_bowl_on_the_plate: rollout 20/20, success so far: 19/20\\n[put_the_bowl_on_the_plate] success rate: 95.0% (19/20)\\n  put_the_wine_bottle_on_the_rack: rollout 5/20, success so far: 3/5\\n  put_the_wine_bottle_on_the_rack: rollout 10/20, success so far: 8/10\\n  put_the_wine_bottle_on_the_rack: rollout 15/20, success so far: 13/15\\n  put_the_wine_bottle_on_the_rack: rollout 20/20, success so far: 15/20\\n[put_the_wine_bottle_on_the_rack] success rate: 75.0% (15/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1493, trigger_rate=9.4%\\n[eval] Results saved to logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n---ALT---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01L1XacQsXTJ7r2sF19n6BD3`</summary>
+
+```json
+{
+  "server": "cqa1-32758",
+  "command": "cat /tmp/eval_reconvla_obj_s46.log 2>/dev/null | tail -30; echo \"---ALT---\"; ls ~/runs/acr-vla-conformal-refinement/*reconvla*obj*s46* 2>/dev/null; cat ~/runs/acr-vla-conformal-refinement/*reconvla*obj*s46* 2>/dev/null | tail -30; echo \"---ALT2---\"; find /tmp -name '*reconvla*obj*s46*' -o -name '*obj*s46*reconvla*' 2>/dev/null | head -5",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "dcbc1218-1d3f-4c23-8a8c-57db42b68f7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXREVAT4mdL9537mPWppXf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T22:28:34.133Z_
+
+<details><summary>↩ Tool result · `toolu_01L1XacQsXTJ7r2sF19n6BD3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (reconvla): 80.0% (160/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_reconvla_seed46.json\\n---ALT---\\n---ALT2---\\n/tmp/eval_reconvla_obj_s46.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "08790558-6363-42dd-8161-a719ec8a1129",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n\\\\n============================================================\\\\nOverall success rate (reconvla): 80.0% (160/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_reconvla_seed46.json\\\\n---ALT---\\\\n---ALT2---\\\\n/tmp/eval_reconvla_obj_s46.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 13/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 17/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 85.0% (17/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 75.0% (15/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (reconvla): 80.0% (160/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_reconvla_seed46.json\\n---ALT---\\n---ALT2---\\n/tmp/eval_reconvla_obj_s46.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TUSZF4yoUVnCFmaPvJoMWX`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /tmp/eval_crm_obj_s45.log 2>/dev/null | tail -30; echo \"---ALT---\"; ls ~/runs/acr-vla-conformal-refinement/*crm*obj*s45* 2>/dev/null; cat ~/runs/acr-vla-conformal-refinement/*crm*obj*s45* 2>/dev/null | tail -30; echo \"---ALT2---\"; find /tmp -name '*eval*crm*obj*s45*' -o -name '*obj*s45*' 2>/dev/null | head -5; echo \"---ALT3---\"; ls /tmp/eval*.log 2>/dev/null",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "f01b7ebe-8dc7-4f85-b85b-8c15945b7196",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXREVAT4mdL9537mPWppXf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 31092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T22:28:35.913Z_
+
+<details><summary>↩ Tool result · `toolu_01TUSZF4yoUVnCFmaPvJoMWX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 5/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 9/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 76.5% (153/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_obs_only_norm0.05_seed45.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n---ALT---\\n---ALT2---\\n/tmp/eval_obj_adapt_s45.log\\n/tmp/eval_obj_adapt_s45_r2.log\\n/tmp/eval_crm_obj_s45.log\\n---ALT3---\\n/tmp/eval_clean.log\\n/tmp/eval_crm_obj_s45.log\\n/tmp/eval_full.log\\n/tmp/eval_obj_adapt_s45.log\\n/tmp/eval_obj_adapt_s45_r2.log\\n/tmp/eval_pi05_quicktest.log\\n/tmp/eval_spatial.log\\n/tmp/eval_vflip.log\\n/tmp/eval_vla_only.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "c7d7be35-6daa-4569-99fb-b1adecf60786",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 5/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 9/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\\\n\\\\n============================================================\\\\nOverall success rate (crm_obs_only): 76.5% (153/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_crm_obs_only_norm0.05_seed45.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n---ALT---\\\\n---ALT2---\\\\n/tmp/eval_obj_adapt_s45.log\\\\n/tmp/eval_obj_adapt_s45_r2.log\\\\n/tmp/eval_crm_obj_s45.log\\\\n---ALT3---\\\\n/tmp/eval_clean.log\\\\n/tmp/eval_crm_obj_s45.log\\\\n/tmp/eval_full.log\\\\n/tmp/eval_obj_adapt_s45.log\\\\n/tmp/eval_obj_adapt_s45_r2.log\\\\n/tmp/eval_pi05_quicktest.log\\\\n/tmp/eval_spatial.log\\\\n/tmp/eval_vflip.log\\\\n/tmp/eval_vla_only.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 10/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 14/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 70.0% (14/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 5/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 9/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 13/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 65.0% (13/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 5/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 7/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 11/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 16/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 80.0% (16/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 4/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 9/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 14/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 18/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 90.0% (18/20)\\n\\n============================================================\\nOverall success rate (crm_obs_only): 76.5% (153/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_crm_obs_only_norm0.05_seed45.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n---ALT---\\n---ALT2---\\n/tmp/eval_obj_adapt_s45.log\\n/tmp/eval_obj_adapt_s45_r2.log\\n/tmp/eval_crm_obj_s45.log\\n---ALT3---\\n/tmp/eval_clean.log\\n/tmp/eval_crm_obj_s45.log\\n/tmp/eval_full.log\\n/tmp/eval_obj_adapt_s45.log\\n/tmp/eval_obj_adapt_s45_r2.log\\n/tmp/eval_pi05_quicktest.log\\n/tmp/eval_spatial.log\\n/tmp/eval_vflip.log\\n/tmp/eval_vla_only.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I found 3 completed experiments:
+
+1. **eval-supp-goal-adapt-tau025-s45** (bjb1-32546:cuda:5) - DONE, SR = 81.0% (162/200), mode adaptive_conformal_crm
+2. **eval-supp-reconvla-obj-s46** (cqa1-32758:cuda:2) - DONE, SR = 80.0% (160/200), mode reconvla
+3. **eval-supp-crm-norm005-obj-s45** (bjb2-40593:cuda:0) - DONE, SR = 76.5% (153/200), mode crm_obs_only
+
+
+Now I need to mark those three as complete, transition the spatial adaptation experiment to running, and set up monitoring for the 15 remaining experiments. Let me organize the active runs by their host machines and track their process IDs. I'm noticing the wrapper PID for that spatial adaptation task is what's listed in the registry, so I'll use that. Now I need to batch update the three completed experiments to DONE status and mark the spatial adaptation one as RUNNING, then register all sixteen cron jobs. I should be careful about the update_registry requirements for the DONE transition—it looks like I'll need to ensure checkpoint and log paths are set before making those status changes. I need to figure out the right sequence for updating these experiments. The constraint is that transitioning to DONE requires checkpoint_path and log_path to be set, so I should try updating status directly with the spec parameter containing log_path, rather than making multiple sequential calls. Let me just attempt the straightforward approach and see what works. I'm realizing I can set status to DONE directly with spec containing the log_path and checkpoint_path, which would let me batch everything more efficiently. Let me reconsider the function signatures to see if I can combine these operations. spec` parameter is described as "Experiment provenance metadata. Required for RUNNING transition." So it might only be needed for RUNNING transition. For DONE, the fields must be "previously set" or "via spec".
+
+I'm going to batch the independent operations together. For the 3 completed experiments, I can parallelize setting their conclusions, metrics, and log paths. Then I'll update the spatial-adapt experiment to RUNNING status, and register all 16 crons in the same batch since they're all independent. After that first batch completes, I'll transition the 3 experiments to DONE status in a second batch.
+
+For the specific experiments, I'm setting the success rates and metrics for eval-supp-goal-adapt-tau025-s45 at 81% success rate with 162 successes out of 200, and eval-supp-reconvla-obj-s46 at 80% success rate with 160 successes out of 200, along with their respective log file paths.
+
+I'm also capturing eval-supp-crm-norm005-obj-s45 with a 76.5% success rate, 153 successes out of 200, and its log path.
+
+Now I'm organizing this into two batches: the first will handle all the conclusion, metrics, and log path updates along with the status transitions and cron registrations, then the second batch will mark all three experiments as DONE.
+
+I need to figure out how to set the log_path field—it's not explicitly listed as a supported field in update_registry, but the documentation mentions it needs to be set when transitioning to DONE status, possibly through the spec parameter rather than as a direct field update.
+
+Let me take a practical approach and batch these operations together: I'll update conclusion and metrics first, then transition the status to DONE while passing the spec with checkpoint_path and log_path. For the eval experiments, checkpoint_path should reference the model being evaluated. Now I'm gathering the actual process PIDs for the cron jobs across the different systems—bjb1, bjb2-28827, and cqa1—so I can include those in the batch update.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "2e0b474a-06be-4a19-8658-ea7ed460bea9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+3 个实验已完成（进程已退出），15 个仍在运行，1 个 PREPARING 实际在跑。开始批量更新 registry 和注册 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "2d4335dd-ef01-4a8e-aaca-359830d2fc5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BeUd8wLxhdJBy1Uxn1LMSq`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s45",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "458c6898-ad53-4ccf-bc73-361a3a7c6da5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UhznfZQNGDW8XEspmDFUdV`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-reconvla-obj-s46",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "ad4d9b6b-91b0-4c39-95af-a1726c327d43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Cmp2PbGvRzTJH4njvh8WFV`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s45",
+  "field": "conclusion",
+  "value": "success",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "98fa4c67-5e33-438c-bc4d-925c78500e28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YHQsPr58hynb265apR4zML`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s45",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.81,
+    "successes": 162,
+    "total": 200,
+    "trigger_rate": 0.094,
+    "mean_unc": 0.1493
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "a30ce878-f5a8-46f9-a502-2cb4a3f6e4d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KcHrDH5T3ZUg8nmbsoYu1a`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-reconvla-obj-s46",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.8,
+    "successes": 160,
+    "total": 200
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "7b7a4fd7-72aa-40d7-8ec5-de0e3700353f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HeG9QRzzLAztiugyYwpULo`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s45",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.765,
+    "successes": 153,
+    "total": 200
+  },
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "e4f1a748-3880-4bce-b9fc-8a535b68ca71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T22:29:45.915Z_
+
+<details><summary>↩ Tool result · `toolu_01BeUd8wLxhdJBy1Uxn1LMSq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:29:43.763Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.8467}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9bd11860-0a8e-48bd-9344-4fb23e8c84fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-adapt-tau025-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T20:13:06.213Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:29:43.763Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Goal\\\", \\\"checkpoint_source\\\": \\\"crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_goal_adapt_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.8467}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:29:43.763Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.8467}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ApE782jnktBt2HYh7jYUgX`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-adapt-tau025-s45",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "cqa1-32758",
+    "pid": "502816"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "fb27d26e-6be4-47fc-be0e-f1b426c5a8e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01DQducDrmTovbt1VCG1zck5`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s46",
+  "server": "bjb1-32546",
+  "pid": "102927",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "8da164f9-561c-459a-b597-dd46f9834303",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T22:29:51.748Z_
+
+<details><summary>↩ Tool result · `toolu_01UhznfZQNGDW8XEspmDFUdV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:29:49.168Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.8189}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "5e9623b3-748e-48c3-968b-cd121a10f73e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-reconvla-obj-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:41:19.029Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:29:49.168Z\\\", \\\"hypothesis\\\": \\\"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"seed\\\": 46, \\\"model_name\\\": \\\"SmolVLA-Reconvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_reconvla_obj_s46.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.8189}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:29:49.168Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.8189}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_018eNpiTf7WUVYkmm76ikj9g`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-vla-only-s45",
+  "server": "bjb1-32546",
+  "pid": "103128",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "ab311f26-081c-480a-bad8-f821e2871f6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01711GezBAc2vXJdciW8yDpw`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-adapt-tau025-s45",
+  "server": "bjb1-32546",
+  "pid": "103397",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "f6fcf43f-607f-4c75-94cc-0616aa54f8d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01D1eWxMmPB1FpvVfi3j3PZe`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-crm-norm005-s45",
+  "server": "bjb1-32546",
+  "pid": "103675",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "a0435049-d41b-4312-b066-e14db87236b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_019RAiJgm9m7dWZksZ4WguJL`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-reconvla-s45",
+  "server": "bjb1-32546",
+  "pid": "103942",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "6b2853db-1dc2-4155-aacd-f29ab604420d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01UEPDboNxdPaonuBbfU26Pk`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-vla-only-s45",
+  "server": "bjb2-28827",
+  "pid": "926766",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "f956be49-cfdc-4320-8fa6-a5709ab1b263",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01474EzES1tAQF6maqSrt2FC`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-crm-norm005-s45",
+  "server": "bjb2-28827",
+  "pid": "927030",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9d90f291-4297-4017-848b-c8ecd1d7e1fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T22:29:58.411Z_
+
+<details><summary>↩ Tool result · `toolu_01Cmp2PbGvRzTJH4njvh8WFV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:29:54.719Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.6498}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "86a1ffab-e7b3-468d-9159-f34f964c42d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-crm-norm005-obj-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:15:28.966Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:29:54.719Z\\\", \\\"hypothesis\\\": \\\"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_crm_obj_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6498}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:29:54.719Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.6498}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01SLQSp6y5jgc6YLQSyRUF16`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-reconvla-s45",
+  "server": "bjb2-28827",
+  "pid": "927237",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "3e5bc250-c139-47a6-bb30-2558898ef05f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01EwBTSfnXXmGc88Fmh1aY5T`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-reconvla-s44",
+  "server": "bjb2-28827",
+  "pid": "849677",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "649b0160-0da7-4c06-bbc3-309dee045f06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01APmFZJd8bpLPLmapCdiJgs`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-k2mean-s45",
+  "server": "bjb2-28827",
+  "pid": "924226",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "5825a861-da01-45c4-b7b5-fc374d871549",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01YGp7JRbEQrWk9Kj38irYfz`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-long-k2mean-s44",
+  "server": "bjb2-28827",
+  "pid": "850410",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "2b448fb0-d2ef-4e82-adcd-41c52c32b7bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01Km1XJfGzmj1U7M2ZKDAUe2`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-k2mean-s45",
+  "server": "cqa1-32758",
+  "pid": "456787",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "3d5336ce-4011-4889-af26-84035010a208",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T22:30:04.047Z_
+
+<details><summary>↩ Tool result · `toolu_01YHQsPr58hynb265apR4zML`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:30:02.086Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"successes\": 162, \"total\": 200, \"trigger_rate\": 0.094, \"mean_unc\": 0.1493}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6201}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "149be027-bd92-49f1-a612-6dc06dfdaaf1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-adapt-tau025-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T20:13:06.213Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:30:02.086Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Goal\\\", \\\"checkpoint_source\\\": \\\"crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_goal_adapt_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"successes\\\": 162, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.094, \\\"mean_unc\\\": 0.1493}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6201}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:30:02.086Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"successes\": 162, \"total\": 200, \"trigger_rate\": 0.094, \"mean_unc\": 0.1493}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6201}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01CDscRtR8M5m3fVDk8C3TKs`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-vla-only-s45",
+  "server": "cqa1-32758",
+  "pid": "456947",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "1003692d-3e77-41c4-a25e-690e0b8f60bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_012zMLBpcbE6USC5dFuqLoLw`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-crm-norm005-s45",
+  "server": "cqa1-32758",
+  "pid": "457405",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "31dd6de8-a0e1-4687-aea6-ac8dac48b3a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01NoxhfMQVonGf2uTy2xcJuc`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-adapt-tau025-s45",
+  "server": "cqa1-32758",
+  "pid": "502816",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "86f0660e-40fe-4661-a3b0-d024750cba3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01VijUxbPeqegstFBGcHvD8N`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-reconvla-s45",
+  "server": "cqa1-32758",
+  "pid": "457485",
+  "project": "acr-vla-conformal-refinement",
+  "interval_seconds": 120
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "fea205d7-041b-4345-8f92-36fa13845247",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BboSNhYmhHGfCXAHTM1FZk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6473,
+      "cache_read_input_tokens": 38728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6473
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-23T22:30:10.301Z_
+
+<details><summary>↩ Tool result · `toolu_01KcHrDH5T3ZUg8nmbsoYu1a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:30:07.692Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.2394}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9be203d1-ca13-4126-94dc-8eaf8fbf433c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-reconvla-obj-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:41:19.029Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:30:07.692Z\\\", \\\"hypothesis\\\": \\\"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"seed\\\": 46, \\\"model_name\\\": \\\"SmolVLA-Reconvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_reconvla_obj_s46.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.2394}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:30:07.692Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.2394}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T22:30:15.839Z_
+
+<details><summary>↩ Tool result · `toolu_01HeG9QRzzLAztiugyYwpULo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:30:13.454Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"successes\": 153, \"total\": 200}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.5194}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "38f4f7db-eb2d-42b7-94af-940239df8793",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-crm-norm005-obj-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:15:28.966Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:30:13.454Z\\\", \\\"hypothesis\\\": \\\"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_crm_obj_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.765, \\\"successes\\\": 153, \\\"total\\\": 200}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5194}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:30:13.454Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"successes\": 153, \"total\": 200}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.5194}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-23T22:30:17.877Z_
+
+<details><summary>↩ Tool result · `toolu_01ApE782jnktBt2HYh7jYUgX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 2.0213}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "d93c73ac-c63a-4ae1-ae0f-b4ac403a61cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0213}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 2.0213}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T22:30:18.027Z_
+
+<details><summary>↩ Tool result · `toolu_01DQducDrmTovbt1VCG1zck5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s46\", \"server\": \"bjb1-32546\", \"pid\": \"102927\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:17.937Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "d10fa895-86d0-4af8-9627-f7b65aa5e768",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-crm-norm005-obj-s46\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"102927\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:17.937Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s46\", \"server\": \"bjb1-32546\", \"pid\": \"102927\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:17.937Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-23T22:30:18.172Z_
+
+<details><summary>↩ Tool result · `toolu_018eNpiTf7WUVYkmm76ikj9g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-vla-only-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103128\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.084Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "0505d803-2ee3-4e78-a347-792f001c2848",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-vla-only-s45\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"103128\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:18.084Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-vla-only-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103128\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.084Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T22:30:18.317Z_
+
+<details><summary>↩ Tool result · `toolu_01711GezBAc2vXJdciW8yDpw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-adapt-tau025-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103397\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.228Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "4596f04a-ca69-40b5-90a0-0cde0f2903d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-adapt-tau025-s45\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"103397\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:18.228Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-adapt-tau025-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103397\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.228Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-23T22:30:18.462Z_
+
+<details><summary>↩ Tool result · `toolu_01D1eWxMmPB1FpvVfi3j3PZe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-crm-norm005-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103675\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.374Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "243fb8ce-f897-4d5b-bd97-abd6e97aaaf2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-crm-norm005-s45\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"103675\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:18.374Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-crm-norm005-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103675\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.374Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T22:30:18.607Z_
+
+<details><summary>↩ Tool result · `toolu_019RAiJgm9m7dWZksZ4WguJL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-reconvla-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103942\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.519Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "eb89817e-d13d-404e-8c10-49935c93d67a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-reconvla-s45\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"pid\\\": \\\"103942\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:18.519Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-reconvla-s45\", \"server\": \"bjb1-32546\", \"pid\": \"103942\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.519Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-23T22:30:18.768Z_
+
+<details><summary>↩ Tool result · `toolu_01UEPDboNxdPaonuBbfU26Pk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-vla-only-s45\", \"server\": \"bjb2-28827\", \"pid\": \"926766\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.670Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "f5cb6512-5f20-4994-9d2d-9cdab05de1f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-vla-only-s45\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"926766\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:18.670Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-vla-only-s45\", \"server\": \"bjb2-28827\", \"pid\": \"926766\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.670Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T22:30:18.947Z_
+
+<details><summary>↩ Tool result · `toolu_01474EzES1tAQF6maqSrt2FC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-crm-norm005-s45\", \"server\": \"bjb2-28827\", \"pid\": \"927030\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.833Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "354028e9-5175-47cb-afed-3179321409ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-crm-norm005-s45\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"927030\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:18.833Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-crm-norm005-s45\", \"server\": \"bjb2-28827\", \"pid\": \"927030\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:18.833Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-23T22:30:19.110Z_
+
+<details><summary>↩ Tool result · `toolu_01SLQSp6y5jgc6YLQSyRUF16`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-reconvla-s45\", \"server\": \"bjb2-28827\", \"pid\": \"927237\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.007Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "517e2de1-a900-449a-b78a-bad97dbb32e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-reconvla-s45\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"927237\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:19.007Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-reconvla-s45\", \"server\": \"bjb2-28827\", \"pid\": \"927237\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.007Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-23T22:30:19.270Z_
+
+<details><summary>↩ Tool result · `toolu_01EwBTSfnXXmGc88Fmh1aY5T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-reconvla-s44\", \"server\": \"bjb2-28827\", \"pid\": \"849677\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.174Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "a3f6ad46-a066-44a1-bb8d-9c6f6eb7308b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-reconvla-s44\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"849677\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:19.174Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-reconvla-s44\", \"server\": \"bjb2-28827\", \"pid\": \"849677\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.174Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-23T22:30:19.430Z_
+
+<details><summary>↩ Tool result · `toolu_01APmFZJd8bpLPLmapCdiJgs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-k2mean-s45\", \"server\": \"bjb2-28827\", \"pid\": \"924226\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.333Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "d9540e0e-5959-46ef-b9bb-a774d5d0d197",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-k2mean-s45\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"924226\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:19.333Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-k2mean-s45\", \"server\": \"bjb2-28827\", \"pid\": \"924226\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.333Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-23T22:30:19.599Z_
+
+<details><summary>↩ Tool result · `toolu_01YGp7JRbEQrWk9Kj38irYfz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-k2mean-s44\", \"server\": \"bjb2-28827\", \"pid\": \"850410\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.496Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "bee295ca-2086-44b5-b60a-4ead9ef7d2c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-long-k2mean-s44\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"pid\\\": \\\"850410\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:19.496Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-long-k2mean-s44\", \"server\": \"bjb2-28827\", \"pid\": \"850410\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.496Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-23T22:30:19.769Z_
+
+<details><summary>↩ Tool result · `toolu_01Km1XJfGzmj1U7M2ZKDAUe2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-k2mean-s45\", \"server\": \"cqa1-32758\", \"pid\": \"456787\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.667Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "9f89908c-4cbd-4188-843c-cd7f86d3dd52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-k2mean-s45\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"pid\\\": \\\"456787\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:19.667Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-goal-k2mean-s45\", \"server\": \"cqa1-32758\", \"pid\": \"456787\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.667Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T22:30:19.938Z_
+
+<details><summary>↩ Tool result · `toolu_01CDscRtR8M5m3fVDk8C3TKs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-vla-only-s45\", \"server\": \"cqa1-32758\", \"pid\": \"456947\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.833Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "b1339c9d-55da-4679-8333-b8a2d71340ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-vla-only-s45\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"pid\\\": \\\"456947\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:19.833Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-vla-only-s45\", \"server\": \"cqa1-32758\", \"pid\": \"456947\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:19.833Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-23T22:30:20.121Z_
+
+<details><summary>↩ Tool result · `toolu_012zMLBpcbE6USC5dFuqLoLw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-crm-norm005-s45\", \"server\": \"cqa1-32758\", \"pid\": \"457405\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:20.004Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "4e231e66-f111-4fca-b126-ae054cecb276",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-crm-norm005-s45\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"pid\\\": \\\"457405\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:20.004Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-crm-norm005-s45\", \"server\": \"cqa1-32758\", \"pid\": \"457405\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:20.004Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-23T22:30:20.288Z_
+
+<details><summary>↩ Tool result · `toolu_01NoxhfMQVonGf2uTy2xcJuc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"server\": \"cqa1-32758\", \"pid\": \"502816\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:20.185Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "2aecd0d7-fb0d-4537-9571-5579c27313bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-adapt-tau025-s45\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"pid\\\": \\\"502816\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:20.185Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"server\": \"cqa1-32758\", \"pid\": \"502816\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:20.185Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-23T22:30:20.466Z_
+
+<details><summary>↩ Tool result · `toolu_01VijUxbPeqegstFBGcHvD8N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-reconvla-s45\", \"server\": \"cqa1-32758\", \"pid\": \"457485\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:20.361Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "cbabd4cf-0929-49f4-bc81-fb1f8bf48697",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-reconvla-s45\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"pid\\\": \\\"457485\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-23T22:30:20.361Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"eval-supp-spatial-reconvla-s45\", \"server\": \"cqa1-32758\", \"pid\": \"457485\", \"wandb_run_id\": null, \"log_path\": null, \"interval_seconds\": 120, \"project\": \"acr-vla-conformal-refinement\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-23T22:30:20.361Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 16 crons registered successfully. The 3 completed experiments had their conclusion and metrics updated. But the PREPARING → RUNNING transition for eval-supp-spatial-adapt-tau025-s45 failed because the allowed transitions from PREPARING are only PENDING or QUEUED.
+
+Let me now handle:
+1. Set status → DONE for the 3 completed experiments
+2. Fix the PREPARING → RUNNING transition for eval-supp-spatial-adapt-tau025-s45
+
+For the DONE transitions, let me try it now. The conclusion and metrics are already set. I need to provide spec with checkpoint_path and log_path.
+
+
+I need to chain the transitions for the stuck experiment—going PREPARING → QUEUED → RUNNING instead of jumping directly. Let me execute the DONE transitions and the PREPARING → QUEUED transition together, then follow up with QUEUED → RUNNING.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "7ac7c44f-2055-4328-a1de-4467303d84d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiWA5b2N89LDtVBktphueM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 46251,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 46251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+16 个 cron 全部注册成功。现在更新 3 个已完成实验为 DONE，并修复 spatial-adapt 的状态转换（需要先到 QUEUED 再到 RUNNING）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "1cb76596-f1bc-4b4b-af26-d8dbc8552def",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiWA5b2N89LDtVBktphueM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 46251,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 46251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TjaGRsPeMsxjBMgCvgXZao`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s45",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "ab1a86a9-88fe-4e89-9f96-fbec823a30fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiWA5b2N89LDtVBktphueM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 46251,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 46251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JJm2ahkdixdDCLpRgfydA8`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-reconvla-obj-s46",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "c6fca713-8d3d-44b2-b375-27c7d32394f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiWA5b2N89LDtVBktphueM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 46251,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 46251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EArkpaEMohJ66J9b3ejGKL`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s45",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "95fcf7c0-6974-4deb-931a-2e6de2549fbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiWA5b2N89LDtVBktphueM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 46251,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 46251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01XhvxDiB4nVKvuGwAvsNfVc`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-adapt-tau025-s45",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "80685446-3664-4d38-afe5-67fef0651b1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WiWA5b2N89LDtVBktphueM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 46251,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 46251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-23T22:30:37.119Z_
+
+<details><summary>↩ Tool result · `toolu_01TjaGRsPeMsxjBMgCvgXZao`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 4.7063}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "0ba77338-e1d4-4a9b-a576-99660283466c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.7063}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 4.7063}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-23T22:30:42.342Z_
+
+<details><summary>↩ Tool result · `toolu_01JJm2ahkdixdDCLpRgfydA8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 5.197}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "086797f3-2b3a-4772-ab49-c5c1ee4f2ba2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.197}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 5.197}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-23T22:30:47.446Z_
+
+<details><summary>↩ Tool result · `toolu_01EArkpaEMohJ66J9b3ejGKL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 5.0796}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "621ca704-cb4a-4f70-be08-6b3bee224183",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.0796}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 5.0796}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-23T22:31:02.718Z_
+
+<details><summary>↩ Tool result · `toolu_01XhvxDiB4nVKvuGwAvsNfVc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T22:23:46.061Z\", \"updated_at\": \"2026-05-23T22:30:52.634Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Spatial suite seed45. Fourth seed extending Spatial Adaptive. 3-seed: 80.8%±1.1%. Fills cqa1 cuda:4 gap.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:4\", \"seed\": 45, \"model_name\": \"SmolVLA+AdaptiveCRM\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 200, \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log\", \"pid\": 502816, \"tmux_session\": \"eval-supp-spatial-adapt-tau025-s45\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.2477}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "831446b7-32f0-4ecb-a802-cdc9afc1f80c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-adapt-tau025-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T22:23:46.061Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:30:52.634Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM tau=0.25 on Spatial suite seed45. Fourth seed extending Spatial Adaptive. 3-seed: 80.8%±1.1%. Fills cqa1 cuda:4 gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+AdaptiveCRM\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Spatial\\\", \\\"checkpoint_source\\\": \\\"crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log\\\", \\\"pid\\\": 502816, \\\"tmux_session\\\": \\\"eval-supp-spatial-adapt-tau025-s45\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.2477}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T22:23:46.061Z\", \"updated_at\": \"2026-05-23T22:30:52.634Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Spatial suite seed45. Fourth seed extending Spatial Adaptive. 3-seed: 80.8%±1.1%. Fills cqa1 cuda:4 gap.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:4\", \"seed\": 45, \"model_name\": \"SmolVLA+AdaptiveCRM\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 200, \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log\", \"pid\": 502816, \"tmux_session\": \"eval-supp-spatial-adapt-tau025-s45\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.2477}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the DONE transitions need checkpoint_path. For eval experiments, there's no output checkpoint, so I'll set it to "N/A" or the evaluation output path. Let me set checkpoint_path first then transition to DONE. And for spatial-adapt, now I need QUEUED → RUNNING.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "66064ffb-2a01-4ef1-bf9b-e0fec83c6b77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KovNJzSyGxv81NkyLYbYgi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 58092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+需要先设 checkpoint_path，然后才能转 DONE。同时把 spatial-adapt 从 QUEUED 转 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "316ab487-eb36-42b4-b30b-45d347680ea4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KovNJzSyGxv81NkyLYbYgi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 58092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TwNEs8HQhr7mN6rs8tR49d`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s45",
+  "field": "checkpoint_path",
+  "value": "N/A (eval only)",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "74fb4636-1765-4ef5-907c-9d63a8d64f89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KovNJzSyGxv81NkyLYbYgi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 58092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DLjhK4BRd8wf5VcZ6ArUgv`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-reconvla-obj-s46",
+  "field": "checkpoint_path",
+  "value": "N/A (eval only)",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "67ecda74-c09c-4237-959b-89fbe3618448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KovNJzSyGxv81NkyLYbYgi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 58092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KqQsG7Tdx3ugx5YjuDLcVN`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s45",
+  "field": "checkpoint_path",
+  "value": "N/A (eval only)",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "e996453e-0400-4c32-9e51-0cb172751685",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KovNJzSyGxv81NkyLYbYgi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 58092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017X47X9CXUQuUnsdSVPkxz5`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-spatial-adapt-tau025-s45",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "acr-vla-conformal-refinement",
+  "spec": {
+    "command": "python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+    "server": "cqa1-32758",
+    "pid": "502816",
+    "data_path": "LIBERO-Spatial",
+    "data_count": 200,
+    "model_name": "SmolVLA+AdaptiveCRM",
+    "seed": 45
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "7a39ee25-bccb-448d-a803-cd5558de10d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KovNJzSyGxv81NkyLYbYgi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 58092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-23T22:31:14.844Z_
+
+<details><summary>↩ Tool result · `toolu_01TwNEs8HQhr7mN6rs8tR49d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:31:12.380Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"successes\": 162, \"total\": 200, \"trigger_rate\": 0.094, \"mean_unc\": 0.1493}, \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.0313}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "71241614-22f2-46de-809d-e10652ca1211",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-adapt-tau025-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T20:13:06.213Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:31:12.380Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Goal\\\", \\\"checkpoint_source\\\": \\\"crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_goal_adapt_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"successes\\\": 162, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.094, \\\"mean_unc\\\": 0.1493}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.0313}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:31:12.380Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"successes\": 162, \"total\": 200, \"trigger_rate\": 0.094, \"mean_unc\": 0.1493}, \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.0313}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-23T22:31:20.175Z_
+
+<details><summary>↩ Tool result · `toolu_01DLjhK4BRd8wf5VcZ6ArUgv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:31:17.711Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.3112}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "b01d2a33-1bd5-4c20-8383-424981bae1ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-reconvla-obj-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:41:19.029Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:31:17.711Z\\\", \\\"hypothesis\\\": \\\"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"seed\\\": 46, \\\"model_name\\\": \\\"SmolVLA-Reconvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_reconvla_obj_s46.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3112}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:31:17.711Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.3112}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-23T22:31:26.729Z_
+
+<details><summary>↩ Tool result · `toolu_01KqQsG7Tdx3ugx5YjuDLcVN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:31:23.624Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"successes\": 153, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.529}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "3e90fe46-cd52-4679-927f-1cac4d89d250",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-crm-norm005-obj-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:15:28.966Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:31:23.624Z\\\", \\\"hypothesis\\\": \\\"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_crm_obj_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.765, \\\"successes\\\": 153, \\\"total\\\": 200}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.529}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:31:23.624Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"successes\": 153, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.529}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-23T22:31:40.086Z_
+
+<details><summary>↩ Tool result · `toolu_017X47X9CXUQuUnsdSVPkxz5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T22:23:46.061Z\", \"updated_at\": \"2026-05-23T22:31:32.024Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Spatial suite seed45. Fourth seed extending Spatial Adaptive. 3-seed: 80.8%±1.1%. Fills cqa1 cuda:4 gap.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:4\", \"seed\": 45, \"model_name\": \"SmolVLA+AdaptiveCRM\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 200, \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log\", \"pid\": \"502816\", \"tmux_session\": \"eval-supp-spatial-adapt-tau025-s45\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.332}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "d078157c-620e-4adc-b755-6697b8f68916",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-spatial-adapt-tau025-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T22:23:46.061Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:31:32.024Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM tau=0.25 on Spatial suite seed45. Fourth seed extending Spatial Adaptive. 3-seed: 80.8%±1.1%. Fills cqa1 cuda:4 gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+AdaptiveCRM\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Spatial\\\", \\\"checkpoint_source\\\": \\\"crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log\\\", \\\"pid\\\": \\\"502816\\\", \\\"tmux_session\\\": \\\"eval-supp-spatial-adapt-tau025-s45\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.332}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-spatial-adapt-tau025-s45\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T22:23:46.061Z\", \"updated_at\": \"2026-05-23T22:31:32.024Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Spatial suite seed45. Fourth seed extending Spatial Adaptive. 3-seed: 80.8%±1.1%. Fills cqa1 cuda:4 gap.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark spatial --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:4\", \"seed\": 45, \"model_name\": \"SmolVLA+AdaptiveCRM\", \"data_path\": \"LIBERO-Spatial\", \"data_count\": 200, \"eval_data\": \"LIBERO-Spatial\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-supp-spatial-adapt-tau025-s45.log\", \"pid\": \"502816\", \"tmux_session\": \"eval-supp-spatial-adapt-tau025-s45\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.332}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, spatial-adapt is now RUNNING. Now I need to transition the 3 completed experiments to DONE. checkpoint_path is set, so the transition should work now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "06ad2e32-e8c1-42bb-a389-45c651c7590e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2afZj2ZDKFQKcofxQWBaZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 59792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+spatial-adapt 已转为 RUNNING。现在把 3 个已完成的实验转为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "1c95a603-1c2b-4548-9eed-13d55c0af497",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2afZj2ZDKFQKcofxQWBaZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 59792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MddvKRtehSpxxr7SHtHHcY`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s45",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "e3d55c44-2a05-45ec-977e-712d9d5b89a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2afZj2ZDKFQKcofxQWBaZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 59792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Trsum7J1fGAbxxZ2Gb4coz`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-reconvla-obj-s46",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "188598d0-e2a4-4efe-93dc-83e9b0d38b35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2afZj2ZDKFQKcofxQWBaZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 59792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RcuCKGGaDPJ2XZwSJ6wLYY`</summary>
+
+```json
+{
+  "exp_id": "eval-supp-crm-norm005-obj-s45",
+  "field": "status",
+  "value": "DONE",
+  "project": "acr-vla-conformal-refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "704c06b8-9c4a-4e95-b27e-09d821355917",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2afZj2ZDKFQKcofxQWBaZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2974,
+      "cache_read_input_tokens": 59792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-23T22:31:56.982Z_
+
+<details><summary>↩ Tool result · `toolu_01MddvKRtehSpxxr7SHtHHcY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:31:49.469Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"successes\": 162, \"total\": 200, \"trigger_rate\": 0.094, \"mean_unc\": 0.1493}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-23T22:31:49.469Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.317}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "5a9be30f-c599-4c0e-9d38-b94721b78802",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-adapt-tau025-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T20:13:06.213Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:31:49.469Z\\\", \\\"hypothesis\\\": \\\"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Goal\\\", \\\"checkpoint_source\\\": \\\"crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_goal_adapt_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.81, \\\"successes\\\": 162, \\\"total\\\": 200, \\\"trigger_rate\\\": 0.094, \\\"mean_unc\\\": 0.1493}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"completed_at\\\": \\\"2026-05-23T22:31:49.469Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.317}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-goal-adapt-tau025-s45\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T20:13:06.213Z\", \"updated_at\": \"2026-05-23T22:31:49.469Z\", \"hypothesis\": \"Adaptive CRM tau=0.25 on Goal suite seed45. Extends Goal Adaptive from 3-seed to 4-seed.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --benchmark goal --mode adaptive_conformal_crm --seed 45 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --K 2 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb1-32546\", \"gpu\": \"cuda:5\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Goal\", \"data_count\": 200, \"eval_data\": \"LIBERO-Goal\", \"checkpoint_source\": \"crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_goal_adapt_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.81, \"successes\": 162, \"total\": 200, \"trigger_rate\": 0.094, \"mean_unc\": 0.1493}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-23T22:31:49.469Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.317}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-23T22:32:08.308Z_
+
+<details><summary>↩ Tool result · `toolu_01Trsum7J1fGAbxxZ2Gb4coz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:31:59.949Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-23T22:31:59.949Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.301}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "a6c00a19-c950-48aa-a727-586837d531d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-reconvla-obj-s46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:41:19.029Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:31:59.949Z\\\", \\\"hypothesis\\\": \\\"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"seed\\\": 46, \\\"model_name\\\": \\\"SmolVLA-Reconvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_reconvla_obj_s46.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.8, \\\"successes\\\": 160, \\\"total\\\": 200}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"completed_at\\\": \\\"2026-05-23T22:31:59.949Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.301}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-reconvla-obj-s46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:41:19.029Z\", \"updated_at\": \"2026-05-23T22:31:59.949Z\", \"hypothesis\": \"Reconvla K=10 argmin on Object suite seed46. Extends Object method coverage for 5-seed variance analysis.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode reconvla --seed 46 --n_rollouts 20 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"seed\": 46, \"model_name\": \"SmolVLA-Reconvla\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_reconvla_obj_s46.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.8, \"successes\": 160, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-23T22:31:59.949Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.301}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-23T22:32:18.815Z_
+
+<details><summary>↩ Tool result · `toolu_01RcuCKGGaDPJ2XZwSJ6wLYY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:32:11.244Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"successes\": 153, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-23T22:32:11.244Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.4881}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "c29d18c7-13f4-40b1-9189-703a3156334c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-crm-norm005-obj-s45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T18:15:28.966Z\\\", \\\"updated_at\\\": \\\"2026-05-23T22:32:11.244Z\\\", \\\"hypothesis\\\": \\\"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"seed\\\": 45, \\\"model_name\\\": \\\"SmolVLA+CRM\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"log_path\\\": \\\"/tmp/eval_crm_obj_s45.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.765, \\\"successes\\\": 153, \\\"total\\\": 200}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"completed_at\\\": \\\"2026-05-23T22:32:11.244Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.4881}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-supp-crm-norm005-obj-s45\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:15:28.966Z\", \"updated_at\": \"2026-05-23T22:32:11.244Z\", \"hypothesis\": \"CRM always-on norm=0.05 on Object suite seed45. Extends Object method coverage for 5-seed Adaptive variance investigation.\", \"spec\": {\"command\": \"python -u src/evaluate.py --benchmark object --mode crm_obs_only --seed 45 --n_rollouts 20 --max_correction_norm 0.05 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"server\": \"bjb2-40593\", \"gpu\": \"cuda:0\", \"seed\": 45, \"model_name\": \"SmolVLA+CRM\", \"data_path\": \"LIBERO-Object\", \"data_count\": 200, \"eval_data\": \"LIBERO-Object\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\", \"log_path\": \"/tmp/eval_crm_obj_s45.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.765, \"successes\": 153, \"total\": 200}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-23T22:32:11.244Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.4881}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 118_
+
+全部完成。汇总如下：
+
+---
+
+## 1. 确认在跑的实验及 PID（15 个）
+
+**bjb1-32546**（5 个，cuda:0-4）:
+| GPU | 实验 | PID |
+|-----|------|-----|
+| cuda:0 | eval-supp-crm-norm005-obj-s46 | 102927 |
+| cuda:1 | eval-supp-long-vla-only-s45 | 103128 |
+| cuda:2 | eval-supp-long-adapt-tau025-s45 | 103397 |
+| cuda:3 | eval-supp-long-crm-norm005-s45 | 103675 |
+| cuda:4 | eval-supp-long-reconvla-s45 | 103942 |
+
+**bjb2-28827**（6 个，cuda:0-5）:
+| GPU | 实验 | PID |
+|-----|------|-----|
+| cuda:0 | eval-supp-goal-vla-only-s45 | 926766 |
+| cuda:1 | eval-supp-goal-crm-norm005-s45 | 927030 |
+| cuda:2 | eval-supp-goal-reconvla-s45 | 927237 |
+| cuda:3 | eval-supp-long-reconvla-s44 | 849677 |
+| cuda:4 | eval-supp-long-k2mean-s45 | 924226 |
+| cuda:5 | eval-supp-long-k2mean-s44 | 850410 |
+
+**cqa1-32758**（5 个，cuda:0-1,3-5）:
+| GPU | 实验 | PID |
+|-----|------|-----|
+| cuda:0 | eval-supp-goal-k2mean-s45 | 456787 |
+| cuda:1 | eval-supp-spatial-vla-only-s45 | 456947 |
+| cuda:3 | eval-supp-spatial-crm-norm005-s45 | 457405 |
+| cuda:4 | eval-supp-spatial-adapt-tau025-s45 | 502816 |
+| cuda:5 | eval-supp-spatial-reconvla-s45 | 457485 |
+
+## 2. 已注册 cron（16 个，含上述 15 个 + spatial-adapt）
+
+全部 16 个 cron 注册成功，interval=120s。
+
+## 3. 已完成但之前标记为 RUNNING 的实验（3 个）
+
+| 实验 | 服务器 | SR | 状态已更新 |
+|------|--------|-----|-----------|
+| eval-supp-goal-adapt-tau025-s45 | bjb1-32546:cuda:5 | **81.0%** (162/200), trigger_rate=9.4% | → DONE |
+| eval-supp-reconvla-obj-s46 | cqa1-32758:cuda:2 | **80.0%** (160/200) | → DONE |
+| eval-supp-crm-norm005-obj-s45 | bjb2-40593:cuda:0 | **76.5%** (153/200) | → DONE |
+
+## 4. 异常/特殊情况
+
+- **bjb2-40593**: 完全空闲，无任何 eval 进程和 tmux session（eval-supp-crm-norm005-obj-s45 已完成）
+- **bjb1-32546:cuda:5**: 已空闲（eval-supp-goal-adapt-tau025-s45 已完成）
+- **cqa1-32758:cuda:2**: 已空闲（eval-supp-reconvla-obj-s46 已完成）
+- **eval-supp-spatial-adapt-tau025-s45**: 状态已从 PREPARING → RUNNING，进程确认在跑（PID 502816/502821）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "uuid": "f775ab91-1ee8-4c95-8c79-e825f8ea39f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkvJR1jF7PVGGJcwa71HrA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2169,
+      "cache_read_input_tokens": 62766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2169
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 119_
+
+全部完成。汇总如下：
+
+---
+
+## 1. 确认在跑的实验及 PID（15 个）
+
+**bjb1-32546**（5 个，cuda:0-4）:
+| GPU | 实验 | PID |
+|-----|------|-----|
+| cuda:0 | eval-supp-crm-norm005-obj-s46 | 102927 |
+| cuda:1 | eval-supp-long-vla-only-s45 | 103128 |
+| cuda:2 | eval-supp-long-adapt-tau025-s45 | 103397 |
+| cuda:3 | eval-supp-long-crm-norm005-s45 | 103675 |
+| cuda:4 | eval-supp-long-reconvla-s45 | 103942 |
+
+**bjb2-28827**（6 个，cuda:0-5）:
+| GPU | 实验 | PID |
+|-----|------|-----|
+| cuda:0 | eval-supp-goal-vla-only-s45 | 926766 |
+| cuda:1 | eval-supp-goal-crm-norm005-s45 | 927030 |
+| cuda:2 | eval-supp-goal-reconvla-s45 | 927237 |
+| cuda:3 | eval-supp-long-reconvla-s44 | 849677 |
+| cuda:4 | eval-supp-long-k2mean-s45 | 924226 |
+| cuda:5 | eval-supp-long-k2mean-s44 | 850410 |
+
+**cqa1-32758**（5 个，cuda:0-1,3-5）:
+| GPU | 实验 | PID |
+|-----|------|-----|
+| cuda:0 | eval-supp-goal-k2mean-s45 | 456787 |
+| cuda:1 | eval-supp-spatial-vla-only-s45 | 456947 |
+| cuda:3 | eval-supp-spatial-crm-norm005-s45 | 457405 |
+| cuda:4 | eval-supp-spatial-adapt-tau025-s45 | 502816 |
+| cuda:5 | eval-supp-spatial-reconvla-s45 | 457485 |
+
+## 2. 已注册 cron（16 个，含上述 15 个 + spatial-adapt）
+
+全部 16 个 cron 注册成功，interval=120s。
+
+## 3. 已完成但之前标记为 RUNNING 的实验（3 个）
+
+| 实验 | 服务器 | SR | 状态已更新 |
+|------|--------|-----|-----------|
+| eval-supp-goal-adapt-tau025-s45 | bjb1-32546:cuda:5 | **81.0%** (162/200), trigger_rate=9.4% | → DONE |
+| eval-supp-reconvla-obj-s46 | cqa1-32758:cuda:2 | **80.0%** (160/200) | → DONE |
+| eval-supp-crm-norm005-obj-s45 | bjb2-40593:cuda:0 | **76.5%** (153/200) | → DONE |
+
+## 4. 异常/特殊情况
+
+- **bjb2-40593**: 完全空闲，无任何 eval 进程和 tmux session（eval-supp-crm-norm005-obj-s45 已完成）
+- **bjb1-32546:cuda:5**: 已空闲（eval-supp-goal-adapt-tau025-s45 已完成）
+- **cqa1-32758:cuda:2**: 已空闲（eval-supp-reconvla-obj-s46 已完成）
+- **eval-supp-spatial-adapt-tau025-s45**: 状态已从 PREPARING → RUNNING，进程确认在跑（PID 502816/502821）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 330155,
+  "duration_api_ms": 228935,
+  "num_turns": 50,
+  "stop_reason": "end_turn",
+  "session_id": "a69f72a4-10a5-4a4e-96c7-c356e063c5d0",
+  "total_cost_usd": 1.067202,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 86454,
+    "cache_read_input_tokens": 324893,
+    "output_tokens": 14498,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 86454,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1057,
+        "cache_read_input_tokens": 62766,
+        "cache_creation_input_tokens": 2169,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2169
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1798,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001898,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 14498,
+      "cacheReadInputTokens": 324893,
+      "cacheCreationInputTokens": 86454,
+      "webSearchRequests": 0,
+      "costUSD": 1.065304,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "80c0b508-f578-4cac-9d22-50118266723a"
+}
+```
+
+</details>
+
+---

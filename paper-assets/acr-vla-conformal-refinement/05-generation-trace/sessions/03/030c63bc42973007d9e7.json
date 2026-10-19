@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "030c63bc42973007d9e7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 cuda0 backfill",
+  "task_key": "worker_deploy_bjb2-28827-cuda0-backfill_20260528T113020",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-cuda0-backfill_20260528T113020_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "ce04300ad0e2e5656b4591d7b2dcf7bb3b4e37a2582fb7399cf6b8042ded3a27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 汇总\n\n**新实验已部署：**\n- `eval-supp-obj-adapt-tau025-s43` → bjb2-28827 cuda:0，已启动并注册 RUNNING\n\n**bjb2-28827 其他 3 个实验均仍在运行中（long-horizon benchmark）：**\n\n| 实验 | GPU | 进度 | 当前可见 task SR |\n|------|-----|------|-----------------|\n| eval-supp-long-adapt-tau025-s47-r2 | cuda:1 | ~task 8/10 (LIVING_ROOM_SCENE1) | SCENE6=25%, STUDY1=90%, KITCHEN4=85%, KITCHEN3=100%, SCENE5=45%, SCENE2=75% |\n| eval-supp-long-k2mean-s46 | cuda:4 | ~task 7/10 (LIVING_ROOM_SCENE6 done) | SCENE6=35%, STUDY1=85%, KITCHEN4=90%, KITCHEN3=100%, SCENE5=25%, SCENE2=70% |\n| eval-supp-long-reconvla-s46 | cuda:5 | ~task 8/10 (LIVING_ROOM_SCENE1) | SCENE6=25%, STUDY1=90%, KITCHEN4=95%, KITCHEN3=95%, SCENE5=25%, SCENE2=75% |\n\n三个 long 实验预计还需 1-2 小时完成，无 OOM 或异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-cuda0-backfill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b2493156c259e48b60f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval vla only goal seed46",
+  "task_key": "worker_analyze_eval-vla-only-goal-seed46_20260519T200651",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-vla-only-goal-seed46_20260519T200651_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "ddc41d6c83bca6a81b044bdd416a32cd9022d1fcec0ce01b6680ac83cd2956fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 列表为空（可能在之前的 session 中创建，当前 session 已不存在）。无需删除。\n\n**诊断完成：**\n\n- **状态**：eval-vla-only-goal-seed46 正常完成，tmux session 已退出\n- **Overall SR = 71.0%** (71/100)，符合预期范围 (65-75%)\n- Goal suite 5 seeds 汇总：seed42=71%, seed43=69%, seed44=73%, seed45=待查, **seed46=71%**\n- **Registry 已修正**：conclusion `failed` → `success`，清除 failure_reason，写入完整 metrics\n- Cron 当前 session 无残留任务\n\nPer-task breakdown:\n\n| Task | SR |\n|------|-----|\n| open_middle_drawer | 90% |\n| bowl_on_stove | 90% |\n| turn_on_stove | 90% |\n| bowl_on_plate | 90% |\n| push_plate_to_stove | 80% |\n| wine_bottle_on_rack | 70% |\n| bowl_on_top_cabinet | 60% |\n| wine_bottle_on_cabinet | 50% |\n| cream_cheese_in_bowl | 50% |\n| open_top_drawer_put_bowl | 40% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-vla-only-goal-seed46.md"
+}

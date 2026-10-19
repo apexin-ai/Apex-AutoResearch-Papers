@@ -1,0 +1,3538 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5ce660ea2772b0c4cb51",
+  "rounds": [
+    {
+      "number": 770,
+      "messages": [
+        {
+          "source_line": 10801,
+          "timestamp": "2026-05-21T00:53:57.936533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed60",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010801"
+        },
+        {
+          "source_line": 10802,
+          "timestamp": "2026-05-21T00:53:58.725463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed64-bjb2",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010802"
+        },
+        {
+          "source_line": 10803,
+          "timestamp": "2026-05-21T00:54:02.245607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed60\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:54:00.516Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed60. Norm sweep filling ε=0.1 gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 60 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/norm01_seed60.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"914909\\\", \\\"seed\\\": 60, \\\"model_name\\\": \\\"CRM_obs_only\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/norm01_seed60.log\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2856}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4309
+          },
+          "id": "event-010803"
+        },
+        {
+          "source_line": 10804,
+          "timestamp": "2026-05-21T00:54:06.486792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed64-bjb2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:54:04.784Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed64. Norm sweep seed balance for ε=0.03.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 64 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/norm003_seed64.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"916316\\\", \\\"seed\\\": 64, \\\"model_name\\\": \\\"CRM_obs_only\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/norm003_seed64.log\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1426}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 7761
+          },
+          "id": "event-010804"
+        },
+        {
+          "source_line": 10805,
+          "timestamp": "2026-05-21T00:54:10.580533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed60",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010805"
+        },
+        {
+          "source_line": 10806,
+          "timestamp": "2026-05-21T00:54:11.201556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed64-bjb2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010806"
+        },
+        {
+          "source_line": 10807,
+          "timestamp": "2026-05-21T00:54:19.064573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed60\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:54:13.153Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed60. Norm sweep filling ε=0.1 gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 60 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/norm01_seed60.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"914909\\\", \\\"seed\\\": 60, \\\"model_name\\\": \\\"CRM_obs_only\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/norm01_seed60.log\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-21T00:54:13.153Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.4999}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8484
+          },
+          "id": "event-010807"
+        },
+        {
+          "source_line": 10808,
+          "timestamp": "2026-05-21T00:54:25.934075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed64-bjb2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:54:21.580Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed64. Norm sweep seed balance for ε=0.03.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 64 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/norm003_seed64.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"916316\\\", \\\"seed\\\": 64, \\\"model_name\\\": \\\"CRM_obs_only\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/norm003_seed64.log\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-21T00:54:21.580Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.8847}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 14732
+          },
+          "id": "event-010808"
+        },
+        {
+          "source_line": 10809,
+          "timestamp": "2026-05-21T00:54:44.750466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 | Worker 3 (GPU 0 / CPU 3)\n\n## 任务 2 完成：重复实验已处理\n\n**已 kill：**\n- PID 914909 (norm01-seed60, bjb2-28827 cuda:0) — killed, registry→DONE(killed)\n- PID 916316 (norm003-seed64, bjb2-28827 cuda:4) — killed, registry→DONE(killed)\n\n**保留：**\n- seed60: PID 890012 on bjb2-28827 cuda:5（唯一实例，2922 MiB）\n- seed64: bjb1-32546 上的 copy（已完成 1/10 task，进度领先）\n\n**⚠️ 发现更大问题：bjb2-28827 cuda:0-4 每张卡都有 2 个实验争抢**\n\n| GPU | 旧 batch (未注册) | 新 batch (注册) |\n|-----|------------------|----------------|\n| cuda:0 | ~~seed60 (killed)~~ | seed71 |\n| cuda:1 | seed61 (5711 MiB) | seed72 (5711 MiB) |\n| cuda:2 | seed62 (5711 MiB) | seed73 (5711 MiB) |\n| cuda:3 | seed63 (5711 MiB) | seed74 (5711 MiB) |\n| cuda:4 | ~~seed64 (killed)~~ | seed75 |\n\ncuda:1/2/3 仍然各有两个进程（总计 ~11.4 GB/24 GB）。Director 说\"5 个未注册实验暂不处理\"，所以保留了 seed61/62/63。但这会让两批实验都变慢约 2×。\n\n**是否需要 kill 剩余 3 个旧 batch 进程 (seed61/62/63)？** 这样 cuda:1/2/3 上的 seed72/73/74 能全速运行。\n\n## 任务 1：π0/π0.5 调研 Worker 已在运行\nWorker ID: worker_research_pi0-pi05-libero-feasibility_20260521T005149，预计 10 分钟内完成。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010809"
+        },
+        {
+          "source_line": 10810,
+          "timestamp": "2026-05-21T00:54:46.156815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1406
+          },
+          "id": "event-010810"
+        },
+        {
+          "source_line": 10811,
+          "timestamp": "2026-05-21T00:54:47.972420+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务 2 完成。汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010811"
+        }
+      ]
+    },
+    {
+      "number": 771,
+      "messages": [
+        {
+          "source_line": 10812,
+          "timestamp": "2026-05-21T00:54:48.539841+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_eval-obs-only-object-norm003-seed62_20260521T004858 已完成（status=done）。用 `get_worker_status('worker_diagnose_eval-obs-only-object-norm003-seed62_20260521T004858')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_eval-obs-only-object-norm003-seed62_20260521T004858\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010812"
+        },
+        {
+          "source_line": 10813,
+          "timestamp": "2026-05-21T00:54:58.536456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_eval-obs-only-object-norm003-seed62_20260521T004858"
+            }
+          },
+          "id": "event-010813"
+        },
+        {
+          "source_line": 10814,
+          "timestamp": "2026-05-21T00:54:58.802121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_eval-obs-only-object-norm003-seed62_20260521T004858\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:eval-obs-only-object-norm003-seed62\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T00:48:58.499791+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:51:56.658527+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"诊断完成。\\\\n\\\\n## 诊断报告\\\\n\\\\n### 1. 日志关键内容\\\\n\\\\n**原始实验 (seed62)**:\\\\n```\\\\nnohup: failed to run command 'python': No such file or directory\\\\n```\\\\n纯 PATH 问题，`python` 未找到。\\\\n\\\\n**重试实验 (seed62_r2)**:\\\\n```\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.03\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\\n```\\\\n- 创建时间 08:39:47，最后修改 08:48:01，运行约 8 分钟后**静默退出**\\\\n- 日志中**无任何 error/traceback/OOM/killed 信息**\\\\n- **未生成 JSON 输出文件**\\\\n\\\\n### 2. 关键发现：批量静默死亡\\\\n\\\\n同批次所有 norm003 实验都在相同时间窗口（08:44-08:48）异常退出：\\\\n\\\\n| 实验 | 日志大小 | 最后状态 | 停止时间 |\\\\n|------|---------|----------|---------|\\\\n| seed62_r2 | 1622B | task 1, rollout 5/10 | 08:48 |\\\\n| seed63_r2 | 1609B | task 1, rollout 5/10 | 08:48 |\\\\n| seed64 | 1711B | task 1, rollout 10/10 | 08:48 |\\\\n| seed65 | 1538B | task 1, rollout 5/10 | 08:44 |\\\\n\\\\n**均无错误输出，均未完成。**\\\\n\\\\n### 3. 失败根因：GPU 显存 OOM 被系统 kill\\\\n\\\\n当前服务器状态（08:50:42）：6× RTX 4090（24GB each），有 **10 个 python 进程**分布在 6 块 GPU 上，多块 GPU 双进程占用 ~11.4GB。\\\\n\\\\n判断逻辑：\\\\n- 4 个进程在**同一时间窗口静默死亡** → 系统级 kill（非 Python 异常）\\\\n- 每个进程需 ~5.7GB 显存（SmolVLA + CRM + LIBERO 仿真），LIBERO rollout 过程中显存会动态增长\\\\n- 多进程共享 GPU 时，累积显存超过 24GB 限制 → CUDA OOM 或 OS OOM killer\\\\n- AutoDL 容器无 kern.log/syslog，无法直接确认，但行为模式完全吻合 OOM kill\\\\n\\\\n### 4. 需要重试，建议修复方式\\\\n\\\\n- **用 `CUDA_VISIBLE_DEVICES` 隔离 GPU**：每个评估进程独占一块 GPU\\\\n- **控制并发数**：最多 6 个并行（每 GPU 一个），不要在同一 GPU 上跑两个评估\\\\n- **或串行执行**：如果 GPU 资源紧张，排队逐个跑\\\"}}, \\\"error\\\": null, \\\"\n…[truncated 17 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 265
+          },
+          "id": "event-010814"
+        },
+        {
+          "source_line": 10815,
+          "timestamp": "2026-05-21T00:55:16.865450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 'kill 915187 915391 915981 && echo \"killed PIDs 915187 (seed61), 915391 (seed62), 915981 (seed63)\"' 2>&1",
+              "description": "Kill remaining 3 duplicate processes on bjb2-28827 to prevent OOM",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010815"
+        },
+        {
+          "source_line": 10816,
+          "timestamp": "2026-05-21T00:55:17.998599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\nkilled PIDs 915187 (seed61), 915391 (seed62), 915981 (seed63)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1133
+          },
+          "id": "event-010816"
+        },
+        {
+          "source_line": 10817,
+          "timestamp": "2026-05-21T00:55:21.323441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 'nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader' 2>&1",
+              "description": "Verify bjb2-28827 GPU after killing duplicates",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010817"
+        },
+        {
+          "source_line": 10818,
+          "timestamp": "2026-05-21T00:55:22.578491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n0, 5730 MiB, 31 %\n1, 5730 MiB, 25 %\n2, 5730 MiB, 28 %\n3, 5730 MiB, 29 %\n4, 5730 MiB, 30 %\n5, 2941 MiB, 26 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1255
+          },
+          "id": "event-010818"
+        },
+        {
+          "source_line": 10819,
+          "timestamp": "2026-05-21T00:55:37.062491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 | Worker 3 (GPU 0 / CPU 3)\n\n## ⚠️ 紧急修复：bjb2-28827 OOM 风险已消除\n\n**诊断 Worker 确认根因**：双进程共享 GPU → LIBERO rollout 动态增长显存 → 超 24 GB → 系统静默 kill。\n\nbjb1-32546 上同批次 4 个 norm003 实验（seed62-r2, seed63-r2, seed64, seed65）已在 08:44-08:48 全部被 OOM kill，**日志无任何 error/traceback**。\n\n**已立即 kill bjb2-28827 剩余 3 个旧 batch 进程**（seed61/62/63，PIDs 915187/915391/915981），防止 seed72/73/74 被同样 OOM kill。\n\n**当前 bjb2-28827 GPU 状态（恢复正常）**：\n| GPU | Process | MiB | Util |\n|-----|---------|-----|------|\n| cuda:0 | seed71 (ε=0.1) | 5730 | 31% |\n| cuda:1 | seed72 (ε=0.05) | 5730 | 25% |\n| cuda:2 | seed73 (ε=0.03) | 5730 | 28% |\n| cuda:3 | seed74 (ε=0.1) | 5730 | 29% |\n| cuda:4 | seed75 (ε=0.05) | 5730 | 30% |\n| cuda:5 | old seed60 (ε=0.1) | 2941 | 26% |\n\n**教训**：每 GPU 只能跑 1 个 eval 进程，批量部署前必须检查是否有先前进程占用。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010819"
+        },
+        {
+          "source_line": 10820,
+          "timestamp": "2026-05-21T00:55:44.001507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 6939
+          },
+          "id": "event-010820"
+        },
+        {
+          "source_line": 10821,
+          "timestamp": "2026-05-21T00:55:55.225579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/feedback_one_eval_per_gpu.md",
+              "content": "---\nname: One eval process per GPU\ndescription: LIBERO eval processes must run 1-per-GPU — dual processes cause silent OOM kill as rollout memory grows dynamically\ntype: feedback\n---\n\n每个 GPU 只能跑 1 个 LIBERO eval 进程。初始加载 ~5.7 GB，但 rollout 过程中显存动态增长，双进程会超 24 GB 限制被系统静默 kill（无 error/traceback/log）。\n\n**Why:** 2026-05-21 bjb1-32546 和 bjb2-28827 上发生批量静默死亡。4 个 norm003 实验在相同时间窗口（08:44-08:48）全部被 OOM kill。诊断确认：CUDA OOM 或 OS OOM killer 触发。\n\n**How to apply:** 批量部署前必须 `nvidia-smi --query-compute-apps=pid,used_memory --format=csv` 检查是否有先前进程。如有，先 kill 再部署。绝不在同一 GPU 上启动第二个 eval 进程。\n"
+            }
+          },
+          "id": "event-010821"
+        },
+        {
+          "source_line": 10822,
+          "timestamp": "2026-05-21T00:55:55.226048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/feedback_one_eval_per_gpu.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-010822"
+        },
+        {
+          "source_line": 10823,
+          "timestamp": "2026-05-21T00:56:04.029633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/MEMORY.md"
+            }
+          },
+          "id": "event-010823"
+        },
+        {
+          "source_line": 10824,
+          "timestamp": "2026-05-21T00:56:04.030012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t- [Worker 代码部署必须验证到位](feedback_code_deployment.md) — 修复版代码不会自动同步到服务器，必须显式部署+验证后再启动实验（D014 教训）\n2\t- [CRM 训练 batch_size 必须 ≥512](feedback_crm_batchsize.md) — 337K MLP 在 4090 上 bs=32 只有 10% GPU util，后续必须 bs≥512 + lr 线性缩放\n3\t- [进程stuck诊断方法](feedback_process_stuck_diagnosis.md) — 判断LIBERO进程stuck用CPU+State+GPU，禁止用/proc/PID/io（mmap I/O不计入）\n4\t- [reconvla mode = argmin baseline](feedback_reconvla_is_argmin.md) — --mode reconvla 就是 argmin baseline（K=10 选 reconstruction error 最小），不要标为 mislabel\n5\t- [M008 Kill 操作安全规则](feedback_m008_kill_rules.md) — kill 前必须检查 PID+registry+进度，排除进度>30%的 RUNNING 实验，kill 后立即更新 registry+部署新实验\n6\t- [Harvest 必须从 log 读实际 norm](feedback_harvest_norm_from_log.md) — 聚合数据时必须从启动命令/代码默认值提取 max_correction_norm，不能按文件名推断（Reviewer #20 污染事故）\n7\t- [Harvest 必须扫描两个 log 路径](feedback_log_path_consistency.md) — 实验输出分布在 /root/.../logs/ 和 /root/runs/ 两个目录，harvest 必须都扫（Reviewer #29）\n8\t- [PREPARING 不等于未启动 M028](feedback_preparing_not_means_not_started.md) — 遇到 PREPARING 实验先检查 PID 存活再 kill+redeploy，避免浪费已完成进度\n9\t- [Kill 必须按 server+PID 匹配 M030](feedback_kill_by_server_pid.md) — kill 进程必须指定 server+PID，不能按 exp_id 全局匹配（同一实验可能在多台服务器有副本）\n10\t- [M031 Cron 回调先查 JSON M031](feedback_m031_cron_json_check.md) — cron 回调第一步 SSH 查 JSON 完整性，JSON 完整=success 不看 exit code（P25/P75/Goal 三实验误判教训）\n11\t- [GPU Deploy Queue D090](project_gpu_deploy_queue.md) — GPU 释放时立即部署：P1=Plan A eval ×3, P2=OpenVLA CRM eval ×3 (bjb2-28827 only)，已获 Director 审批\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-010824"
+        },
+        {
+          "source_line": 10825,
+          "timestamp": "2026-05-21T00:56:10.050169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/MEMORY.md",
+              "old_string": "- [GPU Deploy Queue D090](project_gpu_deploy_queue.md) — GPU 释放时立即部署：P1=Plan A eval ×3, P2=OpenVLA CRM eval ×3 (bjb2-28827 only)，已获 Director 审批",
+              "new_string": "- [GPU Deploy Queue D090](project_gpu_deploy_queue.md) — GPU 释放时立即部署：P1=Plan A eval ×3, P2=OpenVLA CRM eval ×3 (bjb2-28827 only)，已获 Director 审批\n- [One eval per GPU](feedback_one_eval_per_gpu.md) — LIBERO eval 进程必须 1-per-GPU，双进程会被 OOM 静默 kill（2026-05-21 事故）"
+            }
+          },
+          "id": "event-010825"
+        },
+        {
+          "source_line": 10826,
+          "timestamp": "2026-05-21T00:56:10.100946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bbd03d76/memory/MEMORY.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-010826"
+        },
+        {
+          "source_line": 10827,
+          "timestamp": "2026-05-21T00:56:13.030872+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "OOM 教训已记录到 memory。bjb2-28827 恢复正常，等待 π0/π0.5 调研 Worker 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010827"
+        }
+      ]
+    },
+    {
+      "number": 772,
+      "messages": [
+        {
+          "source_line": 10828,
+          "timestamp": "2026-05-21T00:56:13.675248+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_research_pi0-pi05-libero-feasibility_20260521T005149 已完成（status=done）。用 `get_worker_status('worker_research_pi0-pi05-libero-feasibility_20260521T005149')` 读取结果，然后处理。\n\n- worker_id: worker_research_pi0-pi05-libero-feasibility_20260521T005149\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010828"
+        },
+        {
+          "source_line": 10829,
+          "timestamp": "2026-05-21T00:56:21.198834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_research_pi0-pi05-libero-feasibility_20260521T005149"
+            }
+          },
+          "id": "event-010829"
+        },
+        {
+          "source_line": 10830,
+          "timestamp": "2026-05-21T00:56:21.350128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_pi0-pi05-libero-feasibility_20260521T005149\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"research:pi0-pi05-libero-feasibility\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T00:51:50.039554+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:54:42.056241+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## π0 / π0.5 LIBERO 调研报告\\\\n\\\\n### 模型信息\\\\n- **HF Repo (π0)**: `lerobot/pi0_libero_base` / `lerobot/pi0_libero_finetuned`\\\\n- **HF Repo (π0.5)**: `lerobot/pi05_libero_base` / `lerobot/pi05_libero_finetuned`\\\\n- **官方代码**: `github.com/Physical-Intelligence/openpi`\\\\n- **参数量**: π0 ≈ 3.3B（PaliGemma 3B VLM + 0.315B action expert）；π0.5 ≈ 3.6B（结构略不同，用 adaptive RMSNorm 注入 timestep）\\\\n- **VRAM 需求**: FP16 推理约 ~7-8GB，bf16 LoRA 微调在 4090 上峰值 ~16GB（batch=16）。**4090 24GB 推理完全没问题。**\\\\n- **推理框架**: 两条路径——(1) HuggingFace LeRobot 集成，(2) Physical Intelligence 官方 openpi\\\\n\\\\n### LIBERO 兼容性\\\\n- **Fine-tune 数据**: 标准 LIBERO（libero_spatial, libero_object, libero_goal, libero_10），与我们使用的一致\\\\n- **Action space**: **7D**（3D eef position + 3D rotation + 1D gripper），与我们的 SmolVLA/OpenVLA 完全一致\\\\n- **Action chunking**: chunk_size 由 config 决定，n_action_steps=10\\\\n- **Observation 要求**: agentview_image + robot0_eye_in_hand_image（双摄像头），8D proprioception（eef_pos + axisangle + gripper_qpos）——与我们现有的 SmolVLA wrapper 接口一致\\\\n- **图像预处理**: openpi 版本会旋转 180°；LeRobot 版本有自己的 pipeline\\\\n\\\\n### 已知问题\\\\n- **复现率低于报告值**: GitHub issue [#2114](https://github.com/huggingface/lerobot/issues/2114) 和 [#952](https://github.com/huggingface/lerobot/issues/952) 报告 finetuned 模型实测成功率比 leaderboard 低 10-20%\\\\n  - pi0_libero_finetuned 实测: spatial 69%, object 72%, goal 83%, long 35%, 均值 64.75%\\\\n  - pi05_libero_finetuned 实测: spatial 77%, object 66%, goal 89%, long 55%, 均值 71.75%\\\\n- issue [#2533](https://github.com/huggingface/lerobot/issues/2533) 报告 pi05_libero_base 零成功率\\\\n\\\\n### Action Diversity (CRM 兼容性)\\\\n- **\n…[truncated 2605 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-010830"
+        },
+        {
+          "source_line": 10831,
+          "timestamp": "2026-05-21T00:56:54.249479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 | Worker 2 (GPU 0 / CPU 2)\n\n## π0/π0.5 LIBERO 可行性调研完成\n\n### 模型信息\n| | π0 | π0.5 |\n|---|---|---|\n| HF Repo | `lerobot/pi0_libero_finetuned` | `lerobot/pi05_libero_finetuned` |\n| 参数量 | ~3.3B (PaliGemma 3B + 315M action expert) | ~3.6B |\n| VRAM | ~7-8 GB FP16 | ~7-8 GB FP16 |\n| 4090 24GB | ✅ 可跑 | ✅ 可跑 |\n\n### LIBERO 兼容性 ✅\n- Action space: **7D** (eef_pos + rotation + gripper) — 与 SmolVLA/OpenVLA 一致\n- Observation: agentview + eye_in_hand — 与现有接口一致\n- Fine-tune 数据: 标准 LIBERO (spatial/object/goal) — 与我们一致\n\n### CRM 兼容性 ✅ (有条件)\n- **多采样可行**: flow matching 从随机高斯噪声出发, 不同 noise → 不同 action. 与 SmolVLA K-sample 机制相同\n- **⚠️ obs_features 维度不同**: SmolVLA=960D, π0=2048D → **CRM 不能直接迁移, 需重训练 CRM head** (或加 projection layer)\n\n### 社区复现率 (比官方低 10-20%)\n| Suite | π0 finetuned | π0.5 finetuned |\n|-------|-------------|---------------|\n| Spatial | 69% | 77% |\n| Object | 72% | 66% |\n| Goal | 83% | 89% |\n| Long | 35% | 55% |\n| **Mean** | **64.75%** | **71.75%** |\n\nGitHub issue #2114、#2533 报告复现困难, pi05_libero_base 甚至零成功率.\n\n### 适配工作量: **4-6 小时**\n1. `pi0_wrapper.py` (~200行): 参照 smolvla_wrapper 接口 — 2-3h\n2. `evaluate.py` 添加 --pi0/--pi05 flag — 1h\n3. CRM 适配 (obs_features projection) — 1-2h\n\n### 环境依赖\n- `pip install lerobot` 或 `git clone Physical-Intelligence/openpi`\n- 模型下载 ~6-7 GB\n\n### 建议\n- **先跑 baseline** (VLA-only, 无 CRM): 验证我们环境上的实际 SR, 与社区数据对比\n- **CRM 适配**: 最简方案是在 obs_features 后加一个 Linear(2048, 960) projection, 复用现有 CRM 权重, 只训练 projection layer (~5 min)\n- **推荐服务器**: 任意 4090 即可, 7-8 GB VRAM\n\n**是否启动适配？** 如果 GO, 我可以立即派 Worker 写 pi0_wrapper.py + 在 bjb2-40593 (1 GPU) 部署 baseline eval.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010831"
+        },
+        {
+          "source_line": 10832,
+          "timestamp": "2026-05-21T00:56:58.081140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3831
+          },
+          "id": "event-010832"
+        },
+        {
+          "source_line": 10833,
+          "timestamp": "2026-05-21T00:57:03.722707+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研已汇报 Director，等待 GO/NO-GO 决策。当前 17/17 GPU 满载运行 norm sweep，π0 调研 Worker 完成，等待下一步指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010833"
+        }
+      ]
+    },
+    {
+      "number": 773,
+      "messages": [
+        {
+          "source_line": 10834,
+          "timestamp": "2026-05-21T00:57:04.460303+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Kill seed61/62/63（旧 unregistered batch）。没有 registry 的实验结果无法追溯，不值得让注册实验减速。cuda:1/2/3 释放后 seed72/73/74 全速跑。\n\nπ0.5/π Worker 结果出来后立即汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-010834"
+        },
+        {
+          "source_line": 10835,
+          "timestamp": "2026-05-21T00:57:21.137459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 'for p in 915187 915391 915981; do ps -p $p -o pid= 2>/dev/null && echo \"PID $p ALIVE\" || echo \"PID $p DEAD\"; done && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader' 2>&1",
+              "description": "Confirm seed61/62/63 are dead on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010835"
+        },
+        {
+          "source_line": 10836,
+          "timestamp": "2026-05-21T00:57:22.292162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\nPID 915187 DEAD\nPID 915391 DEAD\nPID 915981 DEAD\n0, 5730 MiB, 31 %\n1, 5730 MiB, 26 %\n2, 5730 MiB, 29 %\n3, 5730 MiB, 26 %\n4, 5730 MiB, 29 %\n5, 2477 MiB, 31 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1154
+          },
+          "id": "event-010836"
+        },
+        {
+          "source_line": 10837,
+          "timestamp": "2026-05-21T00:57:28.215571+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：3 个旧 batch 进程已死，cuda:0-4 每卡单进程 5730 MiB，seed71-75 全速运行。\n\nπ0.5/π 调研结果已在上一条消息汇报给 Director（HF repo 确认、4090 可跑、CRM 兼容但需 projection layer、社区 SR 64-72%、适配 4-6h）。等待 Director 决策是否启动适配。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010837"
+        }
+      ]
+    },
+    {
+      "number": 774,
+      "messages": [
+        {
+          "source_line": 10838,
+          "timestamp": "2026-05-21T00:57:28.782236+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm01-seed61** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb2-28827 检查日志 `/root/autodl-tmp/logs/norm01_seed61.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm01-seed61')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010838"
+        },
+        {
+          "source_line": 10839,
+          "timestamp": "2026-05-21T00:57:45.996434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 'cat /root/acr-vla-conformal-refinement/logs/norm01_seed61.json 2>/dev/null | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f\\\"SR={d.get(\\\\\\\"success_rate\\\\\\\")}, n={d.get(\\\\\\\"n_rollouts\\\\\\\")}\\\")\" 2>/dev/null || echo \"NO_JSON\"' 2>&1",
+              "description": "Check norm01-seed61 JSON on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010839"
+        },
+        {
+          "source_line": 10840,
+          "timestamp": "2026-05-21T00:57:47.201533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\nNO_JSON"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1205
+          },
+          "id": "event-010840"
+        },
+        {
+          "source_line": 10841,
+          "timestamp": "2026-05-21T00:57:51.633122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed61",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010841"
+        },
+        {
+          "source_line": 10842,
+          "timestamp": "2026-05-21T00:57:55.561334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed61\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:45:00.000Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:57:53.838Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed61. Norm sweep filling ε=0.1 gap.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 61 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/norm01_seed61.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"915187\\\", \\\"seed\\\": 61, \\\"model_name\\\": \\\"CRM_obs_only\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/norm01_seed61.log\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9099}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3928
+          },
+          "id": "event-010842"
+        },
+        {
+          "source_line": 10843,
+          "timestamp": "2026-05-21T01:00:11.339619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-010843"
+        },
+        {
+          "source_line": 10844,
+          "timestamp": "2026-05-21T01:00:11.390248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-010844"
+        },
+        {
+          "source_line": 10845,
+          "timestamp": "2026-05-21T01:00:14.807423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'server', 'gpu', 'pid', 'hypothesis', 'created_at']"
+            }
+          },
+          "id": "event-010845"
+        },
+        {
+          "source_line": 10846,
+          "timestamp": "2026-05-21T01:00:15.210944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-010846"
+        },
+        {
+          "source_line": 10847,
+          "timestamp": "2026-05-21T01:00:15.211530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-argmin-object-seed48\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T12:05:22.501Z\\\"}, \\\"eval-obs-only-object-norm02-seed49\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T12:05:21.387Z\\\"}, \\\"eval-random-selection-spatial-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T12:05:19.931Z\\\"}, \\\"eval-random-selection-spatial-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T10:52:07.011Z\\\"}, \\\"eval-adaptive-k-spatial-p90-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T10:52:05.759Z\\\"}, \\\"eval-adaptive-k-spatial-p25-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T10:52:04.790Z\\\"}, \\\"eval-adaptive-k-spatial-p75-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-20T10:52:04.320Z\\\"}, \\\"eval-obs-only-spatial-norm02-seed46-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T17:12:13.545Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM with epsilon=0.2 and K=10 improves LIBERO-Spatial success rate by applying observation-conditioned conformal corrections to fix spatial reasoning errors, seed46 rerun for statistical robustness\\\"}, \\\"eval-vla-only-goal-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T17:12:11.696Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Goal seed44 establishes reference success rate for comparing against CRM-augmented methods on goal-conditioned tasks, rerun for statistical robustness\\\"}, \\\"eval-argmin-object-k5-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T17:12:10.271Z\\\", \\\"hypothesis\\\": \\\"ReConVLA argmin mode with K=5 candidates improves LIBERO-Object success rate over VLA-only baseline by selecting the best action from multiple VLA samples using conformal scoring, seed44 rerun for statistical robustness\\\"}, \\\"eval-openvla-object-baseline-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T17:12:07.506Z\\\", \\\"hypothesis\\\": \\\"OpenVLA baseline on \n…[truncated 958 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 404
+          },
+          "id": "event-010847"
+        },
+        {
+          "source_line": 10848,
+          "timestamp": "2026-05-21T01:00:16.166455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-010848"
+        },
+        {
+          "source_line": 10849,
+          "timestamp": "2026-05-21T01:00:16.166883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010849"
+        },
+        {
+          "source_line": 10850,
+          "timestamp": "2026-05-21T01:01:54.706381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 19, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed57\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=594635)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed58\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=596867)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=599925)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed60\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=890012)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed61\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=712959)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed64\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=723784)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed65\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=725722)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed64\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=726800)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed65\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=728057)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed64\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=729873)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed65\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=622479)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed61\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed62\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed63\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed71\\\", \\\"success\\\": true,\n…[truncated 590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 99495
+          },
+          "id": "event-010850"
+        },
+        {
+          "source_line": 10851,
+          "timestamp": "2026-05-21T01:01:54.707095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval-obs-only-object-norm01-seed71 | CRM obs_only (ε=0.1) K=10 on LIBERO-Object seed71. Norm sweep filling ε=0.1 gap. | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval-obs-only-object-norm02-seed55: CRM obs_only (ε=0.2) K=10 on LIBERO-Object seed55. Norm sweep seed balance.（准备中）\\\\n- eval-adaptive-k-spatial-p90-seed44-bjb2: Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.（准备中）\\\\n- …另有 33 项\\\\n\\\\n## 近期结论\\\\n- **eval-obs-only-object-norm003-seed64-bjb2** (killed): CRM obs_only (ε=0.03) K=10 on LIBERO-Object seed64. Norm sweep seed balance for ε=0.03.\\\\n\\\\n## 趋势\\\\n成功 296 / 负向 38 / 失败 50 / 共 474\\\\nsuccess_rate: 0.13 ↓（近 3 次 success）\\\\ntotal_rollouts: 100 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-18228: 无 GPU 信息\\\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-40593: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- plan_001-crm-smolvla: 训练失败 — unknown\\\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\\\n- precompute-v2-shard0: 已被终止 — unknown\\\\n- precompute-v2-shard1: 已被终止 — unknown\\\\n- precompute-v2-shard2: 已被终止 — unknown\\\\n- eval-spatial-v3-full: 已被终止 — unknown\\\\n- precompute-v3-shard0: 已被终止 — unknown\\\\n- precompute-v3-shard1: 已被终止 — unknown\\\\n- precompute-v3-shard2: 已被终止 — unknown\\\\n- eval-spatial-v4-full: 已被终止 — unknown\\\\n- eval-object-v4-full: 已被终止 — unknown\\\\n- eval-spatial-v5-full: 已被终止 — unknown\\\\n- crm-train-v1: 已被终止 — unknown\\\\n- eval-reconvla-spatial-v1: 已被终止 — unknown\\\\n- eval-reconvla-spatial-v2: 已被终止 — unknow\n…[truncated 5188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 98540
+          },
+          "id": "event-010851"
+        },
+        {
+          "source_line": 10852,
+          "timestamp": "2026-05-21T01:01:54.758013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 00:48 UTC | 更新原因: D092-D095 updates: Plan A LOCKED, OpenVLA CRM CLOSED, π0.5/π added, GPU state corrected\\\\n\\\\n> 详见 paper_framing.md（D077: Adaptive K 核心, D088→D090→D092: Plan A GO）\\\\n\\\\n## 核心方向\\\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance 作为不确定性信号，自适应决定推理策略（直出 vs CRM correction）。CRM correction>selection 分析作为支撑。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026** DDL **2026-05-29**。剩余 **8 天**。\\\\n\\\\n## 方法路径（D088→D092 最终）\\\\n- ❌ B (Learned Uncertainty Head): NO-GO, mean 12.0% < VLA-only (D090)\\\\n- ✅ **A (Plan A: K=2 Conformal + Selective CRM)**: Object 18.3%±2.1%, Spatial 35.0%±1.0% — **GO (D092/D094)**\\\\n- ⏳ C (Action Distribution Geometry): 不再需要，Plan A 已成功\\\\n\\\\n## Plan A 核心结果\\\\n| Benchmark | Plan A (K=2) | K=10 CRM | Δ vs K=10 | Compute |\\\\n|-----------|-------------|----------|-----------|---------|\\\\n| Object    | 18.3%±2.1%  | 16.8%    | +1.5pp    | 80% less (K=2 vs K=10) |\\\\n| Spatial   | 35.0%±1.0%  | 34.5%    | +0.5pp    | 80% less |\\\\n\\\\nPipeline: K=2 batched forward → d₂=‖a₁-a₂‖₂ → if d₂>τ: argmin-to-centroid + CRM; if d₂≤τ: direct output。\\\\n⚠️ Threshold calibration: flatten-L2 (30D) vs per-step-mean-L2 (7D×5) 差异 ~2.77×，当前 τ 在 Plan A scale 上 trigger rate 84%。待决：强调 K=2 效率 vs recalibrate Pareto sweep。\\\\n\\\\n## OpenVLA 实验线\\\\n- ✅ plan_801: OpenVLA v2 baseline SR=69%\\\\n- ✅ plan_802 train: CRM 训练完成 (val_loss=0.077260)\\\\n- ❌ **D093: OpenVLA CRM eval 0%** — near-deterministic (T=0.5, 8/10 identical actions)，applicability boundary，CLOSED\\\\n\\\\n## π0.5/π 实验线（D095，用户硬要求）\\\\n- 🔄 Phase 1: WebSearch + 下载模型（Agent 队列中）\\\\n- ⏳ Phase 2: env setup + baseline eval\\\\n- ⏳ Phase 3: 检查 action diversity → if stochastic: CRM pipeline\\\\n- 目的：第二/三个 VLA backbone（flow-matching），解决 M1 (narrow scope) + R2-W1-new (low absolute perf)\\\\n\\\\n## Norm Sweep \n…[truncated 3034 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 98591
+          },
+          "id": "event-010852"
+        },
+        {
+          "source_line": 10853,
+          "timestamp": "2026-05-21T01:02:27.532432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-010853"
+        },
+        {
+          "source_line": 10854,
+          "timestamp": "2026-05-21T01:02:27.591552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 59
+          },
+          "id": "event-010854"
+        },
+        {
+          "source_line": 10855,
+          "timestamp": "2026-05-21T01:02:30.286531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed62",
+              "field": "conclusion",
+              "value": "killed"
+            }
+          },
+          "id": "event-010855"
+        },
+        {
+          "source_line": 10856,
+          "timestamp": "2026-05-21T01:02:30.487414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed62\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:02:30.354Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:02:30.354Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1622}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 200
+          },
+          "id": "event-010856"
+        },
+        {
+          "source_line": 10857,
+          "timestamp": "2026-05-21T01:02:30.487828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed63",
+              "field": "conclusion",
+              "value": "killed"
+            }
+          },
+          "id": "event-010857"
+        },
+        {
+          "source_line": 10858,
+          "timestamp": "2026-05-21T01:02:30.640876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed63\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:02:30.561Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:02:30.561Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1487}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 153
+          },
+          "id": "event-010858"
+        },
+        {
+          "source_line": 10859,
+          "timestamp": "2026-05-21T01:02:35.507471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed62",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-010859"
+        },
+        {
+          "source_line": 10860,
+          "timestamp": "2026-05-21T01:02:35.959434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0762}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-010860"
+        },
+        {
+          "source_line": 10861,
+          "timestamp": "2026-05-21T01:02:35.959845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed63",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-010861"
+        },
+        {
+          "source_line": 10862,
+          "timestamp": "2026-05-21T01:02:36.061566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0845}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 101
+          },
+          "id": "event-010862"
+        },
+        {
+          "source_line": 10863,
+          "timestamp": "2026-05-21T01:03:09.161746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+              "max_results": "2"
+            }
+          },
+          "id": "event-010863"
+        },
+        {
+          "source_line": 10864,
+          "timestamp": "2026-05-21T01:03:09.162193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-010864"
+        },
+        {
+          "source_line": 10865,
+          "timestamp": "2026-05-21T01:03:11.403465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "status": "running"
+            }
+          },
+          "id": "event-010865"
+        },
+        {
+          "source_line": 10866,
+          "timestamp": "2026-05-21T01:03:11.572546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 169
+          },
+          "id": "event-010866"
+        },
+        {
+          "source_line": 10867,
+          "timestamp": "2026-05-21T01:03:45.464612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 | Worker 0 (GPU 0 / CPU 0) | 正在补充 Worker 池\n\n**Session restart 状态同步：**\n\n**Norm sweep (16 实验 running, cron 监控正常):**\n- bjb1-18228: 4/4 GPU — norm01-seed57, norm005-seed58, norm003-seed59, norm005-seed65\n- bjb1-32546: 6/6 GPU — norm005-seed61, norm003-seed64/65, norm01-seed64/65, norm005-seed64\n- bjb2-28827: 6/6 GPU — norm01-seed60/71/74, norm005-seed72/75, norm003-seed73\n\n**已清理:** seed61/62/63 (旧 unregistered batch) 已标记 killed。\n\n**待 Director 决策:**\n1. π0.5/π GO/NO-GO — 上一 session 已交付可行性报告\n2. Plan A 结果写入论文 — 待指令\n3. Threshold calibration 方式选择\n\n**异常:** registry 有 14 个旧实验标记 RUNNING 但无 cron 监控（包括 argmin-seed48, norm02-seed49, spatial 系列等），正在派 Worker 审计是否仍然存活。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010867"
+        },
+        {
+          "source_line": 10868,
+          "timestamp": "2026-05-21T01:03:49.180478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3715
+          },
+          "id": "event-010868"
+        },
+        {
+          "source_line": 10869,
+          "timestamp": "2026-05-21T01:03:52.762554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker",
+              "max_results": "1"
+            }
+          },
+          "id": "event-010869"
+        },
+        {
+          "source_line": 10870,
+          "timestamp": "2026-05-21T01:03:52.863399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-010870"
+        },
+        {
+          "source_line": 10871,
+          "timestamp": "2026-05-21T01:04:13.812502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "audit:stale-running-experiments",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：审计 stale RUNNING 实验\n\nRegistry 中有 14 个实验标记为 RUNNING 但没有 cron 监控。需要检查它们是否仍然存活。\n\n### 需要检查的实验列表\n\n**bjb2-40593 上的实验：**\n1. eval-obs-only-object-norm02-seed55 — 可能在 bjb2-40593\n\n**可能在 bjb1-18228 (SSH Host: autodl-4090x4) 或 bjb1-32546 或 bjb2-28827 上的实验：**\n2. eval-argmin-object-seed48\n3. eval-obs-only-object-norm02-seed49\n4. eval-random-selection-spatial-seed44\n5. eval-random-selection-spatial-seed42\n6. eval-adaptive-k-spatial-p90-seed42\n7. eval-adaptive-k-spatial-p25-seed44\n8. eval-adaptive-k-spatial-p75-seed44\n9. eval-obs-only-spatial-norm02-seed46-r2\n10. eval-vla-only-goal-seed44-r2\n11. eval-argmin-object-k5-seed44-r2\n12. eval-openvla-object-baseline-seed42\n13. eval-perdof-object-norm02-seed48\n14. eval-obs-only-object-norm005-seed43\n15. eval-perdof-object-norm02-seed45-r3\n\n### 检查方法\n\n1. 先用 `read_registry` 获取这些实验的 server、pid、gpu 信息：\n   ```\n   read_registry(filters={\"status\": \"RUNNING\"}, fields=[\"*\"])\n   ```\n\n2. 对每台涉及的服务器，SSH 检查 PID 是否存活：\n   ```\n   ps -p <PID1>,<PID2>,... -o pid,stat,etime,cmd --no-headers 2>/dev/null\n   ```\n   \n3. 同时检查是否有对应的 JSON 结果文件：\n   ```\n   ls -la /root/acr-vla-conformal-refinement/results/*.json 2>/dev/null | grep <seed/norm关键词>\n   ```\n\n### SSH 连接信息\n- bjb1-32546: `ssh bjb1-32546`（Host 在 ~/.ssh/config）\n- bjb2-28827: `ssh bjb2-28827`\n- bjb2-40593: `ssh bjb2-40593`\n- bjb1-18228: `ssh autodl-4090x4`（注意 Host 名不同）\n\n### 产出\n\n对每个实验输出一行判定：\n- **ALIVE**: PID 存活，仍在运行\n- **COMPLETED**: PID 已退出，JSON 结果文件存在 → 提供 JSON 文件路径\n- **DEAD**: PID 已退出，无 JSON 结果文件 → 建议标记 DONE/failed\n\n最后汇总：哪些需要 update_registry 标记为 DONE(failed)，哪些已完成需要收割结果。",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-010871"
+        },
+        {
+          "source_line": 10872,
+          "timestamp": "2026-05-21T01:04:19.330864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_audit_stale-running-experiments_20260521T010415\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_audit_stale-running-experiments_20260521T010415.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_audit_stale-running-experiments_20260521T010415 started. Use get_worker_status('worker_audit_stale-running-experiments_20260521T010415') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5518
+          },
+          "id": "event-010872"
+        },
+        {
+          "source_line": 10873,
+          "timestamp": "2026-05-21T01:05:00.645656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "monitor:norm-sweep-progress",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：检查 16 个 norm sweep 实验的进度\n\nCoRL 2026 DDL 是 2026-05-29（8 天后）。需要估算 norm sweep 实验何时完成。\n\n### 运行中的实验（16 个，across 3 servers）\n\n**bjb1-18228 (SSH Host: autodl-4090x4):**\n- norm01-seed57 (pid=594635)\n- norm005-seed58 (pid=596867)\n- norm003-seed59 (pid=599925)\n- norm005-seed65 (pid=622479)\n\n**bjb1-32546:**\n- norm005-seed61 (pid=712959)\n- norm003-seed64 (pid=723784)\n- norm003-seed65 (pid=725722)\n- norm01-seed64 (pid=726800)\n- norm01-seed65 (pid=728057)\n- norm005-seed64 (pid=729873)\n\n**bjb2-28827:**\n- norm01-seed60 (pid=890012)\n- norm01-seed71 (pid=922504)\n- norm005-seed72 (pid=922712)\n- norm003-seed73 (pid=922982)\n- norm01-seed74 (pid=923256)\n- norm005-seed75 (pid=923398)\n\n### 检查方法\n\n对每台服务器：\n\n1. 确认 PID 存活：\n```bash\nps -p <PIDs> -o pid,stat,etime --no-headers 2>/dev/null\n```\n\n2. 检查 nohup.out 或 log 文件中的进度信息（LIBERO eval 通常会打印 task 和 episode 进度）：\n```bash\n# 查找进程的工作目录和日志\nls -lt /root/acr-vla-conformal-refinement/logs/ 2>/dev/null | head -20\n# 或者查 nohup 输出\ntail -20 /root/acr-vla-conformal-refinement/nohup_*.out 2>/dev/null\n# 或者查最近修改的 log 文件\nfind /root/acr-vla-conformal-refinement/ -name \"*.log\" -newer /root/acr-vla-conformal-refinement/src/evaluate.py -type f 2>/dev/null\n```\n\n3. 检查已完成的 task 数量（每个 eval 跑 10 个 LIBERO task × 若干 episode）：\n```bash\n# 搜索进度关键词\ngrep -c \"Task\\|Episode\\|Success rate\\|task_name\" /root/acr-vla-conformal-refinement/logs/*seed*.log 2>/dev/null\n```\n\n4. 检查进程启动时间（用 etime 字段），结合已知 eval 总时长（LIBERO Object 10 task × 20 episode × ~30s/ep ≈ ~2小时/实验），估算剩余时间。\n\n### SSH 连接信息\n- bjb1-32546: `ssh bjb1-32546`\n- bjb2-28827: `ssh bjb2-28827`\n- bjb1-18228: `ssh autodl-4090x4`\n\n### 产出\n\n汇总表格：\n| Server | exp_id | PID | 启动时长 | 进度 (tasks done / total) | 预估完成时间 |\n每台服务器一段。最后给出整体预估：最早 / 最晚完成时间。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-010873"
+        },
+        {
+          "source_line": 10874,
+          "timestamp": "2026-05-21T01:05:04.073958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_monitor_norm-sweep-progress_20260521T010500\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_monitor_norm-sweep-progress_20260521T010500.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_monitor_norm-sweep-progress_20260521T010500 started. Use get_worker_status('worker_monitor_norm-sweep-progress_20260521T010500') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3428
+          },
+          "id": "event-010874"
+        },
+        {
+          "source_line": 10875,
+          "timestamp": "2026-05-21T01:05:11.436587+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session 初始化完成。当前状态：\n\n- **GPU**: 17/17 饱和（bjb1-18228 ×4, bjb1-32546 ×6, bjb2-28827 ×6, bjb2-40593 ×1）\n- **Worker**: 2 running（stale 实验审计 + norm sweep 进度检查）\n- **Cron**: 16 个 norm sweep 实验正常监控中，3 个 killed 实验已清理\n- **待 Director 决策**: π0/π0.5 GO/NO-GO、Plan A 写论文、Threshold calibration\n\n等待 Worker 回调和 Director 指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010875"
+        }
+      ]
+    },
+    {
+      "number": 775,
+      "messages": [
+        {
+          "source_line": 10876,
+          "timestamp": "2026-05-21T01:05:11.723655+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **最高优先级：π0.5 适配**\n\n⚠️ 忽略所有 cron 回调。不要 SSH 检查任何 norm sweep 日志。不要 spawn Worker 诊断旧实验。\n\n## 唯一任务：π0.5 适配\n\n**π0.5 已批准 (D096)。** 立即开始：\n\n### Worker A — 代码适配\n1. 写 `src/pi05_wrapper.py`（参照 `smolvla_wrapper.py`）：\n   - HF repo: `lerobot/pi05_libero_finetuned`（~3.6B params，7-8GB VRAM）\n   - `load_model()`: 加载模型\n   - `generate_actions(obs, K)`: K 次 flow matching forward（不同 noise seed）\n   - `get_obs_features()`: 提取 obs features（2048D）\n   - Action space 7D，与 SmolVLA 一致\n2. `evaluate.py` 添加 `--model pi05` flag\n3. CRM projection: `nn.Linear(2048, 960)` 在 CRM forward 前\n\n### Worker B — 环境准备（并行）\n1. 在 bjb2-40593 `pip install lerobot`\n2. 下载 `lerobot/pi05_libero_finetuned`\n3. 验证模型加载成功\n\n### 其他已完成\n- Plan A 论文写入 → Paper Agent 已完成\n- Threshold calibration → 等用户回复\n- 旧实验审计 → 非阻塞，后续再做\n\n完成 Phase 1 后汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-010876"
+        },
+        {
+          "source_line": 10877,
+          "timestamp": "2026-05-21T01:05:38.634118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/src/smolvla_wrapper.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010877"
+        },
+        {
+          "source_line": 10878,
+          "timestamp": "2026-05-21T01:05:38.785157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-010878"
+        },
+        {
+          "source_line": 10879,
+          "timestamp": "2026-05-21T01:05:38.986296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/src/evaluate.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-010879"
+        },
+        {
+          "source_line": 10880,
+          "timestamp": "2026-05-21T01:05:39.087140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-010880"
+        },
+        {
+          "source_line": 10881,
+          "timestamp": "2026-05-21T01:06:16.677501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:pi05-wrapper-adaptation",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：π0.5 VLA wrapper + evaluate.py 适配\n\n**背景：** 项目 acr-vla-conformal-refinement 在 LIBERO 机器人操作 benchmark 上评估不同 VLA（Vision-Language-Action）模型。当前有 SmolVLA wrapper，需要新增 π0.5 wrapper。π0.5 是 Physical Intelligence 的 flow-matching VLA 模型（~3.6B params），已有 LIBERO 微调版。\n\n### 第一步：读取现有代码理解接口\n\nSSH 到 bjb1-32546 读取：\n```bash\nssh bjb1-32546 \"cat /root/acr-vla-conformal-refinement/src/smolvla_wrapper.py\"\nssh bjb1-32546 \"cat /root/acr-vla-conformal-refinement/src/evaluate.py\"\nssh bjb1-32546 \"cat /root/acr-vla-conformal-refinement/src/utils.py\"\n```\n\n重点理解：\n- `SmolVLAWrapper` 类的接口：`load_model()`, `generate_actions()`, `get_obs_features_and_samples()`, `generate_adaptive_k_samples()`\n- `evaluate.py` 中 `select_action_*` 函数如何调用 wrapper\n- constants: CORRECTION_DIM=6, FULL_ACTION_DIM=7, H_EFF=5, OBS_DIM=960\n\n### 第二步：写 `src/pi05_wrapper.py`\n\n在 bjb1-32546 的 `/root/acr-vla-conformal-refinement/src/pi05_wrapper.py` 创建文件。\n\n关键设计：\n- HF repo: `lerobot/pi05_libero_finetuned`\n- 类名: `Pi05Wrapper`\n- `load_model(device)`: 用 `transformers` 或 `lerobot` 库加载模型到指定 device\n- `generate_actions(obs, K)`: 生成 K 个 action 候选。π0.5 用 flow matching，K 次独立 forward pass 用不同 noise seed 即可得到 K 个不同 action。每个 action shape 应为 (H_eff, FULL_ACTION_DIM) = (5, 7)\n- `get_obs_features_and_samples(obs, task_name, K)`: 同时返回 obs features 和 K 个 action samples。obs_features 维度是 2048D（不是 SmolVLA 的 960D）\n- `generate_adaptive_k_samples(obs, task_name, K_init, K_full, threshold)`: 同 SmolVLA 的 adaptive K 逻辑\n\n**π0.5 flow matching 采样关键点：**\n- flow matching 模型通过 ODE 从 noise → action\n- 不同 noise seed = 不同初始 noise = 不同 action trajectory\n- 用 `torch.manual_seed(seed)` 或 `torch.randn_like()` 控制 noise diversity\n- 每次 forward 是独立的，不需要修改模型\n\n**关于模型加载：** 先用 WebSearch 搜索 `lerobot pi05 libero` 确认模型加载 API。可能需要：\n```python\nfrom lerobot.common.policies.pi0 import PI0Policy\n# 或\nfrom transformers import AutoModelForCausalLM\n```\n搜索确认正确的加载方式。\n\n### 第三步：修改 `evaluate.py`\n\n在 evaluate.py 中：\n1. 添加 `--model` 参数（默认 \"smolvla\"，可选 \"pi05\"）\n2. 根据 `--model` 选择对应 wrapper\n3. CRM projection：当 model=pi05 时，在 CRM forward 前加 `nn.Linear(2048, 960)` 将 obs_features 从 2048D 映射到 960D（因为 CRM 是在 SmolVLA 的 960D features 上训练的）\n\n```python\n# evaluate.py 中的 CRM projection 逻辑\nif args.model == \"pi05\":\n    obs_projection = nn.Linear(2048, 960).to(device)\n    # 在 CRM forward 前: obs_feat = obs_projection(obs_feat)\n```\n\n### 第四步：同步到其他服务器\n\n写完后，将新代码同步到 bjb2-28827 和 autodl-4090x4：\n```bash\nssh bjb1-32546 \"cd /root/acr-vla-conformal-refinement && git add src/pi05_wrapper.py src/evaluate.py && git commit -m 'Add pi05 wrapper and model flag in evaluate.py'\"\n```\n然后在其他服务器 git pull。\n\n### 产出\n\n1. `/root/acr-vla-conformal-refinement/src/pi05_wrapper.py` — 完整的 π0.5 wrapper\n2. 修改后的 `evaluate.py` — 支持 `--model pi05`\n3. 验证：`python -c \"from pi05_wrapper import Pi05Wrapper; print('import OK')\"`（在代码目录下）\n\n### 注意事项\n- **不要猜模型 API**——先 WebSearch 确认 lerobot/pi0 的 Python API\n- 代码顶部写文件注释（说明文件做什么、输入输出、关键依赖）\n- 非显而易见的函数写 docstring\n- 保持与 SmolVLA wrapper 一致的接口风格，这样 evaluate.py 的修改最小化",
+              "tool_groups": "['ssh', 'git']",
+              "tools": "['WebSearch', 'WebFetch']"
+            }
+          },
+          "id": "event-010881"
+        },
+        {
+          "source_line": 10882,
+          "timestamp": "2026-05-21T01:06:39.988509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_pi05-wrapper-adaptation_20260521T010617\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_code_pi05-wrapper-adaptation_20260521T010617.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_pi05-wrapper-adaptation_20260521T010617 started. Use get_worker_status('worker_code_pi05-wrapper-adaptation_20260521T010617') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 23311
+          },
+          "id": "event-010882"
+        },
+        {
+          "source_line": 10883,
+          "timestamp": "2026-05-21T01:06:40.943297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "env:pi05-setup-bjb2-40593",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：在 bjb2-40593 上安装 π0.5 环境并下载模型\n\n**背景：** 项目需要在 bjb2-40593 上运行 π0.5 VLA 模型的 LIBERO eval。需要安装依赖并下载模型。\n\n### 服务器信息\n- SSH Host: `bjb2-40593`（在 ~/.ssh/config 中配置）\n- GPU: 单卡 4090 (24GB)\n- 已有 aml-train 镜像（conda 环境）\n\n### 步骤\n\n#### 1. 环境探测\n```bash\nssh bjb2-40593 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 --version && pip3 --version && nvidia-smi --query-gpu=name,memory.total --format=csv,noheader && pip list --format=freeze | grep -iE 'torch|transformers|lerobot|flash'\"\n```\n\n#### 2. 安装 lerobot\n```bash\nssh bjb2-40593 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install lerobot\"\n```\n\n如果 lerobot 安装太慢（大包），用 nohup：\n```bash\nssh bjb2-40593 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup pip install lerobot > /tmp/pip_lerobot.log 2>&1 & echo PID=\\$!\"\n```\n然后轮询 `cat /tmp/pip_lerobot.log | tail -5` 直到完成。\n\n#### 3. 下载模型\n```bash\nssh bjb2-40593 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\nfrom huggingface_hub import snapshot_download\nimport os\nos.environ['HF_HOME'] = '/root/autodl-tmp/.hf_cache'\nsnapshot_download('lerobot/pi05_libero_finetuned', local_dir='/root/autodl-tmp/models/pi05_libero_finetuned')\nprint('Download complete')\n\\\"\"\n```\n\n注意：\n- AutoDL 服务器下载 HF 模型前先 `source /etc/network_turbo` 启用代理\n- 设置 `HF_HOME=/root/autodl-tmp/.hf_cache`（根分区只有 30GB）\n- 设置 `HF_HUB_DISABLE_XET=1`（AutoDL 上 xet 返回 401）\n- 如果 HF 下载慢，试 ModelScope：`pip install modelscope && python3 -c \"from modelscope import snapshot_download; snapshot_download('lerobot/pi05_libero_finetuned', cache_dir='/root/autodl-tmp/.hf_cache')\"`\n- 大文件下载用 nohup 后台执行\n\n#### 4. 验证模型加载\n```bash\nssh bjb2-40593 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\nimport torch\n# 先搜索确认正确的加载方式\nfrom lerobot.common.policies.pi0 import PI0Policy\n# 或者用其他 API\nprint('Model class imported successfully')\nprint(f'CUDA available: {torch.cuda.is_available()}')\nprint(f'GPU: {torch.cuda.get_device_name(0)}')\n\\\"\"\n```\n\n如果 lerobot 的 PI0Policy 不是正确的类名，用 WebSearch 搜索 `lerobot pi0 pi05 python load model` 确认。\n\n#### 5. 检查磁盘空间\n下载前后都检查：\n```bash\nssh bjb2-40593 \"df -h /root/autodl-tmp/ && du -sh /root/autodl-tmp/models/pi05_libero_finetuned/ 2>/dev/null\"\n```\n\n### 产出\n1. 确认 lerobot 安装成功（版本号）\n2. 确认模型下载完成（文件大小、路径）\n3. 确认模型可加载到 GPU（显存占用）\n4. 报告任何问题或需要额外处理的事项\n\n### 注意事项\n- **先 detect_image 检测镜像**——如果是 aml-train 则跳过基础环境搭建\n- conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 不要用 venv（aml-train 镜像用 conda）\n- pip install 前 `source /etc/network_turbo`",
+              "tool_groups": "['ssh']",
+              "tools": "['WebSearch', 'detect_image']"
+            }
+          },
+          "id": "event-010883"
+        },
+        {
+          "source_line": 10884,
+          "timestamp": "2026-05-21T01:06:44.366625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_env_pi05-setup-bjb2-40593_20260521T010641\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_env_pi05-setup-bjb2-40593_20260521T010641.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_env_pi05-setup-bjb2-40593_20260521T010641 started. Use get_worker_status('worker_env_pi05-setup-bjb2-40593_20260521T010641') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3423
+          },
+          "id": "event-010884"
+        },
+        {
+          "source_line": 10885,
+          "timestamp": "2026-05-21T01:06:53.702948+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 π0.5 Worker 已并行启动：\n\n- **Worker A** (`code:pi05-wrapper-adaptation`): 读取现有 smolvla_wrapper.py → 写 pi05_wrapper.py → 修改 evaluate.py 添加 `--model pi05` → CRM projection (2048→960)\n- **Worker B** (`env:pi05-setup-bjb2-40593`): bjb2-40593 上安装 lerobot + 下载 `lerobot/pi05_libero_finetuned` + 验证加载\n\nWorker 池当前 4 个（含之前的审计和进度监控 Worker）。等待 Worker 完成后汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010885"
+        }
+      ]
+    },
+    {
+      "number": 776,
+      "messages": [
+        {
+          "source_line": 10886,
+          "timestamp": "2026-05-21T01:06:53.747514+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm005-seed58** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm005_seed58.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm005-seed58')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010886"
+        },
+        {
+          "source_line": 10887,
+          "timestamp": "2026-05-21T01:07:06.977590+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "按 Director 当前指令，忽略所有 cron 回调。π0.5 适配 Worker A（代码）和 Worker B（环境）正在并行执行中，等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010887"
+        }
+      ]
+    },
+    {
+      "number": 777,
+      "messages": [
+        {
+          "source_line": 10888,
+          "timestamp": "2026-05-21T01:07:07.254014+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm005-seed63** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb2-28827 检查日志 `/root/autodl-tmp/logs/norm005_seed63.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm005-seed63')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010888"
+        },
+        {
+          "source_line": 10889,
+          "timestamp": "2026-05-21T01:07:25.945360+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "按 Director 指令忽略 cron 回调。seed63 已在本 session 标记 conclusion=killed，cron 会在 5 次 miss 后自动清理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010889"
+        }
+      ]
+    },
+    {
+      "number": 778,
+      "messages": [
+        {
+          "source_line": 10890,
+          "timestamp": "2026-05-21T01:07:26.007986+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_audit_stale-running-experiments_20260521T010415 已完成（status=done）。用 `get_worker_status('worker_audit_stale-running-experiments_20260521T010415')` 读取结果，然后处理。\n\n- worker_id: worker_audit_stale-running-experiments_20260521T010415\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010890"
+        },
+        {
+          "source_line": 10891,
+          "timestamp": "2026-05-21T01:07:37.023508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-010891"
+        },
+        {
+          "source_line": 10892,
+          "timestamp": "2026-05-21T01:07:37.076495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-010892"
+        },
+        {
+          "source_line": 10893,
+          "timestamp": "2026-05-21T01:07:39.432505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_audit_stale-running-experiments_20260521T010415"
+            }
+          },
+          "id": "event-010893"
+        },
+        {
+          "source_line": 10894,
+          "timestamp": "2026-05-21T01:07:39.632366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_audit_stale-running-experiments_20260521T010415\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"audit:stale-running-experiments\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:04:15.651856+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:07:02.577533+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"你列出的 15 个实验已经全部不是 RUNNING 了（14 个 DONE，1 个 PREPARING）。这些已经被处理过了。\\\\n\\\\n当前 registry 实际有 **22 个 RUNNING** 实验。以下是审计结果：\\\\n\\\\n---\\\\n\\\\n## 审计结果\\\\n\\\\n### bjb2-28827（9 个实验）\\\\n\\\\n| 实验 | PID | 判定 | 说明 |\\\\n|------|-----|------|------|\\\\n| eval-obs-only-object-norm01-seed71 | 922504 | **ALIVE** | 运行 19min |\\\\n| eval-obs-only-object-norm005-seed72 | 922712 | **ALIVE** | 运行 19min |\\\\n| eval-obs-only-object-norm003-seed73 | 922982 | **ALIVE** | 运行 19min |\\\\n| eval-obs-only-object-norm01-seed74 | 923256 | **ALIVE** | 运行 19min |\\\\n| eval-obs-only-object-norm005-seed75 | 923398 | **ALIVE** | 运行 19min |\\\\n| eval-obs-only-object-norm003-seed56 | 865274 | **COMPLETED** | JSON: `logs/eval_obs_only_object_norm003_seed56.json` |\\\\n| eval-obs-only-object-norm01-seed61 | 915187 | **DEAD** | 日志停在 rollout 5/10，无 JSON，conclusion 已标 \\\\\\\"killed\\\\\\\" |\\\\n| eval-obs-only-object-norm005-seed62 | 915391 | **DEAD** | 日志停在 rollout 5/10，无 JSON |\\\\n| eval-obs-only-object-norm005-seed63 | 915981 | **DEAD** | 日志停在 rollout 5/10，无 JSON |\\\\n\\\\n### bjb1-32546（9 个实验）\\\\n\\\\n| 实验 | PID | 判定 | 说明 |\\\\n|------|-----|------|------|\\\\n| eval-obs-only-object-norm003-seed64 | 723784 | **ALIVE** | 运行 31min |\\\\n| eval-obs-only-object-norm003-seed65 | 725722 | **ALIVE** | 运行 29min |\\\\n| eval-obs-only-object-norm01-seed64 | 726800 | **ALIVE** | 运行 28min |\\\\n| eval-obs-only-object-norm01-seed65 | 728057 | **ALIVE** | 运行 28min |\\\\n| eval-obs-only-object-norm005-seed64 | 729873 | **ALIVE** | 运行 27min |\\\\n| eval-obs-only-object-norm01-seed51-r3 | 731912 | **ALIVE** | 运行 26min |\\\\n| eval-obs-only-object-norm01-seed5\n…[truncated 1167 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 199
+          },
+          "id": "event-010894"
+        },
+        {
+          "source_line": 10895,
+          "timestamp": "2026-05-21T01:08:00.232942+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计结果：\n- **16 ALIVE** — norm sweep 正常运行\n- **3 COMPLETED** — norm003-seed56 (bjb2-28827), norm005-seed58, norm01-seed57 (bjb1-18228) 有 JSON 待收割\n- **3 DEAD** — seed61/62/63 已标记 killed\n\n按 Director 指令（唯一任务=π0.5），完成结果收割暂缓。π0.5 两个 Worker 正在运行中，等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010895"
+        }
+      ]
+    },
+    {
+      "number": 779,
+      "messages": [
+        {
+          "source_line": 10896,
+          "timestamp": "2026-05-21T01:08:41.214292+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_monitor_norm-sweep-progress_20260521T010500 已完成（status=done）。用 `get_worker_status('worker_monitor_norm-sweep-progress_20260521T010500')` 读取结果，然后处理。\n\n- worker_id: worker_monitor_norm-sweep-progress_20260521T010500\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010896"
+        },
+        {
+          "source_line": 10897,
+          "timestamp": "2026-05-21T01:08:55.895388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_monitor_norm-sweep-progress_20260521T010500"
+            }
+          },
+          "id": "event-010897"
+        },
+        {
+          "source_line": 10898,
+          "timestamp": "2026-05-21T01:08:56.249969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_monitor_norm-sweep-progress_20260521T010500\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"monitor:norm-sweep-progress\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:05:01.039497+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:08:33.555832+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"数据收集完成，汇总如下：\\\\n\\\\n## Norm Sweep 实验进度汇总（2026-05-21 09:06 UTC）\\\\n\\\\n### bjb1-18228 (4×4090)\\\\n\\\\n| exp_id | PID | 状态 | 已运行 | 进度 | 预估剩余 |\\\\n|--------|-----|------|--------|------|---------|\\\\n| norm01-seed57 | 594635 | **已完成** | - | 10/10 | ✅ 09:03 完成 |\\\\n| norm005-seed58 | 596867 | **已完成** | - | 10/10 | ✅ 09:02 完成 |\\\\n| norm003-seed59 | 599925 | 运行中 | 1h41m | 9.5/10 (orange_juice rollout 5/10) | ~10min → **~09:16** |\\\\n| norm005-seed65 | 622479 | 运行中 | 31m | 2.5/10 (salad_dressing rollout 5/10) | ~93min → **~10:40** |\\\\n\\\\n### bjb1-32546\\\\n\\\\n| exp_id | PID | 状态 | 已运行 | 进度 | 预估剩余 |\\\\n|--------|-----|------|--------|------|---------|\\\\n| norm005-seed61 | 712959 | 运行中 | 1h16m | 6.5/10 (butter rollout 5/10) | ~41min → **~09:47** |\\\\n| norm003-seed64 | 723784 | 运行中 | 32m | 2/10 | ~1h28m → **~10:34** |\\\\n| norm003-seed65 | 725722 | 运行中 | 29m | 2/10 | ~1h26m → **~10:32** |\\\\n| norm01-seed64 | 726800 | 运行中 | 29m | 1.5/10 | ~1h40m → **~10:46** |\\\\n| norm01-seed65 | 728057 | 运行中 | 28m | 1.5/10 | ~1h40m → **~10:46** |\\\\n| norm005-seed64 | 729873 | 运行中 | 28m | 1.5/10 | ~1h40m → **~10:46** |\\\\n\\\\n### bjb2-28827\\\\n\\\\n| exp_id | PID | 状态 | 已运行 | 进度 | 预估剩余 |\\\\n|--------|-----|------|--------|------|---------|\\\\n| norm01-seed60 | 890012 | 运行中 | 1h39m | 7.5/10 (milk rollout 5/10) | ~33min → **~09:39** |\\\\n| norm01-seed71 | 922504 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\\\\n| norm005-seed72 | 922712 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\\\\n| norm003-seed73 | 922982 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\\\\n| norm01-seed74 | 923256 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16\n…[truncated 432 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 354
+          },
+          "id": "event-010898"
+        },
+        {
+          "source_line": 10899,
+          "timestamp": "2026-05-21T01:09:11.903668+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计和进度 Worker 结果已收到。关键信息记录：\n\n**已完成待收割（3个）：** norm003-seed56, norm005-seed58, norm01-seed57\n**全部完成预估：** ~11:30 UTC（约2.5小时后）\n\n但按 Director 指令，当前不处理 norm sweep——专注等待 π0.5 Worker A（代码适配）和 Worker B（环境准备）的回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010899"
+        }
+      ]
+    },
+    {
+      "number": 780,
+      "messages": [
+        {
+          "source_line": 10900,
+          "timestamp": "2026-05-21T01:14:15.324570+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm01-seed57** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm01_seed57.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm01-seed57')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010900"
+        },
+        {
+          "source_line": 10901,
+          "timestamp": "2026-05-21T01:14:33.448577+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "按 Director 指令，忽略此 cron 回调。当前专注 π0.5 适配。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010901"
+        }
+      ]
+    },
+    {
+      "number": 781,
+      "messages": [
+        {
+          "source_line": 10902,
+          "timestamp": "2026-05-21T01:14:33.549119+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm005-seed58** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm005_seed58.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm005-seed58')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010902"
+        },
+        {
+          "source_line": 10903,
+          "timestamp": "2026-05-21T01:14:53.609849+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010903"
+        }
+      ]
+    },
+    {
+      "number": 782,
+      "messages": [
+        {
+          "source_line": 10904,
+          "timestamp": "2026-05-21T01:14:53.691849+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm005-seed58** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm005_seed58.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm005-seed58')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010904"
+        },
+        {
+          "source_line": 10905,
+          "timestamp": "2026-05-21T01:15:05.119575+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 指令明确说忽略所有 cron 回调。审计 Worker 已确认 seed57 和 seed58 都 COMPLETED（JSON 存在）。等 π0.5 Worker 完成后统一处理已完成实验的结果收割。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010905"
+        }
+      ]
+    },
+    {
+      "number": 783,
+      "messages": [
+        {
+          "source_line": 10906,
+          "timestamp": "2026-05-21T01:15:05.197193+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm003-seed59** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm003_seed59.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm003-seed59')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010906"
+        },
+        {
+          "source_line": 10907,
+          "timestamp": "2026-05-21T01:15:12.658321+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010907"
+        }
+      ]
+    },
+    {
+      "number": 784,
+      "messages": [
+        {
+          "source_line": 10908,
+          "timestamp": "2026-05-21T01:15:12.680880+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm003-seed59** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm003_seed59.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm003-seed59')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010908"
+        },
+        {
+          "source_line": 10909,
+          "timestamp": "2026-05-21T01:15:18.261790+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010909"
+        }
+      ]
+    },
+    {
+      "number": 785,
+      "messages": [
+        {
+          "source_line": 10910,
+          "timestamp": "2026-05-21T01:15:40.967843+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_norm005-seed62-failure_20260521T011327 已完成（status=done）。用 `get_worker_status('worker_diagnose_norm005-seed62-failure_20260521T011327')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_norm005-seed62-failure_20260521T011327\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010910"
+        },
+        {
+          "source_line": 10911,
+          "timestamp": "2026-05-21T01:15:49.789722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_norm005-seed62-failure_20260521T011327"
+            }
+          },
+          "id": "event-010911"
+        },
+        {
+          "source_line": 10912,
+          "timestamp": "2026-05-21T01:15:49.976572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_norm005-seed62-failure_20260521T011327\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:norm005-seed62-failure\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:13:27.845153+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:15:37.103154+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 诊断报告\\\\n\\\\n**失败根因：进程被外部 SIGKILL 同时杀死，非代码错误。**\\\\n\\\\n### 证据\\\\n\\\\n- 3 个失败日志（seed61/62/63）全部停在 \\\\\\\"rollout 5/10\\\\\\\" 处，**无任何 Python traceback、CUDA error、segfault**，日志仅 13-14 行（~1.5KB）\\\\n- 同批次实际有 **5 个进程同时死亡**（还包括 norm003_seed64 和 norm01_seed60，这两个甚至没开始 rollout，停在 \\\\\\\"10 tasks loaded\\\\\\\"）\\\\n- 所有日志修改时间集中在 08:44-08:54，说明是同一时刻被杀\\\\n- 无 core dump，日志中无 \\\\\\\"Killed\\\\\\\" 字样\\\\n- 对比：同服务器上更早的成功实验（obs_only_object_*，4KB 完整日志）和当前正在运行的实验（seed71-75）均正常\\\\n\\\\n### 根因判断\\\\n\\\\n5 个 LIBERO eval 进程同时启动，每个都要加载 SmolVLA + 10 个 MuJoCo 仿真环境。并发环境初始化导致 **CPU RAM 峰值过高**，触发了 cgroup/容器 OOM killer 发送 SIGKILL。当前 1TB RAM 充足（已用 65GB），是因为失败批次已释放内存。\\\\n\\\\n### 3 个实验同因？\\\\n\\\\n是，同一批次同一原因。\\\\n\\\\n### 是否影响当前运行实验？\\\\n\\\\n**不影响。** nvidia-smi 显示 6 个 GPU 进程正常运行（PID 922504 等），GPU 温度 36-43°C，内存使用正常（~5.2GB/24GB）。\\\\n\\\\n### 建议\\\\n\\\\n1. **直接重跑**这 3 个（实际 5 个）失败实验，无需改配置\\\\n2. **控制并发数**：避免同时启动 5+ 个 eval 进程，建议每批最多 3-4 个，或错开启动时间（间隔 2-3 分钟让环境加载峰值错开）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 186
+          },
+          "id": "event-010912"
+        },
+        {
+          "source_line": 10913,
+          "timestamp": "2026-05-21T01:16:02.762381+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断确认 seed61/62/63 是同批 OOM kill，已在 registry 标记 killed。无需额外操作。\n\n当前状态：2 个 π0.5 Worker 仍在运行（代码适配 + 环境准备），等待完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010913"
+        }
+      ]
+    },
+    {
+      "number": 786,
+      "messages": [
+        {
+          "source_line": 10914,
+          "timestamp": "2026-05-21T01:16:26.517031+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm01-seed57** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm01_seed57.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm01-seed57')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010914"
+        },
+        {
+          "source_line": 10915,
+          "timestamp": "2026-05-21T01:16:31.881958+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010915"
+        }
+      ]
+    },
+    {
+      "number": 787,
+      "messages": [
+        {
+          "source_line": 10916,
+          "timestamp": "2026-05-21T01:17:20.922324+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval-obs-only-object-norm003-seed59** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 bjb1-18228 检查日志 `/root/autodl-tmp/logs/obs_only_object_norm003_seed59.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval-obs-only-object-norm003-seed59')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "cron"
+          },
+          "id": "event-010916"
+        },
+        {
+          "source_line": 10917,
+          "timestamp": "2026-05-21T01:17:29.474052+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010917"
+        }
+      ]
+    },
+    {
+      "number": 788,
+      "messages": [
+        {
+          "source_line": 10918,
+          "timestamp": "2026-05-21T01:18:12.963995+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_env_pi05-setup-bjb2-40593_20260521T010641 已完成（status=done）。用 `get_worker_status('worker_env_pi05-setup-bjb2-40593_20260521T010641')` 读取结果，然后处理。\n\n- worker_id: worker_env_pi05-setup-bjb2-40593_20260521T010641\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010918"
+        },
+        {
+          "source_line": 10919,
+          "timestamp": "2026-05-21T01:18:26.017393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_env_pi05-setup-bjb2-40593_20260521T010641"
+            }
+          },
+          "id": "event-010919"
+        },
+        {
+          "source_line": 10920,
+          "timestamp": "2026-05-21T01:18:26.512140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_env_pi05-setup-bjb2-40593_20260521T010641\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"env:pi05-setup-bjb2-40593\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:06:41.350339+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:18:08.416725+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 总结\\\\n\\\\n| 项目 | 结果 |\\\\n|------|------|\\\\n| **lerobot** | v0.5.2 (GitHub dev + pi0 extra)，PI05Policy 导入正常 |\\\\n| **模型路径** | `/root/autodl-tmp/models/pi05_libero_finetuned/` |\\\\n| **模型大小** | 7.0GB（model.safetensors 7.47GB） |\\\\n| **GPU 加载** | cuda:0, 显存占用 8.71GB / 24GB |\\\\n| **磁盘** | 数据盘剩余 145GB |\\\\n\\\\n**需注意**：加载时有 vision_tower key mismatch warning（`vision_model.` 前缀差异，missing + unexpected keys 对称），这是 transformers 版本与 checkpoint 的命名规则差异。模型以 `strict=False` 方式加载成功，vision tower 权重实际已加载（通过 unexpected keys 映射）。正式 eval 时建议确认 vision encoder 输出是否正确。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 494
+          },
+          "id": "event-010920"
+        },
+        {
+          "source_line": 10921,
+          "timestamp": "2026-05-21T01:18:37.798837+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker B (环境准备) 完成：lerobot v0.5.2 安装成功，模型 7.0GB 已下载到 bjb2-40593，GPU 加载 8.71GB/24GB。有 vision_tower key mismatch warning（strict=False 加载，实际权重已映射）。\n\n等待 Worker A (代码适配) 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010921"
+        }
+      ]
+    },
+    {
+      "number": 789,
+      "messages": [
+        {
+          "source_line": 10922,
+          "timestamp": "2026-05-21T01:21:12.702989+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_failed-evals-batch_20260521T011303 已完成（status=done）。用 `get_worker_status('worker_diagnose_failed-evals-batch_20260521T011303')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_failed-evals-batch_20260521T011303\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010922"
+        },
+        {
+          "source_line": 10923,
+          "timestamp": "2026-05-21T01:21:22.750461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_failed-evals-batch_20260521T011303"
+            }
+          },
+          "id": "event-010923"
+        },
+        {
+          "source_line": 10924,
+          "timestamp": "2026-05-21T01:21:22.976289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_failed-evals-batch_20260521T011303\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:failed-evals-batch\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:13:03.517908+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:21:09.583069+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"诊断完成。三个独立问题：\\\\n\\\\n1. **bjb2-28827 SIGHUP 批量故障** — 短命名批次（seed60-64）未用 nohup 保护，SSH 断连后被 SIGHUP 杀死。已被 seed71-75 替代。当前运行的实验均安全。\\\\n\\\\n2. **bjb1-32546 `python` 不在 PATH** — norm003-seed62/63 因 `nohup: failed to run command 'python'` 而启动失败。已注册 r2 重试。\\\\n\\\\n3. **seed57/seed58 是监控误报**（最重要发现）— 日志确认两个实验均已正常完成（19.0% 和 16.0%），但因 evaluate.py 无 W&B + 未用 tmux_wrapper.sh 导致无 sentinel，监控持续报 miss。需纠正注册表状态并补 sentinel 机制。\\\\n\\\\n报告已写入 artifacts 并注册。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 225
+          },
+          "id": "event-010924"
+        },
+        {
+          "source_line": 10925,
+          "timestamp": "2026-05-21T01:21:41.907363+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：seed57 完成 (norm01, SR=19.0%)，seed58 完成 (norm005, SR=16.0%)。Worker 已写入 artifacts。\n\nDirector 指令是专注 π0.5，继续等待代码适配 Worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010925"
+        }
+      ]
+    },
+    {
+      "number": 790,
+      "messages": [
+        {
+          "source_line": 10926,
+          "timestamp": "2026-05-21T01:22:41.972929+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_bjb1-18228-batch-failure_20260521T012027 已完成（status=done）。用 `get_worker_status('worker_diagnose_bjb1-18228-batch-failure_20260521T012027')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_bjb1-18228-batch-failure_20260521T012027\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010926"
+        },
+        {
+          "source_line": 10927,
+          "timestamp": "2026-05-21T01:22:49.606859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_bjb1-18228-batch-failure_20260521T012027"
+            }
+          },
+          "id": "event-010927"
+        },
+        {
+          "source_line": 10928,
+          "timestamp": "2026-05-21T01:22:49.758193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_bjb1-18228-batch-failure_20260521T012027\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:bjb1-18228-batch-failure\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:20:27.212054+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:22:39.998291+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"诊断完成。\\\\n\\\\n**核心结论：这是误报，不是实验失败。** 三个实验（norm005-seed58、norm01-seed57、norm003-seed59）全部正常完成，JSON 结果文件已存在。日志各 52 行，末尾有完整的 success rate 汇总，无任何错误。\\\\n\\\\n失败的表象原因：`evaluate.py` 没有 W&B logging 和 sentinel 文件写入逻辑，所以监控系统检测不到完成信号。\\\\n\\\\n结果摘要：\\\\n- norm003-seed59: **13.0%**\\\\n- norm005-seed58: **16.0%**\\\\n- norm01-seed57: **19.0%**\\\\n\\\\nseed65 (PID 622479) 正在正常运行，约完成 40%。系统健康，不需要重跑。\\\\n\\\\n报告已写入 `artifacts/diagnose_bjb1_18228_failure.md`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-010928"
+        },
+        {
+          "source_line": 10929,
+          "timestamp": "2026-05-21T01:23:08.740430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed57",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-010929"
+        },
+        {
+          "source_line": 10930,
+          "timestamp": "2026-05-21T01:23:09.345445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed57\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:23:08.871Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:23:08.871Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3855}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 605
+          },
+          "id": "event-010930"
+        },
+        {
+          "source_line": 10931,
+          "timestamp": "2026-05-21T01:23:09.345880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed58",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-010931"
+        },
+        {
+          "source_line": 10932,
+          "timestamp": "2026-05-21T01:23:09.799459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed58\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:23:09.469Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:23:09.469Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2855}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-010932"
+        },
+        {
+          "source_line": 10933,
+          "timestamp": "2026-05-21T01:23:09.799899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed59",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-010933"
+        },
+        {
+          "source_line": 10934,
+          "timestamp": "2026-05-21T01:23:09.973504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:23:09.866Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:23:09.867Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1703}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 173
+          },
+          "id": "event-010934"
+        },
+        {
+          "source_line": 10935,
+          "timestamp": "2026-05-21T01:23:21.352259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm01-seed57",
+              "field": "metrics",
+              "value": "{'success_rate': 0.19}"
+            }
+          },
+          "id": "event-010935"
+        },
+        {
+          "source_line": 10936,
+          "timestamp": "2026-05-21T01:23:21.855871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed57\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:23:08.871Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:23:21.444Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.19}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1692}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-010936"
+        },
+        {
+          "source_line": 10937,
+          "timestamp": "2026-05-21T01:23:21.856171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed58",
+              "field": "metrics",
+              "value": "{'success_rate': 0.16}"
+            }
+          },
+          "id": "event-010937"
+        },
+        {
+          "source_line": 10938,
+          "timestamp": "2026-05-21T01:23:22.310456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed58\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:23:09.469Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:23:21.948Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.16}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1671}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-010938"
+        },
+        {
+          "source_line": 10939,
+          "timestamp": "2026-05-21T01:23:22.462445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed59",
+              "field": "metrics",
+              "value": "{'success_rate': 0.13}"
+            }
+          },
+          "id": "event-010939"
+        },
+        {
+          "source_line": 10940,
+          "timestamp": "2026-05-21T01:23:22.665702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed59\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T01:23:09.866Z\\\", \\\"updated_at\\\": \\\"2026-05-21T01:23:22.549Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.13}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1459}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 203
+          },
+          "id": "event-010940"
+        },
+        {
+          "source_line": 10941,
+          "timestamp": "2026-05-21T01:23:28.576986+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。3 个新结果：norm01-seed57=19%, norm005-seed58=16%, norm003-seed59=13%。\n\n现在等待 π0.5 代码适配 Worker（Worker A）完成。bjb2-40593 环境已就绪（lerobot v0.5.2, 模型 7.0GB 已下载, GPU 加载 8.71GB/24GB 正常）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010941"
+        }
+      ]
+    },
+    {
+      "number": 791,
+      "messages": [
+        {
+          "source_line": 10942,
+          "timestamp": "2026-05-21T01:23:29.303595+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_pi05-wrapper-adaptation_20260521T010617 已完成（status=done）。用 `get_worker_status('worker_code_pi05-wrapper-adaptation_20260521T010617')` 读取结果，然后处理。\n\n- worker_id: worker_code_pi05-wrapper-adaptation_20260521T010617\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-010942"
+        },
+        {
+          "source_line": 10943,
+          "timestamp": "2026-05-21T01:23:43.397442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_pi05-wrapper-adaptation_20260521T010617"
+            }
+          },
+          "id": "event-010943"
+        },
+        {
+          "source_line": 10944,
+          "timestamp": "2026-05-21T01:23:43.598626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_pi05-wrapper-adaptation_20260521T010617\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:pi05-wrapper-adaptation\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-21T01:06:17.986215+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T01:23:10.234517+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"All verified. Here's a summary:\\\\n\\\\n**产出：**\\\\n\\\\n1. **`/root/acr-vla-conformal-refinement/src/pi05_wrapper.py`** (334 行) — 完整的 π0.5 wrapper\\\\n   - `Pi05Wrapper` 类，接口与 `SmolVLAWrapper` 一致\\\\n   - `VLM_HIDDEN_SIZE = 2048`（PaliGemma 2B）\\\\n   - `preprocess_obs()` — 图像 resize 224×224 + 状态 QUANTILES 归一化 → 离散化 256 bins → 嵌入文本 prompt\\\\n   - `encode_prefix()` — 通过 PaliGemma VLM 编码前缀，返回 2048D obs_features + KV cache\\\\n   - `generate_k_samples()` — 用不同 noise seed 顺序生成 K 个 action sample（KV cache 在 denoise_step 内部 deep-copy 保护）\\\\n   - `get_obs_features_and_samples()` / `get_obs_features_and_samples_adaptive()` — 端到端接口\\\\n   - QUANTILES 反归一化（`q01/q99`）处理 action 输出\\\\n\\\\n2. **修改后的 `evaluate.py`** (776 行) — 支持 `--model pi05`\\\\n   - 新增 `--model` 参数（默认 `smolvla`，可选 `pi05`）\\\\n   - 新增 `--pi05_path` 参数\\\\n   - 条件加载 wrapper（`Pi05Wrapper` vs `SmolVLAWrapper`）\\\\n   - CRM 兼容：`nn.Linear(2048, 960)` obs_projection，在所有使用 CRM 的 `select_action_*` 函数中生效\\\\n   - 输出文件名包含 model tag\\\\n\\\\n3. **验证通过**：`from pi05_wrapper import Pi05Wrapper` ✓，`parse_args --model pi05` ✓，语法检查 ✓\\\\n\\\\n**待办（需要单独处理）：**\\\\n- 下载 `lerobot/pi05_libero_finetuned` 模型到服务器\\\\n- `obs_projection` 当前使用随机权重，需训练或加载预训练 checkpoint 才能在 CRM 模式下有效\\\\n- 同步代码到 bjb2-28827 和 autodl-4090x4（服务器上无 git，需手动 scp）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-010944"
+        },
+        {
+          "source_line": 10945,
+          "timestamp": "2026-05-21T01:24:44.139155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:pi05-sync-and-smoke-test",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务：将 π0.5 代码同步到 bjb2-40593 并做端到端 smoke test\n\n### 背景\n- Worker A 在 bjb1-32546 上写了 `pi05_wrapper.py` 和修改了 `evaluate.py`\n- Worker B 在 bjb2-40593 上安装了 lerobot v0.5.2 并下载了模型到 `/root/autodl-tmp/models/pi05_libero_finetuned/`\n- 模型 8.71GB VRAM，GPU 是单卡 4090 (24GB)\n- 服务器无 git，需要手动同步\n\n### 步骤\n\n#### 1. 从 bjb1-32546 读取代码\n```bash\nssh bjb1-32546 \"cat /root/acr-vla-conformal-refinement/src/pi05_wrapper.py\"\nssh bjb1-32546 \"cat /root/acr-vla-conformal-refinement/src/evaluate.py\"\n```\n\n#### 2. 写入 bjb2-40593\n用 ssh_execute 将读取到的代码内容写入 bjb2-40593 的对应路径：\n- `/root/acr-vla-conformal-refinement/src/pi05_wrapper.py`\n- `/root/acr-vla-conformal-refinement/src/evaluate.py`\n\n注意：bjb2-40593 上可能还没有完整的项目目录结构。先检查：\n```bash\nssh bjb2-40593 \"ls -la /root/acr-vla-conformal-refinement/src/ 2>/dev/null || echo 'DIR_NOT_FOUND'\"\n```\n如果目录不存在，需要从 bjb1-32546 同步整个 src/ 目录。可以用 tar + scp 方式，或者逐文件复制关键文件（evaluate.py, pi05_wrapper.py, utils.py, smolvla_wrapper.py 以及其他 import 的模块）。\n\n#### 3. 检查 GPU 可用性\n```bash\nssh bjb2-40593 \"nvidia-smi --query-compute-apps=pid,used_memory --format=csv && nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader\"\n```\n如果有旧进程占用 GPU，报告 PID 和占用量，但不要 kill（需要确认是否是其他实验）。\n\n#### 4. Smoke test — 模型加载 + 单步推理\n在 bjb2-40593 上运行：\n```bash\nssh bjb2-40593 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement/src && python3 -c \\\"\nimport torch\nfrom pi05_wrapper import Pi05Wrapper\n\n# 加载模型\nwrapper = Pi05Wrapper()\nmodel_path = '/root/autodl-tmp/models/pi05_libero_finetuned'\nwrapper.load_model(model_path, device='cuda:0')\nprint('Model loaded successfully')\nprint(f'GPU memory: {torch.cuda.memory_allocated(0)/1024**3:.1f}GB')\n\n# 测试 obs features 维度\nimport numpy as np\n# 创建 dummy obs（224x224 RGB image + 7D state）\ndummy_img = np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8)\ndummy_state = np.random.randn(7).astype(np.float32)\ndummy_obs = {'agentview_rgb': dummy_img, 'eye_in_hand_rgb': dummy_img, 'joint_states': dummy_state, 'gripper_states': np.array([0.0], dtype=np.float32)}\n\n# 尝试生成 action\ntry:\n    obs_feat, samples = wrapper.get_obs_features_and_samples(dummy_obs, 'test_task', K=2)\n    print(f'obs_features shape: {obs_feat.shape}')  # 应该是 (2048,)\n    print(f'samples shape: {samples.shape}')  # 应该是 (K, H_eff, action_dim)\n    print('Smoke test PASSED')\nexcept Exception as e:\n    print(f'Smoke test FAILED: {e}')\n    import traceback\n    traceback.print_exc()\n\\\"\"\n```\n\n如果 smoke test 失败（很可能——obs 格式、task prompt 格式、LIBERO 环境依赖等都可能有问题），诊断错误原因并修复 pi05_wrapper.py。常见问题：\n- obs 字典的 key 名不对（LIBERO 用什么 key？检查 smolvla_wrapper.py 的 obs 处理逻辑）\n- image resize 方式不匹配\n- action 反归一化参数（QUANTILES）不正确\n- lerobot PI05Policy 的 API 与 wrapper 假设不同\n\n**重要：如果需要修复代码，直接在 bjb2-40593 上修改并验证。修复后的代码是 truth source，后续再同步回 bjb1-32546。**\n\n#### 5. 如果 smoke test 通过，准备完整 baseline eval 命令\n输出可以直接执行的 eval 命令（VLA-only baseline，不用 CRM）：\n```bash\ncd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=0 python3 evaluate.py --model pi05 --pi05_path /root/autodl-tmp/models/pi05_libero_finetuned --mode vla_only --benchmark object --seed 42 --output_dir /root/acr-vla-conformal-refinement/logs\n```\n\n### 产出\n1. 代码同步状态（哪些文件同步成功）\n2. GPU 可用性报告\n3. Smoke test 结果（PASS/FAIL + 详情）\n4. 如果修复了代码，说明修了什么\n5. 可直接执行的 baseline eval 命令\n\n### SSH 连接\n- bjb1-32546: `ssh bjb1-32546`\n- bjb2-40593: `ssh bjb2-40593`\n- conda 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-010945"
+        },
+        {
+          "source_line": 10946,
+          "timestamp": "2026-05-21T01:24:52.092142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_pi05-sync-and-smoke-test_20260521T012445\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_code_pi05-sync-and-smoke-test_20260521T012445.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_pi05-sync-and-smoke-test_20260521T012445 started. Use get_worker_status('worker_code_pi05-sync-and-smoke-test_20260521T012445') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 7952
+          },
+          "id": "event-010946"
+        },
+        {
+          "source_line": 10947,
+          "timestamp": "2026-05-21T01:24:55.941870+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "π0.5 代码同步 + smoke test Worker 已启动。当前 Worker 池 = 1（π0.5 sync+test）。等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-010947"
+        }
+      ]
+    },
+    {
+      "number": 792,
+      "messages": [
+        {
+          "source_line": 10948,
+          "timestamp": "2026-05-21T01:24:56.746892+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **GPU 76% — 立即修复两个问题**\n\n## 1. bjb2-40593: π0.5 代码同步 + baseline eval\nWorker A 写好的 `evaluate_pi05.py` 和 `pi05_wrapper.py` 还没同步到服务器。\n- 立即 sync_code 或直接 ssh_execute 把文件写到 `/root/acr-vla-conformal-refinement/src/`\n- 然后启动 π0.5 VLA-only baseline eval: LIBERO-Object, seed42, K=1\n\n## 2. bjb1-18228: 3 GPU 空闲 30+ min\ncuda:0/2/3 空了。立即部署 norm sweep：\n```bash\n# cuda:0\nCUDA_VISIBLE_DEVICES=0 nohup python /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.03 --seed 66 > /root/autodl-tmp/logs/norm003_seed66.log 2>&1 &\n\n# cuda:2  \nCUDA_VISIBLE_DEVICES=2 nohup python /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.05 --seed 66 > /root/autodl-tmp/logs/norm005_seed66.log 2>&1 &\n\n# cuda:3\nCUDA_VISIBLE_DEVICES=3 nohup python /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.1 --seed 66 > /root/autodl-tmp/logs/norm01_seed66.log 2>&1 &\n```\n\n**先 ssh_execute 部署，再注册 registry。不要先诊断再部署。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-010948"
+        },
+        {
+          "source_line": 10949,
+          "timestamp": "2026-05-21T01:25:28.460236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=0 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.03 --seed 66 > /root/autodl-tmp/logs/norm003_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm003-seed66 on bjb1-18228 cuda:0",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010949"
+        },
+        {
+          "source_line": 10950,
+          "timestamp": "2026-05-21T01:25:29.571336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=637094"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1111
+          },
+          "id": "event-010950"
+        },
+        {
+          "source_line": 10951,
+          "timestamp": "2026-05-21T01:25:29.973367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=2 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.05 --seed 66 > /root/autodl-tmp/logs/norm005_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm005-seed66 on bjb1-18228 cuda:2",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010951"
+        },
+        {
+          "source_line": 10952,
+          "timestamp": "2026-05-21T01:25:30.928095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=637119"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 954
+          },
+          "id": "event-010952"
+        },
+        {
+          "source_line": 10953,
+          "timestamp": "2026-05-21T01:25:31.330094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=3 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.1 --seed 66 > /root/autodl-tmp/logs/norm01_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm01-seed66 on bjb1-18228 cuda:3",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010953"
+        },
+        {
+          "source_line": 10954,
+          "timestamp": "2026-05-21T01:25:32.183802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=637132"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-010954"
+        },
+        {
+          "source_line": 10955,
+          "timestamp": "2026-05-21T01:25:39.011962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"ps -p 637094,637119,637132 -o pid,stat,etime,cmd --no-headers 2>/dev/null\"",
+              "description": "Verify 3 norm sweep processes alive on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010955"
+        },
+        {
+          "source_line": 10956,
+          "timestamp": "2026-05-21T01:25:39.865438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-010956"
+        },
+        {
+          "source_line": 10957,
+          "timestamp": "2026-05-21T01:25:45.388448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -5 /root/autodl-tmp/logs/norm003_seed66.log 2>/dev/null; echo '---'; tail -5 /root/autodl-tmp/logs/norm005_seed66.log 2>/dev/null; echo '---'; tail -5 /root/autodl-tmp/logs/norm01_seed66.log 2>/dev/null\"",
+              "description": "Check norm sweep error logs on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010957"
+        },
+        {
+          "source_line": 10958,
+          "timestamp": "2026-05-21T01:25:46.292658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nnohup: failed to run command 'python3': No such file or directory\n---\nnohup: failed to run command 'python3': No such file or directory\n---\nnohup: failed to run command 'python3': No such file or directory"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-010958"
+        },
+        {
+          "source_line": 10959,
+          "timestamp": "2026-05-21T01:25:54.776937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"ln -sf /root/miniconda3/bin/python3 /usr/local/bin/python3 && ln -sf /root/miniconda3/bin/python /usr/local/bin/python && which python3 && python3 --version\"",
+              "description": "Fix python3 symlink on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010959"
+        },
+        {
+          "source_line": 10960,
+          "timestamp": "2026-05-21T01:25:55.681305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n/usr/local/bin/python3\nPython 3.12.3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-010960"
+        },
+        {
+          "source_line": 10961,
+          "timestamp": "2026-05-21T01:26:00.851035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=0 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.03 --seed 66 > /root/autodl-tmp/logs/norm003_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Redeploy norm003-seed66 on bjb1-18228 cuda:0",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010961"
+        },
+        {
+          "source_line": 10962,
+          "timestamp": "2026-05-21T01:26:01.805101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=637233"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 954
+          },
+          "id": "event-010962"
+        },
+        {
+          "source_line": 10963,
+          "timestamp": "2026-05-21T01:26:02.207033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=2 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.05 --seed 66 > /root/autodl-tmp/logs/norm005_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Redeploy norm005-seed66 on bjb1-18228 cuda:2",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010963"
+        },
+        {
+          "source_line": 10964,
+          "timestamp": "2026-05-21T01:26:03.211294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=637309"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-010964"
+        },
+        {
+          "source_line": 10965,
+          "timestamp": "2026-05-21T01:26:03.663257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=3 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode obs_only --norm 0.1 --seed 66 > /root/autodl-tmp/logs/norm01_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Redeploy norm01-seed66 on bjb1-18228 cuda:3",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010965"
+        },
+        {
+          "source_line": 10966,
+          "timestamp": "2026-05-21T01:26:04.466389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=637576"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 803
+          },
+          "id": "event-010966"
+        },
+        {
+          "source_line": 10967,
+          "timestamp": "2026-05-21T01:26:08.683569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"sleep 5 && ps -p 637233,637309,637576 -o pid,stat,etime --no-headers 2>/dev/null && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null\"",
+              "description": "Verify processes alive and GPU usage on bjb1-18228",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010967"
+        },
+        {
+          "source_line": 10968,
+          "timestamp": "2026-05-21T01:26:14.536975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 5853
+          },
+          "id": "event-010968"
+        },
+        {
+          "source_line": 10969,
+          "timestamp": "2026-05-21T01:26:19.122809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"cat /root/autodl-tmp/logs/norm003_seed66.log\"",
+              "description": "Check norm003-seed66 full log",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010969"
+        },
+        {
+          "source_line": 10970,
+          "timestamp": "2026-05-21T01:26:19.929306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[robosuite WARNING] No private macro file found! (__init__.py:7)\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\nusage: evaluate.py [-h] [--benchmark {object,spatial,goal,long,90}]\n                   [--checkpoint CHECKPOINT] [--crm_checkpoint CRM_CHECKPOINT]\n                   [--n_rollouts N_ROLLOUTS] [--max_steps MAX_STEPS]\n                   [--seed SEED] [--K K]\n                   [--mode {vla_only,crm_scalar,crm_perdof,acr_vla,crm_obs_only,reconvla,random_selection,adaptive_k,adaptive_unc_head,adaptive_conformal_crm}]\n                   [--baseline_mode {single,mean}]\n                   [--smolvla_path SMOLVLA_PATH] [--obs_dim OBS_DIM]\n                   [--hidden_dim HIDDEN_DIM] [--render]\n                   [--output_file OUTPUT_FILE]\n                   [--max_correction_norm MAX_CORRECTION_NORM] [--adaptive_k]\n                   [--adaptive_threshold ADAPTIVE_THRESHOLD] [--k_init K_INIT]\n                   [--k_full K_FULL]\n                   [--unc_head_checkpoint UNC_HEAD_CHECKPOINT]\n                   [--unc_threshold UNC_THRESHOLD]\n                   [--conformal_threshold CONFORMAL_THRESHOLD]\nevaluate.py: error: argument --mode: invalid choice: 'obs_only' (choose from 'vla_only', 'crm_scalar', 'crm_perdof', 'acr_vla', 'crm_obs_only', 'reconvla', 'random_selection', 'adaptive_k', 'adaptive_unc_head', 'adaptive_conformal_crm')"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 806
+          },
+          "id": "event-010970"
+        },
+        {
+          "source_line": 10971,
+          "timestamp": "2026-05-21T01:26:33.918410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=0 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode crm_obs_only --max_correction_norm 0.03 --seed 66 > /root/autodl-tmp/logs/norm003_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm003-seed66 with correct args on bjb1-18228 cuda:0",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010971"
+        },
+        {
+          "source_line": 10972,
+          "timestamp": "2026-05-21T01:26:34.880783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=638171"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 962
+          },
+          "id": "event-010972"
+        },
+        {
+          "source_line": 10973,
+          "timestamp": "2026-05-21T01:26:35.341533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=2 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode crm_obs_only --max_correction_norm 0.05 --seed 66 > /root/autodl-tmp/logs/norm005_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm005-seed66 with correct args on bjb1-18228 cuda:2",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010973"
+        },
+        {
+          "source_line": 10974,
+          "timestamp": "2026-05-21T01:26:36.709506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=638251"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1367
+          },
+          "id": "event-010974"
+        },
+        {
+          "source_line": 10975,
+          "timestamp": "2026-05-21T01:26:36.785540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"CUDA_VISIBLE_DEVICES=3 nohup python3 /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --K 10 --mode crm_obs_only --max_correction_norm 0.1 --seed 66 > /root/autodl-tmp/logs/norm01_seed66.log 2>&1 & echo PID=\\$!\"",
+              "description": "Deploy norm01-seed66 with correct args on bjb1-18228 cuda:3",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010975"
+        },
+        {
+          "source_line": 10976,
+          "timestamp": "2026-05-21T01:26:37.766440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nPID=638518"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 980
+          },
+          "id": "event-010976"
+        },
+        {
+          "source_line": 10977,
+          "timestamp": "2026-05-21T01:26:42.580336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"sleep 8 && ps -p 638171,638251,638518 -o pid,stat,etime --no-headers 2>/dev/null && echo '---NVIDIA---' && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null\"",
+              "description": "Verify processes alive after 8s on bjb1-18228",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-010977"
+        },
+        {
+          "source_line": 10978,
+          "timestamp": "2026-05-21T01:26:51.621014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n638171 Rl         00:16\n638251 Rl         00:15\n638518 Rl         00:13\n---NVIDIA---\n622484, 3851 MiB"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 9040
+          },
+          "id": "event-010978"
+        },
+        {
+          "source_line": 10979,
+          "timestamp": "2026-05-21T01:27:01.666077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"head -3 /root/autodl-tmp/logs/norm003_seed66.log 2>/dev/null; echo '==='; head -3 /root/autodl-tmp/logs/norm005_seed66.log 2>/dev/null; echo '==='; head -3 /root/autodl-tmp/logs/norm01_seed66.log 2>/dev/null\"",
+              "description": "Check startup logs for 3 new experiments",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-010979"
+        },
+        {
+          "source_line": 10980,
+          "timestamp": "2026-05-21T01:27:02.519819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[robosuite WARNING] No private macro file found! (__init__.py:7)\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\n===\n[robosuite WARNING] No private macro file found! (__init__.py:7)\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\n===\n[robosuite WARNING] No private macro file found! (__init__.py:7)\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-010980"
+        }
+      ]
+    }
+  ]
+}

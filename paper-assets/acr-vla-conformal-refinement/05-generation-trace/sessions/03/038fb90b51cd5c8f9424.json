@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "038fb90b51cd5c8f9424",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 idle gpus magnitude",
+  "task_key": "worker_deploy_bjb2-28827-idle-gpus-magnitude_20260517T180402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-idle-gpus-magnitude_20260517T180402_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "95a5f389d1aaba5cfbe97e306d49dcfe1eec1803de43340d1ef74d6fa07a30c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部成功启动并确认 GPU 占用：\n\n| 实验 | GPU | PID | 显存占用 |\n|------|-----|-----|----------|\n| obs_only ε=0.1 seed47 | cuda:1 | 448782 | 5645 MiB |\n| obs_only ε=0.1 seed46 | cuda:3 | 449068 | 5609 MiB |\n| perdof ε=0.2 seed43 r3 | cuda:5 | 449339 | 5460 MiB |\n\n日志路径：\n- `~/runs/acr-vla-conformal-refinement/mag_obs_only_norm01_seed47.log`\n- `~/runs/acr-vla-conformal-refinement/mag_obs_only_norm01_seed46.log`\n- `~/runs/acr-vla-conformal-refinement/mag_perdof_norm02_seed43_r3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-idle-gpus-magnitude.md"
+}

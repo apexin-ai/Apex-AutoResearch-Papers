@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1add3602c6498b0fa013",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "mass deploy multi seed supplement",
+  "task_key": "worker_mass-deploy_multi-seed-supplement_20260520T104205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_mass-deploy_multi-seed-supplement_20260520T104205.log",
+    "occurrence": 1,
+    "bytes": 632374,
+    "sha256": "6de4124334d54fa5443d583b5f691c618839e9facfbbcebcc9da9522f4103e66"
+  },
+  "statistics": {
+    "messages": 147,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 53,
+      "tool_result": 53,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "1add3602c6498b0fa013-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "1add3602c6498b0fa013-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "1add3602c6498b0fa013-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/mass-deploy-multi-seed-supplement.md"
+}

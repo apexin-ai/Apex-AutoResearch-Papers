@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "664c4405e086c1826517",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill orphans and deploy",
+  "task_key": "worker_ops_kill-orphans-and-deploy_20260517T234509",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-orphans-and-deploy_20260517T234509_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "5a0f9aada0c68ee0d4b871f6b008e72e56f3835071f41e7ebb711090b8adfe37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 和 3 已成功释放。汇总如下：\n\n---\n\n## 汇总\n\n### bjb2-28827 (6× RTX 4090)\n\n| PID | 实验 | 状态 |\n|-----|------|------|\n| 449059 + 子进程 449068 | mag_obs_only_norm01_seed46 (cuda:3) | **已 kill** |\n| 448773 + 子进程 448782 | mag_obs_only_norm01_seed47 (cuda:1) | **已 kill** |\n| 422526 | plan_701-crm-k1-train (cuda:1) | 已自然结束 |\n| 434871 | train-crm-k1-accg-object-seed42-full (cuda:0) | 已自然结束 |\n\n**GPU 状态：**\n\n| GPU | 状态 | 占用进程 |\n|-----|------|----------|\n| cuda:0 | 占用 (5628 MiB) | PID 492545 — 合法实验 |\n| cuda:1 | **空闲** | — |\n| cuda:2 | 占用 (2875 MiB) | PID 404983 — 合法实验 |\n| cuda:3 | **空闲** | — |\n| cuda:4 | 占用 (1941 MiB) | PID 389051 — 合法实验 |\n| cuda:5 | 占用 (5664 MiB) | PID 488665 — 合法实验 |\n\n**可部署新实验：cuda:1, cuda:3**\n\n---\n\n### bjb1-18228 (4× RTX 4090)\n\n| PID | 实验 | 状态 |\n|-----|------|------|\n| 649967 | plan_701-precompute-k1-spatial (cuda:0) | 已自然结束 |\n\n**GPU 状态：**\n\n| GPU | 状态 | 占用进程 |\n|-----|------|----------|\n| cuda:0 | 占用 (2410 MiB) | PID 713405 — 合法实验 |\n| cuda:1 | 占用 (5645 MiB) | PID 774342 — 合法实验 |\n| cuda:2 | 占用 (5645 MiB) | PID 774543 — 合法实验 |\n| cuda:3 | 占用 (5182 MiB) | PID 749547 — 合法实验 |\n\n**可部署新实验：无（全部占用）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-orphans-and-deploy.md"
+}

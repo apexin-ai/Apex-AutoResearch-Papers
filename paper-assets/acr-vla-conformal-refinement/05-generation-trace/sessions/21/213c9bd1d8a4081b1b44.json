@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "213c9bd1d8a4081b1b44",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops retrain pipeline exec 20260521T180729 retry1",
+  "task_key": "worker_ops_retrain-pipeline-exec_20260521T180729_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_retrain-pipeline-exec_20260521T180729_retry1.log",
+    "occurrence": 1,
+    "bytes": 569466,
+    "sha256": "ff9b0b5f12c5b2f5c6724ddd20b12f0e438d11dcee15716dfe252e7cc946c842"
+  },
+  "statistics": {
+    "messages": 293,
+    "user_turns": 0,
+    "tool_calls": 88,
+    "roles": {
+      "system": 9,
+      "record": 1,
+      "assistant": 106,
+      "tool_call": 88,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 293,
+      "chunks": [
+        {
+          "path": "213c9bd1d8a4081b1b44-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "213c9bd1d8a4081b1b44-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-retrain-pipeline-exec-20260521t180729-retry1.md"
+}

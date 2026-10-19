@@ -1,0 +1,1531 @@
+{
+  "schema_version": "1.0",
+  "id": "4d6af8b498f627b67988",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code stats analysis prep",
+  "task_key": "worker_code_stats-analysis-prep_20260515T133936",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_stats-analysis-prep_20260515T133936.log",
+    "occurrence": 1,
+    "bytes": 70666,
+    "sha256": "607b5c59fbe7e27cb8807abbfd94763a8771f0883be7c9d8a62627eeb7aa7958"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a68a8418-36f0-4566-a1d3-87abe99c235a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778856000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e0b40caf-f792-42f9-a147-9184e599b410",
+                "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the project memory and existing files on the server.",
+              "signature": "EogCClkIDRgCKkA+21cSJl4lr9ad86vZKmT4MfRVuKeS+vyrlOw5ClBwbBB9DvYVAylXYzIMKGRRhtCzmbHlUq71K00BmN2PtFsBMg9jbGF1ZGUtb3B1cy00LTY4ABIMTNo9ATzzo5oYPPs0GgwLU6MZFkwO9KW1QhQiMHgbzyGpnRx3IdU1vy/FekpZI4AcuesbS690YgXjvcLLQuPPzS/R5AH8+AJcjt5YHipdiCAk/+3LhHPzqYCbwqZdQ2YzFtcI+UnC/BuN/6LwTzbmZbSx5xOk37E/1OdXQrROcPhG67pmHZXS7uyA4EfnqIFgFfCs6HvQ/d6iiVTEftebIWZyLafHIgb1cXLYGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "4b75a511-2b52-4d23-9c66-035ffb6b9803",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdpaMWY2XfZgMhE3qdWQNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11855,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11855
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先查项目记录和服务器上已有的分析代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "8830d764-4c05-479e-ba3d-cfad450eccad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdpaMWY2XfZgMhE3qdWQNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11855,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11855
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CWL8y5LfuifBd2cDAZ1FBC",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "9656b771-d634-41b4-ad77-cdc141394124",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdpaMWY2XfZgMhE3qdWQNC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11855,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11855
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:39:48.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01CWL8y5LfuifBd2cDAZ1FBC",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "b87d58c5-58df-4f3d-b0b7-92eed197ede9",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KSDv2PP1WHm5qbh7362YhP",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "file": "memory.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "58879fc7-b6bc-4259-9863-38365369a3c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHKj6D7hJFXyCSeKfuDVGJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1055,
+                "cache_read_input_tokens": 23696,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1055
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:39:50.997Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KSDv2PP1WHm5qbh7362YhP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Spatial Baselines 锁定 (2026-05-15)\\\\n\\\\n| 方法 | SR | 来源 |\\\\n|------|-----|------|\\\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\\\n\\\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\\\n\\\\n## Hard Tasks 普遍失败 (2026-05-15)\\\\n\\\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\\\n\\\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\\\n\\\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\\\n2. Object benchmark 跨域验证\\\\n3. obs_only CRM +5pp 稳定 → 转向 \\\\\\\"learned correction\\\\\\\" narrative\\\\n\\\\n## obs_only 走势 (2026-05-15)\\\\n\\\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\\\\\"obs-only CRM correction\\\\\\\" narrative。\\\\n\\\\n## Object Baseline (2026-05-15)\\\\n\\\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\\\n\\\\n## bjb2-40593 环境问题 (2026-05-14-15)\\\\n\\\\n- 无 .git repo\\\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\\\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\\\\n\\\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\\\n\\\\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\\\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\\\n\\\\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\\\\n\\\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\\\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\\\n\\\\n## [命名规范] exp_id 中 norm 值 (2026-05-15)\\\\n\\\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\\\n- output_file 同步使用 `0p3` 格式\\\\n\\\", \\\"total_chars\\\": 2113, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "ebdd6243-6577-4967-a82f-88f381a4f365",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Spatial Baselines 锁定 (2026-05-15)\\\\n\\\\n| 方法 | SR | 来源 |\\\\n|------|-----|------|\\\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\\\n\\\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\\\n\\\\n## Hard Tasks 普遍失败 (2026-05-15)\\\\n\\\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\\\n\\\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\\\n\\\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\\\n2. Object benchmark 跨域验证\\\\n3. obs_only CRM +5pp 稳定 → 转向 \\\\\\\"learned correction\\\\\\\" narrative\\\\n\\\\n## obs_only 走势 (2026-05-15)\\\\n\\\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\\\\\"obs-only CRM correction\\\\\\\" narrative。\\\\n\\\\n## Object Baseline (2026-05-15)\\\\n\\\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\\\n\\\\n## bjb2-40593 环境问题 (2026-05-14-15)\\\\n\\\\n- 无 .git repo\\\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\\\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\\\\n\\\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\\\n\\\\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\\\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\\\n\\\\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\\\\n\\\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\\\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\\\n\\\\n## [命名规范] exp_id 中 norm 值 (2026-05-15)\\\\n\\\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\\\n- output_file 同步使用 `0p3` 格式\\\\n\\\", \\\"total_chars\\\": 2113, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"content\": \"# Project Memory\\n\\n## Spatial Baselines 锁定 (2026-05-15)\\n\\n| 方法 | SR | 来源 |\\n|------|-----|------|\\n| VLA-only K=1 | 30% | eval-spatial-v7-full |\\n| VLA-mean K=10 | 32% | eval-vla-mean-spatial |\\n| Argmin K=10 | 34% | eval-argmin-only-spatial-r2 (与 reconvla-v3 独立复现一致) |\\n\\n**关键发现**: K=10 采样 + scalar argmin 选择增益有限 (+2pp over mean, +4pp over K=1)。CRM correction 的 bar 是 34%。\\n\\n## Hard Tasks 普遍失败 (2026-05-15)\\n\\nT2 (from_table_center), T7 (on_stove): 所有方法 0%。T4 (in_top_drawer), T5 (on_ramekin): 所有方法 0-10%。这是 VLA backbone 限制，不是 CRM 问题。论文不应在这些 tasks 上 claim CRM 改进。\\n\\n## D027 CRITICAL: perdof = argmin on matched tasks (2026-05-15)\\n\\nT0-T6 matched comparison: perdof 42.9% = argmin ~43% (0pp delta)。Per-DOF claim 在 spatial 上已死。项目存活依赖：\\n1. Magnitude sweep 找到 perdof 显著优于 argmin 的 norm 点\\n2. Object benchmark 跨域验证\\n3. obs_only CRM +5pp 稳定 → 转向 \\\"learned correction\\\" narrative\\n\\n## obs_only 走势 (2026-05-15)\\n\\nobs_only 从 57.5%@4tasks 降到 40%@6tasks（hard tasks 拖累）。但 obs_only 在 magnitude sweep 中每个已测 norm 下都 >= perdof (+10-20pp，仅 2 tasks)。如果趋势在 5+ tasks 后仍保持，论文可转向 \\\"obs-only CRM correction\\\" narrative。\\n\\n## Object Baseline (2026-05-15)\\n\\nVLA-only K=1 object = 12%。CRM 在 object benchmark 有更大提升空间（baseline 低）。\\n\\n## bjb2-40593 环境问题 (2026-05-14-15)\\n\\n- 无 .git repo\\n- CRM cache 路径 /root/autodl-tmp/crm_cache/spatial/（旧路径，非 v5）\\n- Ghost PID 211962 已 kill，eval-mag-obsonly-norm003-b2 恢复运行\\n\\n## [失败模式] submit_training_job EXIT_CODE=127 (2026-05-15)\\n\\ntmux 用 `sh` 而非 `bash` 执行命令，`python` 等 conda/venv 命令不在 `sh` PATH 中。修复：命令必须用 `bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\"` 包裹。裸 `python -u ...` 有时可行（取决于服务器 PATH 配置），但不可靠。\\n\\n## [失败模式] Kill 操作前必须逐参数比对 (2026-05-15)\\n\\n**事故**: Worker 将 norm=0.3 (norm03) 误判为 norm=0.03 (norm003) 的重复实验，kill 了有效进程。cuda:0 空闲 9 小时。\\n**根因**: Worker 只看 session 名和 output_file 路径，未核对 `--max_correction_norm` 参数值。\\n**规则**: kill 实验前必须 `ps aux | grep` 完整命令行，逐一比对关键参数（mode, norm, checkpoint, benchmark）。名字相似 ≠ 同一实验。\\n\\n## [命名规范] exp_id 中 norm 值 (2026-05-15)\\n\\n- Registry exp_id 不允许 `.`，norm 值用 `p` 替代小数点：norm-0p3 = 0.3, norm-0p03 = 0.03\\n- 禁止缩写歧义命名（norm03 可能是 0.03 也可能是 0.3）\\n- output_file 同步使用 `0p3` 格式\\n\", \"total_chars\": 2113, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JWr7HYMVw5YgEZ9FNGXzgn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "find /root/acr-vla-conformal-refinement/scripts/ /root/acr-vla-conformal-refinement/src/ -name \"*analysis*\" -o -name \"*statist*\" -o -name \"*fisher*\" -o -name \"*bootstrap*\" 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "8feb7d99-5f71-4ce8-bef3-e392b64cb438",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHKj6D7hJFXyCSeKfuDVGJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1055,
+                "cache_read_input_tokens": 23696,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1055
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:39:52.539Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JWr7HYMVw5YgEZ9FNGXzgn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "3ab9e4ac-de92-404b-a58a-5f35f956c580",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KKn2BbvcUhAvec4TxaNDoJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "ls /root/acr-vla-conformal-refinement/scripts/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "39fb69aa-5818-448c-82df-8ba2623183ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHKj6D7hJFXyCSeKfuDVGJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1055,
+                "cache_read_input_tokens": 23696,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1055
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T13:39:54.006Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KKn2BbvcUhAvec4TxaNDoJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"verify_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "bd982053-edc4-4557-9c61-420dcf7f5ee1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"verify_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"verify_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The find command was blocked because of the `-o` flag being interpreted as a shell metacharacter issue. Let me try a different approach. The scripts directory only has `verify_pipeline.py` - no existing statistical analysis code. Let me also check the src directory.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "b261ff4f-2c9e-4352-9f04-86971b999db9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018q3Qeivc1JJiqrhoSYJj8d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1988,
+                "cache_read_input_tokens": 24751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1988
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有已有的统计分析代码。`scripts/` 下只有 `verify_pipeline.py`。再确认下 src 目录和 eval 日志结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "069ac4f6-894d-43ff-9a80-2ad5d322cee0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018q3Qeivc1JJiqrhoSYJj8d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1988,
+                "cache_read_input_tokens": 24751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1988
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PHL6EVZ5sWXAj8igTgn2pP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "ls /root/acr-vla-conformal-refinement/src/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "06fc0093-3e55-4cac-9ba7-e70a53f8f395",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018q3Qeivc1JJiqrhoSYJj8d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1988,
+                "cache_read_input_tokens": 24751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1988
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018V4WRvS9YcYccKxETo2z6s",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "ls /root/acr-vla-conformal-refinement/logs/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "5e814d56-f123-49fc-9e15-75c7cd4f164c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018q3Qeivc1JJiqrhoSYJj8d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1988,
+                "cache_read_input_tokens": 24751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1988
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T13:39:59.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PHL6EVZ5sWXAj8igTgn2pP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\naci.py\\\\ncgs.py\\\\ncrm.py\\\\nevaluate.py\\\\nevaluate.py.bak\\\\nreconvla_baseline.py\\\\nsanity_check_reset.py\\\\nsmolvla_wrapper.py\\\\ntrain_crm.py\\\\nutils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "8dafb39b-593b-4c03-adf3-d5d43fbcf012",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\naci.py\\\\ncgs.py\\\\ncrm.py\\\\nevaluate.py\\\\nevaluate.py.bak\\\\nreconvla_baseline.py\\\\nsanity_check_reset.py\\\\nsmolvla_wrapper.py\\\\ntrain_crm.py\\\\nutils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\naci.py\\ncgs.py\\ncrm.py\\nevaluate.py\\nevaluate.py.bak\\nreconvla_baseline.py\\nsanity_check_reset.py\\nsmolvla_wrapper.py\\ntrain_crm.py\\nutils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T13:40:00.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018V4WRvS9YcYccKxETo2z6s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_reconvla_spatial_r2.json\\\\nprecompute_shard0.log\\\\nprecompute_shard1.log\\\\nprecompute_shard2.log\\\\nprecompute_shard3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "9dde0809-9e2b-4e8c-930f-1bbb1297db16",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_reconvla_spatial_r2.json\\\\nprecompute_shard0.log\\\\nprecompute_shard1.log\\\\nprecompute_shard2.log\\\\nprecompute_shard3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"eval_reconvla_spatial_r2.json\\nprecompute_shard0.log\\nprecompute_shard1.log\\nprecompute_shard2.log\\nprecompute_shard3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the structure of the eval JSON file to understand the data format, so I can write a proper analysis script.",
+              "signature": "ErQCClkIDRgCKkDAjGmwXOzEf1bsB4RhXMsaK+9mkqMDnem2Yay6Sbqx70m1i73ZFLPt5x79XJANCOMlIDHg44bEht0pKsVcMBRgMg9jbGF1ZGUtb3B1cy00LTY4ABIMmqmthmuG91n2rgRlGgyrQbGnXAuXmX0OpsMiMOWwZlHEtXO2ZOQoterGEF5jhuoGyOKN7NAALZksrYNQn6nZ8nkOh10shGoJ7epCqiqIAccZLRYrV4yWmfUtNdmWYLH/RWJDjK0a5VY02Fz98r77gG60uyl6Vx1bYprLM7deh8qTyUlqKrfLXhEXg/hwzMAP35MQPfrtunCdfwEQxiZtRFfNGPy9hNmxTmGd4Rm6WSPFnPi8N9ecM98l8220dsLJHEFVd+fF9tfeP2lQhRbt81pS5vZqBnAYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "137ce03d-01af-412b-ae4d-fa78ab7d9dee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYKzZdkN3odQsdrR1djnPm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 26739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 695
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "看下已有的 eval JSON 结构，了解数据格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "30b4fef1-cae8-40c4-94cd-30f287382fcb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYKzZdkN3odQsdrR1djnPm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 26739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 695
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HS1zdu7EayGLWSwJVUnFH6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "head -100 /root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "921b67fc-2763-4707-b289-4366f554384d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYKzZdkN3odQsdrR1djnPm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 26739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 695
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T13:40:04.024Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HS1zdu7EayGLWSwJVUnFH6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"reconvla\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.1,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "6360b23a-7165-46c4-a910-94ff272384ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"reconvla\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.1,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"reconvla\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.1,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the JSON format. It has:\n- `mode`: the method name\n- `benchmark`: spatial/object\n- `n_rollouts`: number of rollouts per task\n- `overall_success_rate`: overall success rate\n- `per_task`: dict of task_name -> {success_rate, successes, total}\n\nLet me also check the autodl-tmp logs directory on bjb2-40593 since that's where more eval results might be.\n\nActually, looking at the task again, the server is bjb1-18228. Let me also check if there are more eval files elsewhere.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "00f13948-e171-4fc1-995b-82ae827823ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015LLxWj5ViSsq2x9cVk2Mdr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 27434,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 567
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011KFVVcwoyZ2fod7EHEb6uV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "find /root/acr-vla-conformal-refinement/ -name \"eval_*.json\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "0cb230f6-7f51-4907-8842-dece649c6a88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015LLxWj5ViSsq2x9cVk2Mdr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 27434,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 567
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T13:40:10.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011KFVVcwoyZ2fod7EHEb6uV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "a988664d-13f4-467e-8200-0ebe5167d378",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式清楚了。现在创建统计分析脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "f39150b9-7db5-4fa4-8955-3236c1109109",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EL3PnnBN8xhXyrAoGWVXfp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 28001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 384
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NVxqUVkhbPMTTgPHegxv8X",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "cat > /root/acr-vla-conformal-refinement/scripts/statistical_analysis.py << 'PYEOF'\n\"\"\"Statistical analysis for ACR-VLA conformal refinement experiments.\n\nFisher exact test, bootstrap CI for success rate differences, McNemar's test\nfor paired per-task comparisons. Supports reading from eval JSON files or\ncommand-line summary data.\n\nUsage:\n  # From JSON files:\n  python scripts/statistical_analysis.py --file_a logs/eval_obs_only.json --file_b logs/eval_argmin.json\n\n  # From summary data:\n  python scripts/statistical_analysis.py --a_success 70 --a_total 200 --b_success 55 --b_total 200 \\\n      --label_a obs_only --label_b argmin\n\n  # From multiple JSON files (merge seeds):\n  python scripts/statistical_analysis.py \\\n      --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json \\\n      --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy import stats\n\n\ndef load_eval_json(filepaths):\n    \"\"\"Load and merge per-task results from one or more eval JSON files.\n\n    Returns dict: {task_name: {\"successes\": int, \"total\": int}}\n    \"\"\"\n    merged = {}\n    for fp in filepaths:\n        with open(fp) as f:\n            data = json.load(f)\n        for task_name, task_data in data[\"per_task\"].items():\n            if task_name not in merged:\n                merged[task_name] = {\"successes\": 0, \"total\": 0}\n            merged[task_name][\"successes\"] += task_data[\"successes\"]\n            merged[task_name][\"total\"] += task_data[\"total\"]\n    return merged\n\n\ndef aggregate(per_task):\n    \"\"\"Sum successes and totals across all tasks.\"\"\"\n    s = sum(v[\"successes\"] for v in per_task.values())\n    t = sum(v[\"total\"] for v in per_task.values())\n    return s, t\n\n\ndef fisher_exact_test(a_success, a_total, b_success, b_total):\n    \"\"\"Two-sided Fisher exact test on 2x2 contingency table.\n\n    Returns (odds_ratio, p_value).\n    \"\"\"\n    table = np.array([\n        [a_success, a_total - a_success],\n        [b_success, b_total - b_success],\n    ])\n    result = stats.fisher_exact(table, alternative=\"two-sided\")\n    return result.statistic, result.pvalue\n\n\ndef bootstrap_ci(a_successes, a_total, b_successes, b_total,\n                 n_bootstrap=10000, ci=0.95, rng_seed=2026):\n    \"\"\"Bootstrap CI for difference in success rates (a - b).\n\n    Resamples from binomial distributions parameterized by observed rates.\n    Returns (lower, upper, mean_diff, observed_diff).\n    \"\"\"\n    rng = np.random.default_rng(rng_seed)\n    rate_a = a_successes / a_total\n    rate_b = b_successes / b_total\n    observed_diff = rate_a - rate_b\n\n    diffs = []\n    for _ in range(n_bootstrap):\n        sa = rng.binomial(a_total, rate_a) / a_total\n        sb = rng.binomial(b_total, rate_b) / b_total\n        diffs.append(sa - sb)\n\n    diffs = np.array(diffs)\n    alpha = 1.0 - ci\n    lower = np.percentile(diffs, 100 * alpha / 2)\n    upper = np.percentile(diffs, 100 * (1 - alpha / 2))\n    return lower, upper, diffs.mean(), observed_diff\n\n\ndef mcnemar_test(per_task_a, per_task_b):\n    \"\"\"McNemar's test for paired per-task binary outcomes.\n\n    Compares per-task success rates (treating each task as a paired observation).\n    task wins for A but not B (b), and wins for B but not A (c).\n    Returns (chi2, p_value, n_tasks, b_count, c_count).\n    \"\"\"\n    common_tasks = sorted(set(per_task_a.keys()) & set(per_task_b.keys()))\n    if len(common_tasks) < 2:\n        return None, None, len(common_tasks), 0, 0\n\n    b_count = 0  # A succeeds more than B\n    c_count = 0  # B succeeds more than A\n    for task in common_tasks:\n        rate_a = per_task_a[task][\"successes\"] / per_task_a[task][\"total\"]\n        rate_b = per_task_b[task][\"successes\"] / per_task_b[task][\"total\"]\n        if rate_a > rate_b:\n            b_count += 1\n        elif rate_b > rate_a:\n            c_count += 1\n\n    if b_count + c_count == 0:\n        return 0.0, 1.0, len(common_tasks), b_count, c_count\n\n    # McNemar with continuity correction\n    chi2 = (abs(b_count - c_count) - 1) ** 2 / (b_count + c_count)\n    p_value = 1 - stats.chi2.cdf(chi2, df=1)\n    return chi2, p_value, len(common_tasks), b_count, c_count\n\n\ndef per_task_breakdown(per_task_a, per_task_b, label_a, label_b):\n    \"\"\"Print per-task comparison table.\"\"\"\n    common = sorted(set(per_task_a.keys()) & set(per_task_b.keys()))\n    if not common:\n        return \"No common tasks found.\"\n\n    lines = []\n    lines.append(f\"\\n{'Task':<65} {label_a:>10} {label_b:>10} {'Delta':>8}\")\n    lines.append(\"-\" * 95)\n    for task in common:\n        ra = per_task_a[task][\"successes\"] / per_task_a[task][\"total\"]\n        rb = per_task_b[task][\"successes\"] / per_task_b[task][\"total\"]\n        delta = ra - rb\n        sign = \"+\" if delta > 0 else \"\"\n        short_task = task[:62] + \"...\" if len(task) > 65 else task\n        lines.append(f\"{short_task:<65} {ra:>9.1%} {rb:>9.1%} {sign}{delta:>7.1%}\")\n    return \"\\n\".join(lines)\n\n\ndef full_analysis(a_success, a_total, b_success, b_total, label_a, label_b,\n                  per_task_a=None, per_task_b=None):\n    \"\"\"Run all statistical tests and return formatted report.\"\"\"\n    lines = []\n    lines.append(\"=\" * 70)\n    lines.append(\"STATISTICAL ANALYSIS REPORT\")\n    lines.append(\"=\" * 70)\n\n    rate_a = a_success / a_total\n    rate_b = b_success / b_total\n    lines.append(f\"\\n  {label_a}: {a_success}/{a_total} = {rate_a:.1%}\")\n    lines.append(f\"  {label_b}: {b_success}/{b_total} = {rate_b:.1%}\")\n    lines.append(f\"  Observed difference ({label_a} - {label_b}): {rate_a - rate_b:+.1%}\")\n\n    # Fisher exact test\n    lines.append(f\"\\n--- Fisher Exact Test (two-sided) ---\")\n    odds_ratio, p_fisher = fisher_exact_test(a_success, a_total, b_success, b_total)\n    lines.append(f\"  Odds ratio: {odds_ratio:.3f}\")\n    lines.append(f\"  p-value:    {p_fisher:.4f}\")\n    sig = \"YES\" if p_fisher < 0.05 else \"NO\"\n    lines.append(f\"  Significant at p < 0.05: {sig}\")\n\n    # Bootstrap CI\n    lines.append(f\"\\n--- Bootstrap 95% CI (difference: {label_a} - {label_b}) ---\")\n    lower, upper, mean_diff, obs_diff = bootstrap_ci(a_success, a_total, b_success, b_total)\n    lines.append(f\"  Observed diff: {obs_diff:+.3f}\")\n    lines.append(f\"  Bootstrap mean diff: {mean_diff:+.3f}\")\n    lines.append(f\"  95% CI: [{lower:+.3f}, {upper:+.3f}]\")\n    excludes_zero = \"YES (significant)\" if (lower > 0 or upper < 0) else \"NO (includes zero)\"\n    lines.append(f\"  CI excludes zero: {excludes_zero}\")\n\n    # Effect size (Cohen's h for proportions)\n    h = 2 * (np.arcsin(np.sqrt(rate_a)) - np.arcsin(np.sqrt(rate_b)))\n    lines.append(f\"\\n--- Effect Size ---\")\n    lines.append(f\"  Cohen's h: {h:.3f}\", )\n    if abs(h) < 0.2:\n        mag = \"negligible\"\n    elif abs(h) < 0.5:\n        mag = \"small\"\n    elif abs(h) < 0.8:\n        mag = \"medium\"\n    else:\n        mag = \"large\"\n    lines.append(f\"  Magnitude: {mag}\")\n\n    # McNemar's test (if per-task data available)\n    if per_task_a and per_task_b:\n        lines.append(f\"\\n--- McNemar's Test (paired per-task) ---\")\n        chi2, p_mcnemar, n_tasks, b_cnt, c_cnt = mcnemar_test(per_task_a, per_task_b)\n        lines.append(f\"  Common tasks: {n_tasks}\")\n        lines.append(f\"  Tasks where {label_a} > {label_b}: {b_cnt}\")\n        lines.append(f\"  Tasks where {label_b} > {label_a}: {c_cnt}\")\n        if chi2 is not None:\n            lines.append(f\"  Chi-squared: {chi2:.3f}\")\n            lines.append(f\"  p-value:     {p_mcnemar:.4f}\")\n            sig_m = \"YES\" if p_mcnemar < 0.05 else \"NO\"\n            lines.append(f\"  Significant at p < 0.05: {sig_m}\")\n        else:\n            lines.append(f\"  (Not enough paired tasks for McNemar's test)\")\n\n        lines.append(per_task_breakdown(per_task_a, per_task_b, label_a, label_b))\n\n    # Summary\n    lines.append(f\"\\n{'=' * 70}\")\n    lines.append(\"SUMMARY\")\n    lines.append(f\"{'=' * 70}\")\n    lines.append(f\"  {label_a} vs {label_b}: {rate_a:.1%} vs {rate_b:.1%} (delta {rate_a - rate_b:+.1%})\")\n    lines.append(f\"  Fisher p = {p_fisher:.4f}, Bootstrap 95% CI = [{lower:+.3f}, {upper:+.3f}]\")\n    if p_fisher < 0.05:\n        lines.append(f\"  >>> STATISTICALLY SIGNIFICANT at p < 0.05 <<<\")\n    else:\n        needed = estimate_needed_n(rate_a, rate_b)\n        lines.append(f\"  >>> NOT significant. Estimated N needed per condition for p<0.05: ~{needed} <<<\")\n\n    return \"\\n\".join(lines)\n\n\ndef estimate_needed_n(rate_a, rate_b, alpha=0.05, power=0.8):\n    \"\"\"Estimate sample size needed per group to detect observed difference.\"\"\"\n    if rate_a == rate_b:\n        return float(\"inf\")\n    h = 2 * (np.arcsin(np.sqrt(rate_a)) - np.arcsin(np.sqrt(rate_b)))\n    z_alpha = stats.norm.ppf(1 - alpha / 2)\n    z_beta = stats.norm.ppf(power)\n    n = ((z_alpha + z_beta) / h) ** 2\n    return int(np.ceil(n))\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Statistical analysis for ACR-VLA experiments\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=__doc__,\n    )\n    # File mode\n    parser.add_argument(\"--file_a\", nargs=\"+\", help=\"Eval JSON file(s) for condition A\")\n    parser.add_argument(\"--file_b\", nargs=\"+\", help=\"Eval JSON file(s) for condition B\")\n\n    # Summary mode\n    parser.add_argument(\"--a_success\", type=int, help=\"Successes for condition A\")\n    parser.add_argument(\"--a_total\", type=int, help=\"Total trials for condition A\")\n    parser.add_argument(\"--b_success\", type=int, help=\"Successes for condition B\")\n    parser.add_argument(\"--b_total\", type=int, help=\"Total trials for condition B\")\n\n    # Labels\n    parser.add_argument(\"--label_a\", default=\"Condition_A\", help=\"Label for condition A\")\n    parser.add_argument(\"--label_b\", default=\"Condition_B\", help=\"Label for condition B\")\n\n    # Options\n    parser.add_argument(\"--dry_run\", action=\"store_true\", help=\"Run with mock data\")\n\n    args = parser.parse_args()\n\n    if args.dry_run:\n        print(\"=== DRY RUN with mock data ===\\n\")\n        mock_a = {\n            \"task_0\": {\"successes\": 8, \"total\": 10},\n            \"task_1\": {\"successes\": 6, \"total\": 10},\n            \"task_2\": {\"successes\": 7, \"total\": 10},\n            \"task_3\": {\"successes\": 3, \"total\": 10},\n            \"task_4\": {\"successes\": 5, \"total\": 10},\n        }\n        mock_b = {\n            \"task_0\": {\"successes\": 5, \"total\": 10},\n            \"task_1\": {\"successes\": 4, \"total\": 10},\n            \"task_2\": {\"successes\": 3, \"total\": 10},\n            \"task_3\": {\"successes\": 2, \"total\": 10},\n            \"task_4\": {\"successes\": 4, \"total\": 10},\n        }\n        sa, ta = aggregate(mock_a)\n        sb, tb = aggregate(mock_b)\n        print(full_analysis(sa, ta, sb, tb, \"mock_obs_only\", \"mock_argmin\", mock_a, mock_b))\n        return\n\n    if args.file_a and args.file_b:\n        per_task_a = load_eval_json(args.file_a)\n        per_task_b = load_eval_json(args.file_b)\n        a_success, a_total = aggregate(per_task_a)\n        b_success, b_total = aggregate(per_task_b)\n        print(full_analysis(a_success, a_total, b_success, b_total,\n                            args.label_a, args.label_b, per_task_a, per_task_b))\n\n    elif all(v is not None for v in [args.a_success, args.a_total, args.b_success, args.b_total]):\n        print(full_analysis(args.a_success, args.a_total, args.b_success, args.b_total,\n                            args.label_a, args.label_b))\n\n    else:\n        parser.print_help()\n        print(\"\\nError: provide either --file_a/--file_b or --a_success/--a_total/--b_success/--b_total\")\n        sys.exit(1)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "0fe484b3-7ac0-4796-aebc-a8e8d15f3d25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EL3PnnBN8xhXyrAoGWVXfp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 28001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 384
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T13:41:03.945Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NVxqUVkhbPMTTgPHegxv8X",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "3626a139-44fb-498f-b266-411d23660a1f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建。验证 help 和 dry-run。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "891a2752-af27-4643-9984-31e93b1c7297",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FoLqhgpHHa1DbFkU7fj1tD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4328,
+                "cache_read_input_tokens": 28385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4328
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WhbejPUS4CQ7L312PCf7vV",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/statistical_analysis.py --help",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "98487df5-04b3-4b7a-b52f-4b9c77176856",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FoLqhgpHHa1DbFkU7fj1tD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4328,
+                "cache_read_input_tokens": 28385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4328
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sc3uo5HkQmctEKgT13xSMH",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "cd /root/acr-vla-conformal-refinement && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/statistical_analysis.py --dry_run",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "4f4df8a0-1fb9-49eb-a677-60dbce202d51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FoLqhgpHHa1DbFkU7fj1tD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4328,
+                "cache_read_input_tokens": 28385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4328
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T13:41:11.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WhbejPUS4CQ7L312PCf7vV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: statistical_analysis.py [-h] [--file_a FILE_A [FILE_A ...]]\\\\n                               [--file_b FILE_B [FILE_B ...]]\\\\n                               [--a_success A_SUCCESS] [--a_total A_TOTAL]\\\\n                               [--b_success B_SUCCESS] [--b_total B_TOTAL]\\\\n                               [--label_a LABEL_A] [--label_b LABEL_B]\\\\n                               [--dry_run]\\\\n\\\\nStatistical analysis for ACR-VLA experiments\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --file_a FILE_A [FILE_A ...]\\\\n                        Eval JSON file(s) for condition A\\\\n  --file_b FILE_B [FILE_B ...]\\\\n                        Eval JSON file(s) for condition B\\\\n  --a_success A_SUCCESS\\\\n                        Successes for condition A\\\\n  --a_total A_TOTAL     Total trials for condition A\\\\n  --b_success B_SUCCESS\\\\n                        Successes for condition B\\\\n  --b_total B_TOTAL     Total trials for condition B\\\\n  --label_a LABEL_A     Label for condition A\\\\n  --label_b LABEL_B     Label for condition B\\\\n  --dry_run             Run with mock data\\\\n\\\\nStatistical analysis for ACR-VLA conformal refinement experiments.\\\\n\\\\nFisher exact test, bootstrap CI for success rate differences, McNemar's test\\\\nfor paired per-task comparisons. Supports reading from eval JSON files or\\\\ncommand-line summary data.\\\\n\\\\nUsage:\\\\n  # From JSON files:\\\\n  python scripts/statistical_analysis.py --file_a logs/eval_obs_only.json --file_b logs/eval_argmin.json\\\\n\\\\n  # From summary data:\\\\n  python scripts/statistical_analysis.py --a_success 70 --a_total 200 --b_success 55 --b_total 200       --label_a obs_only --label_b argmin\\\\n\\\\n  # From multiple JSON files (merge seeds):\\\\n  python scripts/statistical_analysis.py       --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json       --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "68194bff-f447-4a0c-bd1a-035f5553920d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: statistical_analysis.py [-h] [--file_a FILE_A [FILE_A ...]]\\\\n                               [--file_b FILE_B [FILE_B ...]]\\\\n                               [--a_success A_SUCCESS] [--a_total A_TOTAL]\\\\n                               [--b_success B_SUCCESS] [--b_total B_TOTAL]\\\\n                               [--label_a LABEL_A] [--label_b LABEL_B]\\\\n                               [--dry_run]\\\\n\\\\nStatistical analysis for ACR-VLA experiments\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --file_a FILE_A [FILE_A ...]\\\\n                        Eval JSON file(s) for condition A\\\\n  --file_b FILE_B [FILE_B ...]\\\\n                        Eval JSON file(s) for condition B\\\\n  --a_success A_SUCCESS\\\\n                        Successes for condition A\\\\n  --a_total A_TOTAL     Total trials for condition A\\\\n  --b_success B_SUCCESS\\\\n                        Successes for condition B\\\\n  --b_total B_TOTAL     Total trials for condition B\\\\n  --label_a LABEL_A     Label for condition A\\\\n  --label_b LABEL_B     Label for condition B\\\\n  --dry_run             Run with mock data\\\\n\\\\nStatistical analysis for ACR-VLA conformal refinement experiments.\\\\n\\\\nFisher exact test, bootstrap CI for success rate differences, McNemar's test\\\\nfor paired per-task comparisons. Supports reading from eval JSON files or\\\\ncommand-line summary data.\\\\n\\\\nUsage:\\\\n  # From JSON files:\\\\n  python scripts/statistical_analysis.py --file_a logs/eval_obs_only.json --file_b logs/eval_argmin.json\\\\n\\\\n  # From summary data:\\\\n  python scripts/statistical_analysis.py --a_success 70 --a_total 200 --b_success 55 --b_total 200       --label_a obs_only --label_b argmin\\\\n\\\\n  # From multiple JSON files (merge seeds):\\\\n  python scripts/statistical_analysis.py       --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json       --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: statistical_analysis.py [-h] [--file_a FILE_A [FILE_A ...]]\\n                               [--file_b FILE_B [FILE_B ...]]\\n                               [--a_success A_SUCCESS] [--a_total A_TOTAL]\\n                               [--b_success B_SUCCESS] [--b_total B_TOTAL]\\n                               [--label_a LABEL_A] [--label_b LABEL_B]\\n                               [--dry_run]\\n\\nStatistical analysis for ACR-VLA experiments\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --file_a FILE_A [FILE_A ...]\\n                        Eval JSON file(s) for condition A\\n  --file_b FILE_B [FILE_B ...]\\n                        Eval JSON file(s) for condition B\\n  --a_success A_SUCCESS\\n                        Successes for condition A\\n  --a_total A_TOTAL     Total trials for condition A\\n  --b_success B_SUCCESS\\n                        Successes for condition B\\n  --b_total B_TOTAL     Total trials for condition B\\n  --label_a LABEL_A     Label for condition A\\n  --label_b LABEL_B     Label for condition B\\n  --dry_run             Run with mock data\\n\\nStatistical analysis for ACR-VLA conformal refinement experiments.\\n\\nFisher exact test, bootstrap CI for success rate differences, McNemar's test\\nfor paired per-task comparisons. Supports reading from eval JSON files or\\ncommand-line summary data.\\n\\nUsage:\\n  # From JSON files:\\n  python scripts/statistical_analysis.py --file_a logs/eval_obs_only.json --file_b logs/eval_argmin.json\\n\\n  # From summary data:\\n  python scripts/statistical_analysis.py --a_success 70 --a_total 200 --b_success 55 --b_total 200       --label_a obs_only --label_b argmin\\n\\n  # From multiple JSON files (merge seeds):\\n  python scripts/statistical_analysis.py       --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json       --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T13:41:13.266Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sc3uo5HkQmctEKgT13xSMH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DRY RUN with mock data ===\\\\n\\\\n======================================================================\\\\nSTATISTICAL ANALYSIS REPORT\\\\n======================================================================\\\\n\\\\n  mock_obs_only: 29/50 = 58.0%\\\\n  mock_argmin: 18/50 = 36.0%\\\\n  Observed difference (mock_obs_only - mock_argmin): +22.0%\\\\n\\\\n--- Fisher Exact Test (two-sided) ---\\\\n  Odds ratio: 2.455\\\\n  p-value:    0.0446\\\\n  Significant at p < 0.05: YES\\\\n\\\\n--- Bootstrap 95% CI (difference: mock_obs_only - mock_argmin) ---\\\\n  Observed diff: +0.220\\\\n  Bootstrap mean diff: +0.219\\\\n  95% CI: [+0.020, +0.400]\\\\n  CI excludes zero: YES (significant)\\\\n\\\\n--- Effect Size ---\\\\n  Cohen's h: 0.444\\\\n  Magnitude: small\\\\n\\\\n--- McNemar's Test (paired per-task) ---\\\\n  Common tasks: 5\\\\n  Tasks where mock_obs_only > mock_argmin: 5\\\\n  Tasks where mock_argmin > mock_obs_only: 0\\\\n  Chi-squared: 3.200\\\\n  p-value:     0.0736\\\\n  Significant at p < 0.05: NO\\\\n\\\\nTask                                                              mock_obs_only mock_argmin    Delta\\\\n-----------------------------------------------------------------------------------------------\\\\ntask_0                                                                80.0%     50.0% +  30.0%\\\\ntask_1                                                                60.0%     40.0% +  20.0%\\\\ntask_2                                                                70.0%     30.0% +  40.0%\\\\ntask_3                                                                30.0%     20.0% +  10.0%\\\\ntask_4                                                                50.0%     40.0% +  10.0%\\\\n\\\\n======================================================================\\\\nSUMMARY\\\\n======================================================================\\\\n  mock_obs_only vs mock_argmin: 58.0% vs 36.0% (delta +22.0%)\\\\n  Fisher p = 0.0446, Bootstrap 95% CI = [+0.020, +0.400]\\\\n  >>> STATISTICALLY SIGNIFICANT at p < 0.05 <<<\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "7c5fe86c-fa18-4d0d-ab11-8bd15728ed9b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DRY RUN with mock data ===\\\\n\\\\n======================================================================\\\\nSTATISTICAL ANALYSIS REPORT\\\\n======================================================================\\\\n\\\\n  mock_obs_only: 29/50 = 58.0%\\\\n  mock_argmin: 18/50 = 36.0%\\\\n  Observed difference (mock_obs_only - mock_argmin): +22.0%\\\\n\\\\n--- Fisher Exact Test (two-sided) ---\\\\n  Odds ratio: 2.455\\\\n  p-value:    0.0446\\\\n  Significant at p < 0.05: YES\\\\n\\\\n--- Bootstrap 95% CI (difference: mock_obs_only - mock_argmin) ---\\\\n  Observed diff: +0.220\\\\n  Bootstrap mean diff: +0.219\\\\n  95% CI: [+0.020, +0.400]\\\\n  CI excludes zero: YES (significant)\\\\n\\\\n--- Effect Size ---\\\\n  Cohen's h: 0.444\\\\n  Magnitude: small\\\\n\\\\n--- McNemar's Test (paired per-task) ---\\\\n  Common tasks: 5\\\\n  Tasks where mock_obs_only > mock_argmin: 5\\\\n  Tasks where mock_argmin > mock_obs_only: 0\\\\n  Chi-squared: 3.200\\\\n  p-value:     0.0736\\\\n  Significant at p < 0.05: NO\\\\n\\\\nTask                                                              mock_obs_only mock_argmin    Delta\\\\n-----------------------------------------------------------------------------------------------\\\\ntask_0                                                                80.0%     50.0% +  30.0%\\\\ntask_1                                                                60.0%     40.0% +  20.0%\\\\ntask_2                                                                70.0%     30.0% +  40.0%\\\\ntask_3                                                                30.0%     20.0% +  10.0%\\\\ntask_4                                                                50.0%     40.0% +  10.0%\\\\n\\\\n======================================================================\\\\nSUMMARY\\\\n======================================================================\\\\n  mock_obs_only vs mock_argmin: 58.0% vs 36.0% (delta +22.0%)\\\\n  Fisher p = 0.0446, Bootstrap 95% CI = [+0.020, +0.400]\\\\n  >>> STATISTICALLY SIGNIFICANT at p < 0.05 <<<\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.78}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== DRY RUN with mock data ===\\n\\n======================================================================\\nSTATISTICAL ANALYSIS REPORT\\n======================================================================\\n\\n  mock_obs_only: 29/50 = 58.0%\\n  mock_argmin: 18/50 = 36.0%\\n  Observed difference (mock_obs_only - mock_argmin): +22.0%\\n\\n--- Fisher Exact Test (two-sided) ---\\n  Odds ratio: 2.455\\n  p-value:    0.0446\\n  Significant at p < 0.05: YES\\n\\n--- Bootstrap 95% CI (difference: mock_obs_only - mock_argmin) ---\\n  Observed diff: +0.220\\n  Bootstrap mean diff: +0.219\\n  95% CI: [+0.020, +0.400]\\n  CI excludes zero: YES (significant)\\n\\n--- Effect Size ---\\n  Cohen's h: 0.444\\n  Magnitude: small\\n\\n--- McNemar's Test (paired per-task) ---\\n  Common tasks: 5\\n  Tasks where mock_obs_only > mock_argmin: 5\\n  Tasks where mock_argmin > mock_obs_only: 0\\n  Chi-squared: 3.200\\n  p-value:     0.0736\\n  Significant at p < 0.05: NO\\n\\nTask                                                              mock_obs_only mock_argmin    Delta\\n-----------------------------------------------------------------------------------------------\\ntask_0                                                                80.0%     50.0% +  30.0%\\ntask_1                                                                60.0%     40.0% +  20.0%\\ntask_2                                                                70.0%     30.0% +  40.0%\\ntask_3                                                                30.0%     20.0% +  10.0%\\ntask_4                                                                50.0%     40.0% +  10.0%\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n  mock_obs_only vs mock_argmin: 58.0% vs 36.0% (delta +22.0%)\\n  Fisher p = 0.0446, Bootstrap 95% CI = [+0.020, +0.400]\\n  >>> STATISTICALLY SIGNIFICANT at p < 0.05 <<<\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.78}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完毕，验证通过。\n\n**路径**: `/root/acr-vla-conformal-refinement/scripts/statistical_analysis.py`\n\n**使用方法**:\n\n```bash\n# 从 JSON 文件（支持多 seed 合并）\npython scripts/statistical_analysis.py \\\n    --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json \\\n    --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json \\\n    --label_a obs_only --label_b argmin\n\n# 从 summary 数据\npython scripts/statistical_analysis.py \\\n    --a_success 70 --a_total 200 --b_success 55 --b_total 200 \\\n    --label_a obs_only --label_b argmin\n\n# dry-run 验证\npython scripts/statistical_analysis.py --dry_run\n```\n\n**输出内容**:\n- Fisher exact test (p-value, odds ratio)\n- Bootstrap 95% CI (success rate 差异)\n- Cohen's h effect size\n- McNemar's test (paired per-task，需 JSON 输入)\n- Per-task breakdown 表格\n- 若不显著，估算达到 p<0.05 需要的样本量"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "uuid": "a8651f42-8ff5-4816-897e-a8692fcfa0d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XV3Ckd9esovxXuArARgCfU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1697,
+                "cache_read_input_tokens": 32713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1697
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完毕，验证通过。\n\n**路径**: `/root/acr-vla-conformal-refinement/scripts/statistical_analysis.py`\n\n**使用方法**:\n\n```bash\n# 从 JSON 文件（支持多 seed 合并）\npython scripts/statistical_analysis.py \\\n    --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json \\\n    --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json \\\n    --label_a obs_only --label_b argmin\n\n# 从 summary 数据\npython scripts/statistical_analysis.py \\\n    --a_success 70 --a_total 200 --b_success 55 --b_total 200 \\\n    --label_a obs_only --label_b argmin\n\n# dry-run 验证\npython scripts/statistical_analysis.py --dry_run\n```\n\n**输出内容**:\n- Fisher exact test (p-value, odds ratio)\n- Bootstrap 95% CI (success rate 差异)\n- Cohen's h effect size\n- McNemar's test (paired per-task，需 JSON 输入)\n- Per-task breakdown 表格\n- 若不显著，估算达到 p<0.05 需要的样本量"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 96260,
+            "duration_api_ms": 92282,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "006308ef-619a-42a8-8a9e-4a5e90a27554",
+            "total_cost_usd": 0.40055425,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 22569,
+              "cache_read_input_tokens": 203560,
+              "output_tokens": 6238,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22569,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 344,
+                  "cache_read_input_tokens": 32713,
+                  "cache_creation_input_tokens": 1697,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1697
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1633,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0017079999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 6238,
+                "cacheReadInputTokens": 203560,
+                "cacheCreationInputTokens": 22569,
+                "webSearchRequests": 0,
+                "costUSD": 0.39884625,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9d2b0dc8-7e97-4d31-86ed-57f10965f565"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-stats-analysis-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b3fdf8849910995b161",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb2 28827 crm baselines",
+  "task_key": "worker_harvest_bjb2-28827-crm-baselines_20260524T210947",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb2-28827-crm-baselines_20260524T210947_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "90b68f88485d0bf762d0f8b5b3f0e9ffec6d5917eed0e2c4e26e3b905f770fa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**仍在运行**，不是已完成。任务前提有误。\n\n### 现状\n3 个 CRM 实验进程都还活着，从今早 04:18 启动，已跑约 4.5 小时：\n\n| exp_id | PID | CPU 时间 | GPU | 日志进度 |\n|--------|-----|---------|-----|---------|\n| eval-supp-crm-norm005-spatial-s48 | 429934 | 277:52 | 0 | 任务 5/10 进行中 (37 行) |\n| eval-supp-crm-norm005-spatial-s49 | 430199 | 277:22 | 4 | 37 行 |\n| eval-supp-crm-norm005-goal-s48 | 430467 | 281:50 | 5 | 32 行 |\n\n### 误判原因\nGPU 利用率看似低（4-5GB 显存、20-30% util）是因为 LIBERO 是 MuJoCo CPU 仿真，每个 python 进程 CPU 都在 528-537%（吃满 5+ 核），属正常 rollout 中状态。tmux session 也都在。\n\n### 建议\n**不要更新 registry 为 DONE。** 这些实验仍在 RUNNING 状态合理。\n\nspatial-s48 当前进度（log 显示）：\n- task 1: 20/20 (100%)\n- task 2: 19/20 (95%)\n- task 3: 20/20 (100%)\n- task 4: 19/20 (95%)\n- task 5: 12/15 进行中\n\n按这个速度，预计还要 4-5 小时才能跑完全部 10 个 task。需要我设个 wakeup 稍后再来收割吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb2-28827-crm-baselines.md"
+}

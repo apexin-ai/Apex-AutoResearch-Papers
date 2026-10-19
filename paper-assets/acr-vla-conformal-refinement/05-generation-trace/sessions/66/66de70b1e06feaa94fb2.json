@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66de70b1e06feaa94fb2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code model path fix and sync",
+  "task_key": "worker_code_model-path-fix-and-sync_20260513T113849",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_model-path-fix-and-sync_20260513T113849_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "b0a9399af0ac89a6f29df9369132ba0109fe006bec6ec783c1a1a9597e0b1204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器验证都通过。总结：\n\n### 完成状态\n\n| 项目 | 状态 |\n|------|------|\n| **Step 1**: smolvla_wrapper.py 默认路径 → smolvla_libero | **已完成** |\n| **Step 2**: train_crm.py 加 HF_OFFLINE | **已完成** |\n| **Step 3**: evaluate.py 合并 crash protection (try/except + SIGSEGV handler) | **已完成** |\n| **Step 4**: 代码同步到 autodl-4090 (utils/cgs/smolvla_wrapper/evaluate/train_crm) | **已完成** |\n| **Step 5**: 两台服务器验证 FULL=7, CORR=6, 默认路径=smolvla_libero | **已完成** |\n\n### 需要注意\n\n**autodl-4090 上没有 smolvla_libero 模型**，只有 `smolvla_base`。4090x4 上有 `/root/autodl-tmp/models/smolvla_libero/`（865MB）。如果要在 4090 上跑 precompute 或 evaluate，需要先把模型复制过去，或用 `--smolvla_path /root/autodl-tmp/models/smolvla_base` 覆盖。\n\n### train_crm.py 模型路径参数\n\n参数名是 `--smolvla_path`，默认值已改为 `/root/autodl-tmp/models/smolvla_libero/`。precompute 时如需指定不同路径：\n```bash\npython train_crm.py --precompute --benchmark spatial --smolvla_path /path/to/model\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-model-path-fix-and-sync.md"
+}

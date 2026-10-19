@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1871c4e4a90fb634b1d2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops registry sync running experiments",
+  "task_key": "worker_ops_registry-sync-running-experiments_20260517T235138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_registry-sync-running-experiments_20260517T235138_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "17eb93697ecab4d98868ef1379042fdaab4c8dba29b04d0d9ad9ba5d3632621e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments are already properly registered. Here's the summary:\n\n**8 target experiments — all already registered as RUNNING with complete specs:**\n\n| Experiment | Server | Status |\n|---|---|---|\n| eval-perdof-object-norm02-seed46 | bjb2-28827 | RUNNING ✓ (PID 389051, cuda:4) |\n| eval-perdof-object-norm02-seed47 | bjb2-28827 | RUNNING ✓ (PID 404983, cuda:2) |\n| eval-obs-only-object-norm005-seed43-r2 | bjb1-32546 | RUNNING ✓ (PID 433500, cuda:0) |\n| eval-obs-only-object-default-seed46 | bjb1-32546 | RUNNING ✓ (PID 422357, cuda:3) |\n| eval-perdof-object-default-seed46 | bjb1-32546 | RUNNING ✓ (PID 423767, cuda:5) |\n| eval-random-selection-object-seed42 | bjb2-40593 | RUNNING ✓ (PID 395256, cuda:0) |\n| eval-obs-only-object-norm01-seed48 | bjb1-18228 | RUNNING ✓ (PID 774342, cuda:1) |\n| eval-obs-only-object-norm03-seed48 | bjb1-18228 | RUNNING ✓ (PID 774543, cuda:2) |\n\nAll entries have command, server, hypothesis, seed, model_name, and data fields populated.\n\n**eval-obs-only-object-norm005-seed43:** Already DONE (conclusion: \"killed\"). Superseded by r2 (bjb1-32546) and r3 (bjb1-18228). Process is dead on bjb2-28827, log file exists but no output JSON — it died after completing only 1 of 10 tasks. No action needed.\n\n**Bonus finding — additional unregistered experiments running:**\n- bjb2-28827: perdof norm02 seed48, random_selection seed43\n- bjb1-32546: perdof norm02 seed43, obs_only norm005 seed44, perdof norm005 seed44\n- bjb1-18228: k1_accg seed43, obs_only norm02 K=5 seed42, perdof norm02 seed45\n\nThese may need registration separately if they're part of the experimental plan."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-sync-running-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "028089477e5058e2b64d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval supp long adapt tau025 s47 r2",
+  "task_key": "worker_harvest_eval-supp-long-adapt-tau025-s47-r2_20260524T165652",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-supp-long-adapt-tau025-s47-r2_20260524T165652_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "ddc7a9504e06c426fe3ae38169a2c1875284531934705ac05163840b9b9401ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验 eval-supp-long-adapt-tau025-s47-r2 — 成功完成**\n\n| 指标 | 值 |\n|------|-----|\n| Overall SR | **55.0%** (110/200) |\n| Mean uncertainty | 0.1235 |\n| Trigger rate | 3.65% (2707/74115 steps) |\n| τ | 0.25 |\n\nPer-task 分布：\n\n| Task | SR |\n|------|-----|\n| KITCHEN_SCENE3 (stove+moka) | 95% |\n| KITCHEN_SCENE4 (bowl+drawer) | 95% |\n| STUDY_SCENE1 (book+caddy) | 90% |\n| LIVING_ROOM_SCENE2 (cheese+butter) | 80% |\n| KITCHEN_SCENE6 (mug+microwave) | 60% |\n| LIVING_ROOM_SCENE1 (soup+cheese) | 60% |\n| LIVING_ROOM_SCENE5 (mugs+plates) | 35% |\n| LIVING_ROOM_SCENE6 (mug+pudding) | 20% |\n| LIVING_ROOM_SCENE2 (soup+tomato) | 15% |\n| KITCHEN_SCENE8 (moka pots) | 0% |\n\ns47 的 55.0% 低于 s42 (59.0%) 和 s46 (58.5%)，但在合理方差范围内。3-seed mean 约 57.5%。\n\nRegistry 已更新 conclusion=success + metrics，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-supp-long-adapt-tau025-s47-r2.md"
+}

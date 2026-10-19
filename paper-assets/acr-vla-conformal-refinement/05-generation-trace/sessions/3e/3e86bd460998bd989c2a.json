@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e86bd460998bd989c2a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis pi05 crm always on long s42",
+  "task_key": "worker_analysis_pi05-crm-always-on-long-s42_20260528T051257",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-crm-always-on-long-s42_20260528T051257_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "023da6ef8c1672b058b6ff591c97a7d66d05f0060c396efae77d026c7dbf9a12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## Pi05 CRM Always-On Long s42 — Results\n\n**Overall SR: 77.0%** (154/200) | trigger_rate=100% | mean_unc=0.104\n\n### vs Pi05 VLA-only Long Baseline\n\n| | SR | Δ |\n|---|---|---|\n| Pi05 VLA-only (s42) | 94.0% | — |\n| Pi05 CRM always-on (s42) | 77.0% | **-17.0%** |\n\nCRM always-on is **harmful** as expected. Hypothesis confirmed → conclusion = **success**.\n\n### Pi05 CRM Always-On Cross-Suite Consistency\n\n| Suite | CRM always-on | VLA-only | Δ |\n|---|---|---|---|\n| Object (s42) | 90.5% | ~96%* | ~-5.5% |\n| Spatial (s42) | 96.0% | 97.0% | -1.0% |\n| Goal (s42) | 81.5% | 97.8% | -16.3% |\n| **Long (s42)** | **77.0%** | **94.0%** | **-17.0%** |\n\nPi05 shows CRM always-on harmful on all 4 suites, with Long and Goal showing the largest degradation.\n\n### Cross-VLA Comparison (CRM Always-On Long)\n\n| VLA | CRM always-on | VLA-only | Δ |\n|---|---|---|---|\n| SmolVLA (s42) | 41.0% | ~58% | ~-17% |\n| **Pi05 (s42)** | **77.0%** | **94.0%** | **-17.0%** |\n\nBoth models show ~17% degradation from CRM always-on on Long — remarkably consistent. **Supports MC1 (cross-VLA generalization)**: uncalibrated CRM is harmful regardless of VLA backbone.\n\n### Table 2 Impact\n\nThis completes the Pi05 CRM always-on Long data point. The pattern holds: CRM always-on is harmful across all 4 suites for both SmolVLA and Pi05, confirming that conformal gating is necessary to prevent CRM from degrading performance."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-crm-always-on-long-s42.md"
+}

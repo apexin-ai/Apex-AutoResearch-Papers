@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bf528459ed1fd61b9be",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm r4 training exit",
+  "task_key": "worker_diagnose_crm-r4-training-exit_20260522T172018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-r4-training-exit_20260522T172018_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "ddfe6712ba1128dc99d313237e04920d080134075749905c0c0e8d19158fa3ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：CRON 误报，训练正常进行中。**\n\n| 项目 | 值 |\n|------|---|\n| 状态 | RUNNING (PID 322367) |\n| 进度 | epoch 14/50, batch 2700/6316 (~28%) |\n| 最新 checkpoint | epoch 13 |\n| train_loss | ~0.012 |\n| 预估剩余 | 约 36 个 epoch，每 epoch ~23 min → ~14 小时 |\n\nRegistry 已更新，status 保持 RUNNING。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-r4-training-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2da331b1221ccc798378",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra scp 4suite checkpoint",
+  "task_key": "worker_infra_scp-4suite-checkpoint_20260523T094425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_scp-4suite-checkpoint_20260523T094425_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "7e843121ace4f6819c75c7303389d632bb169d4419f70a590a4e02ac0a83e8fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**传输结果：**\n\n| 服务器 | 状态 | MD5 |\n|--------|------|-----|\n| bjb1-32546（源） | - | `e9a4bfce8d86ac079e71d0a5a346ccbf` |\n| bjb2-28827 | 成功 | `e9a4bfce8d86ac079e71d0a5a346ccbf` |\n| cqa1-32758 | 成功 | `e9a4bfce8d86ac079e71d0a5a346ccbf` |\n\n三台服务器 MD5 一致，checkpoint 分发完成。路径均为 `/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-4suite-checkpoint.md"
+}

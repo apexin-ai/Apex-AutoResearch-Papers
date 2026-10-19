@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "234887433287483cedef",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy bjb2 28827 openvla 20260524T062541 retry1",
+  "task_key": "worker_deploy_bjb2-28827-openvla_20260524T062541_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-openvla_20260524T062541_retry1.log",
+    "occurrence": 1,
+    "bytes": 740257,
+    "sha256": "8d09676f23d4ee72de87c963d558a5aed837984b8be1c32d8c20307eac3100b6"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "234887433287483cedef-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "234887433287483cedef-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-bjb2-28827-openvla-20260524t062541-retry1.md"
+}

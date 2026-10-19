@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f42fdc74d9cb102704b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb1 18228 pi05 status",
+  "task_key": "worker_check_bjb1-18228-pi05-status_20260525T040449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb1-18228-pi05-status_20260525T040449_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "bcf5e54699e2734b1f5c4755e952a522624a63d774edff22e753a5e3f86124d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-18228 状态汇报\n\n### GPU 占用\n\n| GPU | 型号 | 利用率 | 显存占用 | 进程 |\n|-----|------|--------|----------|------|\n| 0 | RTX 4090 | 10% | 580/24564 MiB | — (非 GPU 计算进程) |\n| 1 | RTX 4090 | 0% | 0/24564 MiB | **空闲** |\n| 2 | RTX 4090 | 0% | 0/24564 MiB | **空闲** |\n| 3 | RTX 4090 | 24% | 9883/24564 MiB | precompute_pi05_long (PID 114507) |\n\n### π0.5 CRM 3-suite 训练（PID 326315，GPU 0）\n\n- **进度**: Epoch 49/50，batch 250/684 — **即将完成**（还剩约 1.5 个 epoch）\n- **Loss**: train_loss=0.0072, val_loss=0.0042（epoch 48 刷新 best）\n- **Checkpoint**: `crm_best.pt` 已生成（May 25 11:58），最新 checkpoint 到 epoch 48\n- 有 2 个子进程（PID 444876, 444877）是 DataLoader workers\n\n### π0.5 precompute-long（PID 114507，GPU 3）\n\n- **进度**: 102900/136090（**75.6%**）\n- **速度**: 1.95s/sample\n- **ETA**: ~64618s ≈ **约 18 小时**（预计 May 26 06:00 左右完成）\n\n### 空闲 GPU\n\n**GPU 1、GPU 2 完全空闲**，可立即使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-18228-pi05-status-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37ce6287bc20be7c103b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval obs only spatial norm02 seed42",
+  "task_key": "worker_harvest_eval-obs-only-spatial-norm02-seed42_20260520T121612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-obs-only-spatial-norm02-seed42_20260520T121612_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "247f8106680e8f30d967bfa6954824668cb17cea66075fef97c87a700fc3c6c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验 eval-obs-only-spatial-norm02-seed42 仍在运行，尚未完成。**\n\n当前状态：\n- **PID 340026**，20:08（北京时间）启动，活跃中\n- **进度**：Task 1 完成（90%, 9/10），Task 2 进行中（rollout 5/10, 4/5 success）\n- 共 10 个 tasks，预计还需 ~60-80 分钟完成\n- **JSON 输出文件尚未生成**（只在全部完成后写入）\n\n之前的 exit marker（11:06 UTC）和 runs log 来自第一次运行（只跑了 2 个 tasks 就退出了），不是当前运行。\n\n**结论**：无法收割——实验还在跑。建议等完成后再收割结果。需要更新 registry 状态为 RUNNING 还是保持 ANALYZING？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-obs-only-spatial-norm02-seed42.md"
+}

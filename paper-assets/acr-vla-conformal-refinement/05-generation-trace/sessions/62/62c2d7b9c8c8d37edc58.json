@@ -1,0 +1,1400 @@
+{
+  "schema_version": "1.0",
+  "id": "62c2d7b9c8c8d37edc58",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "diagnose pi05 crm k2 long s43 cqa1 20260526T131123 retry1",
+  "task_key": "worker_diagnose_pi05-crm-k2-long-s43-cqa1_20260526T131123_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-crm-k2-long-s43-cqa1_20260526T131123_retry1.log",
+    "occurrence": 1,
+    "bytes": 69669,
+    "sha256": "b69971658ed6f491b684a96d082cb768cd9c55a3a10405e4c8b6c0a23bc2d5a1"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-7[1m]",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b3b8d258-0f66-4329-b942-8026feedb10b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1780063200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.92,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "0640fb39-5d0e-4c35-b5c3-7ff2fd0ac327",
+                "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "EtoCCmMIDhgCKkBYXmrG4xdwf0meWDupY7aGvSZyhjQHfzrJocYzzg/p++aFVr49M09SY8MvirP0yQ4la3VfWBZPaQWfrcWmGi/1Mg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDIBMoxpZVu03QeXruRoM8WH1Pyg7hfBSAt+mIjD4VSvdOBUiSBuHjq4muw6dKzPlmmR2DQPESOjT+OdO7rPdOV4vM9NlpymAhVV/WRoqpAHFNZjDDakH0q4npcWrGZ5r62h77xOxRny5A9V3rDfD2eY0r5TnFlSJMaM4S6iSEADbO+7U+Px3U41HCF+oPYEQ++m/Z+ADk5Dqcb+JaM630mCnwIEZ+sUQuXgBKmCfHBSGBbtXA9167ojFmuXriv8S7Jkuakfns4jFZpEdpOhNWDKclandi9L4FBmht6bUsyvArlnI+TRSPM1f96ZCshpw01f9pxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "20068eaa-dd47-4d24-a321-7b72243776c7",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01DjzZ857v62RfbgNmWUFNcc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 14803,
+                "cache_read_input_tokens": 16241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14803
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011YQfzDVYDfGTJmCDVoLrey",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "8a115e27-5c61-4381-815c-f9027b949a44",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01DjzZ857v62RfbgNmWUFNcc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 14803,
+                "cache_read_input_tokens": 16241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14803
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T13:11:51.275Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011YQfzDVYDfGTJmCDVoLrey",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "6b7ba278-3771-4ea8-9926-009e2e2aec99",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "ErcCCmMIDhgCKkCxC7NzTqlcXl1/QvdnUSIC/ZeXkd/M3mhuu8No0ToE+aCYlQpmnUw5Wm6EAsm/g4LNM35aYvABzkwIxuWxjKedMg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDNlq6YE6YsIBj1sm0hoMzx8euKNd0k0orht1IjDEeZXU55RBvbTU5bM7OMNTUWCCczjnKPtDugFvh/xoQoo4S0/Zktu1DlGgMEc2tn8qgQExsKYQ3kJX16Aa594qPWIgno4pFsDZp/JrRjK9ALs0lXvCKg7g0UWLhU24igLY5I/mHrl3FYrynGDr6FmTAgFs5VA5tzPvr9xR/sQRRiCK2Q6/DIftIuJ/dX+tx1O+yBWoEGBxSXKh3zy/1CjtNnlDvMUdyq7bc9oh8Ori62eAoPQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "55e79a7d-9a84-4576-8266-7df98a1b4058",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01Sny1sPzBg35MYAyP4RNhvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15416,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15416
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "tools_changed",
+                  "cache_missed_input_tokens": 28735
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019M8GFry4UfuVLLrahhcrjQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "tail -50 /root/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s43-cqa1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "eaf12742-b8ab-42fe-9a9e-53d74a3bb9b0",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01Sny1sPzBg35MYAyP4RNhvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15416,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15416
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "tools_changed",
+                  "cache_missed_input_tokens": 28735
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T13:11:56.583Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019M8GFry4UfuVLLrahhcrjQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 869, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 864, in main\\\\n    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 583, in evaluate\\\\n    raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\nValueError: --checkpoint required for CRM modes\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "2599f6f8-7ce4-4bd8-82c4-16d84284d5f1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 869, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 864, in main\\\\n    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 583, in evaluate\\\\n    raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\nValueError: --checkpoint required for CRM modes\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\nTraceback (most recent call last):\\n  File \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\", line 869, in <module>\\n    main()\\n  File \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\", line 864, in main\\n    evaluate(args)\\n  File \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\", line 583, in evaluate\\n    raise ValueError(\\\"--checkpoint required for CRM modes\\\")\\nValueError: --checkpoint required for CRM modes\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C4NLpkEhzU3mmukeCMJdyJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "sed -n '575,595p' /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "5701f966-d285-439f-829d-61f217507651",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_016Ej3uHSLFZ5sBAcwKFMxvi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1719,
+                "cache_read_input_tokens": 31750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1719
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T13:11:59.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C4NLpkEhzU3mmukeCMJdyJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "af969b3a-216c-49ce-a839-0862774f2b73",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AXnVvGKJhsdsygaJY7KbYy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "grep -n \"checkpoint\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "bca011ba-fad1-4445-ad29-e56e3cb09607",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01RjiVRaQeaCWZs53ruWr2gu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 33469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 285
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T13:12:03.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AXnVvGKJhsdsygaJY7KbYy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n32:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n69:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n70:                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n71:    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n72:                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n112:    p.add_argument(\\\\\\\"--unc_head_checkpoint\\\\\\\", type=str, default=None,\\\\n113:                   help=\\\\\\\"Path to trained UncertaintyHead model checkpoint\\\\\\\")\\\\n535:    # --crm_checkpoint is an alias for --checkpoint\\\\n536:    if args.crm_checkpoint and not args.checkpoint:\\\\n537:        args.checkpoint = args.crm_checkpoint\\\\n539:    # Default checkpoint for adaptive_k mode\\\\n540:    if args.mode in (\\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\") and args.checkpoint is None:\\\\n541:        args.checkpoint = \\\\\\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\\\\"\\\\n542:        print(f\\\\\\\"[eval] {args.mode}: using default CRM checkpoint {args.checkpoint}\\\\\\\")\\\\n582:        if args.checkpoint is None:\\\\n583:            raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\n601:        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n604:        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n623:                f\\\\\\\"or pass --obs_dim {pi05_feat_dim} if checkpoint matches.\\\\\\\"\\\\n631:        if args.unc_head_checkpoint is None:\\\\n632:            raise ValueError(\\\\\\\"--unc_head_checkpoint required for adaptive_unc_head mode\\\\\\\")\\\\n634:        unc_head = UncertaintyHead.load(args.unc_head_checkpoint).to(device).eval()\\\\n635:        print(f\\\\\\\"[eval] UncertaintyHead loaded from {args.unc_head_checkpoint}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "8b3c6c82-f356-44e0-9cf7-13972a091a68",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n32:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n69:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n70:                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n71:    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n72:                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n112:    p.add_argument(\\\\\\\"--unc_head_checkpoint\\\\\\\", type=str, default=None,\\\\n113:                   help=\\\\\\\"Path to trained UncertaintyHead model checkpoint\\\\\\\")\\\\n535:    # --crm_checkpoint is an alias for --checkpoint\\\\n536:    if args.crm_checkpoint and not args.checkpoint:\\\\n537:        args.checkpoint = args.crm_checkpoint\\\\n539:    # Default checkpoint for adaptive_k mode\\\\n540:    if args.mode in (\\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\") and args.checkpoint is None:\\\\n541:        args.checkpoint = \\\\\\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\\\\"\\\\n542:        print(f\\\\\\\"[eval] {args.mode}: using default CRM checkpoint {args.checkpoint}\\\\\\\")\\\\n582:        if args.checkpoint is None:\\\\n583:            raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\n601:        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n604:        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n623:                f\\\\\\\"or pass --obs_dim {pi05_feat_dim} if checkpoint matches.\\\\\\\"\\\\n631:        if args.unc_head_checkpoint is None:\\\\n632:            raise ValueError(\\\\\\\"--unc_head_checkpoint required for adaptive_unc_head mode\\\\\\\")\\\\n634:        unc_head = UncertaintyHead.load(args.unc_head_checkpoint).to(device).eval()\\\\n635:        print(f\\\\\\\"[eval] UncertaintyHead loaded from {args.unc_head_checkpoint}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"29:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n32:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n69:    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n70:                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n71:    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n72:                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\n112:    p.add_argument(\\\"--unc_head_checkpoint\\\", type=str, default=None,\\n113:                   help=\\\"Path to trained UncertaintyHead model checkpoint\\\")\\n535:    # --crm_checkpoint is an alias for --checkpoint\\n536:    if args.crm_checkpoint and not args.checkpoint:\\n537:        args.checkpoint = args.crm_checkpoint\\n539:    # Default checkpoint for adaptive_k mode\\n540:    if args.mode in (\\\"adaptive_k\\\", \\\"adaptive_unc_head\\\", \\\"adaptive_conformal_crm\\\") and args.checkpoint is None:\\n541:        args.checkpoint = \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\"\\n542:        print(f\\\"[eval] {args.mode}: using default CRM checkpoint {args.checkpoint}\\\")\\n582:        if args.checkpoint is None:\\n583:            raise ValueError(\\\"--checkpoint required for CRM modes\\\")\\n601:        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n604:        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n623:                f\\\"or pass --obs_dim {pi05_feat_dim} if checkpoint matches.\\\"\\n631:        if args.unc_head_checkpoint is None:\\n632:            raise ValueError(\\\"--unc_head_checkpoint required for adaptive_unc_head mode\\\")\\n634:        unc_head = UncertaintyHead.load(args.unc_head_checkpoint).to(device).eval()\\n635:        print(f\\\"[eval] UncertaintyHead loaded from {args.unc_head_checkpoint}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RANxGbnDjSD2HYmjdxhsnY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "ls -la /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "989d62cf-5094-48b8-8f22-efe6d607b7ed",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01WuK1qDZJoiyKyBJSq5Qr9q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1230,
+                "cache_read_input_tokens": 33754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1230
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T13:12:07.079Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RANxGbnDjSD2HYmjdxhsnY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2484379 May 25 16:41 /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "28012750-f6c1-4377-aecb-b758bf6762cd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2484379 May 25 16:41 /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2484379 May 25 16:41 /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AZWNT11vRuUt2vd1QwnEyq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "ps aux | grep \"crm_obs_only\" | grep -v grep",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "d422b118-07e5-4674-9b01-8dee79fbec28",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01JKUE37g9MWyRHGVfAMyr1H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 335,
+                "cache_read_input_tokens": 34984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 335
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T13:12:11.112Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AZWNT11vRuUt2vd1QwnEyq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "f17d1a01-d0a6-4a54-8fb6-a6f4cc7a5862",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NNLdLoX5Ww411kc9yX8Dhh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "pgrep -af \"crm_obs_only\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "3921b239-24d5-41e5-ac2d-873ebe71cff5",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_019k3dDvjSZngEd5AshexdRy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 35319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T13:12:13.650Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NNLdLoX5Ww411kc9yX8Dhh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "974499ee-cdad-4be1-8793-c9f20e28a9d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018M9QhFBd4KskvsJbosToVn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "ls /root/runs/acr-vla-conformal-refinement/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "a7f97fa9-66f6-4ca0-a109-50cd6d661041",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_013c3fYtQkU33qTg21hJAg3a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 267,
+                "cache_read_input_tokens": 35597,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 267
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T13:12:16.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018M9QhFBd4KskvsJbosToVn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-canonical-adaptive-k10-spatial-s42.log\\\\neval-canonical-adaptive-k10-spatial-s43.log\\\\neval-canonical-adaptive-k10-spatial-s44.log\\\\neval-canonical-adaptive-k10-spatial-s48.log\\\\neval-canonical-adaptive-k10-spatial-s49.log\\\\neval-canonical-vla-only-spatial-s44.log\\\\neval-supp-goal-adapt-tau025-s46.log\\\\neval-supp-k2mean-object-s44.log\\\\neval-supp-k2mean-spatial-s44.log\\\\neval-supp-long-k2mean-s42.log\\\\neval-supp-long-vla-only-s43.log\\\\neval-supp-obj-reconvla-s44.log\\\\neval-supp-spatial-adapt-tau025-s45.log\\\\neval-supp-spatial-vla-only-s43.log\\\\neval-supp-vla-only-goal-s48.log\\\\neval-supp-vla-only-goal-s49.log\\\\neval-supp-vla-only-obj-s48.log\\\\neval-supp-vla-only-obj-s49.log\\\\neval-supp-vla-only-spatial-s48.log\\\\neval-supp-vla-only-spatial-s49.log\\\\npi05-adaptive-goal-s42-cqa1.log\\\\npi05-adaptive-long-s42-r2.log\\\\npi05-adaptive-long-s43-cqa1-r2.log\\\\npi05-adaptive-long-s43-cqa1-r3.log\\\\npi05-adaptive-long-s44-cqa1-r2.log\\\\npi05-adaptive-long-s44-cqa1-r3.log\\\\npi05-adaptive-object-s42-cqa1.log\\\\npi05-adaptive-object-s43-cqa1-r3.log\\\\npi05-adaptive-object-s44-cqa1-r2.log\\\\npi05-adaptive-object-s44-cqa1-r3.log\\\\npi05-crm-k2-long-s42-r2.log\\\\npi05-crm-k2-long-s43-cqa1.log\\\\npi05-crm-k2-long-s44-cqa1.log\\\\npi05-k2mean-goal-s42-r2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "7f747a04-b60f-4f58-8c4c-490df3ee6919",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-canonical-adaptive-k10-spatial-s42.log\\\\neval-canonical-adaptive-k10-spatial-s43.log\\\\neval-canonical-adaptive-k10-spatial-s44.log\\\\neval-canonical-adaptive-k10-spatial-s48.log\\\\neval-canonical-adaptive-k10-spatial-s49.log\\\\neval-canonical-vla-only-spatial-s44.log\\\\neval-supp-goal-adapt-tau025-s46.log\\\\neval-supp-k2mean-object-s44.log\\\\neval-supp-k2mean-spatial-s44.log\\\\neval-supp-long-k2mean-s42.log\\\\neval-supp-long-vla-only-s43.log\\\\neval-supp-obj-reconvla-s44.log\\\\neval-supp-spatial-adapt-tau025-s45.log\\\\neval-supp-spatial-vla-only-s43.log\\\\neval-supp-vla-only-goal-s48.log\\\\neval-supp-vla-only-goal-s49.log\\\\neval-supp-vla-only-obj-s48.log\\\\neval-supp-vla-only-obj-s49.log\\\\neval-supp-vla-only-spatial-s48.log\\\\neval-supp-vla-only-spatial-s49.log\\\\npi05-adaptive-goal-s42-cqa1.log\\\\npi05-adaptive-long-s42-r2.log\\\\npi05-adaptive-long-s43-cqa1-r2.log\\\\npi05-adaptive-long-s43-cqa1-r3.log\\\\npi05-adaptive-long-s44-cqa1-r2.log\\\\npi05-adaptive-long-s44-cqa1-r3.log\\\\npi05-adaptive-object-s42-cqa1.log\\\\npi05-adaptive-object-s43-cqa1-r3.log\\\\npi05-adaptive-object-s44-cqa1-r2.log\\\\npi05-adaptive-object-s44-cqa1-r3.log\\\\npi05-crm-k2-long-s42-r2.log\\\\npi05-crm-k2-long-s43-cqa1.log\\\\npi05-crm-k2-long-s44-cqa1.log\\\\npi05-k2mean-goal-s42-r2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"eval-canonical-adaptive-k10-spatial-s42.log\\neval-canonical-adaptive-k10-spatial-s43.log\\neval-canonical-adaptive-k10-spatial-s44.log\\neval-canonical-adaptive-k10-spatial-s48.log\\neval-canonical-adaptive-k10-spatial-s49.log\\neval-canonical-vla-only-spatial-s44.log\\neval-supp-goal-adapt-tau025-s46.log\\neval-supp-k2mean-object-s44.log\\neval-supp-k2mean-spatial-s44.log\\neval-supp-long-k2mean-s42.log\\neval-supp-long-vla-only-s43.log\\neval-supp-obj-reconvla-s44.log\\neval-supp-spatial-adapt-tau025-s45.log\\neval-supp-spatial-vla-only-s43.log\\neval-supp-vla-only-goal-s48.log\\neval-supp-vla-only-goal-s49.log\\neval-supp-vla-only-obj-s48.log\\neval-supp-vla-only-obj-s49.log\\neval-supp-vla-only-spatial-s48.log\\neval-supp-vla-only-spatial-s49.log\\npi05-adaptive-goal-s42-cqa1.log\\npi05-adaptive-long-s42-r2.log\\npi05-adaptive-long-s43-cqa1-r2.log\\npi05-adaptive-long-s43-cqa1-r3.log\\npi05-adaptive-long-s44-cqa1-r2.log\\npi05-adaptive-long-s44-cqa1-r3.log\\npi05-adaptive-object-s42-cqa1.log\\npi05-adaptive-object-s43-cqa1-r3.log\\npi05-adaptive-object-s44-cqa1-r2.log\\npi05-adaptive-object-s44-cqa1-r3.log\\npi05-crm-k2-long-s42-r2.log\\npi05-crm-k2-long-s43-cqa1.log\\npi05-crm-k2-long-s44-cqa1.log\\npi05-k2mean-goal-s42-r2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AhxKxLHJ7mSyyJmaqV6F4B",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "tail -30 /root/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "1400fc58-a272-4aed-ad8a-76e43adc6dc5",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_0168sXARsJdKAjRjw5XHjppa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1011,
+                "cache_read_input_tokens": 35864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1011
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T13:12:20.630Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AhxKxLHJ7mSyyJmaqV6F4B",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 19/20\\\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 95.0% (19/20)\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 14/15\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 19/20\\\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 95.0% (19/20)\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 15/15\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 16/20\\\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 80.0% (16/20)\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 9/10\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 13/15\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 18/20\\\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 90.0% (18/20)\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 3/5\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 6/10\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 15/20, success so far: 9/15\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 20/20, success so far: 13/20\\\\n[STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy] success rate: 65.0% (13/20)\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 10/20, success so far: 8/10\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 15/20, success so far: 10/15\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 20/20, success so far: 13/20\\\\n[LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate] success rate: 65.0% (13/20)\\\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 15/20, success so far: 13/15\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "884ef047-b565-4ca2-849c-48a1e7a6b788",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 19/20\\\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 95.0% (19/20)\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 14/15\\\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 19/20\\\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 95.0% (19/20)\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 5/5\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 10/10\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 15/15\\\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 16/20\\\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 80.0% (16/20)\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 9/10\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 13/15\\\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 18/20\\\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 90.0% (18/20)\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 3/5\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 6/10\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 15/20, success so far: 9/15\\\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 20/20, success so far: 13/20\\\\n[STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy] success rate: 65.0% (13/20)\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 5/20, success so far: 5/5\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 10/20, success so far: 8/10\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 15/20, success so far: 10/15\\\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 20/20, success so far: 13/20\\\\n[LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate] success rate: 65.0% (13/20)\\\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 15/20, success so far: 13/15\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 20/20, success so far: 19/20\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 95.0% (19/20)\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 15/20, success so far: 14/15\\n  KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it: rollout 20/20, success so far: 19/20\\n[KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it] success rate: 95.0% (19/20)\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 5/20, success so far: 5/5\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 10/20, success so far: 10/10\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 15/20, success so far: 15/15\\n  KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it: rollout 20/20, success so far: 16/20\\n[KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it] success rate: 80.0% (16/20)\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 10/20, success so far: 9/10\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 15/20, success so far: 13/15\\n  LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate: rollout 20/20, success so far: 18/20\\n[LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate] success rate: 90.0% (18/20)\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 5/20, success so far: 3/5\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 10/20, success so far: 6/10\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 15/20, success so far: 9/15\\n  STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy: rollout 20/20, success so far: 13/20\\n[STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy] success rate: 65.0% (13/20)\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 5/20, success so far: 5/5\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 10/20, success so far: 8/10\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 15/20, success so far: 10/15\\n  LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate: rollout 20/20, success so far: 13/20\\n[LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate] success rate: 65.0% (13/20)\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 5/20, success so far: 3/5\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 10/20, success so far: 8/10\\n  LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket: rollout 15/20, success so far: 13/15\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "ErYCCmMIDhgCKkBzW07XQdUGKqJvjwuGRuQWSpzuGg6kuBGIPNs8FxgqvkTq/VgQ7L0gLNhGA5morqmQiwh/bc9ieML7uaYjV4qjMg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDBWOwu2ejvXibO4vzxoMoh+of1e70P2plM+KIjA4Zdrj6O4DJS2qdphN0dS/+AFoaQnMBrsgt7/oDUFXvEPsFTCx7gdNxkuUZcVXQGkqgAHeiJUobhjSQF8maakRIPd7PovmGY38vUxEHYxOjMRyac2zeh0sh83Kw3c6uOBQGNBOQb4i1E6v8oNs8q6y5r/aYjwool+yX658qoYW2BON2Yc9jG1nYemQRTR5DVLEeVFFPcFcGNhNq1h8ICnW1/C6uU7a43FXzfukcCdhbM0jSRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "57c07bd1-24e5-4770-b842-06df7554a582",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01SJXxzjLQqmmViWoRz5BKSE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2364,
+                "cache_read_input_tokens": 36875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2364
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018jyUBfgcVD3rfNdbj52DGi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "head -10 /root/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "c8c7ca09-48f4-41be-952e-655935477c87",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01SJXxzjLQqmmViWoRz5BKSE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2364,
+                "cache_read_input_tokens": 36875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2364
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T13:12:26.913Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018jyUBfgcVD3rfNdbj52DGi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_k2_pi05_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "9b774bb9-8846-483e-a2eb-f6862e812f30",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_k2_pi05_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 2048, 'unified_obs_dim': 2088, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_k2_pi05_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "ae529211-9595-484c-8c90-7e1ef6d00a9d",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01AdBqkF3dfRz9hhXhNstgjZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1242,
+                "cache_read_input_tokens": 39239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1242
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014TY88agskzq7WGwvUwQuNg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "cat /root/acr-vla-conformal-refinement/.git/HEAD",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "a57803b5-f6bf-4a13-96cc-1978854ded63",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01AdBqkF3dfRz9hhXhNstgjZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1242,
+                "cache_read_input_tokens": 39239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1242
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T13:12:33.088Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014TY88agskzq7WGwvUwQuNg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ref: refs/heads/master\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "960e5631-d4c1-4423-bd3e-d5ac395e37e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ref: refs/heads/master\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"ref: refs/heads/master\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BBXQMACpZBvpKuFUBS1kjk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "cat /root/acr-vla-conformal-refinement/.git/refs/heads/master",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "3e575eb7-f0a7-41ed-9010-1d2c6cf84cdc",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TyeirxdtKcbj8wzvDpj5kX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 497,
+                "cache_read_input_tokens": 40481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 497
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T13:12:36.488Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BBXQMACpZBvpKuFUBS1kjk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "fb1c0bb2-944a-4b45-a010-ef5c09a0e4d9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因\n失败命令完全没有传 checkpoint 路径。`evaluate.py:582-583` 检查 `args.checkpoint is None` 时抛错。CRM 模式需要传 `--checkpoint` 或别名 `--crm_checkpoint`（两者等价，line 535-537）。\n\n### s44 对比（正在正常运行）\ns44 命令传了 `--crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`，已跑到 long benchmark 后半段，**不存在同样风险**。\n\n### 关键参数差异（s43 失败 vs s44 运行中）\n| 参数 | s43（失败提交） | s44（成功提交） |\n|------|----------------|----------------|\n| `--checkpoint`/`--crm_checkpoint` | **缺失** | `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` |\n| `--obs_dim` | 960（默认） | 2048 |\n| `--unified_obs_dim` | None | 2088 |\n| `--output_file` | `logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json` | `logs/eval_long_crm_k2_pi05_seed44.json` |\n\n⚠️ s43 还缺了 `--obs_dim 2048 --unified_obs_dim 2088`，重新提交时必须补齐，否则 checkpoint 维度对不上（line 623 会报错）。\n\n### Checkpoint 文件\n✅ `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` 存在（2.5MB，2026-05-25 16:41）。\n\n### Git commit\nmaster = `63f5c8178b0a29a9707e2ba5b78be94a77b459d7`（`git log` 被 ssh_read_only 阻止，仅取到 HEAD 引用的 SHA）。\n\n### 重新提交建议命令\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\npython -u src/evaluate.py \\\n  --model pi05 \\\n  --mode crm_obs_only \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt \\\n  --obs_dim 2048 \\\n  --unified_obs_dim 2088 \\\n  --K 2 \\\n  --max_correction_norm 0.05 \\\n  --benchmark long \\\n  --seed 43 \\\n  --n_rollouts 20 \\\n  --output_file logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json\n```"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "uuid": "784fc465-28be-4231-845f-890c5a0f8388",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01Ps2vw6e3zz6UzDzRfnCPKU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 40978,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 285
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因\n失败命令完全没有传 checkpoint 路径。`evaluate.py:582-583` 检查 `args.checkpoint is None` 时抛错。CRM 模式需要传 `--checkpoint` 或别名 `--crm_checkpoint`（两者等价，line 535-537）。\n\n### s44 对比（正在正常运行）\ns44 命令传了 `--crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`，已跑到 long benchmark 后半段，**不存在同样风险**。\n\n### 关键参数差异（s43 失败 vs s44 运行中）\n| 参数 | s43（失败提交） | s44（成功提交） |\n|------|----------------|----------------|\n| `--checkpoint`/`--crm_checkpoint` | **缺失** | `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` |\n| `--obs_dim` | 960（默认） | 2048 |\n| `--unified_obs_dim` | None | 2088 |\n| `--output_file` | `logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json` | `logs/eval_long_crm_k2_pi05_seed44.json` |\n\n⚠️ s43 还缺了 `--obs_dim 2048 --unified_obs_dim 2088`，重新提交时必须补齐，否则 checkpoint 维度对不上（line 623 会报错）。\n\n### Checkpoint 文件\n✅ `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` 存在（2.5MB，2026-05-25 16:41）。\n\n### Git commit\nmaster = `63f5c8178b0a29a9707e2ba5b78be94a77b459d7`（`git log` 被 ssh_read_only 阻止，仅取到 HEAD 引用的 SHA）。\n\n### 重新提交建议命令\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\npython -u src/evaluate.py \\\n  --model pi05 \\\n  --mode crm_obs_only \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt \\\n  --obs_dim 2048 \\\n  --unified_obs_dim 2088 \\\n  --K 2 \\\n  --max_correction_norm 0.05 \\\n  --benchmark long \\\n  --seed 43 \\\n  --n_rollouts 20 \\\n  --output_file logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json\n```"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 64438,
+            "duration_api_ms": 61656,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "c5d46bed-bb23-4e2e-9d1a-88c68f88b3a9",
+            "total_cost_usd": 0.5467455,
+            "usage": {
+              "input_tokens": 22,
+              "cache_creation_input_tokens": 39732,
+              "cache_read_input_tokens": 430885,
+              "output_tokens": 3255,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 39732,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 981,
+                  "cache_read_input_tokens": 40978,
+                  "cache_creation_input_tokens": 285,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 285
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1413,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001493,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-7[1m]": {
+                "inputTokens": 22,
+                "outputTokens": 3255,
+                "cacheReadInputTokens": 430885,
+                "cacheCreationInputTokens": 39732,
+                "webSearchRequests": 0,
+                "costUSD": 0.5452525,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "aa180a7f-420b-4994-b696-cd8570dc0db2"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-pi05-crm-k2-long-s43-cqa1-20260526t131123-retry1.md"
+}

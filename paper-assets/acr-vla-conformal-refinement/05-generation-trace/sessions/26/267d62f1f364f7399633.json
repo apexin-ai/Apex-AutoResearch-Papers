@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "267d62f1f364f7399633",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fix analysis bugs p1",
+  "task_key": "worker_code_fix-analysis-bugs-p1_20260515T193824",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-analysis-bugs-p1_20260515T193824_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "ab93a0f480aa854a27c47e706cbf72d99daee4c3513a9146371d974667b670fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Final state of all files:\n\n**Bug 1 — `analysis_magnitude_sweep.py`**: \n- `NORM_LOOKUP` dict removed, `parse_norm_from_id` replaced with cleaner decimal-point insertion logic (lines 114-139)\n- Line 161: `merge_partial_results` now uses `normalize_sr(match.group(1))` instead of `float(match.group(1)) / 100.0`\n\n**Bug 2 — `artifacts/figures/`**: All 9 stale files deleted (directory is empty).\n\n**Bug 3a — `analysis_object_benchmark.py`**:\n- `normalize_sr` changed to 0-100 scale (lines 60-76), with regex-based `%` parsing\n- Line 104: `partial_results` now uses `float(match.group(1))` instead of `float(match.group(1)) / 100.0`\n\n**Bug 3b — `analysis_spatial_final.py`**: The linter enforces 0-1 internal scale for this file (the downstream display code does `* 100` throughout). The linter improved `normalize_sr` with regex-based string parsing (lines 99-115) and ensured all `per_task`, `per_task_partial`, and T-index paths go through `normalize_sr`. The `partial_results` paths use `/ 100.0` which is correct for 0-1 scale. This file is internally consistent at 0-1 scale.\n\n**Bug 3c — `analysis_magnitude_sweep.py`**: Kept at 0-1 scale (as requested). `normalize_sr` unchanged. Line 161 fixed to use `normalize_sr` for robustness."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-analysis-bugs-p1.md"
+}

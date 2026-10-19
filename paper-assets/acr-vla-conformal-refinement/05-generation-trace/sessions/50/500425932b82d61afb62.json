@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "500425932b82d61afb62",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fisher test script",
+  "task_key": "worker_code_fisher-test-script_20260515T214454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fisher-test-script_20260515T214454_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "a8217a7bc173a8dce3fef026dba7f8cc9bf66d7f96dd15b142aac4e3e2cbe36d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## Dry-run 结果（seed=42）\n\n### 主要对比：obs_only_norm0.1 (19/100) vs argmin_K10 (12/100)\n| 指标 | 值 |\n|------|-----|\n| Fisher exact p-value | **0.2408** (n.s.) |\n| Odds ratio | 1.720 |\n| Absolute diff | +7.0% |\n| Bootstrap 95% CI | [-3.0%, +17.0%] |\n\n### obs_only_0.2 (最佳) vs 其他方法汇总\n\n| Method A | Method B | SR_A | SR_B | Diff | p-val | Sig | 95% CI |\n|----------|----------|------|------|------|-------|-----|--------|\n| obs_only_0.2 | obs_only_0.1 | 22% | 19% | +3% | 0.7264 | n.s. | [-8%, +14%] |\n| obs_only_0.2 | argmin_K10 | 22% | 12% | +10% | 0.0892 | n.s. | [-1%, +20%] |\n| obs_only_0.2 | VLA_only_K1 | 22% | 12% | +10% | 0.0892 | n.s. | [-1%, +20%] |\n| obs_only_0.2 | VLA_mean_K10 | 22% | 12% | +10% | 0.0892 | n.s. | [-1%, +20%] |\n| obs_only_0.2 | perdof_0.1 | 22% | 11% | +11% | 0.0556 | n.s. | [+0%, +21%] |\n| obs_only_0.2 | scalar_0.1 | 22% | 9% | +13% | **0.0180** | * | [+3%, +23%] |\n\n**结论**：仅 seed=42 的 100 trials 下，只有 obs_only_0.2 vs scalar_0.1 达到 p<0.05 显著。其余对比因样本量不足未达显著——pooling seed=43 的 200 trials 后 power 会提升。\n\n**脚本位置**：`/root/acr-vla-conformal-refinement/src/analysis/fisher_test.py`\n\nseed=43 完成后直接用文件模式跑：\n```bash\npython src/analysis/fisher_test.py --results_dir logs/ --benchmark object --seeds 42 43 --all_pairs\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fisher-test-script.md"
+}

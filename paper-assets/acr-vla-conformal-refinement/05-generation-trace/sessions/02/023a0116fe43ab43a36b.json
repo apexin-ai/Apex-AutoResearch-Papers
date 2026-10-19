@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "023a0116fe43ab43a36b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 32758 cuda2 long vla s43",
+  "task_key": "worker_deploy_cqa1-32758-cuda2-long-vla-s43_20260523T115514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-32758-cuda2-long-vla-s43_20260523T115514_result.json",
+    "occurrence": 1,
+    "bytes": 300,
+    "sha256": "d9a5cbb2584665fc7448990523b3200bd97a4a01029d533bdc711f72a83bcb08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **exp_id**: eval-supp-long-vla-only-s43\n- **服务器**: cqa1-32758, cuda:2\n- **PID**: 199659，进程存活（运行 11 秒）\n- **日志**: `~/runs/acr-vla-conformal-refinement/eval-supp-long-vla-only-s43.log`\n- **Registry**: PREPARING，hypothesis 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-32758-cuda2-long-vla-s43.md"
+}

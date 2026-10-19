@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a19b9d4ab5d56dd5f94",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check crm input dims",
+  "task_key": "worker_ops_check-crm-input-dims_20260518T085731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-crm-input-dims_20260518T085731_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "f7d152277b3183162b0acad5c260b0377974fb8c66715618acb14d400e501595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n**obs_only 模式下的 CRM 输入维度：**\n\n| 组件 | 维度 | 计算 |\n|---|---|---|\n| `obs_feat` | **960** | VLM hidden_size（SmolVLA 冻结输出） |\n| `base_action` | **30** | H_EFF × CORRECTION_DIM = 5 × 6 |\n| `uncertainty_features` | **0** | obs_only 模式下为 None，不拼接 |\n| **CRM MLP 总输入维度** | **990** | 30 + 0 + 960 |\n\n**CRM 网络结构（obs_only）：**\n- `Linear(990, 256)` → ReLU → `Linear(256, 256)` → ReLU → `Linear(256, 30)`\n\n**总参数量：**\n- 990×256 + 256 = 253,696\n- 256×256 + 256 = 65,792\n- 256×30 + 30 = 7,710\n- **总计 = 327,198**\n\n对比 full 模式（input_dim = 30 + 40 + 960 = **1030**），obs_only 少了 40 维的 CGS uncertainty features（30 per-DOF widths + 5 horizon scores + 5 额外）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-crm-input-dims.md"
+}

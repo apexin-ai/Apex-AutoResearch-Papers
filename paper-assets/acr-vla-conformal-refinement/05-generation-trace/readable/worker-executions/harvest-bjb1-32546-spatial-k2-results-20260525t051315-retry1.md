@@ -1,0 +1,1791 @@
+# harvest bjb1 32546 spatial k2 results 20260525T051315 retry1
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_harvest_bjb1-32546-spatial-k2-results_20260525T051315_retry1.log`
+- **Structured JSON:** [`401de42946bc78c3ff0d.json`](../../sessions/40/401de42946bc78c3ff0d.json)
+
+## Before a recorded user message
+
+36 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "50b21bc7-67d2-4fd4-93d1-37e8aa734d74",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779700200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9593a81c-da1b-4a7c-aaa3-06951b203185",
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "3a0ec957-8d30-4f32-95b2-7b57c92e9081",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NvLnTFybqRDL5Vz7ZhCvdC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 14411,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14411
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BnoAZEnESR9wz5G6iSk1Xe`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "2cf101be-f888-48be-b8c0-7501778130fb",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NvLnTFybqRDL5Vz7ZhCvdC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 14411,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14411
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T05:13:35.703Z_
+
+<details><summary>↩ Tool result · `toolu_01BnoAZEnESR9wz5G6iSk1Xe`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "76d3750f-bd4b-4489-b93b-1c1c990d04de",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "eb3421ad-cb8d-4e3a-ae62-f2873f4384e9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WxadyoDekyT28ddch4JJVB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15307,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28452
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BH1ud43evp9vSMUhjWwsDp`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ls -la /root/acr-vla-conformal-refinement/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "b7f339b3-c6a6-43fe-8d79-bb0e6491dd3d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WxadyoDekyT28ddch4JJVB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15307,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28452
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017nzY48YjNj2MiWQMcmzhpB`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "ls -la /tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "9aafb430-1f6a-42f7-8d0d-a9e854560e20",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WxadyoDekyT28ddch4JJVB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15307,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28452
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T05:13:40.680Z_
+
+<details><summary>↩ Tool result · `toolu_01BH1ud43evp9vSMUhjWwsDp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4116\\ndrwxr-xr-x 3 root root  24576 May 25 12:51 .\\ndrwxr-xr-x 8 root root   4096 May 21 18:18 ..\\n-rw-r--r-- 1 root root   4247 May 23 12:08 adapt_tau015_spatial_s42.log\\n-rw-r--r-- 1 root root   4246 May 23 12:06 adapt_tau025_spatial_s42.log\\n-rw-r--r-- 1 root root   4245 May 23 12:09 adapt_tau035_spatial_s42.log\\n-rw-r--r-- 1 root root   4218 May 23 12:09 crm_norm02_spatial_s42.log\\n-rw-r--r-- 1 root root   7417 May 23 11:10 dirA_norm005_spatial_s42.log\\n-rw-r--r-- 1 root root   7411 May 23 11:14 dirA_norm01_spatial_s42.log\\n-rw-r--r-- 1 root root   6750 May 23 11:19 dirA_norm03_spatial_s42.log\\n-rw-r--r-- 1 root root   7538 May 23 11:18 dirB_adaptive_spatial_s42.log\\n-rw-r--r-- 1 root root   7174 May 23 11:17 dirC_reconvla_spatial_s42.log\\n-rw-r--r-- 1 root root   7531 May 25 01:09 eval-adaptive-k1-spatial-s42.log\\n-rw-r--r-- 1 root root   4076 May 20 20:37 eval-argmin-object-seed48.log\\n-rw-r--r-- 1 root root   4076 May 20 20:35 eval-argmin-object-seed49.log\\n-rw-r--r-- 1 root root   4017 May 20 23:00 eval-argmin-object-seed50.log\\n-rw-r--r-- 1 root root   5857 May 25 10:49 eval-canonical-adaptive-k10-spatial-s48.log\\n-rw-r--r-- 1 root root   5855 May 25 10:47 eval-canonical-adaptive-k10-spatial-s49.log\\n-rw-r--r-- 1 root root   6377 May 25 01:24 eval-crm-obj-s47-reeval.log\\n-rw-r--r-- 1 root root   1316 May 21 12:32 eval-crm-spatial-k10-seed50.log\\n-rw-r--r-- 1 root root   7538 May 25 10:04 eval-k10-tau025-spatial-s46.log\\n-rw-r--r-- 1 root root   7533 May 25 12:49 eval-k2-adaptive-spatial-s46.log\\n-rw-r--r-- 1 root root   7539 May 25 12:50 eval-k2-adaptive-spatial-s48.log\\n-rw-r--r-- 1 root root   7539 May 25 12:51 eval-k2-adaptive-spatial-s49.log\\n-rw-r--r-- 1 root root   7530 May 25 07:58 eval-k2-tau020-spatial-s42.log\\n-rw-r--r-- 1 root root    110 May 25 09:05 eval-k2-tau025-spatial-s42.log\\n-rw-r--r-- 1 root root    110 May 25 09:05 eval-k2-tau035-spatial-s42.log\\n-rw-r--r-- 1 root root   4242 May 21 01:17 eval-k20-obs-only-object-seed43.log\\n-rw-r--r-- 1 root root   4244 May 21 03:05 eval-k20-obs-only-object-seed44.log\\n-rw-r--r-- 1 root root   4241 May 21 01:15 eval-k5-obs-only-object-seed43.log\\n-rw-r--r-- 1 root root   4241 May 21 03:13 eval-k5-obs-only-object-seed44.log\\n-rw-r--r-- 1 root root   3738 May 20 21:19 eval-obs-only-goal-norm02-seed51.log\\n-rw-r--r-- 1 root root   3736 May 20 20:01 eval-obs-only-goal-norm02-seed52.log\\n-rw-r--r-- 1 root root   3736 May 20 22:14 eval-obs-only-goal-norm02-seed53.log\\n-rw-r--r-- 1 root root   4253 May 21 01:16 eval-obs-only-object-norm005-seed43.log\\n-rw-r--r-- 1 root root   4336 May 20 21:52 eval-obs-only-object-norm02-seed43-r3.log\\n-rw-r--r-- 1 root root   4251 May 20 20:41 eval-obs-only-object-norm02-seed49.log\\n-rw-r--r-- 1 root root   4253 May 20 22:51 eval-obs-only-object-norm02-seed50.log\\n-rw-r--r-- 1 root root   4252 May 21 03:20 eval-obs-only-object-norm02-seed51.log\\n-rw-r--r-- 1 root root   4872 May 21 03:06 eval-obs-only-spatial-norm02-seed50.log\\n-rw-r--r-- 1 root root   4237 May 20 23:54 eval-perdof-object-norm02-seed49.log\\n-rw-r--r-- 1 root root   4314 May 21 03:22 eval-perdof-object-norm02-seed50.log\\n-rw-r--r-- 1 root root  21414 May 25 02:47 eval-pi05-vla-only-goal-s42-v2.log\\n-rw-r--r-- 1 root root   5987 May 25 02:44 eval-pi05-vla-only-goal-s42.log\\n-rw-r--r-- 1 root root  23106 May 25 02:46 eval-pi05-vla-only-goal-s43-v2.log\\n-rw-r--r-- 1 root root   5986 May 25 02:44 eval-pi05-vla-only-goal-s43.log\\n-rw-r--r-- 1 root root  30352 May 25 02:51 eval-pi05-vla-only-object-s42-v2.log\\n-rw-r--r-- 1 root root   6860 May 25 02:47 eval-pi05-vla-only-object-s42.log\\n-rw-r--r-- 1 root root   4693 May 21 18:07 eval-pi05-vla-only-object-seed42.log\\n-rw-r--r-- 1 root root   4693 May 21 18:10 eval-pi05-vla-only-object-seed43.log\\n-rw-r--r-- 1 root root   4693 May 21 18:07 eval-pi05-vla-only-object-seed44.log\\n-rw-r--r-- 1 root root 554227 May 25 02:30 eval-pi05-vla-only-spatial-s42-v2.log\\n-rw-r--r-- 1 root root   7887 May 25 02:46 eval-pi05-vla-only-spatial-s42.log\\n-rw-r--r-- 1 root root  28751 May 25 02\\n\\n... [截断: 输出过长，省略 23143 字符] ...\\n\\nspatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\n-rw-r--r-- 1 root root   1905 May 23 14:14 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.35_seed42.json\\n-rw-r--r-- 1 root root   1906 May 25 01:14 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\n-rw-r--r-- 1 root root   1907 May 23 11:18 eval_spatial_adaptive_conformal_crm_tau0.074855_seed42.json\\n-rw-r--r-- 1 root root   1708 May 23 11:10 eval_spatial_crm_obs_only_norm0.05_seed42.json\\n-rw-r--r-- 1 root root   1711 May 23 16:28 eval_spatial_crm_obs_only_norm0.05_seed43.json\\n-rw-r--r-- 1 root root   1709 May 23 16:48 eval_spatial_crm_obs_only_norm0.05_seed44.json\\n-rw-r--r-- 1 root root   1711 May 23 11:14 eval_spatial_crm_obs_only_norm0.1_seed42.json\\n-rw-r--r-- 1 root root   1711 May 23 14:06 eval_spatial_crm_obs_only_norm0.2_seed42.json\\n-rw-r--r-- 1 root root   1704 May 24 09:22 eval_spatial_k2mean_seed46.json\\n-rw-r--r-- 1 root root  13445 May 19 20:41 eval_spatial_norm02_seed45.log\\n-rw-r--r-- 1 root root   1697 May 19 18:18 eval_spatial_obs_only_norm02_k5_seed43.json\\n-rw-r--r-- 1 root root   1698 May 20 03:44 eval_spatial_obs_only_norm02_seed43_r2.json\\n-rw-r--r-- 1 root root   1697 May 19 20:41 eval_spatial_obs_only_norm02_seed45.json\\n-rw-r--r-- 1 root root   1696 May 20 00:58 eval_spatial_obs_only_norm02_seed47.json\\n-rw-r--r-- 1 root root   1697 May 20 10:53 eval_spatial_obs_only_norm02_seed48.json\\n-rw-r--r-- 1 root root   1697 May 20 12:17 eval_spatial_obs_only_norm02_seed50.json\\n-rw-r--r-- 1 root root   1706 May 23 16:28 eval_spatial_reconvla_seed42.json\\n-rw-r--r-- 1 root root   1704 May 25 02:46 eval_spatial_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1704 May 25 02:50 eval_spatial_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   1703 May 21 20:15 eval_spatial_vla_only_pi05_seed45.json\\n-rw-r--r-- 1 root root   1692 May 19 22:32 eval_spatial_vla_only_seed42.json\\n-rw-r--r-- 1 root root   1692 May 19 23:16 eval_spatial_vla_only_seed45.json\\n-rw-r--r-- 1 root root   1706 May 25 11:36 eval_spatial_vla_only_seed46.json\\n-rw-r--r-- 1 root root   1691 May 20 04:23 eval_spatial_vla_only_seed46_n10_backup.json\\n-rw-r--r-- 1 root root   1691 May 20 11:13 eval_spatial_vla_only_seed47.json\\n-rw-r--r-- 1 root root   1707 May 25 11:29 eval_spatial_vla_only_seed48.json\\n-rw-r--r-- 1 root root   4643 May 20 06:06 eval_spatial_vla_only_seed48.log\\n-rw-r--r-- 1 root root   1692 May 20 06:06 eval_spatial_vla_only_seed48_n10_backup.json\\n-rw-r--r-- 1 root root   1705 May 25 11:30 eval_spatial_vla_only_seed49.json\\n-rw-r--r-- 1 root root   1692 May 20 06:50 eval_spatial_vla_only_seed49_n10_backup.json\\n-rw-r--r-- 1 root root   1693 May 20 12:47 eval_spatial_vla_only_seed51.json\\n-rw-r--r-- 1 root root   1692 May 20 15:13 eval_spatial_vla_only_seed54.json\\n-rw-r--r-- 1 root root   1314 May 20 22:52 eval_vla_only_goal_seed51.json\\n-rw-r--r-- 1 root root   1486 May 20 22:53 eval_vla_only_object_seed48.json\\n-rw-r--r-- 1 root root   1485 May 21 03:24 eval_vla_only_object_seed49.json\\n-rw-r--r-- 1 root root   1486 May 21 05:49 eval_vla_only_object_seed50.json\\n-rw-r--r-- 1 root root   1691 May 21 14:42 eval_vla_only_spatial_seed50.json\\n-rw-r--r-- 1 root root   2060 May 19 10:28 latency_output.log\\n-rw-r--r-- 1 root root   3010 May 23 12:08 obj_crm005_s42.log\\n-rw-r--r-- 1 root root   4253 May 21 05:48 obs_only_object_norm005_seed48.log\\n-rw-r--r-- 1 root root   4251 May 21 05:45 obs_only_object_norm01_seed49.log\\n-rw-r--r-- 1 root root   4251 May 21 05:51 obs_only_object_norm02_seed52.log\\n-rw-r--r-- 1 root root   4871 May 21 05:41 obs_only_spatial_norm02_seed52.log\\n-rw-r--r-- 1 root root   4119 May 21 05:51 random_sel_object_seed49.log\\n-rw-r--r-- 1 root root   1495 May 17 12:46 results_direct_correction_object_seed42.json\\ndrwxr-xr-x 2 root root     10 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root  64613 May 23 17:05 train-crm-unified-4suite-r6.log\\n-rw-r--r-- 1 root root   7597 May 17 23:16 train_crm_k1_fallback.log\\n-rw-r--r-- 1 root root   4021 May 21 05:49 vla_only_object_seed50.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "5c8b5c9e-e4f1-4cdd-8b7e-a1f0942e3904",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4116\\\\ndrwxr-xr-x 3 root root  24576 May 25 12:51 .\\\\ndrwxr-xr-x 8 root root   4096 May 21 18:18 ..\\\\n-rw-r--r-- 1 root root   4247 May 23 12:08 adapt_tau015_spatial_s42.log\\\\n-rw-r--r-- 1 root root   4246 May 23 12:06 adapt_tau025_spatial_s42.log\\\\n-rw-r--r-- 1 root root   4245 May 23 12:09 adapt_tau035_spatial_s42.log\\\\n-rw-r--r-- 1 root root   4218 May 23 12:09 crm_norm02_spatial_s42.log\\\\n-rw-r--r-- 1 root root   7417 May 23 11:10 dirA_norm005_spatial_s42.log\\\\n-rw-r--r-- 1 root root   7411 May 23 11:14 dirA_norm01_spatial_s42.log\\\\n-rw-r--r-- 1 root root   6750 May 23 11:19 dirA_norm03_spatial_s42.log\\\\n-rw-r--r-- 1 root root   7538 May 23 11:18 dirB_adaptive_spatial_s42.log\\\\n-rw-r--r-- 1 root root   7174 May 23 11:17 dirC_reconvla_spatial_s42.log\\\\n-rw-r--r-- 1 root root   7531 May 25 01:09 eval-adaptive-k1-spatial-s42.log\\\\n-rw-r--r-- 1 root root   4076 May 20 20:37 eval-argmin-object-seed48.log\\\\n-rw-r--r-- 1 root root   4076 May 20 20:35 eval-argmin-object-seed49.log\\\\n-rw-r--r-- 1 root root   4017 May 20 23:00 eval-argmin-object-seed50.log\\\\n-rw-r--r-- 1 root root   5857 May 25 10:49 eval-canonical-adaptive-k10-spatial-s48.log\\\\n-rw-r--r-- 1 root root   5855 May 25 10:47 eval-canonical-adaptive-k10-spatial-s49.log\\\\n-rw-r--r-- 1 root root   6377 May 25 01:24 eval-crm-obj-s47-reeval.log\\\\n-rw-r--r-- 1 root root   1316 May 21 12:32 eval-crm-spatial-k10-seed50.log\\\\n-rw-r--r-- 1 root root   7538 May 25 10:04 eval-k10-tau025-spatial-s46.log\\\\n-rw-r--r-- 1 root root   7533 May 25 12:49 eval-k2-adaptive-spatial-s46.log\\\\n-rw-r--r-- 1 root root   7539 May 25 12:50 eval-k2-adaptive-spatial-s48.log\\\\n-rw-r--r-- 1 root root   7539 May 25 12:51 eval-k2-adaptive-spatial-s49.log\\\\n-rw-r--r-- 1 root root   7530 May 25 07:58 eval-k2-tau020-spatial-s42.log\\\\n-rw-r--r-- 1 root root    110 May 25 09:05 eval-k2-tau025-spatial-s42.log\\\\n-rw-r--r-- 1 root root    110 May 25 09:05 eval-k2-tau035-spatial-s42.log\\\\n-rw-r--r-- 1 root root   4242 May 21 01:17 eval-k20-obs-only-object-seed43.log\\\\n-rw-r--r-- 1 root root   4244 May 21 03:05 eval-k20-obs-only-object-seed44.log\\\\n-rw-r--r-- 1 root root   4241 May 21 01:15 eval-k5-obs-only-object-seed43.log\\\\n-rw-r--r-- 1 root root   4241 May 21 03:13 eval-k5-obs-only-object-seed44.log\\\\n-rw-r--r-- 1 root root   3738 May 20 21:19 eval-obs-only-goal-norm02-seed51.log\\\\n-rw-r--r-- 1 root root   3736 May 20 20:01 eval-obs-only-goal-norm02-seed52.log\\\\n-rw-r--r-- 1 root root   3736 May 20 22:14 eval-obs-only-goal-norm02-seed53.log\\\\n-rw-r--r-- 1 root root   4253 May 21 01:16 eval-obs-only-object-norm005-seed43.log\\\\n-rw-r--r-- 1 root root   4336 May 20 21:52 eval-obs-only-object-norm02-seed43-r3.log\\\\n-rw-r--r-- 1 root root   4251 May 20 20:41 eval-obs-only-object-norm02-seed49.log\\\\n-rw-r--r-- 1 root root   4253 May 20 22:51 eval-obs-only-object-norm02-seed50.log\\\\n-rw-r--r-- 1 root root   4252 May 21 03:20 eval-obs-only-object-norm02-seed51.log\\\\n-rw-r--r-- 1 root root   4872 May 21 03:06 eval-obs-only-spatial-norm02-seed50.log\\\\n-rw-r--r-- 1 root root   4237 May 20 23:54 eval-perdof-object-norm02-seed49.log\\\\n-rw-r--r-- 1 root root   4314 May 21 03:22 eval-perdof-object-norm02-seed50.log\\\\n-rw-r--r-- 1 root root  21414 May 25 02:47 eval-pi05-vla-only-goal-s42-v2.log\\\\n-rw-r--r-- 1 root root   5987 May 25 02:44 eval-pi05-vla-only-goal-s42.log\\\\n-rw-r--r-- 1 root root  23106 May 25 02:46 eval-pi05-vla-only-goal-s43-v2.log\\\\n-rw-r--r-- 1 root root   5986 May 25 02:44 eval-pi05-vla-only-goal-s43.log\\\\n-rw-r--r-- 1 root root  30352 May 25 02:51 eval-pi05-vla-only-object-s42-v2.log\\\\n-rw-r--r-- 1 root root   6860 May 25 02:47 eval-pi05-vla-only-object-s42.log\\\\n-rw-r--r-- 1 root root   4693 May 21 18:07 eval-pi05-vla-only-object-seed42.log\\\\n-rw-r--r-- 1 root root   4693 May 21 18:10 eval-pi05-vla-only-object-seed43.log\\\\n-rw-r--r-- 1 root root   4693 May 21 18:07 eval-pi05-vla-only-object-seed44.log\\\\n-rw-r--r-- 1 root root 554227 May 25 02:30 eval-pi05-vla-only-spatial-s42-v2.log\\\\n-rw-r--r-- 1 root root   7887 May 25 02:46 eval-pi05-vla-only-spatial-s42.log\\\\n-rw-r--r-- 1 root root  28751 May 25 02\\\\n\\\\n... [截断: 输出过长，省略 23143 字符] ...\\\\n\\\\nspatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\\\n-rw-r--r-- 1 root root   1905 May 23 14:14 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.35_seed42.json\\\\n-rw-r--r-- 1 root root   1906 May 25 01:14 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\\\n-rw-r--r-- 1 root root   1907 May 23 11:18 eval_spatial_adaptive_conformal_crm_tau0.074855_seed42.json\\\\n-rw-r--r-- 1 root root   1708 May 23 11:10 eval_spatial_crm_obs_only_norm0.05_seed42.json\\\\n-rw-r--r-- 1 root root   1711 May 23 16:28 eval_spatial_crm_obs_only_norm0.05_seed43.json\\\\n-rw-r--r-- 1 root root   1709 May 23 16:48 eval_spatial_crm_obs_only_norm0.05_seed44.json\\\\n-rw-r--r-- 1 root root   1711 May 23 11:14 eval_spatial_crm_obs_only_norm0.1_seed42.json\\\\n-rw-r--r-- 1 root root   1711 May 23 14:06 eval_spatial_crm_obs_only_norm0.2_seed42.json\\\\n-rw-r--r-- 1 root root   1704 May 24 09:22 eval_spatial_k2mean_seed46.json\\\\n-rw-r--r-- 1 root root  13445 May 19 20:41 eval_spatial_norm02_seed45.log\\\\n-rw-r--r-- 1 root root   1697 May 19 18:18 eval_spatial_obs_only_norm02_k5_seed43.json\\\\n-rw-r--r-- 1 root root   1698 May 20 03:44 eval_spatial_obs_only_norm02_seed43_r2.json\\\\n-rw-r--r-- 1 root root   1697 May 19 20:41 eval_spatial_obs_only_norm02_seed45.json\\\\n-rw-r--r-- 1 root root   1696 May 20 00:58 eval_spatial_obs_only_norm02_seed47.json\\\\n-rw-r--r-- 1 root root   1697 May 20 10:53 eval_spatial_obs_only_norm02_seed48.json\\\\n-rw-r--r-- 1 root root   1697 May 20 12:17 eval_spatial_obs_only_norm02_seed50.json\\\\n-rw-r--r-- 1 root root   1706 May 23 16:28 eval_spatial_reconvla_seed42.json\\\\n-rw-r--r-- 1 root root   1704 May 25 02:46 eval_spatial_vla_only_pi05_seed42.json\\\\n-rw-r--r-- 1 root root   1704 May 25 02:50 eval_spatial_vla_only_pi05_seed43.json\\\\n-rw-r--r-- 1 root root   1703 May 21 20:15 eval_spatial_vla_only_pi05_seed45.json\\\\n-rw-r--r-- 1 root root   1692 May 19 22:32 eval_spatial_vla_only_seed42.json\\\\n-rw-r--r-- 1 root root   1692 May 19 23:16 eval_spatial_vla_only_seed45.json\\\\n-rw-r--r-- 1 root root   1706 May 25 11:36 eval_spatial_vla_only_seed46.json\\\\n-rw-r--r-- 1 root root   1691 May 20 04:23 eval_spatial_vla_only_seed46_n10_backup.json\\\\n-rw-r--r-- 1 root root   1691 May 20 11:13 eval_spatial_vla_only_seed47.json\\\\n-rw-r--r-- 1 root root   1707 May 25 11:29 eval_spatial_vla_only_seed48.json\\\\n-rw-r--r-- 1 root root   4643 May 20 06:06 eval_spatial_vla_only_seed48.log\\\\n-rw-r--r-- 1 root root   1692 May 20 06:06 eval_spatial_vla_only_seed48_n10_backup.json\\\\n-rw-r--r-- 1 root root   1705 May 25 11:30 eval_spatial_vla_only_seed49.json\\\\n-rw-r--r-- 1 root root   1692 May 20 06:50 eval_spatial_vla_only_seed49_n10_backup.json\\\\n-rw-r--r-- 1 root root   1693 May 20 12:47 eval_spatial_vla_only_seed51.json\\\\n-rw-r--r-- 1 root root   1692 May 20 15:13 eval_spatial_vla_only_seed54.json\\\\n-rw-r--r-- 1 root root   1314 May 20 22:52 eval_vla_only_goal_seed51.json\\\\n-rw-r--r-- 1 root root   1486 May 20 22:53 eval_vla_only_object_seed48.json\\\\n-rw-r--r-- 1 root root   1485 May 21 03:24 eval_vla_only_object_seed49.json\\\\n-rw-r--r-- 1 root root   1486 May 21 05:49 eval_vla_only_object_seed50.json\\\\n-rw-r--r-- 1 root root   1691 May 21 14:42 eval_vla_only_spatial_seed50.json\\\\n-rw-r--r-- 1 root root   2060 May 19 10:28 latency_output.log\\\\n-rw-r--r-- 1 root root   3010 May 23 12:08 obj_crm005_s42.log\\\\n-rw-r--r-- 1 root root   4253 May 21 05:48 obs_only_object_norm005_seed48.log\\\\n-rw-r--r-- 1 root root   4251 May 21 05:45 obs_only_object_norm01_seed49.log\\\\n-rw-r--r-- 1 root root   4251 May 21 05:51 obs_only_object_norm02_seed52.log\\\\n-rw-r--r-- 1 root root   4871 May 21 05:41 obs_only_spatial_norm02_seed52.log\\\\n-rw-r--r-- 1 root root   4119 May 21 05:51 random_sel_object_seed49.log\\\\n-rw-r--r-- 1 root root   1495 May 17 12:46 results_direct_correction_object_seed42.json\\\\ndrwxr-xr-x 2 root root     10 May 17 22:56 sentinels\\\\n-rw-r--r-- 1 root root  64613 May 23 17:05 train-crm-unified-4suite-r6.log\\\\n-rw-r--r-- 1 root root   7597 May 17 23:16 train_crm_k1_fallback.log\\\\n-rw-r--r-- 1 root root   4021 May 21 05:49 vla_only_object_seed50.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4116\\ndrwxr-xr-x 3 root root  24576 May 25 12:51 .\\ndrwxr-xr-x 8 root root   4096 May 21 18:18 ..\\n-rw-r--r-- 1 root root   4247 May 23 12:08 adapt_tau015_spatial_s42.log\\n-rw-r--r-- 1 root root   4246 May 23 12:06 adapt_tau025_spatial_s42.log\\n-rw-r--r-- 1 root root   4245 May 23 12:09 adapt_tau035_spatial_s42.log\\n-rw-r--r-- 1 root root   4218 May 23 12:09 crm_norm02_spatial_s42.log\\n-rw-r--r-- 1 root root   7417 May 23 11:10 dirA_norm005_spatial_s42.log\\n-rw-r--r-- 1 root root   7411 May 23 11:14 dirA_norm01_spatial_s42.log\\n-rw-r--r-- 1 root root   6750 May 23 11:19 dirA_norm03_spatial_s42.log\\n-rw-r--r-- 1 root root   7538 May 23 11:18 dirB_adaptive_spatial_s42.log\\n-rw-r--r-- 1 root root   7174 May 23 11:17 dirC_reconvla_spatial_s42.log\\n-rw-r--r-- 1 root root   7531 May 25 01:09 eval-adaptive-k1-spatial-s42.log\\n-rw-r--r-- 1 root root   4076 May 20 20:37 eval-argmin-object-seed48.log\\n-rw-r--r-- 1 root root   4076 May 20 20:35 eval-argmin-object-seed49.log\\n-rw-r--r-- 1 root root   4017 May 20 23:00 eval-argmin-object-seed50.log\\n-rw-r--r-- 1 root root   5857 May 25 10:49 eval-canonical-adaptive-k10-spatial-s48.log\\n-rw-r--r-- 1 root root   5855 May 25 10:47 eval-canonical-adaptive-k10-spatial-s49.log\\n-rw-r--r-- 1 root root   6377 May 25 01:24 eval-crm-obj-s47-reeval.log\\n-rw-r--r-- 1 root root   1316 May 21 12:32 eval-crm-spatial-k10-seed50.log\\n-rw-r--r-- 1 root root   7538 May 25 10:04 eval-k10-tau025-spatial-s46.log\\n-rw-r--r-- 1 root root   7533 May 25 12:49 eval-k2-adaptive-spatial-s46.log\\n-rw-r--r-- 1 root root   7539 May 25 12:50 eval-k2-adaptive-spatial-s48.log\\n-rw-r--r-- 1 root root   7539 May 25 12:51 eval-k2-adaptive-spatial-s49.log\\n-rw-r--r-- 1 root root   7530 May 25 07:58 eval-k2-tau020-spatial-s42.log\\n-rw-r--r-- 1 root root    110 May 25 09:05 eval-k2-tau025-spatial-s42.log\\n-rw-r--r-- 1 root root    110 May 25 09:05 eval-k2-tau035-spatial-s42.log\\n-rw-r--r-- 1 root root   4242 May 21 01:17 eval-k20-obs-only-object-seed43.log\\n-rw-r--r-- 1 root root   4244 May 21 03:05 eval-k20-obs-only-object-seed44.log\\n-rw-r--r-- 1 root root   4241 May 21 01:15 eval-k5-obs-only-object-seed43.log\\n-rw-r--r-- 1 root root   4241 May 21 03:13 eval-k5-obs-only-object-seed44.log\\n-rw-r--r-- 1 root root   3738 May 20 21:19 eval-obs-only-goal-norm02-seed51.log\\n-rw-r--r-- 1 root root   3736 May 20 20:01 eval-obs-only-goal-norm02-seed52.log\\n-rw-r--r-- 1 root root   3736 May 20 22:14 eval-obs-only-goal-norm02-seed53.log\\n-rw-r--r-- 1 root root   4253 May 21 01:16 eval-obs-only-object-norm005-seed43.log\\n-rw-r--r-- 1 root root   4336 May 20 21:52 eval-obs-only-object-norm02-seed43-r3.log\\n-rw-r--r-- 1 root root   4251 May 20 20:41 eval-obs-only-object-norm02-seed49.log\\n-rw-r--r-- 1 root root   4253 May 20 22:51 eval-obs-only-object-norm02-seed50.log\\n-rw-r--r-- 1 root root   4252 May 21 03:20 eval-obs-only-object-norm02-seed51.log\\n-rw-r--r-- 1 root root   4872 May 21 03:06 eval-obs-only-spatial-norm02-seed50.log\\n-rw-r--r-- 1 root root   4237 May 20 23:54 eval-perdof-object-norm02-seed49.log\\n-rw-r--r-- 1 root root   4314 May 21 03:22 eval-perdof-object-norm02-seed50.log\\n-rw-r--r-- 1 root root  21414 May 25 02:47 eval-pi05-vla-only-goal-s42-v2.log\\n-rw-r--r-- 1 root root   5987 May 25 02:44 eval-pi05-vla-only-goal-s42.log\\n-rw-r--r-- 1 root root  23106 May 25 02:46 eval-pi05-vla-only-goal-s43-v2.log\\n-rw-r--r-- 1 root root   5986 May 25 02:44 eval-pi05-vla-only-goal-s43.log\\n-rw-r--r-- 1 root root  30352 May 25 02:51 eval-pi05-vla-only-object-s42-v2.log\\n-rw-r--r-- 1 root root   6860 May 25 02:47 eval-pi05-vla-only-object-s42.log\\n-rw-r--r-- 1 root root   4693 May 21 18:07 eval-pi05-vla-only-object-seed42.log\\n-rw-r--r-- 1 root root   4693 May 21 18:10 eval-pi05-vla-only-object-seed43.log\\n-rw-r--r-- 1 root root   4693 May 21 18:07 eval-pi05-vla-only-object-seed44.log\\n-rw-r--r-- 1 root root 554227 May 25 02:30 eval-pi05-vla-only-spatial-s42-v2.log\\n-rw-r--r-- 1 root root   7887 May 25 02:46 eval-pi05-vla-only-spatial-s42.log\\n-rw-r--r-- 1 root root  28751 May 25 02\\n\\n... [截断: 输出过长，省略 23143 字符] ...\\n\\nspatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\n-rw-r--r-- 1 root root   1905 May 23 14:14 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.35_seed42.json\\n-rw-r--r-- 1 root root   1906 May 25 01:14 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\n-rw-r--r-- 1 root root   1907 May 23 11:18 eval_spatial_adaptive_conformal_crm_tau0.074855_seed42.json\\n-rw-r--r-- 1 root root   1708 May 23 11:10 eval_spatial_crm_obs_only_norm0.05_seed42.json\\n-rw-r--r-- 1 root root   1711 May 23 16:28 eval_spatial_crm_obs_only_norm0.05_seed43.json\\n-rw-r--r-- 1 root root   1709 May 23 16:48 eval_spatial_crm_obs_only_norm0.05_seed44.json\\n-rw-r--r-- 1 root root   1711 May 23 11:14 eval_spatial_crm_obs_only_norm0.1_seed42.json\\n-rw-r--r-- 1 root root   1711 May 23 14:06 eval_spatial_crm_obs_only_norm0.2_seed42.json\\n-rw-r--r-- 1 root root   1704 May 24 09:22 eval_spatial_k2mean_seed46.json\\n-rw-r--r-- 1 root root  13445 May 19 20:41 eval_spatial_norm02_seed45.log\\n-rw-r--r-- 1 root root   1697 May 19 18:18 eval_spatial_obs_only_norm02_k5_seed43.json\\n-rw-r--r-- 1 root root   1698 May 20 03:44 eval_spatial_obs_only_norm02_seed43_r2.json\\n-rw-r--r-- 1 root root   1697 May 19 20:41 eval_spatial_obs_only_norm02_seed45.json\\n-rw-r--r-- 1 root root   1696 May 20 00:58 eval_spatial_obs_only_norm02_seed47.json\\n-rw-r--r-- 1 root root   1697 May 20 10:53 eval_spatial_obs_only_norm02_seed48.json\\n-rw-r--r-- 1 root root   1697 May 20 12:17 eval_spatial_obs_only_norm02_seed50.json\\n-rw-r--r-- 1 root root   1706 May 23 16:28 eval_spatial_reconvla_seed42.json\\n-rw-r--r-- 1 root root   1704 May 25 02:46 eval_spatial_vla_only_pi05_seed42.json\\n-rw-r--r-- 1 root root   1704 May 25 02:50 eval_spatial_vla_only_pi05_seed43.json\\n-rw-r--r-- 1 root root   1703 May 21 20:15 eval_spatial_vla_only_pi05_seed45.json\\n-rw-r--r-- 1 root root   1692 May 19 22:32 eval_spatial_vla_only_seed42.json\\n-rw-r--r-- 1 root root   1692 May 19 23:16 eval_spatial_vla_only_seed45.json\\n-rw-r--r-- 1 root root   1706 May 25 11:36 eval_spatial_vla_only_seed46.json\\n-rw-r--r-- 1 root root   1691 May 20 04:23 eval_spatial_vla_only_seed46_n10_backup.json\\n-rw-r--r-- 1 root root   1691 May 20 11:13 eval_spatial_vla_only_seed47.json\\n-rw-r--r-- 1 root root   1707 May 25 11:29 eval_spatial_vla_only_seed48.json\\n-rw-r--r-- 1 root root   4643 May 20 06:06 eval_spatial_vla_only_seed48.log\\n-rw-r--r-- 1 root root   1692 May 20 06:06 eval_spatial_vla_only_seed48_n10_backup.json\\n-rw-r--r-- 1 root root   1705 May 25 11:30 eval_spatial_vla_only_seed49.json\\n-rw-r--r-- 1 root root   1692 May 20 06:50 eval_spatial_vla_only_seed49_n10_backup.json\\n-rw-r--r-- 1 root root   1693 May 20 12:47 eval_spatial_vla_only_seed51.json\\n-rw-r--r-- 1 root root   1692 May 20 15:13 eval_spatial_vla_only_seed54.json\\n-rw-r--r-- 1 root root   1314 May 20 22:52 eval_vla_only_goal_seed51.json\\n-rw-r--r-- 1 root root   1486 May 20 22:53 eval_vla_only_object_seed48.json\\n-rw-r--r-- 1 root root   1485 May 21 03:24 eval_vla_only_object_seed49.json\\n-rw-r--r-- 1 root root   1486 May 21 05:49 eval_vla_only_object_seed50.json\\n-rw-r--r-- 1 root root   1691 May 21 14:42 eval_vla_only_spatial_seed50.json\\n-rw-r--r-- 1 root root   2060 May 19 10:28 latency_output.log\\n-rw-r--r-- 1 root root   3010 May 23 12:08 obj_crm005_s42.log\\n-rw-r--r-- 1 root root   4253 May 21 05:48 obs_only_object_norm005_seed48.log\\n-rw-r--r-- 1 root root   4251 May 21 05:45 obs_only_object_norm01_seed49.log\\n-rw-r--r-- 1 root root   4251 May 21 05:51 obs_only_object_norm02_seed52.log\\n-rw-r--r-- 1 root root   4871 May 21 05:41 obs_only_spatial_norm02_seed52.log\\n-rw-r--r-- 1 root root   4119 May 21 05:51 random_sel_object_seed49.log\\n-rw-r--r-- 1 root root   1495 May 17 12:46 results_direct_correction_object_seed42.json\\ndrwxr-xr-x 2 root root     10 May 17 22:56 sentinels\\n-rw-r--r-- 1 root root  64613 May 23 17:05 train-crm-unified-4suite-r6.log\\n-rw-r--r-- 1 root root   7597 May 17 23:16 train_crm_k1_fallback.log\\n-rw-r--r-- 1 root root   4021 May 21 05:49 vla_only_object_seed50.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T05:13:41.111Z_
+
+<details><summary>↩ Tool result · `toolu_017nzY48YjNj2MiWQMcmzhpB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 45280\\ndrwxrwxrwt 1 root root    20480 May 25 10:53 .\\ndrwxr-xr-x 1 root root      139 Apr 14 22:05 ..\\ndrwxrwxrwx 2 root root      131 May 15 09:28 .tensorboard-info\\n-rw-r--r-- 1 root root    25351 May 24 20:05 a1_aria2.log\\n-rw-r--r-- 1 root root     4311 May 24 21:21 a1_debug.log\\n-rw-r--r-- 1 root root      264 May 24 19:38 a1_download.log\\n-rw-r--r-- 1 root root      194 May 24 19:51 a1_download2.log\\n-rw-r--r-- 1 root root       56 May 24 19:55 a1_download3.log\\n-rw-r--r-- 1 root root     4774 May 24 20:05 a1_download4.log\\n-rw-r--r-- 1 root root        0 May 24 20:06 a1_download5.log\\n-rw-r--r-- 1 root root       60 May 24 20:36 a1_download6.log\\n-rw-r--r-- 1 root root  1480481 May 24 22:18 a1_eval.log\\n-rw-r--r-- 1 root root    19794 May 24 19:54 a1_wget.log\\n-rw-r--r-- 1 root root   171549 May 24 19:55 a1_wget2.log\\n-rw-r--r-- 1 root root    27711 May 24 20:08 a1_wget3.log\\n-rw-r--r-- 1 root root    99048 May 21 18:18 acr_code_sync.tar.gz\\ndrwxr-xr-x 2 root root    12288 May 25 09:05 agent-ml-exit\\n-rw-r--r-- 1 root root       84 May 15 09:28 autodl.sh.log\\n-rw-r--r-- 1 root root     1212 May 22 14:21 check_obs_dim.py\\n-rw-r--r-- 1 root root     1033 May 16 03:13 count_params.py\\n-rw-r--r-- 1 root root  1783454 May 24 02:36 crm_3suite.b64\\n-rw-r--r-- 1 root root  1783454 May 23 17:45 crm_best_4suite.b64\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_aa\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ab\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ac\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ad\\n-rw-r--r-- 1 root root   183454 May 24 02:36 crm_chunk_ae\\n-rw-r--r-- 1 root root     6719 May 24 21:19 debug_a1_action.py\\n-rw-r--r-- 1 root root      332 May 17 22:29 decode_train.py\\n-rw-r--r-- 1 root root      959 May 21 21:29 dryrun_shard0.log\\n-rw-r--r-- 1 root root      959 May 21 21:30 dryrun_shard0_v2.log\\n-rw-r--r-- 1 root root     5987 May 22 20:45 eval-pi05-goal-seed42.log\\n-rw-r--r-- 1 root root     8312 May 22 21:10 eval-pi05-long-seed42.log\\n-rw-r--r-- 1 root root      266 May 24 21:36 eval_a1_object_seed42.log\\n-rw-r--r-- 1 root root     5000 May 20 07:56 eval_chunk_aa\\n-rw-r--r-- 1 root root    10000 May 20 07:59 eval_chunk_ab\\n-rw-r--r-- 1 root root     5000 May 20 08:00 eval_chunk_ac\\n-rw-r--r-- 1 root root     5000 May 20 08:01 eval_chunk_ad\\n-rw-r--r-- 1 root root     5000 May 20 08:02 eval_chunk_ae\\n-rw-r--r-- 1 root root     5000 May 20 08:04 eval_chunk_af\\n-rw-r--r-- 1 root root      876 May 20 08:04 eval_chunk_ag\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed42.log\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed43.log\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed44.log\\n-rw-r--r-- 1 root root     6377 May 24 06:30 eval_crm_obj_s46.log\\n-rw-r--r-- 1 root root      821 May 22 06:33 eval_dryrun.log\\n-rw-r--r-- 1 root root     1035 May 22 06:35 eval_dryrun2.log\\n-rw-r--r-- 1 root root     5631 May 24 06:06 eval_goal_adapt_s45.log\\n-rw-r--r-- 1 root root     5265 May 24 00:34 eval_goal_wrapper_s44_r2.log\\n-rw-r--r-- 1 root root     4000 May 20 08:09 eval_gz_chunk_00\\n-rw-r--r-- 1 root root     3776 May 20 08:11 eval_gz_chunk_01\\n-rw-r--r-- 1 root root     7951 May 24 08:46 eval_long_adapt_s45.log\\n-rw-r--r-- 1 root root     5232 May 24 11:24 eval_long_adapt_s46.log\\n-rw-r--r-- 1 root root     7950 May 24 03:38 eval_long_adapt_tau025_s43.log\\n-rw-r--r-- 1 root root     7826 May 24 03:32 eval_long_crm_norm005_s43.log\\n-rw-r--r-- 1 root root     7832 May 24 08:51 eval_long_crm_s45.log\\n-rw-r--r-- 1 root root     5202 May 24 11:26 eval_long_crm_s46.log\\n-rw-r--r-- 1 root root     7579 May 24 03:32 eval_long_k2mean_s43.log\\n-rw-r--r-- 1 root root     7645 May 24 03:14 eval_long_reconvla_s43.log\\n-rw-r--r-- 1 root root     7726 May 24 08:55 eval_long_reconvla_s45.log\\n-rw-r--r-- 1 root root     5259 May 24 11:31 eval_long_reconvla_s46.log\\n-rw-r--r-- 1 root root     7584 May 24 03:20 eval_long_vla_only_s44.log\\n-rw-r--r-- 1 root root     7584 May 24 08:43 eval_long_vla_s45.l\\n\\n... [截断: 输出过长，省略 28673 字符] ...\\n\\not root     1670 May 23 01:43 tmpueabgm50.json\\n-rw------- 1 root root     1670 May 25 10:53 tmpuiicm_sg.json\\n-rw------- 1 root root     1670 May 19 00:32 tmpuikfw4pw.json\\n-rw------- 1 root root     1670 May 15 13:18 tmpumojvdvb.json\\n-rw------- 1 root root     1670 May 22 13:38 tmpun26jc0w.json\\n-rw------- 1 root root     1670 May 17 23:15 tmpunke1il7.json\\n-rw------- 1 root root     1670 May 23 01:51 tmpunsktrim.json\\n-rw------- 1 root root     1670 May 24 19:32 tmpuqaqdzyt.json\\n-rw------- 1 root root     1446 May 22 06:32 tmpuw6myoey.json\\n-rw------- 1 root root     1670 May 21 04:03 tmpv1v7wnla.json\\n-rw------- 1 root root     1670 May 21 04:03 tmpv8s0p35w.json\\n-rw------- 1 root root     1446 May 22 23:19 tmpv_dykmib.json\\n-rw------- 1 root root     1446 May 22 03:24 tmpvcbr4oa5.json\\n-rw------- 1 root root     1670 May 19 19:36 tmpvgly7wek.json\\n-rw------- 1 root root     1446 May 21 18:19 tmpvlokpqz3.json\\n-rw------- 1 root root     1670 May 20 16:21 tmpvmswhi7x.json\\n-rw------- 1 root root     1670 May 16 15:44 tmpvobrec9o.json\\n-rw------- 1 root root     1670 May 20 02:04 tmpvp1tjwbb.json\\n-rw------- 1 root root     1670 May 15 10:39 tmpvqkaqzdi.json\\n-rw------- 1 root root     1670 May 21 01:32 tmpvu1hiijm.json\\n-rw------- 1 root root     1670 May 21 11:16 tmpvwvw42k7.json\\n-rw------- 1 root root     1670 May 24 06:38 tmpvxam4tvr.json\\n-rw------- 1 root root     1670 May 24 04:11 tmpvyzz9kgh.json\\n-rw------- 1 root root     1670 May 17 02:38 tmpw0b04d80.json\\n-rw------- 1 root root     1670 May 23 02:56 tmpw8omfs95.json\\n-rw------- 1 root root     1446 May 21 19:52 tmpwg6q5wtf.json\\n-rw------- 1 root root     1670 May 23 22:39 tmpwj1qtezq.json\\n-rw------- 1 root root     1446 May 21 18:18 tmpwkhextwe.json\\n-rw------- 1 root root     1670 May 23 01:47 tmpwpluwgx_.json\\n-rw------- 1 root root     1670 May 24 23:12 tmpwzk1p60w.json\\n-rw------- 1 root root     1670 May 18 23:16 tmpx059g_ag.json\\n-rw------- 1 root root     1670 May 25 04:18 tmpx15ihk5e.json\\n-rw------- 1 root root     1670 May 22 14:16 tmpx2sdzinl.json\\n-rw------- 1 root root     1670 May 22 13:38 tmpx5pmpjix.json\\n-rw------- 1 root root     1670 May 25 04:18 tmpxbz7ia72.json\\n-rw------- 1 root root     1670 May 20 20:09 tmpxf00h6dq.json\\n-rw------- 1 root root     1670 May 20 13:39 tmpxfhmoj_v.json\\n-rw------- 1 root root     1670 May 23 07:24 tmpxgdo5h0c.json\\n-rw------- 1 root root     1670 May 20 11:12 tmpxityd4tk.json\\n-rw------- 1 root root     1446 May 21 16:23 tmpxpzu9k0d.json\\n-rw------- 1 root root     1670 May 15 13:11 tmpxv2vsl1n.json\\n-rw------- 1 root root     1670 May 16 00:30 tmpyeqjof08.json\\n-rw------- 1 root root     1670 May 17 10:52 tmpyev24o8r.json\\n-rw------- 1 root root     1670 May 22 14:11 tmpyih04z4l.json\\n-rw------- 1 root root     1670 May 23 01:50 tmpylm5tx_9.json\\n-rw------- 1 root root     1670 May 21 06:15 tmpymfiddb3.json\\n-rw------- 1 root root     1670 May 25 09:36 tmpyoe_6cqo.json\\n-rw------- 1 root root     1670 May 21 08:37 tmpz2d7_3q1.json\\n-rw------- 1 root root     1670 May 18 07:55 tmpz39x378p.json\\n-rw------- 1 root root     1670 May 20 04:30 tmpz54aicx7.json\\n-rw------- 1 root root     1670 May 24 14:53 tmpz7slyvsd.json\\n-rw------- 1 root root     1446 May 21 19:52 tmpzbdx2ojb.json\\n-rw------- 1 root root     1446 May 21 22:19 tmpzbjn_ohp.json\\n-rw------- 1 root root     1670 May 19 00:32 tmpzdplqirp.json\\n-rw------- 1 root root     1670 May 23 04:14 tmpzdrxh724.json\\n-rw------- 1 root root     1670 May 24 23:12 tmpzek7pnoe.json\\n-rw------- 1 root root     1670 May 24 14:53 tmpzizt6saa.json\\n-rw------- 1 root root     1446 May 21 22:19 tmpzo_51vfl.json\\n-rw------- 1 root root     1446 May 21 21:32 tmpzqt896ex.json\\n-rw------- 1 root root     1670 May 19 05:29 tmpzuq3rsvi.json\\n-rw------- 1 root root     1670 May 20 18:52 tmpzv52qexp.json\\n-rw------- 1 root root     1670 May 20 06:08 tmpzvucvrxn.json\\ndrwx------ 2 root root       29 May 25 04:18 tmux-0\\ndrwxr-xr-x 2 root root       10 Apr 14 22:08 torchinductor_root\\n-rw-r--r-- 1 root root     8124 May 17 22:28 train.b64\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "a35ba22b-4aeb-425a-9346-918b69154284",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 45280\\\\ndrwxrwxrwt 1 root root    20480 May 25 10:53 .\\\\ndrwxr-xr-x 1 root root      139 Apr 14 22:05 ..\\\\ndrwxrwxrwx 2 root root      131 May 15 09:28 .tensorboard-info\\\\n-rw-r--r-- 1 root root    25351 May 24 20:05 a1_aria2.log\\\\n-rw-r--r-- 1 root root     4311 May 24 21:21 a1_debug.log\\\\n-rw-r--r-- 1 root root      264 May 24 19:38 a1_download.log\\\\n-rw-r--r-- 1 root root      194 May 24 19:51 a1_download2.log\\\\n-rw-r--r-- 1 root root       56 May 24 19:55 a1_download3.log\\\\n-rw-r--r-- 1 root root     4774 May 24 20:05 a1_download4.log\\\\n-rw-r--r-- 1 root root        0 May 24 20:06 a1_download5.log\\\\n-rw-r--r-- 1 root root       60 May 24 20:36 a1_download6.log\\\\n-rw-r--r-- 1 root root  1480481 May 24 22:18 a1_eval.log\\\\n-rw-r--r-- 1 root root    19794 May 24 19:54 a1_wget.log\\\\n-rw-r--r-- 1 root root   171549 May 24 19:55 a1_wget2.log\\\\n-rw-r--r-- 1 root root    27711 May 24 20:08 a1_wget3.log\\\\n-rw-r--r-- 1 root root    99048 May 21 18:18 acr_code_sync.tar.gz\\\\ndrwxr-xr-x 2 root root    12288 May 25 09:05 agent-ml-exit\\\\n-rw-r--r-- 1 root root       84 May 15 09:28 autodl.sh.log\\\\n-rw-r--r-- 1 root root     1212 May 22 14:21 check_obs_dim.py\\\\n-rw-r--r-- 1 root root     1033 May 16 03:13 count_params.py\\\\n-rw-r--r-- 1 root root  1783454 May 24 02:36 crm_3suite.b64\\\\n-rw-r--r-- 1 root root  1783454 May 23 17:45 crm_best_4suite.b64\\\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_aa\\\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ab\\\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ac\\\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ad\\\\n-rw-r--r-- 1 root root   183454 May 24 02:36 crm_chunk_ae\\\\n-rw-r--r-- 1 root root     6719 May 24 21:19 debug_a1_action.py\\\\n-rw-r--r-- 1 root root      332 May 17 22:29 decode_train.py\\\\n-rw-r--r-- 1 root root      959 May 21 21:29 dryrun_shard0.log\\\\n-rw-r--r-- 1 root root      959 May 21 21:30 dryrun_shard0_v2.log\\\\n-rw-r--r-- 1 root root     5987 May 22 20:45 eval-pi05-goal-seed42.log\\\\n-rw-r--r-- 1 root root     8312 May 22 21:10 eval-pi05-long-seed42.log\\\\n-rw-r--r-- 1 root root      266 May 24 21:36 eval_a1_object_seed42.log\\\\n-rw-r--r-- 1 root root     5000 May 20 07:56 eval_chunk_aa\\\\n-rw-r--r-- 1 root root    10000 May 20 07:59 eval_chunk_ab\\\\n-rw-r--r-- 1 root root     5000 May 20 08:00 eval_chunk_ac\\\\n-rw-r--r-- 1 root root     5000 May 20 08:01 eval_chunk_ad\\\\n-rw-r--r-- 1 root root     5000 May 20 08:02 eval_chunk_ae\\\\n-rw-r--r-- 1 root root     5000 May 20 08:04 eval_chunk_af\\\\n-rw-r--r-- 1 root root      876 May 20 08:04 eval_chunk_ag\\\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed42.log\\\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed43.log\\\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed44.log\\\\n-rw-r--r-- 1 root root     6377 May 24 06:30 eval_crm_obj_s46.log\\\\n-rw-r--r-- 1 root root      821 May 22 06:33 eval_dryrun.log\\\\n-rw-r--r-- 1 root root     1035 May 22 06:35 eval_dryrun2.log\\\\n-rw-r--r-- 1 root root     5631 May 24 06:06 eval_goal_adapt_s45.log\\\\n-rw-r--r-- 1 root root     5265 May 24 00:34 eval_goal_wrapper_s44_r2.log\\\\n-rw-r--r-- 1 root root     4000 May 20 08:09 eval_gz_chunk_00\\\\n-rw-r--r-- 1 root root     3776 May 20 08:11 eval_gz_chunk_01\\\\n-rw-r--r-- 1 root root     7951 May 24 08:46 eval_long_adapt_s45.log\\\\n-rw-r--r-- 1 root root     5232 May 24 11:24 eval_long_adapt_s46.log\\\\n-rw-r--r-- 1 root root     7950 May 24 03:38 eval_long_adapt_tau025_s43.log\\\\n-rw-r--r-- 1 root root     7826 May 24 03:32 eval_long_crm_norm005_s43.log\\\\n-rw-r--r-- 1 root root     7832 May 24 08:51 eval_long_crm_s45.log\\\\n-rw-r--r-- 1 root root     5202 May 24 11:26 eval_long_crm_s46.log\\\\n-rw-r--r-- 1 root root     7579 May 24 03:32 eval_long_k2mean_s43.log\\\\n-rw-r--r-- 1 root root     7645 May 24 03:14 eval_long_reconvla_s43.log\\\\n-rw-r--r-- 1 root root     7726 May 24 08:55 eval_long_reconvla_s45.log\\\\n-rw-r--r-- 1 root root     5259 May 24 11:31 eval_long_reconvla_s46.log\\\\n-rw-r--r-- 1 root root     7584 May 24 03:20 eval_long_vla_only_s44.log\\\\n-rw-r--r-- 1 root root     7584 May 24 08:43 eval_long_vla_s45.l\\\\n\\\\n... [截断: 输出过长，省略 28673 字符] ...\\\\n\\\\not root     1670 May 23 01:43 tmpueabgm50.json\\\\n-rw------- 1 root root     1670 May 25 10:53 tmpuiicm_sg.json\\\\n-rw------- 1 root root     1670 May 19 00:32 tmpuikfw4pw.json\\\\n-rw------- 1 root root     1670 May 15 13:18 tmpumojvdvb.json\\\\n-rw------- 1 root root     1670 May 22 13:38 tmpun26jc0w.json\\\\n-rw------- 1 root root     1670 May 17 23:15 tmpunke1il7.json\\\\n-rw------- 1 root root     1670 May 23 01:51 tmpunsktrim.json\\\\n-rw------- 1 root root     1670 May 24 19:32 tmpuqaqdzyt.json\\\\n-rw------- 1 root root     1446 May 22 06:32 tmpuw6myoey.json\\\\n-rw------- 1 root root     1670 May 21 04:03 tmpv1v7wnla.json\\\\n-rw------- 1 root root     1670 May 21 04:03 tmpv8s0p35w.json\\\\n-rw------- 1 root root     1446 May 22 23:19 tmpv_dykmib.json\\\\n-rw------- 1 root root     1446 May 22 03:24 tmpvcbr4oa5.json\\\\n-rw------- 1 root root     1670 May 19 19:36 tmpvgly7wek.json\\\\n-rw------- 1 root root     1446 May 21 18:19 tmpvlokpqz3.json\\\\n-rw------- 1 root root     1670 May 20 16:21 tmpvmswhi7x.json\\\\n-rw------- 1 root root     1670 May 16 15:44 tmpvobrec9o.json\\\\n-rw------- 1 root root     1670 May 20 02:04 tmpvp1tjwbb.json\\\\n-rw------- 1 root root     1670 May 15 10:39 tmpvqkaqzdi.json\\\\n-rw------- 1 root root     1670 May 21 01:32 tmpvu1hiijm.json\\\\n-rw------- 1 root root     1670 May 21 11:16 tmpvwvw42k7.json\\\\n-rw------- 1 root root     1670 May 24 06:38 tmpvxam4tvr.json\\\\n-rw------- 1 root root     1670 May 24 04:11 tmpvyzz9kgh.json\\\\n-rw------- 1 root root     1670 May 17 02:38 tmpw0b04d80.json\\\\n-rw------- 1 root root     1670 May 23 02:56 tmpw8omfs95.json\\\\n-rw------- 1 root root     1446 May 21 19:52 tmpwg6q5wtf.json\\\\n-rw------- 1 root root     1670 May 23 22:39 tmpwj1qtezq.json\\\\n-rw------- 1 root root     1446 May 21 18:18 tmpwkhextwe.json\\\\n-rw------- 1 root root     1670 May 23 01:47 tmpwpluwgx_.json\\\\n-rw------- 1 root root     1670 May 24 23:12 tmpwzk1p60w.json\\\\n-rw------- 1 root root     1670 May 18 23:16 tmpx059g_ag.json\\\\n-rw------- 1 root root     1670 May 25 04:18 tmpx15ihk5e.json\\\\n-rw------- 1 root root     1670 May 22 14:16 tmpx2sdzinl.json\\\\n-rw------- 1 root root     1670 May 22 13:38 tmpx5pmpjix.json\\\\n-rw------- 1 root root     1670 May 25 04:18 tmpxbz7ia72.json\\\\n-rw------- 1 root root     1670 May 20 20:09 tmpxf00h6dq.json\\\\n-rw------- 1 root root     1670 May 20 13:39 tmpxfhmoj_v.json\\\\n-rw------- 1 root root     1670 May 23 07:24 tmpxgdo5h0c.json\\\\n-rw------- 1 root root     1670 May 20 11:12 tmpxityd4tk.json\\\\n-rw------- 1 root root     1446 May 21 16:23 tmpxpzu9k0d.json\\\\n-rw------- 1 root root     1670 May 15 13:11 tmpxv2vsl1n.json\\\\n-rw------- 1 root root     1670 May 16 00:30 tmpyeqjof08.json\\\\n-rw------- 1 root root     1670 May 17 10:52 tmpyev24o8r.json\\\\n-rw------- 1 root root     1670 May 22 14:11 tmpyih04z4l.json\\\\n-rw------- 1 root root     1670 May 23 01:50 tmpylm5tx_9.json\\\\n-rw------- 1 root root     1670 May 21 06:15 tmpymfiddb3.json\\\\n-rw------- 1 root root     1670 May 25 09:36 tmpyoe_6cqo.json\\\\n-rw------- 1 root root     1670 May 21 08:37 tmpz2d7_3q1.json\\\\n-rw------- 1 root root     1670 May 18 07:55 tmpz39x378p.json\\\\n-rw------- 1 root root     1670 May 20 04:30 tmpz54aicx7.json\\\\n-rw------- 1 root root     1670 May 24 14:53 tmpz7slyvsd.json\\\\n-rw------- 1 root root     1446 May 21 19:52 tmpzbdx2ojb.json\\\\n-rw------- 1 root root     1446 May 21 22:19 tmpzbjn_ohp.json\\\\n-rw------- 1 root root     1670 May 19 00:32 tmpzdplqirp.json\\\\n-rw------- 1 root root     1670 May 23 04:14 tmpzdrxh724.json\\\\n-rw------- 1 root root     1670 May 24 23:12 tmpzek7pnoe.json\\\\n-rw------- 1 root root     1670 May 24 14:53 tmpzizt6saa.json\\\\n-rw------- 1 root root     1446 May 21 22:19 tmpzo_51vfl.json\\\\n-rw------- 1 root root     1446 May 21 21:32 tmpzqt896ex.json\\\\n-rw------- 1 root root     1670 May 19 05:29 tmpzuq3rsvi.json\\\\n-rw------- 1 root root     1670 May 20 18:52 tmpzv52qexp.json\\\\n-rw------- 1 root root     1670 May 20 06:08 tmpzvucvrxn.json\\\\ndrwx------ 2 root root       29 May 25 04:18 tmux-0\\\\ndrwxr-xr-x 2 root root       10 Apr 14 22:08 torchinductor_root\\\\n-rw-r--r-- 1 root root     8124 May 17 22:28 train.b64\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 45280\\ndrwxrwxrwt 1 root root    20480 May 25 10:53 .\\ndrwxr-xr-x 1 root root      139 Apr 14 22:05 ..\\ndrwxrwxrwx 2 root root      131 May 15 09:28 .tensorboard-info\\n-rw-r--r-- 1 root root    25351 May 24 20:05 a1_aria2.log\\n-rw-r--r-- 1 root root     4311 May 24 21:21 a1_debug.log\\n-rw-r--r-- 1 root root      264 May 24 19:38 a1_download.log\\n-rw-r--r-- 1 root root      194 May 24 19:51 a1_download2.log\\n-rw-r--r-- 1 root root       56 May 24 19:55 a1_download3.log\\n-rw-r--r-- 1 root root     4774 May 24 20:05 a1_download4.log\\n-rw-r--r-- 1 root root        0 May 24 20:06 a1_download5.log\\n-rw-r--r-- 1 root root       60 May 24 20:36 a1_download6.log\\n-rw-r--r-- 1 root root  1480481 May 24 22:18 a1_eval.log\\n-rw-r--r-- 1 root root    19794 May 24 19:54 a1_wget.log\\n-rw-r--r-- 1 root root   171549 May 24 19:55 a1_wget2.log\\n-rw-r--r-- 1 root root    27711 May 24 20:08 a1_wget3.log\\n-rw-r--r-- 1 root root    99048 May 21 18:18 acr_code_sync.tar.gz\\ndrwxr-xr-x 2 root root    12288 May 25 09:05 agent-ml-exit\\n-rw-r--r-- 1 root root       84 May 15 09:28 autodl.sh.log\\n-rw-r--r-- 1 root root     1212 May 22 14:21 check_obs_dim.py\\n-rw-r--r-- 1 root root     1033 May 16 03:13 count_params.py\\n-rw-r--r-- 1 root root  1783454 May 24 02:36 crm_3suite.b64\\n-rw-r--r-- 1 root root  1783454 May 23 17:45 crm_best_4suite.b64\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_aa\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ab\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ac\\n-rw-r--r-- 1 root root   400000 May 24 02:36 crm_chunk_ad\\n-rw-r--r-- 1 root root   183454 May 24 02:36 crm_chunk_ae\\n-rw-r--r-- 1 root root     6719 May 24 21:19 debug_a1_action.py\\n-rw-r--r-- 1 root root      332 May 17 22:29 decode_train.py\\n-rw-r--r-- 1 root root      959 May 21 21:29 dryrun_shard0.log\\n-rw-r--r-- 1 root root      959 May 21 21:30 dryrun_shard0_v2.log\\n-rw-r--r-- 1 root root     5987 May 22 20:45 eval-pi05-goal-seed42.log\\n-rw-r--r-- 1 root root     8312 May 22 21:10 eval-pi05-long-seed42.log\\n-rw-r--r-- 1 root root      266 May 24 21:36 eval_a1_object_seed42.log\\n-rw-r--r-- 1 root root     5000 May 20 07:56 eval_chunk_aa\\n-rw-r--r-- 1 root root    10000 May 20 07:59 eval_chunk_ab\\n-rw-r--r-- 1 root root     5000 May 20 08:00 eval_chunk_ac\\n-rw-r--r-- 1 root root     5000 May 20 08:01 eval_chunk_ad\\n-rw-r--r-- 1 root root     5000 May 20 08:02 eval_chunk_ae\\n-rw-r--r-- 1 root root     5000 May 20 08:04 eval_chunk_af\\n-rw-r--r-- 1 root root      876 May 20 08:04 eval_chunk_ag\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed42.log\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed43.log\\n-rw-r--r-- 1 root root     1281 May 23 07:23 eval_crm_goal_seed44.log\\n-rw-r--r-- 1 root root     6377 May 24 06:30 eval_crm_obj_s46.log\\n-rw-r--r-- 1 root root      821 May 22 06:33 eval_dryrun.log\\n-rw-r--r-- 1 root root     1035 May 22 06:35 eval_dryrun2.log\\n-rw-r--r-- 1 root root     5631 May 24 06:06 eval_goal_adapt_s45.log\\n-rw-r--r-- 1 root root     5265 May 24 00:34 eval_goal_wrapper_s44_r2.log\\n-rw-r--r-- 1 root root     4000 May 20 08:09 eval_gz_chunk_00\\n-rw-r--r-- 1 root root     3776 May 20 08:11 eval_gz_chunk_01\\n-rw-r--r-- 1 root root     7951 May 24 08:46 eval_long_adapt_s45.log\\n-rw-r--r-- 1 root root     5232 May 24 11:24 eval_long_adapt_s46.log\\n-rw-r--r-- 1 root root     7950 May 24 03:38 eval_long_adapt_tau025_s43.log\\n-rw-r--r-- 1 root root     7826 May 24 03:32 eval_long_crm_norm005_s43.log\\n-rw-r--r-- 1 root root     7832 May 24 08:51 eval_long_crm_s45.log\\n-rw-r--r-- 1 root root     5202 May 24 11:26 eval_long_crm_s46.log\\n-rw-r--r-- 1 root root     7579 May 24 03:32 eval_long_k2mean_s43.log\\n-rw-r--r-- 1 root root     7645 May 24 03:14 eval_long_reconvla_s43.log\\n-rw-r--r-- 1 root root     7726 May 24 08:55 eval_long_reconvla_s45.log\\n-rw-r--r-- 1 root root     5259 May 24 11:31 eval_long_reconvla_s46.log\\n-rw-r--r-- 1 root root     7584 May 24 03:20 eval_long_vla_only_s44.log\\n-rw-r--r-- 1 root root     7584 May 24 08:43 eval_long_vla_s45.l\\n\\n... [截断: 输出过长，省略 28673 字符] ...\\n\\not root     1670 May 23 01:43 tmpueabgm50.json\\n-rw------- 1 root root     1670 May 25 10:53 tmpuiicm_sg.json\\n-rw------- 1 root root     1670 May 19 00:32 tmpuikfw4pw.json\\n-rw------- 1 root root     1670 May 15 13:18 tmpumojvdvb.json\\n-rw------- 1 root root     1670 May 22 13:38 tmpun26jc0w.json\\n-rw------- 1 root root     1670 May 17 23:15 tmpunke1il7.json\\n-rw------- 1 root root     1670 May 23 01:51 tmpunsktrim.json\\n-rw------- 1 root root     1670 May 24 19:32 tmpuqaqdzyt.json\\n-rw------- 1 root root     1446 May 22 06:32 tmpuw6myoey.json\\n-rw------- 1 root root     1670 May 21 04:03 tmpv1v7wnla.json\\n-rw------- 1 root root     1670 May 21 04:03 tmpv8s0p35w.json\\n-rw------- 1 root root     1446 May 22 23:19 tmpv_dykmib.json\\n-rw------- 1 root root     1446 May 22 03:24 tmpvcbr4oa5.json\\n-rw------- 1 root root     1670 May 19 19:36 tmpvgly7wek.json\\n-rw------- 1 root root     1446 May 21 18:19 tmpvlokpqz3.json\\n-rw------- 1 root root     1670 May 20 16:21 tmpvmswhi7x.json\\n-rw------- 1 root root     1670 May 16 15:44 tmpvobrec9o.json\\n-rw------- 1 root root     1670 May 20 02:04 tmpvp1tjwbb.json\\n-rw------- 1 root root     1670 May 15 10:39 tmpvqkaqzdi.json\\n-rw------- 1 root root     1670 May 21 01:32 tmpvu1hiijm.json\\n-rw------- 1 root root     1670 May 21 11:16 tmpvwvw42k7.json\\n-rw------- 1 root root     1670 May 24 06:38 tmpvxam4tvr.json\\n-rw------- 1 root root     1670 May 24 04:11 tmpvyzz9kgh.json\\n-rw------- 1 root root     1670 May 17 02:38 tmpw0b04d80.json\\n-rw------- 1 root root     1670 May 23 02:56 tmpw8omfs95.json\\n-rw------- 1 root root     1446 May 21 19:52 tmpwg6q5wtf.json\\n-rw------- 1 root root     1670 May 23 22:39 tmpwj1qtezq.json\\n-rw------- 1 root root     1446 May 21 18:18 tmpwkhextwe.json\\n-rw------- 1 root root     1670 May 23 01:47 tmpwpluwgx_.json\\n-rw------- 1 root root     1670 May 24 23:12 tmpwzk1p60w.json\\n-rw------- 1 root root     1670 May 18 23:16 tmpx059g_ag.json\\n-rw------- 1 root root     1670 May 25 04:18 tmpx15ihk5e.json\\n-rw------- 1 root root     1670 May 22 14:16 tmpx2sdzinl.json\\n-rw------- 1 root root     1670 May 22 13:38 tmpx5pmpjix.json\\n-rw------- 1 root root     1670 May 25 04:18 tmpxbz7ia72.json\\n-rw------- 1 root root     1670 May 20 20:09 tmpxf00h6dq.json\\n-rw------- 1 root root     1670 May 20 13:39 tmpxfhmoj_v.json\\n-rw------- 1 root root     1670 May 23 07:24 tmpxgdo5h0c.json\\n-rw------- 1 root root     1670 May 20 11:12 tmpxityd4tk.json\\n-rw------- 1 root root     1446 May 21 16:23 tmpxpzu9k0d.json\\n-rw------- 1 root root     1670 May 15 13:11 tmpxv2vsl1n.json\\n-rw------- 1 root root     1670 May 16 00:30 tmpyeqjof08.json\\n-rw------- 1 root root     1670 May 17 10:52 tmpyev24o8r.json\\n-rw------- 1 root root     1670 May 22 14:11 tmpyih04z4l.json\\n-rw------- 1 root root     1670 May 23 01:50 tmpylm5tx_9.json\\n-rw------- 1 root root     1670 May 21 06:15 tmpymfiddb3.json\\n-rw------- 1 root root     1670 May 25 09:36 tmpyoe_6cqo.json\\n-rw------- 1 root root     1670 May 21 08:37 tmpz2d7_3q1.json\\n-rw------- 1 root root     1670 May 18 07:55 tmpz39x378p.json\\n-rw------- 1 root root     1670 May 20 04:30 tmpz54aicx7.json\\n-rw------- 1 root root     1670 May 24 14:53 tmpz7slyvsd.json\\n-rw------- 1 root root     1446 May 21 19:52 tmpzbdx2ojb.json\\n-rw------- 1 root root     1446 May 21 22:19 tmpzbjn_ohp.json\\n-rw------- 1 root root     1670 May 19 00:32 tmpzdplqirp.json\\n-rw------- 1 root root     1670 May 23 04:14 tmpzdrxh724.json\\n-rw------- 1 root root     1670 May 24 23:12 tmpzek7pnoe.json\\n-rw------- 1 root root     1670 May 24 14:53 tmpzizt6saa.json\\n-rw------- 1 root root     1446 May 21 22:19 tmpzo_51vfl.json\\n-rw------- 1 root root     1446 May 21 21:32 tmpzqt896ex.json\\n-rw------- 1 root root     1670 May 19 05:29 tmpzuq3rsvi.json\\n-rw------- 1 root root     1670 May 20 18:52 tmpzv52qexp.json\\n-rw------- 1 root root     1670 May 20 06:08 tmpzvucvrxn.json\\ndrwx------ 2 root root       29 May 25 04:18 tmux-0\\ndrwxr-xr-x 2 root root       10 Apr 14 22:08 torchinductor_root\\n-rw-r--r-- 1 root root     8124 May 17 22:28 train.b64\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "e678d4a0-9441-46c4-b737-5bf58eeba151",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PXU3zTvDWtYkK828YNvmwU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10333,
+      "cache_read_input_tokens": 31641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10333
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ApYzurTc9W8TyUi5f33wSh`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_spatial*k2*.json\" -o -name \"eval_spatial*adaptive*s4*.json\" -o -name \"eval_spatial*adaptive*seed4*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "dbaa43d8-d8ab-43d3-b6bb-65d1c9387188",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PXU3zTvDWtYkK828YNvmwU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10333,
+      "cache_read_input_tokens": 31641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10333
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T05:13:52.817Z_
+
+<details><summary>↩ Tool result · `toolu_01ApYzurTc9W8TyUi5f33wSh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_tau0.074855_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.15_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.35_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_k2mean_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K10_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "a6544320-9be6-4624-96d9-7e6dbdf9e262",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_tau0.074855_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.15_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.35_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_k2mean_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K10_norm0.2_tau0.25_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_tau0.074855_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.15_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.35_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_k2mean_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K10_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0194CiGAdMDJkYtKn2hyyjcU`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "find /root/acr-vla-conformal-refinement/logs -name \"*.json\" -newer /tmp/eval_chunk_aa -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "b04cb384-8c11-4e19-acf5-3ea5ee75603a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PXU3zTvDWtYkK828YNvmwU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10333,
+      "cache_read_input_tokens": 31641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10333
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011KTcJJpZFcYM5zM1C8ZjJ8`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "84205e46-e372-48b7-857a-a64b1b718093",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PXU3zTvDWtYkK828YNvmwU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10333,
+      "cache_read_input_tokens": 31641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10333
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T05:13:54.345Z_
+
+<details><summary>↩ Tool result · `toolu_0194CiGAdMDJkYtKn2hyyjcU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed52.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed54.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed53.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed54.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed54.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_K20_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43_r2.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p75_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed52.json\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed43_r3.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed53.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_vla_only_goal_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_vla_only_object_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_perdof_object_norm02_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_random_selection_object_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_random_selection_spatial_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_k5_obs_only_object_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm005_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_k20_obs_only_object_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_k20_obs_only_object_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_spatial_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_k5_obs_only_object_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_perdof_object_norm02_seed50.json\\n/root/acr-vla-conformal-refinement\\n\\n... [截断: 输出过长，省略 4392 字符] ...\\n\\nacr-vla-conformal-refinement/logs/eval_spatial_crm_obs_only_norm0.05_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_reconvla_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_k2mean_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_k2mean_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_a1_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_tau0.25_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_pi05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K10_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "b02f64a4-ac2d-4eac-8f42-32a68a532c30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed50.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed51.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed49.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed51.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed50.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed52.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed54.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed53.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed51.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed54.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed54.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_K20_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43_r2.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p75_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p25_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed52.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed49.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed49.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed51.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed43_r3.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed53.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed50.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_vla_only_goal_seed51.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_vla_only_object_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed50.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_perdof_object_norm02_seed49.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_random_selection_object_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_random_selection_spatial_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_k5_obs_only_object_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm005_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_k20_obs_only_object_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_k20_obs_only_object_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_spatial_norm02_seed50.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_k5_obs_only_object_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed51.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_perdof_object_norm02_seed50.json\\\\n/root/acr-vla-conformal-refinement\\\\n\\\\n... [截断: 输出过长，省略 4392 字符] ...\\\\n\\\\nacr-vla-conformal-refinement/logs/eval_spatial_crm_obs_only_norm0.05_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_reconvla_seed45.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_k2mean_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_k2mean_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_a1_vla_only_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_tau0.25_seed47.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_pi05_seed43.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed50.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed44.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed42.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K10_norm0.2_tau0.25_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed49.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json\\\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed52.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed54.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed53.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed54.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed54.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_K20_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm003_seed43_r2.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p75_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed52.json\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed43_r3.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed53.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_vla_only_goal_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_vla_only_object_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_argmin_object_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_perdof_object_norm02_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_random_selection_object_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_random_selection_spatial_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_k5_obs_only_object_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm005_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_k20_obs_only_object_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_k20_obs_only_object_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_spatial_norm02_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_k5_obs_only_object_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm02_seed51.json\\n/root/acr-vla-conformal-refinement/logs/eval_perdof_object_norm02_seed50.json\\n/root/acr-vla-conformal-refinement\\n\\n... [截断: 输出过长，省略 4392 字符] ...\\n\\nacr-vla-conformal-refinement/logs/eval_spatial_crm_obs_only_norm0.05_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_crm_obs_only_norm0.05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_reconvla_seed45.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_k2mean_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_k2mean_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_crm_obs_only_norm0.05_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_reconvla_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_a1_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_long_adaptive_conformal_crm_tau0.25_seed47.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.3_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.1_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_pi05_seed43.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed50.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed44.json\\n/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed42.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K10_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed49.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json\\n/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T05:13:54.359Z_
+
+<details><summary>↩ Tool result · `toolu_011KTcJJpZFcYM5zM1C8ZjJ8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "b87c3615-b644-4a7e-895e-0ecb06ffe089",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "875e203e-769a-4d77-9652-702f49d67ef4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VFkEUdgANGMYUrTVo84Ujq`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "62b84b99-d094-456b-af11-d26b6ad0de55",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-25T05:14:04.465Z_
+
+<details><summary>↩ Tool result · `toolu_01VFkEUdgANGMYUrTVo84Ujq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.8,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.18257583529816507,\\n    \\\"trigger_rate\\\": 0.19059293244142472,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28553,\\n    \\\"crm_applied_steps\\\": 5442\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "397e31a3-0b6f-4c3a-a8df-fb4ce54e943b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_conformal_crm\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.8,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 18,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  },\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"mean_uncertainty\\\\\\\": 0.18257583529816507,\\\\n    \\\\\\\"trigger_rate\\\\\\\": 0.19059293244142472,\\\\n    \\\\\\\"tau\\\\\\\": 0.25,\\\\n    \\\\\\\"total_steps\\\\\\\": 28553,\\\\n    \\\\\\\"crm_applied_steps\\\\\\\": 5442\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.8,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 18,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.18257583529816507,\\n    \\\"trigger_rate\\\": 0.19059293244142472,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28553,\\n    \\\"crm_applied_steps\\\": 5442\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012sWMb54kJLVTDgxCxetSBU`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed48.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "03123282-9df7-420c-b3db-7e9844e7c5a5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-25T05:14:06.089Z_
+
+<details><summary>↩ Tool result · `toolu_012sWMb54kJLVTDgxCxetSBU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.805,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.18685333878938845,\\n    \\\"trigger_rate\\\": 0.20004248689987253,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28244,\\n    \\\"crm_applied_steps\\\": 5650\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "efe62628-7653-42ad-938c-c3ab2a18041a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_conformal_crm\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.805,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.65,\\\\n      \\\\\\\"successes\\\\\\\": 13,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  },\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"mean_uncertainty\\\\\\\": 0.18685333878938845,\\\\n    \\\\\\\"trigger_rate\\\\\\\": 0.20004248689987253,\\\\n    \\\\\\\"tau\\\\\\\": 0.25,\\\\n    \\\\\\\"total_steps\\\\\\\": 28244,\\\\n    \\\\\\\"crm_applied_steps\\\\\\\": 5650\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.805,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.65,\\n      \\\"successes\\\": 13,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.18685333878938845,\\n    \\\"trigger_rate\\\": 0.20004248689987253,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28244,\\n    \\\"crm_applied_steps\\\": 5650\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HVvUc4BEb4uRg3fdCJjQCQ`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "536576d7-0843-4ca9-ae32-090752ba3764",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-25T05:14:06.975Z_
+
+<details><summary>↩ Tool result · `toolu_01HVvUc4BEb4uRg3fdCJjQCQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.81,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.1878098015578585,\\n    \\\"trigger_rate\\\": 0.199900476292031,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28134,\\n    \\\"crm_applied_steps\\\": 5624\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "d84ba098-9643-4c1d-a3a2-766782df72da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_conformal_crm\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.81,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  },\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"mean_uncertainty\\\\\\\": 0.1878098015578585,\\\\n    \\\\\\\"trigger_rate\\\\\\\": 0.199900476292031,\\\\n    \\\\\\\"tau\\\\\\\": 0.25,\\\\n    \\\\\\\"total_steps\\\\\\\": 28134,\\\\n    \\\\\\\"crm_applied_steps\\\\\\\": 5624\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_conformal_crm\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.81,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  },\\n  \\\"adaptive_stats\\\": {\\n    \\\"mean_uncertainty\\\": 0.1878098015578585,\\n    \\\"trigger_rate\\\": 0.199900476292031,\\n    \\\"tau\\\": 0.25,\\n    \\\"total_steps\\\": 28134,\\n    \\\"crm_applied_steps\\\": 5624\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BuKMaYEzx3amwVoXXLJXKz`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed46.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "2d85de75-be19-41c0-ae82-1d90bf37b9e7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-25T05:14:08.111Z_
+
+<details><summary>↩ Tool result · `toolu_01BuKMaYEzx3amwVoXXLJXKz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.8,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "e6a24109-6ce0-4956-abd0-5e1a6f860586",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.8,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.85,\\\\n      \\\\\\\"successes\\\\\\\": 17,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.8,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.85,\\n      \\\"successes\\\": 17,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014NBTx89n1T1XBwhxTLSiHN`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "2d2e87e3-5f93-4cfb-8547-fc18027b1cb1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-25T05:14:09.628Z_
+
+<details><summary>↩ Tool result · `toolu_014NBTx89n1T1XBwhxTLSiHN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.775,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "ca0dc340-eef9-47c1-9af1-bc019c8b4e7a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.775,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.775,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015hdZKyHVTt7BAAUwVMLM4h`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed49.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "ca135bf5-1fa8-4a0d-8b89-85b52ae84f73",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-25T05:14:10.611Z_
+
+<details><summary>↩ Tool result · `toolu_015hdZKyHVTt7BAAUwVMLM4h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.795,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "0ff77ac2-423f-439f-a6b3-de43cd6487d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 20,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.795,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.95,\\\\n      \\\\\\\"successes\\\\\\\": 19,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 14,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"successes\\\\\\\": 15,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 16,\\\\n      \\\\\\\"total\\\\\\\": 20\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 20,\\n  \\\"overall_success_rate\\\": 0.795,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.95,\\n      \\\"successes\\\": 19,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 14,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 20,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.75,\\n      \\\"successes\\\": 15,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 16,\\n      \\\"total\\\": 20\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MKgvUgLHFMFTviZWS9bkT6`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "tail -50 /root/acr-vla-conformal-refinement/logs/eval-k2-adaptive-spatial-s49.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "81b717a9-9291-4c7d-858d-88d2e9e3d374",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UzgLyAxYcPv4uDHPbXV9vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 41974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6375
+      },
+      "output_tokens": 79,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T05:14:11.574Z_
+
+<details><summary>↩ Tool result · `toolu_01MKgvUgLHFMFTviZWS9bkT6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 8/10\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 14/20\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 70.0% (14/20)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 13/15\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 17/20\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 85.0% (17/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1878, trigger_rate=20.0%\\n[eval] Results saved to logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "4995aca0-d8e5-4a69-a0a8-8868719c2bb9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 14/20\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 70.0% (14/20)\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 13/15\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 17/20\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 85.0% (17/20)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\\\n============================================================\\\\n[eval] Conformal CRM stats: mean_unc=0.1878, trigger_rate=20.0%\\\\n[eval] Results saved to logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 8/10\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 14/20\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 70.0% (14/20)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/20, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/20, success so far: 0/10\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 15/20, success so far: 0/15\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 20/20, success so far: 0/20\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/20)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/20, success so far: 10/10\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 15/20, success so far: 15/15\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 20/20, success so far: 20/20\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 100.0% (20/20)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/20, success so far: 4/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/20, success so far: 2/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/20, success so far: 7/10\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 15/20, success so far: 11/15\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 20/20, success so far: 16/20\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 80.0% (16/20)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/20, success so far: 5/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/20, success so far: 9/10\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 15/20, success so far: 13/15\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 20/20, success so far: 17/20\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 85.0% (17/20)\\n\\n============================================================\\nOverall success rate (adaptive_conformal_crm): 81.0% (162/200)\\n============================================================\\n[eval] Conformal CRM stats: mean_unc=0.1878, trigger_rate=20.0%\\n[eval] Results saved to logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed49.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "6bad2321-df2b-493e-9886-a8d5e3bd68b6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01HDZPnp1KfL88NgXmWc4RfR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12689,
+      "cache_read_input_tokens": 48349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12689
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+全部 6 个 K=2 Spatial 实验已完成（包括 s49 Adaptive）。
+
+## 状态总览
+
+| exp | mode | seed | SR | trials | 状态 |
+|-----|------|------|----|--------|------|
+| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 46 | **0.800** | 200 | ✅ 完成 |
+| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 48 | **0.805** | 200 | ✅ 完成 |
+| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 49 | **0.810** | 200 | ✅ 完成 |
+| VLA-only | vla_only | 46 | **0.800** | 200 | ✅ 完成 |
+| VLA-only | vla_only | 48 | **0.775** | 200 | ✅ 完成 |
+| VLA-only | vla_only | 49 | **0.795** | 200 | ✅ 完成 |
+
+**配对 Δ (Adaptive − VLA-only)**: s46: 0.000 ｜ s48: +0.030 ｜ s49: +0.015 ｜ **均值: Adaptive 0.805 vs VLA 0.790, Δ=+0.015**
+
+## Per-task SR
+
+任务简写：T1=between_plate_ramekin, T2=next_to_ramekin, T3=from_table_center, T4=on_cookie_box, T5=in_top_drawer, T6=on_ramekin, T7=next_to_cookie_box, T8=on_stove, T9=next_to_plate, T10=on_wooden_cabinet
+
+**Adaptive K=2 τ=0.25**
+| seed | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 |
+|------|----|----|----|----|----|----|----|----|----|-----|
+| 46 | 1.00 | 0.95 | 0.95 | 0.90 | 0.75 | 0.00 | 0.95 | 0.80 | 0.80 | 0.90 |
+| 48 | 1.00 | 1.00 | 1.00 | 0.95 | 0.65 | 0.00 | 0.95 | 0.80 | 0.85 | 0.85 |
+| 49 | 0.95 | 1.00 | 1.00 | 1.00 | 0.70 | 0.00 | 1.00 | 0.80 | 0.80 | 0.85 |
+
+**VLA-only**
+| seed | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 |
+|------|----|----|----|----|----|----|----|----|----|-----|
+| 46 | 0.95 | 0.95 | 1.00 | 1.00 | 0.75 | 0.00 | 0.95 | 0.80 | 0.75 | 0.85 |
+| 48 | 1.00 | 0.95 | 0.95 | 0.95 | 0.70 | 0.00 | 0.95 | 0.70 | 0.75 | 0.80 |
+| 49 | 1.00 | 0.95 | 1.00 | 0.95 | 0.70 | 0.00 | 1.00 | 0.75 | 0.80 | 0.80 |
+
+## Adaptive Stats (K=2)
+| seed | mean_unc | trigger_rate | tau | total_steps | crm_steps |
+|------|----------|--------------|-----|-------------|-----------|
+| 46 | 0.1826 | 19.06% | 0.25 | 28553 | 5442 |
+| 48 | 0.1869 | 20.00% | 0.25 | 28244 | 5650 |
+| 49 | 0.1878 | 19.99% | 0.25 | 28134 | 5624 |
+
+**关键观察**：
+- T6 (on_ramekin) 在所有 6 个实验里全部 0%，是 task-level 失败（与方法无关）
+- Adaptive 提升主要来自 T8/T9 等中等难度任务的稳定性
+- trigger_rate 均稳定在 ~20%，与 τ=0.25 设计一致
+- s49 (last running on cuda:2/3) 实际已写入 JSON 并附 final overall 81.0% 行，进程已结束
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "uuid": "45af8571-694b-41eb-bc19-2425e28b7fb9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01HDZPnp1KfL88NgXmWc4RfR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12689,
+      "cache_read_input_tokens": 48349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12689
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 36_
+
+全部 6 个 K=2 Spatial 实验已完成（包括 s49 Adaptive）。
+
+## 状态总览
+
+| exp | mode | seed | SR | trials | 状态 |
+|-----|------|------|----|--------|------|
+| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 46 | **0.800** | 200 | ✅ 完成 |
+| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 48 | **0.805** | 200 | ✅ 完成 |
+| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 49 | **0.810** | 200 | ✅ 完成 |
+| VLA-only | vla_only | 46 | **0.800** | 200 | ✅ 完成 |
+| VLA-only | vla_only | 48 | **0.775** | 200 | ✅ 完成 |
+| VLA-only | vla_only | 49 | **0.795** | 200 | ✅ 完成 |
+
+**配对 Δ (Adaptive − VLA-only)**: s46: 0.000 ｜ s48: +0.030 ｜ s49: +0.015 ｜ **均值: Adaptive 0.805 vs VLA 0.790, Δ=+0.015**
+
+## Per-task SR
+
+任务简写：T1=between_plate_ramekin, T2=next_to_ramekin, T3=from_table_center, T4=on_cookie_box, T5=in_top_drawer, T6=on_ramekin, T7=next_to_cookie_box, T8=on_stove, T9=next_to_plate, T10=on_wooden_cabinet
+
+**Adaptive K=2 τ=0.25**
+| seed | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 |
+|------|----|----|----|----|----|----|----|----|----|-----|
+| 46 | 1.00 | 0.95 | 0.95 | 0.90 | 0.75 | 0.00 | 0.95 | 0.80 | 0.80 | 0.90 |
+| 48 | 1.00 | 1.00 | 1.00 | 0.95 | 0.65 | 0.00 | 0.95 | 0.80 | 0.85 | 0.85 |
+| 49 | 0.95 | 1.00 | 1.00 | 1.00 | 0.70 | 0.00 | 1.00 | 0.80 | 0.80 | 0.85 |
+
+**VLA-only**
+| seed | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 |
+|------|----|----|----|----|----|----|----|----|----|-----|
+| 46 | 0.95 | 0.95 | 1.00 | 1.00 | 0.75 | 0.00 | 0.95 | 0.80 | 0.75 | 0.85 |
+| 48 | 1.00 | 0.95 | 0.95 | 0.95 | 0.70 | 0.00 | 0.95 | 0.70 | 0.75 | 0.80 |
+| 49 | 1.00 | 0.95 | 1.00 | 0.95 | 0.70 | 0.00 | 1.00 | 0.75 | 0.80 | 0.80 |
+
+## Adaptive Stats (K=2)
+| seed | mean_unc | trigger_rate | tau | total_steps | crm_steps |
+|------|----------|--------------|-----|-------------|-----------|
+| 46 | 0.1826 | 19.06% | 0.25 | 28553 | 5442 |
+| 48 | 0.1869 | 20.00% | 0.25 | 28244 | 5650 |
+| 49 | 0.1878 | 19.99% | 0.25 | 28134 | 5624 |
+
+**关键观察**：
+- T6 (on_ramekin) 在所有 6 个实验里全部 0%，是 task-level 失败（与方法无关）
+- Adaptive 提升主要来自 T8/T9 等中等难度任务的稳定性
+- trigger_rate 均稳定在 ~20%，与 τ=0.25 设计一致
+- s49 (last running on cuda:2/3) 实际已写入 JSON 并附 final overall 81.0% 行，进程已结束
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 70985,
+  "duration_api_ms": 71015,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "93f7fad1-28d8-45d2-a054-f3d0f8df0824",
+  "total_cost_usd": 0.56807125,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 59115,
+    "cache_read_input_tokens": 154539,
+    "output_tokens": 4802,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 59115,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2415,
+        "cache_read_input_tokens": 48349,
+        "cache_creation_input_tokens": 12689,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 12689
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1088,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001213,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 14,
+      "outputTokens": 4802,
+      "cacheReadInputTokens": 154539,
+      "cacheCreationInputTokens": 59115,
+      "webSearchRequests": 0,
+      "costUSD": 0.56685825,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "631feb96-8a8d-48ad-83ed-e913de40e27c"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1753d436ac25deb79d3b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "setup check bjb2 40593 readiness",
+  "task_key": "worker_setup_check-bjb2-40593-readiness_20260523T065434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_check-bjb2-40593-readiness_20260523T065434_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "7c8034496554a3520a04e7f0049142a09a5f81d3deb57bf842386d0da0c58d5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已确认。以下是 bjb2-40593 检查报告：\n\n## bjb2-40593 检查结果\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | RTX 4090 D, 24GB 显存, 0% 利用率, 空闲 |\n| **代码** | 存在，evaluate.py 已修复（刚删除 `args.K = 10` 覆盖） |\n| **根分区** | 30G 用了 24G，剩 6.7G (78%) — 偏紧但够用 |\n| **数据盘** | 250G 用了 133G，剩 118G (53%) — 充足 |\n| **Python/PyTorch** | Python 3.12.3, torch 2.10.0+cu128, CUDA 可用, 1 GPU |\n| **CRM checkpoint** | `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt` **不存在**。有其他版本：`crm_v3/perdof`、`crm_v3/scalar_unc`、`crm_v3/obs_only`、`crm_v3_norm/*`、`crm_spatial_only` |\n| **SmolVLA 模型** | 存在于 `/root/autodl-tmp/models/smolvla_base/` 和 `smolvla_libero/` |\n\n## 综合判断\n\n**可以立即部署 K=2 mean 实验**，前提是实验用的 CRM checkpoint 路径与服务器上已有的某个版本匹配。如果实验需要 `crm_smolvla_3suite_v1/crm_best.pt`，需要从其他服务器拷贝或重新训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-check-bjb2-40593-readiness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28a8240f0fd674bb5511",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval crm k1 object seed43 plan702",
+  "task_key": "worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "962b52c9cbe0c74cc1ea3d01803197e936f36d4f811b454038e084a3eb038745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：`eval-crm-k1-object-seed43-plan702`\n\n**状态：Failed**\n\n### 报错信息\n\n程序在 `src/evaluate.py:466` 崩溃：\n\n```\nUnboundLocalError: cannot access local variable 'unc_dim' where it is not associated with a value\n```\n\n模型加载成功（SmolVLA + CRM K=1 ACCG，327,522 params），但在进入 rollout 之前就因为 `unc_dim` 未定义而崩溃。\n\n### 指标\n\n- **Success Rate**: 无（未执行任何 rollout）\n- **Per-task SR**: 无\n- **JSON output**: 未生成（文件不存在）\n\n### 原因\n\n`evaluate.py` 第 466 行引用了 `unc_dim`，但在 `crm_k1_accg` mode 的代码路径中该变量未被赋值。这是一个代码 bug。\n\n### 结论：**failed**\n\n需要修复 `src/evaluate.py` 中 `crm_k1_accg` 模式下 `unc_dim` 的赋值逻辑后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-crm-k1-object-seed43-plan702.md"
+}

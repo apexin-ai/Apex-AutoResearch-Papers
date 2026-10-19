@@ -1,0 +1,788 @@
+{
+  "schema_version": "1.0",
+  "id": "50fd368a9fa044975f91",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "paper writing introduction reframe",
+  "task_key": "worker_paper_writing_introduction_reframe_20260522T052341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_introduction_reframe_20260522T052341.jsonl",
+    "occurrence": 1,
+    "bytes": 35714,
+    "sha256": "94d34a532cbb1b7a4612f94917c89012be41b2137126403414ad614a2a8239e1"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "assistant": 3,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T05:23:51.778386+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T05:24:01.088011+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 24, 1am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T05:27:42.853569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T05:27:42.854326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T05:27:42.854568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/ 2>/dev/null",
+              "description": "List paper directory"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T05:27:42.854722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex\nappendix.tex\ncamera_ready_template\ncorl2026_camera_ready_template.zip\ncorl2026_review_template.zip\ncorl_2026.sty\ncorlabbrvnat.bst\ndiscussion.tex\nexperiments.tex\nfigures\nintroduction.tex\nmain.aux\nmain.bbl\nmain.blg\nmain.fdb_latexmk\nmain.fls\nmain.log\nmain.out\nmain.pdf\nmain.tex\nmethod.tex\nreferences.bib\nrelated_work.tex\nreview_template"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T05:27:42.854849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T05:27:42.855009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:intro}\n3\t\n4\t\\looseness=-1 Deploying a pretrained Vision-Language-Action model (VLA) on a new task typically requires fine-tuning on task-specific demonstrations, yet collecting such data is expensive and the resulting checkpoint may not generalize further.\n5\tAn alternative is to keep the VLA frozen and attach a lightweight post-hoc correction module trained on task-specific VLA rollout data, improving action quality at inference time without modifying the base model.\n6\tFlow-matching VLAs~\\cite{black2024pi0,shukor2025smolvla,lipman2023flow} are natural candidates: each forward pass produces a stochastic action sample, so drawing multiple samples opens the door to selection and correction without changing model weights.\n7\tThe question is not only how to use these samples but \\emph{when} to invest the additional compute: most control steps are easy and do not benefit from multi-sample correction, while a minority of hard steps account for the majority of task failures.\n8\t\n9\t\\looseness=-1 Recent robustness evaluations~\\cite{fei2025liberoplus} show that state-of-the-art VLAs lose over 65 percentage points under common deployment perturbations, making inference-time correction practically relevant.\n10\tTraining-time methods~\\cite{srpo2025,robustvla2025,digflow2025,liu2026ttvla} improve the base policy through robustness-aware objectives or test-time RL, but require retraining and remain bounded by the training distribution.\n11\tInference-time methods leave the policy frozen: ReconVLA~\\cite{chen2026reconvla} provides uncertainty quantification but does not learn corrective residuals; A2C2~\\cite{a2c2_2025} trains a per-step correction head on action chunks but applies correction unconditionally without adaptive compute allocation; VLA-Pilot~\\cite{li2025vlapilot} applies evolutionary optimization at 2.41\\,s per control step.\n12\tDespite growing interest, no prior work addresses a core efficiency question: how to determine per-step whether t\n…[truncated 3116 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T05:27:42.855166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T05:27:42.855346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tFrozen Vision-Language-Action (VLA) models can be improved at inference time without modifying weights, but existing approaches either apply correction unconditionally or require prohibitive compute.\n2\tWe propose ACR-VLA, a lightweight adaptive correction pipeline for frozen flow-matching VLAs. At each control step, the pipeline draws $K{=}2$ action samples in a single batched forward pass and uses their pairwise $L_2$ distance ($\\rho{=}0.9979$ vs.\\ $K{=}10$ sample variance) as a per-step uncertainty gate. Low-uncertainty steps output the argmin-to-centroid sample directly; high-uncertainty steps apply bounded residual correction via a Correction Residual Module (CRM). The pipeline uses at most two VLA forward passes---performance gains come from learned correction, not additional sampling.\n3\tWe validate ACR-VLA across three flow-matching VLAs (SmolVLA 0.4B, $\\pi_{0.5}$ 3.6B, OpenVLA-OFT 7B) on four LIBERO benchmark suites. On SmolVLA, ACR-VLA achieves $18.3$\\% on LIBERO-Object ($+$7.3\\,pp vs.\\ VLA-only) and $35.0$\\% on LIBERO-Spatial ($+$5.6\\,pp), matching fixed-$K{=}10$ unconditional correction with 80\\% fewer forward passes. Systematic analysis reveals that learned correction is the active mechanism (55--78\\% of the gain), while multi-sampling provides enabling centering---random selection alone fails to improve over VLA-only on either benchmark.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T05:27:42.855509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T05:27:42.855648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t\\usepackage{corl_2026}\n4\t\n5\t\\usepackage[utf8]{inputenc}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage{amsmath,amssymb,amsfonts}\n8\t\\DeclareMathOperator*{\\argmin}{arg\\,min}\n9\t\\DeclareMathOperator*{\\argmax}{arg\\,max}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{enumitem}\n13\t\\usepackage{multirow}\n14\t\n15\t\\newcommand{\\placeholder}[1]{---}\n16\t\n17\t\\graphicspath{{figures/}}\n18\t\n19\t\\title{ACR-VLA: Adaptive Conformal Refinement\\\\for Frozen Flow-Matching VLAs}\n20\t\n21\t\\author{\n22\t  Anonymous\n23\t}\n24\t\n25\t\\begin{document}\n26\t\n27\t\\maketitle\n28\t\n29\t\\begin{abstract}\n30\t\\input{abstract}\n31\t\\end{abstract}\n32\t\n33\t\\keywords{Vision-Language-Action Models, Inference-Time Refinement, Robotic Manipulation}\n34\t\n35\t\\input{introduction}\n36\t\\input{related_work}\n37\t\\input{method}\n38\t\\input{experiments}\n39\t\\input{discussion}\n40\t\n41\t\\bibliography{references}\n42\t\n43\t\\clearpage\n44\t\\input{appendix}\n45\t\n46\t\\end{document}\n47\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T05:27:42.855774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/method.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T05:27:42.855937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\t\\begin{figure}[t]\n6\t  \\centering\n7\t  \\includegraphics[width=\\linewidth]{fig1_pipeline.pdf}\n8\t  \\caption{Adaptive sample-select-correct pipeline. $K{=}2$ action samples are drawn from the frozen VLA; the argmin-to-centroid sample is selected, and a lightweight CRM applies bounded correction ($\\|\\boldsymbol{\\delta}\\|_2 \\leq \\varepsilon$) only when the pairwise $L_2$ distance exceeds the uncertainty threshold $\\tau$.}\n9\t  \\label{fig:pipeline}\n10\t\\end{figure}\n11\t\n12\t\\looseness=-1 Our method adaptively allocates inference-time compute for a frozen flow-matching VLA (Figure~\\ref{fig:pipeline}). At each control step, a $K{=}2$ uncertainty probe determines whether the VLA is confident or uncertain; confident steps output the argmin-to-centroid sample directly, while uncertain steps apply a learned residual correction to the same sample via a lightweight module. The base VLA is never retrained.\n13\t\n14\t\\subsection{Problem Setup}\n15\t\\label{sec:problem_setup}\n16\t\n17\tLet $\\pi_\\theta$ be a frozen flow-matching VLA that, given an observation $o_t$ (image, language instruction, proprioceptive state), generates action chunks of length $C{=}50$ in $\\mathbb{R}^{d \\times C}$ with $d{=}6$ (3 translation + 3 rotation). Under receding-horizon execution, only the first $H{=}5$ steps of each chunk influence the robot before re-planning, so we discard the remainder. The gripper dimension is handled separately via direct thresholding and is excluded from the pipeline.\n18\t\n19\t\\looseness=-1 Each forward pass of $\\pi_\\theta$ produces a stochastic action sample; querying independently $K$ times yields $K$ candidate chunks. Our goal is to produce a single action more accurate than any individual sample, with no changes to $\\pi_\\theta$. The method applies to any flow-matching VLA that produces diverse samples (Appendix~\\ref{sec:applicability}).\n20\t\n21\t\\subsection{Multi-Sample Selection}\n22\t\\label{sec:selection}\n23\t\n24\tWe draw $K$ action chunks from $\\\n…[truncated 3076 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T05:27:42.856132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^(@|\\\\\\\\label)\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/references.bib | grep -iE \"openvla|kim|oft\" 2>/dev/null | head -5",
+              "description": "Check for OpenVLA citations"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T05:27:42.856340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "@misc{kim2024openvla,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T05:27:42.856476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "openvla|oft",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/references.bib",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T05:27:42.856592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "79:@misc{kim2024openvla,\n80:    title={OpenVLA: An Open-Source Vision-Language-Action Model},"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T05:27:42.856703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{sec:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T05:27:42.856833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:1:\\section{Related Work}\\label{sec:related_work}\ndocs/paper/experiments.tex:3:\\label{sec:experiments}\ndocs/paper/experiments.tex:8:\\label{sec:exp_setup}\ndocs/paper/experiments.tex:22:\\label{sec:adaptive_k}\ndocs/paper/experiments.tex:64:\\label{sec:main_results}\ndocs/paper/experiments.tex:102:\\label{sec:magnitude_results}\ndocs/paper/experiments.tex:103:\\label{sec:failure_modes}\ndocs/paper/method.tex:3:\\label{sec:method}\ndocs/paper/method.tex:15:\\label{sec:problem_setup}\ndocs/paper/method.tex:22:\\label{sec:selection}\ndocs/paper/method.tex:32:\\label{sec:crm}\ndocs/paper/method.tex:62:\\label{sec:magnitude}\ndocs/paper/method.tex:67:\\label{sec:adaptive_k_method}\ndocs/paper/review_template/corl_2026_template_submission/example.tex:73:\\label{sec:citations}\ndocs/paper/review_template/corl_2026_template_submission/example.tex:82:\\label{sec:result}\ndocs/paper/review_template/corl_2026_template_submission/example.tex:112:\\label{sec:conclusion}\ndocs/paper/camera_ready_template/corl_2026_template_cameraready/example.tex:73:\\label{sec:citations}\ndocs/paper/camera_ready_template/corl_2026_template_cameraready/example.tex:82:\\label{sec:result}\ndocs/paper/camera_ready_template/corl_2026_template_cameraready/example.tex:112:\\label{sec:conclusion}\ndocs/paper/appendix.tex:5:\\label{sec:decomposition_appendix}\ndocs/paper/appendix.tex:15:\\label{sec:magnitude_appendix}\ndocs/paper/appendix.tex:25:\\label{sec:k_scaling}\ndocs/paper/appendix.tex:64:\\label{sec:spatial_adaptive}\ndocs/paper/appendix.tex:93:\\label{sec:applicability}\ndocs/paper/appendix.tex:112:\\label{sec:per_task}\ndocs/paper/appendix.tex:151:\\label{sec:latency}\ndocs/paper/appendix.tex:180:\\label{sec:cross_vla}\ndocs/paper/introduction.tex:2:\\label{sec:intro}\ndocs/paper/discussion.tex:5:\\label{sec:conclusion}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T05:27:42.857000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/introduction.tex",
+              "content": "\\section{Introduction}\n\\label{sec:intro}\n\n\\looseness=-1 Deploying a pretrained Vision-Language-Action (VLA) model on a new task usually requires fine-tuning on task demonstrations, yet collecting that data is expensive and the resulting checkpoint may not transfer further. A more attractive route keeps the VLA frozen and improves action quality at inference time. Flow-matching VLAs~\\cite{black2024pi0,shukor2025smolvla,lipman2023flow} fit this setting because each forward pass produces a stochastic action sample, so drawing multiple samples opens a path to selection and correction without retraining~\\cite{snell2024scaling}. The naive instantiation draws $K{=}10$ samples per control step and either averages them or applies an unconditional correction, but most control steps are easy and the extra forward passes are wasted compute. The question we ask is whether the same gain is reachable with adaptive, per-step allocation.\n\n\\looseness=-1 Recent work touches parts of this question without answering it. A2C2~\\cite{a2c2_2025} learns a correction head on action chunks but applies it unconditionally and inherits the temporal staleness of fixed chunks. ReconVLA~\\cite{chen2026reconvla} quantifies uncertainty over frozen VLAs but does not learn a corrective residual. SC-VLA~\\cite{liu2026scvla} uses reinforcement learning on the base policy and therefore does not stay weight-frozen. VLA-Pilot~\\cite{li2025vlapilot} performs evolutionary search at $2.41$\\,s per control step, which rules out closed-loop deployment. None of these address the core efficiency question: can a frozen VLA decide \\emph{per step} whether it needs additional sampling and correction at all?\n\n\\looseness=-1 We propose \\textbf{ACR-VLA}, an adaptive inference-time pipeline for frozen flow-matching VLAs. ACR-VLA draws only $K{=}2$ samples in a single batched forward pass and uses their pairwise $L_2$ distance as a per-step uncertainty estimate. This minimal probe is well-calibrated: Spearman $\\rho{=}0.9979$ against the $K{=}10$ sample variance computed offline, whereas three alternatives (flow-matching velocity divergence, CRM correction magnitude at $K{=}1$ and at $K{=}2$) all yield $\\rho \\leq 0.15$. When the probe falls below threshold, the pipeline outputs the argmin-to-centroid sample directly; when it exceeds threshold, a lightweight Correction Residual Module (CRM, ${\\sim}$327K parameters, $<\\!1\\%$ of the SmolVLA backbone) applies a bounded residual to the same sample. The pipeline uses at most two VLA forward passes per step, and batched $K{=}2$ inference matches single-sample latency (${\\sim}253$\\,ms).\n\n\\looseness=-1 On SmolVLA, ACR-VLA reaches $18.3 \\pm 2.1$\\% on LIBERO-Object ($+$7.3\\,pp over the $11.0 \\pm 1.3$\\% VLA-only baseline, 8 seeds) and $35.0 \\pm 1.0$\\% on LIBERO-Spatial ($+$5.6\\,pp over $29.4 \\pm 1.5$\\%, 5 seeds). The adaptive pipeline reaches the same task success as the fixed-$K{=}10$ unconditional pipeline while issuing 80\\% fewer VLA forward passes. We then apply the identical recipe, with only the per-task CRM retrained, to two larger flow-matching VLAs ($\\pi_{0.5}$~\\cite{black2024pi0} at $3.6$B and OpenVLA-OFT~\\cite{kim2024openvla} at $7$B) across all four LIBERO suites~\\cite{liu2023libero} (Object, Spatial, Goal, Long). The pipeline is VLA-agnostic by design: the $K{=}2$ probe, argmin selection, and bounded CRM correction do not depend on backbone scale or task family.\n\n\\looseness=-1 An ablation isolates where the gain comes from. Learned correction contributes $55$\\% of the gain at $K{=}5$ and $78$\\% at $K{=}10$, while random sample selection on its own fails to improve over the VLA-only baseline on either benchmark. Multi-sampling supplies a centered starting point and the uncertainty gate, but the active mechanism is the residual. This finding shaped the adaptive design: scaling samples beyond $K{=}2$ buys little once the correction is in place, so the budget is better spent on the residual than on extra sampling.\n\nOur contributions are:\n\\begin{enumerate}[leftmargin=*,nosep]\n  \\item \\textbf{ACR-VLA pipeline} (Section~\\ref{sec:method}): an adaptive $K{=}2$ uncertainty-gated CRM correction pipeline for frozen flow-matching VLAs. ACR-VLA reaches $18.3$\\% on LIBERO-Object and $35.0$\\% on LIBERO-Spatial ($+$7.3 / $+$5.6\\,pp over VLA-only) and matches the $K{=}10$ unconditional pipeline with 80\\% fewer forward passes.\n  \\item \\textbf{Cross-VLA validation} (Section~\\ref{sec:main_results}): the same recipe is evaluated on three flow-matching VLAs spanning $0.4$B to $7$B parameters and on all four LIBERO suites, providing evidence that the design is VLA-agnostic.\n  \\item \\textbf{Component analysis} (Section~\\ref{sec:main_results}): learned correction is the active mechanism (55--78\\% of the gain), multi-sampling provides centering, and random selection alone fails to improve. This analysis motivated the adaptive gate.\n  \\item \\textbf{Applicability boundaries} (Section~\\ref{sec:failure_modes}): stochastic VLA diversity is a prerequisite (tokenized VLAs are near-deterministic and lie outside scope), and the CRM requires task-specific calibration rather than a single global checkpoint.\n\\end{enumerate}\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T05:27:42.857236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T05:27:42.857389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex 2>&1 | tail -30",
+              "description": "Compile paper to check for errors"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T05:27:42.857526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ures/fig3_kvalue.pdf>] [13 <./figures/fig4_diversity.pdf>]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[14]) [15] (./main.aux) )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/\namsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/ms\nbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (15 pages, 544338 bytes).\nTranscript writ\n…[truncated 16 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T05:27:42.857680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"Introduction|Related Work|page \\[\" main.log | head -10",
+              "description": "Find page breaks for intro"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T05:27:42.857794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T05:27:42.857911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w introduction.tex && grep -cE \"—|–\" introduction.tex",
+              "description": "Count words and check for em/en dashes"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T05:27:42.858031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "675 introduction.tex\n0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T05:27:42.858193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -nE \"ing,|novel|groundbreak|significantly|leverage|utilize|delve|myriad|plethora|paradigm shift\" introduction.tex",
+              "description": "Check for forbidden patterns"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T05:27:42.858361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "18:  \\item \\textbf{Component analysis} (Section~\\ref{sec:main_results}): learned correction is the active mechanism (55--78\\% of the gain), multi-sampling provides centering, and random selection alone fails to improve. This analysis motivated the adaptive gate."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T05:27:42.858511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/introduction.tex",
+              "old_string": "learned correction is the active mechanism (55--78\\% of the gain), multi-sampling provides centering, and random selection alone fails to improve.",
+              "new_string": "learned correction is the active mechanism (55--78\\% of the gain), multi-sampling provides a centered initial sample, and random selection alone fails to improve over VLA-only."
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T05:27:42.858662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T05:27:42.858777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdflatex -interaction=nonstopmode -halt-on-error main.tex 2>&1 | tail -5",
+              "description": "Recompile to verify"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T05:27:42.858888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (15 pages, 544349 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T05:27:42.858998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdftotext -f 1 -l 2 main.pdf - | head -80",
+              "description": "Check rendered page 1-2 content"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T05:27:42.859138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ACR-VLA: Adaptive Conformal Refinement\nfor Frozen Flow-Matching VLAs\nAnonymous Author(s)\nAffiliation\nAddress\nemail\n\nAbstract: Frozen Vision-Language-Action (VLA) models can be improved at inference time without modifying weights, but existing approaches either apply correction unconditionally or require prohibitive compute. We propose ACR-VLA, a\nlightweight adaptive correction pipeline for frozen flow-matching VLAs. At each\ncontrol step, the pipeline draws K=2 action samples in a single batched forward\npass and uses their pairwise L2 distance (ρ=0.9979 vs. K=10 sample variance) as\na per-step uncertainty gate. Low-uncertainty steps output the argmin-to-centroid\nsample directly; high-uncertainty steps apply bounded residual correction via a\nCorrection Residual Module (CRM). The pipeline uses at most two VLA forward passes—performance gains come from learned correction, not additional\nsampling. We validate ACR-VLA across three flow-matching VLAs (SmolVLA\n0.4B, π0.5 3.6B, OpenVLA-OFT 7B) on four LIBERO benchmark suites. On\nSmolVLA, ACR-VLA achieves 18.3% on LIBERO-Object (+7.3 pp vs. VLAonly) and 35.0% on LIBERO-Spatial (+5.6 pp), matching fixed-K=10 unconditional correction with 80% fewer forward passes. Systematic analysis reveals that\nlearned correction is the active mechanism (55–78% of the gain), while multisampling provides enabling centering—random selection alone fails to improve\nover VLA-only on either benchmark.\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n\nKeywords: Vision-Language-Action Models, Inference-Time Refinement,\nRobotic Manipulation\n\n19\n20\n\n21\n\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n\n1\n\nIntroduction\n\nDeploying a pretrained Vision-Language-Action (VLA) model on a new task usually requires\nfine-tuning on task demonstrations, yet collecting that data is expensive and the resulting checkpoint\nmay not transfer further. A more attractive route keeps the VLA frozen and improves action quality\nat inference time. Flow-matching VLAs [1, 2, 3] fit t\n…[truncated 754 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T05:27:42.859294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdftotext -f 2 -l 3 main.pdf - | head -80",
+              "description": "Check where intro ends"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T05:27:42.859458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n\nWe propose ACR-VLA, an adaptive inference-time pipeline for frozen flow-matching VLAs. ACRVLA draws only K=2 samples in a single batched forward pass and uses their pairwise L2 distance\nas a per-step uncertainty estimate. This minimal probe is well-calibrated: Spearman ρ=0.9979\nagainst the K=10 sample variance computed offline, whereas three alternatives (flow-matching\nvelocity divergence, CRM correction magnitude at K=1 and at K=2) all yield ρ ≤ 0.15. When\nthe probe falls below threshold, the pipeline outputs the argmin-to-centroid sample directly; when\nit exceeds threshold, a lightweight Correction Residual Module (CRM, ∼327K parameters, < 1%\nof the SmolVLA backbone) applies a bounded residual to the same sample. The pipeline uses at\nmost two VLA forward passes per step, and batched K=2 inference matches single-sample latency\n(∼253 ms).\nOn SmolVLA, ACR-VLA reaches 18.3 ± 2.1% on LIBERO-Object (+7.3 pp over the 11.0 ± 1.3%\nVLA-only baseline, 8 seeds) and 35.0 ± 1.0% on LIBERO-Spatial (+5.6 pp over 29.4 ± 1.5%,\n5 seeds). The adaptive pipeline reaches the same task success as the fixed-K=10 unconditional\npipeline while issuing 80% fewer VLA forward passes. We then apply the identical recipe,\nwith only the per-task CRM retrained, to two larger flow-matching VLAs (π0.5 [1] at 3.6B and\nOpenVLA-OFT [14] at 7B) across all four LIBERO suites [30] (Object, Spatial, Goal, Long).\nThe pipeline is VLA-agnostic by design: the K=2 probe, argmin selection, and bounded CRM\ncorrection do not depend on backbone scale or task family.\n\n61\n\nAn ablation isolates where the gain comes from. Learned correction contributes 55% of the gain\nat K=5 and 78% at K=10, while random sample selection on its own fails to improve over the\nVLA-only baseline on either benchmark. Multi-sampling supplies a centered starting point and the\nuncertainty gate, but the active mechanism is the residual. This finding shaped the adaptive design:\nscaling samples\n…[truncated 1209 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T05:27:42.859650+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction rewritten at `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/introduction.tex`.\n\n**Structure**: Problem (frozen VLA + wasted K=10 compute) → Gap (A2C2/ReconVLA/SC-VLA/VLA-Pilot none ask the per-step question) → ACR-VLA pipeline (K=2 + ρ=0.9979 probe + argmin + CRM, ≤2 forwards) → SmolVLA headline results + cross-VLA recipe applied to π₀.₅/OpenVLA-OFT × 4 LIBERO suites → Analysis as supporting evidence (correction 55–78%, random selection fails) → 4 contributions.\n\n**Verified**: 675 words, ~1.1 pages (ends mid-page 2 before §Related Work), zero em/en-dashes, no forbidden vocabulary (novel/significantly/leverage/utilize/etc.), compiles cleanly. Cross-VLA and 4-suite phrased descriptively without `\\placeholder`. All references use the cite keys you listed plus `kim2024openvla` for OpenVLA-OFT."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_reframe_20260522T052341"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-introduction-reframe.md"
+}

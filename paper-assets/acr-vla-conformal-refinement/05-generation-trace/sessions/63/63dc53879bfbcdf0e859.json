@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63dc53879bfbcdf0e859",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_11_1778892004.md",
+  "task_key": "loop_11_1778892004",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778892004.md",
+    "occurrence": 1,
+    "bytes": 3847,
+    "sha256": "afcb0d0a57a7f6e997418a3fc7155ad18c9ded77b5abde1ff8a5f8ed955a6df9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-16T00:39:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228 (4×4090), bjb1-32546 (6×4090), bjb2-28827 (6×4090), bjb2-40593 (1×4090D)——共 17 卡，全部已分配且饱和，新实验必须等已完成的释放\n- submit_training_job 命令必须用 `bash -c \"source /root/miniconda3/bin/activate && ...\"` 包裹（tmux 用 sh，不支持 source/conda 裸写）\n- obs_only 是唯一存活方向，perdof/scalar 已死——不要再给这两个跑新实验\n- seed=43 正在跑的 6 组实验不可中断（Fisher exact 统计检验依赖完整 10-task 数据）\n- norm 命名规范：norm=0.3 → `norm-0p3`，norm=0.03 → `norm-0p03`（防歧义）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-18228 / bjb1-32546 / bjb2-28827 / bjb2-40593（AutoDL 4090 集群）\n- 工作目录：各服务器 `/root/autodl-tmp/` 下（具体路径需 SSH 确认，每台不同）\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不走 venv）\n- 项目本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/`\n- Registry：同目录下 `registry.yaml`\n- 产出：同目录下 `artifacts/`\n- 活跃进程：seed=43 六组实验分布在 17 卡上（obs_only 0.1, argmin K=10, perdof, VLA-mean, scalar, VLA-only[已完成]）——具体 PID/tmux 需 SSH 查\n\n### 3. 📊 当前状态\n**刚完成：** seed=42 全部 FINAL 锁定 + 论文正文（Intro/Method/Experiments/Related Work/Discussion）写完 + 引用审计通过 + magnitude sweep 初步结果出炉\n\n**正在跑：** seed=43 统计验证（6 组×10 tasks），截至上次报告 VLA-only 已完成(12% SR=seed42)，其余 3-6/10 tasks 进度不等。预计完成时间：report 后 4-5 小时（约 2026-05-16 01:00 UTC）\n\n**关键数字：** obs_only seed=42 object=22%(norm0.2) / 19%(norm0.1)，argmin baseline=12%，+7-10pp 是核心 claim\n\n**等待中：**\n- seed=43 六组 cron 回调 → 触发 Fisher exact 检验\n- Figure 生成（fig1/fig2/fig3）等 seed=43 结果定稿后启动\n- Abstract 最终版等 p-value 确定\n\n### 4. 📋 待办（条件触发式）\n- seed=43 全部完成 cron 回调到达 → spawn worker 做 Fisher exact + bootstrap CI → 更新 paper Results + Abstract\n- Fisher p<0.05 → 锁定 claim \"significantly improves\"，生成 fig1-3，准备 CoRL 投稿包\n- Fisher p=0.05-0.10 → 追加 seed=44（再 doubling），向 Director 申请 GPU 排期\n- Fisher p>0.10 → 触发 red-section，claim 降级为 \"promising but inconclusive\"，向 Director 报 Framing 提案\n- seed=43 obs_only partial 最终如果<<seed42（如<10% full） → 调查 seed 敏感性，可能需要 multi-seed pooling\n- 图表就绪 → spawn paper-visual-review worker 做 PDF 排版检查\n- 论文定稿 → reference-audit 再跑一次 → CoRL 提交\n\n### 5. 🎯 战略上下文\n- **核心结论链：** perdof DEAD(D027) → spatial DEAD for all CRM(D030) → object obs_only +7pp ALIVE(D033) → seed43 验证中(D031) → ReconVLA 重定位为\"平行方向\"而非直接竞品(D034)\n- **最易判断错的事：** seed=43 partial 结果(8.3%)比 seed=42(19%)低——这是因为只完成了 6/10 tasks 且 hard tasks(T2/T7)普遍 0%，不代表方法失效。必须等 full 10-task 再下结论\n- **容易踩的坑：** ① 不要混淆 spatial 和 object benchmark 的数字（spatial 全死，只有 object 有 signal）；② magnitude sweep 中 obs_only 的稳定性(35-44%)是 robustness claim 的支撑，perdof 崩塌(26-35%)是 honest negative 的证据；③ CoRL abstract deadline ~May 26，只剩 10 天，seed=43 必须本周内出结果否则来不及\n- **Paper framing 已批准（不可擅改）：** 三个 core claims = obs_only significant improvement + perdof honest negative + magnitude control critical\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778892004.md"
+}

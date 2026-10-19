@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "498b723469649f529cf8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix bjb2 40593 oom cleanup",
+  "task_key": "worker_fix_bjb2-40593-oom-cleanup_20260521T150538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_bjb2-40593-oom-cleanup_20260521T150538_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "816549e01092f8922b28063342b14ba6b0fc9c6bd17b4b7fa714311e35325de4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理前后对比：**\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| GPU 进程数 | 2 (PID 872656 + 876717) | 1 (PID 872656) |\n| GPU 显存 | 19674MiB / 24564MiB (80%) | 9839MiB / 24564MiB (40%) |\n| GPU 功耗 | 119W | 82W |\n| GPU 温度 | 41°C | 39°C |\n\n**原始 shard 0 状态：** PID 872656 正常运行，3000/7251 samples，3.35s/sample，预计剩余 ~4h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bjb2-40593-oom-cleanup.md"
+}

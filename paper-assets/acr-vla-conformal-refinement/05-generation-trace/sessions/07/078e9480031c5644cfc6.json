@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "078e9480031c5644cfc6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only object default seed46",
+  "task_key": "worker_diagnose_eval-obs-only-object-default-seed46_20260518T002341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-object-default-seed46_20260518T002341_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "6510eb17900318931b078386118cca404750491da3f28e404b92d55ee043b7c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**`eval-obs-only-object-default-seed46` 实际已成功完成**，监控误报。\n\n核心发现：\n- JSON 结果文件存在且完整：overall_success_rate = **15.0%** (15/100)\n- Log 正常结束，无任何错误\n- GPU 3 当前空闲（实验已跑完释放）\n- 监控报失败是因为：实验通过 nohup 启动绕过了任务管理系统，无 sentinel、无 W&B、无 runs/ log，进程正常退出后被误判为 crash\n\n**`eval-obs-only-object-norm01-seed46`** 则确实从未运行过（无任何痕迹），需要重新提交。GPU 3 空闲可用。\n\n报告已写入 `artifacts/diagnose_default_seed46.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-object-default-seed46.md"
+}

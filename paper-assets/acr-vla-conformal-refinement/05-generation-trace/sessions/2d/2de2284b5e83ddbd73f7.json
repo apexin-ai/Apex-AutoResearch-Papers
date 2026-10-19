@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2de2284b5e83ddbd73f7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval mag perdof norm005 object",
+  "task_key": "worker_analyze_eval-mag-perdof-norm005-object_20260516T082951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-mag-perdof-norm005-object_20260516T082951_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "372f22c8dcaf609d3c3242ef6b389745d5b8743a0f884f68f19be26d16c08f97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清理）。\n\n**诊断结果：实验成功完成，结论 negative。**\n\n- Overall SR: **14.0%** (14/100)\n- 与预期一致（norm=0.03→14%, norm=0.05→14%, norm=0.1→11%, norm=0.2→11%）\n- perdof 在 object benchmark 上各 norm 值表现均弱，确认 perdof 方向在此 benchmark 上无显著增益\n- Registry 已更新为 DONE/negative"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-mag-perdof-norm005-object.md"
+}

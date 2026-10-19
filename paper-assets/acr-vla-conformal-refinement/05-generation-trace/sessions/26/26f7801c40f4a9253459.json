@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f7801c40f4a9253459",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260513T173628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_related_work_20260513T173628_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "e0741df39e904fc46aa69831ccd5acdd71a68e1b91cc8ca62a19dc89e576eb59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work section 已写入 `artifacts/_project/paper/related_work.tex`，共 4 段约 870 words：\n\n1. **VLA Robustness Methods** — 覆盖 SRPO/RobustVLA/DiG-Flow/SnapFlow/TT-VLA/VLA-GSE/Cosmos-Policy，强调 training-time 与 ACR-VLA inference-time 的正交互补性\n2. **Uncertainty Quantification for Robot Learning** — 覆盖 Deep Ensembles/MC-Dropout/Diffusion Policy/DiU，区分 scalar vs per-DOF、aleatoric vs epistemic、single-pass vs multi-sample\n3. **Conformal Prediction in Robotics** — 覆盖 CP 基础理论（Angelopoulos/Romano CQR/Gibbs ACI/Barber）和应用（CP-in-the-Loop/Conformalized Teleoperation/UPS/SAFE/Braun CGS），论点：CP 作为 binary decision vs 作为 continuous features for learned correction\n4. **Inference-Time Action Correction** — 与 A2C2（generic residual, no uncertainty conditioning）和 ReconVLA（scalar distance, sample selection only）做精确对比\n\n所有引用严格使用提供的 bibtex_key 列表，未编造任何引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

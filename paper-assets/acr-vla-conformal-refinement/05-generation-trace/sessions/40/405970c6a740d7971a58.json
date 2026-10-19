@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "405970c6a740d7971a58",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 gpu345 pi05",
+  "task_key": "worker_deploy_cqa1-gpu345-pi05_20260526T055153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-gpu345-pi05_20260526T055153_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "906a67d6e308137cbf7424b1b524da96203457f1de3b73b1606383c00c81e03d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。cqa1-32758 状态总结：\n\n| GPU | 实验 | 状态 | 启动时间 | VRAM | Registry |\n|-----|------|------|---------|------|----------|\n| 0 | τ-sweep τ=0.50 (goal s42) | 运行中 | 10:54 | 10.3GB | — |\n| 1 | τ-sweep τ=0.70 (goal s42) | 运行中 | 10:54 | 10.3GB | — |\n| 2 | τ-sweep τ=0.90 (goal s42) | 运行中 | 10:54 | 10.3GB | — |\n| 3 | **pi05-adaptive-object-s44-cqa1** | 运行中 | 13:54 | 14.0GB | RUNNING |\n| 4 | **pi05-adaptive-long-s43-cqa1** | 运行中 | 13:55 | 14.7GB | RUNNING |\n| 5 | **pi05-adaptive-long-s44-cqa1** | 运行中 | 13:55 | 14.7GB | RUNNING |\n\n6 个 GPU 全部满载。3 个新实验已在运行约 8 分钟，进程稳定，registry 已补注册。无需额外部署操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-gpu345-pi05.md"
+}

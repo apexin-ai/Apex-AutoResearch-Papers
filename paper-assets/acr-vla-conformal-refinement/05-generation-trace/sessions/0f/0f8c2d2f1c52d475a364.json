@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0f8c2d2f1c52d475a364",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze crm loss perdof",
+  "task_key": "worker_analyze_crm-loss-perdof_20260522T062411",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_crm-loss-perdof_20260522T062411.jsonl",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "5e4c8ac30958500e4652b68d7e25d18d2e05f12ad88d7e8f40e3f7b2be6f90b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:24:20.285128+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_crm-loss-perdof_20260522T062411"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-crm-loss-perdof.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fba75bf81a461708376",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code adaptive k fmvd phase1",
+  "task_key": "worker_code_adaptive-k-fmvd-phase1_20260519T164209",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_adaptive-k-fmvd-phase1_20260519T164209_result.json",
+    "occurrence": 1,
+    "bytes": 1337,
+    "sha256": "a3080ec16aaa8e8518ac8c5b65f25e1367a58a6b5a36cb578a6bb49a0b9eeca9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已完成部署。总结：\n\n**已完成：**\n1. **读取代码结构** — 理解了 SmolVLA 的 flow matching denoising 过程（`generate_k_samples_batched` 中的 10-step ODE loop），LIBERO 环境初始化（`load_libero_env`），和 robot state 提取\n\n2. **编写 `calibrate_fmvd.py`** — 创建在 `/root/acr-vla-conformal-refinement/src/calibrate_fmvd.py`\n   - `generate_k1_with_fmvd()`: 复制 K=1 denoising loop，在每个 ODE step 记录 `||v_t[:7]||`，计算 FMVD = std(velocity_norms)\n   - `compute_k10_variance()`: 用现有 `generate_k_samples_batched(K=10)` 计算 per-DOF variance\n   - 两者共享同一个 `encode_prefix` 的 kv_cache\n   - 输出 JSON + stdout 统计摘要 + GO/NO-GO 判定\n\n3. **测试验证** — 1 episode 快速测试通过（300 steps, 141s），FMVD 和 K=10 variance 数据正常收集\n\n4. **修复兼容性** — 升级 transformers (4.40.1 → 5.8.1) 解决 lerobot 0.5.1 的导入问题；在脚本中添加 `transformers.masking_utils` 兼容补丁\n\n5. **提交完整任务** — `fmvd-calibration-phase1` 已通过 submit_training_job 提交到 bjb2-28827 cuda:5，n_episodes=5 per task（50 total），预计 ~2h 完成\n\n**下一步：** 等待 job 完成后查看 `logs/fmvd_calibration.json`，检查 Spearman ρ 是否 > 0.3（GO gate）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-adaptive-k-fmvd-phase1.md"
+}

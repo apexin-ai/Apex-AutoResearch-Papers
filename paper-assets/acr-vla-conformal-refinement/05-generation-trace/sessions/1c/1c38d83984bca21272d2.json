@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c38d83984bca21272d2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779390843.md",
+  "task_key": "loop_23_1779390843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779390843.md",
+    "occurrence": 1,
+    "bytes": 4390,
+    "sha256": "ef2e4159b94235c4fe22382521d728081a59029f49f41c482f4f9bc914522795"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T19:08:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_status` 的 `execution.gpu_ids` 获取，不能假设。当前服务器 bjb1-18228 / bjb1-32546 / bjb2-28827 各有分配\n- π0.5 评估必须传 `--obs_dim 2048`（默认 960 是 SmolVLA 用的，π0.5 传错会 ValueError）\n- bjb2-28827 的 evaluate.py 是旧版（May 21 05:39），**必须 git pull 后才能跑 eval**，否则结果不可信\n- CoRL 2026 DDL = **2026-05-29**，≤8 天，所有决策以此为锚\n- evaluate.py 用 `--checkpoint`（不是 `--crm_checkpoint`），`--mode acr_vla` = crm_perdof pipeline\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（4 GPU）：CRM 训练主机，工作目录 /root/，Python 在 conda base\n  - 活跃：crm-train-pi05-object-full PID 800111 cuda:0（cron 监控中）\n  - cuda:3 有旧 precompute 进程待清理\n- **bjb1-32546**（6 GPU）：eval 服务器，全部空闲，代码已同步\n- **bjb2-28827**（6 GPU）：eval 服务器，全部空闲，**代码待 git pull**\n- 环境变量：`HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl`\n- π0.5 模型：`/root/autodl-tmp/models/pi05_libero_finetuned/`\n- CRM v3 checkpoints：`/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only}/crm_best.pt`\n- π0.5 CRM 训练输出：`/root/autodl-tmp/checkpoints/crm_pi05_full/{object,spatial}/`\n- 预计算数据：`/root/autodl-tmp/crm_cache_pi05/{object,spatial}/`（Object 69303, Spatial ~60250 samples）\n- eval 命令模板已写入 memory.md \"π0.5 Plan A Eval Commands\" 段\n\n### 3. 📊 当前状态\n- **刚完成的关键里程碑**：π0.5 VLA-only baseline LOCKED（D105: Object 81.5%±0.5%, Spatial 84.2%±1.0%）；SmolVLA Plan A 全部 LOCKED；K=20 sweep LOCKED（D102）\n- **RUNNING**：`crm-train-pi05-object-full`（bjb1-18228 cuda:0 PID 800111，~50 epochs，预计 4-7h 从 18:26 UTC 开始）\n- **异常**：`crm-train-pi05-spatial-full` 状态为 PREPARING 而非 RUNNING——reconcile_crons 未发现它的 cron。**需要检查**：它是否已完成（checkpoint 存在？）、是否从未成功提交、还是进程已退出。这是立即要处理的第一件事\n- **等待中**：CRM 训练完成后 → 部署 π0.5 CRM Plan A eval（6 GPU, ~8h, 3 seeds × 2 benchmarks）\n- **GPU 利用率**：2/17（仅 object 训练 1 GPU 确认活跃），14+ GPU 空闲等 eval\n\n### 4. 📋 待办（条件触发式）\n- **立即**：检查 `crm-train-pi05-spatial-full` 状态 → 若未启动则立即提交；若已完成则更新 registry → DONE\n- `crm-train-pi05-object-full` cron 回调（进程退出）→ spawn Worker 验证 checkpoint → 更新 registry → DONE/ANALYZING\n- Object + Spatial CRM 训练均完成 → **立即**部署 π0.5 CRM Plan A eval 到 bjb1-32546 + bjb2-28827（先 git pull bjb2-28827）\n- π0.5 CRM eval 全部完成 → 汇总结果 → 更新 report.md → 汇报 Director → 启动 Paper Agent 写 π0.5 cross-VLA section\n- 若 π0.5 CRM 在 81-85% baseline 上 gain < 2pp → framing 已准备 \"no-harm + selective improvement\" narrative（见 paper_framing.md）\n- eval 跑完 GPU 释放后 → OpenVLA CRM eval（plan_802）如时间允许\n\n### 5. 🎯 战略上下文\n- **核心 story**：Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 近似替代 K=10 variance（ρ=0.9979），加上 selective CRM correction = Plan A\n- **三大 claim**：C1 Correction > Selection（已证）；C2 Conditioning-Magnitude Interaction（obs_only stable, perdof collapse）；C3 Applicability Boundaries（diversity prerequisite + task proximity）\n- **D090 Plan A** 是当前执行路线：SmolVLA 已 LOCKED，π0.5 cross-VLA generalization 是最后一块拼图\n- **最容易判断错的事**：π0.5 baseline 81-85% 有天花板效应，CRM 的绝对 gain 可能很小。不要把\"绝对 gain 小\"等同于\"方法无效\"——framing 已转向 \"no-harm + selective improvement on hard subtasks\"，准备按此 narrative 写\n- **Spatial CRM 训练状态不明** 是最紧急的问题——如果它没跑，距 DDL 又少了半天\n- **决策链关键节点**：D076（Adaptive K 验证）→ D090（Plan A 路线确认）→ D102（K=20 diminishing returns）→ D104（π0.5 baseline eval 部署）→ D105（baseline LOCKED）→ 当前：CRM 训练 → eval → paper\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779390843.md"
+}

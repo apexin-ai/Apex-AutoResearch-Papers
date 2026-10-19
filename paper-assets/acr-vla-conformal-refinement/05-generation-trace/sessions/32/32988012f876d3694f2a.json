@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32988012f876d3694f2a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779384249.md",
+  "task_key": "loop_22_1779384249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779384249.md",
+    "occurrence": 1,
+    "bytes": 4137,
+    "sha256": "e391735ab7cca480270c5470d68ad15d83d7cd8f082d796623a9dbc601561138"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T17:19:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，不可用白名单外的 GPU（即使 Director 指令也必须 push back）\n- bjb2-28827 有反复的 SIGHUP 问题（tmux/SSH 断连杀进程），提交实验时确保 tmux 会话稳固，诊断失败时先排查此模式\n- Norm sweep 中 ε=0.2 (n=7 core) 已 LOCKED，不可再动这组数据；其他 ε 组仍在补种\n- Plan A (K=2 conformal) Object 18.3%±2.1%、Spatial 35.0%±1.0% 已 LOCKED，不可修改这些数字\n- OpenVLA CRM 实验线已 CLOSED（D093: 0% SR，near-deterministic），不再投入 GPU\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-28827**: 工作目录 `/root/autodl-tmp/`，模型 `/root/autodl-tmp/models/smolvla_libero/`，CRM checkpoint `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`，日志 `/root/autodl-tmp/logs/`。当前 5 个 eval 在跑 (seed71-75, PIDs 922504/922712/922982/923256/923398)\n- **bjb1-32546**: conda 环境 `/root/miniconda3/bin/python`（无 .venv，命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）。当前 8 个实验在跑（seed64/65 norm003/norm01/norm005 + seed51-r3/seed52-r3/seed62-r2/seed63-r2）\n- **bjb1-18228**: 4 个实验在跑（seed57/58/59/65），但 seed57/58 pending escalation retry，seed59 process gone escalating (miss 1/5)——下一个\"你\"需要优先诊断这三个\n- **bjb2-40593**: π0.5 环境搭建中（Worker running）\n- W&B: eval 脚本不写 W&B 也不写 sentinel，这是 cron false positive 的根因，所有 eval 失败都要先 tail 日志确认\n- 活跃 Worker: `code:pi05-wrapper-adaptation` + `env:pi05-setup-bjb2-40593`（π0.5 相关）\n\n### 3. 📊 当前状态\n刚完成 seed61/62/63 失败诊断：bjb2-28827 SIGHUP 批量故障，三个进程在 task1 rollout 5/10 时静默退出，已更新 registry notes。已被 seed71-75 替代，无需重跑。\n\n**RUNNING (19 个)**：全部是 norm sweep eval（obs_only, K=10, Object benchmark），分布在 bjb1-18228/bjb1-32546/bjb2-28827 三台服务器。ε=0.03/0.05/0.1 三组补种中。\n\n**PREPARING (34 个)**：包括 norm02-seed55、adaptive-k-spatial-p90-seed44 等待提交。\n\n**等待中**：\n- 2 个 π0.5 Worker 回调（wrapper adaptation + env setup on bjb2-40593）\n- bjb1-18228 上 seed57/58/59 的 escalation 需要下一轮诊断\n- seed62 (norm005) registry 状态可能不一致（reconcile 报 DONE 但早期 read 显示 RUNNING），需验证\n\n### 4. 📋 待办\n- π0.5 Worker 回调到达 → 检查 wrapper + env 就绪 → baseline eval 提交（D095/D096 Phase 2）\n- seed57/58 escalation retry 触发 → tail 日志，大概率同类 SIGHUP/cron false positive → 确认后修正 conclusion 或重提交\n- seed59 escalation miss 5/5 → 同上诊断流程\n- seed71-75 完成回调 → 更新 norm sweep 统计表，刷新 ROADMAP 中 ε=0.1/0.05/0.03 的 n seeds 和 mean SR\n- 所有 norm sweep 种子够数 → 生成 Figure 2（norm sweep curve）→ 通知 Director\n- Director 下达论文写作指令 → spawn Paper Agent，Plan A 结果 + norm sweep 写入 paper\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL = 2026-05-29，剩 8 天**。Plan A 已 LOCKED，核心数据就绪，瓶颈是 (1) norm sweep 补种完成 (2) π0.5/π 第二 backbone (3) 论文写作\n- 决策链：D088(方法升级) → D090(Learned Head NO-GO) → D092(Plan A GO) → D093(OpenVLA CLOSED) → D094(Plan A Spatial GO) → D095/D096(π0.5 新线)\n- **最容易判断错的事**：eval 实验 cron 报 failed ≠ 真的 failed。eval 脚本不写 W&B/sentinel，正常完成也会被 cron 标记 failed。**每次收到 failed 回调必须 tail 日志确认**，检查是否有 \"Results saved to\" / \"Overall success rate\" 行。过去至少 10+ 个实验因此被误标\n- **bjb1-18228 的 seed57/58/59 是下一个要处理的**——我没来得及诊断就收到了 WRITE HANDOFF\n- seed62 (norm005) 的 registry 状态需要验证——reconcile 和 read_registry 结果矛盾，可能需要手动 update_registry 修正\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779384249.md"
+}

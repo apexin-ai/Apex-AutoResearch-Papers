@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31ea27ebd820ecb9b50e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy bjb2 28827 cuda3",
+  "task_key": "worker_ops_deploy-bjb2-28827-cuda3_20260516T104244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-bjb2-28827-cuda3_20260516T104244_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "1e839bd29a82284eb843bae2ab3367f9db8b8f6fb1a69223de449e5d80bc830c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 项 | 值 |\n|---|---|\n| exp_id | eval-obs-only-object-default-seed45 |\n| 服务器/GPU | bjb2-28827 / cuda:3 |\n| GPU PID | 242264（5645 MiB） |\n| 模式 | crm_obs_only, default norm (~1.42), seed=45, object |\n| 日志 | `logs/eval_object_obs_only_default_seed45.log` |\n| 输出 | `logs/eval_object_obs_only_default_seed45.json` |\n\n原始命令中 `--k` 已修正为 `--K`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-bjb2-28827-cuda3.md"
+}

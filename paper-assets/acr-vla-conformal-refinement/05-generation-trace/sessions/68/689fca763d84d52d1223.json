@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "689fca763d84d52d1223",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops gpu saturation check 20260519b",
+  "task_key": "worker_ops_gpu-saturation-check-20260519b_20260519T081958",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu-saturation-check-20260519b_20260519T081958_result.json",
+    "occurrence": 1,
+    "bytes": 1912,
+    "sha256": "c1da19bcc86c8d6cd8967969faab39ac59560db685ed4922949a559e94851d65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动正常，模型正在加载。\n\n---\n\n## 汇报\n\n### GPU 实际占用状态\n\n| 服务器 | GPU | 利用率 | 显存 | 状态 |\n|--------|-----|--------|------|------|\n| **bjb2-28827** | 0 | 99% | 4777/24564 MiB | 忙 |\n| | 1 | 0% | 1/24564 MiB | **空闲→已部署** |\n| | 2 | 99% | 6640/24564 MiB | 忙 |\n| | 3 | 19% | 3594/24564 MiB | 有进程，rollout间歇 |\n| | 4 | 99% | 7644/24564 MiB | 忙 |\n| | 5 | 99% | 7875/24564 MiB | 忙 |\n| **bjb1-32546** | 0 | 19% | 2412/24564 MiB | 有进程 (PID 714913) |\n| | 1 | 98% | 5598/24564 MiB | 忙 |\n| | 2 | 23% | 2876/24564 MiB | 有进程 (PID 784387) |\n| | 3 | 99% | 4350/24564 MiB | 忙 |\n| | 4 | 99% | 7605/24564 MiB | 忙 |\n| | 5 | 22% | 2412/24564 MiB | 有进程 (PID 714985) |\n| **bjb2-40593** | 0 | 99% | 11178/24564 MiB | 忙 |\n\n### K=10 Spatial 实验运行状态\n\n| Session | 服务器 | 状态 | 进度 |\n|---------|--------|------|------|\n| `eval-spatial-obs-only-norm02-seed44` | bjb2-28827 | **ALIVE** | `pick_up_the_black_bowl_on_the_ramekin...` rollout 5/10 |\n| `eval-spatial-obs-only-norm02-seed45` | bjb1-32546 | **ALIVE** | `pick_up_the_black_bowl_next_to_the_cookie_box...` rollout 1/10 |\n| `eval-spatial-obs-only-norm02-seq` | bjb2-40593 | **ALIVE** | `pick_up_the_black_bowl_on_the_cookie_box...` rollout 5/10 |\n\n三个 Spatial K=10 实验都在正常跑。\n\n### 新部署实验\n\n| exp_id | 服务器 | GPU | 类型 | seed |\n|--------|--------|-----|------|------|\n| `eval-argmin-object-k5-seed44` | bjb2-28827 | cuda:1 | K=5 argmin-only (reconvla) | 44 |\n\n### 未能填满的卡\n\nbjb1-32546 的 GPU 0/2/5 虽然利用率低 (19-23%)，但都有评估进程在跑，内存占用 2.4-2.9 GiB。这是 LIBERO 评估的正常模式——环境 reset/step 是 CPU-bound 操作，导致 GPU 利用率在 rollout 间隙下降。这些卡不是空闲的，不能再部署新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-saturation-check-20260519b.md"
+}

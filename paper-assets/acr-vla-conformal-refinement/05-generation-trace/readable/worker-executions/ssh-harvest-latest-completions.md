@@ -1,0 +1,1618 @@
+# ssh harvest latest completions
+
+**Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_ssh_harvest-latest-completions_20260520T053955.log`
+- **Structured JSON:** [`e96032e20821ed393cd1.json`](../../sessions/e9/e96032e20821ed393cd1.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d3b82655-618c-4d04-b605-b558d6fec80e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779271800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "feac0af8-5bcc-4db2-b680-b5887afbf601",
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to read experiment JSON results from multiple servers. I need to use SSH tools to execute read-only commands on each server. Let me load the SSH tools first, then execute the commands in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "789d3da8-60cd-4e9c-9000-93ebaffc1308",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ah4fjhTPvgLUgD79w3wddD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11555,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11555
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Q2LS99rovrW2Sdyq33NJ6d`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "64c91674-e34f-47db-9dbc-678d5f28301f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ah4fjhTPvgLUgD79w3wddD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11555,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11555
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T05:40:17.411Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2LS99rovrW2Sdyq33NJ6d`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "f9718f4f-bc0d-41d1-928d-4417a160a09b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll execute the read-only commands on all four servers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "74e3d79b-f9ef-4588-95e2-f475b4e31596",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kXwh1ckzP8RMvu98S18Np",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 23396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CnGxfL8V1gjAPnNrP8wRj2`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "python3 -c \"import json; [print(f'{f}: SR={json.load(open(f\\\"/root/acr-vla-conformal-refinement/logs/{f}\\\")).get(\\\"overall_success_rate\\\", json.load(open(f\\\"/root/acr-vla-conformal-refinement/logs/{f}\\\")).get(\\\"success_rate\\\",\\\"?\\\"))}') for f in ['eval_long_vla_only_seed49.json','eval_long_vla_only_seed50.json']]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "7cb39a49-f096-4b37-b3dc-42a151879db9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kXwh1ckzP8RMvu98S18Np",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 23396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T05:40:22.223Z_
+
+<details><summary>↩ Tool result · `toolu_01CnGxfL8V1gjAPnNrP8wRj2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "d2662f93-742b-47d0-9a42-ea8e25a6d7a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JYraAtjvRg4oA7mQZHfeVw`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "python3 -c \"import json; [print(f'{f}: SR={json.load(open(f\\\"/root/acr-vla-conformal-refinement/logs/{f}\\\")).get(\\\"overall_success_rate\\\", json.load(open(f\\\"/root/acr-vla-conformal-refinement/logs/{f}\\\")).get(\\\"success_rate\\\",\\\"?\\\"))}') for f in ['eval_spatial_obs_only_norm02_seed51.json','eval_goal_vla_only_seed49.json','eval_long_vla_only_seed52.json']]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "c9cfd276-3e08-4fc9-b5d8-576b09d43012",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kXwh1ckzP8RMvu98S18Np",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 23396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T05:40:24.093Z_
+
+<details><summary>↩ Tool result · `toolu_01JYraAtjvRg4oA7mQZHfeVw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "3aaa072c-0ed8-4952-bafd-81cd702b6518",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K5waLPMXsd8kDtzWhr2C9x`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "python3 -c \"import json; d=json.load(open('/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed50.json')); print(f'SR={d.get(\\\"overall_success_rate\\\", d.get(\\\"success_rate\\\",\\\"?\\\"))}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "125b9b00-1a6f-4db2-af07-44911f803fa5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kXwh1ckzP8RMvu98S18Np",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 23396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T05:40:25.561Z_
+
+<details><summary>↩ Tool result · `toolu_01K5waLPMXsd8kDtzWhr2C9x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "e0ebf076-3819-4c7f-8aad-4b6e39161ae8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rjbeu3ZCznrnghFfuZ6DAC`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "python3 -c \"import json; d=json.load(open('/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed44.json')); print(f'SR={d.get(\\\"overall_success_rate\\\", d.get(\\\"success_rate\\\",\\\"?\\\"))}, avg_K={d.get(\\\"avg_actual_k\\\",\\\"?\\\")}, fast_path={d.get(\\\"fast_path_ratio\\\",\\\"?\\\")}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "557813a3-0fb6-441e-bd98-f80df49c99d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kXwh1ckzP8RMvu98S18Np",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 23396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 485
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T05:40:26.882Z_
+
+<details><summary>↩ Tool result · `toolu_01Rjbeu3ZCznrnghFfuZ6DAC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "190c1060-1778-4e52-90dd-8584ee33d2ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The semicolons in the f-strings are being detected as shell metacharacters. I need to use `cat` instead to read the JSON files directly, then parse locally. Let me just cat each file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "6ea4a5ff-b4b4-4348-a71f-36d919472573",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Shell metacharacters blocked. Let me use `cat` to read the raw JSON files instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "9baa9141-946a-4621-93d8-8841511b96cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E22Pc7t9FBt2aTJVseA1Jh`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "766533aa-aa3f-4057-9318-d89903ad0a5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T05:40:32.555Z_
+
+<details><summary>↩ Tool result · `toolu_01E22Pc7t9FBt2aTJVseA1Jh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.16,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "dadac410-eebb-49b1-bb69-3698557dd755",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.16,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.16,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y25CDeMuGDqDHXWxzou7rv`</summary>
+
+```json
+{
+  "server": "bjb2-28827",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed50.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "5900d9e4-0a34-4e3e-9eb0-8f516636c4b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T05:40:32.938Z_
+
+<details><summary>↩ Tool result · `toolu_01Y25CDeMuGDqDHXWxzou7rv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.16,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "c719d2a5-9f21-4bae-8b62-1330a568db87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.16,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.16,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016g9nGvZBKk81yYqeX7dbTV`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed51.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "5a4f976c-4b60-438e-8fb3-c8aa401f6c73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0162Mm4pqdupo73nntetzj9i`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed49.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "340ad3ec-9cee-4581-a123-a051e99f6ee4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:40:34.377Z_
+
+<details><summary>↩ Tool result · `toolu_016g9nGvZBKk81yYqeX7dbTV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.36,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "b11ddd51-338d-4cdf-9d9d-78aceba6c8ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.36,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.36,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T05:40:34.804Z_
+
+<details><summary>↩ Tool result · `toolu_0162Mm4pqdupo73nntetzj9i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.65,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 7,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 7,\\n      \\\"total\\\": 10\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "c274b056-7de5-46dc-a08c-5353bea13b3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.65,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open_the_middle_drawer_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 7,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put_the_wine_bottle_on_top_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"successes\\\\\\\": 5,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"open_the_top_drawer_and_put_the_bowl_inside\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_top_of_the_cabinet\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.7,\\\\n      \\\\\\\"successes\\\\\\\": 7,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"push_the_plate_to_the_front_of_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put_the_cream_cheese_in_the_bowl\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"turn_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put_the_bowl_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"put_the_wine_bottle_on_the_rack\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"successes\\\\\\\": 5,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"goal\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.65,\\n  \\\"per_task\\\": {\\n    \\\"open_the_middle_drawer_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 7,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_bowl_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_wine_bottle_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    },\\n    \\\"open_the_top_drawer_and_put_the_bowl_inside\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_bowl_on_top_of_the_cabinet\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 7,\\n      \\\"total\\\": 10\\n    },\\n    \\\"push_the_plate_to_the_front_of_the_stove\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_cream_cheese_in_the_bowl\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"turn_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_bowl_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"put_the_wine_bottle_on_the_rack\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0178YKb3Jz8ETDMSgVF4J8cX`</summary>
+
+```json
+{
+  "server": "bjb1-18228",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed52.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "dca84539-6a8d-4893-852d-fa28544fc548",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T05:40:35.593Z_
+
+<details><summary>↩ Tool result · `toolu_0178YKb3Jz8ETDMSgVF4J8cX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.17,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "d4ae46ac-54d6-4991-80a1-5cac30e695f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.17,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"successes\\\\\\\": 5,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"vla_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.17,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.5,\\n      \\\"successes\\\": 5,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P3tnG3PzRbWVaSFukMvNx8`</summary>
+
+```json
+{
+  "server": "bjb1-32546",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed50.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "f9cdc1a3-f5c3-4280-941b-7f24ec01fe4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SbX38Eb9aAXwVp4GQshRQ2`</summary>
+
+```json
+{
+  "server": "bjb2-40593",
+  "command": "cat /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed44.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "ae20b314-3936-4827-987e-0dd44e7f38b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UNd5QUZE28VVkrdWLfM8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 23881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T05:40:36.951Z_
+
+<details><summary>↩ Tool result · `toolu_01P3tnG3PzRbWVaSFukMvNx8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.14,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "2f60c919-bbf2-4433-8622-62e9fefbc2b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.14,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"successes\\\\\\\": 2,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"crm_obs_only\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"long\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.14,\\n  \\\"per_task\\\": {\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 2,\\n      \\\"total\\\": 10\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T05:40:37.838Z_
+
+<details><summary>↩ Tool result · `toolu_01SbX38Eb9aAXwVp4GQshRQ2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_k\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.13,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    }\\n  },\\n  \\\"per_step_K\\\": [\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n\\n... [截断: 输出过长，省略 201865 字符] ...\\n\\n 2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2\\n  ],\\n  \\\"avg_K\\\": 4.875822542984505,\\n  \\\"adaptive_trigger_rate\\\": 0.35947781787306304,\\n  \\\"threshold\\\": 0.054959,\\n  \\\"adaptive_stats\\\": {\\n    \\\"fast_path_ratio\\\": 0.6405221821269369,\\n    \\\"avg_actual_k\\\": 4.875822542984505,\\n    \\\"mean_l2_distance\\\": 0.05400925608038025,\\n    \\\"total_steps\\\": 28266,\\n    \\\"fast_steps\\\": 18105,\\n    \\\"full_steps\\\": 10161\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "544ce8f8-4995-4592-aef4-3d54bf0be3b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_k\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.13,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_butter_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_milk_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.3,\\\\n      \\\\\\\"successes\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_step_K\\\\\\\": [\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n\\\\n... [截断: 输出过长，省略 201865 字符] ...\\\\n\\\\n 2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2\\\\n  ],\\\\n  \\\\\\\"avg_K\\\\\\\": 4.875822542984505,\\\\n  \\\\\\\"adaptive_trigger_rate\\\\\\\": 0.35947781787306304,\\\\n  \\\\\\\"threshold\\\\\\\": 0.054959,\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"fast_path_ratio\\\\\\\": 0.6405221821269369,\\\\n    \\\\\\\"avg_actual_k\\\\\\\": 4.875822542984505,\\\\n    \\\\\\\"mean_l2_distance\\\\\\\": 0.05400925608038025,\\\\n    \\\\\\\"total_steps\\\\\\\": 28266,\\\\n    \\\\\\\"fast_steps\\\\\\\": 18105,\\\\n    \\\\\\\"full_steps\\\\\\\": 10161\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_k\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"object\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.13,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": {\\n      \\\"success_rate\\\": 0.3,\\n      \\\"successes\\\": 3,\\n      \\\"total\\\": 10\\n    }\\n  },\\n  \\\"per_step_K\\\": [\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n\\n... [截断: 输出过长，省略 201865 字符] ...\\n\\n 2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2\\n  ],\\n  \\\"avg_K\\\": 4.875822542984505,\\n  \\\"adaptive_trigger_rate\\\": 0.35947781787306304,\\n  \\\"threshold\\\": 0.054959,\\n  \\\"adaptive_stats\\\": {\\n    \\\"fast_path_ratio\\\": 0.6405221821269369,\\n    \\\"avg_actual_k\\\": 4.875822542984505,\\n    \\\"mean_l2_distance\\\": 0.05400925608038025,\\n    \\\"total_steps\\\": 28266,\\n    \\\"fast_steps\\\": 18105,\\n    \\\"full_steps\\\": 10161\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile the results into the requested table format. The adaptive_k file had `avg_K` and `fast_path_ratio` in the `adaptive_stats` section.
+
+Summary:
+1. bjb2-28827:
+   - eval_long_vla_only_seed49.json: SR=0.16
+   - eval_long_vla_only_seed50.json: SR=0.16
+
+2. bjb1-18228:
+   - eval_spatial_obs_only_norm02_seed51.json: SR=0.36
+   - eval_goal_vla_only_seed49.json: SR=0.65
+   - eval_long_vla_only_seed52.json: SR=0.17
+
+3. bjb1-32546:
+   - eval_long_obs_only_norm02_seed50.json: SR=0.14
+
+4. bjb2-40593:
+   - eval_adaptive_k_p25_seed44.json: SR=0.13, avg_K=4.876, fast_path=0.641
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "a0a0a4e8-f7f7-4760-a2e6-8981dbb3bd0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TsibdxRUsRpt73uxrtJV8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13105,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+| 服务器 | 文件 | SR | avg_K | fast_path |
+|--------|------|----|-------|-----------|
+| bjb2-28827 | eval_long_vla_only_seed49.json | 0.16 | - | - |
+| bjb2-28827 | eval_long_vla_only_seed50.json | 0.16 | - | - |
+| bjb1-18228 | eval_spatial_obs_only_norm02_seed51.json | 0.36 | - | - |
+| bjb1-18228 | eval_goal_vla_only_seed49.json | 0.65 | - | - |
+| bjb1-18228 | eval_long_vla_only_seed52.json | 0.17 | - | - |
+| bjb1-32546 | eval_long_obs_only_norm02_seed50.json | 0.14 | - | - |
+| bjb2-40593 | eval_adaptive_k_p25_seed44.json | 0.13 | 4.876 | 0.641 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "uuid": "cead60af-ce9c-4725-830c-0bde6c79ddb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TsibdxRUsRpt73uxrtJV8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13105,
+      "cache_read_input_tokens": 25234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 34_
+
+| 服务器 | 文件 | SR | avg_K | fast_path |
+|--------|------|----|-------|-----------|
+| bjb2-28827 | eval_long_vla_only_seed49.json | 0.16 | - | - |
+| bjb2-28827 | eval_long_vla_only_seed50.json | 0.16 | - | - |
+| bjb1-18228 | eval_spatial_obs_only_norm02_seed51.json | 0.36 | - | - |
+| bjb1-18228 | eval_goal_vla_only_seed49.json | 0.65 | - | - |
+| bjb1-18228 | eval_long_vla_only_seed52.json | 0.17 | - | - |
+| bjb1-32546 | eval_long_obs_only_norm02_seed50.json | 0.14 | - | - |
+| bjb2-40593 | eval_adaptive_k_p25_seed44.json | 0.13 | 4.876 | 0.641 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 48700,
+  "duration_api_ms": 48998,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "7057a150-70df-49ee-85b7-384f251cef00",
+  "total_cost_usd": 0.2713675,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 26498,
+    "cache_read_input_tokens": 84352,
+    "output_tokens": 2488,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26498,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 557,
+        "cache_read_input_tokens": 25234,
+        "cache_creation_input_tokens": 13105,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13105
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1274,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001339,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 2488,
+      "cacheReadInputTokens": 84352,
+      "cacheCreationInputTokens": 26498,
+      "webSearchRequests": 0,
+      "costUSD": 0.2700285,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "73c6ddba-4378-4bf9-b528-670438fafade"
+}
+```
+
+</details>
+
+---

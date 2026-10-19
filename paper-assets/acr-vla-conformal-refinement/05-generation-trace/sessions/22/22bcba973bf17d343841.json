@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22bcba973bf17d343841",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb2 28827 tau sweep full",
+  "task_key": "worker_harvest_bjb2-28827-tau-sweep-full_20260526T213205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb2-28827-tau-sweep-full_20260526T213205_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "b0562848156c3e69ba9411d09b9a6f67e8b8d7804e648a1c66b37dac01d60e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background agent found the pi05 goal tau=0.25 data. Let me add it to the scatter CSV.\n\n**补充数据 — pi05 Goal tau=0.25 (来自 westd/bjb1)**:\n\n| seed | SR | trigger_rate |\n|------|-----|-------------|\n| s42 | 88.0% | ~3.5% (westd) |\n| s43 | 87.5% | ~3.8% (westd) |\n| s44 | 87.5% | 10.0% (bjb1 detailed) |\n\n## 更新后完整 Scatter CSV\n\n```csv\nexp_id,suite,seed,tau,success_rate,trigger_rate,mean_correction_norm,fast_path_ratio\npi05-adaptive-spatial-s42-tau015,spatial,42,0.15,0.970,0.112,0.200,0.888\npi05-adaptive-spatial-s42-tau025,spatial,42,0.25,0.965,0.048,0.200,0.952\npi05-adaptive-spatial-s43-tau025,spatial,43,0.25,0.980,0.044,0.200,0.956\npi05-adaptive-spatial-s44-tau025,spatial,44,0.25,0.970,0.039,0.200,0.961\npi05-adaptive-spatial-s42-tau035,spatial,42,0.35,0.965,0.026,0.200,0.974\npi05-adaptive-goal-s42-tau015,goal,42,0.15,0.920,0.174,0.200,0.826\npi05-adaptive-goal-s42-tau025,goal,42,0.25,0.880,0.035,0.200,0.965\npi05-adaptive-goal-s43-tau025,goal,43,0.25,0.875,0.038,0.200,0.962\npi05-adaptive-goal-s44-tau025,goal,44,0.25,0.875,0.100,0.200,0.900\npi05-adaptive-goal-s42-tau035,goal,42,0.35,0.875,0.057,0.200,0.943\n```\n\n**注意**：goal tau=0.25 的 trigger_rate 差异大（s42/s43 ~3.5-3.8% vs s44 10%），s44 来自 bjb1（有 detailed metrics），westd 的 s42/s43 trigger_rate 是从 registry 中提取的近似值。`eval_goal_adaptive_seed42.json`（SR=83.5%, trigger=8.3%）不是 pi05 实验。\n\n**下一步**：4 个 RUNNING 实验预计 2-4h 内完成，GPU 3 空闲可调度新任务。Object 实验的 alphabet_soup OOM 结果需在论文中标注或补跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb2-28827-tau-sweep-full.md"
+}

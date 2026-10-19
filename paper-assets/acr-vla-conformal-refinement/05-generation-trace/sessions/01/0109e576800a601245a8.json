@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0109e576800a601245a8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest deploy bjb1 18228 batch",
+  "task_key": "worker_harvest-deploy_bjb1-18228-batch_20260520T130446",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest-deploy_bjb1-18228-batch_20260520T130446_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "6b0137bc39ad2b2415bc96ddf3cf473d92a287d560de96ff6adcbdf605744b27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部部署成功。\n\n## 收割结果\n\n| 实验 | SR | 关键指标 |\n|------|-----|---------|\n| eval-adaptive-k-spatial-p90-seed43 | **0.32** | avg_K=3.586, fast_path=80.2%, mean_l2=0.0905 |\n| eval-random-selection-spatial-seed43 | **0.26** | — |\n| eval-perdof-object-norm02-seed45-r3 | **0.12** | — |\n\n## 部署实验\n\n| exp_id | GPU | PID |\n|--------|-----|-----|\n| eval-adaptive-k-spatial-p90-seed44 | cuda:0 | 384493 |\n| eval-random-selection-spatial-seed42-r2 | cuda:1 | 384767 |\n| eval-obs-only-spatial-norm02-seed48 | cuda:2 | 385298 |\n| eval-vla-only-spatial-seed48 | cuda:3 | 385639 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-deploy-bjb1-18228-batch.md"
+}

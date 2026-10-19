@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "470abd3c08adec87fa53",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 spatial k2 results",
+  "task_key": "worker_harvest_bjb1-32546-spatial-k2-results_20260525T051315",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-spatial-k2-results_20260525T051315_result.json",
+    "occurrence": 1,
+    "bytes": 2429,
+    "sha256": "c96c8bcc764a8a8f5f2d7fa3f4b1492f094fe5caf654a9b40a3c383d9253ae20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个 K=2 Spatial 实验已完成（包括 s49 Adaptive）。\n\n## 状态总览\n\n| exp | mode | seed | SR | trials | 状态 |\n|-----|------|------|----|--------|------|\n| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 46 | **0.800** | 200 | ✅ 完成 |\n| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 48 | **0.805** | 200 | ✅ 完成 |\n| Adaptive τ=0.25 K=2 | adaptive_conformal_crm | 49 | **0.810** | 200 | ✅ 完成 |\n| VLA-only | vla_only | 46 | **0.800** | 200 | ✅ 完成 |\n| VLA-only | vla_only | 48 | **0.775** | 200 | ✅ 完成 |\n| VLA-only | vla_only | 49 | **0.795** | 200 | ✅ 完成 |\n\n**配对 Δ (Adaptive − VLA-only)**: s46: 0.000 ｜ s48: +0.030 ｜ s49: +0.015 ｜ **均值: Adaptive 0.805 vs VLA 0.790, Δ=+0.015**\n\n## Per-task SR\n\n任务简写：T1=between_plate_ramekin, T2=next_to_ramekin, T3=from_table_center, T4=on_cookie_box, T5=in_top_drawer, T6=on_ramekin, T7=next_to_cookie_box, T8=on_stove, T9=next_to_plate, T10=on_wooden_cabinet\n\n**Adaptive K=2 τ=0.25**\n| seed | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 |\n|------|----|----|----|----|----|----|----|----|----|-----|\n| 46 | 1.00 | 0.95 | 0.95 | 0.90 | 0.75 | 0.00 | 0.95 | 0.80 | 0.80 | 0.90 |\n| 48 | 1.00 | 1.00 | 1.00 | 0.95 | 0.65 | 0.00 | 0.95 | 0.80 | 0.85 | 0.85 |\n| 49 | 0.95 | 1.00 | 1.00 | 1.00 | 0.70 | 0.00 | 1.00 | 0.80 | 0.80 | 0.85 |\n\n**VLA-only**\n| seed | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 |\n|------|----|----|----|----|----|----|----|----|----|-----|\n| 46 | 0.95 | 0.95 | 1.00 | 1.00 | 0.75 | 0.00 | 0.95 | 0.80 | 0.75 | 0.85 |\n| 48 | 1.00 | 0.95 | 0.95 | 0.95 | 0.70 | 0.00 | 0.95 | 0.70 | 0.75 | 0.80 |\n| 49 | 1.00 | 0.95 | 1.00 | 0.95 | 0.70 | 0.00 | 1.00 | 0.75 | 0.80 | 0.80 |\n\n## Adaptive Stats (K=2)\n| seed | mean_unc | trigger_rate | tau | total_steps | crm_steps |\n|------|----------|--------------|-----|-------------|-----------|\n| 46 | 0.1826 | 19.06% | 0.25 | 28553 | 5442 |\n| 48 | 0.1869 | 20.00% | 0.25 | 28244 | 5650 |\n| 49 | 0.1878 | 19.99% | 0.25 | 28134 | 5624 |\n\n**关键观察**：\n- T6 (on_ramekin) 在所有 6 个实验里全部 0%，是 task-level 失败（与方法无关）\n- Adaptive 提升主要来自 T8/T9 等中等难度任务的稳定性\n- trigger_rate 均稳定在 ~20%，与 τ=0.25 设计一致\n- s49 (last running on cuda:2/3) 实际已写入 JSON 并附 final overall 81.0% 行，进程已结束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-spatial-k2-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ed733602682f35806ca",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb2 28827 gpu check",
+  "task_key": "worker_ops_bjb2-28827-gpu-check_20260519T134318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb2-28827-gpu-check_20260519T134318_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "8a3a072839446d6446fe130c2f11026af4088e030ccfdc478b2f6c5832b543c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-28827 GPU 状态\n\n| GPU | 显存占用 | GPU利用率 | 状态 | 实验 |\n|-----|---------|----------|------|------|\n| **0** | 1 MiB / 24564 MiB | 0% | **空闲** | 无（train-crm-k1-v2 tmux 存在但进程未占 GPU） |\n| **1** | 2839 MiB | 16% | 占用 | argmin object K=5 seed44 (PID 758237) |\n| **2** | 2375 MiB | 19% | 占用 | random_selection object seed46 K=10 (PID 693631) |\n| **3** | 2006 MiB | 19% | 占用 | crm_obs_only spatial seed44 K=10 norm0.2 (PID 697045) |\n| **4** | 6206 MiB | 17% | 占用 | vla_only spatial seed44 (PID 835816, 刚启动 ~45min) |\n| **5** | 1 MiB / 24564 MiB | 0% | **空闲** | 无 |\n\n### 活跃 tmux sessions (4个)\n- `eval-argmin-object-k5-seed44` → GPU 1\n- `eval-random-seed46-t16` → GPU 2\n- `eval-spatial-obs-only-norm02-seed44` → GPU 3\n- `eval-vla-only-spatial-seed44` → GPU 4\n\n### perdof norm005 seed45\n**未在 bjb2-28827 上运行**，ps 和 tmux 中均无相关进程。\n\n### 可用 GPU\n**GPU 0 和 GPU 5 空闲**，可立即部署新实验。2 张卡可同时跑 2 个评估任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb2-28827-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24035176a2a4fc39f97d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose k2 l2 harvest",
+  "task_key": "worker_diagnose_k2-l2-harvest_20260519T212754",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_k2-l2-harvest_20260519T212754_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "7336847336e41d0aa806bf62abf4828d4675f577cfa85504d11422a7fb4e4f41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：运行中，约 45% 完成。**\n\n- **进程** PID 995736，已运行 55 分钟，状态 `Rl`（running）\n- **进度**：10 个 task × 5 episodes = 50 episodes 总计。目前完成了 5 个 task 的全部 episodes（25 ep）+ 第 6 个 task 的 2 ep = **27/50 episodes（54%）**\n- 每个 episode 约 151s，剩余 ~23 episodes ≈ **58 分钟**\n- **预计完成时间**：约 1 小时后\n\n当前 log 中没有 \"Episode\" 关键词（用的是 \"ep\" 格式），grep 返回 0。输出重定向到 `/tmp/k2_l2_calibration.log` 而非 `logs/` 目录下的 log 文件。JSON 会在全部 50 episodes 跑完后才写入 `logs/k2_l2_calibration.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-k2-l2-harvest.md"
+}

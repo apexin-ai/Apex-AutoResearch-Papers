@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "240243ae0a38687b245a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779398752.md",
+  "task_key": "loop_23_1779398752",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779398752.md",
+    "occurrence": 1,
+    "bytes": 4192,
+    "sha256": "43400202978fcfd82a002e928ba422c68e58415fee631eb4407402e238cca9dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T21:25:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，即使 Director 指定白名单外 GPU 也必须 push back\n- π0.5 实验线：bjb2-40593 上跑，模型路径 `/root/autodl-tmp/`，必须用 MEAN_STD normalization（不是 QUANTILES），image 必须 [-1,1] for SigLIP，vision tower 需要 key remap（437 keys）\n- Norm sweep 数据已 ALL LOCKED，不要再跑新的 norm sweep 实验，也不要修改已锁定的结果\n- Plan A 核心结果 LOCKED（Object 18.3%±2.1%, Spatial 35.0%±1.0%），不可更改\n- CoRL 2026 DDL: 2026-05-29，≤8 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-40593**: π0.5 实验服务器，log `/tmp/eval_pi05_quicktest.log`，PID 831620（可能已退出）\n- **bjb1-18228**: norm sweep 实验，3 个 RUNNING（cuda:0/2/3），PID 642428/642506/642775\n- **bjb2-28827**: adaptive-k P90-seed44（cuda:0, PID 975409）+ norm003-seed67（cuda:5, PID 969788，cron 报 process gone miss 2/5）\n- **bjb1-32546**: 空闲（6 GPU 全空）\n- 项目路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/`\n- 产出目录: `artifacts/`\n\n### 3. 📊 当前状态\n**刚做完**: Session 初始化（read_registry, reconcile_crons, read report.md, read ROADMAP）。收到 `eval-pi05-baseline-object-seed42-r2` 完成回调，已 spawn worker (`worker_analysis_eval-pi05-baseline-object-seed42-r2_20260521T045550`) 去 bjb2-40593 分析日志，**尚未收到 Worker 回调**。\n\n**RUNNING 实验**:\n- `eval-adaptive-k-spatial-p90-seed44-bjb2` — Spatial P90 第三个 seed，完成后 LOCK Spatial sweep\n- `eval-obs-only-object-norm003-seed66` — norm sweep 补充 seed\n- `eval-obs-only-object-norm005-seed66` — norm sweep 补充 seed\n- `eval-obs-only-object-norm01-seed66` — norm sweep 补充 seed\n- `eval-obs-only-object-norm003-seed67` — **⚠️ cron 报 process gone, miss 2/5**，可能需要诊断\n\n**PREPARING**: 44 项（包括 random-selection-object-seed42-r3、vla-only-spatial-seed50 等）\n\n**等待中**:\n- Worker `worker_analysis_eval-pi05-baseline-object-seed42-r2_20260521T045550` 回调 — π0.5 quicktest 结果分析\n- `eval-obs-only-object-norm003-seed67` 可能已失败，需要 cron 继续 miss 计数或人工诊断\n\n### 4. 📋 待办（条件触发式）\n- π0.5 Worker 回调到达 → 读分析结果：SR>0% → 向 Director 汇报 GO + 立即铺 9-GPU baseline multi-seed + CRM pipeline；SR=0% → 向 Director 汇报 NO-GO + 评估 Plan B (lerobot native API)\n- `eval-adaptive-k-spatial-p90-seed44-bjb2` 完成 → LOCK Spatial Adaptive K Sweep，更新 ROADMAP\n- `eval-obs-only-object-norm003-seed67` miss 累计到 5/5 → 标记 failed，诊断原因\n- seed66 三个 norm sweep 实验完成 → harvest 指标，更新 norm sweep 统计\n- 所有 norm sweep + P90 完成 → Figure 2 生成（norm sweep curve），这是 P0 论文任务\n- π0.5 pipeline GO 后 → 分配 bjb1-32546 的 6 GPU 跑 π0.5 baseline multi-seed\n\n### 5. 🎯 战略上下文\n- **项目核心**: Adaptive inference-time compute for frozen VLAs。Plan A = K=2 L2 distance + selective CRM correction，已证明 Pareto 最优（双 benchmark 最高 SR + 最低 compute）\n- **决策链**: D092(Plan A GO) → D094(Spatial 完成 35.0%) → D095/D096(π0.5 实验线启动) → D097(Spatial Adaptive K + Latency LOCKED)\n- **π0.5 是当前最关键决策点**: 前两次都 0%（normalization bug + vision tower key mismatch）。fix3 是第三次尝试。如果再 0%，π0.5 线可能要放弃或走 lerobot native API（但 lerobot 被 torch.compile assertion error 阻塞）\n- **易错点**: \n  - `eval-pi05-baseline-object-seed42-r2` 在 registry 中状态是 PREPARING（不是 RUNNING），因为它是通过 fix3 quicktest 方式手动启动的（PID 831620），不是通过 submit_training_job 正式提交的。更新 registry 时需要手动补 spec\n  - bjb2-40593 磁盘 `/usr/bin/nvidia-smi` 分区只剩 44G/437G (90% used) ⚠️，提交新实验前必须检查\n  - norm003-seed67 进程可能已死但没有 sentinel/W&B，需要关注是否需要 retry\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779398752.md"
+}

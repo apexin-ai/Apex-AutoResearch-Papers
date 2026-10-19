@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "130cfadc82bd6d69ef1c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy pi05 baseline 6gpu direct",
+  "task_key": "worker_deploy_pi05-baseline-6gpu-direct_20260521T080717",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-baseline-6gpu-direct_20260521T080717.log",
+    "occurrence": 1,
+    "bytes": 859416,
+    "sha256": "f2c83ff9bf8013ef21cb749d17417b00186f6454d7939d9b9026a149b208c38c"
+  },
+  "statistics": {
+    "messages": 714,
+    "user_turns": 0,
+    "tool_calls": 292,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 124,
+      "tool_call": 292,
+      "tool_result": 292,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 714,
+      "chunks": [
+        {
+          "path": "130cfadc82bd6d69ef1c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "130cfadc82bd6d69ef1c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "130cfadc82bd6d69ef1c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "130cfadc82bd6d69ef1c-part-0004.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-pi05-baseline-6gpu-direct.md"
+}

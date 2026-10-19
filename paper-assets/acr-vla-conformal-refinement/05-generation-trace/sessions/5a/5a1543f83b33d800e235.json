@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a1543f83b33d800e235",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "sync pi05 model weights to servers",
+  "task_key": "worker_sync_pi05-model-weights-to-servers_20260525T083056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_sync_pi05-model-weights-to-servers_20260525T083056_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "e8a95157f40bb7ceba2013cc749314a76f78f0da8aa736badb0fb2d8bb1bd6f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无需 sync，两个目标服务器都已经有完整的模型权重。\n\n## 同步状态汇报\n\n**源文件** (bjb1-18228): `/root/autodl-tmp/models/pi05_libero_finetuned/`\n- 总大小：7.0G\n- `model.safetensors`：7,473,096,344 bytes\n- 10 个文件 + .cache 目录\n\n**bjb2-28827**: ✅ 已存在\n- 总大小：7.0G\n- `model.safetensors`：7,473,096,344 bytes（与源完全一致）\n- 所有附属文件齐全（config.json, policy_preprocessor.json, train_config.json 等）\n\n**bjb1-32546**: ✅ 已存在\n- 总大小：7.0G\n- `model.safetensors`：7,473,096,344 bytes（与源完全一致）\n- 所有附属文件齐全\n\n两台目标服务器在 5 月 21 日就已经各自下载过完整模型权重，文件 size 与源逐字节匹配，可直接用于 π0.5 eval 实验。无需执行 relay sync，也无需清理本地临时文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-pi05-model-weights-to-servers.md"
+}

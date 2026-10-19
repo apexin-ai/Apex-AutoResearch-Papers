@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3073c4fedc4199449d3d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh verify evaluate inference mode",
+  "task_key": "worker_ssh_verify-evaluate-inference-mode_20260520T061415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify-evaluate-inference-mode_20260520T061415_result.json",
+    "occurrence": 1,
+    "bytes": 2880,
+    "sha256": "93e36afa0f9ebcd28e9f1b5bf54f41081deb79da3416b665bc079897f6e80610"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已经足够了。\n\n---\n\n```\n推理模式: batched（共享 KV cache）\n证据代码行: smolvla_wrapper.py:319, 227-268\nKV cache: 有，encode_prefix 一次，KV cache repeat_interleave(K) 后所有 K 个 sample 并行去噪\n```\n\n### 详细分析\n\n**1. VLA action sampling：batched，共享 KV cache**\n\n核心调用链（`smolvla_wrapper.py`）：\n\n- **L316-319** `get_obs_features_and_samples()`：\n  ```python\n  obs_feat, kv_cache, pad_masks = self.encode_prefix(...)   # 一次 VLM forward\n  samples = self.generate_k_samples_batched(kv_cache, pad_masks, K=K)\n  ```\n\n- **L227-268** `generate_k_samples_batched()`：\n  - L238-242: KV cache 通过 `repeat_interleave(K, dim=0)` 从 `(B, ...)` 扩展到 `(B*K, ...)`\n  - L245: noise shape = `(B*K, chunk_size, max_act_dim)`\n  - L247-255: **单个去噪循环**（不是 K 个循环），`B*K` 个 sample 同时走完所有 denoising steps\n  - L258: reshape 回 `(B, K, chunk_size, FULL_ACTION_DIM)`\n\n代码中也保留了老版本的 sequential 实现 `generate_k_samples()`（L194-225，`for _ in range(K)` 循环），但 **evaluate.py 调用的是 `_batched` 版本**。\n\n**2. KV cache 复用：有**\n\n`encode_prefix()`（L168-190）做一次 VLM forward pass 并返回 `past_key_values`。`generate_k_samples_batched()` 把这个 cache `repeat_interleave` 到 K 份，所有 K 个 sample 共享同一份 prefix encoding。VLM 编码只做 1 次，不是 K 次。\n\n**3. 各 mode 的调用路径**\n\n| Mode | 采样方式 | CRM | 具体路径 |\n|------|----------|-----|----------|\n| `vla_only` | `get_obs_features_and_samples(K)` → batched → mean of K samples | 无 | `select_action_vla_only` (evaluate.py ~L155) |\n| `crm_perdof` / `acr_vla` / `crm_scalar` / `crm_obs_only` | 同上 batched K=10 → CGS → argmin → CRM refine | 有 | `select_action_crm` (evaluate.py ~L170) |\n| `reconvla` | 同上 batched K=10 → scalar Euclidean argmin | 无 CRM | `select_action_reconvla` (evaluate.py ~L200) |\n| `random_selection` | 同上 batched K=10 → random pick 1 | 无 | `select_action_random` (evaluate.py ~L215) |\n| `adaptive_k` | `get_obs_features_and_samples_adaptive(k_init=2, k_full=10)` → 先 batched 生成 2 个，L2 > threshold 则再 batched 生成 8 个 → fast path: mean of 2; full path: argmin + CRM obs_only | 条件触发 | `select_action_adaptive_k` (evaluate.py ~L295) |\n\n**adaptive_k 细节**：`generate_adaptive_k_samples()`（wrapper L332-366）先调 `generate_k_samples_batched(K=2)`，判断 L2；若超阈值，再调 `generate_k_samples_batched(K=8)` 并 `torch.cat`。两次都复用同一个 KV cache，不重新编码。\n\n**结论：所有 mode 均为 batched + shared KV cache。** 论文中声明的延迟计算可以基于\"VLM encode 1 次 + batched denoising\"来分析，不需要乘以 K 倍的 VLM forward cost。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-evaluate-inference-mode.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "145d35d95769761135b0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval failures bjb1",
+  "task_key": "worker_diagnose_eval-failures-bjb1_20260513T233539",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-failures-bjb1_20260513T233539_result.json",
+    "occurrence": 1,
+    "bytes": 1757,
+    "sha256": "8b219a37678451e5d37df06034a8621f42a71faf0ceac5f39cf16cffd1b3fe88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因已定位。\n\n---\n\n- **失败原因**：`rollout_single` 在每个 episode 开始时只调 `env.set_init_state()` 而不调 `env.reset()`，robosuite 的 `done` 标志未被清除，后续 `env.step()` 抛出 `ValueError: executing action in terminated episode`。\n\n- **详细分析**：\n\n  三个实验的 traceback 完全一致，崩溃点在 `evaluate.py:203`：\n\n  ```python\n  def rollout_single(env, init_state, action_fn, max_steps=300):\n      obs = env.set_init_state(init_state)\n      for _ in range(5):\n          obs, _, _, _ = env.step(np.zeros(7))  # ← 这里崩溃\n  ```\n\n  `set_init_state()` 设置了初始状态但不重置 robosuite 内部的 `self.done` 标志。当前一个 episode 正常结束（`done=True`，成功完成任务）或异常终止后，环境仍处于 terminated 状态。robosuite `base.py:376` 检查到 terminated 就抛异常。\n\n  `eval-acr-spatial-v2` 的日志最能说明问题——它在 step 17 先触发了一次（被 try/except 捕获，返回 False），但下一个 rollout 的 warm-up steps（第 203 行）在 try/except 之外，直接 crash 了整个进程。\n\n- **修复建议**：\n\n  在 `rollout_single` 中，`set_init_state` 之前加 `env.reset()`：\n\n  ```python\n  def rollout_single(env, init_state, action_fn, max_steps=300):\n      env.reset()                          # ← 加这行\n      obs = env.set_init_state(init_state)\n      for _ in range(5):\n          obs, _, _, _ = env.step(np.zeros(7))\n  ```\n\n  同时，warm-up 步骤也应放进 try/except 内，避免同类异常再次 crash 整个进程。\n\n- **是否可重试**：是，修复代码后直接重跑即可。这是确定性的代码 bug，与 OOM/GPU/环境无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-failures-bjb1.md"
+}

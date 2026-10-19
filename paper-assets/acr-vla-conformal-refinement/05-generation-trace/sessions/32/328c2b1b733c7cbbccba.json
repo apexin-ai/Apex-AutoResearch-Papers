@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "328c2b1b733c7cbbccba",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_6_1778821895.md",
+  "task_key": "loop_6_1778821895",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_6_1778821895.md",
+    "occurrence": 1,
+    "bytes": 4820,
+    "sha256": "8d12089c8e541c5db2e94a18f6e0f8fd49404b1155cca193a93e86bfa67235f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:40:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **gpu_ids 白名单**仅含 `bjb2-40593:cuda:0, bjb1-18228:cuda:0-3`。bjb1-32546 和 bjb2-28827 虽已被 Director 批准跑实验（D021 等），但**不在 config gpu_ids 中**——新实验提交前必须确认 Director 是否已更新白名单，否则 push back\n- **D025 生效**：perdof \"52.5%\" 已失效（实际 42%@5/10 tasks），**禁止在任何汇报/论文中引用旧 D019 数据**\n- **D023 生效**：Claim 2 (ACI/COC) 已放弃，CoRL 论文只做单 Claim (CRM correction)\n- **D024 生效**：bjb2-40593 上 eval-acr-spatial-v4-default-r3 需 kill，但上一 session 未完成 kill 操作\n- **Framing 裁决挂起**：spatial 全 10 task 结果出来前**禁止做 framing 决策**，禁止启动 paper 写作\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base 环境\n  - cuda:0 → eval-acr-spatial-v4-obs-only-r2 (pid=270097)\n  - cuda:1 → eval-argmin-only-spatial (pid=231421)\n  - cuda:2 → eval-acr-spatial-v4-scalar (pid=288939)\n  - cuda:3 → eval-acr-spatial-v4-small/perdof (pid=253085)\n- **bjb1-32546** (6× RTX 4090): 同配置\n  - cuda:0 → eval-reconvla-object (pid=9659)\n  - cuda:1 → eval-acr-object-v4-perdof (pid=11116)\n  - cuda:2 → eval-acr-object-v4-obs-only (pid=13806)\n  - cuda:3 → eval-acr-object-v4-scalar (pid=14003)\n  - cuda:4 → eval-vla-only-object (pid=17222)\n  - cuda:5 → eval-vla-mean-object (pid=18808)\n- **bjb2-28827** (6× RTX 4090): magnitude sweep 刚提交\n  - cuda:0-3 → eval-mag-perdof-norm{003,005,02,03} (pid=13185/13456/13728/14260)\n  - cuda:4-5 → eval-mag-obsonly-norm{005,02} (pid=14854/15190)\n- **bjb2-40593** (1× RTX 4090 D): eval-reconvla-object n=20 运行中；无 .git repo，CRM cache 在旧路径\n- Checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,scalar_unc,obs_only}/crm_best.pt`\n- 16 个 cron 监控活跃，均确认进程存活\n\n### 3. 📊 当前状态\n**刚做完**：D021-D025 系列决策执行——重新瞄准 CoRL、drop Claim 2/3、提交三路 ablation + magnitude sweep、注册 baselines、invalidate D019 perdof claim\n\n**16 个实验 RUNNING**：\n- Spatial 4-way ablation (bjb1-18228): perdof 42%@5tasks, obs_only 57.5%@4tasks, argmin 37.5%@8tasks, scalar 80%@2tasks(easy tasks only)。预计 6-9h 完成全 10 tasks\n- Object 4-way + 2 baselines (bjb1-32546): 刚启动，无结果\n- Magnitude sweep 6 组 (bjb2-28827): perdof norm∈{0.03,0.05,0.2,0.3} + obsonly norm∈{0.05,0.2}，刚启动\n\n**14 个 PREPARING**：precompute shards (v2/v3/v4)、object-v6-full、reconvla-spatial-v1 等，均无 GPU 分配\n\n**等待中**：\n- 16 个 cron 回调（实验完成时触发）\n- 无 pending Worker 回调\n- 无 pending Director 决策（Director 等 spatial 全 10 task 结果）\n\n### 4. 📋 待办（条件触发式）\n- **bjb1-18228 spatial 全 10 task 完成** → spawn Worker 汇总 4-way 对比表 → 向 Director 汇报 Claim 1 framing 裁决材料（Scenario A: perdof > obs_only → per-DOF narrative; Scenario B: obs_only ≥ perdof → \"learned correction is key\" narrative）\n- **bjb1-32546 object eval 完成** → cross-benchmark validation 对比 spatial 结论\n- **bjb2-28827 magnitude sweep 完成** → norm sensitivity curve，确认 0.1 是否最优\n- **D024 尚未执行** → kill bjb2-40593 上 eval-acr-spatial-v4-default-r3 进程，释放 GPU\n- **Spatial + Object 结果齐全** → 启动 Paper Agent 写 CoRL 初稿（abstract DDL May 26）\n- **argmin-only 完成** → 验证预期回落至 ~34%（与 eval-reconvla-spatial-v3 的 34%@10tasks 一致）\n\n### 5. 🎯 战略上下文\n**核心问题**：Per-DOF conformal statistics 是否比 obs-only / scalar 更好？当前数据说\"不一定\"——obs_only 57.5% > perdof 42%，但 tasks 不全（4 vs 5），**必须等全 10 task**。\n\n**决策链**：D018(归一化根因) → D019(perdof 52.5%,已被 D025 推翻) → D020(obs_only val_loss 更好) → D021(重瞄 CoRL) → D022(drop Claim 3) → D023(drop Claim 2) → D024(kill default-r3) → D025(perdof 实际 42%)\n\n**最容易判断错的事**：\n- 不要因为 obs_only 当前领先就提前做 framing——3-4 个 hard tasks 没跑完，结果可能反转\n- scalar 当前 80% 是假象——只跑了 2 个 easy tasks，最终会大幅下降\n- bjb2-28827 的 magnitude sweep 实验没有 hypothesis 字段，完成后需要补填\n- eval-vla-only-object 和 eval-vla-mean-object 是后来手动注册的 baselines，spec 可能不完整\n\n**DDL 压力**：CoRL abstract ~May 26 (11天)，full paper ~Jun 2 (18天)。单 Claim 论文需要 spatial + object + magnitude sweep 三组证据全部到位。Paper 写作还没开始。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778821895.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37170ccb46efb72026bb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval mag obsonly norm03 object cron",
+  "task_key": "worker_analysis_eval-mag-obsonly-norm03-object-cron_20260516T074107",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-mag-obsonly-norm03-object-cron_20260516T074107_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "b5d7a225b76dd74fe53746a35bc834a93997f60db2a739b942be354d8956b3ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清理）。\n\n```\nSTATUS: success\nOVERALL_SR: 19% (19/100)\nPER_TASK_SR:\n  alphabet_soup: 0%\n  cream_cheese: 0%\n  salad_dressing: 30%\n  bbq_sauce: 30%\n  ketchup: 0%\n  tomato_sauce: 10%\n  butter: 20%\n  milk: 20%\n  chocolate_pudding: 50%\n  orange_juice: 30%\nREGISTRY: updated (DONE, conclusion=success)\nCRON: already deleted\n```\n\n**对比**: norm=0.3 (19%) 与 norm=0.1 (19%) 持平，低于 norm=0.2 (22%)，高于 argmin baseline (12%) 和 default (17%)。norm=0.2 仍是 obs_only magnitude sweep 的最优点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-mag-obsonly-norm03-object-cron.md"
+}

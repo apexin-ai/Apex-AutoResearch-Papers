@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51e09e98c50aff7d20ba",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 long seed43 44 bjb1 18228",
+  "task_key": "worker_deploy_pi05-long-seed43-44-bjb1-18228_20260522T154153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-long-seed43-44-bjb1-18228_20260522T154153_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "778aa24cf7b782aedb7777d4981d269c85e63527597e9008d680259f8843f324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Long seed43/44 已经在跑了。**\n\n当前 bjb1-18228 GPU 状态：\n\n| GPU | 进程 | 命令 |\n|-----|------|------|\n| cuda:0 | PID 883211 | python (其他任务) |\n| cuda:1 | PID 25433 | `evaluate.py --mode vla_only --model pi05 --benchmark long --seed 43 --n_action_steps 10 --max_steps 520 --n_rollouts 10` |\n| cuda:2 | PID 25708 | `evaluate.py --mode vla_only --model pi05 --benchmark long --seed 44 --n_action_steps 10 --max_steps 520 --n_rollouts 10` |\n| cuda:3 | 空闲 | - |\n\n两个 eval 已在运行，参数与目标基本一致，唯一差异是 **`--n_rollouts 10`**（任务要求 20）。需要确认：是否需要停掉重启用 `n_rollouts=20`，还是 10 就是正确的？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-long-seed43-44-bjb1-18228.md"
+}

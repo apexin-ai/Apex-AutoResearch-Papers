@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a665a0e749c2351037b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops verify scalar crm data r2",
+  "task_key": "worker_ops_verify-scalar-crm-data-r2_20260518T102505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_verify-scalar-crm-data-r2_20260518T102505_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "09c0f09aa521420947ccbe7a0df4364de0ab2d4947580c96bf1d8967e6ae0b20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。以下是验证结果。\n\n## Scalar CRM 数据验证结果\n\n### 找到的 JSON 文件\n\n| 文件路径 | 服务器 | seed | SR | norm | n_rollouts |\n|----------|--------|------|----|------|------------|\n| `logs/eval_object_scalar_seed43.json` | bjb1-32546 | 43 | **10%** | 0.1 | 10 |\n| `logs/eval_object_scalar_seed44_r2.json` | bjb1-32546 | 44 | **6%** | 0.1 | 10 |\n| `logs/eval_object_scalar_seed45.json` | bjb2-28827 | 45 | **9%** | 0.1 | **20** |\n| *(无 JSON，仅 registry 记录)* | bjb1-32546 | 42 | **9%** (9/100) | 0.1 | 10 |\n\n### 与 magnitude_curve_data.json 对比\n\n| seed | 记录值 | JSON 实际值 | Registry 值 | 匹配? |\n|------|--------|-------------|-------------|-------|\n| 43 | 10% | 10% (10/100) | 10% | YES |\n| 44 | 6% | 6% (6/100) | 6% | YES |\n| 45 | 9% | 9% (18/200) | 9% | YES |\n| 42 | **未记录** | 无文件 | 9% (9/100) | **缺失** |\n\n### 结论\n\n**三个已记录的数据点 (seed43=10%, seed44=6%, seed45=9%, mean=8.33%) 全部正确**，与服务器上的 JSON 文件和 registry 完全吻合。\n\n**两个需要关注的问题：**\n\n1. **seed42 (9%) 被遗漏**：`eval-acr-object-v4-scalar` 在 bjb1-32546 上完成了 seed42 的完整评估（10 tasks x 10 rollouts = 100 trials，9% SR），使用相同 checkpoint 和 `--max_correction_norm 0.1`。但 magnitude_curve_data.json 中 scalar baseline 未包含此数据。如果纳入，mean 从 8.33% (n=3) 变为 8.5% (n=4)。\n\n2. **seed45 的 n_rollouts 不一致**：seed43/44 使用 10 rollouts/task，但 seed45 使用了 **20 rollouts/task** (total=200)。SR 值 (9%) 本身没错，但样本量不同可能影响 std 估计的可比性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-scalar-crm-data-r2.md"
+}

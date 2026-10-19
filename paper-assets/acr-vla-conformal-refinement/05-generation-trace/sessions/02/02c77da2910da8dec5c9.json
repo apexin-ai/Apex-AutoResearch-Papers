@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02c77da2910da8dec5c9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep rsync object ckpt",
+  "task_key": "worker_prep_rsync-object-ckpt_20260522T010208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_rsync-object-ckpt_20260522T010208_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "9b776fb240dc267cd27f111987ffbd11e4aac848b3d257771ebc6d28a5bc42a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 结果\n\n**Rsync Object CRM checkpoint**\n| 目标服务器 | 文件大小 | MD5 | 状态 |\n|-----------|---------|-----|------|\n| bjb1-18228 (源) | 2.4M | `7f0f1731d3d62056755b10e77b33f61f` | ✓ |\n| bjb1-32546 | 2.4M | `7f0f1731d3d62056755b10e77b33f61f` | ✓ |\n| bjb2-28827 | 2.4M | `7f0f1731d3d62056755b10e77b33f61f` | ✓ |\n\n路径：`/root/autodl-tmp/checkpoints/crm_pi05_full/object/crm_best.pt`\n\n**Spatial 训练进度**\n- Epoch 50/50，batch 550/1695（约 32% 完成最后一个 epoch）\n- Epoch 49 val_loss = **0.006138**（new best）\n- PID 805017 仍在运行（已跑 5h41m）\n- 预计还需 ~20-30 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-rsync-object-ckpt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3262cb2b129c776e0989",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 quicktest results",
+  "task_key": "worker_diagnose_pi05-quicktest-results_20260521T050912",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-quicktest-results_20260521T050912_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "56d4d1635fb71043df94580eddb844ae493b49bc464307c2ea751424b7f05088"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：eval-pi05-baseline-object-seed42-r2\n\n**状态：已完成** (EXIT_CODE=0)\n\n注意：PID 831620 当前正在运行一个**新的** quicktest（`--n_rollouts 5 --output_file logs/eval_pi05_quicktest.json`），不是 r2 实验。r2 实验已结束并写出 JSON。\n\n### 每 task Success Rate（每 task 20 rollouts）\n\n| Task | SR | Successes/Total |\n|------|----|-----------------|\n| pick_up_the_alphabet_soup | 0.0% | 0/20 |\n| pick_up_the_cream_cheese | 0.0% | 0/20 |\n| pick_up_the_salad_dressing | 0.0% | 0/20 |\n| pick_up_the_bbq_sauce | 0.0% | 0/20 |\n| pick_up_the_ketchup | 0.0% | 0/20 |\n| pick_up_the_tomato_sauce | 0.0% | 0/20 |\n| pick_up_the_butter | 0.0% | 0/20 |\n| pick_up_the_milk | 0.0% | 0/20 |\n| pick_up_the_chocolate_pudding | 0.0% | 0/20 |\n| pick_up_the_orange_juice | 0.0% | 0/20 |\n\n### Overall SR: **0.0% (0/200)**\n\n### 结论\n\n**全 10 task 均为 0% SR，无任何信号。** 200 次 rollout 中无一成功。日志中还出现了 CUDA OOM 错误（部分 rollout 在 step 0 就因显存不足崩溃），说明即使不 OOM 的 rollout 也全部失败。\n\n按照 Director 的 GO/NO-GO 标准：**NO-GO，应关闭 π0.5 线。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-quicktest-results.md"
+}

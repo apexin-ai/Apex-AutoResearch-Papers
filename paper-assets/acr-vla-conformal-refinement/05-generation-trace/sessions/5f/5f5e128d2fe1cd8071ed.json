@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "5f5e128d2fe1cd8071ed",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval supp goal adapt tau025 s46",
+  "task_key": "cron_hook_eval-supp-goal-adapt-tau025-s46",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_eval-supp-goal-adapt-tau025-s46.jsonl",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "c8fed04f8e06970ee14cb2b03bed8883fe82ed990b6feefbf42f752babd90d7c"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "user": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T01:35:55.395016+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: eval-supp-goal-adapt-tau025-s46\n- project: acr-vla-conformal-refinement\n- server: bjb2-28827\n- log_path: /root/runs/acr-vla-conformal-refinement/eval-supp-goal-adapt-tau025-s46.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-supp-goal-adapt-tau025-s46",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T01:36:54.757468+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "⏰ API 当前限速（所有账号），请稍后重试。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-supp-goal-adapt-tau025-s46"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-supp-goal-adapt-tau025-s46.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28d9694c9cf57aceef33",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval obs only object norm005 seed43",
+  "task_key": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105540",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105540_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "e3997bebf1c60f9aaaed42d4040acbca1702e40d763474dbb2e686d55d179a02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**eval-obs-only-object-norm005-seed43** — DONE (success)\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **13% (13/100)** |\n| seed44 对比 | 12% → 差异 1pp，高度一致 |\n\n**Per-task 分布：**\n\n| Task | seed43 |\n|------|--------|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 20% |\n| bbq_sauce | 30% |\n| ketchup | 10% |\n| tomato_sauce | 0% |\n| butter | 0% |\n| milk | 10% |\n| chocolate_pudding | 30% |\n| orange_juice | 30% |\n\n两个 seed 均值 12.5%，方差很小，Figure 2 error bars 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-obs-only-object-norm005-seed43-copy-2.md"
+}

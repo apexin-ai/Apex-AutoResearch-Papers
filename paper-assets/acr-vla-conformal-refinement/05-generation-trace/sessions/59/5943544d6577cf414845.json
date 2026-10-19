@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5943544d6577cf414845",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check and kill 3servers",
+  "task_key": "worker_ssh_check-and-kill-3servers_20260517T115858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-and-kill-3servers_20260517T115858_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "8b9cca85961460d221ace4bac658b6ee0d4ff4ed6c08ad6fc6a50633f16861d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== bjb2-28827 cuda:2 PID 401104 ===\n判断：保留\n证据：运行 20:55，< 30 分钟。日志显示正在初始化（已加载 CRM 337,438 params，已加载 10 tasks），尚未进入 rollout 阶段，属正常启动耗时。\n\n=== bjb1-18228 cuda:1 PID 617632 ===\n判断：保留\n证据：运行 19:24，< 30 分钟。日志显示正在初始化（已加载 CRM 327,198 params，已加载 10 tasks），尚未进入 rollout 阶段，属正常启动耗时。\n\n=== bjb2-40593 cuda:0 PID 388460 ===\n判断：已 kill（Director 确认）\n验证：进程已终止（PROCESS_GONE）。cuda:0 已释放 — 0MiB / 24564MiB，无运行进程。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-and-kill-3servers.md"
+}

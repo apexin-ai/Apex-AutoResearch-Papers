@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5726053a19c5d6367301",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check bjb1 32546 cuda4 deploy",
+  "task_key": "worker_ops_check-bjb1-32546-cuda4-deploy_20260519T014538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-bjb1-32546-cuda4-deploy_20260519T014538_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "7588ddfa23e7c17779507828a56b492a0e81e0d5058c6d175778ef7860a5a6b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程全部在 cuda:4 上运行，确认存活。\n\n**部署汇报：**\n\n| 实验 | tmux session | 状态 |\n|---|---|---|\n| scalar-seed46（已有） | `eval-scalar-object-seed46` | 运行中，~9h，当前在 `pick_up_the_butter` 3/10 |\n| **perdof_norm005_seed45** | `eval-perdof-norm005-seed45-t16` | 已部署，PID 755612 |\n| **obs_only_default_seed48** | `eval-obs-only-default-seed48-t16` | 已部署，PID 755878 |\n\n**cuda:4 GPU 内存：14197MiB / 24564MiB (58%)，99% util**\n- PID 663877 (scalar-seed46): 2856MiB\n- PID 755612 (perdof-norm005-seed45): 5645MiB\n- PID 755878 (obs-only-default-seed48): 5645MiB\n\n还有 ~10GB 余量，三个进程运行稳定。scalar-seed46 尚未产出 .json 结果文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-bjb1-32546-cuda4-deploy.md"
+}

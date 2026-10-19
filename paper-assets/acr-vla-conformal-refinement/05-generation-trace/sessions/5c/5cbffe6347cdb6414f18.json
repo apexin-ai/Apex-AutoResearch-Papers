@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5cbffe6347cdb6414f18",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops eval readiness and training progress",
+  "task_key": "worker_ops_eval-readiness-and-training-progress_20260521T191058",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_eval-readiness-and-training-progress_20260521T191058.jsonl",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "9c0d4cab43e6377fdc76222e44a61eac7449cd894efedc0ebe53ff3904a98d9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:11:11.252744+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval-readiness-and-training-progress_20260521T191058"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-eval-readiness-and-training-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24bb640c06a219276732",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix bjb2 28827 cuda3 conflict",
+  "task_key": "worker_ops_fix-bjb2-28827-cuda3-conflict_20260516T112255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-bjb2-28827-cuda3-conflict_20260516T112255_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "b002551b361d6656b365e21c89839b7646c9f06e24aa396010e73065e5aa8e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n- PID 248932 (norm03 seed45) 已终止\n- PID 242264 (default seed45) 独占 cuda:3，5645 MiB / 24564 MiB，正常运行\n- 残留文件 `eval_object_obs_only_norm03_seed45.json` 已清理\n- norm03 seed45 不重新部署，等 GPU 释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bjb2-28827-cuda3-conflict.md"
+}

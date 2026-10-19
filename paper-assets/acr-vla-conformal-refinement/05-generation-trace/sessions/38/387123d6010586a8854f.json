@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "387123d6010586a8854f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "investigate bjb1 gpu audit",
+  "task_key": "worker_investigate_bjb1-gpu-audit_20260514T221229",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_bjb1-gpu-audit_20260514T221229_result.json",
+    "occurrence": 1,
+    "bytes": 2147,
+    "sha256": "fcf6a88d407732da44540a038605471dd110c978f000fdcb4634fc61386fc839"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。以下是审计报告：\n\n---\n\n## bjb1-18228 GPU 审计报告\n\n### 架构说明\n所有 4 个 eval 进程**共享 GPU 0** 加载 SmolVLA 模型（Type G），各自在独立 GPU 上做 compute（Type C）。PID 252489 是唯一例外——它的 compute 也在 GPU 0 上。\n\n### GPU 0 — 14764 MiB / 24564 MiB (60%) — 4 进程共享\n\n| PID | 显存 | Type | 实验 |\n|-----|------|------|------|\n| 231426 | 2655 MiB | G | eval-argmin-only-spatial |\n| 232820 | 2655 MiB | G | eval-tiny-correction-spatial |\n| 252489 | 5692 MiB | **C+G** | eval-acr-spatial-v4-default |\n| 253085 | 3714 MiB | G | eval-acr-spatial-v4-small |\n\n### GPU 1 — 1423 MiB / 24564 MiB (6%)\n- **PID 231426** — eval-argmin-only-spatial\n- Mode: `reconvla` (无 CRM)\n- **进度: 4/10 tasks** — 运行 4h25m\n- 已完成结果: task1=60%, task2=100%, task3=0%, task4=30%\n\n### GPU 2 — 1459 MiB / 24564 MiB (6%)\n- **PID 232820** — eval-tiny-correction-spatial\n- Mode: `acr_vla`, CRM v2, `max_correction_norm=0.05`\n- **进度: 4/10 tasks** — 运行 4h24m\n- 已完成结果: task1=70%, task2=90%, task3=0%, task4=30%\n\n### GPU 3 — 1459 MiB / 24564 MiB (6%)\n- **PID 253085** — eval-acr-spatial-v4-small\n- Mode: `acr_vla`, CRM v3_norm, `max_correction_norm=0.1`\n- **进度: 2/10 tasks** — 运行 1h42m\n- 已完成结果: task1=60%, task2=100%\n\n### 重要修正\n\n1. **cuda:3 不是不明进程**——是 eval-acr-spatial-v4-small (PID 253085) 的 compute 进程\n2. **eval-acr-spatial-v4-default 未 failed**——PID 252489 正在运行，已完成 1/10 tasks (task1=0%)。它的 stdout 走 pipe 到 tmux pane 而非 log 文件，可能是之前检测不到的原因\n3. **没有 stale 进程**——所有 4 个 PID 都活跃且在推进\n\n### Tmux Sessions\n- `eval-acr-spatial-v4-default` — PID 252489 ✅ RUNNING\n- `eval-argmin-only-spatial` — PID 231426 ✅ RUNNING\n- `eval-tiny-correction-spatial` — PID 232820 ✅ RUNNING\n- ⚠️ eval-acr-spatial-v4-small (PID 253085) **没有对应 tmux session**，日志写到 `/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-bjb1-gpu-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19215537cad81d8c3aa3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check perdof norm01 seed47 bjb1",
+  "task_key": "worker_ops_check-perdof-norm01-seed47-bjb1_20260517T225932",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-perdof-norm01-seed47-bjb1_20260517T225932_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "a4545f142fa099fbc2d1d5cebd2e268681a53d11eb3d38319542f0a8320de849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，结果如下：\n\n**Overall SR: 14.0% (14/100)** — 10 tasks x 10 rollouts，全部完成。\n\nPer-task breakdown:\n\n| Task | SR | Successes |\n|---|---|---|\n| chocolate_pudding | 40% | 4/10 |\n| salad_dressing | 30% | 3/10 |\n| bbq_sauce | 30% | 3/10 |\n| orange_juice | 20% | 2/10 |\n| butter | 10% | 1/10 |\n| milk | 10% | 1/10 |\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 0% | 0/10 |\n| ketchup | 0% | 0/10 |\n| tomato_sauce | 0% | 0/10 |\n\n**结论: success**（实验正常完成，结果为 negative — perdof norm=0.1 seed47 的 SR 仅 14%）\n\n- 模式: `crm_perdof`, baseline_mode: `single`, benchmark: `object`\n- 日志路径: `/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed47_r2.json`\n- 进程已退出，无残留进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-perdof-norm01-seed47-bjb1.md"
+}

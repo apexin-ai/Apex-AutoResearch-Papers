@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4070e1ac7bdc8b9b39ad",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 18228 batch",
+  "task_key": "worker_harvest_bjb1-18228-batch_20260518T141526",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-18228-batch_20260518T141526_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "27d0498089425ba85d0329cfd801e256a97db689052d668a32b35aed886e327a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n```\neval-vla-only-object-seed45-r2:      [DONE SR=11.0%] 11/100, registry已更新\neval-perdof-object-default-seed43:   [STILL RUNNING, task 3/10 (salad_dressing rollout 6/10)]\neval-obs-only-object-norm02-seed48-r2: [STILL RUNNING, task 8/10 (milk rollout 9/10), 当前累计 ~10/70]\n```\n\n**GPU 释放情况：**\n- cuda:1 — 已释放 (exp 1 完成)\n- cuda:3 — 占用中 (exp 2, 预计还需 ~5-6h，当前 3/10 tasks 用了 3h45m)\n- cuda:0 — 占用中 (exp 3, 接近完成，8/10 tasks done，预计 ~1-2h 内结束)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-18228-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "058ba4d91552b63b0d0b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix bjb1 32546 cuda4 dual process",
+  "task_key": "worker_ops_fix-bjb1-32546-cuda4-dual-process_20260518T023015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-bjb1-32546-cuda4-dual-process_20260518T023015_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "4001c0be29f7e8df5ec7b0be5db04a263adc78ca204581456bf76f681b7657bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done.\n\n- **Killed**: PID 557072 (`crm_obs_only`, 1 task completed, started later)\n- **Surviving**: PID 535595 (`crm_perdof`, 3 tasks completed, started earlier)\n- **GPU 4 state**: 4269 MiB / 24564 MiB used, 17% util — 5182 MiB freed up, sole occupant now."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bjb1-32546-cuda4-dual-process.md"
+}

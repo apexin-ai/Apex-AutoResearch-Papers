@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20fc7cac8bf7c7f1d54f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy smolvla long wrapper precompute",
+  "task_key": "worker_deploy_smolvla-long-wrapper-precompute_20260522T173110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-long-wrapper-precompute_20260522T173110_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "5c075dc9924a92b1ca8dc0d06a1a08f5f1c5c67a0948a59f3cdb5c0790a68eed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "partial 文件正常生成。任务已成功启动。\n\n**汇总**:\n- SmolVLA Long precompute (K=10) 在 bjb1-18228 cuda:2 运行中\n- 54059 samples, 速率 ~18 samples/s, 预计约 50 分钟完成\n- partial checkpoints 正常写入 `crm_cache_smolvla_k10/long/`\n- tmux session: `precompute_long_k10`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-smolvla-long-wrapper-precompute.md"
+}

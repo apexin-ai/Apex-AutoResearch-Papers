@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "521e199bb7120258560e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze crm k1 object plan702",
+  "task_key": "worker_analyze_crm-k1-object-plan702_20260520T143045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_crm-k1-object-plan702_20260520T143045_result.json",
+    "occurrence": 1,
+    "bytes": 1882,
+    "sha256": "bc9416f65dc27553bce0ac02f6fe52e75d13c1409f454004ce8585bc994287aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 实验 1: eval-crm-k1-object-seed42-plan702\n```\nexp_id: eval-crm-k1-object-seed42-plan702\nSR: N/A\nper_task: N/A\nconclusion: failed\n备注: 启动后立即崩溃 — UnboundLocalError: cannot access local variable 'unc_dim' (evaluate.py:466)。无 JSON 输出。\n```\n\n### 实验 2: eval-crm-k1-object-seed43-plan702\n```\nexp_id: eval-crm-k1-object-seed43-plan702\nSR: N/A\nper_task: N/A\nconclusion: failed\n备注: 同上，完全相同的 UnboundLocalError。\n```\n\n### 实验 3: eval-crm-k1-object-seed44-plan702\n```\nexp_id: eval-crm-k1-object-seed44-plan702\nSR: N/A\nper_task: N/A\nconclusion: failed\n备注: 同上，完全相同的 UnboundLocalError。\n```\n\n### 实验 4: eval-obs-only-spatial-norm02-seed42\n```\nexp_id: eval-obs-only-spatial-norm02-seed42\nSR: N/A (incomplete)\nper_task: [task1(pick_bowl_between)=9/10, task2(pick_bowl_next_to)=10/10, task3-10=未执行]\nconclusion: failed\n备注: 进程 exit code=0，但只完成了 2/10 tasks 就退出。无 JSON 输出，无 \"Overall success rate\"。\n      退出时间 2026-05-20T11:06:05Z。疑似脚本逻辑 bug 导致提前退出。\n      logs/ 和 runs/ 有两份不同日志（不同次运行），task2 结果分别为 9/10 和 10/10。\n```\n\n---\n\n### K=1 CRM Object 汇总\n\n**无法计算均值和标准差** — 三个 seed (42/43/44) 全部因相同 bug 崩溃。\n\n**根因**: `evaluate.py:466` 的 `unc_dim` 变量在 `crm_k1_accg` mode 下未被赋值。三个实验加载模型成功后，在构建评估环境时触发 `UnboundLocalError`。需要修复 `evaluate.py` 中该分支的 `unc_dim` 定义，然后重跑。\n\n**当前服务器上还在跑的相关进程**: `eval-obs-only-spatial-norm02-seed49` (GPU2)、`openvla-precompute-k1` (GPU0)、`eval_random_selection_object_seed44` (GPU4)、`dryrun_crm_k1_seed42` (dry run)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-crm-k1-object-plan702.md"
+}

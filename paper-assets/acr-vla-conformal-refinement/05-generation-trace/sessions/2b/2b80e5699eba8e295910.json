@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b80e5699eba8e295910",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval object v4 task1",
+  "task_key": "worker_diagnose_eval-object-v4-task1_20260513T224554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-object-v4-task1_20260513T224554_result.json",
+    "occurrence": 1,
+    "bytes": 1911,
+    "sha256": "f01df7ea4bfe9d69e30be15704be9f05ad3a6472c095ebcde0fdfc4fedad9c08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结论：**Bug，不是正常难度**\n\n### 确认的 Bug\n\n**`evaluate.py` 第 197-198 行：**\n```python\nobs = env.set_init_state(init_state)  # 设置 demo 初始状态，返回正确 obs\nenv.reset()                            # ← BUG：重置到默认状态，丢弃 init_state\n```\n\n**LIBERO 官方评估模式（lifelong/evaluate.py:260, metric.py:117）：**\n```python\nobs = env.set_init_state(init_states_)\n# 无 env.reset()\n# 然后 5 步零动作让物理引擎稳定\nfor _ in range(5):\n    env.step(np.zeros((env_num, 7)))\n```\n\n**影响：**\n1. `env.reset()` 将环境重置为默认状态，丢弃了从 demo 录制的 `init_state`\n2. `obs` 保存的是 `init_state` 的图像，但实际环境已经是 `reset()` 的状态 → **第一步的观测和环境状态不匹配**\n3. 后续步骤的 obs 来自 `env.step()` 是正确的，但环境已经从错误的初始状态开始\n4. 缺少 5 步零动作物理稳定步骤（次要问题）\n\n**此 bug 影响所有 10 个 task，不只 alphabet_soup。**\n\n### 当前进度\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 仍在运行（tmux session `eval-object-v4-full`, PID 103767） |\n| 完成 | Task 1/10 (alphabet_soup: 0/10 = 0%) |\n| 预计 | ~2.5h/task × 10 tasks ≈ 25h 总计 |\n| 异常 | 无 Traceback、无 Error，纯粹 rollout 全部失败 |\n\n### 修复建议\n\n`rollout_single` 应改为：\n```python\ndef rollout_single(env, init_state, action_fn, max_steps=300):\n    obs = env.set_init_state(init_state)\n    # 删除 env.reset()\n    # 添加物理稳定步骤\n    for _ in range(5):\n        obs, _, _, _ = env.step(np.zeros(7))\n    \n    for step in range(max_steps):\n        ...\n```\n\n### 建议\n\n当前评估结果不可信，应该**终止当前进程、修复后重跑**。继续跑完剩余 9 个 task 只会浪费 ~22.5h GPU 时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-object-v4-task1.md"
+}

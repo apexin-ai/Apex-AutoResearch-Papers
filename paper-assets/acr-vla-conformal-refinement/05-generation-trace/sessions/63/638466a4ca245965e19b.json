@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "638466a4ca245965e19b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops plan003 to eval scalar unc",
+  "task_key": "worker_ops_plan003-to-eval-scalar-unc_20260513T235456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_plan003-to-eval-scalar-unc_20260513T235456_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "859fb98d68032a0298cac5f0b9453e8e51630dadd8b1af596393a3b77a79bbb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "evaluate.py 已修复完成（4处改动），等待训练完成后立即启动 eval。\n\n**已完成的准备工作：**\n- 修复 `unc_dim = 3 * H_EFF` → `unc_dim = 3`（匹配训练时的 scalar_unc 配置）\n- 添加 `_to_scalar_uf()` 函数（40D CGS → 3D 压缩）\n- `select_action_crm` 增加 `mode` 参数，`crm_scalar` 模式自动压缩\n- 调用处传递 `args.mode`\n\n90秒后回来检查训练是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan003-to-eval-scalar-unc.md"
+}

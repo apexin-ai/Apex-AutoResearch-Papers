@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0adb77465f821303d2e2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code lto implementation",
+  "task_key": "worker_code_lto-implementation_20260519T024641",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_lto-implementation_20260519T024641.log",
+    "occurrence": 1,
+    "bytes": 647636,
+    "sha256": "d42e45ed80c5ecf6918af0403ee2cd497637cafb84338cbdd308e92f11cb03fc"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 1,
+    "tool_calls": 83,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 83,
+      "tool_result": 83,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "0adb77465f821303d2e2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0adb77465f821303d2e2-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "0adb77465f821303d2e2-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-lto-implementation.md"
+}

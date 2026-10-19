@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d636c1e2ab1cdfe015b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh scan bjb2 40593",
+  "task_key": "worker_ssh_scan-bjb2-40593_20260520T024110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scan-bjb2-40593_20260520T024110_result.json",
+    "occurrence": 1,
+    "bytes": 1302,
+    "sha256": "51095e0b5e7a29c2037f51c4b1f1edf0110adf638e335706d570d8e83b0fa921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX 4090 D | 4066/24564 MiB (17%) | 15% |\n\n### 运行中进程\n- **PID 647880** (cuda:0): `evaluate.py --mode adaptive_k --adaptive_threshold 0.054959 --k_full 10 --benchmark object --seed 44 --n_rollouts 10 --output_file logs/eval_adaptive_k_p25_seed44.json`\n\n### adaptive-k 进度 (eval-adaptive-k-p25-seed44)\n正在 task 5/10 (`pick_up_the_ketchup`, rollout 5/10)，约 **45% 完成**。\n\n已完成的 task 结果：\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0/10 |\n| cream_cheese | 1/10 |\n| salad_dressing | 1/10 |\n| bbq_sauce | 4/10 |\n| ketchup | 进行中 (0/5) |\n\n### adaptive-k JSON 输出\n**不存在** — `logs/eval_adaptive_k_*.json` 尚未生成，需等实验完成后才会写入。`logs/` 下也没有任何文件名含 \"adaptive\"。\n\n### 最新已完成的 JSON 文件 (logs/)\n| 文件 | 时间 | SR |\n|------|------|-----|\n| eval_object_vla_only_seed48.json | May 20 07:36 | **10%** (object, vla_only) |\n| eval_spatial_obs_only_norm02_seed44.json | May 20 04:28 | **32%** (spatial, crm_obs_only) |\n| eval_object_scalar_seed45_r2.json | May 19 19:40 | — |\n| eval_object_random_selection_seed42.json | May 18 20:17 | — |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scan-bjb2-40593.md"
+}

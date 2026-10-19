@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0607d03d67d71db4e816",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check eval smolvla acr goal seed42 exit",
+  "task_key": "worker_check_eval-smolvla-acr-goal-seed42-exit_20260522T055240",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_eval-smolvla-acr-goal-seed42-exit_20260522T055240.jsonl",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "a4418055b772c92c8d0187712b01b4f7f194aecd959c17643e6ab71604896ac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T05:52:52.141894+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_eval-smolvla-acr-goal-seed42-exit_20260522T055240"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-eval-smolvla-acr-goal-seed42-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51a9eca03933260aabb5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 phase2 pi05 and crm",
+  "task_key": "worker_deploy_bjb2-28827-phase2-pi05-and-crm_20260525T090556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-phase2-pi05-and-crm_20260525T090556_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "92c468300cf2da2f57084a2314d0419fb77789c44d1df742a567cfe5fd65a374"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 GPU 全部占满，部署完成。\n\n| GPU | 实验 | PID | 显存 | 利用率 |\n|-----|------|-----|------|--------|\n| cuda:0 | SmolVLA CRM Spatial s47 | 730605 | 6,287 MiB | 23% |\n| cuda:1 | π0.5 Adaptive Goal s43 | 732023 | 13,947 MiB | 20% |\n| cuda:2 | π0.5 Adaptive Object s42 | 732469 | 14,069 MiB | 18% |\n| cuda:3 | π0.5 VLA-only Object s43 | 732906 | 14,069 MiB | 18% |\n| cuda:4 | π0.5 Adaptive Object s43 | 733346 | 14,069 MiB | 19% |\n| cuda:5 | π0.5 VLA-only Goal s44 | 733787 | 13,947 MiB | 22% |\n\nSmolVLA CRM ~6.3GB，π0.5 模型 ~14GB，符合预期。6 个实验均已在 registry 注册为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-phase2-pi05-and-crm.md"
+}

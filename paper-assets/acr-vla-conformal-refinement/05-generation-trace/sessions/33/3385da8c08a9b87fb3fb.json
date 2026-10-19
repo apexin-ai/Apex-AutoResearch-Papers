@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3385da8c08a9b87fb3fb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze bjb1 32546 spatial",
+  "task_key": "worker_analyze_bjb1-32546-spatial_20260519T231940",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_bjb1-32546-spatial_20260519T231940_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "62d739ac9df7d755a9e144bd0abefd4d94e66a7d9a28d93908740a1faa963d9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总：\n\n## eval-obs-only-spatial-norm02-seed43-r2 结果\n\n**Overall SR: 34%** (34/100), 10 tasks × 10 rollouts 全部完成。\n\n### Per-task breakdown\n\n| Task | SR | Successes |\n|------|----|-----------|\n| between plate and ramekin | 90% | 9/10 |\n| next to ramekin | **100%** | 10/10 |\n| next to cookie box | **100%** | 10/10 |\n| on cookie box | 30% | 3/10 |\n| next to plate | 20% | 2/10 |\n| from table center | 0% | 0/10 |\n| in top drawer | 0% | 0/10 |\n| on ramekin | 0% | 0/10 |\n| on stove | 0% | 0/10 |\n| on wooden cabinet | 0% | 0/10 |\n\n### CRM Spatial 全 seed 汇总（obs_only, ε=0.2, K=10）\n\n| Seed | SR |\n|------|----|\n| 42 | 36% |\n| **43** | **34%** |\n| 44 | 35% |\n| 45 | 33% |\n| 46 | 33% |\n\n**5-seed 均值: 34.2%**（VLA-only baseline ~29.5%，CRM 提升约 +4.7pp）\n\nseed43 与其他 seed 一致，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-bjb1-32546-spatial.md"
+}

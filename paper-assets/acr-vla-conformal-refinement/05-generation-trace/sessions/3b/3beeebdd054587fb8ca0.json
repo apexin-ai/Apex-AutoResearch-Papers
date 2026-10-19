@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3beeebdd054587fb8ca0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag norm005 seed67 cron check",
+  "task_key": "worker_diag_norm005-seed67-cron-check_20260521T044046",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_norm005-seed67-cron-check_20260521T044046_result.json",
+    "occurrence": 1,
+    "bytes": 1567,
+    "sha256": "14645e9327c056a53bc21d76061c6e376ac6ae7648af780331da537ce86b4403"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，汇总如下：\n\n## 诊断结果\n\n### 1. eval-obs-only-object-norm005-seed67：**从未启动**\n\n- 无进程运行\n- 无日志文件、无 JSON 输出、无 sentinel\n- 服务器上 norm005 最新的 seed 是 seed66（非 seed67）\n- **Cron 告警原因**：该实验从未被启动，cron 监控了一个不存在的任务名。属于 cron 配置错误，不是 false positive。\n\n### 2. eval-obs-only-object-norm005-seed66（附带发现）：**进程已死，未完成**\n\n- 进程不在运行\n- 日志 `/root/autodl-tmp/logs/norm005_seed66.log` 停在第 9/10 个任务（chocolate_pudding），最后修改 12:41\n- 无输出 JSON\n- **状态：failed**（进程在最后一个任务 orange_juice 之前死亡）\n\n### 3. eval-obs-only-object-norm01-seed67：**已完成**\n\n- `overall_success_rate`: **14.0%** (14/100)\n- `per_task_sr`:\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 0% (0/10) |\n| salad_dressing | 20% (2/10) |\n| bbq_sauce | 40% (4/10) |\n| ketchup | 0% (0/10) |\n| tomato_sauce | 10% (1/10) |\n| butter | 0% (0/10) |\n| milk | 20% (2/10) |\n| chocolate_pudding | 20% (2/10) |\n| orange_juice | 30% (3/10) |\n\n- JSON: `/root/logs/eval_object_crm_obs_only_norm0.1_seed67.json`\n- **Cron miss 1/5 是 false positive**（已完成，cron 找不到 sentinel/W&B 而已）\n\n### 行动建议\n\n- norm005-seed67 需要手动启动（或修正 cron 监控名到实际存在的实验）\n- norm005-seed66 需要重跑（进程异常退出，差 1 个任务未完成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-norm005-seed67-cron-check.md"
+}

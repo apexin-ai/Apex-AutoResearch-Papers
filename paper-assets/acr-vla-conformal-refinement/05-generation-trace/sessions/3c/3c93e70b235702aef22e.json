@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c93e70b235702aef22e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis k2 l2 fmvd reanalysis",
+  "task_key": "worker_analysis_k2-l2-fmvd-reanalysis_20260519T190700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_k2-l2-fmvd-reanalysis_20260519T190700_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "81295677956a6e218ae1d2fca654c5157c3f934a434ef909dea2659b33036703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**数据限制：无法完成 K=2 分析。**\n\n检查了 `fmvd_calibration.json` 和生成脚本 `calibrate_fmvd.py`：\n\n- `compute_k10_variance()` 生成了 K=10 个 action samples，但只保存了聚合的标量 `k10_variance`（overall variance）\n- 原始 K=10 action vectors **没有写入 JSON**\n- 每步数据仅有：`fmvd`（标量）、`k10_variance`（标量）、`episode_success`\n- 无 per-DOF variance，无 raw action samples\n\n**结论：** 从现有数据无法做 K=2 子采样。需要修改 `calibrate_fmvd.py`，在 `compute_k10_variance()` 中保存原始 K=10 action vectors，然后重新跑校准。\n\n两个选项：\n\n1. **快速路径（~30min GPU）**：修改脚本，只收集 K=10 raw samples 并保存，不跑完整 evaluation。可以复用已有的环境 rollout 逻辑，只是多存一个 `k10_actions: [10, 7]` 字段\n2. **更快的近似（~5min GPU）**：只跑 K=2（不跑 K=10），直接收集 K=2 pairs 的 L2 距离，与已有的 `k10_variance` 做 Spearman 比对。省掉 8 次多余 forward pass\n\n要我走哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k2-l2-fmvd-reanalysis.md"
+}
