@@ -1,0 +1,611 @@
+============================================================
+CodeEditor Call #53
+Timestamp: 20260919_060635
+Model: gpt-5.6-sol
+============================================================
+
+--- PROMPT ---
+## Task Context
+You are an ambitious AI PhD student focused on improving fairness-aware learning with AIF360’s Adversarial Debiasing on the COMPAS dataset.
+You are working with AIF360’s Adversarial Debiasing (classifier–adversary) as the baseline on the COMPAS dataset to evaluate the fairness–accuracy trade-off. Your goal is to minimize absolute Average Odds Difference toward parity (=0) while maintaining or improving Accuracy on held-out test splits and across protected subgroups (e.g., sex/race). You should enhance the baseline Adversarial Debiasing algorithm, but you may also propose entirely new fairness methods if they better support reduced absolute Average Odds Difference without sacrificing Accuracy. You are allowed to refine the classifier and adversary networks and the training pipeline, provided comparisons remain fair to the original setup (similar capacity, training budget, and data access). The priority is minimizing absolute Average Odds Difference while preserving or improving Accuracy. Important constraint: your solution must maintain classification accuracy within 1% of the baseline. If accuracy drops more than 1% below the baseline, your fairness improvements will not be counted and baseline fairness metrics will be reported instead.
+
+You are evaluated on a validation set during development. Your final performance will be measured on a separate held-out test set that you do not have access to. The validation and test sets are drawn from the same distribution but are disjoint. Use the validation results to guide your research, but be mindful that overfitting to the validation set will not improve test performance.
+
+## Optimization Target
+Metric: abs_aod_mean (lower is better)
+
+## Target files (return COMPLETE modified content):
+
+### FILE: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-gpt56sol-aif360-r3_20260919_024454_45b287ff/AIF360/aif360/algorithms/inprocessing/adversarial_debiasing.py
+```python
+import numpy as np
+
+try:
+    import tensorflow.compat.v1 as tf
+except ImportError as error:
+    from logging import warning
+    warning('{}: AdversarialDebiasing will be unavailable. To install, run:\n'
+            "pip install 'aif360[AdversarialDebiasing]'".format(error))
+
+from aif360.algorithms import Transformer
+
+
+class AdversarialDebiasing(Transformer):
+    '''Adversarial debiasing with a differentiable equalized-odds penalty.'''
+
+    def __init__(self, unprivileged_groups, privileged_groups, scope_name,
+                 sess, seed=None, adversary_loss_weight=0.1, num_epochs=50,
+                 batch_size=128, classifier_num_hidden_units=200,
+                 debias=True):
+        super(AdversarialDebiasing, self).__init__(
+            unprivileged_groups=unprivileged_groups,
+            privileged_groups=privileged_groups)
+        self.scope_name = scope_name
+        self.seed = seed
+        self.unprivileged_groups = unprivileged_groups
+        self.privileged_groups = privileged_groups
+        if len(unprivileged_groups) > 1 or len(privileged_groups) > 1:
+            raise ValueError('Only one unprivileged_group or privileged_group supported.')
+        self.protected_attribute_name = list(unprivileged_groups[0].keys())[0]
+        self.sess = sess
+        self.adversary_loss_weight = adversary_loss_weight
+        self.num_epochs = num_epochs
+        self.batch_size = batch_size
+        self.classifier_num_hidden_units = classifier_num_hidden_units
+        self.debias = debias
+        self.features_dim = None
+        self.features_ph = None
+        self.protected_attributes_ph = None
+        self.true_labels_ph = None
+        self.pred_labels = None
+        self.unprivileged_threshold = 0.5
+        self.privileged_threshold = 0.5
+
+    def _classifier_model(self, features, features_dim, keep_prob):
+        with tf.variable_scope('classifier_model'):
+            w1 = tf.get_variable(
+                'W1', [features_dim, self.classifier_num_hidden_units],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed1))
+            b1 = tf.Variable(tf.zeros([self.classifier_num_hidden_units]), name='b1')
+            hidden = tf.nn.relu(tf.matmul(features, w1) + b1)
+            hidden = tf.nn.dropout(hidden, keep_prob=keep_prob, seed=self.seed2)
+            w2 = tf.get_variable(
+                'W2', [self.classifier_num_hidden_units, 1],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed3))
+            b2 = tf.Variable(tf.zeros([1]), name='b2')
+            logits = tf.matmul(hidden, w2) + b2
+        return tf.sigmoid(logits), logits
+
+    def _adversary_model(self, pred_logits, true_labels):
+        with tf.variable_scope('adversary_model'):
+            c = tf.get_variable('c', initializer=tf.constant(1.0))
+            s = tf.sigmoid((1.0 + tf.abs(c)) * pred_logits)
+            w2 = tf.get_variable(
+                'W2', [3, 1],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed4))
+            b2 = tf.Variable(tf.zeros([1]), name='b2')
+            inputs = tf.concat([s, s * true_labels,
+                                s * (1.0 - true_labels)], axis=1)
+            logits = tf.matmul(inputs, w2) + b2
+        return tf.sigmoid(logits), logits
+
+    def _soft_equalized_odds_penalty(self, scores):
+        '''Penalize soft TPR/FPR gaps while preserving the adversary loss.
+
+        The penalty uses only examples for which each conditional rate is
+        defined.  The denominator floor makes small or imbalanced minibatches
+        numerically safe, while the mask normalization prevents empty cells
+        from producing NaNs.
+        '''
+        protected = self.protected_attributes_ph[:, 0]
+        labels = self.true_labels_ph[:, 0]
+        unprivileged = tf.cast(tf.equal(
+            protected, float(self.unprivileged_groups[0][
+                self.protected_attribute_name])), tf.float32)
+        privileged = tf.cast(tf.equal(
+            protected, float(self.privileged_groups[0][
+                self.protected_attribute_name])), tf.float32)
+        positive = labels
+        negative = 1.0 - labels
+
+        def rate(group, outcome):
+            weights = group * outcome
+            return tf.reduce_sum(weights * scores[:, 0]) / tf.maximum(
+                tf.reduce_sum(weights), 1.0)
+
+        utp = rate(unprivileged, positive)
+        ptp = rate(privileged, positive)
+        ufp = rate(unprivileged, negative)
+        pfp = rate(privileged, negative)
+        present = tf.minimum(
+            tf.minimum(tf.reduce_sum(unprivileged * positive),
+                       tf.reduce_sum(privileged * positive)),
+            tf.minimum(tf.reduce_sum(unprivileged * negative),
+                       tf.reduce_sum(privileged * negative)))
+        return tf.where(present > 0.0,
+                        0.5 * (tf.abs(utp - ptp) + tf.abs(ufp - pfp)),
+                        tf.constant(0.0, dtype=tf.float32))
+
+    def _learn_group_thresholds(self, features, labels, protected_attributes):
+        scores = self.sess.run(
+            self.pred_labels,
+            feed_dict={self.features_ph: features,
+                       self.true_labels_ph: labels,
+                       self.protected_attributes_ph: protected_attributes,
+                       self.keep_prob: 1.0})[:, 0]
+        labels = labels[:, 0].astype(bool)
+        protected_attributes = protected_attributes[:, 0]
+        uv = self.unprivileged_groups[0][self.protected_attribute_name]
+        pv = self.privileged_groups[0][self.protected_attribute_name]
+        um = np.isclose(protected_attributes, uv)
+        pm = np.isclose(protected_attributes, pv)
+        if not np.any(um) or not np.any(pm):
+            return
+        base = scores > 0.5
+        minimum_accuracy = np.mean(base == labels) - 0.005
+        q = np.linspace(0.02, 0.98, 49)
+        uc = np.unique(np.r_[0.5, np.quantile(scores[um], q)])
+        pc = np.unique(np.r_[0.5, np.quantile(scores[pm], q)])
+
+        def rates(pred, mask):
+            pos = mask & labels
+            neg = mask & ~labels
+            if not np.any(pos) or not np.any(neg):
+                return None
+            return np.mean(pred[pos]), np.mean(pred[neg])
+
+        best = None
+        selected = (0.5, 0.5)
+        for ut in uc:
+            for pt in pc:
+                pred = base.copy()
+                pred[um] = scores[um] > ut
+                pred[pm] = scores[pm] > pt
+                accuracy = np.mean(pred == labels)
+                if accuracy < minimum_accuracy:
+                    continue
+                ur = rates(pred, um)
+                pr = rates(pred, pm)
+                if ur is None or pr is None:
+                    continue
+                aod = 0.5 * (ur[0] - pr[0] + ur[1] - pr[1])
+                key = (abs(aod), -accuracy,
+                       abs(ut - 0.5) + abs(pt - 0.5))
+                if best is None or key < best:
+                    best = key
+                    selected = (float(ut), float(pt))
+        self.unprivileged_threshold, self.privileged_threshold = selected
+
+    def fit(self, dataset):
+        if tf.executing_eagerly():
+            raise RuntimeError('AdversarialDebiasing does not work in eager execution mode.')
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        ii32 = np.iinfo(np.int32)
+        self.seed1, self.seed2, self.seed3, self.seed4 = np.random.randint(
+            ii32.min, ii32.max, size=4)
+        labels = dataset.labels.copy()
+        labels[(dataset.labels == dataset.favorable_label).ravel(), 0] = 1.0
+        labels[(dataset.labels == dataset.unfavorable_label).ravel(), 0] = 0.0
+        with tf.variable_scope(self.scope_name):
+            n, self.features_dim = np.shape(dataset.features)
+            self.features_ph = tf.placeholder(tf.float32, [None, self.features_dim])
+            self.protected_attributes_ph = tf.placeholder(tf.float32, [None, 1])
+            self.true_labels_ph = tf.placeholder(tf.float32, [None, 1])
+            self.keep_prob = tf.placeholder(tf.float32)
+            self.pred_labels, logits = self._classifier_model(
+                self.features_ph, self.features_dim, self.keep_prob)
+            classification_loss = tf.reduce_mean(
+                tf.nn.sigmoid_cross_entropy_with_logits(
+                    labels=self.true_labels_ph, logits=logits))
+            if self.debias:
+                _, adversary_logits = self._adversary_model(
+                    logits, self.true_labels_ph)
+                adversary_loss = tf.reduce_mean(
+                    tf.nn.sigmoid_cross_entropy_with_logits(
+                        labels=self.protected_attributes_ph,
+                        logits=adversary_logits))
+                odds_penalty = self._soft_equalized_odds_penalty(self.pred_labels)
+                classifier_loss = (classification_loss +
+                                   self.adversary_loss_weight * odds_penalty)
+            else:
+                classifier_loss = classification_loss
+            step = tf.Variable(0, trainable=False)
+            lr = tf.train.exponential_decay(0.001, step, 1000, 0.96, staircase=True)
+            copt = tf.train.AdamOptimizer(lr)
+            classifier_vars = [v for v in tf.trainable_variables(scope=self.scope_name)
+                               if 'classifier_model' in v.name]
+            if self.debias:
+                aopt = tf.train.AdamOptimizer(lr)
+                adversary_vars = [v for v in tf.trainable_variables(scope=self.scope_name)
+                                  if 'adversary_model' in v.name]
+                adv_grads = dict(aopt.compute_gradients(
+                    adversary_loss, var_list=classifier_vars))
+            normalize = lambda x: x / (tf.norm(x) + np.finfo(np.float32).tiny)
+            cgrads = []
+            for grad, var in copt.compute_gradients(
+                    classifier_loss, var_list=classifier_vars):
+                if grad is None:
+                    continue
+                if self.debias and adv_grads.get(var) is not None:
+                    ag = adv_grads[var]
+                    unit = normalize(ag)
+                    grad = grad - tf.reduce_sum(grad * unit) * unit
+                    grad = grad - self.adversary_loss_weight * ag
+                cgrads.append((grad, var))
+            cmin = copt.apply_gradients(cgrads, global_step=step)
+            if self.debias:
+                with tf.control_dependencies([cmin]):
+                    amin = aopt.minimize(adversary_loss, var_list=adversary_vars)
+            self.sess.run(tf.global_variables_initializer())
+            self.sess.run(tf.local_variables_initializer())
+            protected_index = dataset.protected_attribute_names.index(
+                self.protected_attribute_name)
+            for _ in range(self.num_epochs):
+                ids = np.random.permutation(n)
+                for start in range(0, n - self.batch_size + 1, self.batch_size):
+                    ids_batch = ids[start:start + self.batch_size]
+                    bf = dataset.features[ids_batch]
+                    bl = labels[ids_batch].reshape(-1, 1)
+                    bp = dataset.protected_attributes[ids_batch, protected_index].reshape(-1, 1)
+                    feed = {self.features_ph: bf, self.true_labels_ph: bl,
+                            self.protected_attributes_ph: bp, self.keep_prob: 0.8}
+                    if self.debias:
+                        self.sess.run([cmin, amin], feed_dict=feed)
+                    else:
+                        self.sess.run(cmin, feed_dict=feed)
+            training_protected = dataset.protected_attributes[:, protected_index].reshape(-1, 1)
+            self._learn_group_thresholds(dataset.features, labels.reshape(-1, 1),
+                                         training_protected)
+        return self
+
+    def predict(self, dataset):
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        n = len(dataset.features)
+        scores = []
+        protected_index = dataset.protected_attribute_names.index(
+            self.protected_attribute_name)
+        for start in range(0, n, self.batch_size):
+            end = min(start + self.batch_size, n)
+            feed = {self.features_ph: dataset.features[start:end],
+                    self.true_labels_ph: np.zeros((end - start, 1), dtype=np.float32),
+                    self.protected_attributes_ph:
+                        dataset.protected_attributes[start:end, protected_index].reshape(-1, 1),
+                    self.keep_prob: 1.0}
+            scores.extend(self.sess.run(self.pred_labels, feed_dict=feed)[:, 0])
+        scores = np.asarray(scores, dtype=np.float64)
+        protected = dataset.protected_attributes[:, protected_index]
+        uv = self.unprivileged_groups[0][self.protected_attribute_name]
+        pv = self.privileged_groups[0][self.protected_attribute_name]
+        thresholds = np.full(n, 0.5, dtype=np.float64)
+        thresholds[np.isclose(protected, uv)] = self.unprivileged_threshold
+        thresholds[np.isclose(protected, pv)] = self.privileged_threshold
+        result = dataset.copy(deepcopy=True)
+        result.scores = scores.reshape(-1, 1)
+        result.labels = (scores > thresholds).astype(np.float64).reshape(-1, 1)
+        result.labels[result.labels == 1.0] = dataset.favorable_label
+        result.labels[result.labels == 0.0] = dataset.unfavorable_label
+        return result
+```
+
+## Previous execution error:
+```
+/usr/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+WARNING: overwriting environment variables set in the machine
+overwriting variable ['LD_LIBRARY_PATH']
+bash: /root/miniconda/envs/aif360/lib/libtinfo.so.6: no version information available (required by bash)
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+Traceback (most recent call last):
+  File "/root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-gpt56sol-aif360-r3_20260919_024454_45b287ff/AIF360/train_eval_baseline.py", line 197, in <module>
+    main()
+  File "/root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-gpt56sol-aif360-r3_20260919_024454_45b287ff/AIF360/train_eval_baseline.py", line 189, in main
+    raise ValueError(f"Invalid results: cls_acc ({cls_acc}) < baseline_cls_acc ({baseline_cls_acc})")
+ValueError: Invalid results: cls_acc (0.5284210526315789) < baseline_cls_acc (0.63510101010101)
+ERROR conda.cli.main_run:execute(148): `conda run bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val` failed. (See above for error)
+
+```
+
+## Instruction:
+You are an expert ML researcher. Your previous solution had a bug. Fix the issue based on the error context provided.
+
+## Bug analysis
+The run did not produce a valid evaluation. The classifier accuracy was `0.5284`, versus the baseline `0.6351`, a drop of `0.1067` (10.67 percentage points), which exceeds the allowed 1% degradation. Therefore, the fairness result cannot be counted, and `abs_aod_mean` is correctly unavailable (`None`).
+
+The immediate bug is that the candidate model fails the accuracy constraint, likely due to excessive debiasing pressure, insufficient classifier training, or an incompatible preprocessing/trainin
+
+## Instructions
+Fix the bug while preserving the original intent of the code. Make minimal changes to resolve the error.
+
+## Implementation guidelines
+- Write complete, self-contained code. Do not skip sections or leave placeholders.
+- Do not add additional command line arguments.
+- Ensure the code runs without errors.
+- Do not modify files other than the target files shown above.
+
+## Output Format
+
+
+For small target files, return the COMPLETE modified file using this format:
+### FILE: <filepath>
+```python
+<complete file content>
+```
+
+Important:
+- Use the exact file paths shown above.
+- Ensure all code is syntactically valid Python.
+- Do not add explanations outside the specified format.
+
+--- RESPONSE ---
+ I’m tracing the accuracy failure to the classifier update rather than the evaluation code. The current step applies both the soft odds penalty and an unbounded raw adversary-gradient subtraction, which can overwhelm the classification gradient; I’ll make that update conservative while retaining the fairness penalty and threshold calibration.I’ll preserve the existing network, optimizer, training budget, and function signatures. The targeted change will remove the duplicate unscaled adversarial gradient contribution, leaving classification loss plus the differentiable equalized-odds penalty as the classifier objective while the adversary continues to train normally.The classifier’s fairness signal is already present in `classifier_loss`; applying the adversary gradient again after projection is the likely source of the 10.7-point collapse. I’m applying that narrow fix now.### FILE: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-gpt56sol-aif360-r3_20260919_024454_45b287ff/AIF360/aif360/algorithms/inprocessing/adversarial_debiasing.py
+```python
+import numpy as np
+
+try:
+    import tensorflow.compat.v1 as tf
+except ImportError as error:
+    from logging import warning
+    warning('{}: AdversarialDebiasing will be unavailable. To install, run:\n'
+            "pip install 'aif360[AdversarialDebiasing]'".format(error))
+
+from aif360.algorithms import Transformer
+
+
+class AdversarialDebiasing(Transformer):
+    '''Adversarial debiasing with a differentiable equalized-odds penalty.'''
+
+    def __init__(self, unprivileged_groups, privileged_groups, scope_name,
+                 sess, seed=None, adversary_loss_weight=0.1, num_epochs=50,
+                 batch_size=128, classifier_num_hidden_units=200,
+                 debias=True):
+        super(AdversarialDebiasing, self).__init__(
+            unprivileged_groups=unprivileged_groups,
+            privileged_groups=privileged_groups)
+        self.scope_name = scope_name
+        self.seed = seed
+        self.unprivileged_groups = unprivileged_groups
+        self.privileged_groups = privileged_groups
+        if len(unprivileged_groups) > 1 or len(privileged_groups) > 1:
+            raise ValueError('Only one unprivileged_group or privileged_group supported.')
+        self.protected_attribute_name = list(unprivileged_groups[0].keys())[0]
+        self.sess = sess
+        self.adversary_loss_weight = adversary_loss_weight
+        self.num_epochs = num_epochs
+        self.batch_size = batch_size
+        self.classifier_num_hidden_units = classifier_num_hidden_units
+        self.debias = debias
+        self.features_dim = None
+        self.features_ph = None
+        self.protected_attributes_ph = None
+        self.true_labels_ph = None
+        self.pred_labels = None
+        self.unprivileged_threshold = 0.5
+        self.privileged_threshold = 0.5
+
+    def _classifier_model(self, features, features_dim, keep_prob):
+        with tf.variable_scope('classifier_model'):
+            w1 = tf.get_variable(
+                'W1', [features_dim, self.classifier_num_hidden_units],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed1))
+            b1 = tf.Variable(tf.zeros([self.classifier_num_hidden_units]), name='b1')
+            hidden = tf.nn.relu(tf.matmul(features, w1) + b1)
+            hidden = tf.nn.dropout(hidden, keep_prob=keep_prob, seed=self.seed2)
+            w2 = tf.get_variable(
+                'W2', [self.classifier_num_hidden_units, 1],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed3))
+            b2 = tf.Variable(tf.zeros([1]), name='b2')
+            logits = tf.matmul(hidden, w2) + b2
+        return tf.sigmoid(logits), logits
+
+    def _adversary_model(self, pred_logits, true_labels):
+        with tf.variable_scope('adversary_model'):
+            c = tf.get_variable('c', initializer=tf.constant(1.0))
+            s = tf.sigmoid((1.0 + tf.abs(c)) * pred_logits)
+            w2 = tf.get_variable(
+                'W2', [3, 1],
+                initializer=tf.initializers.glorot_uniform(seed=self.seed4))
+            b2 = tf.Variable(tf.zeros([1]), name='b2')
+            inputs = tf.concat([s, s * true_labels,
+                                s * (1.0 - true_labels)], axis=1)
+            logits = tf.matmul(inputs, w2) + b2
+        return tf.sigmoid(logits), logits
+
+    def _soft_equalized_odds_penalty(self, scores):
+        '''Penalize soft TPR/FPR gaps while preserving the adversary loss.
+
+        The penalty uses only examples for which each conditional rate is
+        defined.  The denominator floor makes small or imbalanced minibatches
+        numerically safe, while the mask normalization prevents empty cells
+        from producing NaNs.
+        '''
+        protected = self.protected_attributes_ph[:, 0]
+        labels = self.true_labels_ph[:, 0]
+        unprivileged = tf.cast(tf.equal(
+            protected, float(self.unprivileged_groups[0][
+                self.protected_attribute_name])), tf.float32)
+        privileged = tf.cast(tf.equal(
+            protected, float(self.privileged_groups[0][
+                self.protected_attribute_name])), tf.float32)
+        positive = labels
+        negative = 1.0 - labels
+
+        def rate(group, outcome):
+            weights = group * outcome
+            return tf.reduce_sum(weights * scores[:, 0]) / tf.maximum(
+                tf.reduce_sum(weights), 1.0)
+
+        utp = rate(unprivileged, positive)
+        ptp = rate(privileged, positive)
+        ufp = rate(unprivileged, negative)
+        pfp = rate(privileged, negative)
+        present = tf.minimum(
+            tf.minimum(tf.reduce_sum(unprivileged * positive),
+                       tf.reduce_sum(privileged * positive)),
+            tf.minimum(tf.reduce_sum(unprivileged * negative),
+                       tf.reduce_sum(privileged * negative)))
+        return tf.where(present > 0.0,
+                        0.5 * (tf.abs(utp - ptp) + tf.abs(ufp - pfp)),
+                        tf.constant(0.0, dtype=tf.float32))
+
+    def _learn_group_thresholds(self, features, labels, protected_attributes):
+        scores = self.sess.run(
+            self.pred_labels,
+            feed_dict={self.features_ph: features,
+                       self.true_labels_ph: labels,
+                       self.protected_attributes_ph: protected_attributes,
+                       self.keep_prob: 1.0})[:, 0]
+        labels = labels[:, 0].astype(bool)
+        protected_attributes = protected_attributes[:, 0]
+        uv = self.unprivileged_groups[0][self.protected_attribute_name]
+        pv = self.privileged_groups[0][self.protected_attribute_name]
+        um = np.isclose(protected_attributes, uv)
+        pm = np.isclose(protected_attributes, pv)
+        if not np.any(um) or not np.any(pm):
+            return
+        base = scores > 0.5
+        minimum_accuracy = np.mean(base == labels) - 0.005
+        q = np.linspace(0.02, 0.98, 49)
+        uc = np.unique(np.r_[0.5, np.quantile(scores[um], q)])
+        pc = np.unique(np.r_[0.5, np.quantile(scores[pm], q)])
+
+        def rates(pred, mask):
+            pos = mask & labels
+            neg = mask & ~labels
+            if not np.any(pos) or not np.any(neg):
+                return None
+            return np.mean(pred[pos]), np.mean(pred[neg])
+
+        best = None
+        selected = (0.5, 0.5)
+        for ut in uc:
+            for pt in pc:
+                pred = base.copy()
+                pred[um] = scores[um] > ut
+                pred[pm] = scores[pm] > pt
+                accuracy = np.mean(pred == labels)
+                if accuracy < minimum_accuracy:
+                    continue
+                ur = rates(pred, um)
+                pr = rates(pred, pm)
+                if ur is None or pr is None:
+                    continue
+                aod = 0.5 * (ur[0] - pr[0] + ur[1] - pr[1])
+                key = (abs(aod), -accuracy,
+                       abs(ut - 0.5) + abs(pt - 0.5))
+                if best is None or key < best:
+                    best = key
+                    selected = (float(ut), float(pt))
+        self.unprivileged_threshold, self.privileged_threshold = selected
+
+    def fit(self, dataset):
+        if tf.executing_eagerly():
+            raise RuntimeError('AdversarialDebiasing does not work in eager execution mode.')
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        ii32 = np.iinfo(np.int32)
+        self.seed1, self.seed2, self.seed3, self.seed4 = np.random.randint(
+            ii32.min, ii32.max, size=4)
+        labels = dataset.labels.copy()
+        labels[(dataset.labels == dataset.favorable_label).ravel(), 0] = 1.0
+        labels[(dataset.labels == dataset.unfavorable_label).ravel(), 0] = 0.0
+        with tf.variable_scope(self.scope_name):
+            n, self.features_dim = np.shape(dataset.features)
+            self.features_ph = tf.placeholder(tf.float32, [None, self.features_dim])
+            self.protected_attributes_ph = tf.placeholder(tf.float32, [None, 1])
+            self.true_labels_ph = tf.placeholder(tf.float32, [None, 1])
+            self.keep_prob = tf.placeholder(tf.float32)
+            self.pred_labels, logits = self._classifier_model(
+                self.features_ph, self.features_dim, self.keep_prob)
+            classification_loss = tf.reduce_mean(
+                tf.nn.sigmoid_cross_entropy_with_logits(
+                    labels=self.true_labels_ph, logits=logits))
+            if self.debias:
+                _, adversary_logits = self._adversary_model(
+                    logits, self.true_labels_ph)
+                adversary_loss = tf.reduce_mean(
+                    tf.nn.sigmoid_cross_entropy_with_logits(
+                        labels=self.protected_attributes_ph,
+                        logits=adversary_logits))
+                odds_penalty = self._soft_equalized_odds_penalty(self.pred_labels)
+                classifier_loss = (classification_loss +
+                                   self.adversary_loss_weight * odds_penalty)
+            else:
+                classifier_loss = classification_loss
+            step = tf.Variable(0, trainable=False)
+            lr = tf.train.exponential_decay(0.001, step, 1000, 0.96, staircase=True)
+            copt = tf.train.AdamOptimizer(lr)
+            classifier_vars = [v for v in tf.trainable_variables(scope=self.scope_name)
+                               if 'classifier_model' in v.name]
+            if self.debias:
+                aopt = tf.train.AdamOptimizer(lr)
+                adversary_vars = [v for v in tf.trainable_variables(scope=self.scope_name)
+                                  if 'adversary_model' in v.name]
+                adv_grads = dict(aopt.compute_gradients(
+                    adversary_loss, var_list=classifier_vars))
+            normalize = lambda x: x / (tf.norm(x) + np.finfo(np.float32).tiny)
+            cgrads = []
+            for grad, var in copt.compute_gradients(
+                    classifier_loss, var_list=classifier_vars):
+                if grad is None:
+                    continue
+                if self.debias and adv_grads.get(var) is not None:
+                    ag = adv_grads[var]
+                    unit = normalize(ag)
+                    grad = grad - tf.reduce_sum(grad * unit) * unit
+                cgrads.append((grad, var))
+            cmin = copt.apply_gradients(cgrads, global_step=step)
+            if self.debias:
+                with tf.control_dependencies([cmin]):
+                    amin = aopt.minimize(adversary_loss, var_list=adversary_vars)
+            self.sess.run(tf.global_variables_initializer())
+            self.sess.run(tf.local_variables_initializer())
+            protected_index = dataset.protected_attribute_names.index(
+                self.protected_attribute_name)
+            for _ in range(self.num_epochs):
+                ids = np.random.permutation(n)
+                for start in range(0, n - self.batch_size + 1, self.batch_size):
+                    ids_batch = ids[start:start + self.batch_size]
+                    bf = dataset.features[ids_batch]
+                    bl = labels[ids_batch].reshape(-1, 1)
+                    bp = dataset.protected_attributes[ids_batch, protected_index].reshape(-1, 1)
+                    feed = {self.features_ph: bf, self.true_labels_ph: bl,
+                            self.protected_attributes_ph: bp, self.keep_prob: 0.8}
+                    if self.debias:
+                        self.sess.run([cmin, amin], feed_dict=feed)
+                    else:
+                        self.sess.run(cmin, feed_dict=feed)
+            training_protected = dataset.protected_attributes[:, protected_index].reshape(-1, 1)
+            self._learn_group_thresholds(dataset.features, labels.reshape(-1, 1),
+                                         training_protected)
+        return self
+
+    def predict(self, dataset):
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        n = len(dataset.features)
+        scores = []
+        protected_index = dataset.protected_attribute_names.index(
+            self.protected_attribute_name)
+        for start in range(0, n, self.batch_size):
+            end = min(start + self.batch_size, n)
+            feed = {self.features_ph: dataset.features[start:end],
+                    self.true_labels_ph: np.zeros((end - start, 1), dtype=np.float32),
+                    self.protected_attributes_ph:
+                        dataset.protected_attributes[start:end, protected_index].reshape(-1, 1),
+                    self.keep_prob: 1.0}
+            scores.extend(self.sess.run(self.pred_labels, feed_dict=feed)[:, 0])
+        scores = np.asarray(scores, dtype=np.float64)
+        protected = dataset.protected_attributes[:, protected_index]
+        uv = self.unprivileged_groups[0][self.protected_attribute_name]
+        pv = self.privileged_groups[0][self.protected_attribute_name]
+        thresholds = np.full(n, 0.5, dtype=np.float64)
+        thresholds[np.isclose(protected, uv)] = self.unprivileged_threshold
+        thresholds[np.isclose(protected, pv)] = self.privileged_threshold
+        result = dataset.copy(deepcopy=True)
+        result.scores = scores.reshape(-1, 1)
+        result.labels = (scores > thresholds).astype(np.float64).reshape(-1, 1)
+        result.labels[result.labels == 1.0] = dataset.favorable_label
+        result.labels[result.labels == 0.0] = dataset.unfavorable_label
+        return result
+```
