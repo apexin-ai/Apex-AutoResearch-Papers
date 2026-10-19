@@ -2,6 +2,7 @@
 """Finish the reading guides using metadata and Git trees, without asset downloads."""
 import csv, datetime, gzip, io, json, os, re, shutil, subprocess, urllib.request
 from pathlib import Path
+from urllib.parse import quote
 import build_trace_browser as browser
 import release_s3_batch as batch
 import update_release_catalogue as catalogue
@@ -21,7 +22,7 @@ def main():
     batch.checkout(repo)
     # Category guides are already tracked; include them so rewriting a guide
     # updates its current file rather than operating on a skipped worktree path.
-    patterns = batch.PATTERNS + '/paper-assets/*/*/README.md\n/research-snapshots/*/*/README.md\n/research-snapshots/*/*/*/README.md\n'
+    patterns = batch.PATTERNS + '/paper-assets/*/*/README.md\n/research-snapshots/*/*/README.md\n/research-snapshots/*/*/*/README.md\n/supplementary/*/pdf-index.json\n'
     (repo / '.git/info/sparse-checkout').write_text(patterns)
     batch.run(['git', 'sparse-checkout', 'reapply'], repo)
     browser.ROOT = catalogue.ROOT = guides.ROOT = repo
@@ -60,6 +61,30 @@ def main():
             directories.add(parent.as_posix()); parent = parent.parent
     manifests = list((repo / 'paper-assets').glob('*/08-index/asset-manifest.json'))
     snapshots = list((repo / 'research-snapshots').glob('*/*/08-index/asset-manifest.json'))
+    primary = [json.loads(path.read_text()) for path in manifests]
+    pdf_records = []
+    for pdf in documents['pdfs']:
+        pdf_records.append({**pdf, 'release_path':'supplementary/paper-exports-20260712/'+pdf['path']})
+    additional = repo / 'supplementary/exports/pdf-index.json'
+    if additional.exists():
+        for pdf in json.loads(additional.read_text())['pdfs']:
+            pdf_records.append({**pdf, 'release_path':'supplementary/exports/source/'+pdf['file']})
+    by_hash = {}
+    for pdf in pdf_records: by_hash.setdefault(pdf['sha256'], []).append(pdf)
+    normalized_title = lambda value: re.sub(r'[^\w]+', '', value.casefold())
+    lines = ['# Manuscript exports and revisions', '', 'These records preserve manuscript versions from the July export and revision bundles. Identical PDF bytes are grouped by SHA-256. A PDF record or a matching title does not establish a distinct paper, official submission, or acceptance.', '', '| Recorded manuscript title | Pages | PDF source copies | Related primary assets |', '|---|---:|---|---|']
+    for sha, versions in sorted(by_hash.items(), key=lambda item:item[1][0]['title'].casefold()):
+        pdf = versions[0]
+        exact = [m for m in primary if m.get('paper_sha256')==sha]
+        matching = exact or [m for m in primary if m.get('paper_pdf') and normalized_title(m['title'])==normalized_title(pdf['title'])]
+        files = ' · '.join(f'[PDF {i}]({quote(v["release_path"],safe="/")})' for i,v in enumerate(versions,1))
+        related = ' · '.join(f'[{m["project"]}](paper-assets/{m["project"]}/README.md)' for m in matching)
+        if related: related += ' (identical PDF)' if exact else ' (matching title)'
+        else: related = 'No identical PDF or exact title match in primary snapshots'
+        lines.append(f'| {pdf["title"].replace("|","/")} | {pdf["pages"]} | {files} | {related} |')
+    lines += ['', f'{len(pdf_records)} source PDF records; {len(by_hash)} unique PDF hashes. This is a file/version count.', '', '[Revision and rebuttal files](supplementary/exports/README.md) · [Reviewer response records](supplementary/rebuttal-share/README.md) · [Source snapshot history](SOURCE_SNAPSHOTS.md)', '']
+    (repo / 'MANUSCRIPT_EXPORTS.md').write_text('\n'.join(lines))
+    with (repo / 'CONTENTS.md').open('a') as out: out.write('\n[Manuscript exports and revisions](MANUSCRIPT_EXPORTS.md) groups duplicate PDF files and links matching primary project assets.\n')
     rows_checked = 0
     for path in manifests + snapshots:
         folder = path.parents[1]
