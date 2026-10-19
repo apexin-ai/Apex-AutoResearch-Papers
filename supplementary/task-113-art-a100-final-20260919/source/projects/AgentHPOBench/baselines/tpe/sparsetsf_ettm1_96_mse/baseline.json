@@ -1,0 +1,43 @@
+{
+  "task_id": "sparsetsf_ettm1_96_mse",
+  "repo": "SparseTSF",
+  "repo_url": "https://github.com/lss-1138/SparseTSF",
+  "year": 2024,
+  "metric": "test_mse_at_best_val",
+  "direction": "lower_is_better",
+  "paper_anchor": 0.314,
+  "paper_anchor_source": "SparseTSF ICML 2024 official long-term forecasting table for ETTm1 horizon-96 reports MSE=0.314.",
+  "dataset": {
+    "name": "ETTm1",
+    "source": "zhouhaoyi/ETDataset ETT-small/ETTm1.csv",
+    "local_path": "data/formal/ett_diverse/ETT-small/ETTm1.csv",
+    "features": "M",
+    "seq_len": 720,
+    "pred_len": 96,
+    "channels": 7
+  },
+  "budget": {
+    "epochs": 1,
+    "seed": 2023,
+    "baseline_config": {
+      "lr": 0.02,
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "period_len": 24,
+      "model_type": "linear",
+      "d_model": 128,
+      "grad_clip": 0.0,
+      "cosine": false
+    },
+    "search_space": {
+      "lr": {"choices": [0.002, 0.005, 0.01, 0.02, 0.03]},
+      "weight_decay": {"choices": [0.0, 0.0001, 0.001]},
+      "batch_size": {"choices": [128, 256, 512]},
+      "period_len": {"choices": [6, 12, 24, 48]},
+      "model_type": {"choices": ["linear", "mlp"]},
+      "d_model": {"choices": [64, 128, 256]},
+      "grad_clip": {"choices": [0.0, 1.0]},
+      "cosine": {"choices": [false, true]}
+    }
+  }
+}

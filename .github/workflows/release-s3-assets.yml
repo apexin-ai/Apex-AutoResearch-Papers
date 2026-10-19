@@ -9,7 +9,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: research-asset-release
+  group: research-asset-release-workspaces-v2
   cancel-in-progress: false
 jobs:
   release:

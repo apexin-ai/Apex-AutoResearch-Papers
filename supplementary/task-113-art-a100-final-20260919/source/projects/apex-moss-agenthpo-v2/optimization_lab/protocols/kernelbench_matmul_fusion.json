@@ -1,0 +1,16 @@
+{
+  "backend": "triton",
+  "correctness_trials": 5,
+  "display_name": "KernelBench Matmul + Subtract + Multiply + ReLU",
+  "gpu_arch": "Ampere",
+  "level": 2,
+  "performance_trials": 100,
+  "precision": "fp32",
+  "problem_id": 9,
+  "repository_commit": "423217d9fda91e0c2d67e4a43bf62f96f6d104f1",
+  "target_gpu": "A100",
+  "task_id": "kernelbench_matmul_fusion",
+  "task_path": "KernelBench/level2/9_Matmul_Subtract_Multiply_ReLU.py",
+  "task_sha256": "110e75834cd898f532262ce516e318b8e7a9e85acda705baefcebe687ff85b21",
+  "timeout_seconds": 300
+}

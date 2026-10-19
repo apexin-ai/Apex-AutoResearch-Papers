@@ -1,0 +1,16 @@
+{
+  "backend": "triton",
+  "correctness_trials": 5,
+  "display_name": "Cumsum Exclusive",
+  "gpu_arch": "Hopper",
+  "level": 1,
+  "performance_trials": 100,
+  "precision": "fp32",
+  "problem_id": 92,
+  "repository_commit": "423217d9fda91e0c2d67e4a43bf62f96f6d104f1",
+  "target_gpu": "H200",
+  "task_id": "level1/92_cumsum_exclusive.py",
+  "task_path": "KernelBench/level1/92_cumsum_exclusive.py",
+  "task_sha256": "ec1551c196130f5d7fae707f0750016c35b988e76aa3f1657da4347f463ced86",
+  "timeout_seconds": 300
+}

@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "phase_id": "hb-gen1-formal",
+  "selection_seed": "hb-gen1-v2",
+  "rounds": 8,
+  "executor_model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "model_transport": "codex-exec-chatgpt-login",
+  "client_version": "codex-cli-0.144.6",
+  "model_call_cap": 1700,
+  "evaluator_transaction_cap": 1140,
+  "gpu_exclusive_seconds_cap": 250000,
+  "cpu_evaluator_seconds_cap": 1450000,
+  "benchmarks": [
+    {
+      "suite": "kernelbenchx",
+      "repository": "https://github.com/BonnieW05/KernelBenchX",
+      "repository_commit": "fd4192293bf9a8c645327a9d46aa1e807f1f9cf2",
+      "dataset_commit": "fd4192293bf9a8c645327a9d46aa1e807f1f9cf2",
+      "evaluator": "kernelbenchx-call-exe-perf",
+      "candidates": [
+        {
+          "task_id": "Quantization/conv2d_w8a8.py",
+          "category": "quantized-convolution",
+          "source_path": "data/kernelbenchx/Quantization/conv2d_w8a8.py",
+          "source_sha256": "00d90f42cda63efccb071216a8084cbf2cfbe34b217fe538fddc878b1741e5e9",
+          "selection_digest": "43f47e3148ed3f7a94263b4880c9a1d3435e1f275fe1abdee2a8e0c2043417fc",
+          "eligible": true
+        },
+        {
+          "task_id": "Quantization/layernorm_w8a8.py",
+          "category": "quantized-normalization",
+          "source_path": "data/kernelbenchx/Quantization/layernorm_w8a8.py",
+          "source_sha256": "890ae6a77880dd4004f6d5adc40b910c691807b0d1ced8e1372cc4d243687c8c",
+          "selection_digest": "c8d9b4105123008e657f7ca667034dd6cf5e83a8836641b44e9af307972d6ad8",
+          "eligible": true
+        },
+        {
+          "task_id": "Quantization/bmm_w8a8.py",
+          "category": "quantized-batched-matmul",
+          "source_path": "data/kernelbenchx/Quantization/bmm_w8a8.py",
+          "source_sha256": "e8dff9a694fa8a52eb9a126496c219758cbeacb775ef7c82eb3e10178cc3286f",
+          "selection_digest": "f3895a53591d204829dd983e0f3a3d70b6d4524e94a2a1ce4da55df584a469cf",
+          "eligible": true
+        },
+        {
+          "task_id": "Quantization/attention_w8a8.py",
+          "category": "quantized-attention",
+          "source_path": "data/kernelbenchx/Quantization/attention_w8a8.py",
+          "source_sha256": "d217a9d784c631a30680dfffa3c5b2b97a7d481aa00b572555f13344c6752b9d",
+          "selection_digest": "ef6f2d3ac51018c299dc54f820eee2e3a8be41f9322dfb3e77ec7d49215ee0fe",
+          "eligible": true
+        },
+        {
+          "task_id": "Quantization/matmul_w8a8.py",
+          "category": "quantized-matmul",
+          "source_path": "data/kernelbenchx/Quantization/matmul_w8a8.py",
+          "source_sha256": "5e92b4e481fe508415b6d5e054cd534fc39df1fcc700656a9a21ccae61f641d9",
+          "selection_digest": "2c60cd78c953dad4c2a607186a7f64061ca96c1278af664c3b574c26f93506d6",
+          "eligible": true
+        },
+        {
+          "task_id": "Quantization/linear_w4a16.py",
+          "category": "mixed-precision-linear",
+          "source_path": "data/kernelbenchx/Quantization/linear_w4a16.py",
+          "source_sha256": "ff6cb752a497289e8966e69dfc5ca2add1612d2d161df461a781043671de7e1d",
+          "selection_digest": "f7871be21d17769e23733257f1e3f7567f2a261ef1e46e95ffab7eadad4d2fbd",
+          "eligible": true
+        },
+        {
+          "task_id": "Fusion/fused_relu_max_pool2d_conv2d.py",
+          "category": "fused-convolution-pooling-activation",
+          "source_path": "data/kernelbenchx/Fusion/fused_relu_max_pool2d_conv2d.py",
+          "source_sha256": "99fddc19b0e1987f7e64ef4e8711590696f9f15f469a3b887f1cf7bcda638177",
+          "selection_digest": "619f5a9da305b50b33ab1736d0d86ea24ec0ff8800b63ae7c323b16a1b17f3ca",
+          "eligible": true
+        },
+        {
+          "task_id": "MatrixMultiply/matmul_fp16.py",
+          "category": "fp16-matmul",
+          "source_path": "data/kernelbenchx/MatrixMultiply/matmul_fp16.py",
+          "source_sha256": "99c47c251e7ee8cc0b25ea7dd84acdc725f7f36251ca72e0833ea427897d4570",
+          "selection_digest": "ef5b8c715c8d48863a3352567890748ecd534403cb5bac65b850d4a88572625a",
+          "eligible": true
+        }
+      ],
+      "selected_heldout": [
+        "Quantization/conv2d_w8a8.py",
+        "Quantization/layernorm_w8a8.py",
+        "Quantization/bmm_w8a8.py",
+        "Quantization/attention_w8a8.py",
+        "Quantization/matmul_w8a8.py",
+        "Quantization/linear_w4a16.py",
+        "Fusion/fused_relu_max_pool2d_conv2d.py",
+        "MatrixMultiply/matmul_fp16.py"
+      ]
+    },
+    {
+      "suite": "compilergym-cbench",
+      "repository": "https://github.com/facebookresearch/CompilerGym",
+      "repository_commit": "64bdd6cd39967d3d2fe5e6c72deb15e830b838bb",
+      "dataset_commit": "64bdd6cd39967d3d2fe5e6c72deb15e830b838bb",
+      "evaluator": "compilergym-llvm-ic",
+      "candidates": [
+        {
+          "task_id": "qsort",
+          "category": "sorting",
+          "source_path": "benchmark://cbench-v1/qsort",
+          "source_sha256": "f5c370c1785f287148027edb75b073086efd6df418575d2d5f314eff5c965b54",
+          "selection_digest": "5cf2c93294a55831e21609bcd3b415e0b7b9783929a608025d5c0950ffe69b4d",
+          "eligible": true
+        },
+        {
+          "task_id": "bitcount",
+          "category": "integer",
+          "source_path": "benchmark://cbench-v1/bitcount",
+          "source_sha256": "09fdf01d5793d6daf1cbc6db13179e0de6097c7a6ce5fffa4a3ae476b6b51999",
+          "selection_digest": "76eb0e65da86f2902c4b7dfc3231dd8f5610ccc8398d5417455ad107bfbd99c6",
+          "eligible": true
+        },
+        {
+          "task_id": "bzip2",
+          "category": "compression",
+          "source_path": "benchmark://cbench-v1/bzip2",
+          "source_sha256": "508f2abc6faee67b32ce77c8698526ac0ad241e04aa3e10b972268085d8c1ad1",
+          "selection_digest": "9e884fd8121ae7f11772bd2125ec688c9c726711566af562460d992e99a27333",
+          "eligible": true
+        },
+        {
+          "task_id": "crc32",
+          "category": "checksum",
+          "source_path": "benchmark://cbench-v1/crc32",
+          "source_sha256": "bea5cd2b7e7c61d97a4d99fe51c5301e886f7a0b5cd736adc35f1935e5aa9062",
+          "selection_digest": "20212fa39d1d61b589c5933e536b229c56a9fe4b538d043b3ba944dd226da0a9",
+          "eligible": true
+        },
+        {
+          "task_id": "dijkstra",
+          "category": "graph",
+          "source_path": "benchmark://cbench-v1/dijkstra",
+          "source_sha256": "8cbda80e4f2c1f4ec747b4ef470be75a3c64eb65b05c25af58e6dbee4c684d0d",
+          "selection_digest": "0bdb1766aa01d72122da73afdbf7fe79fe149291a0b4d6788e8ea67e7245c529",
+          "eligible": true
+        },
+        {
+          "task_id": "stringsearch2",
+          "category": "string-search",
+          "source_path": "benchmark://cbench-v1/stringsearch2",
+          "source_sha256": "d4672d92796b63e8e5a53044de40f7e1040dcba4f924c98752c851e4759942ad",
+          "selection_digest": "21e616635b2c00a9e4877c2ef2234d7e08a80ae12662b4cdfe0192e17040008d",
+          "eligible": true
+        },
+        {
+          "task_id": "blowfish",
+          "category": "cryptography",
+          "source_path": "benchmark://cbench-v1/blowfish",
+          "source_sha256": "67e0b6bf85b321f7552598b25f2df7c017979034d1a57b2c29705783aa854716",
+          "selection_digest": "79ffe36617b2c8870ea62ffaf0ce7e7902996094ab85c70ad7c137731d867e46",
+          "eligible": true
+        },
+        {
+          "task_id": "susan",
+          "category": "image-processing",
+          "source_path": "benchmark://cbench-v1/susan",
+          "source_sha256": "639586dbaaa415f83582fd6c9e58c7f81bc9c52183640f0709b042d9b1bb4385",
+          "selection_digest": "30477e981967502500e2fdcc0627bfc31cd770dded3193d79d5390393f5ddb76",
+          "eligible": true
+        }
+      ],
+      "selected_heldout": ["qsort", "bitcount", "bzip2", "crc32", "dijkstra", "stringsearch2", "blowfish", "susan"]
+    },
+    {
+      "suite": "swe-perf",
+      "repository": "https://github.com/SWE-Perf/SWE-Perf",
+      "repository_commit": "9e8fed285ed640b51baaf66b13773706dc95aa45",
+      "dataset_commit": "6298f128c550e92ac25af17653cf092224046516",
+      "evaluator": "swe-perf-docker",
+      "candidates": [
+        {
+          "task_id": "astropy__astropy-13817",
+          "category": "astropy",
+          "source_path": "dataset://SWE-Perf/test/astropy__astropy-13817",
+          "source_sha256": "55aa75150fd32ebadac1ad0e761433ec090e0be0ca583974f2736f5e637a8da4",
+          "selection_digest": "034b2ee9bc178cddcfb376643726281e402725fc6847564e660fdd3c34cd6696",
+          "eligible": true
+        },
+        {
+          "task_id": "matplotlib__matplotlib-24250",
+          "category": "matplotlib",
+          "source_path": "dataset://SWE-Perf/test/matplotlib__matplotlib-24250",
+          "source_sha256": "cdcfe6b5ae76b9465a1ae4bc4936ef08e2a7500f43a7f89d502474aa0c2f540f",
+          "selection_digest": "190d31c6bcd28b7ed5112d116edbb2f642612acdf9069ec9d1cdab241f4aadb8",
+          "eligible": true
+        },
+        {
+          "task_id": "mwaskom__seaborn-2313",
+          "category": "seaborn",
+          "source_path": "dataset://SWE-Perf/test/mwaskom__seaborn-2313",
+          "source_sha256": "73cfff1738eb9f2bf70e361f0447a39b0a55392ac51efed65920149793ac2bde",
+          "selection_digest": "408f3d8e26776b7ebf8717ba1d14260d22d9abdec57dd9074403b0d69fa6a581",
+          "eligible": true
+        },
+        {
+          "task_id": "pydata__xarray-9407",
+          "category": "xarray",
+          "source_path": "dataset://SWE-Perf/test/pydata__xarray-9407",
+          "source_sha256": "78b882de62ff00e4bf8bd59569ac93295b2f3900102477ba57d708b97708d4f5",
+          "selection_digest": "0ccf400c8d71186fd2bb11c9d959baa67db223654b7a0148403a63bde722b754",
+          "eligible": true
+        },
+        {
+          "task_id": "pylint-dev__pylint-7747",
+          "category": "pylint",
+          "source_path": "dataset://SWE-Perf/test/pylint-dev__pylint-7747",
+          "source_sha256": "49ba6257464e75a359d4a544b6ace2ab828a3672efdc641c462146f055faadb5",
+          "selection_digest": "5a7714bde384a9b11d4ed0d1eb583457a09461300371dac4c50ea95ed6b6086e",
+          "eligible": true
+        },
+        {
+          "task_id": "scikit-learn__scikit-learn-12625",
+          "category": "scikit-learn",
+          "source_path": "dataset://SWE-Perf/test/scikit-learn__scikit-learn-12625",
+          "source_sha256": "acdee06d2c84af9b54da38bf2e2bd092e6a23f3a057e7e75836f7c3cc3ae0d7c",
+          "selection_digest": "002d0d990cfd5af2186531ef2896815efe1cf032ce6ff9ba49a315efdcefccfc",
+          "eligible": true
+        },
+        {
+          "task_id": "sphinx-doc__sphinx-12615",
+          "category": "sphinx",
+          "source_path": "dataset://SWE-Perf/test/sphinx-doc__sphinx-12615",
+          "source_sha256": "d844e21bace7675514c9c189e78a390d9d799752f78d4e4972d433547b11f9cd",
+          "selection_digest": "2afe2af373547fc46a65ecd083a7c260951251f35a9f9b14979a362e7a502ef2",
+          "eligible": true
+        },
+        {
+          "task_id": "sympy__sympy-25205",
+          "category": "sympy",
+          "source_path": "dataset://SWE-Perf/test/sympy__sympy-25205",
+          "source_sha256": "18e0ee00241cd7de259b54cd52eabe87c82e3f871e9849d155e76dc9cf20018e",
+          "selection_digest": "0f4f208286468404b922b804b9940eccc41d9f71607d4abfc9fd8c19ad0c7eb5",
+          "eligible": true
+        }
+      ],
+      "selected_heldout": [
+        "astropy__astropy-13817",
+        "matplotlib__matplotlib-24250",
+        "mwaskom__seaborn-2313",
+        "pydata__xarray-9407",
+        "pylint-dev__pylint-7747",
+        "scikit-learn__scikit-learn-12625",
+        "sphinx-doc__sphinx-12615",
+        "sympy__sympy-25205"
+      ]
+    }
+  ]
+}

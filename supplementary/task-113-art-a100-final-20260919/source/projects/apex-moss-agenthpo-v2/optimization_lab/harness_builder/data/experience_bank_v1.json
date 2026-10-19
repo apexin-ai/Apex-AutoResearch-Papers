@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "bank_id": "moss-kernelbench-meta-train-v1",
+  "status": "pending-six-new-meta-train-trajectories",
+  "source_suite": "kernelbench",
+  "repository_commit": "423217d9fda91e0c2d67e4a43bf62f96f6d104f1",
+  "source_instances": [
+    "level1/40_LayerNorm.py",
+    "level2/56_Matmul_Sigmoid_Sum.py",
+    "level1/21_Sigmoid.py",
+    "level1/92_cumsum_exclusive.py",
+    "level1/97_ScaledDotProductAttention.py",
+    "level2/45_Gemm_Sigmoid_LogSumExp.py",
+    "level2/57_Conv2d_ReLU_HardSwish.py",
+    "level2/67_Conv2d_GELU_GlobalAvgPool.py"
+  ],
+  "source_bindings": [
+    {
+      "task_id": "level1/40_LayerNorm.py",
+      "source_path": "KernelBench/level1/40_LayerNorm.py",
+      "source_sha256": "8d975d7cee6946513dcfb6ba84c971e53a890f9d9c6f0a4fb828904941f25975"
+    },
+    {
+      "task_id": "level2/56_Matmul_Sigmoid_Sum.py",
+      "source_path": "KernelBench/level2/56_Matmul_Sigmoid_Sum.py",
+      "source_sha256": "00070bf8cc6a0d0ff1c4cbb78729620575164e67cb03ef1d646bbab332ae1fa3"
+    },
+    {
+      "task_id": "level1/21_Sigmoid.py",
+      "source_path": "KernelBench/level1/21_Sigmoid.py",
+      "source_sha256": "8f3ae78284ddd70b5c2fff66e066e967780245dee262fbf8cd2432498833796a"
+    },
+    {
+      "task_id": "level1/92_cumsum_exclusive.py",
+      "source_path": "KernelBench/level1/92_cumsum_exclusive.py",
+      "source_sha256": "ec1551c196130f5d7fae707f0750016c35b988e76aa3f1657da4347f463ced86"
+    },
+    {
+      "task_id": "level1/97_ScaledDotProductAttention.py",
+      "source_path": "KernelBench/level1/97_ScaledDotProductAttention.py",
+      "source_sha256": "a07ca5135657c2ea29f7b7a66ec1815560858ad69fa88221bfc0f82bd5648091"
+    },
+    {
+      "task_id": "level2/45_Gemm_Sigmoid_LogSumExp.py",
+      "source_path": "KernelBench/level2/45_Gemm_Sigmoid_LogSumExp.py",
+      "source_sha256": "c206fcec5ac6b6253fb2f86992a865ea2f560fe54ebfd7a7bf542fc9852cd2c4"
+    },
+    {
+      "task_id": "level2/57_Conv2d_ReLU_HardSwish.py",
+      "source_path": "KernelBench/level2/57_Conv2d_ReLU_HardSwish.py",
+      "source_sha256": "6c3068e8639d0fce90e78d72027434237594eafe9e1c0919b56c30edeae9ff88"
+    },
+    {
+      "task_id": "level2/67_Conv2d_GELU_GlobalAvgPool.py",
+      "source_path": "KernelBench/level2/67_Conv2d_GELU_GlobalAvgPool.py",
+      "source_sha256": "3a9572034d80dd060bb523e1d265aa941113a8044ecd30c614e764fdf029d94a"
+    }
+  ],
+  "existing_sources": [
+    {
+      "aggregation": "all_terminal_public_attempts_in_source_ledger_order",
+      "status": "frozen",
+      "evidence": "append-only historical Harness/Kernel trajectory",
+      "policy_id": "hb-gen1-kernelbench-historical-all-lanes-v1",
+      "source_id": "moss-p1-p2-p2b-layernorm",
+      "source_manifest": "optimization_lab/harness_builder/data/historical_trajectory_sources_v1.json",
+      "source_manifest_sha256": "44ed5a870c1bfeab9d2677dd79d36be31c850e359c4348f0f23a5b761103b3c4",
+      "task_id": "level1/40_LayerNorm.py"
+    },
+    {
+      "aggregation": "all_terminal_public_attempts_in_source_ledger_order",
+      "status": "frozen",
+      "evidence": "append-only historical Harness/Kernel trajectory",
+      "policy_id": "hb-gen1-kernelbench-historical-all-lanes-v1",
+      "source_id": "moss-p1-p2-p2b-matmul-sigmoid-sum",
+      "source_manifest": "optimization_lab/harness_builder/data/historical_trajectory_sources_v1.json",
+      "source_manifest_sha256": "44ed5a870c1bfeab9d2677dd79d36be31c850e359c4348f0f23a5b761103b3c4",
+      "task_id": "level2/56_Matmul_Sigmoid_Sum.py"
+    }
+  ],
+  "record_schema": {
+    "required": [
+      "instance_descriptor",
+      "builder_version",
+      "initial_harness_structure",
+      "evolution_rule",
+      "trigger_evidence",
+      "outcome_delta",
+      "correctness",
+      "resource_cost",
+      "counterexamples",
+      "scope",
+      "provenance_event_ids"
+    ],
+    "forbidden": [
+      "heldout_source_code",
+      "candidate_source_code",
+      "private_evaluator_log",
+      "unsealed_test_result"
+    ]
+  },
+  "promotion_levels": [
+    "single_instance_observation",
+    "within_benchmark_replicated",
+    "cross_benchmark_replicated",
+    "trusted_default_prior"
+  ]
+}

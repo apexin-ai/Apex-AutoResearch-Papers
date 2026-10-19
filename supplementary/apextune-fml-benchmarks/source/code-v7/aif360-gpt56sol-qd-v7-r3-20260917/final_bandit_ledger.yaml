@@ -1,0 +1,668 @@
+version: 1
+created_at: '2026-09-17T19:23:43.309114+00:00'
+arms:
+  mutate@valid:True|abs_aod_mean:>=0.2|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0001
+      reward: 2.8908310024885084
+      improvement: 0.28485047069225566
+      gpu_hours: 0.09853584330839416
+      corrected: false
+      at: '2026-09-17T19:23:43.309125+00:00'
+      components:
+        global_improvement: 0.22485047069225567
+        global_improvement_raw: 0.22485047069225567
+        score_resolution: 0.0
+        new_cells: 3
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0055
+      reward: 0.1505909608201262
+      improvement: 0.01
+      gpu_hours: 0.06640504812200865
+      corrected: false
+      at: '2026-09-17T21:53:49.507894+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0067
+      reward: 0.21132049405565928
+      improvement: 0.01
+      gpu_hours: 0.04732148694184919
+      corrected: false
+      at: '2026-09-17T22:10:23.683156+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0079
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.03872204962910877
+      corrected: false
+      at: '2026-09-17T22:30:33.271546+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+    - ref: mutation_batch_r0103
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.08765568053763774
+      corrected: false
+      at: '2026-09-17T23:30:59.708623+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 1
+  robustify@valid:True|abs_aod_mean:0.02-0.05|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0004
+      reward: 0.07375569097888578
+      improvement: 0.02
+      gpu_hours: 0.27116551596981786
+      corrected: false
+      at: '2026-09-17T19:40:05.835123+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+    - ref: mutation_batch_r0028
+      reward: 0.5176571445128686
+      improvement: 0.07495189057055178
+      gpu_hours: 0.14479060390653709
+      corrected: false
+      at: '2026-09-17T20:56:51.787154+00:00'
+      components:
+        global_improvement: 0.004951890570551787
+        global_improvement_raw: 0.004951890570551787
+        score_resolution: 0.0
+        new_cells: 3
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 4
+  tune@valid:True|abs_aod_mean:0.05-0.1|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0007
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.09184154008515179
+      corrected: false
+      at: '2026-09-17T19:45:42.738203+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+  robustify@valid:True|abs_aod_mean:0.1-0.2|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0010
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.3144142345773677
+      corrected: false
+      at: '2026-09-17T20:04:43.242663+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0106
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.24550024368800222
+      corrected: false
+      at: '2026-09-17T23:45:53.495560+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:>=0.2|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0013
+      reward: 0.5198271870236959
+      improvement: 0.02
+      gpu_hours: 0.038474324735709366
+      corrected: false
+      at: '2026-09-17T20:07:08.389171+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+    - ref: mutation_batch_r0115
+      reward: 0.172892260734382
+      improvement: 0.01
+      gpu_hours: 0.05783948892520534
+      corrected: false
+      at: '2026-09-18T00:02:08.697768+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  robustify@valid:True|abs_aod_mean:>=0.2|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0016
+      reward: 0.02788070557222105
+      improvement: 0.01
+      gpu_hours: 0.3586709803342819
+      corrected: false
+      at: '2026-09-17T20:28:45.994875+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+  mutate@valid:True|abs_aod_mean:0.1-0.2|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0019
+      reward: 0.6942937363008029
+      improvement: 0.054212825713839966
+      gpu_hours: 0.0780834146692521
+      corrected: false
+      at: '2026-09-17T20:33:35.653743+00:00'
+      components:
+        global_improvement: 0.03421282571383996
+        global_improvement_raw: 0.03421282571383996
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:<0.01|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0022
+      reward: 0.14458417178815497
+      improvement: 0.01
+      gpu_hours: 0.06916386404074729
+      corrected: false
+      at: '2026-09-17T20:37:51.050251+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+    - ref: mutation_batch_r0118
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.08121915696913169
+      corrected: false
+      at: '2026-09-18T00:07:06.461427+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 1
+  robustify@valid:True|abs_aod_mean:<0.01|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0025
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.16654179036306838
+      corrected: false
+      at: '2026-09-17T20:47:59.057954+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:<0.01|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0031
+      reward: 0.08879728359911114
+      improvement: 0.01
+      gpu_hours: 0.11261605754908588
+      corrected: false
+      at: '2026-09-17T21:03:44.095565+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+    - ref: mutation_batch_r0046
+      reward: 0.3525406138474983
+      improvement: 0.02
+      gpu_hours: 0.05673105229416655
+      corrected: false
+      at: '2026-09-17T21:31:49.171611+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0120
+      reward: 0.23108188799699728
+      improvement: 0.01
+      gpu_hours: 0.04327470268950694
+      corrected: false
+      at: '2026-09-18T00:09:47.669283+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 1
+  robustify@valid:True|abs_aod_mean:0.01-0.02|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0034
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.26698766015470027
+      corrected: false
+      at: '2026-09-17T21:19:51.804924+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+  robustify@valid:True|abs_aod_mean:0.05-0.1|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0037
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.0730648870445374
+      corrected: false
+      at: '2026-09-17T21:24:19.181746+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 1
+  robustify@valid:True|abs_aod_mean:<0.01|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0040
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.03004643529550069
+      corrected: false
+      at: '2026-09-17T21:26:09.593669+00:00'
+      components:
+        validations: 0
+        pure_generation_failure: true
+        generation_failures: 0
+  tune@valid:True|abs_aod_mean:<0.01|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0043
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.0344365156090094
+      corrected: false
+      at: '2026-09-17T21:28:15.880330+00:00'
+      components:
+        validations: 0
+        pure_generation_failure: true
+        generation_failures: 0
+  robustify@valid:True|abs_aod_mean:0.01-0.02|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0049
+      reward: 0.32560358038158
+      improvement: 0.03
+      gpu_hours: 0.09213657898000545
+      corrected: false
+      at: '2026-09-17T21:37:29.926550+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0058
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.06388776978063915
+      corrected: false
+      at: '2026-09-17T21:57:46.010335+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+    - ref: mutation_batch_r0121
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.10838845784982873
+      corrected: false
+      at: '2026-09-18T00:16:23.014459+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 1
+  robustify@valid:True|abs_aod_mean:0.05-0.1|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0052
+      reward: 0.049809805721507255
+      improvement: 0.01
+      gpu_hours: 0.20076368207318915
+      corrected: false
+      at: '2026-09-17T21:49:41.657899+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0070
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.10564776886151069
+      corrected: false
+      at: '2026-09-17T22:16:50.894581+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+  mutate@valid:True|abs_aod_mean:0.01-0.02|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0061
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.06375465454430215
+      corrected: false
+      at: '2026-09-17T22:01:42.579584+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 2
+  robustify@valid:True|abs_aod_mean:0.05-0.1|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0064
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.09242873679018683
+      corrected: false
+      at: '2026-09-17T22:07:24.218214+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:0.05-0.1|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0073
+      reward: 0.22713853172890552
+      improvement: 0.02
+      gpu_hours: 0.08805199121332002
+      corrected: false
+      at: '2026-09-17T22:22:17.134147+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0091
+      reward: 0.05005563624823053
+      improvement: 0.01
+      gpu_hours: 0.19977770236320794
+      corrected: false
+      at: '2026-09-17T23:02:33.419906+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:0.1-0.2|cls_acc_mean:0.635101-0.65:
+    observations:
+    - ref: mutation_batch_r0076
+      reward: 0.31941025309590076
+      improvement: 0.03
+      gpu_hours: 0.09392309642293387
+      corrected: false
+      at: '2026-09-17T22:28:06.955483+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 4
+    - ref: mutation_batch_r0112
+      reward: 0.08474285363099811
+      improvement: 0.01
+      gpu_hours: 0.11800405074324873
+      corrected: false
+      at: '2026-09-17T23:58:30.185259+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 4
+  robustify@valid:True|abs_aod_mean:0.02-0.05|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0082
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.05033145369858377
+      corrected: false
+      at: '2026-09-17T22:33:36.890515+00:00'
+      components:
+        validations: 0
+        pure_generation_failure: true
+        generation_failures: 0
+  mutate@valid:True|abs_aod_mean:0.02-0.05|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0085
+      reward: 0.17666225945987368
+      improvement: 0.03
+      gpu_hours: 0.16981555705062218
+      corrected: false
+      at: '2026-09-17T22:44:00.086146+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 1
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 4
+    - ref: mutation_batch_r0097
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.07015414742028547
+      corrected: false
+      at: '2026-09-17T23:15:29.635768+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:0.01-0.02|cls_acc_mean:0.65-0.665:
+    observations:
+    - ref: mutation_batch_r0088
+      reward: 0.09591751311843086
+      improvement: 0.01
+      gpu_hours: 0.10425624763282637
+      corrected: false
+      at: '2026-09-17T22:50:24.812088+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 1
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+    - ref: mutation_batch_r0094
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.14002222144044935
+      corrected: false
+      at: '2026-09-17T23:11:07.433701+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  robustify@valid:True|abs_aod_mean:0.1-0.2|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0100
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.1666646600369778
+      corrected: false
+      at: '2026-09-17T23:25:39.078246+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3
+  mutate@valid:True|abs_aod_mean:0.02-0.05|cls_acc_mean:>=0.665:
+    observations:
+    - ref: mutation_batch_r0109
+      reward: 0.0
+      improvement: 0.0
+      gpu_hours: 0.08591746123300659
+      corrected: false
+      at: '2026-09-17T23:51:12.838348+00:00'
+      components:
+        global_improvement: 0.0
+        global_improvement_raw: 0.0
+        score_resolution: 0.0
+        new_cells: 0
+        displaced_elites: 0
+        novelty_weight: 0.02
+        admission_weight: 0.01
+        validations: 3

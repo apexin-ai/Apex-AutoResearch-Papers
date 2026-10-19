@@ -1,0 +1,44 @@
+{
+  "id": "chronos_t5_tiny_monash_weather_wql",
+  "repo": "chronos-forecasting",
+  "repo_path": "repositories/chronos-forecasting",
+  "repo_url": "https://github.com/amazon-science/chronos-forecasting",
+  "year": 2024,
+  "task": "Chronos-T5-Tiny Monash Weather zero-shot forecasting",
+  "domain": "time_series",
+  "fidelity": "official_repo_zero_shot_dataset",
+  "dataset": {
+    "name": "monash_weather",
+    "source": "autogluon/chronos_datasets monash_weather split used by chronos-forecasting zero-shot.yaml",
+    "local_path": "data/formal/chronos_monash_weather/monash_weather/train-00000-of-00001.parquet",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "amazon/chronos-t5-tiny zero-shot on monash_weather",
+    "metric": "WQL",
+    "value": 0.14787595319625085,
+    "source": "repositories/chronos-forecasting/scripts/evaluation/results/chronos-t5-tiny-zero-shot.csv reports monash_weather WQL=0.14787595319625085",
+    "command": "python scripts/evaluation/evaluate.py chronos --model-id amazon/chronos-t5-tiny --config-path scripts/evaluation/configs/zero-shot.yaml",
+    "notes": "AgentHPOBench uses the same official dataset, offset=-30, prediction_length=30, and WQL metric. The smoke path may cap the number of series, but formal baseline defaults to all 3010 series."
+  },
+  "budget_protocol": {
+    "metric": "WQL",
+    "lower_is_better": true,
+    "prediction_length": 30,
+    "offset": -30,
+    "baseline_config": {
+      "context_length": 512,
+      "num_samples": 20,
+      "temperature": 1.0,
+      "top_k": 50,
+      "top_p": 1.0,
+      "max_series": 0
+    },
+    "tunable": ["context_length", "num_samples", "temperature", "top_k", "top_p"]
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_chronos_monash_weather_agent.sh"
+  }
+}

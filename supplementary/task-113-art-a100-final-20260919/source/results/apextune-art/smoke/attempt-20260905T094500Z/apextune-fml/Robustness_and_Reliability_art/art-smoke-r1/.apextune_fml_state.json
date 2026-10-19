@@ -1,0 +1,1870 @@
+{
+  "baseline_primary_metric": 0.4720302724887606,
+  "best_candidate_id": "fml-00166bf67a26c865",
+  "best_result": {
+    "all_backdoor_results": {
+      "clean_acc": [
+        0.9433333333333334,
+        0.9480952380952381,
+        0.9423809523809524,
+        0.9371428571428572,
+        0.9347619047619048
+      ],
+      "defense_score": [
+        0.8823769105111311,
+        0.45332053961309837,
+        0.5267882733128505,
+        0.7906416957323705,
+        0.8506729330192281
+      ],
+      "poison_acc": [
+        0.17117988394584138,
+        0.7021276595744681,
+        0.6344294003868471,
+        0.316247582205029,
+        0.21953578336557059
+      ],
+      "resist_acc": [
+        0.8288201160541586,
+        0.2978723404255319,
+        0.36557059961315286,
+        0.683752417794971,
+        0.7804642166344294
+      ]
+    },
+    "duration": 385.8447507809615,
+    "error": null,
+    "execution": {
+      "cpu_count": 96,
+      "device": "gpu",
+      "gpu_count": 1,
+      "gpus": [
+        {
+          "index": 0,
+          "memory_mb": 40960,
+          "name": "NVIDIA A100-PCIE-40GB"
+        }
+      ],
+      "split": "val"
+    },
+    "metrics": {
+      "clean_acc_mean": 0.9411428571428571,
+      "defense_score_mean": 0.7007600704377357,
+      "poison_acc_mean": 0.40870406189555125,
+      "resist_acc_mean": 0.5912959381044487
+    },
+    "per_backdoor_results": [
+      {
+        "backdoor_type": "pattern",
+        "clean_acc": 0.9433333333333334,
+        "defense_score": 0.8823769105111311,
+        "poison_acc": 0.17117988394584138,
+        "resist_acc": 0.8288201160541586
+      },
+      {
+        "backdoor_type": "distributed",
+        "clean_acc": 0.9480952380952381,
+        "defense_score": 0.45332053961309837,
+        "poison_acc": 0.7021276595744681,
+        "resist_acc": 0.2978723404255319
+      },
+      {
+        "backdoor_type": "edge",
+        "clean_acc": 0.9423809523809524,
+        "defense_score": 0.5267882733128505,
+        "poison_acc": 0.6344294003868471,
+        "resist_acc": 0.36557059961315286
+      },
+      {
+        "backdoor_type": "random_corner",
+        "clean_acc": 0.9371428571428572,
+        "defense_score": 0.7906416957323705,
+        "poison_acc": 0.316247582205029,
+        "resist_acc": 0.683752417794971
+      },
+      {
+        "backdoor_type": "pattern_topleft",
+        "clean_acc": 0.9347619047619048,
+        "defense_score": 0.8506729330192281,
+        "poison_acc": 0.21953578336557059,
+        "resist_acc": 0.7804642166344294
+      }
+    ],
+    "primary_metric": 0.7007600704377357,
+    "valid": true,
+    "worst_case": {
+      "clean_acc_min": 0.9347619047619048,
+      "defense_score_min": 0.45332053961309837,
+      "poison_acc_max": 0.7021276595744681
+    }
+  },
+  "best_snapshot": "step_snapshots/step_0006_code.json",
+  "best_step": 6,
+  "campaign_id": "63bb2110017922d9edf3a1789f20c6be499d70e9c9201906e3cba5711f89eb2a",
+  "created_at": "2026-09-05T09:41:04.633882+00:00",
+  "infrastructure_failure": null,
+  "llm_requests": 29,
+  "max_mutation_attempts": 100,
+  "mutation_attempts": 6,
+  "mutation_failures": [
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T09:49:33.105826+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0001",
+      "diagnostics": {
+        "elapsed_seconds": 140.8301024249522,
+        "finish_reason": "stop",
+        "response_chars": 698,
+        "response_sha256": "d247f7c880837fd0623e370022a1d588bea0146074a37732ad5cc98f6ce96d7f",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 2
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T09:49:33.105846+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0001",
+      "diagnostics": {
+        "elapsed_seconds": 167.5367011190392,
+        "finish_reason": "stop",
+        "response_chars": 1149,
+        "response_sha256": "ca8a8f5aee55187325e483931d51734481265228e499521a6555f36990989f3d",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 3
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T09:49:33.105854+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0001",
+      "diagnostics": {
+        "elapsed_seconds": 79.0012300478993,
+        "finish_reason": "stop",
+        "response_chars": 935,
+        "response_sha256": "51869d791a9004155733b5f865ef9c0c2816cb9f11e447421c404f22021d638a",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 4
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T09:59:27.081031+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0005",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 88.99775265797507,
+        "finish_reason": "stop",
+        "response_chars": 604,
+        "response_sha256": "27c535a597ff56bc8587f47bfeb8f3457c1a4225b0e6df631d3f32eaf19314af",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "duplicate tournament candidate",
+      "kind": "duplicate_candidate",
+      "request_id": 6
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T09:59:27.081128+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0005",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 36.177329149097204,
+        "finish_reason": "stop",
+        "response_chars": 571,
+        "response_sha256": "46bac1a85edcac84add811a3b6d450205628375a4b55d821eaf3d1cb1f2c6d6d",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "duplicate tournament candidate",
+      "kind": "duplicate_candidate",
+      "request_id": 7
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T09:59:27.081212+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0005",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 28.281164373038337,
+        "finish_reason": "stop",
+        "response_chars": 570,
+        "response_sha256": "c3d4ea7c062b3c9db69960c6832f6a38685ed9bcc0875f291debacab033fcef5",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "duplicate tournament candidate",
+      "kind": "duplicate_candidate",
+      "request_id": 8
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:08:22.483407+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0009",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 49.9205905480776,
+        "finish_reason": "stop",
+        "response_chars": 571,
+        "response_sha256": "df70f5fe3706c701d2e591625a51d85c5c83805ca9453e522a2e5c60c22685f0",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 9
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:08:22.483584+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0009",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 32.031302994000725,
+        "finish_reason": "stop",
+        "response_chars": 465,
+        "response_sha256": "34b7118bd365b64c18f8145e2784aa2f4e7b4c950cb0481dc7922e965102914a",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 10
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:08:22.483745+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0009",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 27.651969526079483,
+        "finish_reason": "stop",
+        "response_chars": 800,
+        "response_sha256": "f7db7cd27c02899f00febca472d13da480a67fe85d83b5e653c39b0e8f847d38",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 11
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:08:22.483903+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0009",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 31.743249679915607,
+        "finish_reason": "stop",
+        "response_chars": 478,
+        "response_sha256": "179289ea3632434a00854f3b011f78905a80b92de6f7e46f05a2db066dfa7bf3",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 12
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:13:36.200760+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0013",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 47.03012560401112,
+        "finish_reason": "stop",
+        "response_chars": 626,
+        "response_sha256": "7a16a01cdc2a96d8059cfe6cebfd504f3bda1e78def7c3750ba56442f4f14b7e",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 13
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:13:36.200936+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0013",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 91.81654753198382,
+        "finish_reason": "stop",
+        "response_chars": 533,
+        "response_sha256": "4a2260982b7c2e06f7bc5907a4a0dd49576e60763f5c53d1d595c0df34e8e086",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 14
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:13:36.201096+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0013",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 117.80079966492485,
+        "finish_reason": "stop",
+        "response_chars": 628,
+        "response_sha256": "affcf0f1147380ed0358ae9e70ae1ea0a9fd1049eb29d49ae4d878c47225737e",
+        "retry_errors": [
+          {
+            "attempt": 1,
+            "error": "HTTPStatusError: Server error '503 Service Unavailable' for url 'https://api.apexin.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503",
+            "retryable": true
+          }
+        ],
+        "transport_attempts": 2,
+        "transport_retried": true,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 15
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:13:36.201252+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0013",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 55.36287701304536,
+        "finish_reason": "stop",
+        "response_chars": 589,
+        "response_sha256": "ad071d7c30696860cb2ae078808823f28be116d921d0922c4c632520ae600f7e",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 16
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:17:40.813052+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0017",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 119.53255244600587,
+        "finish_reason": "stop",
+        "response_chars": 571,
+        "response_sha256": "0b762d5414d8ee2d161a6fb413822533af39c46ab6545c5aafe2c9fd9e869461",
+        "retry_errors": [
+          {
+            "attempt": 1,
+            "error": "HTTPStatusError: Server error '503 Service Unavailable' for url 'https://api.apexin.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503",
+            "retryable": true
+          }
+        ],
+        "transport_attempts": 2,
+        "transport_retried": true,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 18
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:17:40.813378+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0017",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 59.98841753799934,
+        "finish_reason": "stop",
+        "response_chars": 583,
+        "response_sha256": "818562ea92372008647b23b3764c7f4e410c940616a8af3ef5f925b1b9644cb1",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "duplicate tournament candidate",
+      "kind": "duplicate_candidate",
+      "request_id": 20
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:34:34.448087+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0021",
+      "diagnostics": {
+        "elapsed_seconds": 164.61605600896291,
+        "finish_reason": "stop",
+        "response_chars": 1915,
+        "response_sha256": "cbbe7eb84f1f9131d74219818bfbac625e06e2ac57cdefbdcef438df4ed9cdb7",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 21
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:34:34.448105+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0021",
+      "diagnostics": {
+        "elapsed_seconds": 83.67154131806456,
+        "finish_reason": "stop",
+        "response_chars": 955,
+        "response_sha256": "9af0c5e7b89bbf110734610e84c6a03f064183795355528de4bf1fc577b826ea",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 22
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:37:42.588545+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0023",
+      "diagnostics": {
+        "elapsed_seconds": 26.060284274048172,
+        "finish_reason": "stop",
+        "response_chars": 976,
+        "response_sha256": "b0daefcd394981505e3a8a556f676906c33b1a9a68af9866154797348f75fa06",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 24
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:45:10.428146+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0025",
+      "diagnostics": {
+        "elapsed_seconds": 54.90466774394736,
+        "finish_reason": "stop",
+        "response_chars": 758,
+        "response_sha256": "47a2e99784a9c485883217e39815eb7e8f85400c285e8a19b44a863217321c6d",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 25
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:46:06.294152+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0026",
+      "diagnostics": {
+        "changed_paths": [
+          "art/defences/trainer/dp_instahide_trainer.py"
+        ],
+        "elapsed_seconds": 54.12371644505765,
+        "finish_reason": "stop",
+        "response_chars": 533,
+        "response_sha256": "fcff7e85012e7c210ca8e4e5b35b020fe22f8e048dfa290005734b4071ac9a9e",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "candidate was already evaluated in this campaign",
+      "kind": "duplicate_historical_candidate",
+      "request_id": 26
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:48:21.690569+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0027",
+      "diagnostics": {
+        "elapsed_seconds": 133.65674543299247,
+        "finish_reason": "stop",
+        "response_chars": 842,
+        "response_sha256": "7c3be89d44c3a33a1dbfbc7f9e974d7721d645fe221c0b3bcdf675822b3bec38",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 27
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:50:48.389883+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0028",
+      "diagnostics": {
+        "elapsed_seconds": 144.86973308608867,
+        "finish_reason": "stop",
+        "response_chars": 1353,
+        "response_sha256": "95cdde79122e6cc6f868c1f4842b475b4d24c65d256c390bacca152c4914c6cd",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 28
+    }
+  ],
+  "protocol_identity": {
+    "boundaries": [
+      "modify exactly the configured target files",
+      "do not modify or infer evaluator or hidden-test data",
+      "one complete validation consumes one official FML step"
+    ],
+    "experiment_round": 1,
+    "hardware": {
+      "conda_env": "art",
+      "configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+      "execution": {
+        "cpu_count": 96,
+        "device": "gpu",
+        "gpu_count": 1,
+        "gpus": [
+          {
+            "index": 0,
+            "memory_mb": 40960,
+            "name": "NVIDIA A100-PCIE-40GB"
+          }
+        ]
+      },
+      "fml_benchmark": {
+        "clean": true,
+        "configured_commit": "d336651ebea50c622c256f02ded82b68b4451fdc",
+        "execution_dir": "/workspace/task-113/fml",
+        "git_root": "/workspace/task-113/fml",
+        "observed_commit": "d336651ebea50c622c256f02ded82b68b4451fdc",
+        "protocol_files_sha256": {
+          "ml_tasks/Robustness_and_Reliability_art/config.json": "5db41fc217cf6bfae762a09b1f730e697910984b0d16161040c247497496567c",
+          "ml_tasks/Robustness_and_Reliability_art/eval.py": "61b80eea14076f3c717b28d2ff17ed715e76d6d1788469e2f62714ee908eeeb4",
+          "ml_tasks/Robustness_and_Reliability_art/model.py": "83abb3660ad0ce3236301912afa8786fd0c5ec52ad745c5357aa2b4d4bbfe750",
+          "ml_tasks/Robustness_and_Reliability_art/original_file_backup/backdoor_attack.py": "51f5b8a11592548a4332af5dcc0ae0b794a20c485d85e2808b8c9bd31922ce96",
+          "ml_tasks/Robustness_and_Reliability_art/original_file_backup/image_perturbations.py": "0374271ddbfd876eefeb28aaada2144e8747ac0095e420ded7fef92b769d9adf",
+          "ml_tasks/Robustness_and_Reliability_art/original_file_backup/keras.py": "8e06c62fc1ff6bc412ed0f7df7973e30b71ea97abfe73dbe45ed633c67648672",
+          "ml_tasks/Robustness_and_Reliability_art/original_file_backup/mixup.py": "61e48a9b5379f3e5b0f6222733ab678876be1c0ae757b3978524a3664fd434a0",
+          "ml_tasks/Robustness_and_Reliability_art/original_file_backup/utils.py": "3db8f33bd577d66a27d4f7c6518f051ba984f1f648f67cb78256548458b59d0f",
+          "ml_tasks/Robustness_and_Reliability_art/prompt.json": "66307f49adbba4bd4d31c5f5d963165231cec0f1c342fef2d9baa0d6aeb5faa1",
+          "ml_tasks/Robustness_and_Reliability_art/split_config.json": "1626af2ce69127eb0c977ab355914dc08139b172f38a437b2eff243c7284de07",
+          "ml_tasks/Robustness_and_Reliability_art/trainer.py": "d2765ae59cbe52fbb82111eb123c202b52a36491e3a6ec565c976cfef89fa2ee"
+        }
+      },
+      "metric_direction": "higher",
+      "metric_name": "defense_score_mean",
+      "pinned_commit": "5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9",
+      "protocol": {
+        "comparable": false,
+        "final_test": "same-workspace pre-test validation then hidden test",
+        "final_test_timeout": "locked 2400-second deadline for pre-test validation and hidden test",
+        "leaderboard_eligible": false,
+        "official_command": true,
+        "reason": "using setup.py overlay repository revision 5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9; task config pin 527b5b6b768b2282fe30ee8785d06eafaceb1c01 is not reproduced",
+        "search_split": "validation only",
+        "status": "reconstructed",
+        "validation_metric": "poisoned_mnist.means.defense_score_mean"
+      },
+      "repo_dir": "workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+      "repository": {
+        "clean": true,
+        "configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+        "execution_dir": "/workspace/task-113/fml/workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+        "git_root": "/workspace/task-113/fml/workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+        "observed_commit": "5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9"
+      },
+      "repository_pin_mode": "reconstructed",
+      "target_files": [
+        "art/defences/trainer/dp_instahide_trainer.py",
+        "model.py",
+        "split_config.json"
+      ],
+      "task": "Robustness_and_Reliability_art",
+      "task_configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+      "validation_timeout_seconds": 2400.0
+    },
+    "llm_config": {
+      "model": "gpt-5.4",
+      "output_contract": "unified_diff_v1",
+      "provider": "OpenAI",
+      "reasoning_effort": "high"
+    },
+    "seed": 0,
+    "seed_roles": {
+      "evaluator_seed": "owned_by_original_fml_command",
+      "search_seed": 0
+    },
+    "task_context": "You are given the Adversarial Robustness Toolbox (ART) codebase with a focus on the dp_instahide defense. dp_instahide mixes inputs with public data and applies differential privacy noise to hinder inversion and poisoning. While designed for privacy-preserving training, its structure offers headroom to harden against both clean-label and trigger/backdoor poisons. Your goal is to improve defense performance against diverse poisoning attacks while maintaining high clean accuracy. You may tune dp_instahide, compose it with other defenses, or propose a new method if it outperforms baselines.\n\nYou are evaluated on a validation set during development. Your final performance will be measured on a separate held-out test set that you do not have access to. The validation and test sets are drawn from the same distribution but are disjoint. Use the validation results to guide your research, but be mindful that overfitting to the validation set will not improve test performance.\n\nYou may also modify split_config.json to control how visible data is split between training and validation. Fields:\n- val_ratio (default: 0.20): fraction of visible data reserved for validation. Lower values mean more training data but noisier validation metrics.\n- val_seed (default: 42): random seed for the train/val split.\nThe test evaluation uses a separate hidden dataset and is completely unaffected by your split_config changes. If you do not modify split_config.json, the default split is used.",
+    "timeout_seconds": 2400.0
+  },
+  "recovered_attempts": 0,
+  "seeded": true,
+  "seen_candidate_ids": [
+    "fml-d28551e03cb21b83",
+    "fml-feefce245c79e31d",
+    "fml-be0a0a8660148ae6",
+    "fml-2c18ca7a88448794",
+    "fml-08948c2f996727ff",
+    "fml-828fb6cc1bddefec",
+    "fml-00166bf67a26c865"
+  ],
+  "steps": [
+    {
+      "action": "mutate",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T09:56:07.847252+00:00",
+      "bandit": {
+        "charge_hours": 0.10962744791138296,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-feefce245c79e31d",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "idea_id": "fml-feefce245c79e31d",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.446390440626031
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_phase": "disabled",
+        "llm_request_id": 1,
+        "mutation_attempt": 1,
+        "mutation_batch": "mutation_batch_r0001",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0001_code.json",
+        "tournament_lane": 1,
+        "tournament_size": 1
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9448571428571428,
+        "defense_score_mean": 0.446390440626031,
+        "poison_acc_mean": 0.6874274661508704,
+        "resist_acc_mean": 0.31257253384912953
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.446390440626031,
+      "rationale": "mutate patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "reserved_at": "2026-09-05T09:49:33.108860+00:00",
+      "snapshot": "step_snapshots/step_0001_code.json",
+      "status": "complete",
+      "step_duration_seconds": 394.73178183007985,
+      "step_id": 1,
+      "token_usage": {
+        "completion_tokens": 5854,
+        "prompt_tokens": 7625,
+        "total_tokens": 13479
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9448571428571428,
+          "defense_score_mean": 0.446390440626031,
+          "poison_acc_mean": 0.6874274661508704,
+          "resist_acc_mean": 0.31257253384912953
+        },
+        "primary_metric": 0.446390440626031,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9385714285714286,
+                0.9476190476190476,
+                0.9514285714285714,
+                0.94,
+                0.9466666666666667
+              ],
+              "defense_score": [
+                0.6449777667840971,
+                0.20062052962290217,
+                0.25029258056054404,
+                0.6065953057924959,
+                0.5294660203701159
+              ],
+              "poison_acc": [
+                0.5087040618955513,
+                0.8878143133462283,
+                0.8558994197292069,
+                0.5522243713733076,
+                0.632495164410058
+              ],
+              "resist_acc": [
+                0.4912959381044487,
+                0.11218568665377171,
+                0.1441005802707931,
+                0.4477756286266924,
+                0.36750483558994196
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9448571428571428,
+              "defense_score": 0.446390440626031,
+              "poison_acc": 0.6874274661508704,
+              "resist_acc": 0.31257253384912953
+            },
+            "means": {
+              "clean_acc_mean": 0.9448571428571428,
+              "defense_score_mean": 0.446390440626031,
+              "poison_acc_mean": 0.6874274661508704,
+              "resist_acc_mean": 0.31257253384912953
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9385714285714286,
+                "defense_score": 0.6449777667840971,
+                "poison_acc": 0.5087040618955513,
+                "resist_acc": 0.4912959381044487
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.9476190476190476,
+                "defense_score": 0.20062052962290217,
+                "poison_acc": 0.8878143133462283,
+                "resist_acc": 0.11218568665377171
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9514285714285714,
+                "defense_score": 0.25029258056054404,
+                "poison_acc": 0.8558994197292069,
+                "resist_acc": 0.1441005802707931
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.94,
+                "defense_score": 0.6065953057924959,
+                "poison_acc": 0.5522243713733076,
+                "resist_acc": 0.4477756286266924
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9466666666666667,
+                "defense_score": 0.5294660203701159,
+                "poison_acc": 0.632495164410058,
+                "resist_acc": 0.36750483558994196
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9385714285714286,
+              "defense_score_min": 0.20062052962290217,
+              "poison_acc_max": 0.8878143133462283
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-05T09:56:07.840094+00:00",
+      "validation_duration_seconds": 394.65881248097867
+    },
+    {
+      "action": "tune",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:05:59.392883+00:00",
+      "bandit": {
+        "charge_hours": 0.10894950717306023,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-be0a0a8660148ae6",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "tune patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "idea_id": "fml-be0a0a8660148ae6",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.29175048734238657
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "tune@valid:True",
+        "full_fml_validation": true,
+        "hpo_phase": "disabled",
+        "llm_request_id": 5,
+        "mutation_attempt": 2,
+        "mutation_batch": "mutation_batch_r0005",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0002_code.json",
+        "tournament_lane": 1,
+        "tournament_size": 1
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9556190476190476,
+        "defense_score_mean": 0.29175048734238657,
+        "poison_acc_mean": 0.8177949709864603,
+        "resist_acc_mean": 0.18220502901353966
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.29175048734238657,
+      "rationale": "tune patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "reserved_at": "2026-09-05T09:59:27.088313+00:00",
+      "snapshot": "step_snapshots/step_0002_code.json",
+      "status": "complete",
+      "step_duration_seconds": 392.29551859595813,
+      "step_id": 2,
+      "token_usage": {
+        "completion_tokens": 1733,
+        "prompt_tokens": 7757,
+        "total_tokens": 9490
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9556190476190476,
+          "defense_score_mean": 0.29175048734238657,
+          "poison_acc_mean": 0.8177949709864603,
+          "resist_acc_mean": 0.18220502901353966
+        },
+        "primary_metric": 0.29175048734238657,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9542857142857143,
+                0.96,
+                0.9519047619047619,
+                0.9538095238095238,
+                0.9580952380952381
+              ],
+              "defense_score": [
+                0.5679255414354754,
+                0.17890813418110058,
+                0.18667030884954444,
+                0.2776547896738399,
+                0.24759366257197252
+              ],
+              "poison_acc": [
+                0.5957446808510638,
+                0.9013539651837524,
+                0.8965183752417795,
+                0.8375241779497099,
+                0.8578336557059961
+              ],
+              "resist_acc": [
+                0.4042553191489362,
+                0.09864603481624756,
+                0.10348162475822054,
+                0.1624758220502901,
+                0.14216634429400388
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9556190476190476,
+              "defense_score": 0.29175048734238657,
+              "poison_acc": 0.8177949709864603,
+              "resist_acc": 0.18220502901353966
+            },
+            "means": {
+              "clean_acc_mean": 0.9556190476190476,
+              "defense_score_mean": 0.29175048734238657,
+              "poison_acc_mean": 0.8177949709864603,
+              "resist_acc_mean": 0.18220502901353966
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9542857142857143,
+                "defense_score": 0.5679255414354754,
+                "poison_acc": 0.5957446808510638,
+                "resist_acc": 0.4042553191489362
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.96,
+                "defense_score": 0.17890813418110058,
+                "poison_acc": 0.9013539651837524,
+                "resist_acc": 0.09864603481624756
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9519047619047619,
+                "defense_score": 0.18667030884954444,
+                "poison_acc": 0.8965183752417795,
+                "resist_acc": 0.10348162475822054
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.9538095238095238,
+                "defense_score": 0.2776547896738399,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9580952380952381,
+                "defense_score": 0.24759366257197252,
+                "poison_acc": 0.8578336557059961,
+                "resist_acc": 0.14216634429400388
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9519047619047619,
+              "defense_score_min": 0.17890813418110058,
+              "poison_acc_max": 0.9013539651837524
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-05T10:05:59.383270+00:00",
+      "validation_duration_seconds": 392.21822582301684
+    },
+    {
+      "action": "tune",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:24:04.358738+00:00",
+      "bandit": {
+        "charge_hours": 0.10651338951387314,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-2c18ca7a88448794",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "tune patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "idea_id": "fml-2c18ca7a88448794",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.29175048734238657
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "tune@valid:True",
+        "full_fml_validation": true,
+        "hpo_phase": "disabled",
+        "llm_request_id": 17,
+        "mutation_attempt": 3,
+        "mutation_batch": "mutation_batch_r0017",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0003_code.json",
+        "tournament_lane": 1,
+        "tournament_size": 2
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9556190476190476,
+        "defense_score_mean": 0.29175048734238657,
+        "poison_acc_mean": 0.8177949709864603,
+        "resist_acc_mean": 0.18220502901353966
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.29175048734238657,
+      "rationale": "tune patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "reserved_at": "2026-09-05T10:17:40.818246+00:00",
+      "snapshot": "step_snapshots/step_0003_code.json",
+      "status": "complete",
+      "step_duration_seconds": 383.5268110729521,
+      "step_id": 3,
+      "token_usage": {
+        "completion_tokens": 669,
+        "prompt_tokens": 7759,
+        "total_tokens": 8428
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9556190476190476,
+          "defense_score_mean": 0.29175048734238657,
+          "poison_acc_mean": 0.8177949709864603,
+          "resist_acc_mean": 0.18220502901353966
+        },
+        "primary_metric": 0.29175048734238657,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9542857142857143,
+                0.96,
+                0.9519047619047619,
+                0.9538095238095238,
+                0.9580952380952381
+              ],
+              "defense_score": [
+                0.5679255414354754,
+                0.17890813418110058,
+                0.18667030884954444,
+                0.2776547896738399,
+                0.24759366257197252
+              ],
+              "poison_acc": [
+                0.5957446808510638,
+                0.9013539651837524,
+                0.8965183752417795,
+                0.8375241779497099,
+                0.8578336557059961
+              ],
+              "resist_acc": [
+                0.4042553191489362,
+                0.09864603481624756,
+                0.10348162475822054,
+                0.1624758220502901,
+                0.14216634429400388
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9556190476190476,
+              "defense_score": 0.29175048734238657,
+              "poison_acc": 0.8177949709864603,
+              "resist_acc": 0.18220502901353966
+            },
+            "means": {
+              "clean_acc_mean": 0.9556190476190476,
+              "defense_score_mean": 0.29175048734238657,
+              "poison_acc_mean": 0.8177949709864603,
+              "resist_acc_mean": 0.18220502901353966
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9542857142857143,
+                "defense_score": 0.5679255414354754,
+                "poison_acc": 0.5957446808510638,
+                "resist_acc": 0.4042553191489362
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.96,
+                "defense_score": 0.17890813418110058,
+                "poison_acc": 0.9013539651837524,
+                "resist_acc": 0.09864603481624756
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9519047619047619,
+                "defense_score": 0.18667030884954444,
+                "poison_acc": 0.8965183752417795,
+                "resist_acc": 0.10348162475822054
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.9538095238095238,
+                "defense_score": 0.2776547896738399,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9580952380952381,
+                "defense_score": 0.24759366257197252,
+                "poison_acc": 0.8578336557059961,
+                "resist_acc": 0.14216634429400388
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9519047619047619,
+              "defense_score_min": 0.17890813418110058,
+              "poison_acc_max": 0.9013539651837524
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-05T10:24:04.344490+00:00",
+      "validation_duration_seconds": 383.4482022499433
+    },
+    {
+      "action": "tune",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "tune@valid:True",
+      "at": "2026-09-05T10:30:24.415940+00:00",
+      "bandit": {
+        "charge_hours": 0.10554519061193181,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-08948c2f996727ff",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "tune patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "idea_id": "fml-08948c2f996727ff",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.29175048734238657
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "tune@valid:True",
+        "full_fml_validation": true,
+        "hpo_phase": "disabled",
+        "llm_request_id": 19,
+        "mutation_attempt": 4,
+        "mutation_batch": "mutation_batch_r0017",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0004_code.json",
+        "tournament_lane": 2,
+        "tournament_size": 2
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9556190476190476,
+        "defense_score_mean": 0.29175048734238657,
+        "poison_acc_mean": 0.8177949709864603,
+        "resist_acc_mean": 0.18220502901353966
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.29175048734238657,
+      "rationale": "tune patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "reserved_at": "2026-09-05T10:24:04.363497+00:00",
+      "snapshot": "step_snapshots/step_0004_code.json",
+      "status": "complete",
+      "step_duration_seconds": 380.0372600099072,
+      "step_id": 4,
+      "token_usage": {
+        "completion_tokens": 1201,
+        "prompt_tokens": 7759,
+        "total_tokens": 8960
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9556190476190476,
+          "defense_score_mean": 0.29175048734238657,
+          "poison_acc_mean": 0.8177949709864603,
+          "resist_acc_mean": 0.18220502901353966
+        },
+        "primary_metric": 0.29175048734238657,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9542857142857143,
+                0.96,
+                0.9519047619047619,
+                0.9538095238095238,
+                0.9580952380952381
+              ],
+              "defense_score": [
+                0.5679255414354754,
+                0.17890813418110058,
+                0.18667030884954444,
+                0.2776547896738399,
+                0.24759366257197252
+              ],
+              "poison_acc": [
+                0.5957446808510638,
+                0.9013539651837524,
+                0.8965183752417795,
+                0.8375241779497099,
+                0.8578336557059961
+              ],
+              "resist_acc": [
+                0.4042553191489362,
+                0.09864603481624756,
+                0.10348162475822054,
+                0.1624758220502901,
+                0.14216634429400388
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9556190476190476,
+              "defense_score": 0.29175048734238657,
+              "poison_acc": 0.8177949709864603,
+              "resist_acc": 0.18220502901353966
+            },
+            "means": {
+              "clean_acc_mean": 0.9556190476190476,
+              "defense_score_mean": 0.29175048734238657,
+              "poison_acc_mean": 0.8177949709864603,
+              "resist_acc_mean": 0.18220502901353966
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9542857142857143,
+                "defense_score": 0.5679255414354754,
+                "poison_acc": 0.5957446808510638,
+                "resist_acc": 0.4042553191489362
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.96,
+                "defense_score": 0.17890813418110058,
+                "poison_acc": 0.9013539651837524,
+                "resist_acc": 0.09864603481624756
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9519047619047619,
+                "defense_score": 0.18667030884954444,
+                "poison_acc": 0.8965183752417795,
+                "resist_acc": 0.10348162475822054
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.9538095238095238,
+                "defense_score": 0.2776547896738399,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9580952380952381,
+                "defense_score": 0.24759366257197252,
+                "poison_acc": 0.8578336557059961,
+                "resist_acc": 0.14216634429400388
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9519047619047619,
+              "defense_score_min": 0.17890813418110058,
+              "poison_acc_max": 0.9013539651837524
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-05T10:30:24.400173+00:00",
+      "validation_duration_seconds": 379.9626862029545
+    },
+    {
+      "action": "mutate",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:44:13.774194+00:00",
+      "bandit": {
+        "charge_hours": 0.10863376139278343,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-828fb6cc1bddefec",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "idea_id": "fml-828fb6cc1bddefec",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.446390440626031
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_phase": "disabled",
+        "llm_request_id": 23,
+        "mutation_attempt": 5,
+        "mutation_batch": "mutation_batch_r0023",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0005_code.json",
+        "tournament_lane": 1,
+        "tournament_size": 1
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9448571428571428,
+        "defense_score_mean": 0.446390440626031,
+        "poison_acc_mean": 0.6874274661508704,
+        "resist_acc_mean": 0.31257253384912953
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.446390440626031,
+      "rationale": "mutate patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "reserved_at": "2026-09-05T10:37:42.595031+00:00",
+      "snapshot": "step_snapshots/step_0005_code.json",
+      "status": "complete",
+      "step_duration_seconds": 391.1626232919516,
+      "step_id": 5,
+      "token_usage": {
+        "completion_tokens": 4260,
+        "prompt_tokens": 7759,
+        "total_tokens": 12019
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9448571428571428,
+          "defense_score_mean": 0.446390440626031,
+          "poison_acc_mean": 0.6874274661508704,
+          "resist_acc_mean": 0.31257253384912953
+        },
+        "primary_metric": 0.446390440626031,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9385714285714286,
+                0.9476190476190476,
+                0.9514285714285714,
+                0.94,
+                0.9466666666666667
+              ],
+              "defense_score": [
+                0.6449777667840971,
+                0.20062052962290217,
+                0.25029258056054404,
+                0.6065953057924959,
+                0.5294660203701159
+              ],
+              "poison_acc": [
+                0.5087040618955513,
+                0.8878143133462283,
+                0.8558994197292069,
+                0.5522243713733076,
+                0.632495164410058
+              ],
+              "resist_acc": [
+                0.4912959381044487,
+                0.11218568665377171,
+                0.1441005802707931,
+                0.4477756286266924,
+                0.36750483558994196
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9448571428571428,
+              "defense_score": 0.446390440626031,
+              "poison_acc": 0.6874274661508704,
+              "resist_acc": 0.31257253384912953
+            },
+            "means": {
+              "clean_acc_mean": 0.9448571428571428,
+              "defense_score_mean": 0.446390440626031,
+              "poison_acc_mean": 0.6874274661508704,
+              "resist_acc_mean": 0.31257253384912953
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9385714285714286,
+                "defense_score": 0.6449777667840971,
+                "poison_acc": 0.5087040618955513,
+                "resist_acc": 0.4912959381044487
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.9476190476190476,
+                "defense_score": 0.20062052962290217,
+                "poison_acc": 0.8878143133462283,
+                "resist_acc": 0.11218568665377171
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9514285714285714,
+                "defense_score": 0.25029258056054404,
+                "poison_acc": 0.8558994197292069,
+                "resist_acc": 0.1441005802707931
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.94,
+                "defense_score": 0.6065953057924959,
+                "poison_acc": 0.5522243713733076,
+                "resist_acc": 0.4477756286266924
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9466666666666667,
+                "defense_score": 0.5294660203701159,
+                "poison_acc": 0.632495164410058,
+                "resist_acc": 0.36750483558994196
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9385714285714286,
+              "defense_score_min": 0.20062052962290217,
+              "poison_acc_max": 0.8878143133462283
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-05T10:44:13.757079+00:00",
+      "validation_duration_seconds": 391.08154101402033
+    },
+    {
+      "action": "mutate",
+      "admitted": true,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-05T10:58:41.450178+00:00",
+      "bandit": {
+        "charge_hours": 0.10717909743915596,
+        "improvement": 0.22872979794897508
+      },
+      "candidate_id": "fml-00166bf67a26c865",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "idea_id": "fml-00166bf67a26c865",
+      "ladder": {
+        "decision": "promote",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.7007600704377357
+        },
+        "level": "L2",
+        "reason": "beats elite by min_effect"
+      },
+      "metadata": {
+        "admitted": true,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_phase": "disabled",
+        "llm_request_id": 29,
+        "mutation_attempt": 6,
+        "mutation_batch": "mutation_batch_r0029",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": true,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0006_code.json",
+        "tournament_lane": 1,
+        "tournament_size": 1
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9411428571428571,
+        "defense_score_mean": 0.7007600704377357,
+        "poison_acc_mean": 0.40870406189555125,
+        "resist_acc_mean": 0.5912959381044487
+      },
+      "new_best": true,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.7007600704377357,
+      "rationale": "mutate patch changed art/defences/trainer/dp_instahide_trainer.py",
+      "reserved_at": "2026-09-05T10:52:15.507129+00:00",
+      "snapshot": "step_snapshots/step_0006_code.json",
+      "status": "complete",
+      "step_duration_seconds": 385.9190043559065,
+      "step_id": 6,
+      "token_usage": {
+        "completion_tokens": 3110,
+        "prompt_tokens": 7757,
+        "total_tokens": 10867
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9411428571428571,
+          "defense_score_mean": 0.7007600704377357,
+          "poison_acc_mean": 0.40870406189555125,
+          "resist_acc_mean": 0.5912959381044487
+        },
+        "primary_metric": 0.7007600704377357,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9433333333333334,
+                0.9480952380952381,
+                0.9423809523809524,
+                0.9371428571428572,
+                0.9347619047619048
+              ],
+              "defense_score": [
+                0.8823769105111311,
+                0.45332053961309837,
+                0.5267882733128505,
+                0.7906416957323705,
+                0.8506729330192281
+              ],
+              "poison_acc": [
+                0.17117988394584138,
+                0.7021276595744681,
+                0.6344294003868471,
+                0.316247582205029,
+                0.21953578336557059
+              ],
+              "resist_acc": [
+                0.8288201160541586,
+                0.2978723404255319,
+                0.36557059961315286,
+                0.683752417794971,
+                0.7804642166344294
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9411428571428571,
+              "defense_score": 0.7007600704377357,
+              "poison_acc": 0.40870406189555125,
+              "resist_acc": 0.5912959381044487
+            },
+            "means": {
+              "clean_acc_mean": 0.9411428571428571,
+              "defense_score_mean": 0.7007600704377357,
+              "poison_acc_mean": 0.40870406189555125,
+              "resist_acc_mean": 0.5912959381044487
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9433333333333334,
+                "defense_score": 0.8823769105111311,
+                "poison_acc": 0.17117988394584138,
+                "resist_acc": 0.8288201160541586
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.9480952380952381,
+                "defense_score": 0.45332053961309837,
+                "poison_acc": 0.7021276595744681,
+                "resist_acc": 0.2978723404255319
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9423809523809524,
+                "defense_score": 0.5267882733128505,
+                "poison_acc": 0.6344294003868471,
+                "resist_acc": 0.36557059961315286
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.9371428571428572,
+                "defense_score": 0.7906416957323705,
+                "poison_acc": 0.316247582205029,
+                "resist_acc": 0.683752417794971
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9347619047619048,
+                "defense_score": 0.8506729330192281,
+                "poison_acc": 0.21953578336557059,
+                "resist_acc": 0.7804642166344294
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9347619047619048,
+              "defense_score_min": 0.45332053961309837,
+              "poison_acc_max": 0.7021276595744681
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-05T10:58:41.425491+00:00",
+      "validation_duration_seconds": 385.8447507809615
+    }
+  ],
+  "stop_reason": "paused",
+  "test_artifact": null,
+  "test_evaluations": 0,
+  "test_result": null,
+  "test_score": null,
+  "test_status": "not_started",
+  "token_usage": {
+    "completion_tokens": 68702.0,
+    "prompt_tokens": 224457.0,
+    "total_tokens": 293159.0
+  },
+  "total_cost_usd": 0.0,
+  "total_duration_seconds": 4635.391889181687,
+  "total_steps": 6,
+  "validation_evaluations": 6,
+  "version": 3
+}

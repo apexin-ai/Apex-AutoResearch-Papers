@@ -8,6 +8,7 @@ import hashlib
 import html
 import io
 import json
+import os
 import re
 import shutil
 import tarfile
@@ -465,7 +466,9 @@ def collect(archive, repo, archive_key, metadata=None):
     ROOT=repo
     fallback=archive_key.split('/')[0];profiles={};counts=Counter();meta=metadata or {};sha=digest(archive)
     with tarfile.open(archive,'r|gz') as tf:
-        for member in tf:
+        for member_number,member in enumerate(tf,1):
+            if os.environ.get('RELEASE_DIAGNOSTICS')=='true' and (member_number%10000==0 or member.size>=32*1024**2):
+                print(json.dumps({'stage':'archive-member','number':member_number,'path':member.name,'bytes':member.size}),flush=True)
             project,rel=project_path(member.name,fallback)
             if not project or not rel:continue
             if project.startswith(('.','_','idea_gen_')):continue

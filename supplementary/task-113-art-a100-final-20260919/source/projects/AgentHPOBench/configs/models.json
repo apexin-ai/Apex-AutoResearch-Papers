@@ -1,0 +1,11 @@
+{
+  "agent_models": {
+    "qwen3_8b": "models/Qwen/Qwen3-8B",
+    "qwen3_32b": "models/Qwen/Qwen3-32B",
+    "gemma2_2b": "models/google/gemma-2-2b-it",
+    "llama3_1_8b": "models/meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "deepseek_r1_qwen_14b": "models/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+    "phi4_14b": "models/microsoft/Phi-4"
+  },
+  "note": "Evaluation models used by individual tasks are documented in each task adapter and are not redistributed."
+}

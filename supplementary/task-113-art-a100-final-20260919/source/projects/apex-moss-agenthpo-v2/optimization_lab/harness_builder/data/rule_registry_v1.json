@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "registry_id": "hb-rule-registry-v1",
+  "rules": [
+    {
+      "rule_id": "discipline",
+      "trigger": ["A correct incumbent exists and one measured bottleneck is supported by evidence."],
+      "action": ["Keep the incumbent and change one bounded mechanism aimed at that bottleneck."],
+      "guardrails": ["Do not bundle unrelated structural changes; require a falsifiable expected signal."],
+      "maturity": "source_verified",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"]
+    },
+    {
+      "rule_id": "dream",
+      "trigger": ["The incumbent family is plausibly saturated or repeated local changes are flat."],
+      "action": ["Reset the architecture and propose a qualitatively different decomposition."],
+      "guardrails": ["Start from a frozen reference or explicit root; the child inherits no parent score."],
+      "maturity": "source_verified",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"]
+    },
+    {
+      "rule_id": "law_inversion",
+      "trigger": ["At least two evidence-bearing attempts failed to improve and share an assumption."],
+      "action": ["State the shared assumption and construct a child that deliberately inverts it."],
+      "guardrails": ["The inverted assumption must be named; arbitrary novelty does not qualify."],
+      "maturity": "source_verified",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"]
+    },
+    {
+      "rule_id": "recombination",
+      "trigger": ["Two frozen parents have complementary mechanisms or resource profiles."],
+      "action": ["Build a new child from explicit parent contributions and re-evaluate from zero."],
+      "guardrails": ["Do not splice arbitrary text; reject same-niche duplicates and inherited scores."],
+      "maturity": "source_verified",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"]
+    },
+    {
+      "rule_id": "correctness_recovery",
+      "trigger": ["The latest attempt failed formatting, compilation, or correctness."],
+      "action": ["Repair the earliest failing contract before any performance optimization."],
+      "guardrails": ["A failed attempt remains in the denominator; environment errors are separate."],
+      "maturity": "local_verified",
+      "provenance": ["Moss P1/P2/P2b append-only trajectories"]
+    },
+    {
+      "rule_id": "successor_followup",
+      "trigger": ["A new credible leader exposes a specific adjacent configuration to test."],
+      "action": ["Immediately allocate one bounded follow-up around the winning mechanism."],
+      "guardrails": ["The follow-up consumes the normal budget and may not inherit the leader score."],
+      "maturity": "source_verified",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"]
+    },
+    {
+      "rule_id": "stagnation_rebalance",
+      "trigger": ["The recent window is stagnant and the archive contains more than one viable family."],
+      "action": ["Move budget away from exhausted local probes toward reset, inversion, or recombination."],
+      "guardrails": ["Use a frozen decision epoch and deterministic tie breaks."],
+      "maturity": "source_verified",
+      "provenance": ["Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad"]
+    },
+    {
+      "rule_id": "archive_diversity",
+      "trigger": ["Parent candidates cluster in one structural niche or the best score is unstable."],
+      "action": ["Select an elite or bridge from a different mechanically derived niche."],
+      "guardrails": ["Novelty is diagnostic only and cannot override correctness or the hard budget."],
+      "maturity": "source_verified",
+      "provenance": ["codelion/openevolve@411fb59c886c18704caaffb611e17cf9e7d824d2 MAP-Elites/island search", "Apex-Tune v9-recombinant@17223eec6f7c29490888a278c86122e9f9f070ad QD archive"]
+    },
+    {
+      "rule_id": "progressive_evaluation",
+      "trigger": ["A proposal is high-risk or expensive and has not passed cheap checks."],
+      "action": ["Run format/static/correctness gates before full performance evaluation."],
+      "guardrails": ["A cheap proxy never mints a performance winner."],
+      "maturity": "source_verified",
+      "provenance": ["codelion/openevolve@411fb59c886c18704caaffb611e17cf9e7d824d2", "jennyzzt/dgm@a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2"]
+    },
+    {
+      "rule_id": "failure_directed_mutation",
+      "trigger": ["A sealed attempt has a reason-coded format, compile, correctness, or performance outcome."],
+      "action": ["Route the next proposal to the operator matching the earliest trustworthy failure stage."],
+      "guardrails": ["Environment-invalid outcomes are nondecisions; performance mutation cannot precede correctness."],
+      "maturity": "source_verified",
+      "provenance": ["jennyzzt/dgm@a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2"]
+    },
+    {
+      "rule_id": "parent_fertility_balance",
+      "trigger": ["More than one frozen parent is eligible and a high-scoring parent has already produced multiple children."],
+      "action": ["Balance parent quality with the number and outcomes of its existing children."],
+      "guardrails": ["Selection occurs on a sealed snapshot; a child never inherits parent fitness."],
+      "maturity": "source_verified",
+      "provenance": ["jennyzzt/dgm@a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2"]
+    },
+    {
+      "rule_id": "workflow_graph_mutation",
+      "trigger": ["Evidence implicates coordination, information flow, or tool ordering rather than the final directive alone."],
+      "action": ["Mutate the typed role graph, step dependencies, or trusted component bindings."],
+      "guardrails": ["Generated executable plugins are forbidden; every graph node must resolve in the trusted registry."],
+      "maturity": "source_verified",
+      "provenance": ["ShengranHu/ADAS@2702bee8fefda42255efc5be9f60e3bd3db96ae4", "FoundationAgents/AFlow@3f457218fc716093fe53f6df8a5d5e6379d66346"]
+    },
+    {
+      "rule_id": "archive_reflection",
+      "trigger": ["The current decision has at least two sealed ancestors or a repeated failure signature."],
+      "action": ["First summarize full-archive patterns, then produce a parent-local falsifiable update."],
+      "guardrails": ["Reflection receives public typed records, never raw private logs or hidden tests."],
+      "maturity": "source_verified",
+      "provenance": ["ShengranHu/ADAS@2702bee8fefda42255efc5be9f60e3bd3db96ae4"]
+    },
+    {
+      "rule_id": "cross_instance_distillation",
+      "trigger": ["A first-encounter instance trajectory is fully sealed and its score can no longer change."],
+      "action": ["Extract task descriptors, initial-Harness choices, update actions, outcomes, costs, counterexamples, and scope into versioned Experience Records before the next unseen instance."],
+      "guardrails": ["Never update the Builder before scoring the current instance; same-instance reruns become training diagnostics and cannot count as generalization."],
+      "maturity": "experiment_contract",
+      "provenance": ["HB-GEN-1 prequential test-then-learn protocol"]
+    }
+  ]
+}

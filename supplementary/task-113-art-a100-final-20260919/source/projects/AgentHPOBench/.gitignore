@@ -1,0 +1,94 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+.secrets/
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*~
+
+# Shared development machines retain the pre-release prototype and runtime
+# trees beside this repository. They are intentionally not part of the
+# public release.
+/.release_backups/
+/_qzcli
+._*
+/.codex_sub2api_harness*/
+/.python_deps/
+/.venv_qwen3/
+/agents/
+/benchmarks/
+/core/
+/evaluation/
+/experiments/
+/external/
+/newrepo/
+/tmp/
+/tools/
+/utils/
+/EXPERIMENTS_SUMMARY.md
+/QUICKSTART.md
+/demo_api_switching.py
+/quick_test.py
+/run_autonomous.py
+/run_autonomous_simple.py
+/run_batch.py
+/run_experiment.py
+/sitecustomize.py*
+/test_autonomous.py
+/test_cifar10_simple.py
+/test_early_termination.py
+/test_swin_cifar10.py
+/docs/BENCHMARKS.md
+/docs/DESIGN.md
+/docs/TEST_GLM.md
+
+# Downloaded repositories, datasets, and model weights
+repositories/
+data/
+models/
+cache/
+checkpoints/
+
+# Runtime output
+logs/
+outputs/
+runs/
+wandb/
+ray_results/
+results/**
+!results/README.md
+!results/summary/
+!results/summary/README.md
+
+# Large generated artifacts
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.npz
+*.npy
+*.parquet
+*.tar
+*.tar.gz
+*.zip

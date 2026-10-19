@@ -1,0 +1,37 @@
+{
+  "id": "noisygl_cora_uniform30_gcn",
+  "repo": "NoisyGL",
+  "repo_path": "repositories/NoisyGL",
+  "task": "Cora node classification with a two-layer GCN under 30% uniform label noise",
+  "domain": "graph",
+  "fidelity": "paper_task_budgeted",
+  "dataset": {
+    "name": "Cora Planetoid",
+    "source": "Planetoid Cora files used by common GCN/NoisyGL Cora experiments",
+    "local_path": "data/paper_exact/noisygl_cora",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "NoisyGL GCN on Cora, 30% uniform noise",
+    "metric": "test_accuracy_percent",
+    "value": 71.06,
+    "source": "NoisyGL NeurIPS 2024 Table A1 reports GCN Cora 30% uniform noise accuracy 71.06 +/- 4.39 over 10 runs",
+    "command": "python single_exp.py --method gcn --data cora --noise_type uniform --noise_rate 0.3 --seed 3000",
+    "notes": "The paper anchor is the original 200-epoch benchmark result. This AgentHPOBench task uses a fixed 80-epoch budget with the same data split/noise task and normalizes toward the paper anchor."
+  },
+  "budget_protocol": {
+    "epochs": 80,
+    "seed": 3000,
+    "noise_seed": 3000,
+    "noise_type": "uniform",
+    "noise_rate": 0.3,
+    "metric": "test_accuracy_percent",
+    "higher_is_better": true,
+    "tunable": ["lr", "weight_decay", "dropout", "hidden_dim"]
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_noisygl_cora_gcn_agent.sh"
+  }
+}

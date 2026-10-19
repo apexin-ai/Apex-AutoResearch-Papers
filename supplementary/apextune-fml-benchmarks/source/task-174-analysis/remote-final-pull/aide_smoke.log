@@ -1,0 +1,83 @@
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+=== SMOKE: 5 steps ===
+Override: agent.aide.max_steps = 5
+Override: agent.model = gpt-5.6-sol
+Override: agent.provider = OpenAI
+Initializing aide agent...
+
+=== Running aide on Fairness_and_Bias_aif360 ===
+Model: gpt-5.6-sol (Provider: OpenAI)
+Preparing workspace: Copying workspace from workspace/Fairness_and_Bias_aif360 to workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66
+Created workspace copy: workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66
+Starting benchmark: Fairness_and_Bias_aif360
+Available datasets in results: ['compas']
+Available metrics in results: ['abs_aod_mean', 'abs_disparate_impact_diff_mean', 'abs_eod_mean', 'abs_theil_index_mean', 'aod_mean', 'balanced_cls_acc_mean', 'cls_acc_mean', 'disparate_impact_mean', 'eod_mean', 'theil_index_mean']
+Filtering datasets to: ['compas']
+Filtering metrics to: ['abs_aod_mean']
+Filtered results keys: ['compas']
+HEAD is now at d2115a1 setup for agent benchmark
+Removing results_tmp/
+Removing train_eval_baseline.py
+Git repository reset to clean state
+Using OpenAI API with model gpt-5.6-sol.
+Using OpenAI API with model gpt-5.6-sol.
+Running val_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+Cleaning existing results_tmp/ directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/results_tmp
+Running val_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+Cleaning existing results_tmp/ directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/results_tmp
+Running val_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+Cleaning existing results_tmp/ directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/results_tmp
+Running val_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+Cleaning existing results_tmp/ directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/results_tmp
+Running val_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+HEAD is now at d2115a1 setup for agent benchmark
+Removing results_tmp/
+Removing train_eval_baseline.py
+Git repository reset to clean state
+Running val_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+Cleaning existing results_tmp/ directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360/results_tmp
+Running test_command: cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split test
+Running command: conda run --no-capture-output -n aif360 bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split test
+Current working directory: /root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66/AIF360
+HEAD is now at d2115a1 setup for agent benchmark
+Removing results_tmp/
+Removing train_eval_baseline.py
+Git repository reset to clean state
+Benchmark completed: Fairness_and_Bias_aif360
+
+Summary saved to: benchmark_results/aide/Fairness_and_Bias_aif360/20260918_104634/summary.json
+Configuration saved to: benchmark_results/aide/Fairness_and_Bias_aif360/20260918_104634/config_used.yaml
+
+============================================================
+Results Summary
+============================================================
+Best Val Metric: 0.006387892026837261 (step 4, idea: You are an expert ML researcher. Your goal is to improve the ML algorithm to achieve better performance.
+
+## Baseline results
+Baseline: abs_aod_mean = 0.2657268424611224 (lower is better)
+
+## Memory of previous attempts
+Plan: You are an expert ML researcher. Your goal is to improve the ML algorithm )
+Test Metric: 0.007734488591682381
+Total Steps: 5
+Total Ideas: 5
+
+Token Usage: 90,815 total (prompt: 65,551, completion: 25,264)
+============================================================
+
+Done!
+Cleaning up copied workspace...
+Cleaned up workspace copy: workspace/Fairness_and_Bias_aif360__aide-smoke-5steps_20260918_104634_b2260e66
+SMOKE EXIT=0

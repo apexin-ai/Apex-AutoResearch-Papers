@@ -1,0 +1,25 @@
+{
+  "task_id": "ablkit_hwf_reasoning_accuracy",
+  "repo": "AbductiveLearning/ABLkit",
+  "paper": "ABLkit",
+  "dataset": "HWF",
+  "metric": "reasoning_accuracy_percent",
+  "higher_is_better": true,
+  "paper_anchor": 99.2,
+  "paper_anchor_source": "repositories/ABLkit/examples/hwf/README.md reports ABL HWF reasoning accuracy 99.2 for all formula lengths.",
+  "budget_protocol": {
+    "loops": 1,
+    "epochs": 1,
+    "segment_size": 1000
+  },
+  "budget_baseline_config": {
+    "lr": 0.001,
+    "label_smoothing": 0.2,
+    "batch_size": 128,
+    "max_revision": -1
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "agent_lightning_room_selector",
+  "repo": "agent-lightning",
+  "repo_path": "repositories/agent-lightning",
+  "task": "APO room-selector prompt optimization",
+  "domain": "agent_rl",
+  "fidelity": "repo_dataset_doc_anchor_local_model_eval",
+  "dataset": {
+    "name": "Agent-Lightning APO room selector",
+    "source": "repositories/agent-lightning/examples/apo/room_tasks.jsonl",
+    "local_path": "repositories/agent-lightning/examples/apo/room_tasks.jsonl",
+    "download_script": "dataset_download.sh"
+  },
+  "baseline": {
+    "name": "Agent-Lightning APO baseline prompt, docs run #1",
+    "metric": "validation_accuracy",
+    "value": 0.569,
+    "source": "repositories/agent-lightning/docs/how-to/train-first-agent.md",
+    "notes": "The docs report validation accuracy improving from 0.569 to 0.721 on 29 validation samples with val_batch_size=10, gradient_batch_size=4, beam_width=2, branch_factor=2, beam_rounds=2."
+  },
+  "paper_anchor": {
+    "name": "Agent-Lightning APO after round 2, docs run #1",
+    "metric": "validation_accuracy",
+    "value": 0.721,
+    "source": "repositories/agent-lightning/docs/how-to/train-first-agent.md"
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh",
+    "agent_eval": "run_formal_agent_lightning_room_selector.py"
+  }
+}

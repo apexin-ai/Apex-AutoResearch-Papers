@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose Goal Blockers"
+  short_description: "Diagnose recurring stalls before resuming persistent goals"
+  default_prompt: "Use $diagnose-goal-blockers to diagnose this stalled goal before restarting any work."

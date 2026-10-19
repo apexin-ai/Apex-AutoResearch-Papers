@@ -1,0 +1,1565 @@
+{
+  "agent": "apextune-fml",
+  "agent_params": {
+    "experiment_round": 1,
+    "max_llm_requests": 100,
+    "max_mutation_attempts": 100,
+    "max_steps": 100,
+    "reasoning_effort": "high",
+    "search_seed": 0
+  },
+  "baseline_primary_metric": 0.4720302724887606,
+  "benchmark": "Robustness_and_Reliability_art",
+  "best_candidate_id": "fml-436b84e04eb0ab14",
+  "best_snapshot": "step_snapshots/step_0005_code.json",
+  "best_step": 5,
+  "best_val_metric": 0.6093303543108368,
+  "created_at": "2026-09-02T09:37:30.735227+00:00",
+  "final_test_score": null,
+  "hardware": {
+    "conda_env": "art",
+    "configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+    "execution": {
+      "cpu_count": 96,
+      "device": "gpu",
+      "gpu_count": 1,
+      "gpus": [
+        {
+          "index": 0,
+          "memory_mb": 40960,
+          "name": "NVIDIA A100-PCIE-40GB"
+        }
+      ]
+    },
+    "fml_benchmark": {
+      "clean": true,
+      "configured_commit": "d336651ebea50c622c256f02ded82b68b4451fdc",
+      "execution_dir": "/workspace/task-113/fml",
+      "git_root": "/workspace/task-113/fml",
+      "observed_commit": "d336651ebea50c622c256f02ded82b68b4451fdc",
+      "protocol_files_sha256": {
+        "ml_tasks/Robustness_and_Reliability_art/config.json": "5db41fc217cf6bfae762a09b1f730e697910984b0d16161040c247497496567c",
+        "ml_tasks/Robustness_and_Reliability_art/eval.py": "61b80eea14076f3c717b28d2ff17ed715e76d6d1788469e2f62714ee908eeeb4",
+        "ml_tasks/Robustness_and_Reliability_art/model.py": "83abb3660ad0ce3236301912afa8786fd0c5ec52ad745c5357aa2b4d4bbfe750",
+        "ml_tasks/Robustness_and_Reliability_art/original_file_backup/backdoor_attack.py": "51f5b8a11592548a4332af5dcc0ae0b794a20c485d85e2808b8c9bd31922ce96",
+        "ml_tasks/Robustness_and_Reliability_art/original_file_backup/image_perturbations.py": "0374271ddbfd876eefeb28aaada2144e8747ac0095e420ded7fef92b769d9adf",
+        "ml_tasks/Robustness_and_Reliability_art/original_file_backup/keras.py": "8e06c62fc1ff6bc412ed0f7df7973e30b71ea97abfe73dbe45ed633c67648672",
+        "ml_tasks/Robustness_and_Reliability_art/original_file_backup/mixup.py": "61e48a9b5379f3e5b0f6222733ab678876be1c0ae757b3978524a3664fd434a0",
+        "ml_tasks/Robustness_and_Reliability_art/original_file_backup/utils.py": "3db8f33bd577d66a27d4f7c6518f051ba984f1f648f67cb78256548458b59d0f",
+        "ml_tasks/Robustness_and_Reliability_art/prompt.json": "66307f49adbba4bd4d31c5f5d963165231cec0f1c342fef2d9baa0d6aeb5faa1",
+        "ml_tasks/Robustness_and_Reliability_art/split_config.json": "1626af2ce69127eb0c977ab355914dc08139b172f38a437b2eff243c7284de07",
+        "ml_tasks/Robustness_and_Reliability_art/trainer.py": "d2765ae59cbe52fbb82111eb123c202b52a36491e3a6ec565c976cfef89fa2ee"
+      }
+    },
+    "metric_direction": "higher",
+    "metric_name": "defense_score_mean",
+    "pinned_commit": "5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9",
+    "protocol": {
+      "comparable": false,
+      "final_test": "same-workspace pre-test validation then hidden test",
+      "final_test_timeout": "locked 2400-second deadline for pre-test validation and hidden test",
+      "leaderboard_eligible": false,
+      "official_command": true,
+      "reason": "using setup.py overlay repository revision 5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9; task config pin 527b5b6b768b2282fe30ee8785d06eafaceb1c01 is not reproduced",
+      "search_split": "validation only",
+      "status": "reconstructed",
+      "validation_metric": "poisoned_mnist.means.defense_score_mean"
+    },
+    "repo_dir": "workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+    "repository": {
+      "clean": true,
+      "configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+      "execution_dir": "/workspace/task-113/fml/workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+      "git_root": "/workspace/task-113/fml/workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+      "observed_commit": "5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9"
+    },
+    "repository_pin_mode": "reconstructed",
+    "target_files": [
+      "art/defences/trainer/dp_instahide_trainer.py",
+      "model.py",
+      "split_config.json"
+    ],
+    "task": "Robustness_and_Reliability_art",
+    "task_configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+    "validation_timeout_seconds": 2400.0
+  },
+  "leaderboard_eligible": false,
+  "llm_requests": 8,
+  "max_steps": 100,
+  "metadata": {
+    "campaign_id": "06168d1f2c1e3c18963fdab5aca6fa659f5320d1d81e67b5a8abc1ad98855855",
+    "experiment_round": 1,
+    "infrastructure_failure": null,
+    "protocol_identity": {
+      "boundaries": [
+        "modify exactly the configured target files",
+        "do not modify or infer evaluator or hidden-test data",
+        "one complete validation consumes one official FML step"
+      ],
+      "experiment_round": 1,
+      "hardware": {
+        "conda_env": "art",
+        "configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+        "execution": {
+          "cpu_count": 96,
+          "device": "gpu",
+          "gpu_count": 1,
+          "gpus": [
+            {
+              "index": 0,
+              "memory_mb": 40960,
+              "name": "NVIDIA A100-PCIE-40GB"
+            }
+          ]
+        },
+        "fml_benchmark": {
+          "clean": true,
+          "configured_commit": "d336651ebea50c622c256f02ded82b68b4451fdc",
+          "execution_dir": "/workspace/task-113/fml",
+          "git_root": "/workspace/task-113/fml",
+          "observed_commit": "d336651ebea50c622c256f02ded82b68b4451fdc",
+          "protocol_files_sha256": {
+            "ml_tasks/Robustness_and_Reliability_art/config.json": "5db41fc217cf6bfae762a09b1f730e697910984b0d16161040c247497496567c",
+            "ml_tasks/Robustness_and_Reliability_art/eval.py": "61b80eea14076f3c717b28d2ff17ed715e76d6d1788469e2f62714ee908eeeb4",
+            "ml_tasks/Robustness_and_Reliability_art/model.py": "83abb3660ad0ce3236301912afa8786fd0c5ec52ad745c5357aa2b4d4bbfe750",
+            "ml_tasks/Robustness_and_Reliability_art/original_file_backup/backdoor_attack.py": "51f5b8a11592548a4332af5dcc0ae0b794a20c485d85e2808b8c9bd31922ce96",
+            "ml_tasks/Robustness_and_Reliability_art/original_file_backup/image_perturbations.py": "0374271ddbfd876eefeb28aaada2144e8747ac0095e420ded7fef92b769d9adf",
+            "ml_tasks/Robustness_and_Reliability_art/original_file_backup/keras.py": "8e06c62fc1ff6bc412ed0f7df7973e30b71ea97abfe73dbe45ed633c67648672",
+            "ml_tasks/Robustness_and_Reliability_art/original_file_backup/mixup.py": "61e48a9b5379f3e5b0f6222733ab678876be1c0ae757b3978524a3664fd434a0",
+            "ml_tasks/Robustness_and_Reliability_art/original_file_backup/utils.py": "3db8f33bd577d66a27d4f7c6518f051ba984f1f648f67cb78256548458b59d0f",
+            "ml_tasks/Robustness_and_Reliability_art/prompt.json": "66307f49adbba4bd4d31c5f5d963165231cec0f1c342fef2d9baa0d6aeb5faa1",
+            "ml_tasks/Robustness_and_Reliability_art/split_config.json": "1626af2ce69127eb0c977ab355914dc08139b172f38a437b2eff243c7284de07",
+            "ml_tasks/Robustness_and_Reliability_art/trainer.py": "d2765ae59cbe52fbb82111eb123c202b52a36491e3a6ec565c976cfef89fa2ee"
+          }
+        },
+        "metric_direction": "higher",
+        "metric_name": "defense_score_mean",
+        "pinned_commit": "5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9",
+        "protocol": {
+          "comparable": false,
+          "final_test": "same-workspace pre-test validation then hidden test",
+          "final_test_timeout": "locked 2400-second deadline for pre-test validation and hidden test",
+          "leaderboard_eligible": false,
+          "official_command": true,
+          "reason": "using setup.py overlay repository revision 5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9; task config pin 527b5b6b768b2282fe30ee8785d06eafaceb1c01 is not reproduced",
+          "search_split": "validation only",
+          "status": "reconstructed",
+          "validation_metric": "poisoned_mnist.means.defense_score_mean"
+        },
+        "repo_dir": "workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+        "repository": {
+          "clean": true,
+          "configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+          "execution_dir": "/workspace/task-113/fml/workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+          "git_root": "/workspace/task-113/fml/workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+          "observed_commit": "5ddd8ef204a8352d19d4bd212a4de5d4b7ca6fa9"
+        },
+        "repository_pin_mode": "reconstructed",
+        "target_files": [
+          "art/defences/trainer/dp_instahide_trainer.py",
+          "model.py",
+          "split_config.json"
+        ],
+        "task": "Robustness_and_Reliability_art",
+        "task_configured_commit": "527b5b6b768b2282fe30ee8785d06eafaceb1c01",
+        "validation_timeout_seconds": 2400.0
+      },
+      "llm_config": {
+        "model": "gpt-5.4",
+        "output_contract": "unified_diff_v1",
+        "provider": "OpenAI",
+        "reasoning_effort": "high"
+      },
+      "seed": 0,
+      "seed_roles": {
+        "evaluator_seed": "owned_by_original_fml_command",
+        "search_seed": 0
+      },
+      "task_context": "You are given the Adversarial Robustness Toolbox (ART) codebase with a focus on the dp_instahide defense. dp_instahide mixes inputs with public data and applies differential privacy noise to hinder inversion and poisoning. While designed for privacy-preserving training, its structure offers headroom to harden against both clean-label and trigger/backdoor poisons. Your goal is to improve defense performance against diverse poisoning attacks while maintaining high clean accuracy. You may tune dp_instahide, compose it with other defenses, or propose a new method if it outperforms baselines.\n\nYou are evaluated on a validation set during development. Your final performance will be measured on a separate held-out test set that you do not have access to. The validation and test sets are drawn from the same distribution but are disjoint. Use the validation results to guide your research, but be mindful that overfitting to the validation set will not improve test performance.\n\nYou may also modify split_config.json to control how visible data is split between training and validation. Fields:\n- val_ratio (default: 0.20): fraction of visible data reserved for validation. Lower values mean more training data but noisier validation metrics.\n- val_seed (default: 42): random seed for the train/val split.\nThe test evaluation uses a separate hidden dataset and is completely unaffected by your split_config changes. If you do not modify split_config.json, the default split is used.",
+      "timeout_seconds": 2400.0
+    },
+    "recovered_attempts": 0,
+    "search_kernel": {
+      "budget_bandit": "active",
+      "hpo_runner": "active_discrete_snapshot_selection",
+      "implementation": "historical_apextune_components",
+      "l0": "candidate_contract_only",
+      "l1_partial_probe": "disabled_fml_requires_complete_validation",
+      "l2_full_result_gate": "active",
+      "l3_repeated_seed_race": "disabled_fixed_evaluator_seed",
+      "mode": "fml_full_evaluation",
+      "mutation_layer": "active",
+      "qd_archive": "active",
+      "tournament": "active_parallel_mutation_full_validation",
+      "tune_layer": "active_llm_snapshot_refinement"
+    }
+  },
+  "model": "gpt-5.4",
+  "mutation_attempts": 3,
+  "mutation_generation_failures": [
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T09:39:10.583778+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0001",
+      "diagnostics": {
+        "elapsed_seconds": 19.950339185947087,
+        "finish_reason": "stop",
+        "response_chars": 1128,
+        "response_sha256": "3e45ab31cdfaabf6fd5b193dede25a697684f521ed634ef283f326274e1e654a",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch is missing a valid hunk header",
+      "kind": "invalid_patch",
+      "request_id": 3
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T09:39:10.583797+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0001",
+      "diagnostics": {
+        "elapsed_seconds": 23.466333988006227,
+        "finish_reason": "stop",
+        "response_chars": 1457,
+        "response_sha256": "0eae57868e3e6afc4cdaf8e24870c6e57efe3bede0f3671acd2912299a759a48",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 4
+    },
+    {
+      "action": "tune",
+      "arm": "tune@valid:True",
+      "at": "2026-09-02T10:18:39.104566+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0005",
+      "diagnostics": {
+        "elapsed_seconds": 85.16010939696571,
+        "finish_reason": "stop",
+        "response_chars": 766,
+        "response_sha256": "8cae98334154a596253652b5585e8be038e04109e7daa812c8de746fa7a9a1c7",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 5
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T10:19:37.082008+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0006",
+      "diagnostics": {
+        "elapsed_seconds": 56.19630973396124,
+        "finish_reason": "stop",
+        "response_chars": 1056,
+        "response_sha256": "98549fff7cf355149714128ebe66b9f5de63074ba4a28da8fd3c4ae564752321",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 6
+    },
+    {
+      "action": "mutate",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T10:21:39.570060+00:00",
+      "attempt": null,
+      "batch_id": "mutation_batch_r0007",
+      "diagnostics": {
+        "elapsed_seconds": 120.77095426199958,
+        "finish_reason": "stop",
+        "response_chars": 1290,
+        "response_sha256": "e59d8aeeafbc09cc5bbf5ec49f4003e534391292546438e13378663d70b2fa88",
+        "retry_errors": [],
+        "transport_attempts": 1,
+        "transport_retried": false,
+        "transport_retry_exhausted": false
+      },
+      "error": "patch context is ambiguous; include more context",
+      "kind": "invalid_patch",
+      "request_id": 7
+    }
+  ],
+  "output_dir": "/workspace/task-113/results/apextune-art/smoke/attempt-20260902T093625Z/apextune-fml/Robustness_and_Reliability_art/art-smoke-r1",
+  "parent_workspace": "/workspace/task-113/results/apextune-art/smoke/attempt-20260902T093625Z/apextune-fml/Robustness_and_Reliability_art/art-smoke-r1",
+  "protocol_status": "reconstructed",
+  "provider": "OpenAI",
+  "reasoning_effort": "high",
+  "save_code_backup": false,
+  "seed_roles": {
+    "evaluator_seed": "owned_by_original_fml_command",
+    "search_seed": 0
+  },
+  "stop_reason": "paused",
+  "task_config": {
+    "conda_env": "art",
+    "metric": "defense_score_mean",
+    "metric_direction": "higher",
+    "repo_dir": "workspace/Robustness_and_Reliability_art/adversarial-robustness-toolbox",
+    "target_files": [
+      "art/defences/trainer/dp_instahide_trainer.py",
+      "model.py",
+      "split_config.json"
+    ]
+  },
+  "test_artifact": null,
+  "test_evaluations": 0,
+  "test_result": null,
+  "test_status": "not_started",
+  "token_usage": {
+    "completion_tokens": 16495.0,
+    "prompt_tokens": 28596.0,
+    "total_tokens": 45091.0
+  },
+  "total_cost_usd": 0.0,
+  "total_duration_seconds": 3935.318163003132,
+  "total_ideas": 3,
+  "total_steps": 6,
+  "val_steps": [
+    {
+      "action": "mutate",
+      "admitted": true,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T09:47:45.933936+00:00",
+      "bandit": {
+        "charge_hours": 0.14312716392389524,
+        "improvement": 0.05319286870191453
+      },
+      "candidate_id": "fml-eea9b6e99c48cb9a",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed model.py",
+      "idea_id": "fml-eea9b6e99c48cb9a",
+      "ladder": {
+        "decision": "promote",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.5252231411906751
+        },
+        "level": "L2",
+        "reason": "beats elite by min_effect"
+      },
+      "metadata": {
+        "admitted": true,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_authority": "disabled",
+        "hpo_best_candidate_id": "fml-eea9b6e99c48cb9a",
+        "hpo_candidate_id": "fml-eea9b6e99c48cb9a",
+        "hpo_phase": "probe_full_validation",
+        "hpo_sampler": "random",
+        "hpo_trials": [
+          {
+            "candidate_id": "fml-eea9b6e99c48cb9a",
+            "full_score": 0.5252231411906751,
+            "index": 0,
+            "is_default": true,
+            "probe_score": 0.5252231411906751,
+            "state": "promoted"
+          },
+          {
+            "candidate_id": "fml-2d7176dc8f4982f1",
+            "full_score": 0.3341083512683745,
+            "index": 1,
+            "is_default": false,
+            "probe_score": 0.3341083512683745,
+            "state": "promoted"
+          }
+        ],
+        "llm_request_id": 1,
+        "mutation_attempt": 1,
+        "mutation_batch": "mutation_batch_r0001",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": true,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0001_code.json",
+        "tournament_size": 2
+      },
+      "metrics": {
+        "clean_acc_mean": 0.3940952380952381,
+        "defense_score_mean": 0.5252231411906751,
+        "poison_acc_mean": 0.11566731141199227,
+        "resist_acc_mean": 0.8843326885880078
+      },
+      "new_best": true,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.5252231411906751,
+      "rationale": "mutate patch changed model.py",
+      "reserved_at": "2026-09-02T09:39:10.586947+00:00",
+      "snapshot": "step_snapshots/step_0001_code.json",
+      "status": "complete",
+      "step_duration_seconds": 515.33071449399,
+      "step_id": 1,
+      "token_usage": {
+        "completion_tokens": 756,
+        "prompt_tokens": 3505,
+        "total_tokens": 4261
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.3940952380952381,
+          "defense_score_mean": 0.5252231411906751,
+          "poison_acc_mean": 0.11566731141199227,
+          "resist_acc_mean": 0.8843326885880078
+        },
+        "primary_metric": 0.5252231411906751,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.09714285714285714,
+                0.5657142857142857,
+                0.3919047619047619,
+                0.36904761904761907,
+                0.5466666666666666
+              ],
+              "defense_score": [
+                0.17299130803476784,
+                0.6925359333967432,
+                0.532571315787293,
+                0.5315430147893349,
+                0.6964741339452368
+              ],
+              "poison_acc": [
+                0.21083172147001933,
+                0.10735009671179883,
+                0.16924564796905223,
+                0.05029013539651837,
+                0.04061895551257253
+              ],
+              "resist_acc": [
+                0.7891682785299807,
+                0.8926499032882012,
+                0.8307543520309477,
+                0.9497098646034816,
+                0.9593810444874274
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.3940952380952381,
+              "defense_score": 0.5252231411906751,
+              "poison_acc": 0.11566731141199227,
+              "resist_acc": 0.8843326885880078
+            },
+            "means": {
+              "clean_acc_mean": 0.3940952380952381,
+              "defense_score_mean": 0.5252231411906751,
+              "poison_acc_mean": 0.11566731141199227,
+              "resist_acc_mean": 0.8843326885880078
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.09714285714285714,
+                "defense_score": 0.17299130803476784,
+                "poison_acc": 0.21083172147001933,
+                "resist_acc": 0.7891682785299807
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.5657142857142857,
+                "defense_score": 0.6925359333967432,
+                "poison_acc": 0.10735009671179883,
+                "resist_acc": 0.8926499032882012
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.3919047619047619,
+                "defense_score": 0.532571315787293,
+                "poison_acc": 0.16924564796905223,
+                "resist_acc": 0.8307543520309477
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.36904761904761907,
+                "defense_score": 0.5315430147893349,
+                "poison_acc": 0.05029013539651837,
+                "resist_acc": 0.9497098646034816
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.5466666666666666,
+                "defense_score": 0.6964741339452368,
+                "poison_acc": 0.04061895551257253,
+                "resist_acc": 0.9593810444874274
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.09714285714285714,
+              "defense_score_min": 0.17299130803476784,
+              "poison_acc_max": 0.21083172147001933
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-02T09:47:45.917134+00:00",
+      "validation_duration_seconds": 515.2577901260229
+    },
+    {
+      "action": "mutate",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T09:58:17.111691+00:00",
+      "bandit": {
+        "charge_hours": 0.1753028240041749,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-2d7176dc8f4982f1",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed model.py",
+      "idea_id": "fml-2d7176dc8f4982f1",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.3341083512683745
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_authority": "disabled",
+        "hpo_best_candidate_id": "fml-eea9b6e99c48cb9a",
+        "hpo_candidate_id": "fml-2d7176dc8f4982f1",
+        "hpo_phase": "probe_full_validation",
+        "hpo_sampler": "random",
+        "hpo_trials": [
+          {
+            "candidate_id": "fml-eea9b6e99c48cb9a",
+            "full_score": 0.5252231411906751,
+            "index": 0,
+            "is_default": true,
+            "probe_score": 0.5252231411906751,
+            "state": "promoted"
+          },
+          {
+            "candidate_id": "fml-2d7176dc8f4982f1",
+            "full_score": 0.3341083512683745,
+            "index": 1,
+            "is_default": false,
+            "probe_score": 0.3341083512683745,
+            "state": "promoted"
+          }
+        ],
+        "llm_request_id": 2,
+        "mutation_attempt": 2,
+        "mutation_batch": "mutation_batch_r0001",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0002_code.json",
+        "tournament_size": 2
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9552380952380952,
+        "defense_score_mean": 0.3341083512683745,
+        "poison_acc_mean": 0.7895551257253385,
+        "resist_acc_mean": 0.2104448742746615
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.3341083512683745,
+      "rationale": "mutate patch changed model.py",
+      "reserved_at": "2026-09-02T09:47:45.937041+00:00",
+      "snapshot": "step_snapshots/step_0002_code.json",
+      "status": "complete",
+      "step_duration_seconds": 631.1632604800398,
+      "step_id": 2,
+      "token_usage": {
+        "completion_tokens": 625,
+        "prompt_tokens": 3505,
+        "total_tokens": 4130
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9552380952380952,
+          "defense_score_mean": 0.3341083512683745,
+          "poison_acc_mean": 0.7895551257253385,
+          "resist_acc_mean": 0.2104448742746615
+        },
+        "primary_metric": 0.3341083512683745,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9485714285714286,
+                0.9619047619047619,
+                0.9519047619047619,
+                0.9533333333333334,
+                0.9604761904761905
+              ],
+              "defense_score": [
+                0.5476141139025422,
+                0.178941151948864,
+                0.27757394723291423,
+                0.27763460493927034,
+                0.38877793831828167
+              ],
+              "poison_acc": [
+                0.6150870406189555,
+                0.9013539651837524,
+                0.8375241779497099,
+                0.8375241779497099,
+                0.7562862669245648
+              ],
+              "resist_acc": [
+                0.38491295938104453,
+                0.09864603481624756,
+                0.1624758220502901,
+                0.1624758220502901,
+                0.2437137330754352
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9552380952380952,
+              "defense_score": 0.3341083512683745,
+              "poison_acc": 0.7895551257253385,
+              "resist_acc": 0.2104448742746615
+            },
+            "means": {
+              "clean_acc_mean": 0.9552380952380952,
+              "defense_score_mean": 0.3341083512683745,
+              "poison_acc_mean": 0.7895551257253385,
+              "resist_acc_mean": 0.2104448742746615
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9485714285714286,
+                "defense_score": 0.5476141139025422,
+                "poison_acc": 0.6150870406189555,
+                "resist_acc": 0.38491295938104453
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.9619047619047619,
+                "defense_score": 0.178941151948864,
+                "poison_acc": 0.9013539651837524,
+                "resist_acc": 0.09864603481624756
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9519047619047619,
+                "defense_score": 0.27757394723291423,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.9533333333333334,
+                "defense_score": 0.27763460493927034,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9604761904761905,
+                "defense_score": 0.38877793831828167,
+                "poison_acc": 0.7562862669245648,
+                "resist_acc": 0.2437137330754352
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9485714285714286,
+              "defense_score_min": 0.178941151948864,
+              "poison_acc_max": 0.9013539651837524
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-02T09:58:17.099735+00:00",
+      "validation_duration_seconds": 631.0901664150297
+    },
+    {
+      "action": "mutate",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T10:06:29.598748+00:00",
+      "bandit": {
+        "charge_hours": 0.13677688455361123,
+        "improvement": 0.05319286870191453
+      },
+      "candidate_id": "fml-eea9b6e99c48cb9a",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed model.py",
+      "idea_id": "fml-eea9b6e99c48cb9a",
+      "ladder": {
+        "decision": "promote",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.5252231411906751
+        },
+        "level": "L2",
+        "reason": "beats elite by min_effect"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_authority": "disabled",
+        "hpo_best_candidate_id": "fml-eea9b6e99c48cb9a",
+        "hpo_candidate_id": "fml-eea9b6e99c48cb9a",
+        "hpo_phase": "promoted_full_validation",
+        "hpo_sampler": "random",
+        "hpo_trials": [
+          {
+            "candidate_id": "fml-eea9b6e99c48cb9a",
+            "full_score": 0.5252231411906751,
+            "index": 0,
+            "is_default": true,
+            "probe_score": 0.5252231411906751,
+            "state": "promoted"
+          },
+          {
+            "candidate_id": "fml-2d7176dc8f4982f1",
+            "full_score": 0.3341083512683745,
+            "index": 1,
+            "is_default": false,
+            "probe_score": 0.3341083512683745,
+            "state": "promoted"
+          }
+        ],
+        "llm_request_id": 1,
+        "mutation_attempt": 1,
+        "mutation_batch": "mutation_batch_r0001",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0003_code.json",
+        "tournament_size": 2
+      },
+      "metrics": {
+        "clean_acc_mean": 0.3940952380952381,
+        "defense_score_mean": 0.5252231411906751,
+        "poison_acc_mean": 0.11566731141199227,
+        "resist_acc_mean": 0.8843326885880078
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.5252231411906751,
+      "rationale": "mutate patch changed model.py",
+      "reserved_at": "2026-09-02T09:58:17.115314+00:00",
+      "snapshot": "step_snapshots/step_0003_code.json",
+      "status": "complete",
+      "step_duration_seconds": 492.4699538880377,
+      "step_id": 3,
+      "token_usage": {},
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.3940952380952381,
+          "defense_score_mean": 0.5252231411906751,
+          "poison_acc_mean": 0.11566731141199227,
+          "resist_acc_mean": 0.8843326885880078
+        },
+        "primary_metric": 0.5252231411906751,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.09714285714285714,
+                0.5657142857142857,
+                0.3919047619047619,
+                0.36904761904761907,
+                0.5466666666666666
+              ],
+              "defense_score": [
+                0.17299130803476784,
+                0.6925359333967432,
+                0.532571315787293,
+                0.5315430147893349,
+                0.6964741339452368
+              ],
+              "poison_acc": [
+                0.21083172147001933,
+                0.10735009671179883,
+                0.16924564796905223,
+                0.05029013539651837,
+                0.04061895551257253
+              ],
+              "resist_acc": [
+                0.7891682785299807,
+                0.8926499032882012,
+                0.8307543520309477,
+                0.9497098646034816,
+                0.9593810444874274
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.3940952380952381,
+              "defense_score": 0.5252231411906751,
+              "poison_acc": 0.11566731141199227,
+              "resist_acc": 0.8843326885880078
+            },
+            "means": {
+              "clean_acc_mean": 0.3940952380952381,
+              "defense_score_mean": 0.5252231411906751,
+              "poison_acc_mean": 0.11566731141199227,
+              "resist_acc_mean": 0.8843326885880078
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.09714285714285714,
+                "defense_score": 0.17299130803476784,
+                "poison_acc": 0.21083172147001933,
+                "resist_acc": 0.7891682785299807
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.5657142857142857,
+                "defense_score": 0.6925359333967432,
+                "poison_acc": 0.10735009671179883,
+                "resist_acc": 0.8926499032882012
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.3919047619047619,
+                "defense_score": 0.532571315787293,
+                "poison_acc": 0.16924564796905223,
+                "resist_acc": 0.8307543520309477
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.36904761904761907,
+                "defense_score": 0.5315430147893349,
+                "poison_acc": 0.05029013539651837,
+                "resist_acc": 0.9497098646034816
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.5466666666666666,
+                "defense_score": 0.6964741339452368,
+                "poison_acc": 0.04061895551257253,
+                "resist_acc": 0.9593810444874274
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.09714285714285714,
+              "defense_score_min": 0.17299130803476784,
+              "poison_acc_max": 0.21083172147001933
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-02T10:06:29.584666+00:00",
+      "validation_duration_seconds": 492.3967843930004
+    },
+    {
+      "action": "mutate",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "mutate@valid:True",
+      "at": "2026-09-02T10:17:12.215526+00:00",
+      "bandit": {
+        "charge_hours": 0.17847808723111586,
+        "improvement": 0.0
+      },
+      "candidate_id": "fml-2d7176dc8f4982f1",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "mutate patch changed model.py",
+      "idea_id": "fml-2d7176dc8f4982f1",
+      "ladder": {
+        "decision": "kill",
+        "detail": {
+          "elite": 0.4720302724887606,
+          "min_effect": 0.0,
+          "score": 0.3341083512683745
+        },
+        "level": "L2",
+        "reason": "no full-budget improvement"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "mutate@valid:True",
+        "full_fml_validation": true,
+        "hpo_authority": "disabled",
+        "hpo_best_candidate_id": "fml-eea9b6e99c48cb9a",
+        "hpo_candidate_id": "fml-2d7176dc8f4982f1",
+        "hpo_phase": "promoted_full_validation",
+        "hpo_sampler": "random",
+        "hpo_trials": [
+          {
+            "candidate_id": "fml-eea9b6e99c48cb9a",
+            "full_score": 0.5252231411906751,
+            "index": 0,
+            "is_default": true,
+            "probe_score": 0.5252231411906751,
+            "state": "promoted"
+          },
+          {
+            "candidate_id": "fml-2d7176dc8f4982f1",
+            "full_score": 0.3341083512683745,
+            "index": 1,
+            "is_default": false,
+            "probe_score": 0.3341083512683745,
+            "state": "promoted"
+          }
+        ],
+        "llm_request_id": 2,
+        "mutation_attempt": 2,
+        "mutation_batch": "mutation_batch_r0001",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0004_code.json",
+        "tournament_size": 2
+      },
+      "metrics": {
+        "clean_acc_mean": 0.9552380952380952,
+        "defense_score_mean": 0.3341083512683745,
+        "poison_acc_mean": 0.7895551257253385,
+        "resist_acc_mean": 0.2104448742746615
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.4720302724887606,
+      "primary_metric": 0.3341083512683745,
+      "rationale": "mutate patch changed model.py",
+      "reserved_at": "2026-09-02T10:06:29.602825+00:00",
+      "snapshot": "step_snapshots/step_0004_code.json",
+      "status": "complete",
+      "step_duration_seconds": 642.5952533850214,
+      "step_id": 4,
+      "token_usage": {},
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.9552380952380952,
+          "defense_score_mean": 0.3341083512683745,
+          "poison_acc_mean": 0.7895551257253385,
+          "resist_acc_mean": 0.2104448742746615
+        },
+        "primary_metric": 0.3341083512683745,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.9485714285714286,
+                0.9619047619047619,
+                0.9519047619047619,
+                0.9533333333333334,
+                0.9604761904761905
+              ],
+              "defense_score": [
+                0.5476141139025422,
+                0.178941151948864,
+                0.27757394723291423,
+                0.27763460493927034,
+                0.38877793831828167
+              ],
+              "poison_acc": [
+                0.6150870406189555,
+                0.9013539651837524,
+                0.8375241779497099,
+                0.8375241779497099,
+                0.7562862669245648
+              ],
+              "resist_acc": [
+                0.38491295938104453,
+                0.09864603481624756,
+                0.1624758220502901,
+                0.1624758220502901,
+                0.2437137330754352
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 8404,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.9552380952380952,
+              "defense_score": 0.3341083512683745,
+              "poison_acc": 0.7895551257253385,
+              "resist_acc": 0.2104448742746615
+            },
+            "means": {
+              "clean_acc_mean": 0.9552380952380952,
+              "defense_score_mean": 0.3341083512683745,
+              "poison_acc_mean": 0.7895551257253385,
+              "resist_acc_mean": 0.2104448742746615
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.9485714285714286,
+                "defense_score": 0.5476141139025422,
+                "poison_acc": 0.6150870406189555,
+                "resist_acc": 0.38491295938104453
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.9619047619047619,
+                "defense_score": 0.178941151948864,
+                "poison_acc": 0.9013539651837524,
+                "resist_acc": 0.09864603481624756
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.9519047619047619,
+                "defense_score": 0.27757394723291423,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.9533333333333334,
+                "defense_score": 0.27763460493927034,
+                "poison_acc": 0.8375241779497099,
+                "resist_acc": 0.1624758220502901
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.9604761904761905,
+                "defense_score": 0.38877793831828167,
+                "poison_acc": 0.7562862669245648,
+                "resist_acc": 0.2437137330754352
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.9485714285714286,
+              "defense_score_min": 0.178941151948864,
+              "poison_acc_max": 0.9013539651837524
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-02T10:17:12.197491+00:00",
+      "validation_duration_seconds": 642.5211140320171
+    },
+    {
+      "action": "tune",
+      "admitted": true,
+      "archive_cell": "valid:True",
+      "arm": "tune@valid:True",
+      "at": "2026-09-02T10:32:55.381049+00:00",
+      "bandit": {
+        "charge_hours": 0.18019574843195085,
+        "improvement": 0.08410721312016167
+      },
+      "candidate_id": "fml-436b84e04eb0ab14",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "tune patch changed split_config.json",
+      "idea_id": "fml-436b84e04eb0ab14",
+      "ladder": {
+        "decision": "promote",
+        "detail": {
+          "elite": 0.5252231411906751,
+          "min_effect": 0.0,
+          "score": 0.6093303543108368
+        },
+        "level": "L2",
+        "reason": "beats elite by min_effect"
+      },
+      "metadata": {
+        "admitted": true,
+        "archive_cell": "valid:True",
+        "arm": "tune@valid:True",
+        "full_fml_validation": true,
+        "hpo_authority": "disabled",
+        "hpo_best_candidate_id": "fml-436b84e04eb0ab14",
+        "hpo_candidate_id": "fml-436b84e04eb0ab14",
+        "hpo_phase": "probe_full_validation",
+        "hpo_sampler": "random",
+        "hpo_trials": [
+          {
+            "candidate_id": "fml-436b84e04eb0ab14",
+            "full_score": 0.6093303543108368,
+            "index": 0,
+            "is_default": true,
+            "probe_score": 0.6093303543108368,
+            "state": "promoted"
+          }
+        ],
+        "llm_request_id": 8,
+        "mutation_attempt": 3,
+        "mutation_batch": "mutation_batch_r0008",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": true,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0005_code.json",
+        "tournament_size": 1
+      },
+      "metrics": {
+        "clean_acc_mean": 0.5156190476190476,
+        "defense_score_mean": 0.6093303543108368,
+        "poison_acc_mean": 0.18073217726396917,
+        "resist_acc_mean": 0.8192678227360309
+      },
+      "new_best": true,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.5252231411906751,
+      "primary_metric": 0.6093303543108368,
+      "rationale": "tune patch changed split_config.json",
+      "reserved_at": "2026-09-02T10:22:06.576560+00:00",
+      "snapshot": "step_snapshots/step_0005_code.json",
+      "status": "complete",
+      "step_duration_seconds": 648.7801252210047,
+      "step_id": 5,
+      "token_usage": {
+        "completion_tokens": 577,
+        "prompt_tokens": 3644,
+        "total_tokens": 4221
+      },
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.5156190476190476,
+          "defense_score_mean": 0.6093303543108368,
+          "poison_acc_mean": 0.18073217726396917,
+          "resist_acc_mean": 0.8192678227360309
+        },
+        "primary_metric": 0.6093303543108368,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.5752380952380952,
+                0.7790476190476191,
+                0.20666666666666667,
+                0.5,
+                0.5171428571428571
+              ],
+              "defense_score": [
+                0.6854112828765816,
+                0.7619907280368567,
+                0.3294084983404637,
+                0.6135517498138495,
+                0.656289512486432
+              ],
+              "poison_acc": [
+                0.15221579961464354,
+                0.2543352601156069,
+                0.18882466281310212,
+                0.20616570327552985,
+                0.10211946050096339
+              ],
+              "resist_acc": [
+                0.8477842003853564,
+                0.7456647398843931,
+                0.8111753371868979,
+                0.7938342967244701,
+                0.8978805394990366
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 9454,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.5156190476190476,
+              "defense_score": 0.6093303543108368,
+              "poison_acc": 0.18073217726396917,
+              "resist_acc": 0.8192678227360309
+            },
+            "means": {
+              "clean_acc_mean": 0.5156190476190476,
+              "defense_score_mean": 0.6093303543108368,
+              "poison_acc_mean": 0.18073217726396917,
+              "resist_acc_mean": 0.8192678227360309
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.5752380952380952,
+                "defense_score": 0.6854112828765816,
+                "poison_acc": 0.15221579961464354,
+                "resist_acc": 0.8477842003853564
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.7790476190476191,
+                "defense_score": 0.7619907280368567,
+                "poison_acc": 0.2543352601156069,
+                "resist_acc": 0.7456647398843931
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.20666666666666667,
+                "defense_score": 0.3294084983404637,
+                "poison_acc": 0.18882466281310212,
+                "resist_acc": 0.8111753371868979
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.5,
+                "defense_score": 0.6135517498138495,
+                "poison_acc": 0.20616570327552985,
+                "resist_acc": 0.7938342967244701
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.5171428571428571,
+                "defense_score": 0.656289512486432,
+                "poison_acc": 0.10211946050096339,
+                "resist_acc": 0.8978805394990366
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.20666666666666667,
+              "defense_score_min": 0.3294084983404637,
+              "poison_acc_max": 0.2543352601156069
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-02T10:32:55.356110+00:00",
+      "validation_duration_seconds": 648.7046943550231
+    },
+    {
+      "action": "tune",
+      "admitted": false,
+      "archive_cell": "valid:True",
+      "arm": "tune@valid:True",
+      "at": "2026-09-02T10:43:14.984641+00:00",
+      "bandit": {
+        "charge_hours": 0.17208385202500115,
+        "improvement": 0.08410721312016167
+      },
+      "candidate_id": "fml-436b84e04eb0ab14",
+      "cost_usd": null,
+      "edit_success": true,
+      "error": null,
+      "idea_description": "tune patch changed split_config.json",
+      "idea_id": "fml-436b84e04eb0ab14",
+      "ladder": {
+        "decision": "promote",
+        "detail": {
+          "elite": 0.5252231411906751,
+          "min_effect": 0.0,
+          "score": 0.6093303543108368
+        },
+        "level": "L2",
+        "reason": "beats elite by min_effect"
+      },
+      "metadata": {
+        "admitted": false,
+        "archive_cell": "valid:True",
+        "arm": "tune@valid:True",
+        "full_fml_validation": true,
+        "hpo_authority": "disabled",
+        "hpo_best_candidate_id": "fml-436b84e04eb0ab14",
+        "hpo_candidate_id": "fml-436b84e04eb0ab14",
+        "hpo_phase": "promoted_full_validation",
+        "hpo_sampler": "random",
+        "hpo_trials": [
+          {
+            "candidate_id": "fml-436b84e04eb0ab14",
+            "full_score": 0.6093303543108368,
+            "index": 0,
+            "is_default": true,
+            "probe_score": 0.6093303543108368,
+            "state": "promoted"
+          }
+        ],
+        "llm_request_id": 8,
+        "mutation_attempt": 3,
+        "mutation_batch": "mutation_batch_r0008",
+        "mutation_contract": "unified_diff_v1",
+        "mutation_transport_attempts": 1,
+        "mutation_transport_retried": false,
+        "mutation_transport_retry_errors": [],
+        "new_best": false,
+        "parent_cell": "valid:True",
+        "snapshot": "step_snapshots/step_0006_code.json",
+        "tournament_size": 1
+      },
+      "metrics": {
+        "clean_acc_mean": 0.5156190476190476,
+        "defense_score_mean": 0.6093303543108368,
+        "poison_acc_mean": 0.18073217726396917,
+        "resist_acc_mean": 0.8192678227360309
+      },
+      "new_best": false,
+      "parent_cell": "valid:True",
+      "parent_metric": 0.5252231411906751,
+      "primary_metric": 0.6093303543108368,
+      "rationale": "tune patch changed split_config.json",
+      "reserved_at": "2026-09-02T10:32:55.386540+00:00",
+      "snapshot": "step_snapshots/step_0006_code.json",
+      "status": "complete",
+      "step_duration_seconds": 619.577630725049,
+      "step_id": 6,
+      "token_usage": {},
+      "val_result": {
+        "error": null,
+        "filtered_results": {
+          "clean_acc_mean": 0.5156190476190476,
+          "defense_score_mean": 0.6093303543108368,
+          "poison_acc_mean": 0.18073217726396917,
+          "resist_acc_mean": 0.8192678227360309
+        },
+        "primary_metric": 0.6093303543108368,
+        "results": {
+          "poisoned_mnist": {
+            "all_backdoor_results": {
+              "clean_acc": [
+                0.5752380952380952,
+                0.7790476190476191,
+                0.20666666666666667,
+                0.5,
+                0.5171428571428571
+              ],
+              "defense_score": [
+                0.6854112828765816,
+                0.7619907280368567,
+                0.3294084983404637,
+                0.6135517498138495,
+                0.656289512486432
+              ],
+              "poison_acc": [
+                0.15221579961464354,
+                0.2543352601156069,
+                0.18882466281310212,
+                0.20616570327552985,
+                0.10211946050096339
+              ],
+              "resist_acc": [
+                0.8477842003853564,
+                0.7456647398843931,
+                0.8111753371868979,
+                0.7938342967244701,
+                0.8978805394990366
+              ]
+            },
+            "config": {
+              "backdoor_types": [
+                "pattern",
+                "distributed",
+                "edge",
+                "random_corner",
+                "pattern_topleft"
+              ],
+              "note": "Comprehensive evaluation with multiple diverse backdoor types",
+              "num_backdoor_types": 5,
+              "num_samples": 9454,
+              "poison_rate": 0.33
+            },
+            "final_info_dict": {
+              "clean_acc": 0.5156190476190476,
+              "defense_score": 0.6093303543108368,
+              "poison_acc": 0.18073217726396917,
+              "resist_acc": 0.8192678227360309
+            },
+            "means": {
+              "clean_acc_mean": 0.5156190476190476,
+              "defense_score_mean": 0.6093303543108368,
+              "poison_acc_mean": 0.18073217726396917,
+              "resist_acc_mean": 0.8192678227360309
+            },
+            "per_backdoor_results": [
+              {
+                "backdoor_type": "pattern",
+                "clean_acc": 0.5752380952380952,
+                "defense_score": 0.6854112828765816,
+                "poison_acc": 0.15221579961464354,
+                "resist_acc": 0.8477842003853564
+              },
+              {
+                "backdoor_type": "distributed",
+                "clean_acc": 0.7790476190476191,
+                "defense_score": 0.7619907280368567,
+                "poison_acc": 0.2543352601156069,
+                "resist_acc": 0.7456647398843931
+              },
+              {
+                "backdoor_type": "edge",
+                "clean_acc": 0.20666666666666667,
+                "defense_score": 0.3294084983404637,
+                "poison_acc": 0.18882466281310212,
+                "resist_acc": 0.8111753371868979
+              },
+              {
+                "backdoor_type": "random_corner",
+                "clean_acc": 0.5,
+                "defense_score": 0.6135517498138495,
+                "poison_acc": 0.20616570327552985,
+                "resist_acc": 0.7938342967244701
+              },
+              {
+                "backdoor_type": "pattern_topleft",
+                "clean_acc": 0.5171428571428571,
+                "defense_score": 0.656289512486432,
+                "poison_acc": 0.10211946050096339,
+                "resist_acc": 0.8978805394990366
+              }
+            ],
+            "stderrs": {
+              "clean_acc_stderr": 0.0,
+              "defense_score_stderr": 0.0,
+              "poison_acc_stderr": 0.0,
+              "resist_acc_stderr": 0.0
+            },
+            "worst_case": {
+              "clean_acc_min": 0.20666666666666667,
+              "defense_score_min": 0.3294084983404637,
+              "poison_acc_max": 0.2543352601156069
+            }
+          }
+        },
+        "success": true
+      },
+      "valid": true,
+      "validated_at": "2026-09-02T10:43:14.963566+00:00",
+      "validation_duration_seconds": 619.5018672900042
+    }
+  ],
+  "validation_evaluations": 6
+}

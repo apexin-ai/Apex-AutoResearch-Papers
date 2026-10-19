@@ -1,0 +1,1 @@
+The harness runs tests first to capture failure messages before reading code, then feeds both the test failures and source code to the model in a single diagnostic prompt, iterating with minimal-fix instructions and fresh failure context on each retry until all tests pass or the step budget is exhausted.

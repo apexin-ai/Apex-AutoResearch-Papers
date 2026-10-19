@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "replacement_id": "hb-gen1-kernelbenchx-pre-score-replacement-v1",
+  "formal_score_count_at_freeze": 0,
+  "selection_seed": "hb-gen1-v2",
+  "kernelbenchx_commit": "fd4192293bf9a8c645327a9d46aa1e807f1f9cf2",
+  "tritonbench_repository": "https://github.com/thunlp/TritonBench",
+  "tritonbench_commit": "603e28a5050e8c268f6883a69709d477a272d49a",
+  "failed_task_id": "Activation/gelu_bf16.py",
+  "failed_selection_digest": "58faa66b77a16102a0aff6bba1d577571586c648f8cbc04a7112185065e63487",
+  "failure_reason": "official performance input_size [4096] cannot bind exactly to frozen A100 golden input_size [[4096]]",
+  "scan_rule": [
+    "sort every KernelBenchX task by SHA256(hb-gen1-v2|kernelbenchx|task_id)",
+    "start strictly after the failed digest and wrap only after reaching the end",
+    "reject any basename present in the pinned TritonBench checkout",
+    "reject any task whose current performance serializer input_size differs from every frozen A100 golden row",
+    "select the first remaining task without reading candidate runtime or speedup"
+  ],
+  "rejected_predecessors": [
+    {
+      "task_id": "Fusion/fused_gelu_min.py",
+      "selection_digest": "5922563aad7c63e1f8712f7f0c671941eaa837084e37d0b63b416979ebfc115a",
+      "reason": "performance serializer and A100 golden input_size differ"
+    },
+    {
+      "task_id": "Math/add.py",
+      "selection_digest": "5e4395615e5d12ca9f787cd3958251564d9d76f74790f327be3daded707ccfe0",
+      "reason": "basename exists in pinned TritonBench checkout"
+    },
+    {
+      "task_id": "LinearAlgebra/solve_and_add_scaled_vector.py",
+      "selection_digest": "5fc723f952bd08eca64377a7db3fa135cdabe4c50fdfe2d881f78607fff0094f",
+      "reason": "basename exists in pinned TritonBench checkout"
+    },
+    {
+      "task_id": "LinearAlgebra/invert_matrix_lu.py",
+      "selection_digest": "5fff82e6d3661ce705e874ea61291edc48b691d5260b8ccdd84b2da0f229cabb",
+      "reason": "basename exists in pinned TritonBench checkout"
+    },
+    {
+      "task_id": "Math/rad2deg_sqrt.py",
+      "selection_digest": "61534b046d93959d10ea4d15e928633ef99b1feb14cbd95ab24487f56cacda41",
+      "reason": "basename exists in pinned TritonBench checkout"
+    }
+  ],
+  "selected": {
+    "task_id": "Fusion/fused_relu_max_pool2d_conv2d.py",
+    "entrypoint": "fused_relu_max_pool2d_conv2d",
+    "selection_digest": "619f5a9da305b50b33ab1736d0d86ea24ec0ff8800b63ae7c323b16a1b17f3ca",
+    "source_sha256": "99fddc19b0e1987f7e64ef4e8711590696f9f15f469a3b887f1cf7bcda638177",
+    "performance_source_sha256": "67f48dc4ff713034e73f92c2fb98de62822c660897f27757a862ea38304c74c6",
+    "a100_golden_sha256": "711b5a1f0c8d8065e397544f44f29b7de17f83df832d3220c4727f1064457a07",
+    "golden_rows": 9,
+    "input_schema": "[[1,3,2^s+2,2^s+2],[64,3,3,3],[64]] for s=5..13"
+  }
+}

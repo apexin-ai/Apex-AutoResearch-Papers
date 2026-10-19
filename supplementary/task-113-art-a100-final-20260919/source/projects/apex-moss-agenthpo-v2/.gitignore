@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.claude-manager/worktrees/
+.venv/
+.env.local
+.env
+results/
+harnesses/*/*/train_results/
+harnesses/*/*/train_summary.json
+tests/fixture_bench/

@@ -1,0 +1,32 @@
+{
+  "task_id": "timexer_pjm_168_24_mse",
+  "repo": "thuml/TimeXer",
+  "paper": "TimeXer: Empowering Transformers for Time Series Forecasting with Exogenous Variables",
+  "paper_venue": "NeurIPS 2024",
+  "dataset": "EPF/PJM",
+  "metric": "test_mse",
+  "higher_is_better": false,
+  "paper_anchor": 0.093,
+  "paper_anchor_secondary_mae": 0.192,
+  "paper_anchor_source": "TimeXer official README Result_EPF table reports PJM MSE=0.093 and MAE=0.192.",
+  "budget_protocol": {
+    "split": "official TimeXer custom dataloader split; seq_len=168, pred_len=24, features=MS",
+    "epochs": 1,
+    "baseline_config": {
+      "d_model": 64,
+      "d_ff": 64,
+      "e_layers": 1,
+      "patch_len": 24,
+      "learning_rate": 0.0005,
+      "batch_size": 64
+    },
+    "search_space": {
+      "d_model": [64, 128],
+      "d_ff": [64, 128],
+      "e_layers": [1, 2],
+      "patch_len": [12, 24],
+      "learning_rate": [0.0005, 0.001],
+      "batch_size": [64, 128]
+    }
+  }
+}

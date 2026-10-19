@@ -1,0 +1,27 @@
+{
+  "task_id": "modernbert_mnli_accuracy",
+  "repo": "AnswerDotAI/ModernBERT",
+  "paper": "ModernBERT",
+  "dataset": "GLUE MNLI",
+  "metric": "validation_matched_accuracy_percent",
+  "higher_is_better": true,
+  "paper_anchor": 90.4,
+  "paper_anchor_source": "ModernBERT paper Table 5 reports ModernBERT-base MNLI-m dev accuracy 90.4.",
+  "paper_hparam_source": "ModernBERT paper Table 6 reports GLUE-style fine-tuning sweeps; this task keeps the same fixed small-budget protocol as the SST-2 scaffold but uses MNLI.",
+  "budget_protocol": {
+    "max_steps": 120,
+    "train_samples": 4096,
+    "eval_split": "validation_matched"
+  },
+  "budget_baseline_config": {
+    "learning_rate": 2e-5,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "batch_size": 8,
+    "max_length": 64
+  },
+  "scripts": {
+    "dataset_download": "dataset_download.sh",
+    "baseline_eval": "baseline_eval.sh"
+  }
+}
