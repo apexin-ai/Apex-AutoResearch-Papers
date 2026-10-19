@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **16 projects with manuscript PDFs** and **8 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **18 projects with manuscript PDFs** and **11 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -12,21 +12,26 @@ This catalogue covers **16 projects with manuscript PDFs** and **8 additional pr
 | [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) | 339 | 940 | 1,573 | 119,612 |
 | [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) | 276 | 513 | 855 | 116,437 |
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) | 495 | 1,236 | 2,831 | 209,966 |
+| [diff_collision_sdf](paper-assets/diff_collision_sdf/README.md) | [PDF](paper-assets/diff_collision_sdf/01-manuscript/paper.pdf) | 360 | 1,053 | 1,864 | 149,990 |
 | [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) | 27 | 74 | 434 | 75,488 |
 | [entrainment_gated_ft](paper-assets/entrainment_gated_ft/README.md) | [PDF](paper-assets/entrainment_gated_ft/01-manuscript/paper.pdf) | 25 | 92 | 599 | 80,801 |
 | [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |
+| [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 70 | 44 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
+| [be-idea-gen-0515](paper-assets/be-idea-gen-0515/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0515-3](paper-assets/be-idea-gen-0515-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
 | [error_diag_dpo_recovery](paper-assets/error_diag_dpo_recovery/README.md) | No PDF in snapshot | 76 | 97 | 323 | 25,149 |
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |
+| [verification_triggered_retrieval](paper-assets/verification_triggered_retrieval/README.md) | No PDF in snapshot | 11 | 17 | 13 | 4,203 |
 | [xling_calab_direction](paper-assets/xling_calab_direction/README.md) | No PDF in snapshot | 0 | 0 | 2 | 404 |
 
 [Interactive asset catalogue](paper-assets/index.html) · [Full asset matrix](paper-assets/asset-matrix.csv) · [Readable trace guides](traces/README.md)

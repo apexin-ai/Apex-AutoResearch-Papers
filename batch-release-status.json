@@ -273,6 +273,65 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
+    },
+    "diff_collision_sdf/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 375761828,
+        "etag": "\"805982b3da98baf2fae1ea90e8ea3dd1-45\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "8086e945a9fe33324b51a114aa6eae20874ed91f9c116a15812efa6e633c18d8",
+      "projects": [
+        "tbab_multi_turn",
+        "be-idea-gen-0515",
+        "meta_brain_lora_routing",
+        "verification_triggered_retrieval",
+        "diff_collision_sdf"
+      ],
+      "counts": [
+        {
+          "project": "tbab_multi_turn",
+          "title": "tbab multi turn",
+          "paper_pdf": null,
+          "code_count": 45,
+          "data_count": 60,
+          "trace_count": 116
+        },
+        {
+          "project": "be-idea-gen-0515",
+          "title": "be idea gen 0515",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 0
+        },
+        {
+          "project": "meta_brain_lora_routing",
+          "title": "Meta-Brain: Perturbation-Diagnostic Routing of LoRA Experts for Parameter-E cient VLA Robustness",
+          "paper_pdf": "paper.pdf",
+          "code_count": 137,
+          "data_count": 203,
+          "trace_count": 556
+        },
+        {
+          "project": "verification_triggered_retrieval",
+          "title": "verification triggered retrieval",
+          "paper_pdf": null,
+          "code_count": 11,
+          "data_count": 17,
+          "trace_count": 13
+        },
+        {
+          "project": "diff_collision_sdf",
+          "title": "How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation",
+          "paper_pdf": "paper.pdf",
+          "code_count": 360,
+          "data_count": 1053,
+          "trace_count": 1864
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
     }
   }
 }

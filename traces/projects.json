@@ -34,6 +34,12 @@
       }
     },
     {
+      "project": "be-idea-gen-0515",
+      "title": "be idea gen 0515",
+      "catalog": "../paper-assets/be-idea-gen-0515/05-generation-trace/catalog.json",
+      "statistics": {}
+    },
+    {
       "project": "be-idea-gen-0515-3",
       "title": "be idea gen 0515 3",
       "catalog": "../paper-assets/be-idea-gen-0515-3/05-generation-trace/catalog.json",
@@ -182,6 +188,22 @@
       }
     },
     {
+      "project": "diff_collision_sdf",
+      "title": "How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation",
+      "catalog": "../paper-assets/diff_collision_sdf/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1864,
+        "messages": 149990,
+        "user_turns": 4820,
+        "tool_calls": 58358,
+        "unparsed_lines": 775,
+        "worker": 790,
+        "result": 746,
+        "conversation": 292,
+        "history": 36
+      }
+    },
+    {
       "project": "ec_hte_llm_annotation",
       "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
       "catalog": "../paper-assets/ec_hte_llm_annotation/05-generation-trace/catalog.json",
@@ -243,6 +265,22 @@
         "worker": 2223,
         "conversation": 1235,
         "history": 189
+      }
+    },
+    {
+      "project": "meta_brain_lora_routing",
+      "title": "Meta-Brain: Perturbation-Diagnostic Routing of LoRA Experts for Parameter-E cient VLA Robustness",
+      "catalog": "../paper-assets/meta_brain_lora_routing/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 556,
+        "messages": 55779,
+        "user_turns": 956,
+        "tool_calls": 21937,
+        "unparsed_lines": 238,
+        "result": 176,
+        "worker": 277,
+        "conversation": 96,
+        "history": 7
       }
     },
     {
@@ -319,6 +357,36 @@
         "worker": 510,
         "conversation": 183,
         "history": 43
+      }
+    },
+    {
+      "project": "tbab_multi_turn",
+      "title": "tbab multi turn",
+      "catalog": "../paper-assets/tbab_multi_turn/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 116,
+        "messages": 10572,
+        "user_turns": 296,
+        "tool_calls": 4116,
+        "unparsed_lines": 48,
+        "worker": 48,
+        "result": 44,
+        "conversation": 24
+      }
+    },
+    {
+      "project": "verification_triggered_retrieval",
+      "title": "verification triggered retrieval",
+      "catalog": "../paper-assets/verification_triggered_retrieval/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 13,
+        "messages": 4203,
+        "user_turns": 45,
+        "tool_calls": 1829,
+        "unparsed_lines": 5,
+        "result": 4,
+        "worker": 5,
+        "conversation": 4
       }
     },
     {
