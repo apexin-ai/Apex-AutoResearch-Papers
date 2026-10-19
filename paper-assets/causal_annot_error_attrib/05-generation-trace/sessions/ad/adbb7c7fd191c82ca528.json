@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "adbb7c7fd191c82ca528",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan001 mediation frontdoor",
+  "task_key": "worker_code_plan001-mediation-frontdoor_20260520T092702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-mediation-frontdoor_20260520T092702.log",
+    "occurrence": 1,
+    "bytes": 704474,
+    "sha256": "c431dcd99521daf079e18e2881e3cf0308b5e916b8380e5d6e608ffafd7ff059"
+  },
+  "statistics": {
+    "messages": 138,
+    "user_turns": 2,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 41,
+      "tool_result": 41,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "adbb7c7fd191c82ca528-part-0001.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "adbb7c7fd191c82ca528-part-0001.json",
+          "message_count": 58
+        },
+        {
+          "path": "adbb7c7fd191c82ca528-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "adbb7c7fd191c82ca528-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-mediation-frontdoor.md"
+}

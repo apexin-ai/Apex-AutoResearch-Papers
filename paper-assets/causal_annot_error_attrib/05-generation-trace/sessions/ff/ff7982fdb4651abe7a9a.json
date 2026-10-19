@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff7982fdb4651abe7a9a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code exp c bootstrap asv",
+  "task_key": "worker_code_exp_c_bootstrap_asv_20260522T112843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_c_bootstrap_asv_20260522T112843_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "79f64f4002f8a91d2a96673152951fac14548ca674c62973a31d2bf050341db0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Topology | δ* point | 95% CI | valid/total |\n|---|---|---|---|\n| Confounding | — | — (threshold never reached) | 0/1000 |\n| Exposure | 0.937 | [0.602, 1.363] | 907/1000 |\n| IV | 0.754 | [0.435, 1.290] | 902/1000 |\n\nConfounding 的 τ_true=2.0 较大，10% bias 阈值（0.2）在整个 δ 扫描范围内都未被触及，说明该拓扑对标注误差鲁棒。Exposure 和 IV 的 CI 宽度分别为 0.76 和 0.86，约 ~10% 的 bootstrap 样本也未触及阈值（93/98 个 None）。\n\n三个输出文件已生成：`artifacts/exp_c_bootstrap_asv.py`、`artifacts/exp_c_bootstrap_results.json`、`artifacts/exp_c_bootstrap_figure.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-c-bootstrap-asv.md"
+}

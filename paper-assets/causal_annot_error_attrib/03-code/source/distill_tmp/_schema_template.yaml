@@ -1,0 +1,78 @@
+# Distill Layer 1 YAML Schema Template
+# Each deep-read paper should fill ALL sections.
+# Abstract-only papers fill only `research` section, mark others N/A.
+
+paper_key: "{key}"
+title: "..."
+venue: "{venue} {year}"
+full_text_available: true/false
+
+research:
+  baselines: [name1, name2]
+  metrics: [{name: "X", direction: "higher_better"}]
+  datasets: [{name: "Y", size: "..."}]
+  ablation_dimensions: [dim1, dim2]
+  training_recipe: {optimizer: "...", lr: "...", hardware: "..."}
+  method_family: "..."
+
+positioning:
+  core_claim: "one-sentence core contribution (NOT abstract restatement)"
+  key_results: "key performance numbers"
+  limitations: ["self-admitted limitation 1", "limitation 2"]
+  relation_to_us: "competitor/foundation/complementary/orthogonal"
+  # Project context: "causal_annot_error_attrib" studies how annotation errors
+  # from LLM/text classifiers propagate to downstream causal inference and
+  # how to correct for them. Judge relation_to_us based on this.
+
+narrative:
+  story_type: "突破局限型/化繁为简型/规模涌现型/跨界迁移型/统一框架型"
+  hook: "how first paragraph grabs attention"
+  tension: "how existing method limitations are set up"
+  key_insight: "where and how core insight is revealed"
+  argument_chain: "problem → ... → validation"
+  contribution_framing: "contribution statement wording and count"
+  intro_structure: "paragraph count and function of each"
+  notable_technique: "most notable narrative technique worth learning"
+
+figures:
+  figure_count: N
+  figure1:
+    type: "motivation/method_overview/teaser_result/problem_illustration"
+    description: "content description"
+    narrative_role: "role in argument chain"
+    design_elements: ["element1", "element2"]
+    visual_style: "layout/color/annotation description from visual analysis"
+  result_figures:
+    - figure_id: "Figure N"
+      viz_type: "bar_chart/line_plot/heatmap/scatter/qualitative_comparison"
+      what_compared: "what is compared"
+      how_gain_highlighted: "how method advantage is highlighted"
+      design_note: "design takeaway"
+  ablation_figures:
+    - figure_id: "Figure N"
+      viz_type: "type"
+      dimensions_varied: ["dim1", "dim2"]
+      design_note: "design insight"
+  figure_narrative_role: "Figure 1 → Figure 2 → ... narrative flow"
+
+tables:
+  table_count: N
+  main_result_table:
+    table_id: "Table N"
+    row_axis: "methods/datasets/settings"
+    col_axis: "description"
+    row_organization: "by_category/by_performance/by_year/flat"
+    col_organization: "grouped_by_dataset/grouped_by_metric/flat"
+    highlight_strategy: "bold_best/underline_second/etc"
+    statistical_reporting: "mean ± std / single run / etc"
+    num_baselines: N
+    design_note: "table design takeaway"
+  ablation_tables:
+    - table_id: "Table N"
+      what_varied: ["component1", "component2"]
+      variation_style: "checkmark_grid/delta_from_base/full_numbers"
+      design_note: "ablation table design insight"
+  supplementary_tables:
+    in_appendix: true/false
+    content: "what appendix tables contain"
+    reason: "why split this way"

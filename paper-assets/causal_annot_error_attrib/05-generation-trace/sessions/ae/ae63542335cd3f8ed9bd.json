@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae63542335cd3f8ed9bd",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops plan011 check",
+  "task_key": "worker_ops_plan011_check_20260521T181532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan011_check_20260521T181532_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "9b4a6efe48c69a4036f219c0f43df2c1891fc2a92f1cf6c6e196071231a06ed5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan011 状态：未完成，被 API 认证问题阻塞。**\n\n汇报：\n\n1. **服务器上不存在 `plan011_frontier_annotations` 目录**——该计划从未在远程服务器上执行过。\n2. **本地状态**（`STATUS.md` 记录）：\n   - **数据已就绪**：`data/vast/test.jsonl`（1000 samples）、`data/civil_comments/test.jsonl`（1000 samples）\n   - **脚本已就绪**：`annotate_frontier.py`、`compute_results.py`、`prepare_data.py`\n   - **无 annotation 输出文件**——`results/` 目录存在但为空，没有任何 JSONL 标注结果\n3. **阻塞原因**：API key `tum_XXB3sZ...` 对所有测试过的 endpoint（OpenRouter、TUM gateway 等）均返回 **HTTP 401**。标注从未成功启动。\n4. **无运行中的标注进程**。\n\n**恢复标注需要**：提供一个有效的 API key 和正确的 endpoint，然后在服务器上执行 `annotate_frontier.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan011-check.md"
+}

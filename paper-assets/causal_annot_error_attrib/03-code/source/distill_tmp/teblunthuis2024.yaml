@@ -1,0 +1,111 @@
+paper_key: "teblunthuis2024"
+title: "Misclassification in Automated Content Analysis Causes Bias in Regression. Can We Fix It? Yes We Can!"
+venue: "Communication Methods and Measures 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Naive estimator (ignoring misclassification)"
+    - "Feasible estimator (manual annotations only)"
+    - "GMM calibration (Fong & Tyler 2021)"
+    - "Multiple Imputation (MI)"
+    - "Pseudo-likelihood (PL, Zhang 2021)"
+  metrics:
+    - {name: "Consistency (convergence to true parameter)", direction: "higher_better"}
+    - {name: "Efficiency (precision of estimates)", direction: "higher_better"}
+    - {name: "Coverage probability of 95% CI", direction: "closer_to_0.95_better"}
+  datasets:
+    - {name: "Civil Comments (Perspective API)", size: "448,000 English comments"}
+    - {name: "Monte Carlo simulations", size: "1,000-10,000 AC-classified observations, 100-400 manually annotated"}
+  ablation_dimensions:
+    - "Misclassification type (nonsystematic vs systematic)"
+    - "Variable position (independent vs dependent variable)"
+    - "Sample size of AC-classified data (1,000-10,000)"
+    - "Number of manually annotated observations (100-400)"
+    - "AC accuracy level (~72-74%)"
+  training_recipe:
+    optimizer: "N/A (statistical method, not ML training)"
+    lr: "N/A"
+    hardware: "N/A (R simulations)"
+    implementation: "misclassificationmodels R package; Monte Carlo simulations with likelihood maximization"
+  method_family: "Maximum Likelihood Estimation for measurement error correction via confusion matrix / error model"
+
+positioning:
+  core_claim: "Automated classifiers introduce misclassification bias in downstream regression that can be statistically corrected using Maximum Likelihood Adjustment (MLA) with a small gold-standard validation set, and MLA is the only method that works across all four DAG scenarios (systematic/nonsystematic x IV/DV)."
+  key_results: "MLA is consistent across all 4 scenarios; GMM works only for nonsystematic IV misclassification; MI works for IV cases but fails for DV; PL fails under systematic error. 85% of 48 reviewed comm-science studies report accuracy metrics but only 19% acknowledge misclassification bias, and only 1 study used error correction."
+  limitations:
+    - "Assumes human annotators do not make errors (especially not systematic errors); extending to simultaneous AC and human error requires complex latent variable methods"
+    - "Requires correct error model specification"
+    - "Does not provide guidance on optimal budget allocation between validation and unlabeled data"
+    - "Limited to binary classification (does not address multi-class or continuous classifiers)"
+    - "Limited exploration of all possible factors affecting method performance"
+    - "Simulations use relatively simple regression models (linear/logistic); real-world models may be more complex"
+  relation_to_us: "foundation"
+  # This paper is foundational for our work: it provides the DAG-based framework for
+  # understanding how classifier measurement error propagates to causal inference,
+  # introduces MLA as the correction method we build upon, and establishes the four
+  # canonical scenarios (systematic/nonsystematic x IV/DV) that structure our analysis.
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens by establishing the widespread adoption of automated classifiers in communication science, then immediately introduces the 'specter of methodological questions' about their imperfections — framing a tool everyone uses as potentially unreliable."
+  tension: "The gap between awareness and action: 85% of studies report accuracy metrics (suggesting awareness) but only 19% acknowledge misclassification bias and only 1 study actually corrects for it. Reporting metrics is 'an important step, but clearly falls short.' The field has a known but unaddressed problem."
+  key_insight: "The core insight is structural: misclassification bias depends on the DAG (conditional independence structure) between the classifier output, true labels, outcome, and covariates — not just on accuracy numbers. This is revealed through the four DAG scenarios in Section 3 (Figures 2a-2d), which show why different correction methods fail under different dependency structures."
+  argument_chain: "real-world example (Perspective API bias) → systematic lit review (field ignores the problem) → DAG-based taxonomy of 4 error scenarios → introduce MLA + 3 existing methods → Monte Carlo simulations comparing all methods → MLA dominates across all scenarios → practical recommendations flowchart"
+  contribution_framing: "Three contributions framed as rescue mission ('an effort to rescue ACs from this dismal state'): (1) real-world demonstration of bias, (2) systematic review showing field neglect, (3) introduction and testing of MLA as universal correction method implemented in R package"
+  intro_structure: "9 paragraphs: P1=AC adoption context, P2=growing concerns, P3=gap between awareness and solutions, P4=name the problem (misclassification bias), P5=paper roadmap, P6=lit review findings, P7=primary contribution statement, P8=simulation design preview, P9=optimistic resolution (even weak classifiers can work with correction)"
+  notable_technique: "The 'Bob the Builder' title ('Can We Fix It? Yes We Can!') is an unusually playful framing for a methods paper, making it memorable. More substantively, the paper uses a real-world motivating example BEFORE the formal methods — showing Perspective API producing both false discoveries and missed effects on Civil Comments data — which makes the abstract statistical problem viscerally concrete."
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Two side-by-side regression coefficient plots comparing automated vs manual annotation results on Civil Comments data. Left panel shows misclassification in IV (Perspective API toxicity as predictor of identity disclosure), right panel shows misclassification in DV (predicting toxicity). Demonstrates both Type I error (false discovery) and Type II error (missed real effect) caused by misclassification."
+    narrative_role: "Serves as the concrete motivating example before any formal methods are introduced. Makes the abstract problem tangible by showing that a real, widely-used classifier (Perspective API, 92% accuracy) produces qualitatively wrong conclusions."
+    design_elements: ["coefficient + CI visualization", "side-by-side comparison of automated vs manual", "real-world API (Perspective) as example", "two complementary failure modes shown together"]
+    visual_style: "Two-panel layout with regression coefficient point estimates and horizontal confidence intervals; clean, minimal design typical of statistical graphics"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "quantile_dot_plot_grid"
+      what_compared: "Six analytical approaches (naive, feasible, GMM, MI, PL, MLA) under nonsystematic IV misclassification across varying sample sizes and annotation counts"
+      how_gain_highlighted: "Dashed line shows true parameter value; consistent methods cluster around it while biased methods visibly deviate. MLA shows tighter concentration (higher efficiency) than alternatives."
+      design_note: "Quantile dot plot is an effective choice for showing both bias (center deviation from truth) and variance (spread) simultaneously. Grid arrangement by sample size x annotation count reveals scaling behavior."
+    - figure_id: "Figure 4"
+      viz_type: "quantile_dot_plot_grid"
+      what_compared: "Same six approaches under systematic IV misclassification"
+      how_gain_highlighted: "Only MLA and MI converge to true value; GMM and PL visibly fail. Naive estimator has opposite sign from truth — a dramatic demonstration."
+      design_note: "The sign-flip of the naive estimator is the most visually striking result, making the case for correction methods self-evident."
+    - figure_id: "Figure 5"
+      viz_type: "quantile_dot_plot_grid"
+      what_compared: "Six approaches under nonsystematic DV misclassification"
+      how_gain_highlighted: "MLA is the only method clustering around the true value; all others including MI fail."
+      design_note: "This figure delivers the paper's strongest selling point for MLA: it uniquely solves the DV misclassification case."
+    - figure_id: "Figure 6"
+      viz_type: "quantile_dot_plot_grid"
+      what_compared: "Six approaches under systematic DV misclassification — the hardest scenario"
+      how_gain_highlighted: "Again only MLA consistent; dramatic bias in all alternatives"
+      design_note: "Completes the 2x2 matrix of scenarios, with MLA as the only universally consistent method."
+  ablation_figures:
+    - figure_id: "Figures 3-6 collectively"
+      viz_type: "quantile_dot_plot_grid"
+      dimensions_varied: ["sample size (1K-10K)", "annotation count (100-400)", "error type (systematic/nonsystematic)", "variable position (IV/DV)"]
+      design_note: "The 2x2 scenario structure (Figures 3-6) IS the ablation — each figure holds one scenario constant while varying sample size and annotation count within. This makes the paper's core message (MLA works everywhere, others don't) emerge from the visual pattern across all four figures."
+  figure_narrative_role: "Figure 1 (real-world motivation: bias exists) → Figure 2 (DAG taxonomy: why bias differs by scenario) → Figures 3-6 (simulation results: MLA works across all scenarios) → Figure 7 (practical recommendations: what to do about it). The flow is problem → theory → evidence → actionable advice."
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "error correction capability by scenario type"
+    row_organization: "by_category"
+    col_organization: "grouped_by_scenario"
+    highlight_strategy: "Checkmark/cross grid showing which methods work under which conditions; MLA gets checkmarks in all cells"
+    statistical_reporting: "Qualitative (works/doesn't work) based on simulation consistency results"
+    num_baselines: 4
+    design_note: "Elegant summary table that condenses the entire simulation study into a single glanceable grid. The 4x4 structure (4 methods x 4 scenarios with random/systematic x IV/DV) makes MLA's universal applicability immediately apparent. This is a methods-comparison table rather than a performance-numbers table — appropriate for a statistical methods paper where the key question is 'does it work?' not 'by how much?'"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix B: Perspective API example details; Appendix C: systematic literature review methodology and coding scheme; Appendix D: additional error correction methods (SIMEX, score functions); Appendix E: MLA mathematical derivations; Appendix F: misclassificationmodels R package documentation; Appendix G: additional simulation plots; Appendix H: six robustness tests with varying parameters"
+    reason: "Main paper focuses on the four core scenarios and methods comparison; mathematical proofs, implementation details, and robustness checks relegated to appendix to maintain narrative flow. The paper prioritizes accessibility for communication scholars over mathematical completeness."

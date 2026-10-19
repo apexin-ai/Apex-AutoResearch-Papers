@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1257673604105a8c6ec8",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper integrate expbc",
+  "task_key": "worker_paper_integrate_expbc_20260522T115404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_integrate_expbc_20260522T115404_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "7495deb94088aaf121dac2209ddb0982ad64a65a5b0d123cc8abd99ce3f835fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation: 0 errors, 0 undefined references, 20 pages total. Main text ends on page 8, Limitations starts on page 9.\n\nSummary of changes:\n- **appendix_proofs.tex**: Added two subsections before Notation:\n  - `\\subsection{Robustness to Nonlinear DGP}` (`\\ref{sec:logistic_dgp}`) — 3-row summary table showing SF_τ differences < 0.01 between linear and logistic DGPs across confounding/exposure/IV, with the IV SF_any dimensionality note\n  - `\\subsection{Bootstrap Uncertainty of ASV}` (`\\ref{sec:bootstrap_asv}`) — 3-row table with point estimates and 95% CIs, plus the bootstrap figure\n- **experiments.tex**: Added two reference sentences:\n  - After N-sensitivity paragraph (Section 4.3): bootstrap CI sentence for exposure/IV ASV\n  - After empirical validation overlay paragraph (Section 4.4): logistic DGP robustness sentence\n- **Figures**: Copied `exp_c_bootstrap_figure.pdf` to both `docs/paper/` and `figures/paper/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-integrate-expbc.md"
+}

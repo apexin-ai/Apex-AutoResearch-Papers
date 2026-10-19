@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "4a6fc537bed6fdf87c6e",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops table overflow fix",
+  "task_key": "worker_ops_table_overflow_fix_20260524T072959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_table_overflow_fix_20260524T072959_result.json",
+    "occurrence": 1,
+    "bytes": 2277517,
+    "sha256": "01042ba10af9fb0173d5afa60f2af5ab834dc014362289c46222c1811482b7be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "4a6fc537bed6fdf87c6e-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ops-table-overflow-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57e172e67b1d5dac69ff",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan004 asv v3 envelope magnitude",
+  "task_key": "worker_code_plan004-asv-v3-envelope-magnitude_20260520T132338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-asv-v3-envelope-magnitude_20260520T132338_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "8b5616befea7f06bb351e84df5befb3e8a11b5471b5170e604ed335884dabb44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Part 1 — Envelope 单调性**：Raw |bias| 非单调违反 440-1033/1500 点，envelope 违反 = **0**（构造性保证成立）\n\n**Part 2 — 三种 ASV (τ=0.5)**：\n- Sign-flip ASV：全部 None（confounding/mediation 结构性安全）\n- Magnitude ASV (10%)：0.076–0.487（C0 准确度越高 → ASV 越大 → 越鲁棒）\n- Protection ASV (collider)：0.338–2.028\n\n**Part 3 — 小 τ ASV**：\n- τ=0.05 magnitude ASV 仅 0.008–0.047（小效应在极小 δ 就不安全）\n- τ=0.1 magnitude ASV 0.014–0.093\n- MagAbs.05 与效应量无关，值同 τ=0.5\n\n**Part 4 — Coverage**：全部 **100%**（τ=0.05 和 0.1，所有拓扑）\n\n**Part 5 — Type I/II (小 τ)**：\n- Confounding/mediation：naive 100% 误拒（偏差远大于效应）；magnitude-ASV-informed 在 H1 下 0% 拒绝（正确标记为不安全，ASV << 1）\n- Collider H0：naive 4.6%–37.8%（取决于 C0 准确度）；H1 naive=100%, mag_rej=0%\n\n关键发现：小 τ 下 magnitude ASV 全部远小于 1，说明当前标注误差水平对小效应的因果推断是**不安全的**——这正是 ASV 框架应该报告的结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-asv-v3-envelope-magnitude.md"
+}

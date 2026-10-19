@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "043419b3305078fc2c87",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan003 humaid recount",
+  "task_key": "worker_infra_plan003-humaid-recount_20260520T231106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan003-humaid-recount_20260520T231106_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "60c5d219dc906c6574848357c0edd79f64dc0fd53b72438b15e155032ec25457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9 个文件统计结果：\n\n| File | Total | pred_valid | gold_valid | errors | 402_errors | Status |\n|---|---|---|---|---|---|---|\n| deepseek_few-shot-3.jsonl | 1500 | 1345 | 1500 | 155 | 0 | WARN |\n| deepseek_few-shot-5.jsonl | 1500 | 1237 | 1500 | 263 | 0 | WARN |\n| deepseek_zero-shot.jsonl | 1500 | 1500 | 1500 | 0 | 0 | OK |\n| llama4_few-shot-3.jsonl | 1500 | 1498 | 1500 | 2 | 0 | OK |\n| llama4_few-shot-5.jsonl | 1500 | 1471 | 1500 | 29 | 0 | WARN |\n| llama4_zero-shot.jsonl | 1500 | 1500 | 1500 | 0 | 0 | OK |\n| qwen3_few-shot-3.jsonl | 1500 | 1423 | 1500 | 77 | 77 | WARN |\n| **qwen3_few-shot-5.jsonl** | **1500** | **0** | **1500** | **1500** | **1500** | **FAIL** |\n| qwen3_zero-shot.jsonl | 1500 | 1500 | 1500 | 0 | 0 | OK |\n\n要点：\n- 全部 9 个文件各 1500 行，gold_label 全部有效\n- 3 个文件完全无错（deepseek_zero-shot, llama4_zero-shot, qwen3_zero-shot）\n- **qwen3_few-shot-5 全军覆没**：1500 条全是 402 错误，pred_valid = 0\n- deepseek 的 few-shot 错误不是 402，是其他类型（可能解析/格式错误）\n- llama4_few-shot-5 有 29 条错误，llama4_few-shot-3 仅 2 条"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan003-humaid-recount.md"
+}

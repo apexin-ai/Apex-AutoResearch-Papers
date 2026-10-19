@@ -1,0 +1,122 @@
+{
+  "exp_id": "plan002_k57_extension",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:55:55.239Z",
+    "updated_at": "2026-05-20T15:31:15.797Z",
+    "hypothesis": "K=3 下观察到的拓扑依赖偏差模式（sign_flip=0% 结构性保证、IV 最脆弱、M-bias 免疫）在 K=5,7 下是否保持：K 增大引入更多 off-diagonal 自由度，可能使偏差更严重（更高 violation/amplification rate）或出现 K=3 未见的新偏差模式。同时验证 matrix-form bias 表达式的 general-K 推广是否成立，并通过 eigendecomposition 识别 dominant bias modes。",
+    "parent": "plan001_dag_taxonomy",
+    "server": "home-1x5090",
+    "gpu": "cuda:0",
+    "account": "sonny",
+    "reproduce": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T14:57:30.451Z"
+    },
+    "spec": {
+      "command": "python3 -u plan_002_k57_extension.py",
+      "server": "home-1x5090",
+      "data_path": "synthetic (in-script DGP, Dirichlet sampling)",
+      "data_count": "100k random C × 4 topologies × K={3,5,7}",
+      "model_name": "N/A (analytical + MC, PyTorch GPU)",
+      "seed": 42,
+      "gpu": "cuda:0 (RTX 5090)",
+      "checkpoint_path": "/home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+      "log_path": "/home/sonny/causal_annot_error_attrib/plan002_run.log",
+      "checkpoint_source": "plan001_dag_taxonomy (K=3 plim formulas)",
+      "eval_data": "synthetic DGP: 4 topologies × K={3,5,7} × 100k random C"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "cross_k_comparison": {
+        "confounding": {
+          "K3": {
+            "sign_flip": 0.993,
+            "tau_bias_mean": 0.272,
+            "worst_case_diag90": 0.162
+          },
+          "K5": {
+            "sign_flip": 1,
+            "tau_bias_mean": 0.236,
+            "worst_case_diag90": 0.113
+          },
+          "K7": {
+            "sign_flip": 1,
+            "tau_bias_mean": 0.228,
+            "worst_case_diag90": 0.092
+          }
+        },
+        "mediation": {
+          "K3": {
+            "sign_flip": 0.838,
+            "tau_bias_mean": 0.256,
+            "worst_case_diag90": 0.123
+          },
+          "K5": {
+            "sign_flip": 0.966,
+            "tau_bias_mean": 0.225,
+            "worst_case_diag90": 0.085
+          },
+          "K7": {
+            "sign_flip": 1,
+            "tau_bias_mean": 0.197,
+            "worst_case_diag90": 0.06
+          }
+        },
+        "collider": {
+          "K3": {
+            "sign_flip": 0.666,
+            "tau_bias_mean": 0.097,
+            "worst_case_diag90": 0.048
+          },
+          "K5": {
+            "sign_flip": 0.955,
+            "tau_bias_mean": 0.111,
+            "worst_case_diag90": 0.046
+          },
+          "K7": {
+            "sign_flip": 0.992,
+            "tau_bias_mean": 0.104,
+            "worst_case_diag90": 0.036
+          }
+        },
+        "exposure": {
+          "K3": {
+            "sign_flip": 0.99,
+            "worst_case_diag90": 0.253
+          },
+          "K5": {
+            "sign_flip": 1,
+            "worst_case_diag90": 0.269
+          },
+          "K7": {
+            "sign_flip": 1,
+            "worst_case_diag90": 0.282
+          }
+        }
+      },
+      "key_findings": {
+        "sign_flip_worsens_with_K": "mediation 83.8%→100%, collider 66.6%→99.2%",
+        "bias_mean_decreases_with_K": "per-category misclass weight drops",
+        "worst_case_decreases_with_K_except_exposure": "high-accuracy constraint tighter for larger K",
+        "bias_variance_disperses": "top-1 PC explains 78%→61% (K=3→7)",
+        "mc_validation": "K=3 all topologies theory-MC match"
+      },
+      "interpretability": {
+        "eigendecomposition": "top-1 PC bias fraction: 78%(K=3)→67%(K=5)→61%(K=7)",
+        "worst_case_bounds": "3 thresholds (diag≥0.5/0.7/0.9) × 4 topologies × 3 K",
+        "sensitivity_heatmaps": "13 PNG files generated"
+      },
+      "runtime_seconds": 13,
+      "gpu": "RTX 5090 cuda:0"
+    },
+    "completed_at": "2026-05-20T15:31:15.797Z"
+  },
+  "timestamp": "2026-05-20T15:31:15.833012+00:00",
+  "trigger": "update_registry"
+}

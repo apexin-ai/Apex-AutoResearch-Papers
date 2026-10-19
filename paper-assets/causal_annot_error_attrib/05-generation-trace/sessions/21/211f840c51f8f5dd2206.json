@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "211f840c51f8f5dd2206",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "fetch plan006 data",
+  "task_key": "worker_fetch_plan006_data_20260520T232516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fetch_plan006_data_20260520T232516.log",
+    "occurrence": 1,
+    "bytes": 536300,
+    "sha256": "c90b901beab4d99cfdcf33b16df6db09a87856c3c775a377f725009f65360724"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "211f840c51f8f5dd2206-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "211f840c51f8f5dd2206-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fetch-plan006-data.md"
+}

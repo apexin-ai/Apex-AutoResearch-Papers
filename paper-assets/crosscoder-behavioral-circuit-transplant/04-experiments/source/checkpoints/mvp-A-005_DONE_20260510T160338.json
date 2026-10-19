@@ -1,0 +1,32 @@
+{
+  "exp_id": "mvp-A-005",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-10T15:55:11.134Z",
+    "updated_at": "2026-05-10T16:03:38.666Z",
+    "spec": {
+      "hypothesis": "TopK crosscoder (K=50, 硬约束 L0=50) 产生 monosemantic donor-exclusive features，rank-1 手术 + bias injection 通过 Gate 5 行为验证。MVP 最后公平测试。",
+      "model_name": "EleutherAI/pythia-70m",
+      "server": "home-1x5090",
+      "data_path": "monology/pile-uncopyrighted",
+      "data_count": 2000,
+      "seed": 42,
+      "description": "mvp-A-005: TopK crosscoder (K=50), 无 L1, 纯 MSE 损失, rank-1 + bias injection 评估 Gates 1-5",
+      "parent": "mvp-A-002",
+      "donor_checkpoint": "step143000",
+      "target_checkpoint": "step1000",
+      "command": "source /home/sonny/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/home/sonny/ssd2/sonny.fu/.hf_cache && cd /home/sonny/crosscoder-bct && python3 mvp_a005_topk.py",
+      "tmux_session": "mvp-a005",
+      "log_path": "/home/sonny/crosscoder-bct/mvp_a005_topk.log",
+      "checkpoint_path": "/home/sonny/crosscoder-bct/mvp_A005_results.json"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-10T16:03:38.666Z"
+  },
+  "timestamp": "2026-05-10T16:03:38.681292+00:00",
+  "trigger": "update_registry"
+}

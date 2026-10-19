@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "87f97f869b3b048dbf4e",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan006 humaid run",
+  "task_key": "worker_code_plan006-humaid-run_20260520T230721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-humaid-run_20260520T230721.log",
+    "occurrence": 1,
+    "bytes": 599704,
+    "sha256": "7980d6a6c0b06572dcc7d216e502722384a33a219d1658b50b52e6205e357911"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 48,
+      "record": 2,
+      "tool_call": 62,
+      "tool_result": 62,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "87f97f869b3b048dbf4e-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "87f97f869b3b048dbf4e-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan006-humaid-run.md"
+}

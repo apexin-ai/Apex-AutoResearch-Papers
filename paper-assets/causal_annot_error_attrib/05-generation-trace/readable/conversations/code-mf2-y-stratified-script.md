@@ -1,0 +1,513 @@
+# code mf2 y stratified script
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_code_mf2_y_stratified_script_20260523T160631.jsonl`
+- **Structured JSON:** [`8d24974cd6396dba0d54.json`](../../sessions/8d/8d24974cd6396dba0d54.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T16:08:52.807293+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py 2>/dev/null && head -50 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py",
+  "description": "Check existing nondiff stress test script for reference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py 2>/dev/null && head -50 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py",
+    "description": "Check existing nondiff stress test script for reference"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T16:08:52.807675+00:00_
+
+/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py
+#!/usr/bin/env python3
+"""
+Non-Differential Misclassification Stress Test — Exposure DAG (K=3)
+
+Tests robustness of the paper's non-differential assumption by introducing
+controlled violations: the confusion matrix differs slightly between
+outcome-defined subgroups (Y > median vs Y <= median).
+
+Model:
+  DAG: A -> Y, A -> A*
+  DGP: Y = β₀ + β₁·1[A=1] + β₂·1[A=2] + ε,  ε ~ N(0,1)
+  Non-differential: P(A*|A) = C₀  (same for all units)
+  Differential:     P(A*|A, Y>med) = C_high,  P(A*|A, Y≤med) = C_low
+    where C_high = renormalize(C₀ + ε·Δ), C_low = C₀
+    Δ[j,i] = off-diagonal noise, re-normalized to column-stochastic
+
+For each ε ∈ {0, 0.01, 0.05, 0.10, 0.20, 0.30, 0.50}:
+  - Sample 10,000 base C₀ from truncated Dirichlet(1,1,1) with diag ≥ 0.7
+  - ε=0: compute bias via analytical plim (matches subspace analysis ~13.7%)
+  - ε>0: compute bias via MC (N=50,000 per trial) with differential C
+  - Report: sign-flip rate, amplification rate, violation rate
+
+Dependencies: numpy
+"""
+
+import numpy as np
+import json
+import time
+import sys
+
+# ─── DGP Parameters ─────────────────────────────────────────
+P_A = np.array([0.40, 0.35, 0.25])
+BETA = np.array([0.0, 1.0, -0.5])  # β₀, β₁, β₂
+K = 3
+DIAG_THRESH = 0.7
+
+N_MATRICES = 10_000       # confusion matrices per ε level
+N_MC = 50_000             # MC sample size per trial (for ε > 0)
+EPSILONS = [0.0, 0.01, 0.05, 0.10, 0.20, 0.30, 0.50]
+SEED = 42
+
+
+# ─── Sampling ────────────────────────────────────────────────
+def sample_truncated_dirichlet(n, K, diag_thresh, rng):
+    """Sample n column-stochastic KxK matrices with min(diag) >= diag_thresh.
+
+    Uses direct sampling: diagonal d ~ Beta(1,2) truncated to [thresh,1],
+    off-diagonal split uniformly on remaining mass.
+    """
+    C_batch = np.empty((n, K, K))
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T16:08:52.807945+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -5 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl 2>/dev/null",
+  "description": "Check VAST data format"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -5 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl 2>/dev/null",
+    "description": "Check VAST data format"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T16:08:52.808206+00:00_
+
+{"idx": 0, "text": "The liberals' contributions to this section are basically saying that two Articles and four Amendments will fix what two Articles and three Amendments haven't. Yet, the states do a good job of running elections and the required IDs are easy to get, in a process already overseen by our heavily politicized DOJ. Regarding the extravagant demand for transportation, both major parties have local people who drive you to get IDs or to vote already. We should keep that effort in the private sector where it arose. If you are frantic enough not to trust the judicial system already, one more amendment won't cure what ails you. What would help all of us is more knowledge of history - which we won't find on the Soros blogs. Force people to vote? When all they are interested in is celebrity and sports buzz or their iPhones, absolutely not. They'll end up simply voting for the first name, and when that is a GOPer, we'll have to keep watch over the bridges in the big-city liberal-statist philosophical ghettos/campuses.", "topic": "constitutional right", "label": 1, "label_name": "Pro", "split": "test"}
+{"idx": 1, "text": "\"Yet that same Bible gives us Christians a particular anthropology, and reveals to us the meaning of sex and marriage within the cosmic order.\" And herein lies the problem. If you look to a \"holy\" book written long, long ago and betraying its human origins on every page for guidance on issues of cosmology, biology, sexuality and other human and natural sciences, you will inevitably be in constant conflict with social progress and, indeed, reality. There is no secular opposition to homosexuality.", "topic": "harmful atmosphere gay", "label": 0, "label_name": "Con", "split": "test"}
+{"idx": 2, "text": "\"Yet that same Bible gives us Christians a particular anthropology, and reveals to us the meaning of sex and marriage within the cosmic order.\" And herein lies the problem. If you look to a \"holy\" book written long, long ago and betraying i
+…[truncated 1332 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T16:08:52.808475+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl",
+  "description": "Count VAST test samples"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -l /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl",
+    "description": "Count VAST test samples"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T16:08:52.808678+00:00_
+
+1000 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T16:08:52.808983+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_y_stratified.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"\nMF-2: Y-Stratified Non-Differential Misclassification Test\n\nTests whether LLM annotation error rates are independent of outcome proxies Y,\ni.e. P(A*|A, Y) = P(A*|A). Uses permutation tests on column-stochastic\nconfusion matrices stratified by three Y proxies.\n\nPhase 1 (annotate): LLM stance classification on VAST test data via OpenRouter.\nPhase 2 (test):     Y-stratified permutation tests on annotation results.\n\nInput:  artifacts/plan011_frontier_annotations/data/vast/test.jsonl\nOutput: artifacts/nondiff_y_stratified_annotations.jsonl  (Phase 1)\n        artifacts/nondiff_y_stratified_results.json       (Phase 2)\n\nUsage:\n  python3 nondiff_y_stratified.py --phase annotate --api-key &lt;KEY> [--smoke] [--model deepseek/deepseek-chat]\n  python3 nondiff_y_stratified.py --phase test [--permutations 10000]\n  python3 nondiff_y_stratified.py --phase all --api-key &lt;KEY> [--smoke]\n\nDependencies: numpy, requests (stdlib otherwise)\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\nfrom difflib import SequenceMatcher\nfrom pathlib import Path\n\nimport numpy as np\n\nSCRIPT_DIR = Path(__file__).resolve().parent\nDATA_PATH = SCRIPT_DIR / \"plan011_frontier_annotations\" / \"data\" / \"vast\" / \"test.jsonl\"\nANNOTATION_PATH = SCRIPT_DIR / \"nondiff_y_stratified_annotations.jsonl\"\nRESULTS_PATH = SCRIPT_DIR / \"nondiff_y_stratified_results.json\"\n\nLABEL_MAP = {\"Pro\": 1, \"Con\": 0, \"Neutral\": 2}\nLABEL_NAMES = {v: k for k, v in LABEL_MAP.items()}\nCLASS_NAMES = [\"Con\", \"Pro\", \"Neutral\"]\nK = 3\n\nOPENROUTER_URL = \"https://openrouter.ai/api/v1/chat/completions\"\nDEFAULT_MODEL = \"deepseek/deepseek-chat\"\n\nPROMPT_TEMPLATE = \"\"\"Determine the stance expressed in this text toward the given topic.\n\nCategories: \"Pro\", \"Con\", \"Neutral\"\n\nTopic: {topic}\n\nText: \"{text}\"\n\nRespond with ONLY a JSON object in this exact format:\n{{\"label\": \"&lt;category_name>\"}}\"\"\"\n\nPOSITIVE_WORDS = {\"good\", \"great\", \"best\", \"love\", \"right\", \"support\",\n                  \"agree\", \"positive\", \"benefit\", \"important\"}\nNEGATIVE_WORDS = {\"bad\", \"worst\", \"hate\", \"wrong\", \"against\", \"oppose\",\n                  \"negative\", \"harm\", \"dangerous\", \"fail\"}\n\n\n# ── Phase 1: Annotation ─────────────────────────────────────\n\ndef parse_label(response_text):\n    \"\"\"Extract predicted label from LLM response. Returns (label_int, label_name) or (None, None).\"\"\"\n    valid = {\"Pro\", \"Con\", \"Neutral\"}\n\n    # 1) JSON extraction\n    m = re.search(r'\\{\\s*\"label\"\\s*:\\s*\"([^\"]+)\"\\s*\\}', response_text)\n    if m and m.group(1) in valid:\n        name = m.group(1)\n        return LABEL_MAP[name], name\n\n    # 2) \"label: X\" or \"answer: X\" pattern\n    m = re.search(r'(?:label|answer)\\s*[:=]\\s*\"?(\\w+)\"?', response_text, re.IGNORECASE)\n    if m:\n        candidate = m.group(1).capitalize()\n        if candidate in valid:\n            return LABEL_MAP[candidate], candidate\n\n    # 3) Unique mention\n    found = [w for w in valid if w.lower() in response_text.lower()]\n    if len(found) == 1:\n        name = found[0]\n        return LABEL_MAP[name], name\n\n    # 4) Fuzzy match\n    best_score, best_name = 0.0, None\n    for w in valid:\n        for token in re.findall(r'\\w+', response_text):\n            score = SequenceMatcher(None, token.lower(), w.lower()).ratio()\n            if score > best_score:\n                best_score = score\n                best_name = w\n    if best_score > 0.5 and best_name is not None:\n        return LABEL_MAP[best_name], best_name\n\n    return None, None\n\n\ndef call_openrouter(api_key, model, topic, text):\n    \"\"\"Single OpenRouter API call with retry on 429.\"\"\"\n    import requests\n\n    prompt = PROMPT_TEMPLATE.format(topic=topic, text=text)\n    headers = {\n        \"Authorization\": [REDACTED]\"Bearer {api_key}\",\n        \"Content-Type\": \"application/json\",\n    }\n    body = {\n        \"model\": model,\n        \"messages\": [{\"role\": \"user\", \"content\": prompt}],\n        \"temperature\": 0,\n    }\n\n    backoff = 1.0\n    for attempt in range(6):\n        try:\n            resp = requests.post(OPENROUTER_URL, headers=headers, json=body, timeout=60)\n        except requests.RequestException as e:\n            return None, f\"request_error: {e}\"\n\n        if resp.status_code == 402:\n            print(f\"\\nERROR: 402 Payment Required. Check your OpenRouter balance.\", file=sys.stderr)\n            sys.exit(1)\n\n        if resp.status_code == 429:\n            if attempt < 5:\n                time.sleep(backoff)\n                backoff *= 2\n                continue\n            return None, \"429_max_retries\"\n\n        if resp.status_code != 200:\n            return None, f\"http_{resp.status_code}: {resp.text[:200]}\"\n\n        try:\n            data = resp.json()\n            content = data[\"choices\"][0][\"message\"][\"content\"]\n            return content, None\n        except (KeyError, IndexError, json.JSONDecodeError) as e:\n            return None, f\"parse_error: {e}\"\n\n    return None, \"unknown_error\"\n\n\ndef run_annotate(api_key, model, smoke):\n    \"\"\"Phase 1: annotate VAST test data.\"\"\"\n    import requests  # noqa: F811 — validate import early\n\n    if not DATA_PATH.exists():\n        print(f\"ERROR: VAST data not found at {DATA_PATH}\", file=sys.stderr)\n        sys.exit(1)\n\n    with open(DATA_PATH) as f:\n        samples = [json.loads(line) for line in f]\n\n    if smoke:\n        samples = samples[:5]\n\n    done_idxs = set()\n    if ANNOTATION_PATH.exists() and not smoke:\n        with open(ANNOTATION_PATH) as f:\n            for line in f:\n                try:\n                    rec = json.loads(line)\n                    done_idxs.add(rec[\"idx\"])\n                except (json.JSONDecodeError, KeyError):\n                    pass\n        print(f\"Resuming: {len(done_idxs)} already annotated\")\n\n    todo = [s for s in samples if s[\"idx\"] not in done_idxs]\n    if not todo:\n        print(\"All samples already annotated.\")\n        return\n\n    print(f\"Annotating {len(todo)} samples with {model}...\")\n    mode = \"a\" if done_idxs else \"w\"\n    with open(ANNOTATION_PATH, mode) as fout:\n        for i, sample in enumerate(todo):\n            raw, error = call_openrouter(api_key, model, sample[\"topic\"], sample[\"text\"])\n\n            rec = {\n                \"idx\": sample[\"idx\"],\n                \"text\": sample[\"text\"],\n                \"topic\": sample[\"topic\"],\n                \"gold_label\": sample[\"label\"],\n                \"gold_label_name\": sample[\"label_name\"],\n            }\n\n            if error:\n                rec[\"predicted_label\"] = None\n                rec[\"predicted_label_name\"] = None\n                rec[\"raw_response\"] = None\n                rec[\"error\"] = error\n            else:\n                pred_label, pred_name = parse_label(raw)\n                rec[\"predicted_label\"] = pred_label\n                rec[\"predicted_label_name\"] = pred_name\n                rec[\"raw_response\"] = raw\n\n            fout.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n            fout.flush()\n\n            if smoke:\n                print(f\"  [{sample['idx']}] gold={sample['label_name']}, \"\n                      f\"pred={rec['predicted_label_name']}, raw={raw}\")\n\n            if (i + 1) % 50 == 0:\n                print(f\"  Progress: {i + 1}/{len(todo)}\")\n\n            time.sleep(0.3)\n\n    total = len(done_idxs) + len(todo)\n    print(f\"Done. {total} annotations saved to {ANNOTATION_PATH}\")\n\n\n# ── Phase 2: Testing ─────────────────────────────────────────\n\ndef load_annotations():\n    \"\"\"Load annotations, return list of valid records.\"\"\"\n    if not ANNOTATION_PATH.exists():\n        print(f\"ERROR: Annotation file not found at {ANNOTATION_PATH}\", file=sys.stderr)\n        sys.exit(1)\n\n    records = []\n    parse_failures = 0\n    with open(ANNOTATION_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            if rec.get(\"predicted_label\") is None:\n                parse_failures += 1\n            else:\n                records.append(rec)\n    return records, parse_failures\n\n\ndef compute_confusion_matrix(records, gold_key=\"gold_label\", pred_key=\"predicted_label\"):\n    \"\"\"Column-stochastic K×K confusion matrix. C[j,k] = P(A*=j | A=k).\"\"\"\n    counts = np.zeros((K, K), dtype=float)\n    for r in records:\n        g = r[gold_key]\n        p = r[pred_key]\n        if g is not None and p is not None and 0 <= g < K and 0 <= p < K:\n            counts[p, g] += 1\n\n    col_sums = counts.sum(axis=0)\n    C = np.full((K, K), np.nan)\n    for k in range(K):\n        if col_sums[k] > 0:\n            C[:, k] = counts[:, k] / col_sums[k]\n    return C\n\n\ndef compute_sentiment_proxy(text):\n    \"\"\"Binary sentiment proxy: positive ratio > 0.5.\"\"\"\n    words = set(re.findall(r'\\w+', text.lower()))\n    pos = len(words & POSITIVE_WORDS)\n    neg = len(words & NEGATIVE_WORDS)\n    ratio = pos / (pos + neg + 1)\n    return 1 if ratio > 0.5 else 0\n\n\ndef max_deviation(C0, C1):\n    \"\"\"Max absolute entry-wise deviation, ignoring NaN.\"\"\"\n    diff = np.abs(C0 - C1)\n    valid = ~np.isnan(diff)\n    if not valid.any():\n        return 0.0\n    return float(np.nanmax(diff))\n\n\ndef frobenius_deviation(C0, C1):\n    \"\"\"Frobenius norm of difference, ignoring NaN.\"\"\"\n    diff = C0 - C1\n    valid = ~np.isnan(diff)\n    if not valid.any():\n        return 0.0\n    return float(np.sqrt(np.nansum(diff[valid] ** 2)))\n\n\ndef permutation_test_binary(records, y_values, n_perm, rng):\n    \"\"\"Permutation test for binary Y proxy.\"\"\"\n    y_arr = np.array(y_values)\n    mask0 = y_arr == 0\n    mask1 = y_arr == 1\n\n    recs0 = [r for r, m in zip(records, mask0) if m]\n    recs1 = [r for r, m in zip(records, mask1) if m]\n\n    C0 = compute_confusion_matrix(recs0)\n    C1 = compute_confusion_matrix(recs1)\n    T_obs = max_deviation(C0, C1)\n    frob = frobenius_deviation(C0, C1)\n\n    T_perms = np.empty(n_perm)\n    n = len(records)\n    for b in range(n_perm):\n        perm_y = rng.permutation(y_arr)\n        pm0 = perm_y == 0\n        pm1 = perm_y == 1\n        pC0 = compute_confusion_matrix([records[i] for i in range(n) if pm0[i]])\n        pC1 = compute_confusion_matrix([records[i] for i in range(n) if pm1[i]])\n        T_perms[b] = max_deviation(pC0, pC1)\n\n    p_value = (1 + np.sum(T_perms >= T_obs)) / (1 + n_perm)\n    null_95 = float(np.percentile(T_perms, 95))\n    null_mean = float(np.mean(T_perms))\n\n    return {\n        \"n_y0\": int(mask0.sum()),\n        \"n_y1\": int(mask1.sum()),\n        \"C_y0\": np.where(np.isnan(C0), None, C0).tolist(),\n        \"C_y1\": np.where(np.isnan(C1), None, C1).tolist(),\n        \"max_deviation\": round(T_obs, 6),\n        \"frobenius_deviation\": round(frob, 6),\n        \"permutation_p_value\": round(float(p_value), 6),\n        \"null_95pct\": round(null_95, 6),\n        \"null_mean\": round(null_mean, 6),\n        \"conclusion\": \"non-differential\" if p_value > 0.05 else \"differential\",\n    }\n\n\ndef permutation_test_categorical(records, y_values, n_perm, rng):\n    \"\"\"Permutation test for categorical Y proxy (topic).\"\"\"\n    groups = sorted(set(y_values))\n    group_counts = Counter(y_values)\n    y_arr = np.array(y_values)\n\n    C_per_group = {}\n    for g in groups:\n        recs_g = [r for r, yv in zip(records, y_values) if yv == g]\n        C_per_group[g] = compute_confusion_matrix(recs_g)\n\n    # Max pairwise deviation\n    max_pw = 0.0\n    for i, g1 in enumerate(groups):\n        for g2 in groups[i + 1:]:\n            d = max_deviation(C_per_group[g1], C_per_group[g2])\n            if d > max_pw:\n                max_pw = d\n\n    # Variance-based statistic: max across (j,k) of var(C[j,k]) across groups\n    C_stack = np.array([C_per_group[g] for g in groups])  # (G, K, K)\n    with np.errstate(all=\"ignore\"):\n        var_per_entry = np.nanvar(C_stack, axis=0)  # (K, K)\n    T_obs = float(np.nanmax(var_per_entry)) if not np.all(np.isnan(var_per_entry)) else 0.0\n\n    T_perms = np.empty(n_perm)\n    n = len(records)\n    for b in range(n_perm):\n        perm_y = rng.permutation(y_arr)\n        pC_stack = []\n        for g in groups:\n            mask = perm_y == g\n            pC = compute_confusion_matrix([records[i] for i in range(n) if mask[i]])\n            pC_stack.append(pC)\n        pC_arr = np.array(pC_stack)\n        with np.errstate(all=\"ignore\"):\n            pvar = np.nanvar(pC_arr, axis=0)\n        T_perms[b] = float(np.nanmax(pvar)) if not np.all(np.isnan(pvar)) else 0.0\n\n    p_value = (1 + np.sum(T_perms >= T_obs)) / (1 + n_perm)\n    null_95 = float(np.percentile(T_perms, 95))\n\n    C_serializable = {}\n    for g in groups:\n        C_serializable[g] = np.where(np.isnan(C_per_group[g]), None, C_per_group[g]).tolist()\n\n    return {\n        \"groups\": {g: int(group_counts[g]) for g in groups},\n        \"C_per_group\": C_serializable,\n        \"max_pairwise_deviation\": round(max_pw, 6),\n        \"max_variance_statistic\": round(T_obs, 6),\n        \"permutation_p_value\": round(float(p_value), 6),\n        \"null_95pct\": round(null_95, 6),\n        \"conclusion\": \"non-differential\" if p_value > 0.05 else \"differential\",\n    }\n\n\ndef run_test(n_perm):\n    \"\"\"Phase 2: Y-stratified permutation tests.\"\"\"\n    records, parse_failures = load_annotations()\n    n_valid = len(records)\n    n_total = n_valid + parse_failures\n    print(f\"Loaded {n_valid} valid annotations ({parse_failures} parse failures)\")\n\n    # Detect model from first record\n    model_used = DEFAULT_MODEL\n    if records and \"raw_response\" in records[0]:\n        pass  # model name not stored in annotations; use default\n\n    # Overall confusion matrix and accuracy\n    C_overall = compute_confusion_matrix(records)\n    correct = sum(1 for r in records if r[\"gold_label\"] == r[\"predicted_label\"])\n    accuracy = correct / n_valid if n_valid > 0 else 0.0\n\n    rng = np.random.default_rng(42)\n\n    # Y1: text_length\n    print(\"Testing Y1: text_length ...\")\n    lengths = [len(r[\"text\"]) for r in records]\n    median_len = float(np.median(lengths))\n    y1 = [1 if l > median_len else 0 for l in lengths]\n    res_y1 = permutation_test_binary(records, y1, n_perm, rng)\n    res_y1[\"description\"] = \"len(text) > median\"\n    res_y1[\"type\"] = \"binary\"\n\n    # Y2: topic\n    print(\"Testing Y2: topic ...\")\n    topic_counts = Counter(r[\"topic\"] for r in records)\n    threshold = 30\n    big_topics = {t for t, c in topic_counts.items() if c >= threshold}\n    if len(big_topics) <= 2:\n        threshold = 20\n        big_topics = {t for t, c in topic_counts.items() if c >= threshold}\n    y2 = [r[\"topic\"] if r[\"topic\"] in big_topics else \"other\" for r in records]\n    res_y2 = permutation_test_categorical(records, y2, n_perm, rng)\n    res_y2[\"description\"] = f\"VAST topic field (groups with n>={threshold})\"\n    res_y2[\"type\"] = \"categorical\"\n\n    # Y3: sentiment\n    print(\"Testing Y3: sentiment ...\")\n    y3 = [compute_sentiment_proxy(r[\"text\"]) for r in records]\n    res_y3 = permutation_test_binary(records, y3, n_perm, rng)\n    res_y3[\"description\"] = \"positive/(positive+negative+1) > 0.5\"\n    res_y3[\"type\"] = \"binary\"\n\n    # Conclusions\n    all_nondiff = all(\n        res[\"conclusion\"] == \"non-differential\"\n        for res in [res_y1, res_y2, res_y3]\n    )\n    if all_nondiff:\n        overall = \"Non-differential misclassification supported: all three Y-stratified tests show p > 0.05\"\n    else:\n        failing = [name for name, res in [(\"text_length\", res_y1), (\"topic\", res_y2), (\"sentiment\", res_y3)]\n                   if res[\"conclusion\"] == \"differential\"]\n        overall = f\"Differential misclassification detected in: {', '.join(failing)}\"\n\n    results = {\n        \"model\": model_used,\n        \"dataset\": \"VAST\",\n        \"K\": K,\n        \"classes\": CLASS_NAMES,\n        \"n_samples\": n_total,\n        \"n_valid_predictions\": n_valid,\n        \"n_parse_failures\": parse_failures,\n        \"overall_confusion_matrix\": np.where(np.isnan(C_overall), None, C_overall).tolist(),\n        \"overall_accuracy\": round(accuracy, 4),\n        \"y_proxies\": {\n            \"text_length\": res_y1,\n            \"topic\": res_y2,\n            \"sentiment\": res_y3,\n        },\n        \"overall_conclusion\": overall,\n        \"annotation_file\": \"nondiff_y_stratified_annotations.jsonl\",\n    }\n\n    with open(RESULTS_PATH, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n\n    print(f\"\\nResults saved to {RESULTS_PATH}\")\n    print(f\"Overall accuracy: {accuracy:.4f}\")\n    print(f\"Y1 text_length: p={res_y1['permutation_p_value']:.4f} → {res_y1['conclusion']}\")\n    print(f\"Y2 topic:       p={res_y2['permutation_p_value']:.4f} → {res_y2['conclusion']}\")\n    print(f\"Y3 sentiment:   p={res_y3['permutation_p_value']:.4f} → {res_y3['conclusion']}\")\n    print(f\"Conclusion: {overall}\")\n\n\n# ── CLI ───────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"MF-2: Y-Stratified Non-Differential Misclassification Test\"\n    )\n    parser.add_argument(\"--phase\", required=True, choices=[\"annotate\", \"test\", \"all\"],\n                        help=\"Phase to run: annotate, test, or all\")\n    parser.add_argument(\"--api-key\", type=str, default=None,\n                        help=\"OpenRouter API key (required for annotate/all)\")\n    parser.add_argument(\"--model\", type=str, default=DEFAULT_MODEL,\n                        help=f\"OpenRouter model (default: {DEFAULT_MODEL})\")\n    parser.add_argument(\"--smoke\", action=\"store_true\",\n                        help=\"Annotate only 5 samples for testing\")\n    parser.add_argument(\"--permutations\", type=int, default=10000,\n                        help=\"Number of permutations for test phase (default: 10000)\")\n    args = parser.parse_args()\n\n    if args.phase in (\"annotate\", \"all\") and not args.api_key:\n        [REDACTED]\"--api-key is required for annotate/all phases\")\n\n    if args.phase in (\"annotate\", \"all\"):\n        run_annotate(args.api_key, args.model, args.smoke)\n\n    if args.phase in (\"test\", \"all\"):\n        run_test(args.permutations)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_y_stratified.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"\nMF-2: Y-Stratified Non-Differential Misclassification Test\n\nTests whether LLM annotation error rates are independent of outcome proxies Y,\ni.e. P(A*|A, Y) = P(A*|A). Uses permutation tests on column-stochastic\nconfusion matrices stratified by three Y proxies.\n\nPhase 1 (annotate): LLM stance classification on VAST test data via OpenRouter.\nPhase 2 (test):     Y-stratified permutation tests on annotation results.\n\nInput:  artifacts/plan011_frontier_annotations/data/vast/test.jsonl\nOutput: artifacts/nondiff_y_stratified_annotations.jsonl  (Phase 1)\n        artifacts/nondiff_y_stratified_results.json       (Phase 2)\n\nUsage:\n  python3 nondiff_y_stratified.py --phase annotate --api-key &lt;KEY> [--smoke] [--model deepseek/deepseek-chat]\n  python3 nondiff_y_stratified.py --phase test [--permutations 10000]\n  python3 nondiff_y_stratified.py --phase all --api-key &lt;KEY> [--smoke]\n\nDependencies: numpy, requests (stdlib otherwise)\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\nfrom difflib import SequenceMatcher\nfrom pathlib import Path\n\nimport numpy as np\n\nSCRIPT_DIR = Path(__file__).resolve().parent\nDATA_PATH = SCRIPT_DIR / \"plan011_frontier_annotations\" / \"data\" / \"vast\" / \"test.jsonl\"\nANNOTATION_PATH = SCRIPT_DIR / \"nondiff_y_stratified_annotations.jsonl\"\nRESULTS_PATH = SCRIPT_DIR / \"nondiff_y_stratified_results.json\"\n\nLABEL_MAP = {\"Pro\": 1, \"Con\": 0, \"Neutral\": 2}\nLABEL_NAMES = {v: k for k, v in LABEL_MAP.items()}\nCLASS_NAMES = [\"Con\", \"Pro\", \"Neutral\"]\nK = 3\n\nOPENROUTER_URL = \"https://openrouter.ai/api/v1/chat/completions\"\nDEFAULT_MODEL = \"deepseek/deepseek-chat\"\n\nPROMPT_TEMPLATE = \"\"\"Determine the stance expressed in this text toward the given topic.\n\nCategories: \"Pro\", \"Con\", \"Neutral\"\n\nTopic: {topic}\n\nText: \"{text}\"\n\nRespond with ONLY a JSON object in this exact format:\n{{\"label\": \"&lt;category_name>\"}}\"\"\"\n\nPOSITIVE_WORDS = {\"good\", \"great\", \"best\", \"love\", \"right\", \"support\",\n                  \"agree\", \"positive\", \"benefit\", \"important\"}\nNEGATIVE_WORDS = {\"bad\", \"worst\", \"hate\", \"wrong\", \"against\", \"oppose\",\n                  \"negative\", \"harm\", \"dangerous\", \"fail\"}\n\n\n# ── Phase 1: Annotation ─────────────────────────────────────\n\ndef parse_label(response_text):\n    \"\"\"Extract predicted label from LLM response. Returns (label_int, label_name) or (None, None).\"\"\"\n    valid = {\"Pro\", \"Con\", \"Neutral\"}\n\n    # 1) JSON extraction\n    m = re.search(r'\\{\\s*\"label\"\\s*:\\s*\"([^\"]+)\"\\s*\\}', response_text)\n    if m and m.group(1) in valid:\n        name = m.group(1)\n        return LABEL_MAP[name], name\n\n    # 2) \"label: X\" or \"answer: X\" pattern\n    m = re.search(r'(?:label|answer)\\s*[:=]\\s*\"?(\\w+)\"?', response_text, re.IGNORECASE)\n    if m:\n        candidate = m.group(1).capitalize()\n        if candidate in valid:\n            return LABEL_MAP[candidate], candidate\n\n    # 3) Unique mention\n    found = [w for w in valid if w.lower() in response_text.lower()]\n    if len(found) == 1:\n        name = found[0]\n        return LABEL_MAP[name], name\n\n    # 4) Fuzzy match\n    best_score, best_name = 0.0, None\n    for w in valid:\n        for token in re.findall(r'\\w+', response_text):\n            score = SequenceMatcher(None, token.lower(), w.lower()).ratio()\n            if score > best_score:\n                best_score = score\n                best_name = w\n    if best_score > 0.5 and best_name is not None:\n        return LABEL_MAP[best_name], best_name\n\n    return None, None\n\n\ndef call_openrouter(api_key, model, topic, text):\n    \"\"\"Single OpenRouter API call with retry on 429.\"\"\"\n    import requests\n\n    prompt = PROMPT_TEMPLATE.format(topic=topic, text=text)\n    headers = {\n        \"Authorization\": [REDACTED]\"Bearer {api_key}\",\n        \"Content-Type\": \"application/json\",\n    }\n    body = {\n        \"model\": model,\n        \"messages\": [{\"role\": \"user\", \"content\": prompt}],\n        \"temperature\": 0,\n    }\n\n    backoff = 1.0\n    for attempt in range(6):\n        try:\n            resp = requests.post(OPENROUTER_URL, headers=headers, json=body, timeout=60)\n        except requests.RequestException as e:\n            return None, f\"request_error: {e}\"\n\n        if resp.status_code == 402:\n            print(f\"\\nERROR: 402 Payment Required. Check your OpenRouter balance.\", file=sys.stderr)\n            sys.exit(1)\n\n        if resp.status_code == 429:\n            if attempt < 5:\n                time.sleep(backoff)\n                backoff *= 2\n                continue\n            return None, \"429_max_retries\"\n\n        if resp.status_code != 200:\n            return None, f\"http_{resp.status_code}: {resp.text[:200]}\"\n\n        try:\n            data = resp.json()\n            content = data[\"choices\"][0][\"message\"][\"content\"]\n            return content, None\n        except (KeyError, IndexError, json.JSONDecodeError) as e:\n            return None, f\"parse_error: {e}\"\n\n    return None, \"unknown_error\"\n\n\ndef run_annotate(api_key, model, smoke):\n    \"\"\"Phase 1: annotate VAST test data.\"\"\"\n    import requests  # noqa: F811 — validate import early\n\n    if not DATA_PATH.exists():\n        print(f\"ERROR: VAST data not found at {DATA_PATH}\", file=sys.stderr)\n        sys.exit(1)\n\n    with open(DATA_PATH) as f:\n        samples = [json.loads(line) for line in f]\n\n    if smoke:\n        samples = samples[:5]\n\n    done_idxs = set()\n    if ANNOTATION_PATH.exists() and not smoke:\n        with open(ANNOTATION_PATH) as f:\n            for line in f:\n                try:\n                    rec = json.loads(line)\n                    done_idxs.add(rec[\"idx\"])\n                except (json.JSONDecodeError, KeyError):\n                    pass\n        print(f\"Resuming: {len(done_idxs)} already annotated\")\n\n    todo = [s for s in samples if s[\"idx\"] not in done_idxs]\n    if not todo:\n        print(\"All samples already annotated.\")\n        return\n\n    print(f\"Annotating {len(todo)} samples with {model}...\")\n    mode = \"a\" if done_idxs else \"w\"\n    with open(ANNOTATION_PATH, mode) as fout:\n        for i, sample in enumerate(todo):\n            raw, error = call_openrouter(api_key, model, sample[\"topic\"], sample[\"text\"])\n\n            rec = {\n                \"idx\": sample[\"idx\"],\n                \"text\": sample[\"text\"],\n                \"topic\": sample[\"topic\"],\n                \"gold_label\": sample[\"label\"],\n                \"gold_label_name\": sample[\"label_name\"],\n            }\n\n            if error:\n                rec[\"predicted_label\"] = None\n                rec[\"predicted_label_name\"] = None\n                rec[\"raw_response\"] = None\n                rec[\"error\"] = error\n            else:\n                pred_label, pred_name = parse_label(raw)\n                rec[\"predicted_label\"] = pred_label\n                rec[\"predicted_label_name\"] = pred_name\n                rec[\"raw_response\"] = raw\n\n            fout.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n            fout.flush()\n\n            if smoke:\n                print(f\"  [{sample['idx']}] gold={sample['label_name']}, \"\n                      f\"pred={rec['predicted_label_name']}, raw={raw}\")\n\n            if (i + 1) % 50 == 0:\n                print(f\"  Progress: {i + 1}/{len(todo)}\")\n\n            time.sleep(0.3)\n\n    total = len(done_idxs) + len(todo)\n    print(f\"Done. {total} annotations saved to {ANNOTATION_PATH}\")\n\n\n# ── Phase 2: Testing ─────────────────────────────────────────\n\ndef load_annotations():\n    \"\"\"Load annotations, return list of valid records.\"\"\"\n    if not ANNOTATION_PATH.exists():\n        print(f\"ERROR: Annotation file not found at {ANNOTATION_PATH}\", file=sys.stderr)\n        sys.exit(1)\n\n    records = []\n    parse_failures = 0\n    with open(ANNOTATION_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            if rec.get(\"predicted_label\") is None:\n                parse_failures += 1\n            else:\n                records.append(rec)\n    return records, parse_failures\n\n\ndef compute_confusion_matrix(records, gold_key=\"gold_label\", pred_key=\"predicted_label\"):\n    \"\"\"Column-stochastic K×K confusion matrix. C[j,k] = P(A*=j | A=k).\"\"\"\n    counts = np.zeros((K, K), dtype=float)\n    for r in records:\n        g = r[gold_key]\n        p = r[pred_key]\n        if g is not None and p is not None and 0 <= g < K and 0 <= p < K:\n            counts[p, g] += 1\n\n    col_sums = counts.sum(axis=0)\n    C = np.full((K, K), np.nan)\n    for k in range(K):\n        if col_sums[k] > 0:\n            C[:, k] = counts[:, k] / col_sums[k]\n    return C\n\n\ndef compute_sentiment_proxy(text):\n    \"\"\"Binary sentiment proxy: positive ratio > 0.5.\"\"\"\n    words = set(re.findall(r'\\w+', text.lower()))\n    pos = len(words & POSITIVE_WORDS)\n    neg = len(words & NEGATIVE_WORDS)\n    ratio = pos / (pos + neg + 1)\n    return 1 if ratio > 0.5 else 0\n\n\ndef max_deviation(C0, C1):\n    \"\"\"Max absolute entry-wise deviation, ignoring NaN.\"\"\"\n    diff = np.abs(C0 - C1)\n    valid = ~np.isnan(diff)\n    if not valid.any():\n        return 0.0\n    return float(np.nanmax(diff))\n\n\ndef frobenius_deviation(C0, C1):\n    \"\"\"Frobenius norm of difference, ignoring NaN.\"\"\"\n    diff = C0 - C1\n    valid = ~np.isnan(diff)\n    if not valid.any():\n        return 0.0\n    return float(np.sqrt(np.nansum(diff[valid] ** 2)))\n\n\ndef permutation_test_binary(records, y_values, n_perm, rng):\n    \"\"\"Permutation test for binary Y proxy.\"\"\"\n    y_arr = np.array(y_values)\n    mask0 = y_arr == 0\n    mask1 = y_arr == 1\n\n    recs0 = [r for r, m in zip(records, mask0) if m]\n    recs1 = [r for r, m in zip(records, mask1) if m]\n\n    C0 = compute_confusion_matrix(recs0)\n    C1 = compute_confusion_matrix(recs1)\n    T_obs = max_deviation(C0, C1)\n    frob = frobenius_deviation(C0, C1)\n\n    T_perms = np.empty(n_perm)\n    n = len(records)\n    for b in range(n_perm):\n        perm_y = rng.permutation(y_arr)\n        pm0 = perm_y == 0\n        pm1 = perm_y == 1\n        pC0 = compute_confusion_matrix([records[i] for i in range(n) if pm0[i]])\n        pC1 = compute_confusion_matrix([records[i] for i in range(n) if pm1[i]])\n        T_perms[b] = max_deviation(pC0, pC1)\n\n    p_value = (1 + np.sum(T_perms >= T_obs)) / (1 + n_perm)\n    null_95 = float(np.percentile(T_perms, 95))\n    null_mean = float(np.mean(T_perms))\n\n    return {\n        \"n_y0\": int(mask0.sum()),\n        \"n_y1\": int(mask1.sum()),\n        \"C_y0\": np.where(np.isnan(C0), None, C0).tolist(),\n        \"C_y1\": np.where(np.isnan(C1), None, C1).tolist(),\n        \"max_deviation\": round(T_obs, 6),\n        \"frobenius_deviation\": round(frob, 6),\n        \"permutation_p_value\": round(float(p_value), 6),\n        \"null_95pct\": round(null_95, 6),\n        \"null_mean\": round(null_mean, 6),\n        \"conclusion\": \"non-differential\" if p_value > 0.05 else \"differential\",\n    }\n\n\ndef permutation_test_categorical(records, y_values, n_perm, rng):\n    \"\"\"Permutation test for categorical Y proxy (topic).\"\"\"\n    groups = sorted(set(y_values))\n    group_counts = Counter(y_values)\n    y_arr = np.array(y_values)\n\n    C_per_group = {}\n    for g in groups:\n        recs_g = [r for r, yv in zip(records, y_values) if yv == g]\n        C_per_group[g] = compute_confusion_matrix(recs_g)\n\n    # Max pairwise deviation\n    max_pw = 0.0\n    for i, g1 in enumerate(groups):\n        for g2 in groups[i + 1:]:\n            d = max_deviation(C_per_group[g1], C_per_group[g2])\n            if d > max_pw:\n                max_pw = d\n\n    # Variance-based statistic: max across (j,k) of var(C[j,k]) across groups\n    C_stack = np.array([C_per_group[g] for g in groups])  # (G, K, K)\n    with np.errstate(all=\"ignore\"):\n        var_per_entry = np.nanvar(C_stack, axis=0)  # (K, K)\n    T_obs = float(np.nanmax(var_per_entry)) if not np.all(np.isnan(var_per_entry)) else 0.0\n\n    T_perms = np.empty(n_perm)\n    n = len(records)\n    for b in range(n_perm):\n        perm_y = rng.permutation(y_arr)\n        pC_stack = []\n        for g in groups:\n            mask = perm_y == g\n            pC = compute_confusion_matrix([records[i] for i in range(n) if mask[i]])\n            pC_stack.append(pC)\n        pC_arr = np.array(pC_stack)\n        with np.errstate(all=\"ignore\"):\n            pvar = np.nanvar(pC_arr, axis=0)\n        T_perms[b] = float(np.nanmax(pvar)) if not np.all(np.isnan(pvar)) else 0.0\n\n    p_value = (1 + np.sum(T_perms >= T_obs)) / (1 + n_perm)\n    null_95 = float(np.percentile(T_perms, 95))\n\n    C_serializable = {}\n    for g in groups:\n        C_serializable[g] = np.where(np.isnan(C_per_group[g]), None, C_per_group[g]).tolist()\n\n    return {\n        \"groups\": {g: int(group_counts[g]) for g in groups},\n        \"C_per_group\": C_serializable,\n        \"max_pairwise_deviation\": round(max_pw, 6),\n        \"max_variance_statistic\": round(T_obs, 6),\n        \"permutation_p_value\": round(float(p_value), 6),\n        \"null_95pct\": round(null_95, 6),\n        \"conclusion\": \"non-differential\" if p_value > 0.05 else \"differential\",\n    }\n\n\ndef run_test(n_perm):\n    \"\"\"Phase 2: Y-stratified permutation tests.\"\"\"\n    records, parse_failures = load_annotations()\n    n_valid = len(records)\n    n_total = n_valid + parse_failures\n    print(f\"Loaded {n_valid} valid annotations ({parse_failures} parse failures)\")\n\n    # Detect model from first record\n    model_used = DEFAULT_MODEL\n    if records and \"raw_response\" in records[0]:\n        pass  # model name not stored in annotations; use default\n\n    # Overall confusion matrix and accuracy\n    C_overall = compute_confusion_matrix(records)\n    correct = sum(1 for r in records if r[\"gold_label\"] == r[\"predicted_label\"])\n    accuracy = correct / n_valid if n_valid > 0 else 0.0\n\n    rng = np.random.default_rng(42)\n\n    # Y1: text_length\n    print(\"Testing Y1: text_length ...\")\n    lengths = [len(r[\"text\"]) for r in records]\n    median_len = float(np.median(lengths))\n    y1 = [1 if l > median_len else 0 for l in lengths]\n    res_y1 = permutation_test_binary(records, y1, n_perm, rng)\n    res_y1[\"description\"] = \"len(text) > median\"\n    res_y1[\"type\"] = \"binary\"\n\n    # Y2: topic\n    print(\"Testing Y2: topic ...\")\n    topic_counts = Counter(r[\"topic\"] for r in records)\n    threshold = 30\n    big_topics = {t for t, c in topic_counts.items() if c >= threshold}\n    if len(big_topics) <= 2:\n        threshold = 20\n        big_topics = {t for t, c in topic_counts.items() if c >= threshold}\n    y2 = [r[\"topic\"] if r[\"topic\"] in big_topics else \"other\" for r in records]\n    res_y2 = permutation_test_categorical(records, y2, n_perm, rng)\n    res_y2[\"description\"] = f\"VAST topic field (groups with n>={threshold})\"\n    res_y2[\"type\"] = \"categorical\"\n\n    # Y3: sentiment\n    print(\"Testing Y3: sentiment ...\")\n    y3 = [compute_sentiment_proxy(r[\"text\"]) for r in records]\n    res_y3 = permutation_test_binary(records, y3, n_perm, rng)\n    res_y3[\"description\"] = \"positive/(positive+negative+1) > 0.5\"\n    res_y3[\"type\"] = \"binary\"\n\n    # Conclusions\n    all_nondiff = all(\n        res[\"conclusion\"] == \"non-differential\"\n        for res in [res_y1, res_y2, res_y3]\n    )\n    if all_nondiff:\n        overall = \"Non-differential misclassification supported: all three Y-stratified tests show p > 0.05\"\n    else:\n        failing = [name for name, res in [(\"text_length\", res_y1), (\"topic\", res_y2), (\"sentiment\", res_y3)]\n                   if res[\"conclusion\"] == \"differential\"]\n        overall = f\"Differential misclassification detected in: {', '.join(failing)}\"\n\n    results = {\n        \"model\": model_used,\n        \"dataset\": \"VAST\",\n        \"K\": K,\n        \"classes\": CLASS_NAMES,\n        \"n_samples\": n_total,\n        \"n_valid_predictions\": n_valid,\n        \"n_parse_failures\": parse_failures,\n        \"overall_confusion_matrix\": np.where(np.isnan(C_overall), None, C_overall).tolist(),\n        \"overall_accuracy\": round(accuracy, 4),\n        \"y_proxies\": {\n            \"text_length\": res_y1,\n            \"topic\": res_y2,\n            \"sentiment\": res_y3,\n        },\n        \"overall_conclusion\": overall,\n        \"annotation_file\": \"nondiff_y_stratified_annotations.jsonl\",\n    }\n\n    with open(RESULTS_PATH, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n\n    print(f\"\\nResults saved to {RESULTS_PATH}\")\n    print(f\"Overall accuracy: {accuracy:.4f}\")\n    print(f\"Y1 text_length: p={res_y1['permutation_p_value']:.4f} → {res_y1['conclusion']}\")\n    print(f\"Y2 topic:       p={res_y2['permutation_p_value']:.4f} → {res_y2['conclusion']}\")\n    print(f\"Y3 sentiment:   p={res_y3['permutation_p_value']:.4f} → {res_y3['conclusion']}\")\n    print(f\"Conclusion: {overall}\")\n\n\n# ── CLI ───────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"MF-2: Y-Stratified Non-Differential Misclassification Test\"\n    )\n    parser.add_argument(\"--phase\", required=True, choices=[\"annotate\", \"test\", \"all\"],\n                        help=\"Phase to run: annotate, test, or all\")\n    parser.add_argument(\"--api-key\", type=str, default=None,\n                        help=\"OpenRouter API key (required for annotate/all)\")\n    parser.add_argument(\"--model\", type=str, default=DEFAULT_MODEL,\n                        help=f\"OpenRouter model (default: {DEFAULT_MODEL})\")\n    parser.add_argument(\"--smoke\", action=\"store_true\",\n                        help=\"Annotate only 5 samples for testing\")\n    parser.add_argument(\"--permutations\", type=int, default=10000,\n                        help=\"Number of permutations for test phase (default: 10000)\")\n    args = parser.parse_args()\n\n    if args.phase in (\"annotate\", \"all\") and not args.api_key:\n        [REDACTED]\"--api-key is required for annotate/all phases\")\n\n    if args.phase in (\"annotate\", \"all\"):\n        run_annotate(args.api_key, args.model, args.smoke)\n\n    if args.phase in (\"test\", \"all\"):\n        run_test(args.permutations)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T16:08:52.809589+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_y_stratified.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T16:08:52.809799+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 artifacts/nondiff_y_stratified.py --help",
+  "description": "Verify script syntax"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 artifacts/nondiff_y_stratified.py --help",
+    "description": "Verify script syntax"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T16:08:52.810005+00:00_
+
+usage: nondiff_y_stratified.py [-h] --phase {annotate,test,all}
+                               [--api-key API_KEY] [--model MODEL] [--smoke]
+                               [--permutations PERMUTATIONS]
+
+MF-2: Y-Stratified Non-Differential Misclassification Test
+
+options:
+  -h, --help            show this help message and exit
+  --phase {annotate,test,all}
+                        Phase to run: annotate, test, or all
+  --api-key API_KEY     OpenRouter API key (required for annotate/all)
+  --model MODEL         OpenRouter model (default: deepseek/deepseek-chat)
+  --smoke               Annotate only 5 samples for testing
+  --permutations PERMUTATIONS
+                        Number of permutations for test phase (default: 10000)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T16:08:52.810255+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T16:08:52.810454+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T16:08:52.810644+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "nondiff_y_stratified",
+  "type": "intermediate",
+  "description": "MF-2: Y-Stratified Non-Differential Misclassification Test script. Phase 1 annotates VAST test data via OpenRouter LLM, Phase 2 runs permutation tests on column-stochastic confusion matrices stratified by 3 Y proxies (text_length, topic, sentiment).",
+  "project": "causal_annot_error_attrib",
+  "source_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_y_stratified.py",
+  "tags": "['MF-2', 'nondiff', 'y-stratified', 'permutation-test', 'VAST']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "nondiff_y_stratified",
+    "type": "intermediate",
+    "description": "MF-2: Y-Stratified Non-Differential Misclassification Test script. Phase 1 annotates VAST test data via OpenRouter LLM, Phase 2 runs permutation tests on column-stochastic confusion matrices stratified by 3 Y proxies (text_length, topic, sentiment).",
+    "project": "causal_annot_error_attrib",
+    "source_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_y_stratified.py",
+    "tags": "['MF-2', 'nondiff', 'y-stratified', 'permutation-test', 'VAST']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T16:08:52.810870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_101598\", \"name\": \"nondiff_y_stratified\", \"type\": \"intermediate\", \"description\": \"MF-2: Y-Stratified Non-Differential Misclassification Test script. Phase 1 annotates VAST test data via OpenRouter LLM, Phase 2 runs permutation tests on column-stochastic confusion matrices stratified by 3 Y proxies (text_length, topic, sentiment).\", \"path\": \"projects/causal_annot_error_attrib/artifacts/_project/intermediate/nondiff_y_stratified.py\", \"url\": null, \"project\": \"causal_annot_error_attrib\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T16:08:34.343983+00:00\", \"tags\": [\"MF-2\", \"nondiff\", \"y-stratified\", \"permutation-test\", \"VAST\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-23T16:08:52.811124+00:00_
+
+脚本已完成并注册。
+
+**要点**:
+- `artifacts/nondiff_y_stratified.py` — 语法验证通过，只依赖 numpy + requests + stdlib
+- Phase 1: OpenRouter API 标注 VAST 1000 条数据，支持 `--smoke`、resume、429 退避、402 立即退出
+- Phase 2: 3 个 Y proxy（text_length / topic / sentiment）的 column-stochastic confusion matrix 分层 + permutation test（默认 10,000 次）
+- 拿到 API key 后 `--phase all --api-key &lt;KEY>` 一步到位
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_mf2_y_stratified_script_20260523T160631"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,581 @@
+{
+  "random_verification": {
+    "confounding": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8467,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.010860102441185848,
+        "tau_true": 1.9998241281545739
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 8064,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.005829922779741814,
+        "tau_true": 1.999928016747683
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7890,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.0034077583603342454,
+        "tau_true": 2.0003841224302854
+      }
+    },
+    "mediation": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8236,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.012735806472077393,
+        "tau_true": 0.5020006875627565
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 7903,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.006562553155827211,
+        "tau_true": 0.4991583937189051
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7890,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.0040338233163313975,
+        "tau_true": 0.49928121967936034
+      }
+    },
+    "collider": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8653,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.004606655910260882,
+        "tau_true": 1.0
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 7643,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0034285917273304545,
+        "tau_true": 1.0
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7555,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0024942343934484246,
+        "tau_true": 1.0
+      }
+    },
+    "exposure": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 488,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.055916435702870304,
+        "tau_true": 0.9990860758671022
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 206,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.0512139933848792,
+        "tau_true": 0.9992701620548922
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 77,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.022039262143256244,
+        "tau_true": 1.001113712115238
+      }
+    },
+    "mbias": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 9734,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0015522285471285535,
+        "tau_true": 1.0
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 7640,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0014365508946148076,
+        "tau_true": 1.0
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7513,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0008778900165735681,
+        "tau_true": 1.0
+      }
+    },
+    "iv": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 7433,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 15001640.04582617,
+        "tau_true": 1.3328638533484616
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 6011,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 4067672.819669802,
+        "tau_true": 1.9217194857035584
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 5706,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 12989086.745428896,
+        "tau_true": 2.050984649343555
+      }
+    },
+    "frontdoor": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8427,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.01306574620731793,
+        "tau_true": 0.5001636710565874
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 8079,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.006287368037765306,
+        "tau_true": 0.500028786373885
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7899,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.00365032316631253,
+        "tau_true": 0.499894195097627
+      }
+    }
+  },
+  "adversarial_search": {
+    "confounding": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.00981505115034094,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.014781769787710543,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "mediation": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.010561123106817605,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.010862658240636185,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "collider": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.00030283818433801376,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.001117545184579056,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "exposure": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.003922567878966418,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.005420375127682058,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "mbias": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.0017428177445399143,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.0019441470428496039,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "iv": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": 2.6081713678869703e-29,
+        "found_counterexample": false,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -27.515209774113806,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "frontdoor": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.0060568064726131965,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.012339072616903042,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    }
+  },
+  "summary": "141514 violations across 210,000 random tests + 13 counterexamples found by adversarial search"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31e9df71f7933244fe8b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "analysis plan011 frontier check",
+  "task_key": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan011_frontier_check_20260521T110109_result.json",
+    "occurrence": 1,
+    "bytes": 1769,
+    "sha256": "38a80228d44d91a9be22e584d25db94d6cf64d5dd44f38e4c7e314110e52c631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan011 Frontier Annotations 状态总结\n\n### 根因\nAPI 端点 `http://47.94.22.126` **余额耗尽 (HTTP 402)**，导致大量标注失败。humaid 最先跑、完成度最高；vast 跑到一半断了；civil_comments 几乎全军覆没。\n\n### 可用数据一览（parse rate ≥ 80%）\n\n| Dataset | Model | 可用 prompt configs | 备注 |\n|---------|-------|-------------------|------|\n| **humaid** | llama4 | zero/3/5-shot ✓ | 100%/99.9%/98.1% |\n| **humaid** | deepseek | zero/3-shot ✓ | 100%/89.7%（5-shot 82.5% 勉强可用）|\n| **humaid** | qwen3 | zero/3-shot ✓ | 100%/94.9%（5-shot 全 402）|\n| **vast** | llama4 | zero/3-shot ✓ | 99.7%/100%（5-shot 仅 23%）|\n| **vast** | qwen2.5-7b | zero/3/5-shot ✓ | 99.9%~100%（本地模型，后补）|\n| **civil_comments** | qwen2.5-7b | zero/3/5-shot ✓ | 100%（本地模型，后补）|\n\n**vast** 的 deepseek/qwen3 全部 402 失败。**civil_comments** 的 llama4/deepseek/qwen3 全部 402 失败。**humaid 缺 qwen2.5-7b**。\n\n### 统计\n- 理论组合：3 datasets × 4 models × 3 prompts = **36 configs**\n- 可用（≥80%）：**15 configs**（42%）\n- 完全失败：**18 configs**（全 402）\n- 部分失败：**3 configs**\n\n### 产出文件\n远程 `/home/sonny/causal_annot_error_attrib/results/` 下有 JSONL + confusion matrix (.npz)。本地 `artifacts/plan011_frontier_annotations/` 有脚本和 STATUS.md（记录了 TUM API key 401 的 blocker，但实际跑通了部分任务用的是另一个端点）。\n\n### 恢复建议\n需要充值 `47.94.22.126` API 余额或切换到新端点，重跑 vast (deepseek/qwen3 全部, llama4 5-shot) + civil_comments (llama4/deepseek/qwen3 全部) + humaid (qwen2.5-7b)，共约 21 configs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan011-frontier-check.md"
+}

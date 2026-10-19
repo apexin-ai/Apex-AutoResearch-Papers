@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{ASV stability across DGP configurations. Each cell shows $\delta^*$ at the 10\% relative bias threshold (median over 5 confusion matrices with diagonal $\in\{0.5,0.6,0.7,0.8,0.9\}$). Lower $\delta^*$ indicates greater fragility. Confounding is consistently most robust; for alternating-sign $\bm{\beta}$, Exposure $<$ IV $<$ Confounding, but under same-sign $\bm{\beta}$ the ranking inverts to IV $<$ Exposure. ``$\infty$\!\!'' = threshold never reached within $\delta$ range.}
+\label{tab:asv_stability}
+\small
+\begin{tabular}{l ccc}
+\toprule
+ & \multicolumn{3}{c}{Magnitude ASV $\delta^*_{10\%}$} \\
+\cmidrule(lr){2-4}
+DGP Configuration & Confounding & Exposure & IV \\
+\midrule
+Alt.\ large: $\bm{\beta}=[0,\,1.0,\,-0.5]$ & 0.348 & 0.090 & 0.203 \\
+Same-sign: $\bm{\beta}=[0,\,0.5,\,0.3]$ & $\infty$ & 0.223 & 0.203 \\
+Alt.\ small: $\bm{\beta}=[0,\,0.2,\,-0.1]$ & $\infty$ & 0.090 & 0.203 \\
+\bottomrule
+\end{tabular}
+\end{table}

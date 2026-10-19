@@ -1,0 +1,309 @@
+_next_id: 22
+decisions:
+- id: D001
+  date: 2026-05-20 07:25 UTC
+  summary: MVP PASS — Confounding DAG K=3 理论框架验证通过，进入 research 阶段
+  rationale: 三项 pass 标准全部满足：(1) 理论预测 vs MC 95% CI 一致 5/5，(2) 所有非差异性 C 产生远离零偏差 0.20-0.30，(3)
+    二分类折叠偏差与三分类预测显著不同（最大 Δ=0.089）。附加发现：100k 随机 C 矩阵搜索在 confounding DAG 下未发现方向反转——偏差始终与
+    OVB 同向。这是有价值的 characterization result：confounding DAG 偏差方向可预测（单调），方向反转假设需要在其他
+    DAG 拓扑（mediator、collider）中验证，属于 research 阶段的核心任务。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-20 07:30 UTC
+  summary: Research 阶段第一优先级：exposure misclassification DAG K=3 验证 bias-toward-null
+    是否在多分类下打破
+  rationale: Reviewer 指出 MVP criterion 2 在 confounding DAG 下不具区分力（二分类也 pass）。"Bias
+    toward null" 保证（Bross 1954）特指 exposure 误分类，正确测试需要 exposure DAG（A→Y，用 A* 替代 A）。若
+    K=3 下此 DAG 出现方向反转或 bias-away-from-null 结构性差异，则 Claim 1 最强形式成立；若不出现，需重新框定核心 claim。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-20 07:31 UTC
+  summary: plan_001 完成后设 checkpoint gate：方向反转拓扑数 → framing 版本选择
+  rationale: 'Reviewer [severity: critical] 指出 plan_001 是存在性检验但无 kill criterion。当前
+    core insight 依赖方向反转（"binary guarantee breaks"），但 MVP 已证明 confounding DAG 无反转。若
+    6 拓扑全无反转，framing 需 pivot。三级响应：(A) ≥2 拓扑有反转 → 当前 framing 成立，方向反转为 lead finding；(B)
+    1 拓扑有反转 → 该拓扑为 lead case，framing 可调整；(C) 0 拓扑有反转 → pivot 到版本 B："multi-class 偏差
+    magnitude 不可由 binary 推算 + binarization 本身有害"，方向反转降为 topology-specific finding。注意：0
+    反转 ≠ 项目 kill——binarization inequality + magnitude unpredictability + ASVs 本身够一篇论文，但
+    framing 必须诚实。'
+  related_experiments:
+  - exp_id: plan_001
+    role: gate
+    result: pending
+  depends_on:
+  - D001
+  - D002
+- id: D004
+  date: 2026-05-20 07:39 UTC
+  summary: D003 checkpoint 提前解决：Version A 成立，exposure DAG K=3 确认方向反转（85% random C）
+  rationale: Exposure misclassification DAG 结果：100k 随机 C 矩阵中 85% 违反 bias-toward-null，83.4%
+    产生符号反转，14.1% 产生效应放大。K=2 对照全部 toward null（6/6）。最极端案例：β_1=1.0 → γ̂_1=-0.84（符号反转
+    2.83x）。机制清晰：近置换 C 导致标签交换直接翻转效应方向，这在 K=2 中结构性不可能。D003 三级响应解析为 Version A（≥1 topology
+    with reversal）。Core insight 确认："non-differential exposure misclassification biases
+    toward null" 保证在 K≥3 下打破。两个 DAG 已形成有力对比：confounding DAG 偏差单调可预测 vs exposure DAG
+    偏差方向不可预测——验证"偏差取决于 C 结构 × DAG 拓扑交互"。
+  related_experiments:
+  - exp_id: art_20260520_207c62
+    role: validation
+    result: 85% bias-toward-null violation, 83.4% sign reversal
+  - exp_id: art_20260520_f08c30
+    role: baseline
+    result: confounding DAG monotonic, no reversal
+  depends_on:
+  - D002
+  - D003
+- id: D005
+  date: 2026-05-20 12:19 UTC
+  summary: 'ASV 参数化选定方案 A: C(δ)=(1-δ)I+δC₀ 线性插值，类比 E-value'
+  rationale: 三个候选方案（线性插值/CTMC 矩阵幂/范数球极值）调研后，方案 A 在可解释性（"误差需放大 δ 倍才翻转结论"）、closed-form
+    可证明性、K=2 退化为 VanderWeele & Li Se/Sp 参数化三方面最优。方案 C 作 appendix robustness check。
+  related_experiments:
+  - exp_id: plan004_asv_framework
+    role: target
+    result: parameterization decided
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-20 12:21 UTC
+  summary: 'ASV 框架区分 Vulnerability ASV（误差→更大风险）和 Protection ASV（collider: 误差→更小 bias）'
+  rationale: Collider DAG 下 bias 随误差放大递减（噪声 conditioning 削弱 collider bias），与 exposure/mediation
+    等拓扑的递增方向相反。统一框架内区分两类方向，而非排除 collider，因为方向性差异本身是 Claim 1 的核心证据。
+  related_experiments:
+  - exp_id: plan004_asv_framework
+    role: design decision
+    result: dual-direction ASV
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-20 13:04 UTC
+  summary: 'ASV 改用 envelope monotonicity: ASV_envelope(δ) = sup_{δ''≤δ} |bias_τ(δ'')|，构造性单调'
+  rationale: Raw |bias_τ(δ)| 作为有理函数天然非单调（~75% 场景违反）。改用 envelope 定义后单调性由构造保证，ASV 成为
+    conservative monotonic bound。论文 claim 相应调整为 worst-case bound。
+  related_experiments:
+  - exp_id: plan004_asv_framework
+    role: design revision
+    result: envelope monotonicity
+  depends_on:
+  - D006
+- id: D008
+  date: 2026-05-20 14:52 UTC
+  summary: 6 拓扑 ASV 灵敏度排序确立：IV(极脆弱) > front-door > confounding/mediation > collider(保护)
+    > M-bias(免疫)。三种 ASV 类型按拓扑分层适用。
+  rationale: plan_004 + plan_005 合并结果：(1) significance ASV 对衰减型拓扑有效，放大型退化为二值；(2) magnitude
+    ASV 对所有拓扑有效，是通用诊断工具；(3) sign-flip ASV 仅对 exposure 有实质区分力。6 拓扑排序从"IV 任何误差即超阈值"到"M-bias
+    完全免疫"，本身是论文核心 Table。ASV-topology 交互进一步支撑 Claim 1"拓扑决定一切"。
+  related_experiments:
+  - exp_id: plan004_asv_framework
+    role: primary
+    result: 3 拓扑 ASV 验证完毕
+  - exp_id: plan005_asv_extended
+    role: primary
+    result: 3 新拓扑验证完毕，M-bias 免疫，IV 极敏感
+  depends_on: []
+- id: D009
+  date: 2026-05-20 15:22 UTC
+  summary: 'D008 修正：6 拓扑 ASV 排序为多维度（非单一排序）。Magnitude: front-door(0.06-0.39) < confounding(0.08-0.49)
+    < IV(0.10-0.61) < collider(protection) < M-bias(immune)。Significance power: IV(0%)
+    < med/coll@τ=0.05(0%) < M-bias(96-100%) = front-door(100%) = confounding(100%)。Sign-flip:
+    仅 exposure(83.4%) 和 IV(δ>1.1)。'
+  rationale: plan_005 修复重跑后，IV magnitude ASV 从 0（参考值伪影）修正为 0.10-0.61。排序不再是单一维度——不同
+    ASV 类型给出不同排序，这本身支持三维 ASV 框架的必要性。论文应以多维度表格（tab2_asv_grid）呈现而非简单线性排序。
+  related_experiments:
+  - exp_id: plan005_asv_extended
+    role: primary
+    result: 修复后 IV ASV=0.10-0.61, M-bias immune, Type I=0% all topologies
+  - exp_id: plan004_asv_framework
+    role: supporting
+    result: confounding/mediation/collider ASV baseline
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-20 15:58 UTC
+  summary: 'D010: τ sign_flip 结构性保证修正为 5/7 拓扑（排除 exposure + IV）。IV ~52% τ sign_flip
+    是 plan_002 100k random C 新发现，plan_001 6 个固定 C 未覆盖此现象。'
+  rationale: plan_001 用 6 个固定 C 结构得出 IV τ_sign_flip=0，但 plan_002 100k random C 显示
+    ~52% sign flip，跨 K 稳定。机制：Wald 估计量分母 FS*[1] 的符号可被误分类翻转。论文拓扑分类更新为：Safe（confounding/mediation/collider/M-bias/front-door，τ_sign_flip=0%
+    structural）vs Dangerous（exposure ~83-100% + IV ~52%）。两个危险拓扑机制不同：exposure 是 label
+    swap 直接翻转，IV 是 Wald 分母符号变化。
+  related_experiments:
+  - exp_id: plan002_k57_extension
+    role: primary
+    result: IV τ sign_flip ~52% across K=3,5,7
+  - exp_id: plan001_dag_taxonomy
+    role: baseline
+    result: IV τ sign_flip=0% (6 fixed C, unrepresentative)
+  depends_on:
+  - D008
+  - D009
+- id: D011
+  date: 2026-05-20 16:21 UTC
+  summary: paper_framing Claim 1 拓扑数从 6 改为 7（正式纳入 exposure misclassification）
+  rationale: Reviewer 发现 paper_framing 声称 "6 DAG topologies" 但 Core Insight headline
+    finding（83% sign flip 打破 binary guarantee）恰恰来自被省略的第 7 个拓扑 exposure。声称 6 个拓扑但关键结果来自第
+    7 个会被审稿人攻击。选择方案 A（直接改为 7）而非方案 B（6+特殊情况），因为 exposure misclassification 在流行病学中是经典拓扑（Bross
+    1954），结构上与其他 6 个并列。
+  related_experiments:
+  - exp_id: plan001_dag_taxonomy
+    role: evidence
+    result: 7 topologies all validated
+  - exp_id: plan002_k57_extension
+    role: evidence
+    result: 7 topologies K=5,7 extension
+  depends_on:
+  - D010
+- id: D012
+  date: 2026-05-20 18:49 UTC
+  summary: plan_007 预览发现：Frisch-Waugh 定理导致 naive_plugin/MLA 对 T 系数 bias reduction=0%（confounding/mediation/collider/M-bias
+    拓扑）
+  rationale: 当 misclassified 变量作为 dummies 进入回归而 τ 是连续 treatment 系数时，C⁻¹ 变换不改变 [intercept,
+    D*] 列空间，T 系数 OLS 估计不变。只有 exposure/IV/front-door（τ 指向 dummy 系数）时 correction 才有效。这使
+    Claim 3 从"哪种方法最好"升级为"某些方法在特定拓扑下根本无效"，强化论文 narrative。PPI++ (95-99%) 在所有拓扑下最优但需
+    gold labels。
+  related_experiments:
+  - exp_id: plan007_correction_guidance
+    role: evidence
+    result: '10-sim preview: naive_plugin/MLA 0% for T-coef topologies, PPI++ 95-99%,
+      DSL 60-72%'
+  depends_on:
+  - D010
+- id: D013
+  date: 2026-05-20 18:51 UTC
+  summary: plan_009 证实病态矩阵诊断指标（spectral_gap, condition_number）仅对 4/7 拓扑有效（R²>0.6），IV/exposure
+    不可预测
+  rationale: confounding/mediation/collider/front-door 的偏差严重程度可由矩阵特征预测（R²=0.61-0.77），但
+    IV（Wald 分母符号驱动）和 exposure（near-permutation catastrophic）无法用渐进矩阵特征预测。全局跨拓扑 R²≈0
+    证明不存在统一诊断指标。这强化 Claim 1 核心叙事：不仅偏差行为因拓扑而异，连诊断方法也必须分拓扑设计。
+  related_experiments:
+  - exp_id: plan009_pathological_matrices
+    role: evidence
+    result: R²>0.6 for 4/7 topos, ~0 for IV/exposure, ~0 cross-topology
+  depends_on:
+  - D010
+  - D011
+- id: D014
+  date: 2026-05-20 20:50 UTC
+  summary: plan_007 全量结果确立 Claim 3 correction guidance 层级：PPI++ >> MC-SIMEX >> DSL(拓扑限定)
+    >> naive/MLA(无效)
+  rationale: 210 配置全量 MC 验证：PPI++ 唯一达名义 coverage（96.8%），grand mean bias reduction
+    93.8%。DSL 仅 confounding+mediation 有效（50-70%），其余 5 拓扑系统性恶化（mbias -768%）。Frisch-Waugh
+    不变性在 7 拓扑全量验证通过：naive/MLA 对 T 系数 bias_red=0.0%（4/7 拓扑）。correction method 有效性本身是拓扑依赖的——这与
+    Claim 1（偏差行为拓扑依赖）形成完美呼应。
+  related_experiments:
+  - exp_id: plan007_correction_guidance
+    role: evidence
+    result: PPI++ 93.8%/96.8%, DSL 2/7 only, naive/MLA FWL-invariant 0%
+  depends_on:
+  - D012
+- id: D015
+  date: 2026-05-20 23:17 UTC
+  summary: plan_006 humaid 实证结果确认理论框架：IV 最脆弱(42% bias), collider 最稳健(4-6%), 0 sign
+    flip, 49.2% ASV-unsafe, inter-model error correlation 低(0.05-0.16)
+  rationale: 真实 LLM confusion matrices (K=10, 3 models × 8/9 prompts) 的 downstream
+    bias 与 plan_001-005 理论预测完全吻合。IV 拓扑 bias 12-42% 最高，collider 4-6% 最低，与 ASV 排序一致。49.2%
+    scenarios ASV-unsafe 说明约半数 LLM 标注场景需要校正。Inter-model error correlation 低(0.05-0.16)对
+    PPI++ 有利。Baumann claim (F1>0.93 risk) 需 vast/civil_comments 低 K 数据验证。
+  related_experiments:
+  - exp_id: plan003_empirical_confusion_matrices
+    role: data_source
+    result: partial (humaid 8/9)
+  - exp_id: plan005_asv_extended
+    role: theory_prediction
+    result: confirmed
+  - exp_id: plan004_asv_framework
+    role: theory_prediction
+    result: confirmed
+  depends_on:
+  - D009
+  - D014
+- id: D016
+  date: 2026-05-21 01:43 UTC
+  summary: plan_006 全量结果确认跨K实证验证：K越小bias越大（K=3 IV 252%），F1 disconnect跨K成立，7B/235B
+    bias差异可控(1.24×)
+  rationale: 14 configs (humaid K=10 × 8 + civil_comments K=2 × 3 + vast K=3 × 3)
+    全量分析完成。核心发现：(1) K=2 IV bias 116.5%, K=3 IV bias 252.3%, K=10 IV bias 30.3% — K越小分类粒度越粗，bias越严重，符合理论预期；(2)
+    0 sign flips 跨 K 成立；(3) civil_comments F1=0.72-0.75 但 IV bias 101-131% 确认 F1 disconnect；(4)
+    7B vs 235B bias ratio 1.24 说明模型规模差异不影响主要结论，topology 仍是主要决定因素；(5) ASV-unsafe 43.8%
+    (92/210)。这为 §4.6 提供了完整的跨 K/跨模型规模实证数据，显著加强 Claim 2 和论文 story。
+  related_experiments:
+  - exp_id: plan006_asv_empirical
+    role: primary
+    result: success
+  - exp_id: plan003_empirical_confusion_matrices
+    role: data_source
+    result: partial
+  depends_on:
+  - D015
+- id: D017
+  date: 2026-05-21 02:36 UTC
+  summary: 保持 14 configs / 98 scenarios；ASV-unsafe 阈值 ≤1.0 (31/56)；不加 overall ASV
+    汇总；加 K=2 100% unsafe 提及
+  rationale: 4 个决策点：(1) Config 数量保持 14（设计实验结构：frontier→HumAID, 7B→VAST/CC），不纳入 4 个偶然成功的
+    VAST frontier configs（会引入 VAST 有跨模型但 CC 没有的不对称），但论文注明更多 valid configs 存在强化 sign-flip
+    证据。(2) ASV-unsafe 定义保持 ≤1.0（实践导向："你当前的 CM 已经危险吗？"），31/56 正确，exposure 的 ASV=1.109
+    正确归类为 safe。(3) Overall ASV-unsafe 75.4% 虽然更强，但基于 18 configs（包含未纳入的 VAST frontier），14-config
+    子集的精确值未计算，暂不加入避免引入新错误。(4) K=2 CivilComments 100% ASV-unsafe (21/21) 值得在 §4.6 提及，强化
+    F1-disconnect（F1=0.72 但全部 unsafe）。
+  related_experiments:
+  - exp_id: plan006_asv_empirical
+    role: primary
+    result: 18 valid configs confirmed, 12 zero matrices filtered
+  depends_on:
+  - D016
+- id: D018
+  date: 2026-05-22 03:50 UTC
+  summary: Round 1 审稿 3.5→4.0 修复计划：proof 降级 + δ_max 约束 + framing 校准 + 引用恢复
+  rationale: 审稿报告 3.5 (Borderline Conference)，3 个系统性问题：(1) 理论证明强度超过实际证明水平——Theorem
+    1 需解析证明(有理函数非线性，Reviewer 纠正)，Proposition 1 需拆分；(2) ASV δ_max 约束缺失——sign-flip ASV
+    6.7 可能超出有效域，重新计算后可能强化结论；(3) 声明过强——83.4% headline 需同时报告 realistic regime。所有修复为论文改写+计算验证，不需新
+    GPU 实验。W5 四篇引用已在 .bib（page fitting 时移除），需恢复。
+  related_experiments: []
+  depends_on: []
+- id: D019
+  date: 2026-05-22 06:53 UTC
+  summary: Sign flip 检查扩展为全系数检查，论文叙事从 "zero sign flips" 改为 "5-topology guarantee confirmed
+    + exposure sign flips confirmed"
+  rationale: 原 extract_tau 只检查 coefs[1]（primary coefficient），遗漏了 secondary coefficients
+    的 sign reversal。修复后发现 11/20 exposure configs 有 coefficient-level sign flip，与理论预测一致。5
+    safe topologies 仍为 0 flips。这三重结果（safe=0, exposure=11/20, K=2=0）比 blanket "zero
+    sign flips" 更有说服力，直接确认了论文的核心 claim。Reviewer 独立验证通过。
+  related_experiments:
+  - exp_id: plan006_asv_empirical
+    role: evidence
+    result: 原始 empirical validation 数据
+  - exp_id: plan011
+    role: evidence
+    result: frontier annotations 扩展覆盖
+  depends_on: []
+- id: D020
+  date: 2026-05-22 19:11 UTC
+  summary: 搁置 plan003 frontier annotations 和 Re-dream；GPU 通知 Manager 可释放
+  rationale: plan003 需要 OPENROUTER_API_KEY（已耗尽），论文 8 页限制内无空间放新 empirical configs，现有
+    23 configs 已充分。Re-dream 因 Claude API 7-day rate limit crash，论文处于最终审稿打磨阶段无方向性变化，9
+    session 开销不值得。GPU（home-1x5090）经 Reviewer 正式确认从未被本项目使用（全部实验 CPU 密集型），已通知 Manager
+    可释放。
+  related_experiments:
+  - exp_id: plan003_empirical_confusion_matrices
+    role: blocked
+    result: API 402, 6/27 complete
+  - exp_id: plan006_asv_empirical
+    role: sufficient
+    result: 23 configs covering K=2,3,10
+  depends_on: []
+- id: D021
+  date: 2026-05-24 05:42 UTC
+  summary: GPU 无生产性用途，建议释放 home-1x5090 给其他项目
+  rationale: 审视全部 10 个实验计划后确认：(1) 本项目实验全部是解析/MC 模拟，CPU 即可完成，13 个已成功实验均不需要 GPU 训练；(2)
+    唯一未完成的 empirical validation（plan_003/006）阻塞在 API key（402 Payment Required），与 GPU
+    无关；(3) 论文已进入审稿阶段（Round 23），DDL 明天（2026-05-25），没有新的 GPU 实验能在此窗口内提升论文质量；(4) 附录补强和
+    pointer 修复均为本地 LaTeX 编辑，不需要 GPU。结论：GPU 连续空闲 3 轮是合理的——不是疏忽，是本项目确实没有 GPU 工作负载。
+  related_experiments:
+  - exp_id: plan_003
+    role: blocker_evidence
+    result: failed — API 402, not GPU-related
+  - exp_id: plan_006
+    role: blocker_evidence
+    result: planned — depends on plan_003 data
+  depends_on: []

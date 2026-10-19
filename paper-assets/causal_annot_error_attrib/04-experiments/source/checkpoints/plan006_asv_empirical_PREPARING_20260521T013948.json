@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan006_asv_empirical",
+  "project": "causal_annot_error_attrib",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:39:26.646Z",
+    "updated_at": "2026-05-21T01:39:48.284Z",
+    "hypothesis": "真实 LLM confusion matrices（跨 K=2/3/10，跨 7B/235B 模型）在 7 种 DAG 拓扑下的偏差传播与理论预测一致：(1) F1 高不代表因果估计安全（F1=0.72 但 IV bias>100%），(2) 0 sign flips 确认结构性保证，(3) topology（非 K 或 model size）是 bias 的主要决定因素。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T01:39:48.357829+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0935c99afd76ff135b21",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan002 k57 extension",
+  "task_key": "worker_code_plan002-k57-extension_20260520T150023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-k57-extension_20260520T150023_result.json",
+    "occurrence": 1,
+    "bytes": 1480,
+    "sha256": "ad647294083b033e251a91819dd333470777db5828bdc7d705b1b6f5300ab661"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 002 完成，13 秒跑完（RTX 5090 GPU 加速）。\n\n## 结果摘要\n\n### Cross-K 对比表\n| Topology | K | sign_flip | τ bias mean | worst-case (diag≥0.9) |\n|---|---|---|---|---|\n| confounding | 3→5→7 | 99.3%→100%→100% | +0.272→+0.236→+0.228 | 0.162→0.113→0.092 |\n| mediation | 3→5→7 | 83.8%→96.6%→100% | +0.256→+0.225→+0.197 | 0.123→0.085→0.060 |\n| collider | 3→5→7 | 66.6%→95.5%→99.2% | +0.097→+0.111→+0.104 | 0.048→0.046→0.036 |\n| exposure | 3→5→7 | 99.0%→100%→100% | — | 0.253→0.269→0.282 |\n\nviolation 和 amplification 在所有 K 下均为 ~100%。\n\n### 关键发现\n1. **sign_flip 随 K 增大恶化** — mediation 从 83.8% 升至 100%，collider 从 66.6% 升至 99.2%，更多类别意味着更多错分模式可导致符号反转\n2. **τ bias 均值随 K 减小** — 每个类别的错分权重降低（confounding: 0.272→0.228）\n3. **worst-case bounds 随 K 下降**（除 exposure） — 高精度约束（diag≥0.9）下，K=7 的最大偏差反而小于 K=3\n4. **bias 方差更分散** — top-1 PC 解释方差从 78% 降至 61%，K 增大后 bias 不再集中在单一方向\n5. MC 验证通过（K=3 所有拓扑理论值与 MC 均匹配）\n\n### 输出文件\n- 脚本: `/home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py`\n- 日志: `plan002_run.log`\n- 可视化: 13 张 PNG（4 拓扑 × 3 K 的 sensitivity heatmap + 1 combined）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-k57-extension.md"
+}

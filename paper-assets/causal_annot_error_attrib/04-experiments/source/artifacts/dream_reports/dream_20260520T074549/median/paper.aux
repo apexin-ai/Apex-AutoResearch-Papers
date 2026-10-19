@@ -1,0 +1,91 @@
+\relax 
+\citation{baumann2025}
+\citation{kim2025}
+\citation{bross1954}
+\citation{brenner1993}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{wooddoughty2018}
+\citation{teblunthuis2024}
+\citation{lee2024}
+\citation{jerzak2025}
+\citation{bross1954,carroll2006}
+\citation{brenner1993}
+\citation{vanderweele2019}
+\citation{wooddoughty2018}
+\citation{teblunthuis2024}
+\citation{lee2024}
+\citation{ziems2024,jerzak2025}
+\citation{kim2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement error in causal inference.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Text classification errors in CSS.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM annotation quality.}{2}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Direction reversal summary across six DAG topologies. Violation rate = fraction of 100K random $\mathbf  {C}$ matrices violating the binary-case directional guarantee. Theory-MC = scenarios where closed-form bias matches MC within 95\% CI.}}{3}{}\protected@file@percent }
+\newlabel{tab:reversal}{{1}{3}{}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setup}{3}{}\protected@file@percent }
+\newlabel{sec:setup}{{3}{3}{}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Multi-Class Bias Taxonomy}{3}{}\protected@file@percent }
+\newlabel{sec:taxonomy}{{4}{3}{}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Closed-Form Bias Expressions ($K=3$)}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Mediation reversal conditions by confusion matrix structure category (100K random $\mathbf  {C}$, $K=3$). Off-diagonal dominance = $1 - \min _i C_{ii}$.}}{4}{}\protected@file@percent }
+\newlabel{tab:mediation_conditions}{{2}{4}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Exposure--Mediation Contrast}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Monotonic Topologies: Magnitude Variation}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}General-$K$ Matrix Expressions}{4}{}\protected@file@percent }
+\newlabel{sec:generalk}{{4.4}{4}{}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretability via eigendecomposition.}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Theory-MC match rates and violation rate scaling with $K$.}}{5}{}\protected@file@percent }
+\newlabel{tab:kscaling}{{3}{5}{}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Variance explained by top eigenmodes of the bias operator. Cumulative top-2 entries in bold.}}{5}{}\protected@file@percent }
+\newlabel{tab:eigen}{{4}{5}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Binarization Collapse Analysis}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Annotation Sensitivity Values}{5}{}\protected@file@percent }
+\newlabel{sec:asv}{{5}{5}{}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Definition}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Maximum bias delta ($|\mathcal  {B}_{\text  {multi-class}} - \mathcal  {B}_{\text  {binary}}|$) from binarization, and safety classification.}}{6}{}\protected@file@percent }
+\newlabel{tab:binarization}{{5}{6}{}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces ASV proof status and Monte Carlo coverage across all six topologies. Coverage is at 95\% nominal level (1{,}000 MC scenarios per topology).}}{6}{}\protected@file@percent }
+\newlabel{tab:asv_proof}{{6}{6}{}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Formal Results}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces ASV values and concordance across 3 CSS tasks $\times $ 3 LLMs. ``Concordant'' = ASV correctly ranks model robustness relative to observed absolute bias.}}{7}{}\protected@file@percent }
+\newlabel{tab:asv_empirical}{{7}{7}{}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Correction method dominance across 90 MC-validated scenarios.}}{7}{}\protected@file@percent }
+\newlabel{tab:correction_dominance}{{8}{7}{}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Empirical Calibration}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Correction Guidance Framework}{7}{}\protected@file@percent }
+\newlabel{sec:correction}{{6}{7}{}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Failure analysis of the correction guidance framework.}}{8}{}\protected@file@percent }
+\newlabel{tab:correction_failure}{{9}{8}{}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Empirical annotation performance. Dominant error shows the highest off-diagonal $\mathbf  {C}$ entry.}}{8}{}\protected@file@percent }
+\newlabel{tab:empirical_performance}{{10}{8}{}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Empirical Validation}{8}{}\protected@file@percent }
+\newlabel{sec:empirical}{{7}{8}{}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}LLM Annotation Collection}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Inter-Model Error Correlation}{8}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Inter-model error correlation. Agreement = fraction of instances where both models err and agree on the wrong label. $\kappa $ = Cohen's kappa restricted to error instances.}}{9}{}\protected@file@percent }
+\newlabel{tab:inter_model}{{11}{9}{}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Structural predictors of bias severity ($R^2$) and catastrophic bias conditions by $\mathbf  {C}$ structure type.}}{9}{}\protected@file@percent }
+\newlabel{tab:pathological}{{12}{9}{}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Downstream Bias}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Pathological Confusion Matrix Analysis}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}The \texttt  {annot-sensitivity} Toolkit}{9}{}\protected@file@percent }
+\bibstyle{aaai}
+\bibcite{baumann2025}{{1}{2025}{{Baumann et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The topology-specificity of direction reversal.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of ASV sharpness.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correction framework limitations.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scope and generalizability.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{10}{}\protected@file@percent }
+\bibcite{brenner1993}{{2}{1993}{{Brenner}}{{}}}
+\bibcite{bross1954}{{3}{1954}{{Bross}}{{}}}
+\bibcite{carroll2006}{{4}{2006}{{Carroll et al.}}{{}}}
+\bibcite{hernan2009}{{5}{2009}{{Hern{\'a}n and Cole}}{{}}}
+\bibcite{jerzak2025}{{6}{2025}{{Jerzak et al.}}{{}}}
+\bibcite{kim2025}{{7}{2025}{{Kim et al.}}{{}}}
+\bibcite{lee2024}{{8}{2024}{{Lee and Wood-Doughty}}{{}}}
+\bibcite{teblunthuis2024}{{9}{2024}{{TeBlunthuis et al.}}{{}}}
+\bibcite{vanderweele2019}{{10}{2019}{{VanderWeele and Li}}{{}}}
+\bibcite{wooddoughty2018}{{11}{2018}{{Wood-Doughty et al.}}{{}}}
+\bibcite{ziems2024}{{12}{2024}{{Ziems et al.}}{{}}}
+\gdef \@abspage@last{11}

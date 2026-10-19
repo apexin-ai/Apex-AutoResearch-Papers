@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9bc9a7d37ca7a9ecfc54",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan001 tau metrics",
+  "task_key": "worker_code_plan001-tau-metrics_20260520T112757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-tau-metrics_20260520T112757.log",
+    "occurrence": 1,
+    "bytes": 591273,
+    "sha256": "7d9ef33a0c4cbbfbe8a920fce7b90adeea0113d85b3622634afd70d9d8a2d115"
+  },
+  "statistics": {
+    "messages": 341,
+    "user_turns": 0,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 39,
+      "tool_call": 148,
+      "tool_result": 148,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 341,
+      "chunks": [
+        {
+          "path": "9bc9a7d37ca7a9ecfc54-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9bc9a7d37ca7a9ecfc54-part-0002.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-tau-metrics.md"
+}

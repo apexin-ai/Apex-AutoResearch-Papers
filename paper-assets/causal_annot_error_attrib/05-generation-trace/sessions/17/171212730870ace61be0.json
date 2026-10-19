@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "171212730870ace61be0",
+  "project": "causal_annot_error_attrib",
+  "kind": "history",
+  "title": "agent / loop_1_1779688649.md",
+  "task_key": "loop_1_1779688649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779688649.md",
+    "occurrence": 1,
+    "bytes": 4004,
+    "sha256": "941afc4cf3e1c1c68acb99dd15af7e6b45c70599fa9ae3d6a947ea98665bd360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T17:55:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 home-1x5090 用 **sonny** 账户，**不能用 root/miniconda3**（sonny 无权访问 /root/miniconda3，plan_009 第一次就因此失败）\n- 项目目录 `/home/sonny/causal_annot_error_attrib/`，数据在 `results/` 子目录（不是 `data/`）\n- API endpoint `http://47.94.22.126/v1` 使用 OPENROUTER_API_KEY——**当前 402 余额耗尽**，不要提交 API 标注任务除非确认已充值\n- vLLM 与 RTX 5090 (Blackwell sm_120) 不兼容，本地推理只能用 transformers + model.generate()\n- τ_true 必须用 plim(C=I)，不是 DGP 直接参数（IV plim(I)=0.6598≠β₁=0.5）\n- GPU 编号始终从 0 开始（home-1x5090 只有 1 块 RTX 5090 = cuda:0）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: home-1x5090, account=sonny, Ubuntu 22.04, Python 3.10.12 (system python3)\n- **工作目录**: `/home/sonny/causal_annot_error_attrib/`\n- **数据目录**: `results/{humaid,civil_comments,vast}/` — HumAID K=10 (8/9 valid), VAST K=3, Civil Comments K=2\n- **本地模型**: Qwen2.5-7B-Instruct（路径需 SSH 确认，上次通过 transformers 加载）\n- **标注脚本**: `annotate.py`（支持 `--local-model` 和 API 两种模式）\n- **Toolkit 包**: `annot_sensitivity/`（47 tests passed, 7 modules）\n- **活跃进程**: 无（0 running workers, 0 active crons, 0 running experiments）\n- **论文**: `docs/paper/main.tex` — 16 pages (8 main + 8 appendix), 31 citations, 编译通过\n\n### 3. 📊 当前状态\n**全部 14 个实验已完成**（13 success + 1 failed）。无 RUNNING/PREPARING 实验。无活跃 Worker 或 Cron。\n\n刚完成的关键里程碑：\n- Dream 审稿反馈 5 项全部修复并 commit（Related work +5 refs, ASV vs PBA, Brenner footnote, IV Dirichlet subspace, Non-diff stress test）\n- plan_006 全量实证验证完成：210 scenarios, 14 configs, 0 sign flips, topology 是 bias 主决定因素\n- plan_010 toolkit 发布：35 tests passed\n\n**等待中**：\n- Re-dream **BLOCKED**：连续 6 次 Phase 1 crash，已报 Manager，等系统恢复\n- plan_003 剩余标注任务等 API 充值（非阻塞，civil_comments 全 9 组合零数据 + qwen3 few-shot-5 全 402）\n- fig5/fig6 需用 filtered data 重新生成（未启动）\n\n### 4. 📋 待办（条件触发式）\n- Re-dream 系统恢复 → 立即提交 re-dream，验证 5 项修复是否通过\n- API 充值确认 → spawn worker resume plan_003 剩余组合（civil_comments 需先排查数据格式问题）\n- Director 指示重新生成 fig5/fig6 → spawn worker 用 plan_006 filtered data 生成\n- Director 指示写新章节/修改论文 → 加载 paper-writing-norms skill 后派 worker\n- plan_003 civil_comments 数据格式排查 → 确认 civil_comments.jsonl 的 label field 是否与 annotate.py 匹配\n\n### 5. 🎯 战略上下文\n**项目状态**: 论文基本成型，目标 AAAI 2027（abstract deadline 2026-07-21，~61 天）。3 个 Core Claims 覆盖率 83%/100%/100%。唯一缺口是 plan_003 的 API 标注数据（Claim 1 实证补充，非阻塞——plan_006 已用现有数据完成实证验证）。\n\n**核心结论链**:\n- D010: τ sign_flip = 0% 结构性保证适用于 5/7 拓扑（排除 exposure 83% + IV 52%）\n- D014: PPI++ (93.8% bias reduction) 全面碾压其他校正方法\n- D016: F1 高 ≠ 因果估计安全（F1=0.72 但 IV bias >100%）\n- D017: topology（非 K 或 model size）是 bias 的主要决定因素\n\n**易错点**:\n- 不要把 all-coef sign flip（高）和 τ-specific sign flip（低/零）混淆——论文 claim 基于后者\n- IV 回归分析中 10.7% non-finite Wald estimates 被静默过滤——论文必须注明\n- DSL 仅在 confounding/mediation 有效（2/7），不要推荐为通用方法\n- vast K=3 标注质量低（46-48%），但这反而提供了\"7B vs 235B 对比\"维度，不是缺陷\n- PPI++ 在 mbias+realistic_llm 下 bias_red=-25.1%（恶化），论文需诚实报告\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779688649.md"
+}

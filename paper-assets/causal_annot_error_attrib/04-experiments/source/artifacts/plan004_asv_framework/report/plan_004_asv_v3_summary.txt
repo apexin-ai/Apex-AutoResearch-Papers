@@ -1,0 +1,26 @@
+See server file: /home/sonny/causal_annot_error_attrib/plan_004_asv_v3_output.log
+
+=== KEY RESULTS SUMMARY ===
+
+PART 1: Envelope Monotonicity (tau=0.5)
+- Raw violations: 440-1033 per topology/C0 (out of 1500 grid points)
+- Envelope violations: 0 for ALL 18 combinations (6 C0 × 3 topologies)
+- Confirms constructive monotonicity
+
+PART 2: Three ASV Types (tau=0.5)
+- Sign-flip ASV: None for all (structural — no sign flip occurs)
+- Magnitude ASV (10% relative): 0.076–0.487 (higher accuracy C0 → higher ASV → more robust)
+- Protection ASV (collider): 0.338–2.028
+
+PART 3: Small-tau ASV
+- tau=0.05: Magnitude ASV = 0.008–0.047 (very fragile at small effects)
+- tau=0.1: Magnitude ASV = 0.014–0.093
+- MagAbs.05 matches tau=0.5 values (effect-size independent, as expected)
+
+PART 4: Coverage (500 scenarios × 100 reps × N=10000)
+- ALL 100.0% for both tau=0.05 and tau=0.1, all topologies
+
+PART 5: Type I/II Errors (500 MC × N=5000)
+- Confounding/Mediation: H0 naive_rej=100% (bias inflates Type I), H1 mag_rej=0% (ASV correctly flags unsafe)
+- Collider H0: naive_rej varies 4.6%–37.8% (collider bias depends on C0 accuracy)
+- Collider H1: naive_rej=64%–100%, mag_rej=0% (ASV says cannot trust small-tau estimates)

@@ -1,0 +1,62 @@
+\begin{table}[t]
+\centering
+\caption{Sign flip rates under linear vs.\ logistic DGP across 6 real confusion matrices (VAST, $K\!=\!3$). SF$_\tau$: treatment coefficient only; SF$_\text{any}$: any coefficient. Each cell: $N\!=\!10{,}000 \times 500$ MC reps.}
+\label{tab:logistic-robustness}
+\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrr}
+\toprule
+ & & \multicolumn{2}{c}{Linear} & \multicolumn{2}{c}{Nonlinear} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+Topology & CM & SF$_\tau$ & SF$_\text{any}$ & SF$_\tau$ & SF$_\text{any}$ \\
+\midrule
+Confounding & deepseek\_zero-shot & 0.000 & 0.562 & 0.000 & 0.564 \\
+ & llama4\_few-shot-3 & 0.000 & 0.584 & 0.000 & 0.544 \\
+ & llama4\_few-shot-5 & 0.000 & 0.004 & 0.000 & 0.004 \\
+ & llama4\_zero-shot & 0.000 & 0.514 & 0.000 & 0.474 \\
+ & qwen2.5-7b\_few-shot-3 & 0.000 & 0.838 & 0.000 & 0.836 \\
+ & qwen2.5-7b\_few-shot-5 & 0.000 & 0.934 & 0.000 & 0.934 \\
+\midrule
+Mediation & deepseek\_zero-shot & 0.000 & 0.860 & 0.000 & 0.860 \\
+ & llama4\_few-shot-3 & 0.000 & 0.742 & 0.000 & 0.712 \\
+ & llama4\_few-shot-5 & 0.000 & 0.000 & 0.000 & 0.000 \\
+ & llama4\_zero-shot & 0.000 & 0.628 & 0.000 & 0.610 \\
+ & qwen2.5-7b\_few-shot-3 & 0.000 & 0.988 & 0.000 & 0.988 \\
+ & qwen2.5-7b\_few-shot-5 & 0.000 & 1.000 & 0.000 & 1.000 \\
+\midrule
+Collider & deepseek\_zero-shot & 0.000 & 0.000 & 0.000 & 0.000 \\
+ & llama4\_few-shot-3 & 0.000 & 0.158 & 0.000 & 0.156 \\
+ & llama4\_few-shot-5 & 0.000 & 0.000 & 0.000 & 0.000 \\
+ & llama4\_zero-shot & 0.000 & 0.118 & 0.000 & 0.118 \\
+ & qwen2.5-7b\_few-shot-3 & 0.000 & 0.062 & 0.000 & 0.062 \\
+ & qwen2.5-7b\_few-shot-5 & 0.000 & 0.024 & 0.000 & 0.024 \\
+\midrule
+Exposure & deepseek\_zero-shot & -- & 0.500 & -- & 0.496 \\
+ & llama4\_few-shot-3 & -- & 0.602 & -- & 0.586 \\
+ & llama4\_few-shot-5 & -- & 0.000 & -- & 0.000 \\
+ & llama4\_zero-shot & -- & 0.444 & -- & 0.442 \\
+ & qwen2.5-7b\_few-shot-3 & -- & 0.936 & -- & 0.936 \\
+ & qwen2.5-7b\_few-shot-5 & -- & 0.982 & -- & 0.982 \\
+\midrule
+M-bias & deepseek\_zero-shot & 0.000 & 0.010 & 0.000 & 0.010 \\
+ & llama4\_few-shot-3 & 0.000 & 0.214 & 0.000 & 0.226 \\
+ & llama4\_few-shot-5 & 0.000 & 0.000 & 0.000 & 0.000 \\
+ & llama4\_zero-shot & 0.000 & 0.136 & 0.000 & 0.150 \\
+ & qwen2.5-7b\_few-shot-3 & 0.000 & 0.124 & 0.000 & 0.124 \\
+ & qwen2.5-7b\_few-shot-5 & 0.000 & 0.084 & 0.000 & 0.084 \\
+\midrule
+Front-door & deepseek\_zero-shot & 0.000 & 0.556 & 0.000 & 0.574 \\
+ & llama4\_few-shot-3 & 0.000 & 0.632 & 0.000 & 0.594 \\
+ & llama4\_few-shot-5 & 0.000 & 0.004 & 0.000 & 0.010 \\
+ & llama4\_zero-shot & 0.000 & 0.474 & 0.000 & 0.442 \\
+ & qwen2.5-7b\_few-shot-3 & 0.000 & 0.914 & 0.000 & 0.900 \\
+ & qwen2.5-7b\_few-shot-5 & 0.000 & 0.958 & 0.000 & 0.954 \\
+\midrule
+IV & deepseek\_zero-shot & 0.114 & 0.114 & 0.098 & 0.592 \\
+ & llama4\_few-shot-3 & 0.076 & 0.076 & 0.074 & 0.546 \\
+ & llama4\_few-shot-5 & 0.026 & 0.026 & 0.028 & 0.554 \\
+ & llama4\_zero-shot & 0.040 & 0.040 & 0.042 & 0.538 \\
+ & qwen2.5-7b\_few-shot-3 & 0.132 & 0.132 & 0.108 & 0.588 \\
+ & qwen2.5-7b\_few-shot-5 & 0.126 & 0.126 & 0.096 & 0.540 \\
+\bottomrule
+\end{tabular}
+\end{table}

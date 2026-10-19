@@ -1,0 +1,44 @@
+dream_id: dream_20260521T083151
+project: causal_annot_error_attrib
+venue: emnlp-2026
+focus: 'Paper now includes 3 new supplementary results: (1) Theory-MC MAPE 2.0% across
+  126 scenarios, (2) Empirical PPI++ validation 96.2% bias reduction with real LLM
+  confusion matrices, (3) Dirichlet overlay figure connecting theoretical landscape
+  to empirical LLM positions. Non-differential stress test also added to appendix.
+  Evaluate whether these additions close the gaps identified in previous dream reviews.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions: {}
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"69278f05-d6fb-4aca-94cb-f10a176ca28b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"69278f05-d6fb-4aca-94cb-f10a176ca28b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+- tier: worst
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"69278f05-d6fb-4aca-94cb-f10a176ca28b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+errors:
+  best:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"69278f05-d6fb-4aca-94cb-f10a176ca28b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+  median:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"69278f05-d6fb-4aca-94cb-f10a176ca28b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+  worst:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"69278f05-d6fb-4aca-94cb-f10a176ca28b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-21T08:32:04+00:00'

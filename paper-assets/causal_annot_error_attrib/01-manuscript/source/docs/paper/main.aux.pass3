@@ -1,0 +1,3249 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\citation{gilardi2023chatgpt,ziems2024can,egami_hinck_stewart_wei2023,baumann2025}
+\citation{baumann2025}
+\citation{kim_garg2025}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN@col{2}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\citation{brenner1993}
+\citation{veirod_laake2001}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\@LN{81}{0}
+\@LN{82}{0}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{83}{1}
+\citation{dosemeci1990}
+\citation{veirod_laake2001}
+\citation{brenner1993}
+\citation{lee_wood_doughty2024}
+\citation{brenner1993,teblunthuis2024}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN@col{2}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\@LN{147}{1}
+\@LN{148}{1}
+\@LN{149}{1}
+\citation{hernan_cole2009}
+\citation{hernan_cole2009}
+\@LN{150}{1}
+\citation{carroll2006,gustafson2004,buonaccorsi2010,bound2001measurement}
+\citation{hernan_cole2009}
+\citation{kuroki_pearl2014}
+\citation{bross1954misclassification,brenner1993,ogburn_vanderweele2012}
+\citation{dosemeci1990,jurek2005,veirod_laake2001}
+\citation{edwards_lessler_naimi2021,imai_yamamoto2010}
+\citation{nguimkeu_denteh_tchernis2019}
+\citation{shu_yi2019a,shu_yi2019b}
+\citation{valeri_vanderweele2013}
+\citation{schennach2020mismeasured}
+\citation{wei2025multiply}
+\@LN{151}{1}
+\@LN{152}{1}
+\@LN{153}{1}
+\@LN{154}{1}
+\@LN{155}{1}
+\@LN{156}{1}
+\@LN{157}{1}
+\@LN{158}{1}
+\@LN{159}{1}
+\@LN{160}{1}
+\@LN{161}{1}
+\@LN{162}{1}
+\@LN{163}{1}
+\@LN{164}{1}
+\@LN{165}{1}
+\@LN{166}{1}
+\@LN{167}{1}
+\@LN{168}{1}
+\@LN{169}{1}
+\@LN{170}{1}
+\@LN{171}{1}
+\@LN{172}{1}
+\@LN{173}{1}
+\citation{grimmer2022}
+\citation{feder_etal2022}
+\citation{wood_doughty2018}
+\citation{teblunthuis2024}
+\citation{lee_wood_doughty2024}
+\citation{gilardi2023chatgpt}
+\citation{ziems2024can}
+\citation{tan2024llm}
+\citation{baumann2025}
+\citation{kim_garg2025}
+\citation{pangakis_wolken_fasching2023,cheng_mayya_sedoc2024,variance_aware_llm2026,hidden_measurement_error2026}
+\citation{audinet2025}
+\citation{keith_jensen_oconnor2020}
+\@LN{174}{1}
+\@LN{175}{1}
+\@LN{176}{1}
+\@LN{177}{1}
+\@LN{178}{1}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Measurement error in causal inference.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Text classifiers and LLM annotation.}{2}{section*.3}\protected@file@percent }
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\citation{ding_vanderweele2016}
+\citation{vanderweele_ding2017,mathur2018}
+\citation{cinelli2020making}
+\citation{imai_keele_yamamoto2010,pryzant_etal2021}
+\citation{lash2009}
+\citation{blackwell_honaker_king2017}
+\citation{mahajan2006}
+\citation{hu2008}
+\citation{angelopoulos2023}
+\citation{egami_hinck_stewart_wei2023}
+\citation{zrnic_candes2024,demirel2024prediction,cadei2025,gligoric2025}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN@col{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\citation{hernan_cole2009}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\@LN{233}{2}
+\@LN{234}{2}
+\@LN{235}{2}
+\@LN{236}{2}
+\@LN{237}{2}
+\citation{frisch1933partial}
+\@LN{238}{2}
+\@LN{239}{2}
+\@LN{240}{2}
+\@LN{241}{2}
+\@LN{242}{2}
+\@LN{243}{2}
+\@LN{244}{2}
+\@LN{245}{2}
+\@LN{246}{2}
+\@LN{247}{2}
+\@LN{248}{2}
+\@LN{249}{2}
+\@LN{250}{2}
+\@LN{251}{2}
+\@LN{252}{2}
+\citation{ziems2024can}
+\@LN{253}{2}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Seven canonical DAG topologies with starred-node annotation~\citep  {hernan_cole2009}. $A$ (latent) $\to $ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV).}}{3}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:dag_taxonomy}{{1}{3}{Seven canonical DAG topologies with starred-node annotation~\cite {hernan_cole2009}. $A$ (latent) $\to $ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposure), covariate (confounding, mediation, M-bias, front-door), selection (collider), instrument (IV)}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity analysis and correction methods.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup and Notation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:notation}{{3.1}{3}{Setup and Notation}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Notation conventions.}{3}{section*.5}\protected@file@percent }
+\newlabel{def:nondiff}{{1}{3}{Non-differential misclassification}{definition.1}{}}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\citation{pearl2009,hernan2020causal}
+\citation{carroll2006}
+\citation{stefanski_carroll1985}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN@col{2}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\@LN{303}{3}
+\citation{brenner1993}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@LN{308}{3}
+\@LN{309}{3}
+\@LN{310}{3}
+\@LN{311}{3}
+\@LN{312}{3}
+\@LN{313}{3}
+\@LN{314}{3}
+\@LN{315}{3}
+\citation{brenner1993}
+\@LN{316}{3}
+\@LN{317}{3}
+\@LN{318}{3}
+\@LN{319}{3}
+\@LN{320}{3}
+\@LN{321}{3}
+\@LN{322}{3}
+\@LN{323}{3}
+\@LN{324}{3}
+\@LN{325}{3}
+\@LN{326}{3}
+\@LN{327}{3}
+\@LN{328}{3}
+\@LN{329}{3}
+\@LN{330}{3}
+\@LN{331}{3}
+\@LN{332}{3}
+\@LN{333}{3}
+\@LN{334}{3}
+\@LN{335}{3}
+\@LN{336}{3}
+\@LN{337}{3}
+\@LN{338}{3}
+\@LN{339}{3}
+\@LN{340}{3}
+\citation{vanderweele2015explanation}
+\@LN{341}{3}
+\@LN{342}{3}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Multi-Class Bias Expressions}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:bias_expressions}{{3.2}{4}{Multi-Class Bias Expressions}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Confounding ($A$ = confounder).}{4}{section*.6}\protected@file@percent }
+\newlabel{eq:confounding}{{1}{4}{Confounding ($A$ = confounder)}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Exposure ($A$ = treatment variable).}{4}{section*.7}\protected@file@percent }
+\newlabel{eq:exposure}{{2}{4}{Exposure ($A$ = treatment variable)}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Numerical Verification 2: Primary coefficient preservation.}{4}{section*.9}\protected@file@percent }
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\citation{greenland2003}
+\citation{bellemare_bloem2024}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\citation{angrist_imbens1995}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN@col{2}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\@LN{389}{4}
+\@LN{390}{4}
+\@LN{391}{4}
+\@LN{392}{4}
+\citation{vanderweele_ding2017}
+\citation{cinelli2020making}
+\citation{oster2019}
+\@LN{393}{4}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Bias distributions under 100{,}000 random $K{=}3$ confusion matrices (uniform Dirichlet; realistic-accuracy results in Section~\ref {sec:taxonomy_results}). Red = sign reversal. Exposure: 83.4\% sign reversal; IV: 52.6\%.}}{5}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:bias_distribution}{{2}{5}{Bias distributions under 100{,}000 random $K{=}3$ confusion matrices (uniform Dirichlet; realistic-accuracy results in Section~\ref {sec:taxonomy_results}). Red = sign reversal. Exposure: 83.4\% sign reversal; IV: 52.6\%}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mediation ($A$ = mediator).}{5}{section*.10}\protected@file@percent }
+\newlabel{eq:mediation}{{3}{5}{Mediation ($A$ = mediator)}{equation.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Collider, M-bias, and front-door.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instrumental variable ($A$ = instrument).}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural sign-flip guarantee.}{5}{section*.13}\protected@file@percent }
+\newlabel{prop:signflip}{{1}{5}{Sign preservation---analytic results}{proposition.1}{}}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN@col{2}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@LN{456}{5}
+\@LN{457}{5}
+\@LN{458}{5}
+\@LN{459}{5}
+\@LN{460}{5}
+\@LN{461}{5}
+\@LN{462}{5}
+\@LN{463}{5}
+\@LN{464}{5}
+\@LN{465}{5}
+\@LN{466}{5}
+\@LN{467}{5}
+\@LN{468}{5}
+\@LN{469}{5}
+\@LN{470}{5}
+\@LN{471}{5}
+\@LN{472}{5}
+\@LN{473}{5}
+\@LN{474}{5}
+\@LN{475}{5}
+\@LN{476}{5}
+\@LN{477}{5}
+\@LN{478}{5}
+\@LN{479}{5}
+\@LN{480}{5}
+\@LN{481}{5}
+\@LN{482}{5}
+\@LN{483}{5}
+\@LN{484}{5}
+\@LN{485}{5}
+\@LN{486}{5}
+\citation{vanderweele_ding2017}
+\@LN{487}{5}
+\@LN{488}{5}
+\@LN{489}{5}
+\@LN{490}{5}
+\@LN{491}{5}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Annotation Sensitivity Values}{6}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:asv}{{3.3}{6}{Annotation Sensitivity Values}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Parameterization.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Three ASV types.}{6}{section*.15}\protected@file@percent }
+\newlabel{thm:monotone}{{1}{6}{Envelope monotonicity---$K{=}2$}{theorem.1}{}}
+\newlabel{thm:k3_symmetric}{{2}{6}{$K{=}3$ symmetric monotonicity}{theorem.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{From proofs to numerical evidence.}{6}{section*.16}\protected@file@percent }
+\newlabel{conj:monotone}{{1}{6}{$\varepsilon $-approximate envelope monotonicity}{conjecture.1}{}}
+\newlabel{rem:evalue}{{1}{6}{ASV and E-values as complementary tools}{remark.1}{}}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
+\@LN{524}{6}
+\@LN{525}{6}
+\@LN{526}{6}
+\citation{brenner1993}
+\@LN{527}{6}
+\@LN{528}{6}
+\@LN{529}{6}
+\@LN{530}{6}
+\@LN{531}{6}
+\@LN{532}{6}
+\@LN{533}{6}
+\@LN{534}{6}
+\@LN{535}{6}
+\@LN{536}{6}
+\@LN{537}{6}
+\@LN{538}{6}
+\@LN{539}{6}
+\citation{brenner1993,dosemeci1990}
+\@LN@col{2}
+\@LN{540}{6}
+\@LN{541}{6}
+\@LN{542}{6}
+\@LN{543}{6}
+\@LN{544}{6}
+\@LN{545}{6}
+\@LN{546}{6}
+\@LN{547}{6}
+\@LN{548}{6}
+\@LN{549}{6}
+\@LN{550}{6}
+\@LN{551}{6}
+\@LN{552}{6}
+\@LN{553}{6}
+\@LN{554}{6}
+\@LN{555}{6}
+\@LN{556}{6}
+\@LN{557}{6}
+\@LN{558}{6}
+\@LN{559}{6}
+\@LN{560}{6}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{7}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{7}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{7}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:setup}{{4.1}{7}{Setup}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Bias Taxonomy}{7}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:taxonomy_results}{{4.2}{7}{Bias Taxonomy}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Theory-MC agreement.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exposure DAG: sign reversal under multi-class misclassification.}{7}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). Violation: $|\text  {bias}| > 0$; Sign Flip: any coefficient reverses sign; Amplif.: $|\hat  {\tau }| > |\tau |$. $\tau _{\text  {sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Cond.; Proposition~\ref {prop:signflip}), or not (No). Collider 100\% amplification reflects Berkson bias---misclassification is protective.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{7}{Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). Violation: $|\text {bias}| > 0$; Sign Flip: any coefficient reverses sign; Amplif.: $|\hat {\tau }| > |\tau |$. $\tau _{\text {sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Cond.; Proposition~\ref {prop:signflip}), or not (No). Collider 100\% amplification reflects Berkson bias---misclassification is protective}{table.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \infty $).}}{7}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:asv_ranking}{{3}{7}{ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \infty $)}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural guarantee for non-exposure topologies.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IV: Wald estimator instability.}{7}{section*.20}\protected@file@percent }
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\citation{alam2021humaid}
+\@LN{573}{7}
+\@LN{574}{7}
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\@LN{581}{7}
+\@LN{582}{7}
+\@LN{583}{7}
+\@LN{584}{7}
+\@LN{585}{7}
+\@LN{586}{7}
+\@LN{587}{7}
+\@LN{588}{7}
+\@LN{589}{7}
+\citation{egami_hinck_stewart_wei2023}
+\citation{kuchenhoff2006simex}
+\citation{angelopoulos2023}
+\citation{carroll2006}
+\@LN{590}{7}
+\@LN{591}{7}
+\@LN@col{2}
+\@LN{592}{7}
+\@LN{593}{7}
+\@LN{594}{7}
+\@LN{595}{7}
+\@LN{596}{7}
+\@LN{597}{7}
+\@LN{598}{7}
+\citation{carroll2006,buonaccorsi2010}
+\@LN{599}{7}
+\@LN{600}{7}
+\@LN{601}{7}
+\@LN{602}{7}
+\@LN{603}{7}
+\@LN{604}{7}
+\@LN{605}{7}
+\@LN{606}{7}
+\@LN{607}{7}
+\@LN{608}{7}
+\@LN{609}{7}
+\@LN{610}{7}
+\@LN{611}{7}
+\@LN{612}{7}
+\@LN{613}{7}
+\@LN{614}{7}
+\@LN{615}{7}
+\@LN{616}{7}
+\@LN{617}{7}
+\@LN{618}{7}
+\@LN{619}{7}
+\@LN{620}{7}
+\@LN{621}{7}
+\@LN{622}{7}
+\@LN{623}{7}
+\@LN{624}{7}
+\@LN{625}{7}
+\@LN{626}{7}
+\@LN{627}{7}
+\@LN{628}{7}
+\@LN{629}{7}
+\@LN{630}{7}
+\@LN{631}{7}
+\@LN{632}{7}
+\@LN{633}{7}
+\@LN{634}{7}
+\@LN{635}{7}
+\@LN{636}{7}
+\@LN{637}{7}
+\@LN{638}{7}
+\@LN{639}{7}
+\@LN{640}{7}
+\@LN{641}{7}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times }$ (IV 42.1\% vs.\ collider $<$5.6\%).}}{8}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:f1_vs_bias}{{4}{8}{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times }$ (IV 42.1\% vs.\ collider $<$5.6\%)}{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}ASV Framework Validation}{8}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:asv_results}{{4.3}{8}{ASV Framework Validation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{ASV results.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Empirical Validation}{8}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:empirical}{{4.4}{8}{Empirical Validation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Empirical bias ranking.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Correction Guidance}{8}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:correction}{{4.5}{8}{Correction Guidance}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{FWL invariance (observation).}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Method ranking.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correction decision procedure.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Case studies and sensitivity.}{8}{section*.29}\protected@file@percent }
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN{688}{8}
+\bibdata{references}
+\@LN{689}{8}
+\bibcite{alam2021humaid}{{1}{2021}{{Alam et~al.}}{{Alam, Ofli, and Imran}}}
+\@LN@col{2}
+\@LN{690}{8}
+\@LN{691}{8}
+\@LN{692}{8}
+\@LN{693}{8}
+\@LN{694}{8}
+\bibcite{angelopoulos2023}{{2}{2023}{{Angelopoulos et~al.}}{{Angelopoulos, Bates, Fannjiang, Jordan, and Zrni{\'c}}}}
+\@LN{695}{8}
+\@LN{696}{8}
+\@LN{697}{8}
+\@LN{698}{8}
+\bibcite{angrist_imbens1995}{{3}{1995}{{Angrist and Imbens}}{{}}}
+\@LN{699}{8}
+\@LN{700}{8}
+\@LN{701}{8}
+\@LN{702}{8}
+\@LN{703}{8}
+\bibcite{audinet2025}{{4}{2025}{{Audinet~de Pieuchon et~al.}}{{Audinet~de Pieuchon, Daoud, Jerzak, Johansson, and Johansson}}}
+\@LN{704}{8}
+\@LN{705}{8}
+\@LN{706}{8}
+\@LN{707}{8}
+\@LN{708}{8}
+\@LN{709}{8}
+\@LN{710}{8}
+\bibcite{baumann2025}{{5}{2025}{{Baumann et~al.}}{{Baumann, R{\"o}ttger, Urman, Wendsj{\"o}, Plaza-del Arco, Gruber, and Hovy}}}
+\@LN{711}{8}
+\@LN{712}{8}
+\@LN{713}{8}
+\@LN{714}{8}
+\@LN{715}{8}
+\@LN{716}{8}
+\bibcite{bellemare_bloem2024}{{6}{2024}{{Bellemare et~al.}}{{Bellemare, Bloem, and Wexler}}}
+\@LN{717}{8}
+\@LN{718}{8}
+\@LN{719}{8}
+\@LN{720}{8}
+\@LN{721}{8}
+\bibcite{blackwell_honaker_king2017}{{7}{2017}{{Blackwell et~al.}}{{Blackwell, Honaker, and King}}}
+\@LN{722}{8}
+\@LN{723}{8}
+\@LN{724}{8}
+\@LN{725}{8}
+\@LN{726}{8}
+\bibcite{bound2001measurement}{{8}{2001}{{Bound et~al.}}{{Bound, Brown, and Mathiowetz}}}
+\@LN{727}{8}
+\@LN{728}{8}
+\@LN{729}{8}
+\@LN{730}{8}
+\@LN{731}{8}
+\bibcite{brenner1993}{{9}{1993}{{Brenner}}{{}}}
+\@LN{732}{8}
+\@LN{733}{8}
+\@LN{734}{8}
+\@LN{735}{8}
+\bibcite{bross1954misclassification}{{10}{1954}{{Bross}}{{}}}
+\@LN{736}{8}
+\@LN{737}{8}
+\bibcite{buonaccorsi2010}{{11}{2010}{{Buonaccorsi}}{{}}}
+\@LN{738}{8}
+\@LN{739}{8}
+\@LN{740}{8}
+\bibcite{cadei2025}{{12}{2025}{{Cadei et~al.}}{{Cadei, Demirel, De~Bartolomeis, Lindorfer, Cremer, Schmid, and Locatello}}}
+\@LN{741}{8}
+\@LN{742}{8}
+\@LN{743}{8}
+\@LN{744}{8}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{9}{Conclusion}{section.5}{}}
+\@LN{745}{9}
+\bibcite{variance_aware_llm2026}{{13}{2026}{{Camuffo et~al.}}{{Camuffo, Gambardella, Kazemi, Malachowski, and Pandey}}}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\bibcite{carroll2006}{{14}{2006}{{Carroll et~al.}}{{Carroll, Ruppert, Stefanski, and Crainiceanu}}}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\bibcite{cheng_mayya_sedoc2024}{{15}{2024}{{Cheng et~al.}}{{Cheng, Mayya, and Sedoc}}}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\bibcite{cinelli2020making}{{16}{2020}{{Cinelli and Hazlett}}{{}}}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\bibcite{demirel2024prediction}{{17}{2024}{{Demirel et~al.}}{{Demirel, Alaa, Philippakis, and Sontag}}}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\bibcite{ding_vanderweele2016}{{18}{2016}{{Ding and VanderWeele}}{{}}}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\bibcite{dosemeci1990}{{19}{1990}{{Dosemeci et~al.}}{{Dosemeci, Wacholder, and Lubin}}}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\bibcite{edwards_lessler_naimi2021}{{20}{2021}{{Edwards et~al.}}{{Edwards, Lessler, and Naimi}}}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\bibcite{egami_hinck_stewart_wei2023}{{21}{2023}{{Egami et~al.}}{{Egami, Hinck, Stewart, and Wei}}}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\bibcite{feder_etal2022}{{22}{2022}{{Feder et~al.}}{{Feder, Keith, Manzoor, Pryzant, Sridhar, Wood-Doughty, Eisenstein, Grimmer, Reichart, Roberts, Stewart, Veitch, and Yang}}}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN{799}{9}
+\bibcite{frisch1933partial}{{23}{1933}{{Frisch and Waugh}}{{}}}
+\@LN@col{2}
+\@LN{800}{9}
+\@LN{801}{9}
+\@LN{802}{9}
+\bibcite{gilardi2023chatgpt}{{24}{2023}{{Gilardi et~al.}}{{Gilardi, Alizadeh, and Kubli}}}
+\@LN{803}{9}
+\@LN{804}{9}
+\@LN{805}{9}
+\@LN{806}{9}
+\@LN{807}{9}
+\bibcite{gligoric2025}{{25}{2025}{{Gligori{\'c} et~al.}}{{Gligori{\'c}, Zrni{\'c}, Lee, Cand{\`e}s, and Jurafsky}}}
+\@LN{808}{9}
+\@LN{809}{9}
+\@LN{810}{9}
+\@LN{811}{9}
+\@LN{812}{9}
+\@LN{813}{9}
+\bibcite{greenland2003}{{26}{2003}{{Greenland}}{{}}}
+\@LN{814}{9}
+\@LN{815}{9}
+\@LN{816}{9}
+\bibcite{grimmer2022}{{27}{2022}{{Grimmer et~al.}}{{Grimmer, Roberts, and Stewart}}}
+\@LN{817}{9}
+\@LN{818}{9}
+\@LN{819}{9}
+\@LN{820}{9}
+\bibcite{gustafson2004}{{28}{2004}{{Gustafson}}{{}}}
+\@LN{821}{9}
+\@LN{822}{9}
+\@LN{823}{9}
+\@LN{824}{9}
+\bibcite{hernan_cole2009}{{29}{2009}{{Hern{\'a}n and Cole}}{{}}}
+\@LN{825}{9}
+\@LN{826}{9}
+\@LN{827}{9}
+\@LN{828}{9}
+\bibcite{hernan2020causal}{{30}{2020}{{Hern{\'a}n and Robins}}{{}}}
+\@LN{829}{9}
+\@LN{830}{9}
+\@LN{831}{9}
+\bibcite{hu2008}{{31}{2008}{{Hu}}{{}}}
+\@LN{832}{9}
+\@LN{833}{9}
+\@LN{834}{9}
+\@LN{835}{9}
+\bibcite{imai_keele_yamamoto2010}{{32}{2010}{{Imai et~al.}}{{Imai, Keele, and Yamamoto}}}
+\@LN{836}{9}
+\@LN{837}{9}
+\@LN{838}{9}
+\@LN{839}{9}
+\bibcite{imai_yamamoto2010}{{33}{2010}{{Imai and Yamamoto}}{{}}}
+\@LN{840}{9}
+\@LN{841}{9}
+\@LN{842}{9}
+\@LN{843}{9}
+\@LN{844}{9}
+\bibcite{jurek2005}{{34}{2005}{{Jurek et~al.}}{{Jurek, Greenland, Maldonado, and Church}}}
+\@LN{845}{9}
+\@LN{846}{9}
+\@LN{847}{9}
+\@LN{848}{9}
+\@LN{849}{9}
+\@LN{850}{9}
+\bibcite{keith_jensen_oconnor2020}{{35}{2020}{{Keith et~al.}}{{Keith, Jensen, and O'Connor}}}
+\@LN{851}{9}
+\@LN{852}{9}
+\@LN{853}{9}
+\@LN{854}{9}
+\@LN{855}{9}
+\@LN@col{1}
+\@LN{856}{10}
+\bibcite{kim_garg2025}{{36}{2025}{{Kim et~al.}}{{Kim, Garg, Peng, and Garg}}}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\bibcite{kuchenhoff2006simex}{{37}{2006}{{K{\"u}chenhoff et~al.}}{{K{\"u}chenhoff, Mwalili, and Lesaffre}}}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\bibcite{kuroki_pearl2014}{{38}{2014}{{Kuroki and Pearl}}{{}}}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\bibcite{lash2009}{{39}{2009}{{Lash et~al.}}{{Lash, Fox, and Fink}}}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\bibcite{lee_wood_doughty2024}{{40}{2024}{{Lee and Wood-Doughty}}{{}}}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\bibcite{lovell1963}{{41}{1963}{{Lovell}}{{}}}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\bibcite{mahajan2006}{{42}{2006}{{Mahajan}}{{}}}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\bibcite{mathur2018}{{43}{2018}{{Mathur et~al.}}{{Mathur, Ding, Riddell, and VanderWeele}}}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\bibcite{hidden_measurement_error2026}{{44}{2026}{{Messing}}{{}}}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\bibcite{nguimkeu_denteh_tchernis2019}{{45}{2019}{{Nguimkeu et~al.}}{{Nguimkeu, Denteh, and Tchernis}}}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@LN{896}{10}
+\bibcite{ogburn_vanderweele2012}{{46}{2012}{{Ogburn and VanderWeele}}{{}}}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\@LN{900}{10}
+\bibcite{oster2019}{{47}{2019}{{Oster}}{{}}}
+\@LN{901}{10}
+\@LN{902}{10}
+\@LN{903}{10}
+\@LN{904}{10}
+\bibcite{pangakis_wolken_fasching2023}{{48}{2023}{{Pangakis et~al.}}{{Pangakis, Wolken, and Fasching}}}
+\@LN{905}{10}
+\@LN{906}{10}
+\@LN{907}{10}
+\@LN{908}{10}
+\bibcite{pearl2009}{{49}{2009}{{Pearl}}{{}}}
+\@LN{909}{10}
+\@LN@col{2}
+\@LN{910}{10}
+\@LN{911}{10}
+\bibcite{pryzant_etal2021}{{50}{2021}{{Pryzant et~al.}}{{Pryzant, Card, Jurafsky, Veitch, and Sridhar}}}
+\@LN{912}{10}
+\@LN{913}{10}
+\@LN{914}{10}
+\@LN{915}{10}
+\@LN{916}{10}
+\@LN{917}{10}
+\@LN{918}{10}
+\bibcite{schennach2020mismeasured}{{51}{2020}{{Schennach}}{{}}}
+\@LN{919}{10}
+\@LN{920}{10}
+\@LN{921}{10}
+\@LN{922}{10}
+\@LN{923}{10}
+\bibcite{shu_yi2019b}{{52}{2019{a}}{{Shu and Yi}}{{}}}
+\@LN{924}{10}
+\@LN{925}{10}
+\@LN{926}{10}
+\@LN{927}{10}
+\bibcite{shu_yi2019a}{{53}{2019{b}}{{Shu and Yi}}{{}}}
+\@LN{928}{10}
+\@LN{929}{10}
+\@LN{930}{10}
+\@LN{931}{10}
+\bibcite{stefanski_carroll1985}{{54}{1985}{{Stefanski and Carroll}}{{}}}
+\@LN{932}{10}
+\@LN{933}{10}
+\@LN{934}{10}
+\@LN{935}{10}
+\bibcite{tan2024llm}{{55}{2024}{{Tan et~al.}}{{Tan, Li, Wang, Beigi, Jiang, Bhattacharjee, Karami, Li, Cheng, and Liu}}}
+\@LN{936}{10}
+\@LN{937}{10}
+\@LN{938}{10}
+\@LN{939}{10}
+\@LN{940}{10}
+\@LN{941}{10}
+\@LN{942}{10}
+\@LN{943}{10}
+\bibcite{teblunthuis2024}{{56}{2024}{{TeBlunthuis et~al.}}{{TeBlunthuis, Hase, and Chan}}}
+\@LN{944}{10}
+\@LN{945}{10}
+\@LN{946}{10}
+\@LN{947}{10}
+\@LN{948}{10}
+\bibcite{valeri_vanderweele2013}{{57}{2013}{{Valeri and VanderWeele}}{{}}}
+\@LN{949}{10}
+\@LN{950}{10}
+\@LN{951}{10}
+\@LN{952}{10}
+\@LN{953}{10}
+\@LN{954}{10}
+\bibcite{vanderweele2015explanation}{{58}{2015}{{VanderWeele}}{{}}}
+\@LN{955}{10}
+\@LN{956}{10}
+\@LN{957}{10}
+\bibcite{vanderweele_ding2017}{{59}{2017}{{VanderWeele and Ding}}{{}}}
+\@LN{958}{10}
+\@LN{959}{10}
+\@LN{960}{10}
+\@LN{961}{10}
+\bibcite{veirod_laake2001}{{60}{2001}{{Veier{\o }d and Laake}}{{}}}
+\@LN{962}{10}
+\@LN{963}{10}
+\@LN{964}{10}
+\@LN{965}{10}
+\bibcite{wei2025multiply}{{61}{2025}{{Wei et~al.}}{{Wei, He, Li, and Geng}}}
+\@LN@col{1}
+\@LN{966}{11}
+\@LN{967}{11}
+\@LN{968}{11}
+\@LN{969}{11}
+\bibcite{wood_doughty2018}{{62}{2018}{{Wood-Doughty et~al.}}{{Wood-Doughty, Shpitser, and Dredze}}}
+\@LN{970}{11}
+\@LN{971}{11}
+\@LN{972}{11}
+\@LN{973}{11}
+\@LN{974}{11}
+\bibcite{ziems2024can}{{63}{2024}{{Ziems et~al.}}{{Ziems, Held, Shaikh, Chen, Zhang, and Yang}}}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN{978}{11}
+\@LN{979}{11}
+\bibcite{zrnic_candes2024}{{64}{2024}{{Zrni{\'c} and Cand{\`e}s}}{{}}}
+\@LN{980}{11}
+\@LN{981}{11}
+\@LN{982}{11}
+\@LN{983}{11}
+\@LN{984}{11}
+\@LN{985}{11}
+\@LN{986}{11}
+\@LN{987}{11}
+\@LN{988}{11}
+\@LN{989}{11}
+\@LN{990}{11}
+\@LN{991}{11}
+\@LN{992}{11}
+\@LN{993}{11}
+\@LN{994}{11}
+\@LN{995}{11}
+\@LN{996}{11}
+\@LN{997}{11}
+\@LN{998}{11}
+\@LN{999}{11}
+\@LN{1000}{11}
+\@LN{1001}{11}
+\@LN{1002}{11}
+\@LN{1003}{11}
+\@LN{1004}{11}
+\@LN{1005}{11}
+\@LN{1006}{11}
+\@LN{1007}{11}
+\@LN{1008}{11}
+\@LN{1009}{11}
+\@LN{1010}{11}
+\@LN@col{2}
+\@LN{1011}{11}
+\@LN{1012}{11}
+\@LN{1013}{11}
+\@LN{1014}{11}
+\@LN{1015}{11}
+\@LN{1016}{11}
+\@LN{1017}{11}
+\@LN{1018}{11}
+\@LN{1019}{11}
+\@LN{1020}{11}
+\@LN{1021}{11}
+\@LN{1022}{11}
+\@LN{1023}{11}
+\@LN{1024}{11}
+\@LN{1025}{11}
+\@LN{1026}{11}
+\@LN{1027}{11}
+\@LN{1028}{11}
+\@LN{1029}{11}
+\@LN{1030}{11}
+\@LN{1031}{11}
+\@LN{1032}{11}
+\@LN{1033}{11}
+\@LN{1034}{11}
+\@LN{1035}{11}
+\@LN{1036}{11}
+\@LN{1037}{11}
+\@LN{1038}{11}
+\@LN{1039}{11}
+\@LN{1040}{11}
+\@LN{1041}{11}
+\@LN{1042}{11}
+\@LN{1043}{11}
+\@LN{1044}{11}
+\@LN{1045}{11}
+\@LN{1046}{11}
+\@LN{1047}{11}
+\@LN{1048}{11}
+\@LN{1049}{11}
+\@LN{1050}{11}
+\@LN{1051}{11}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Proofs of Proposition~\ref {prop:signflip} and Theorem~\ref {thm:monotone}}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:proof}{{A}{12}{Proofs of Proposition~\ref {prop:signflip} and Theorem~\ref {thm:monotone}}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Notation and Key Identities}{12}{subsection.A.1}\protected@file@percent }
+\newlabel{app:notation}{{A.1}{12}{Notation and Key Identities}{subsection.A.1}{}}
+\newlabel{eq:q}{{4}{12}{Notation and Key Identities}{equation.4}{}}
+\newlabel{eq:ct}{{5}{12}{Notation and Key Identities}{equation.5}{}}
+\newlabel{eq:cy}{{6}{12}{Notation and Key Identities}{equation.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Frisch--Waugh--Lovell Decomposition}{12}{subsection.A.2}\protected@file@percent }
+\newlabel{app:fwl}{{A.2}{12}{Frisch--Waugh--Lovell Decomposition}{subsection.A.2}{}}
+\newlabel{eq:fwl}{{7}{12}{Frisch--Waugh--Lovell Decomposition}{equation.7}{}}
+\newlabel{lem:bias_decomp}{{1}{12}{Bias decomposition}{lemma.1}{}}
+\newlabel{eq:bias_decomp}{{8}{12}{Bias decomposition}{equation.8}{}}
+\newlabel{eq:R}{{9}{12}{Bias decomposition}{equation.9}{}}
+\newlabel{eq:D}{{10}{12}{Bias decomposition}{equation.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Confounding Topology ($A$ = Confounder)}{12}{subsection.A.3}\protected@file@percent }
+\newlabel{app:confounding}{{A.3}{12}{Confounding Topology ($A$ = Confounder)}{subsection.A.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data-generating process.}{12}{section*.32}\protected@file@percent }
+\@LN{1052}{12}
+\@LN{1053}{12}
+\@LN{1054}{12}
+\@LN{1055}{12}
+\@LN{1056}{12}
+\@LN{1057}{12}
+\@LN{1058}{12}
+\@LN{1059}{12}
+\@LN{1060}{12}
+\@LN{1061}{12}
+\@LN{1062}{12}
+\@LN{1063}{12}
+\@LN{1064}{12}
+\@LN{1065}{12}
+\@LN{1066}{12}
+\@LN{1067}{12}
+\@LN{1068}{12}
+\@LN{1069}{12}
+\@LN{1070}{12}
+\@LN{1071}{12}
+\@LN{1072}{12}
+\@LN{1073}{12}
+\@LN{1074}{12}
+\@LN{1075}{12}
+\@LN{1076}{12}
+\@LN{1077}{12}
+\@LN{1078}{12}
+\@LN{1079}{12}
+\@LN{1080}{12}
+\@LN{1081}{12}
+\@LN{1082}{12}
+\@LN{1083}{12}
+\@LN{1084}{12}
+\@LN{1085}{12}
+\@LN{1086}{12}
+\@LN{1087}{12}
+\@LN{1088}{12}
+\@LN@col{2}
+\@LN{1089}{12}
+\@LN{1090}{12}
+\@LN{1091}{12}
+\@LN{1092}{12}
+\@LN{1093}{12}
+\@LN{1094}{12}
+\@LN{1095}{12}
+\@LN{1096}{12}
+\@LN{1097}{12}
+\@LN{1098}{12}
+\@LN{1099}{12}
+\@LN{1100}{12}
+\@LN{1101}{12}
+\@LN{1102}{12}
+\@LN{1103}{12}
+\@LN{1104}{12}
+\@LN{1105}{12}
+\@LN{1106}{12}
+\@LN{1107}{12}
+\@LN{1108}{12}
+\@LN{1109}{12}
+\@LN{1110}{12}
+\@LN{1111}{12}
+\@LN{1112}{12}
+\@LN{1113}{12}
+\@LN{1114}{12}
+\@LN{1115}{12}
+\@LN{1116}{12}
+\@LN{1117}{12}
+\@LN{1118}{12}
+\@LN{1119}{12}
+\@LN{1120}{12}
+\@LN{1121}{12}
+\@LN{1122}{12}
+\@LN{1123}{12}
+\@LN{1124}{12}
+\@LN{1125}{12}
+\@LN{1126}{12}
+\@LN{1127}{12}
+\@LN{1128}{12}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Closed-form plim.}{13}{section*.33}\protected@file@percent }
+\newlabel{eq:plim_conf}{{11}{13}{Closed-form plim}{equation.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Verification at $C=I$.}{13}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bias structure.}{13}{section*.35}\protected@file@percent }
+\newlabel{eq:bias_conf}{{12}{13}{Bias structure}{equation.12}{}}
+\newlabel{eq:lotc}{{13}{13}{Bias structure}{equation.13}{}}
+\newlabel{eq:bov}{{14}{13}{Bias structure}{equation.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sign preservation condition.}{13}{section*.36}\protected@file@percent }
+\newlabel{prop:conf_prop}{{2}{13}{Confounding sign preservation --- proportional case}{proposition.2}{}}
+\newlabel{eq:convex}{{15}{13}{Confounding sign preservation --- proportional case}{equation.15}{}}
+\newlabel{prop:conf_gen}{{3}{13}{Confounding sign preservation --- general case}{proposition.3}{}}
+\newlabel{eq:bbar}{{16}{13}{Confounding sign preservation --- general case}{equation.16}{}}
+\@LN{1129}{13}
+\@LN{1130}{13}
+\@LN{1131}{13}
+\@LN{1132}{13}
+\@LN{1133}{13}
+\@LN{1134}{13}
+\@LN{1135}{13}
+\@LN{1136}{13}
+\@LN{1137}{13}
+\@LN{1138}{13}
+\@LN{1139}{13}
+\@LN{1140}{13}
+\@LN{1141}{13}
+\@LN{1142}{13}
+\@LN{1143}{13}
+\@LN{1144}{13}
+\@LN{1145}{13}
+\@LN{1146}{13}
+\@LN{1147}{13}
+\@LN{1148}{13}
+\@LN{1149}{13}
+\@LN{1150}{13}
+\@LN{1151}{13}
+\@LN{1152}{13}
+\@LN{1153}{13}
+\@LN{1154}{13}
+\@LN{1155}{13}
+\@LN{1156}{13}
+\@LN{1157}{13}
+\@LN{1158}{13}
+\@LN{1159}{13}
+\@LN{1160}{13}
+\@LN{1161}{13}
+\@LN{1162}{13}
+\@LN{1163}{13}
+\@LN{1164}{13}
+\@LN{1165}{13}
+\@LN{1166}{13}
+\@LN@col{2}
+\@LN{1167}{13}
+\@LN{1168}{13}
+\@LN{1169}{13}
+\@LN{1170}{13}
+\@LN{1171}{13}
+\@LN{1172}{13}
+\@LN{1173}{13}
+\@LN{1174}{13}
+\@LN{1175}{13}
+\@LN{1176}{13}
+\@LN{1177}{13}
+\@LN{1178}{13}
+\@LN{1179}{13}
+\@LN{1180}{13}
+\@LN{1181}{13}
+\@LN{1182}{13}
+\@LN{1183}{13}
+\@LN{1184}{13}
+\@LN{1185}{13}
+\@LN{1186}{13}
+\@LN{1187}{13}
+\@LN{1188}{13}
+\@LN{1189}{13}
+\@LN{1190}{13}
+\@LN{1191}{13}
+\@LN{1192}{13}
+\@LN{1193}{13}
+\@LN{1194}{13}
+\@LN{1195}{13}
+\@LN{1196}{13}
+\@LN{1197}{13}
+\@LN{1198}{13}
+\@LN{1199}{13}
+\@LN{1200}{13}
+\@LN{1201}{13}
+\@LN{1202}{13}
+\@LN{1203}{13}
+\@LN{1204}{13}
+\@LN{1205}{13}
+\@LN{1206}{13}
+\@LN{1207}{13}
+\@LN{1208}{13}
+\@LN{1209}{13}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to the omitted-variable condition.}{14}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification for paper parameters ($K{=}3$).}{14}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Extension to $K > 3$.}{14}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Proof of Theorem~\ref {thm:monotone} (Confounding Monotonicity)}{14}{subsection.A.4}\protected@file@percent }
+\newlabel{app:monotonicity_proof}{{A.4}{14}{Proof of Theorem~\ref {thm:monotone} (Confounding Monotonicity)}{subsection.A.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Proportional case ($f=\lambda g$).}{14}{section*.40}\protected@file@percent }
+\newlabel{eq:dVB}{{17}{14}{Proportional case ($f=\lambda g$)}{equation.17}{}}
+\@LN{1210}{14}
+\@LN{1211}{14}
+\@LN{1212}{14}
+\@LN{1213}{14}
+\@LN{1214}{14}
+\@LN{1215}{14}
+\@LN{1216}{14}
+\@LN{1217}{14}
+\@LN{1218}{14}
+\@LN{1219}{14}
+\@LN{1220}{14}
+\@LN{1221}{14}
+\@LN{1222}{14}
+\@LN{1223}{14}
+\@LN{1224}{14}
+\@LN{1225}{14}
+\@LN{1226}{14}
+\@LN{1227}{14}
+\@LN{1228}{14}
+\@LN{1229}{14}
+\@LN{1230}{14}
+\@LN{1231}{14}
+\@LN{1232}{14}
+\@LN{1233}{14}
+\@LN{1234}{14}
+\@LN{1235}{14}
+\@LN{1236}{14}
+\@LN{1237}{14}
+\@LN{1238}{14}
+\@LN{1239}{14}
+\@LN{1240}{14}
+\@LN{1241}{14}
+\@LN{1242}{14}
+\@LN{1243}{14}
+\@LN{1244}{14}
+\@LN{1245}{14}
+\@LN{1246}{14}
+\@LN{1247}{14}
+\@LN{1248}{14}
+\@LN{1249}{14}
+\@LN{1250}{14}
+\@LN{1251}{14}
+\@LN{1252}{14}
+\@LN{1253}{14}
+\@LN{1254}{14}
+\@LN{1255}{14}
+\@LN{1256}{14}
+\@LN@col{2}
+\@LN{1257}{14}
+\@LN{1258}{14}
+\@LN{1259}{14}
+\@LN{1260}{14}
+\@LN{1261}{14}
+\@LN{1262}{14}
+\@LN{1263}{14}
+\@LN{1264}{14}
+\@LN{1265}{14}
+\@LN{1266}{14}
+\@LN{1267}{14}
+\@LN{1268}{14}
+\@LN{1269}{14}
+\@LN{1270}{14}
+\@LN{1271}{14}
+\@LN{1272}{14}
+\@LN{1273}{14}
+\@LN{1274}{14}
+\@LN{1275}{14}
+\@LN{1276}{14}
+\@LN{1277}{14}
+\@LN{1278}{14}
+\@LN{1279}{14}
+\@LN{1280}{14}
+\@LN{1281}{14}
+\@LN{1282}{14}
+\@LN{1283}{14}
+\@LN{1284}{14}
+\@LN{1285}{14}
+\@LN{1286}{14}
+\@LN{1287}{14}
+\@LN{1288}{14}
+\@LN{1289}{14}
+\@LN{1290}{14}
+\@LN{1291}{14}
+\@LN{1292}{14}
+\@LN{1293}{14}
+\@LN{1294}{14}
+\@LN{1295}{14}
+\@LN{1296}{14}
+\@LN{1297}{14}
+\@LN{1298}{14}
+\@LN{1299}{14}
+\@LN{1300}{14}
+\@LN{1301}{14}
+\@LN{1302}{14}
+\@LN{1303}{14}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Condition on $C_0$.}{15}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{General case (non-proportional effects).}{15}{section*.42}\protected@file@percent }
+\newlabel{rem:conditional_monotonicity}{{2}{15}{Conditional exact monotonicity}{remark.2}{}}
+\newlabel{eq:dd_condition}{{18}{15}{Conditional exact monotonicity}{equation.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Mediation Topology ($A$ = Mediator)}{15}{subsection.A.5}\protected@file@percent }
+\newlabel{app:mediation}{{A.5}{15}{Mediation Topology ($A$ = Mediator)}{subsection.A.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data-generating process.}{15}{section*.43}\protected@file@percent }
+\@LN{1304}{15}
+\@LN{1305}{15}
+\@LN{1306}{15}
+\@LN{1307}{15}
+\@LN{1308}{15}
+\@LN{1309}{15}
+\@LN{1310}{15}
+\@LN{1311}{15}
+\@LN{1312}{15}
+\@LN{1313}{15}
+\@LN{1314}{15}
+\@LN{1315}{15}
+\@LN{1316}{15}
+\@LN{1317}{15}
+\@LN{1318}{15}
+\@LN{1319}{15}
+\@LN{1320}{15}
+\@LN{1321}{15}
+\@LN{1322}{15}
+\@LN{1323}{15}
+\@LN{1324}{15}
+\@LN{1325}{15}
+\@LN{1326}{15}
+\@LN{1327}{15}
+\@LN{1328}{15}
+\@LN{1329}{15}
+\@LN{1330}{15}
+\@LN{1331}{15}
+\@LN{1332}{15}
+\@LN{1333}{15}
+\@LN{1334}{15}
+\@LN{1335}{15}
+\@LN{1336}{15}
+\@LN{1337}{15}
+\@LN{1338}{15}
+\@LN{1339}{15}
+\@LN{1340}{15}
+\@LN{1341}{15}
+\@LN{1342}{15}
+\@LN{1343}{15}
+\@LN{1344}{15}
+\@LN{1345}{15}
+\@LN{1346}{15}
+\@LN@col{2}
+\@LN{1347}{15}
+\@LN{1348}{15}
+\@LN{1349}{15}
+\@LN{1350}{15}
+\@LN{1351}{15}
+\@LN{1352}{15}
+\@LN{1353}{15}
+\@LN{1354}{15}
+\@LN{1355}{15}
+\@LN{1356}{15}
+\@LN{1357}{15}
+\@LN{1358}{15}
+\@LN{1359}{15}
+\@LN{1360}{15}
+\@LN{1361}{15}
+\@LN{1362}{15}
+\@LN{1363}{15}
+\@LN{1364}{15}
+\@LN{1365}{15}
+\@LN{1366}{15}
+\@LN{1367}{15}
+\@LN{1368}{15}
+\@LN{1369}{15}
+\@LN{1370}{15}
+\@LN{1371}{15}
+\@LN{1372}{15}
+\@LN{1373}{15}
+\@LN{1374}{15}
+\@LN{1375}{15}
+\@LN{1376}{15}
+\@LN{1377}{15}
+\@LN{1378}{15}
+\@LN{1379}{15}
+\@LN{1380}{15}
+\@LN{1381}{15}
+\@LN{1382}{15}
+\@LN{1383}{15}
+\@LN{1384}{15}
+\@LN{1385}{15}
+\@LN{1386}{15}
+\@LN{1387}{15}
+\@LN{1388}{15}
+\@LN{1389}{15}
+\@LN{1390}{15}
+\@LN{1391}{15}
+\@LN{1392}{15}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Bias decomposition.}{16}{section*.44}\protected@file@percent }
+\newlabel{eq:med_bias}{{19}{16}{Bias decomposition}{equation.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Endpoint analysis.}{16}{section*.45}\protected@file@percent }
+\newlabel{find:med_sign}{{A.5}{16}{Numerical Verification (Mediation sign preservation)}{section*.46}{}}
+\@writefile{toc}{\contentsline {paragraph}{Numerical Verification (Mediation sign preservation).}{16}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification for paper parameters ($K{=}3$).}{16}{section*.47}\protected@file@percent }
+\newlabel{par:med_monotone}{{A.5}{16}{Mediation monotonicity (proportional effects)}{section*.48}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mediation monotonicity (proportional effects).}{16}{section*.48}\protected@file@percent }
+\@LN{1393}{16}
+\@LN{1394}{16}
+\@LN{1395}{16}
+\@LN{1396}{16}
+\@LN{1397}{16}
+\@LN{1398}{16}
+\@LN{1399}{16}
+\@LN{1400}{16}
+\@LN{1401}{16}
+\@LN{1402}{16}
+\@LN{1403}{16}
+\@LN{1404}{16}
+\@LN{1405}{16}
+\@LN{1406}{16}
+\@LN{1407}{16}
+\@LN{1408}{16}
+\@LN{1409}{16}
+\@LN{1410}{16}
+\@LN{1411}{16}
+\@LN{1412}{16}
+\@LN{1413}{16}
+\@LN{1414}{16}
+\@LN{1415}{16}
+\@LN{1416}{16}
+\@LN{1417}{16}
+\@LN{1418}{16}
+\@LN{1419}{16}
+\@LN{1420}{16}
+\@LN{1421}{16}
+\@LN{1422}{16}
+\@LN{1423}{16}
+\@LN{1424}{16}
+\@LN{1425}{16}
+\@LN{1426}{16}
+\@LN{1427}{16}
+\@LN{1428}{16}
+\@LN{1429}{16}
+\@LN{1430}{16}
+\@LN{1431}{16}
+\@LN{1432}{16}
+\@LN{1433}{16}
+\@LN{1434}{16}
+\@LN{1435}{16}
+\@LN{1436}{16}
+\@LN@col{2}
+\@LN{1437}{16}
+\@LN{1438}{16}
+\@LN{1439}{16}
+\@LN{1440}{16}
+\@LN{1441}{16}
+\@LN{1442}{16}
+\@LN{1443}{16}
+\@LN{1444}{16}
+\@LN{1445}{16}
+\@LN{1446}{16}
+\@LN{1447}{16}
+\@LN{1448}{16}
+\@LN{1449}{16}
+\@LN{1450}{16}
+\@LN{1451}{16}
+\@LN{1452}{16}
+\@LN{1453}{16}
+\@LN{1454}{16}
+\@LN{1455}{16}
+\@LN{1456}{16}
+\@LN{1457}{16}
+\@LN{1458}{16}
+\@LN{1459}{16}
+\@LN{1460}{16}
+\@LN{1461}{16}
+\@LN{1462}{16}
+\@LN{1463}{16}
+\@LN{1464}{16}
+\@LN{1465}{16}
+\@LN{1466}{16}
+\@LN{1467}{16}
+\@LN{1468}{16}
+\@LN{1469}{16}
+\@LN{1470}{16}
+\@LN{1471}{16}
+\@LN{1472}{16}
+\@LN{1473}{16}
+\@LN{1474}{16}
+\@LN{1475}{16}
+\@LN{1476}{16}
+\@LN{1477}{16}
+\@LN{1478}{16}
+\@LN{1479}{16}
+\@LN{1480}{16}
+\@LN{1481}{16}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Boundedness of the leakage coefficient.}{17}{section*.49}\protected@file@percent }
+\newlabel{eq:lambda_def}{{20}{17}{Boundedness of the leakage coefficient}{equation.20}{}}
+\newlabel{prop:lambda_bound}{{4}{17}{Mediation leakage boundedness}{proposition.4}{}}
+\@LN{1482}{17}
+\@LN{1483}{17}
+\@LN{1484}{17}
+\@LN{1485}{17}
+\@LN{1486}{17}
+\@LN{1487}{17}
+\@LN{1488}{17}
+\@LN{1489}{17}
+\@LN{1490}{17}
+\@LN{1491}{17}
+\@LN{1492}{17}
+\@LN{1493}{17}
+\@LN{1494}{17}
+\@LN{1495}{17}
+\@LN{1496}{17}
+\@LN{1497}{17}
+\@LN{1498}{17}
+\@LN{1499}{17}
+\@LN{1500}{17}
+\@LN{1501}{17}
+\@LN{1502}{17}
+\@LN{1503}{17}
+\@LN{1504}{17}
+\@LN{1505}{17}
+\@LN{1506}{17}
+\@LN{1507}{17}
+\@LN{1508}{17}
+\@LN{1509}{17}
+\@LN{1510}{17}
+\@LN{1511}{17}
+\@LN{1512}{17}
+\@LN{1513}{17}
+\@LN{1514}{17}
+\@LN{1515}{17}
+\@LN{1516}{17}
+\@LN{1517}{17}
+\@LN{1518}{17}
+\@LN{1519}{17}
+\@LN{1520}{17}
+\@LN{1521}{17}
+\@LN{1522}{17}
+\@LN{1523}{17}
+\@LN{1524}{17}
+\@LN{1525}{17}
+\@LN{1526}{17}
+\@LN{1527}{17}
+\@LN@col{2}
+\@LN{1528}{17}
+\@LN{1529}{17}
+\@LN{1530}{17}
+\@LN{1531}{17}
+\@LN{1532}{17}
+\@LN{1533}{17}
+\@LN{1534}{17}
+\@LN{1535}{17}
+\@LN{1536}{17}
+\@LN{1537}{17}
+\@LN{1538}{17}
+\@LN{1539}{17}
+\@LN{1540}{17}
+\@LN{1541}{17}
+\@LN{1542}{17}
+\@LN{1543}{17}
+\@LN{1544}{17}
+\@LN{1545}{17}
+\@LN{1546}{17}
+\@LN{1547}{17}
+\@LN{1548}{17}
+\@LN{1549}{17}
+\@LN{1550}{17}
+\@LN{1551}{17}
+\@LN{1552}{17}
+\@LN{1553}{17}
+\@LN{1554}{17}
+\@LN{1555}{17}
+\@LN{1556}{17}
+\@LN{1557}{17}
+\@LN{1558}{17}
+\@LN{1559}{17}
+\@LN{1560}{17}
+\@LN{1561}{17}
+\@LN{1562}{17}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Relation to the between-variance ratio.}{18}{section*.50}\protected@file@percent }
+\newlabel{eq:vb_ratio}{{21}{18}{Relation to the between-variance ratio}{equation.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Numerical verification.}{18}{section*.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Proof of Theorem~\ref {thm:k3_symmetric} ($K{=}3$ Symmetric Monotonicity)}{18}{subsection.A.6}\protected@file@percent }
+\newlabel{app:k3_symmetric_proof}{{A.6}{18}{Proof of Theorem~\ref {thm:k3_symmetric} ($K{=}3$ Symmetric Monotonicity)}{subsection.A.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 1: Structural reduction.}{18}{section*.52}\protected@file@percent }
+\newlabel{eq:k3q}{{22}{18}{Step 1: Structural reduction}{equation.22}{}}
+\newlabel{eq:k3mu}{{23}{18}{Step 1: Structural reduction}{equation.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 2: Closed-form $V_B(s)$.}{18}{section*.53}\protected@file@percent }
+\newlabel{eq:k3VB}{{24}{18}{Step 2: Closed-form $V_B(s)$}{equation.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 3: $V_B$ is strictly decreasing on $[0,\tfrac  {1}{3})$ (pointwise, not just at endpoints).}{18}{section*.54}\protected@file@percent }
+\newlabel{eq:k3dVB}{{25}{18}{Step 3: $V_B$ is strictly decreasing on $[0,\tfrac {1}{3})$ (pointwise, not just at endpoints)}{equation.25}{}}
+\@LN{1563}{18}
+\@LN{1564}{18}
+\@LN{1565}{18}
+\@LN{1566}{18}
+\@LN{1567}{18}
+\@LN{1568}{18}
+\@LN{1569}{18}
+\@LN{1570}{18}
+\@LN{1571}{18}
+\@LN{1572}{18}
+\@LN{1573}{18}
+\@LN{1574}{18}
+\@LN{1575}{18}
+\@LN{1576}{18}
+\@LN{1577}{18}
+\@LN{1578}{18}
+\@LN{1579}{18}
+\@LN{1580}{18}
+\@LN{1581}{18}
+\@LN{1582}{18}
+\@LN{1583}{18}
+\@LN{1584}{18}
+\@LN{1585}{18}
+\@LN{1586}{18}
+\@LN{1587}{18}
+\@LN{1588}{18}
+\@LN{1589}{18}
+\@LN{1590}{18}
+\@LN{1591}{18}
+\@LN{1592}{18}
+\@LN{1593}{18}
+\@LN{1594}{18}
+\@LN{1595}{18}
+\@LN{1596}{18}
+\@LN{1597}{18}
+\@LN{1598}{18}
+\@LN{1599}{18}
+\@LN{1600}{18}
+\@LN{1601}{18}
+\@LN{1602}{18}
+\@LN@col{2}
+\@LN{1603}{18}
+\@LN{1604}{18}
+\@LN{1605}{18}
+\@LN{1606}{18}
+\@LN{1607}{18}
+\@LN{1608}{18}
+\@LN{1609}{18}
+\@LN{1610}{18}
+\@LN{1611}{18}
+\@LN{1612}{18}
+\@LN{1613}{18}
+\@LN{1614}{18}
+\@LN{1615}{18}
+\@LN{1616}{18}
+\@LN{1617}{18}
+\@LN{1618}{18}
+\@LN{1619}{18}
+\@LN{1620}{18}
+\@LN{1621}{18}
+\@LN{1622}{18}
+\@LN{1623}{18}
+\@LN{1624}{18}
+\@LN{1625}{18}
+\@LN{1626}{18}
+\@LN{1627}{18}
+\@LN{1628}{18}
+\@LN{1629}{18}
+\@LN{1630}{18}
+\@LN{1631}{18}
+\@LN{1632}{18}
+\@LN{1633}{18}
+\@LN{1634}{18}
+\@LN{1635}{18}
+\@LN{1636}{18}
+\@LN{1637}{18}
+\@LN{1638}{18}
+\@LN{1639}{18}
+\@LN{1640}{18}
+\@LN{1641}{18}
+\@LN{1642}{18}
+\@LN{1643}{18}
+\@LN{1644}{18}
+\@LN{1645}{18}
+\@LN{1646}{18}
+\@LN{1647}{18}
+\@LN{1648}{18}
+\@LN{1649}{18}
+\@LN{1650}{18}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Step 4: From $V_B$ to $|B|$ --- confounding (a).}{19}{section*.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 5: Mediation (b).}{19}{section*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 6: Collider (c).}{19}{section*.57}\protected@file@percent }
+\newlabel{rem:k3_vs_general}{{3}{19}{Comparison with the general-$K$ proof}{remark.3}{}}
+\newlabel{rem:k3_general}{{4}{19}{General (non-proportional) effects}{remark.4}{}}
+\newlabel{rem:symmetry}{{5}{19}{Empirical symmetry of LLM confusion matrices}{remark.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Collider Topology ($A$ = Collider)}{19}{subsection.A.7}\protected@file@percent }
+\newlabel{app:collider}{{A.7}{19}{Collider Topology ($A$ = Collider)}{subsection.A.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data-generating process.}{19}{section*.58}\protected@file@percent }
+\@LN{1651}{19}
+\@LN{1652}{19}
+\@LN{1653}{19}
+\@LN{1654}{19}
+\@LN{1655}{19}
+\@LN{1656}{19}
+\@LN{1657}{19}
+\@LN{1658}{19}
+\@LN{1659}{19}
+\@LN{1660}{19}
+\@LN{1661}{19}
+\@LN{1662}{19}
+\@LN{1663}{19}
+\@LN{1664}{19}
+\@LN{1665}{19}
+\@LN{1666}{19}
+\@LN{1667}{19}
+\@LN{1668}{19}
+\@LN{1669}{19}
+\@LN{1670}{19}
+\@LN{1671}{19}
+\@LN{1672}{19}
+\@LN{1673}{19}
+\@LN{1674}{19}
+\@LN{1675}{19}
+\@LN{1676}{19}
+\@LN{1677}{19}
+\@LN{1678}{19}
+\@LN{1679}{19}
+\@LN{1680}{19}
+\@LN{1681}{19}
+\@LN{1682}{19}
+\@LN{1683}{19}
+\@LN{1684}{19}
+\@LN{1685}{19}
+\@LN{1686}{19}
+\@LN{1687}{19}
+\@LN{1688}{19}
+\@LN{1689}{19}
+\@LN{1690}{19}
+\@LN{1691}{19}
+\@LN{1692}{19}
+\@LN{1693}{19}
+\@LN{1694}{19}
+\@LN{1695}{19}
+\@LN@col{2}
+\@LN{1696}{19}
+\@LN{1697}{19}
+\@LN{1698}{19}
+\@LN{1699}{19}
+\@LN{1700}{19}
+\@LN{1701}{19}
+\@LN{1702}{19}
+\@LN{1703}{19}
+\@LN{1704}{19}
+\@LN{1705}{19}
+\@LN{1706}{19}
+\@LN{1707}{19}
+\@LN{1708}{19}
+\@LN{1709}{19}
+\@LN{1710}{19}
+\@LN{1711}{19}
+\@LN{1712}{19}
+\@LN{1713}{19}
+\@LN{1714}{19}
+\@LN{1715}{19}
+\@LN{1716}{19}
+\@LN{1717}{19}
+\@LN{1718}{19}
+\@LN{1719}{19}
+\@LN{1720}{19}
+\@LN{1721}{19}
+\@LN{1722}{19}
+\@LN{1723}{19}
+\@LN{1724}{19}
+\@LN{1725}{19}
+\@LN{1726}{19}
+\@LN{1727}{19}
+\@LN{1728}{19}
+\@LN{1729}{19}
+\@LN{1730}{19}
+\@LN{1731}{19}
+\@LN{1732}{19}
+\@LN{1733}{19}
+\@LN{1734}{19}
+\@LN{1735}{19}
+\@LN{1736}{19}
+\@LN{1737}{19}
+\@LN{1738}{19}
+\@LN{1739}{19}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Bias decomposition.}{20}{section*.59}\protected@file@percent }
+\newlabel{eq:bias_col}{{26}{20}{Bias decomposition}{equation.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Endpoint analysis.}{20}{section*.60}\protected@file@percent }
+\newlabel{prop:col_prop}{{5}{20}{Collider sign preservation --- proportional case}{proposition.5}{}}
+\newlabel{prop:col_gen}{{6}{20}{Collider sign preservation --- general case}{proposition.6}{}}
+\newlabel{eq:bbar_col}{{27}{20}{Collider sign preservation --- general case}{equation.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Verification for paper parameters ($K{=}3$).}{20}{section*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.8}Front-door Topology ($A$ = Mediator under Confounding)}{20}{subsection.A.8}\protected@file@percent }
+\newlabel{app:frontdoor}{{A.8}{20}{Front-door Topology ($A$ = Mediator under Confounding)}{subsection.A.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data-generating process.}{20}{section*.62}\protected@file@percent }
+\@LN{1740}{20}
+\@LN{1741}{20}
+\@LN{1742}{20}
+\@LN{1743}{20}
+\@LN{1744}{20}
+\@LN{1745}{20}
+\@LN{1746}{20}
+\@LN{1747}{20}
+\@LN{1748}{20}
+\@LN{1749}{20}
+\@LN{1750}{20}
+\@LN{1751}{20}
+\@LN{1752}{20}
+\@LN{1753}{20}
+\@LN{1754}{20}
+\@LN{1755}{20}
+\@LN{1756}{20}
+\@LN{1757}{20}
+\@LN{1758}{20}
+\@LN{1759}{20}
+\@LN{1760}{20}
+\@LN{1761}{20}
+\@LN{1762}{20}
+\@LN{1763}{20}
+\@LN{1764}{20}
+\@LN{1765}{20}
+\@LN{1766}{20}
+\@LN{1767}{20}
+\@LN{1768}{20}
+\@LN{1769}{20}
+\@LN{1770}{20}
+\@LN{1771}{20}
+\@LN{1772}{20}
+\@LN{1773}{20}
+\@LN{1774}{20}
+\@LN{1775}{20}
+\@LN{1776}{20}
+\@LN{1777}{20}
+\@LN{1778}{20}
+\@LN@col{2}
+\@LN{1779}{20}
+\@LN{1780}{20}
+\@LN{1781}{20}
+\@LN{1782}{20}
+\@LN{1783}{20}
+\@LN{1784}{20}
+\@LN{1785}{20}
+\@LN{1786}{20}
+\@LN{1787}{20}
+\@LN{1788}{20}
+\@LN{1789}{20}
+\@LN{1790}{20}
+\@LN{1791}{20}
+\@LN{1792}{20}
+\@LN{1793}{20}
+\@LN{1794}{20}
+\@LN{1795}{20}
+\@LN{1796}{20}
+\@LN{1797}{20}
+\@LN{1798}{20}
+\@LN{1799}{20}
+\@LN{1800}{20}
+\@LN{1801}{20}
+\@LN{1802}{20}
+\@LN{1803}{20}
+\@LN{1804}{20}
+\@LN{1805}{20}
+\@LN{1806}{20}
+\@LN{1807}{20}
+\@LN{1808}{20}
+\@LN{1809}{20}
+\@LN{1810}{20}
+\@LN{1811}{20}
+\@LN{1812}{20}
+\@LN{1813}{20}
+\@LN{1814}{20}
+\@LN{1815}{20}
+\@LN{1816}{20}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Bias decomposition.}{21}{section*.63}\protected@file@percent }
+\newlabel{eq:fd_decomp}{{28}{21}{Bias decomposition}{equation.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Endpoint analysis.}{21}{section*.64}\protected@file@percent }
+\newlabel{find:fd_sign}{{A.8}{21}{Numerical Verification (Front-door sign preservation)}{section*.65}{}}
+\@writefile{toc}{\contentsline {paragraph}{Numerical Verification (Front-door sign preservation).}{21}{section*.65}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification for paper parameters ($K{=}3$).}{21}{section*.66}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.9}Exposure Topology: Sign Reversal Counterexample}{21}{subsection.A.9}\protected@file@percent }
+\newlabel{app:exposure}{{A.9}{21}{Exposure Topology: Sign Reversal Counterexample}{subsection.A.9}{}}
+\newlabel{prop:exp_counter}{{7}{21}{Exposure sign reversal}{proposition.7}{}}
+\@LN{1817}{21}
+\@LN{1818}{21}
+\@LN{1819}{21}
+\@LN{1820}{21}
+\@LN{1821}{21}
+\@LN{1822}{21}
+\@LN{1823}{21}
+\@LN{1824}{21}
+\@LN{1825}{21}
+\@LN{1826}{21}
+\@LN{1827}{21}
+\@LN{1828}{21}
+\@LN{1829}{21}
+\@LN{1830}{21}
+\@LN{1831}{21}
+\@LN{1832}{21}
+\@LN{1833}{21}
+\@LN{1834}{21}
+\@LN{1835}{21}
+\@LN{1836}{21}
+\@LN{1837}{21}
+\@LN{1838}{21}
+\@LN{1839}{21}
+\@LN{1840}{21}
+\@LN{1841}{21}
+\@LN{1842}{21}
+\@LN{1843}{21}
+\@LN{1844}{21}
+\@LN{1845}{21}
+\@LN{1846}{21}
+\@LN{1847}{21}
+\@LN{1848}{21}
+\@LN{1849}{21}
+\@LN{1850}{21}
+\@LN{1851}{21}
+\@LN@col{2}
+\@LN{1852}{21}
+\@LN{1853}{21}
+\@LN{1854}{21}
+\@LN{1855}{21}
+\@LN{1856}{21}
+\@LN{1857}{21}
+\@LN{1858}{21}
+\@LN{1859}{21}
+\@LN{1860}{21}
+\@LN{1861}{21}
+\@LN{1862}{21}
+\@LN{1863}{21}
+\@LN{1864}{21}
+\@LN{1865}{21}
+\@LN{1866}{21}
+\@LN{1867}{21}
+\@LN{1868}{21}
+\@LN{1869}{21}
+\@LN{1870}{21}
+\@LN{1871}{21}
+\@LN{1872}{21}
+\@LN{1873}{21}
+\@LN{1874}{21}
+\@LN{1875}{21}
+\@LN{1876}{21}
+\@LN{1877}{21}
+\@LN{1878}{21}
+\@LN{1879}{21}
+\@LN{1880}{21}
+\@LN{1881}{21}
+\@LN{1882}{21}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.10}Summary of Conditions}{22}{subsection.A.10}\protected@file@percent }
+\newlabel{app:conditions}{{A.10}{22}{Summary of Conditions}{subsection.A.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Sufficient conditions for sign preservation under non-differential misclassification. ``Proved'' = algebraic proof via Cauchy--Schwarz (confounding) or Berkson attenuation (collider). ``Empirical'' = verified across 100{,}000 random column-stochastic matrices with zero violations; analytic proof for general $K$ remains open. All conditions are on DGP parameters (not on $C$): once satisfied, sign preservation holds for all column-stochastic $C$ with $C_{kk}>0$.}}{22}{table.caption.67}\protected@file@percent }
+\newlabel{tab:sign_conditions}{{2}{22}{Sufficient conditions for sign preservation under non-differential misclassification. ``Proved'' = algebraic proof via Cauchy--Schwarz (confounding) or Berkson attenuation (collider). ``Empirical'' = verified across 100{,}000 random column-stochastic matrices with zero violations; analytic proof for general $K$ remains open. All conditions are on DGP parameters (not on $C$): once satisfied, sign preservation holds for all column-stochastic $C$ with $C_{kk}>0$}{table.caption.67}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural argument for M-bias topology.}{22}{section*.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{M-bias sign-flip ASV $= \infty $.}{22}{section*.69}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Remark.}{22}{section*.70}\protected@file@percent }
+\@LN{1883}{22}
+\@LN{1884}{22}
+\@LN{1885}{22}
+\@LN{1886}{22}
+\@LN{1887}{22}
+\@LN{1888}{22}
+\@LN{1889}{22}
+\@LN{1890}{22}
+\@LN{1891}{22}
+\@LN{1892}{22}
+\@LN{1893}{22}
+\@LN{1894}{22}
+\@LN{1895}{22}
+\@LN{1896}{22}
+\@LN{1897}{22}
+\@LN{1898}{22}
+\@LN{1899}{22}
+\@LN{1900}{22}
+\@LN{1901}{22}
+\@LN{1902}{22}
+\@LN{1903}{22}
+\@LN{1904}{22}
+\@LN{1905}{22}
+\@LN{1906}{22}
+\@LN{1907}{22}
+\@LN{1908}{22}
+\@LN{1909}{22}
+\@LN{1910}{22}
+\@LN{1911}{22}
+\@LN{1912}{22}
+\@LN{1913}{22}
+\@LN{1914}{22}
+\@LN{1915}{22}
+\@LN{1916}{22}
+\@LN{1917}{22}
+\@LN{1918}{22}
+\@LN{1919}{22}
+\@LN{1920}{22}
+\@LN@col{2}
+\@LN{1921}{22}
+\@LN{1922}{22}
+\@LN{1923}{22}
+\@LN{1924}{22}
+\@LN{1925}{22}
+\@LN{1926}{22}
+\@LN{1927}{22}
+\@LN{1928}{22}
+\@LN{1929}{22}
+\@LN{1930}{22}
+\@LN{1931}{22}
+\@LN{1932}{22}
+\@LN{1933}{22}
+\@LN{1934}{22}
+\@LN{1935}{22}
+\@LN{1936}{22}
+\@LN{1937}{22}
+\@LN{1938}{22}
+\@LN{1939}{22}
+\@LN{1940}{22}
+\@LN{1941}{22}
+\@LN{1942}{22}
+\@LN{1943}{22}
+\@LN{1944}{22}
+\@LN{1945}{22}
+\@LN{1946}{22}
+\@LN{1947}{22}
+\@LN{1948}{22}
+\@LN{1949}{22}
+\@LN{1950}{22}
+\@LN{1951}{22}
+\@LN{1952}{22}
+\@LN{1953}{22}
+\@LN{1954}{22}
+\@LN{1955}{22}
+\@LN{1956}{22}
+\@LN{1957}{22}
+\@LN{1958}{22}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.11}Adversarial Monotonicity Verification}{23}{subsection.A.11}\protected@file@percent }
+\newlabel{app:adversarial_monotonicity}{{A.11}{23}{Adversarial Monotonicity Verification}{subsection.A.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Adversarial monotonicity test across $K{=}3,5,7$, seven topologies, and three $\beta $ configurations ($N{=}1{,}000$ matrices per cell, 545{,}945 total curves).}}{23}{table.caption.71}\protected@file@percent }
+\newlabel{tab:adversarial_monotonicity}{{3}{23}{Adversarial monotonicity test across $K{=}3,5,7$, seven topologies, and three $\beta $ configurations ($N{=}1{,}000$ matrices per cell, 545{,}945 total curves)}{table.caption.71}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Supplementary Tables, Figures, and Algorithm}{23}{appendix.B}\protected@file@percent }
+\newlabel{app:supplementary}{{B}{23}{Supplementary Tables, Figures, and Algorithm}{appendix.B}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Binarization Collapse}{23}{subsection.B.1}\protected@file@percent }
+\newlabel{app:binarization}{{B.1}{23}{Binarization Collapse}{subsection.B.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ASV type applicability and sensitivity across DAG topologies. Magnitude ASV at $\tau {=}0.5$, 10\% threshold. Power at $\tau {=}0.05$ significance filter. ---: not applicable.}}{23}{table.caption.72}\protected@file@percent }
+\newlabel{tab:asv_grid}{{4}{23}{ASV type applicability and sensitivity across DAG topologies. Magnitude ASV at $\tau {=}0.5$, 10\% threshold. Power at $\tau {=}0.05$ significance filter. ---: not applicable}{table.caption.72}{}}
+\@writefile{toc}{\contentsline {paragraph}{Error structures used in correction experiments.}{23}{section*.77}\protected@file@percent }
+\@LN{1959}{23}
+\@LN{1960}{23}
+\citation{lovell1963}
+\@LN{1961}{23}
+\@LN{1962}{23}
+\@LN{1963}{23}
+\@LN{1964}{23}
+\@LN{1965}{23}
+\@LN{1966}{23}
+\@LN{1967}{23}
+\@LN{1968}{23}
+\@LN{1969}{23}
+\@LN{1970}{23}
+\@LN{1971}{23}
+\@LN{1972}{23}
+\@LN{1973}{23}
+\@LN{1974}{23}
+\@LN{1975}{23}
+\@LN{1976}{23}
+\@LN{1977}{23}
+\@LN{1978}{23}
+\@LN@col{2}
+\@LN{1979}{23}
+\@LN{1980}{23}
+\@LN{1981}{23}
+\@LN{1982}{23}
+\@LN{1983}{23}
+\@LN{1984}{23}
+\@LN{1985}{23}
+\@LN{1986}{23}
+\@LN{1987}{23}
+\@LN{1988}{23}
+\@LN{1989}{23}
+\@LN{1990}{23}
+\@LN{1991}{23}
+\@LN{1992}{23}
+\@LN{1993}{23}
+\@LN{1994}{23}
+\@LN{1995}{23}
+\@LN{1996}{23}
+\@LN{1997}{23}
+\@LN{1998}{23}
+\@LN{1999}{23}
+\@LN{2000}{23}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Empirical LLM confusion matrices overlaid on theoretical violation-rate curves (exposure, left; IV, right). Theoretical curves are derived from $K{=}3$ Dirichlet random matrices; empirical points are positioned at their minimum diagonal entry. Markers denote datasets (circles: HumAID $K{=}10$; squares: VAST $K{=}3$; triangles: CivilComments $K{=}2$).}}{24}{figure.caption.73}\protected@file@percent }
+\newlabel{fig:dirichlet_overlay}{{5}{24}{Empirical LLM confusion matrices overlaid on theoretical violation-rate curves (exposure, left; IV, right). Theoretical curves are derived from $K{=}3$ Dirichlet random matrices; empirical points are positioned at their minimum diagonal entry. Markers denote datasets (circles: HumAID $K{=}10$; squares: VAST $K{=}3$; triangles: CivilComments $K{=}2$)}{figure.caption.73}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Binarization collapse $\Delta $ across topologies. Collapsing $K{=}3$ annotations to binary introduces additional bias varying $>$150$\times $ from M-bias (0.006) to IV (0.926).}}{24}{figure.caption.74}\protected@file@percent }
+\newlabel{fig:binarization}{{6}{24}{Binarization collapse $\Delta $ across topologies. Collapsing $K{=}3$ annotations to binary introduces additional bias varying $>$150$\times $ from M-bias (0.006) to IV (0.926)}{figure.caption.74}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Proof of FWL Invariance}{24}{subsection.B.2}\protected@file@percent }
+\newlabel{app:fwl_proof}{{B.2}{24}{Proof of FWL Invariance}{subsection.B.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces ASV magnitude ranges across topologies for HumAID ($K{=}10$). Left: magnitude ASV ($\delta ^*$) range across 8 LLM configurations; lower values indicate greater fragility. ``Safe'' topologies never exceed the 10\% bias threshold. Right: percentage of configurations flagged as ASV-unsafe.}}{24}{figure.caption.75}\protected@file@percent }
+\newlabel{fig:asv_heatmap}{{7}{24}{ASV magnitude ranges across topologies for HumAID ($K{=}10$). Left: magnitude ASV ($\delta ^*$) range across 8 LLM configurations; lower values indicate greater fragility. ``Safe'' topologies never exceed the 10\% bias threshold. Right: percentage of configurations flagged as ASV-unsafe}{figure.caption.75}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RMSE reduction (\%) by correction method and DAG topology (mean across 6 error structures, $N_{\text  {sim}}{=}1{,}000$). Positive = reduced RMSE; negative = increased RMSE. Naive/MLA show 0.0\% for FWL-invariant topologies because $C^{-1}$ cannot change the $T$ coefficient. \textbf  {Bold}: best method per topology; \underline  {underline}: best gold-free method.}}{24}{table.caption.76}\protected@file@percent }
+\newlabel{tab:correction}{{5}{24}{RMSE reduction (\%) by correction method and DAG topology (mean across 6 error structures, $N_{\text {sim}}{=}1{,}000$). Positive = reduced RMSE; negative = increased RMSE. Naive/MLA show 0.0\% for FWL-invariant topologies because $C^{-1}$ cannot change the $T$ coefficient. \textbf {Bold}: best method per topology; \underline {underline}: best gold-free method}{table.caption.76}{}}
+\newlabel{sec:fwl_logistic}{{B.2}{24}{FWL breakdown under logistic regression}{section*.78}{}}
+\@writefile{toc}{\contentsline {paragraph}{FWL breakdown under logistic regression.}{24}{section*.78}\protected@file@percent }
+\@LN{2001}{24}
+\@LN{2002}{24}
+\@LN{2003}{24}
+\@LN{2004}{24}
+\@LN{2005}{24}
+\@LN{2006}{24}
+\@LN{2007}{24}
+\@LN{2008}{24}
+\@LN{2009}{24}
+\@LN{2010}{24}
+\@LN{2011}{24}
+\@LN{2012}{24}
+\@LN{2013}{24}
+\@LN{2014}{24}
+\@LN{2015}{24}
+\@LN{2016}{24}
+\@LN{2017}{24}
+\@LN{2018}{24}
+\@LN{2019}{24}
+\@LN{2020}{24}
+\@LN{2021}{24}
+\@LN{2022}{24}
+\citation{lee_wood_doughty2024}
+\@LN{2023}{24}
+\@LN{2024}{24}
+\@LN{2025}{24}
+\@LN{2026}{24}
+\@LN{2027}{24}
+\@LN{2028}{24}
+\@LN{2029}{24}
+\@LN{2030}{24}
+\@LN{2031}{24}
+\@LN{2032}{24}
+\@LN{2033}{24}
+\@LN{2034}{24}
+\@LN{2035}{24}
+\@LN{2036}{24}
+\@LN{2037}{24}
+\@LN{2038}{24}
+\@LN{2039}{24}
+\@LN@col{2}
+\@LN{2040}{24}
+\@LN{2041}{24}
+\@LN{2042}{24}
+\@LN{2043}{24}
+\@LN{2044}{24}
+\@LN{2045}{24}
+\@LN{2046}{24}
+\@LN{2047}{24}
+\@LN{2048}{24}
+\@LN{2049}{24}
+\@LN{2050}{24}
+\@LN{2051}{24}
+\@LN{2052}{24}
+\@LN{2053}{24}
+\@LN{2054}{24}
+\@LN{2055}{24}
+\@LN{2056}{24}
+\@LN{2057}{24}
+\@LN{2058}{24}
+\@LN{2059}{24}
+\@LN{2060}{24}
+\@LN{2061}{24}
+\@LN{2062}{24}
+\@LN{2063}{24}
+\@LN{2064}{24}
+\@LN{2065}{24}
+\@LN{2066}{24}
+\@LN{2067}{24}
+\@LN{2068}{24}
+\@LN{2069}{24}
+\@LN{2070}{24}
+\@LN{2071}{24}
+\@LN{2072}{24}
+\@LN{2073}{24}
+\@LN{2074}{24}
+\@LN{2075}{24}
+\@LN{2076}{24}
+\@LN{2077}{24}
+\@LN{2078}{24}
+\@LN{2079}{24}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces FWL invariance under OLS vs. breakdown under logistic regression. $|\Delta |_{\max }=\max _m|\hat  \tau _{\mathrm  {corr}}^{(m)}-\hat  \tau _{\mathrm  {un}}^{(m)}|$ over 500 MC reps; bias reduction = $1-|\hat  \tau _{\mathrm  {corr}}-\tau _*|/|\hat  \tau _{\mathrm  {un}}-\tau _*|$. Confounding DAG, $K{=}3$, $N{=}10{,}000$.}}{25}{table.caption.79}\protected@file@percent }
+\newlabel{tab:fwl_logistic}{{6}{25}{FWL invariance under OLS vs. breakdown under logistic regression. $|\Delta |_{\max }=\max _m|\hat \tau _{\mathrm {corr}}^{(m)}-\hat \tau _{\mathrm {un}}^{(m)}|$ over 500 MC reps; bias reduction = $1-|\hat \tau _{\mathrm {corr}}-\tau _*|/|\hat \tau _{\mathrm {un}}-\tau _*|$. Confounding DAG, $K{=}3$, $N{=}10{,}000$}{table.caption.79}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Applied Illustration: ClinicalBERT Case Study}{25}{subsection.B.3}\protected@file@percent }
+\newlabel{app:case_study}{{B.3}{25}{Applied Illustration: ClinicalBERT Case Study}{subsection.B.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.4}IV Wald Estimator: Diagonal-Dominance Subspaces}{25}{subsection.B.4}\protected@file@percent }
+\newlabel{sec:iv_dirichlet_subspace}{{B.4}{25}{IV Wald Estimator: Diagonal-Dominance Subspaces}{subsection.B.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces IV Wald estimator bias by minimum-diagonal subspace ($K{=}3$, $\tau _{\text  {true}}{=}1.41$). Rates over 100{,}000 Dirichlet-truncated random $C$ per threshold.}}{25}{table.caption.80}\protected@file@percent }
+\newlabel{tab:iv_dirichlet_subspace}{{7}{25}{IV Wald estimator bias by minimum-diagonal subspace ($K{=}3$, $\tau _{\text {true}}{=}1.41$). Rates over 100{,}000 Dirichlet-truncated random $C$ per threshold}{table.caption.80}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.5}Non-Differential Misclassification Verification}{25}{subsection.B.5}\protected@file@percent }
+\newlabel{sec:nondiff_verify}{{B.5}{25}{Non-Differential Misclassification Verification}{subsection.B.5}{}}
+\@LN{2080}{25}
+\@LN{2081}{25}
+\@LN{2082}{25}
+\@LN{2083}{25}
+\@LN{2084}{25}
+\@LN{2085}{25}
+\@LN{2086}{25}
+\@LN{2087}{25}
+\@LN{2088}{25}
+\@LN{2089}{25}
+\@LN{2090}{25}
+\@LN{2091}{25}
+\@LN{2092}{25}
+\@LN{2093}{25}
+\@LN{2094}{25}
+\@LN{2095}{25}
+\@LN{2096}{25}
+\@LN{2097}{25}
+\@LN{2098}{25}
+\@LN{2099}{25}
+\@LN{2100}{25}
+\@LN{2101}{25}
+\@LN{2102}{25}
+\@LN{2103}{25}
+\@LN{2104}{25}
+\@LN{2105}{25}
+\@LN{2106}{25}
+\@LN{2107}{25}
+\@LN{2108}{25}
+\@LN{2109}{25}
+\@LN{2110}{25}
+\@LN{2111}{25}
+\@LN{2112}{25}
+\@LN{2113}{25}
+\@LN{2114}{25}
+\@LN{2115}{25}
+\@LN{2116}{25}
+\@LN{2117}{25}
+\@LN{2118}{25}
+\@LN{2119}{25}
+\@LN{2120}{25}
+\@LN{2121}{25}
+\@LN{2122}{25}
+\@LN{2123}{25}
+\@LN{2124}{25}
+\@LN{2125}{25}
+\@LN{2126}{25}
+\@LN{2127}{25}
+\@LN{2128}{25}
+\@LN{2129}{25}
+\@LN{2130}{25}
+\@LN@col{2}
+\@LN{2131}{25}
+\@LN{2132}{25}
+\@LN{2133}{25}
+\@LN{2134}{25}
+\@LN{2135}{25}
+\@LN{2136}{25}
+\@LN{2137}{25}
+\@LN{2138}{25}
+\@LN{2139}{25}
+\@LN{2140}{25}
+\@LN{2141}{25}
+\@LN{2142}{25}
+\@LN{2143}{25}
+\@LN{2144}{25}
+\@LN{2145}{25}
+\@LN{2146}{25}
+\@LN{2147}{25}
+\@LN{2148}{25}
+\@LN{2149}{25}
+\@LN{2150}{25}
+\@LN{2151}{25}
+\@LN{2152}{25}
+\@LN{2153}{25}
+\@LN{2154}{25}
+\@LN{2155}{25}
+\@LN{2156}{25}
+\@LN{2157}{25}
+\@LN{2158}{25}
+\@LN{2159}{25}
+\@LN{2160}{25}
+\@LN{2161}{25}
+\@LN{2162}{25}
+\@LN{2163}{25}
+\@LN{2164}{25}
+\@LN{2165}{25}
+\@LN{2166}{25}
+\@LN{2167}{25}
+\@LN{2168}{25}
+\@LN{2169}{25}
+\@LN{2170}{25}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.6}Non-Differential Assumption Stress Test}{26}{subsection.B.6}\protected@file@percent }
+\newlabel{sec:nondiff_stress}{{B.6}{26}{Non-Differential Assumption Stress Test}{subsection.B.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Effect of differential misclassification on bias violation rates (exposure DAG, $K{=}3$, $\min _k C_{kk} \geq 0.7$, $N{=}50{,}000$ MC samples per trial).}}{26}{table.caption.81}\protected@file@percent }
+\newlabel{tab:nondiff_stress}{{8}{26}{Effect of differential misclassification on bias violation rates (exposure DAG, $K{=}3$, $\min _k C_{kk} \geq 0.7$, $N{=}50{,}000$ MC samples per trial)}{table.caption.81}{}}
+\@writefile{toc}{\contentsline {paragraph}{Extended stress test.}{26}{section*.82}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structured violation models.}{26}{section*.84}\protected@file@percent }
+\@LN{2171}{26}
+\@LN{2172}{26}
+\@LN{2173}{26}
+\@LN{2174}{26}
+\@LN{2175}{26}
+\@LN{2176}{26}
+\@LN{2177}{26}
+\@LN{2178}{26}
+\@LN{2179}{26}
+\@LN{2180}{26}
+\@LN{2181}{26}
+\@LN{2182}{26}
+\@LN{2183}{26}
+\@LN{2184}{26}
+\@LN{2185}{26}
+\@LN{2186}{26}
+\@LN{2187}{26}
+\@LN{2188}{26}
+\@LN{2189}{26}
+\@LN{2190}{26}
+\@LN{2191}{26}
+\@LN{2192}{26}
+\@LN{2193}{26}
+\@LN{2194}{26}
+\@LN{2195}{26}
+\@LN{2196}{26}
+\@LN{2197}{26}
+\@LN{2198}{26}
+\@LN{2199}{26}
+\@LN{2200}{26}
+\@LN{2201}{26}
+\@LN{2202}{26}
+\@LN{2203}{26}
+\@LN{2204}{26}
+\@LN{2205}{26}
+\@LN{2206}{26}
+\@LN{2207}{26}
+\@LN{2208}{26}
+\@LN{2209}{26}
+\@LN{2210}{26}
+\@LN{2211}{26}
+\@LN{2212}{26}
+\@LN{2213}{26}
+\@LN{2214}{26}
+\@LN{2215}{26}
+\@LN{2216}{26}
+\@LN@col{2}
+\@LN{2217}{26}
+\@LN{2218}{26}
+\@LN{2219}{26}
+\@LN{2220}{26}
+\@LN{2221}{26}
+\@LN{2222}{26}
+\@LN{2223}{26}
+\@LN{2224}{26}
+\@LN{2225}{26}
+\@LN{2226}{26}
+\@LN{2227}{26}
+\@LN{2228}{26}
+\@LN{2229}{26}
+\@LN{2230}{26}
+\@LN{2231}{26}
+\@LN{2232}{26}
+\@LN{2233}{26}
+\@LN{2234}{26}
+\@LN{2235}{26}
+\@LN{2236}{26}
+\@LN{2237}{26}
+\@LN{2238}{26}
+\@LN{2239}{26}
+\@LN{2240}{26}
+\@LN{2241}{26}
+\@LN{2242}{26}
+\@LN{2243}{26}
+\@LN{2244}{26}
+\@LN{2245}{26}
+\@LN{2246}{26}
+\@LN{2247}{26}
+\@LN{2248}{26}
+\@LN{2249}{26}
+\@LN{2250}{26}
+\@LN{2251}{26}
+\@LN{2252}{26}
+\@LN{2253}{26}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.7}Robustness to Nonlinear DGP}{27}{subsection.B.7}\protected@file@percent }
+\newlabel{sec:logistic_dgp}{{B.7}{27}{Robustness to Nonlinear DGP}{subsection.B.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.8}Bootstrap Uncertainty of ASV}{27}{subsection.B.8}\protected@file@percent }
+\newlabel{sec:bootstrap_asv}{{B.8}{27}{Bootstrap Uncertainty of ASV}{subsection.B.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Bootstrap distribution of magnitude ASV $\delta ^*$ ($B{=}1{,}000$) for HumAID DeepSeek zero-shot ($K{=}10$). Dashed line: point estimate; shaded: 95\% CI.}}{27}{figure.caption.85}\protected@file@percent }
+\newlabel{fig:bootstrap_asv}{{8}{27}{Bootstrap distribution of magnitude ASV $\delta ^*$ ($B{=}1{,}000$) for HumAID DeepSeek zero-shot ($K{=}10$). Dashed line: point estimate; shaded: 95\% CI}{figure.caption.85}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.9}Cross-$K$ Robustness}{27}{subsection.B.9}\protected@file@percent }
+\newlabel{sec:cross_k_robustness}{{B.9}{27}{Cross-$K$ Robustness}{subsection.B.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.10}ASV Diagnostic Results}{27}{subsection.B.10}\protected@file@percent }
+\newlabel{sec:asv_diagnostics}{{B.10}{27}{ASV Diagnostic Results}{subsection.B.10}{}}
+\@LN{2254}{27}
+\@LN{2255}{27}
+\@LN{2256}{27}
+\@LN{2257}{27}
+\@LN{2258}{27}
+\@LN{2259}{27}
+\@LN{2260}{27}
+\@LN{2261}{27}
+\@LN{2262}{27}
+\@LN{2263}{27}
+\@LN{2264}{27}
+\@LN{2265}{27}
+\@LN{2266}{27}
+\@LN{2267}{27}
+\@LN{2268}{27}
+\@LN{2269}{27}
+\@LN{2270}{27}
+\@LN{2271}{27}
+\@LN{2272}{27}
+\@LN{2273}{27}
+\@LN{2274}{27}
+\@LN{2275}{27}
+\@LN{2276}{27}
+\@LN{2277}{27}
+\@LN{2278}{27}
+\@LN{2279}{27}
+\@LN{2280}{27}
+\@LN{2281}{27}
+\@LN{2282}{27}
+\@LN{2283}{27}
+\@LN{2284}{27}
+\@LN{2285}{27}
+\@LN{2286}{27}
+\@LN{2287}{27}
+\@LN{2288}{27}
+\@LN{2289}{27}
+\@LN{2290}{27}
+\@LN{2291}{27}
+\@LN{2292}{27}
+\@LN{2293}{27}
+\@LN{2294}{27}
+\@LN{2295}{27}
+\@LN{2296}{27}
+\@LN{2297}{27}
+\@LN{2298}{27}
+\@LN{2299}{27}
+\@LN{2300}{27}
+\@LN{2301}{27}
+\@LN{2302}{27}
+\@LN@col{2}
+\@LN{2303}{27}
+\@LN{2304}{27}
+\@LN{2305}{27}
+\@LN{2306}{27}
+\@LN{2307}{27}
+\@LN{2308}{27}
+\@LN{2309}{27}
+\@LN{2310}{27}
+\@LN{2311}{27}
+\@LN{2312}{27}
+\@LN{2313}{27}
+\@LN{2314}{27}
+\@LN{2315}{27}
+\@LN{2316}{27}
+\@LN{2317}{27}
+\@LN{2318}{27}
+\@LN{2319}{27}
+\@LN{2320}{27}
+\@LN{2321}{27}
+\@LN{2322}{27}
+\@LN{2323}{27}
+\@LN{2324}{27}
+\@LN{2325}{27}
+\@LN{2326}{27}
+\@LN{2327}{27}
+\@LN{2328}{27}
+\@LN{2329}{27}
+\@LN{2330}{27}
+\@LN{2331}{27}
+\@LN{2332}{27}
+\@LN{2333}{27}
+\@LN{2334}{27}
+\@LN{2335}{27}
+\@LN{2336}{27}
+\@LN{2337}{27}
+\@LN{2338}{27}
+\@LN{2339}{27}
+\@LN{2340}{27}
+\@LN{2341}{27}
+\@LN{2342}{27}
+\@LN{2343}{27}
+\@LN{2344}{27}
+\@LN{2345}{27}
+\@LN{2346}{27}
+\@LN{2347}{27}
+\@LN{2348}{27}
+\@LN{2349}{27}
+\@LN{2350}{27}
+\@LN{2351}{27}
+\@LN{2352}{27}
+\@LN{2353}{27}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.11}ASV Stability Across DGP Parameters}{28}{subsection.B.11}\protected@file@percent }
+\newlabel{sec:asv_stability}{{B.11}{28}{ASV Stability Across DGP Parameters}{subsection.B.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.12}Extended Conjecture Verification}{28}{subsection.B.12}\protected@file@percent }
+\newlabel{sec:conjecture_verify}{{B.12}{28}{Extended Conjecture Verification}{subsection.B.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{DGP parameter sensitivity.}{28}{section*.88}\protected@file@percent }
+\@LN{2354}{28}
+\@LN{2355}{28}
+\@LN{2356}{28}
+\@LN{2357}{28}
+\@LN{2358}{28}
+\@LN{2359}{28}
+\@LN{2360}{28}
+\@LN{2361}{28}
+\@LN{2362}{28}
+\@LN{2363}{28}
+\@LN{2364}{28}
+\@LN{2365}{28}
+\@LN{2366}{28}
+\@LN{2367}{28}
+\@LN{2368}{28}
+\@LN{2369}{28}
+\@LN{2370}{28}
+\@LN{2371}{28}
+\@LN{2372}{28}
+\@LN{2373}{28}
+\@LN{2374}{28}
+\@LN{2375}{28}
+\@LN{2376}{28}
+\@LN{2377}{28}
+\@LN{2378}{28}
+\@LN{2379}{28}
+\@LN{2380}{28}
+\@LN{2381}{28}
+\@LN{2382}{28}
+\@LN{2383}{28}
+\@LN{2384}{28}
+\@LN{2385}{28}
+\@LN{2386}{28}
+\@LN{2387}{28}
+\@LN{2388}{28}
+\@LN{2389}{28}
+\@LN{2390}{28}
+\@LN{2391}{28}
+\@LN{2392}{28}
+\@LN{2393}{28}
+\@LN{2394}{28}
+\@LN{2395}{28}
+\@LN{2396}{28}
+\@LN{2397}{28}
+\@LN{2398}{28}
+\@LN{2399}{28}
+\@LN{2400}{28}
+\@LN{2401}{28}
+\@LN{2402}{28}
+\@LN{2403}{28}
+\@LN@col{2}
+\@LN{2404}{28}
+\@LN{2405}{28}
+\@LN{2406}{28}
+\@LN{2407}{28}
+\@LN{2408}{28}
+\@LN{2409}{28}
+\@LN{2410}{28}
+\@LN{2411}{28}
+\@LN{2412}{28}
+\@LN{2413}{28}
+\@LN{2414}{28}
+\@LN{2415}{28}
+\@LN{2416}{28}
+\@LN{2417}{28}
+\@LN{2418}{28}
+\@LN{2419}{28}
+\@LN{2420}{28}
+\@LN{2421}{28}
+\@LN{2422}{28}
+\@LN{2423}{28}
+\@LN{2424}{28}
+\@LN{2425}{28}
+\@LN{2426}{28}
+\@LN{2427}{28}
+\@LN{2428}{28}
+\@LN{2429}{28}
+\@LN{2430}{28}
+\@LN{2431}{28}
+\@LN{2432}{28}
+\@LN{2433}{28}
+\@LN{2434}{28}
+\@LN{2435}{28}
+\@LN{2436}{28}
+\@LN{2437}{28}
+\@LN{2438}{28}
+\@LN{2439}{28}
+\@LN{2440}{28}
+\@LN{2441}{28}
+\@LN{2442}{28}
+\@LN{2443}{28}
+\@LN{2444}{28}
+\@LN{2445}{28}
+\@LN{2446}{28}
+\@LN{2447}{28}
+\@LN{2448}{28}
+\@LN{2449}{28}
+\@LN{2450}{28}
+\@LN{2451}{28}
+\@LN{2452}{28}
+\@LN{2453}{28}
+\@LN{2454}{28}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Effect-magnitude sensitivity.}{29}{section*.90}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.13}Proportional Effects Breakdown}{29}{subsection.B.13}\protected@file@percent }
+\newlabel{sec:proportional_effects}{{B.13}{29}{Proportional Effects Breakdown}{subsection.B.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.14}FWL Invariance Under Nonlinear Models}{29}{subsection.B.14}\protected@file@percent }
+\newlabel{sec:fwl_nonlinear}{{B.14}{29}{FWL Invariance Under Nonlinear Models}{subsection.B.14}{}}
+\@LN{2455}{29}
+\@LN{2456}{29}
+\@LN{2457}{29}
+\@LN{2458}{29}
+\@LN{2459}{29}
+\@LN{2460}{29}
+\@LN{2461}{29}
+\@LN{2462}{29}
+\@LN{2463}{29}
+\@LN{2464}{29}
+\@LN{2465}{29}
+\@LN{2466}{29}
+\@LN{2467}{29}
+\@LN{2468}{29}
+\@LN{2469}{29}
+\@LN{2470}{29}
+\@LN{2471}{29}
+\@LN{2472}{29}
+\@LN{2473}{29}
+\@LN{2474}{29}
+\@LN{2475}{29}
+\@LN{2476}{29}
+\@LN{2477}{29}
+\@LN{2478}{29}
+\@LN{2479}{29}
+\@LN{2480}{29}
+\@LN{2481}{29}
+\@LN{2482}{29}
+\@LN{2483}{29}
+\@LN{2484}{29}
+\@LN{2485}{29}
+\@LN{2486}{29}
+\@LN{2487}{29}
+\@LN{2488}{29}
+\@LN{2489}{29}
+\@LN{2490}{29}
+\@LN{2491}{29}
+\@LN{2492}{29}
+\@LN{2493}{29}
+\@LN{2494}{29}
+\@LN{2495}{29}
+\@LN{2496}{29}
+\@LN{2497}{29}
+\@LN{2498}{29}
+\@LN{2499}{29}
+\@LN{2500}{29}
+\@LN{2501}{29}
+\@LN{2502}{29}
+\@LN{2503}{29}
+\@LN{2504}{29}
+\@LN@col{2}
+\@LN{2505}{29}
+\@LN{2506}{29}
+\@LN{2507}{29}
+\@LN{2508}{29}
+\@LN{2509}{29}
+\@LN{2510}{29}
+\@LN{2511}{29}
+\@LN{2512}{29}
+\@LN{2513}{29}
+\@LN{2514}{29}
+\@LN{2515}{29}
+\@LN{2516}{29}
+\@LN{2517}{29}
+\@LN{2518}{29}
+\@LN{2519}{29}
+\@LN{2520}{29}
+\@LN{2521}{29}
+\@LN{2522}{29}
+\@LN{2523}{29}
+\@LN{2524}{29}
+\@LN{2525}{29}
+\@LN{2526}{29}
+\citation{egami_hinck_stewart_wei2023}
+\@LN{2527}{29}
+\@LN{2528}{29}
+\@LN{2529}{29}
+\@LN{2530}{29}
+\@LN{2531}{29}
+\@LN{2532}{29}
+\@LN{2533}{29}
+\@LN{2534}{29}
+\@LN{2535}{29}
+\@LN{2536}{29}
+\@LN{2537}{29}
+\@LN{2538}{29}
+\@LN{2539}{29}
+\@LN{2540}{29}
+\@LN{2541}{29}
+\@LN{2542}{29}
+\@LN{2543}{29}
+\@LN{2544}{29}
+\@LN{2545}{29}
+\@LN{2546}{29}
+\@LN{2547}{29}
+\@LN{2548}{29}
+\@LN{2549}{29}
+\@LN{2550}{29}
+\@LN{2551}{29}
+\@LN{2552}{29}
+\@LN{2553}{29}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.15}PPI++ Gold Label Ratio Sensitivity}{30}{subsection.B.15}\protected@file@percent }
+\newlabel{sec:ppi_gold_ratio}{{B.15}{30}{PPI++ Gold Label Ratio Sensitivity}{subsection.B.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.16}Realistic Differential Misclassification Thresholds}{30}{subsection.B.16}\protected@file@percent }
+\newlabel{sec:realistic_epsilon}{{B.16}{30}{Realistic Differential Misclassification Thresholds}{subsection.B.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.17}Proportional Effects with Empirical Confusion Matrices}{30}{subsection.B.17}\protected@file@percent }
+\newlabel{sec:proportional_real_matrices}{{B.17}{30}{Proportional Effects with Empirical Confusion Matrices}{subsection.B.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.18}Case Study: ASV Diagnosis of Political Ad Tone Classification}{30}{subsection.B.18}\protected@file@percent }
+\newlabel{sec:asv_case_study}{{B.18}{30}{Case Study: ASV Diagnosis of Political Ad Tone Classification}{subsection.B.18}{}}
+\@LN{2554}{30}
+\@LN{2555}{30}
+\@LN{2556}{30}
+\@LN{2557}{30}
+\@LN{2558}{30}
+\@LN{2559}{30}
+\@LN{2560}{30}
+\@LN{2561}{30}
+\@LN{2562}{30}
+\@LN{2563}{30}
+\@LN{2564}{30}
+\@LN{2565}{30}
+\@LN{2566}{30}
+\@LN{2567}{30}
+\@LN{2568}{30}
+\@LN{2569}{30}
+\@LN{2570}{30}
+\@LN{2571}{30}
+\@LN{2572}{30}
+\@LN{2573}{30}
+\@LN{2574}{30}
+\@LN{2575}{30}
+\@LN{2576}{30}
+\@LN{2577}{30}
+\@LN{2578}{30}
+\@LN{2579}{30}
+\@LN{2580}{30}
+\@LN{2581}{30}
+\@LN{2582}{30}
+\@LN{2583}{30}
+\@LN{2584}{30}
+\@LN{2585}{30}
+\@LN{2586}{30}
+\@LN{2587}{30}
+\@LN{2588}{30}
+\@LN{2589}{30}
+\@LN{2590}{30}
+\@LN{2591}{30}
+\@LN{2592}{30}
+\@LN{2593}{30}
+\@LN{2594}{30}
+\@LN{2595}{30}
+\@LN{2596}{30}
+\@LN{2597}{30}
+\@LN{2598}{30}
+\@LN{2599}{30}
+\@LN{2600}{30}
+\@LN{2601}{30}
+\@LN@col{2}
+\@LN{2602}{30}
+\@LN{2603}{30}
+\@LN{2604}{30}
+\@LN{2605}{30}
+\@LN{2606}{30}
+\@LN{2607}{30}
+\@LN{2608}{30}
+\@LN{2609}{30}
+\@LN{2610}{30}
+\@LN{2611}{30}
+\@LN{2612}{30}
+\@LN{2613}{30}
+\@LN{2614}{30}
+\@LN{2615}{30}
+\@LN{2616}{30}
+\@LN{2617}{30}
+\@LN{2618}{30}
+\@LN{2619}{30}
+\@LN{2620}{30}
+\@LN{2621}{30}
+\@LN{2622}{30}
+\@LN{2623}{30}
+\@LN{2624}{30}
+\@LN{2625}{30}
+\@LN{2626}{30}
+\@LN{2627}{30}
+\@LN{2628}{30}
+\@LN{2629}{30}
+\@LN{2630}{30}
+\@LN{2631}{30}
+\@LN{2632}{30}
+\@LN{2633}{30}
+\@LN{2634}{30}
+\@LN{2635}{30}
+\@LN{2636}{30}
+\@LN{2637}{30}
+\@LN{2638}{30}
+\@LN{2639}{30}
+\@LN{2640}{30}
+\@LN{2641}{30}
+\@LN{2642}{30}
+\@LN{2643}{30}
+\@LN{2644}{30}
+\@LN{2645}{30}
+\@LN{2646}{30}
+\@LN{2647}{30}
+\@LN{2648}{30}
+\@LN{2649}{30}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.19}End-to-End Demonstration}{31}{subsection.B.19}\protected@file@percent }
+\newlabel{sec:e2e_demo}{{B.19}{31}{End-to-End Demonstration}{subsection.B.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.20}Semi-Real Case Study with Production LLM Confusion Matrices}{31}{subsection.B.20}\protected@file@percent }
+\newlabel{sec:real_cm_demo}{{B.20}{31}{Semi-Real Case Study with Production LLM Confusion Matrices}{subsection.B.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.21}Correction Method Sensitivity to $K$}{31}{subsection.B.21}\protected@file@percent }
+\newlabel{sec:correction_k_sensitivity}{{B.21}{31}{Correction Method Sensitivity to $K$}{subsection.B.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grand ranking stability.}{31}{section*.99}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Method-specific patterns.}{31}{section*.100}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.22}Comparison with Related Sensitivity Frameworks}{31}{subsection.B.22}\protected@file@percent }
+\newlabel{sec:sensitivity_comparison}{{B.22}{31}{Comparison with Related Sensitivity Frameworks}{subsection.B.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.23}Per-Topology $F_1$--Bias Correlation}{31}{subsection.B.23}\protected@file@percent }
+\newlabel{sec:within_topo_f1}{{B.23}{31}{Per-Topology $F_1$--Bias Correlation}{subsection.B.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.24}Confusion Matrix Estimation Robustness}{31}{subsection.B.24}\protected@file@percent }
+\newlabel{sec:c_robustness}{{B.24}{31}{Confusion Matrix Estimation Robustness}{subsection.B.24}{}}
+\@LN{2650}{31}
+\@LN{2651}{31}
+\@LN{2652}{31}
+\@LN{2653}{31}
+\@LN{2654}{31}
+\@LN{2655}{31}
+\@LN{2656}{31}
+\@LN{2657}{31}
+\@LN{2658}{31}
+\@LN{2659}{31}
+\@LN{2660}{31}
+\@LN{2661}{31}
+\@LN{2662}{31}
+\@LN{2663}{31}
+\@LN{2664}{31}
+\@LN{2665}{31}
+\@LN{2666}{31}
+\@LN{2667}{31}
+\@LN{2668}{31}
+\@LN{2669}{31}
+\@LN{2670}{31}
+\@LN{2671}{31}
+\@LN{2672}{31}
+\@LN{2673}{31}
+\@LN{2674}{31}
+\@LN{2675}{31}
+\@LN{2676}{31}
+\@LN{2677}{31}
+\@LN{2678}{31}
+\@LN{2679}{31}
+\@LN{2680}{31}
+\@LN{2681}{31}
+\@LN{2682}{31}
+\@LN{2683}{31}
+\@LN{2684}{31}
+\@LN{2685}{31}
+\@LN{2686}{31}
+\@LN{2687}{31}
+\@LN{2688}{31}
+\@LN{2689}{31}
+\@LN{2690}{31}
+\@LN{2691}{31}
+\@LN{2692}{31}
+\@LN{2693}{31}
+\@LN{2694}{31}
+\@LN{2695}{31}
+\@LN{2696}{31}
+\@LN{2697}{31}
+\@LN{2698}{31}
+\@LN{2699}{31}
+\@LN@col{2}
+\@LN{2700}{31}
+\@LN{2701}{31}
+\@LN{2702}{31}
+\@LN{2703}{31}
+\@LN{2704}{31}
+\@LN{2705}{31}
+\@LN{2706}{31}
+\@LN{2707}{31}
+\@LN{2708}{31}
+\@LN{2709}{31}
+\@LN{2710}{31}
+\@LN{2711}{31}
+\@LN{2712}{31}
+\@LN{2713}{31}
+\@LN{2714}{31}
+\@LN{2715}{31}
+\@LN{2716}{31}
+\@LN{2717}{31}
+\@LN{2718}{31}
+\@LN{2719}{31}
+\@LN{2720}{31}
+\@LN{2721}{31}
+\@LN{2722}{31}
+\@LN{2723}{31}
+\@LN{2724}{31}
+\@LN{2725}{31}
+\@LN{2726}{31}
+\@LN{2727}{31}
+\@LN{2728}{31}
+\@LN{2729}{31}
+\@LN{2730}{31}
+\@LN{2731}{31}
+\@LN{2732}{31}
+\@LN{2733}{31}
+\@LN{2734}{31}
+\@LN{2735}{31}
+\@LN{2736}{31}
+\@LN{2737}{31}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.25}Sign Reversal Determinants}{32}{subsection.B.25}\protected@file@percent }
+\newlabel{sec:sign_determinants}{{B.25}{32}{Sign Reversal Determinants}{subsection.B.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.26}Y-Stratified Non-Differential Verification}{32}{subsection.B.26}\protected@file@percent }
+\newlabel{sec:y_stratified_test}{{B.26}{32}{Y-Stratified Non-Differential Verification}{subsection.B.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Notation}{32}{appendix.C}\protected@file@percent }
+\newlabel{app:notation_table}{{C}{32}{Notation}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Use of AI Assistants}{32}{appendix.D}\protected@file@percent }
+\newlabel{app:ai-assistants}{{D}{32}{Use of AI Assistants}{appendix.D}{}}
+\@LN@col{1}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Correction method selection for LLM-annotated causal inference. This topology-based classification is robust to $\varepsilon $-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\varepsilon $-approximate bounds (Conjecture~\ref {conj:monotone}, Section~\ref {sec:asv}). Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\ref {sec:logistic_dgp}). Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions.}}{33}{algorithm.1}\protected@file@percent }
+\newlabel{alg:correction}{{1}{33}{Correction method selection for LLM-annotated causal inference. This topology-based classification is robust to $\varepsilon $-approximate deviations; practitioners computing quantitative ASV thresholds should note the $\varepsilon $-approximate bounds (Conjecture~\ref {conj:monotone}, Section~\ref {sec:asv}). Assumes linear structural equations; FWL-based routing may not apply under nonlinear models (see Appendix~\ref {sec:logistic_dgp}). Thresholds calibrated for $K{=}3$ linear SEM; recalibrate for different $K$ using topology-specific bias functions}{algorithm.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Non-differential misclassification stress test: sign flip rate (SF) and mean bias ratio (BR\,$=\overline  {|\hat  \tau /\tau |}$) under increasing differential departure $\varepsilon $.}}{34}{table.caption.83}\protected@file@percent }
+\newlabel{tab:stress-test}{{9}{34}{Non-differential misclassification stress test: sign flip rate (SF) and mean bias ratio (BR\,$=\overline {|\hat \tau /\tau |}$) under increasing differential departure $\varepsilon $}{table.caption.83}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces ASV stability across DGP configurations. Each cell shows $\delta ^*$ at the 10\% relative bias threshold (median over 5 confusion matrices with diagonal $\in \{0.5,0.6,0.7,0.8,0.9\}$). Lower $\delta ^*$ indicates greater fragility. Confounding is consistently most robust; for alternating-sign $\boldsymbol  {\beta }$, the ranking Exposure $<$ IV $<$ Confounding holds. ``$\infty $\!\!'' = threshold never reached within $\delta $ range.}}{35}{table.caption.86}\protected@file@percent }
+\newlabel{tab:asv_stability}{{10}{35}{ASV stability across DGP configurations. Each cell shows $\delta ^*$ at the 10\% relative bias threshold (median over 5 confusion matrices with diagonal $\in \{0.5,0.6,0.7,0.8,0.9\}$). Lower $\delta ^*$ indicates greater fragility. Confounding is consistently most robust; for alternating-sign $\boldsymbol {\beta }$, the ranking Exposure $<$ IV $<$ Confounding holds. ``$\infty $\!\!'' = threshold never reached within $\delta $ range}{table.caption.86}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Envelope monotonicity violations per 10{,}000 random $C_0$ matrices ($\delta $ step $= 0.01$). ``Worst mag.''\ is the largest single-step deviation $|B(\delta _{i+1})|-|B(\delta _i)|$ in the non-monotonic direction. $^*$100{,}000 matrices at step $= 0.005$ yield exposure $\varepsilon = 0.075$.}}{35}{table.caption.87}\protected@file@percent }
+\newlabel{tab:conjecture_verify}{{11}{35}{Envelope monotonicity violations per 10{,}000 random $C_0$ matrices ($\delta $ step $= 0.01$). ``Worst mag.''\ is the largest single-step deviation $|B(\delta _{i+1})|-|B(\delta _i)|$ in the non-monotonic direction. $^*$100{,}000 matrices at step $= 0.005$ yield exposure $\varepsilon = 0.075$}{table.caption.87}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces $\varepsilon \equiv \max _\delta (|B(\delta {+}\Delta )|{-}|B(\delta )|)/|\tau _{\text  {true}}|$ in the non-monotonic direction (max over $K \in \{3,5,7\}$; 10{,}000 random $C_0$ per cell). Bold marks $\varepsilon > 0.02$ (non-exposure) or $\varepsilon > 0.08$ (exposure). Counts in parentheses are violations / 30{,}000. Tables~\ref {tab:conjecture_verify} and~\ref {tab:conjecture_tau_sens} use independent random seeds; for topologies with low violation rates (exposure $<$0.02\%), the worst-case $\varepsilon $ is sample-sensitive.}}{35}{table.caption.89}\protected@file@percent }
+\newlabel{tab:conjecture_tau_sens}{{12}{35}{$\varepsilon \equiv \max _\delta (|B(\delta {+}\Delta )|{-}|B(\delta )|)/|\tau _{\text {true}}|$ in the non-monotonic direction (max over $K \in \{3,5,7\}$; 10{,}000 random $C_0$ per cell). Bold marks $\varepsilon > 0.02$ (non-exposure) or $\varepsilon > 0.08$ (exposure). Counts in parentheses are violations / 30{,}000. Tables~\ref {tab:conjecture_verify} and~\ref {tab:conjecture_tau_sens} use independent random seeds; for topologies with low violation rates (exposure $<$0.02\%), the worst-case $\varepsilon $ is sample-sensitive}{table.caption.89}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Conjecture~1 DGP sensitivity: worst-case $\varepsilon _{\text  {rel}} = \max _{C_0} (\text  {wrong-direction step})/|\tau _{\text  {true}}|$ across 5 effect magnitudes $\beta $, 3 noise variances $\sigma ^2$, and 7 topologies ($K{=}3$, 10{,}000 Dirichlet$(1,\ldots  ,1)$ matrices per cell). $\varepsilon $ scales approximately linearly with $|\beta |$ for non-exposure topologies; the safe/fragile partition is stable across all cells.}}{35}{table.caption.91}\protected@file@percent }
+\newlabel{tab:dgp_sensitivity}{{13}{35}{Conjecture~1 DGP sensitivity: worst-case $\varepsilon _{\text {rel}} = \max _{C_0} (\text {wrong-direction step})/|\tau _{\text {true}}|$ across 5 effect magnitudes $\beta $, 3 noise variances $\sigma ^2$, and 7 topologies ($K{=}3$, 10{,}000 Dirichlet$(1,\ldots ,1)$ matrices per cell). $\varepsilon $ scales approximately linearly with $|\beta |$ for non-exposure topologies; the safe/fragile partition is stable across all cells}{table.caption.91}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces $\lambda (C)$ out-of-bounds rate and mediation sign failure rate by degree of departure from proportional effects ($K{=}3$, 100K random confusion matrices per row).}}{35}{table.caption.92}\protected@file@percent }
+\newlabel{tab:proportional_effects}{{14}{35}{$\lambda (C)$ out-of-bounds rate and mediation sign failure rate by degree of departure from proportional effects ($K{=}3$, 100K random confusion matrices per row)}{table.caption.92}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Mean logistic bias reduction (\%) from matrix-based correction, by topology and error level (averaged over $N \in \{1K, 5K, 10K, 50K\}$; 200 MC reps each). Under linear OLS, all covariate topologies yield exactly 0\%. Exposure is shown for comparison.}}{35}{table.caption.93}\protected@file@percent }
+\newlabel{tab:fwl_nonlinear}{{15}{35}{Mean logistic bias reduction (\%) from matrix-based correction, by topology and error level (averaged over $N \in \{1K, 5K, 10K, 50K\}$; 200 MC reps each). Under linear OLS, all covariate topologies yield exactly 0\%. Exposure is shown for comparison}{table.caption.93}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces PPI++ RMSE reduction (\%) vs.\ gold label fraction across five topologies. Negative values indicate PPI++ increases RMSE relative to the naive estimator.}}{35}{table.caption.94}\protected@file@percent }
+\newlabel{tab:ppi_gold_ratio}{{16}{35}{PPI++ RMSE reduction (\%) vs.\ gold label fraction across five topologies. Negative values indicate PPI++ increases RMSE relative to the naive estimator}{table.caption.94}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Safe differential misclassification thresholds $\varepsilon ^*_{\text  {safe}}$ by dataset/K. For $K{=}2$ (binary), no configuration produces sign reversal up to $\varepsilon {=}0.50$. For $K{\geq }3$, the majority of configurations are fragile ($\varepsilon ^*_{\text  {safe}}{=}0$), confirming that the non-differential assumption is load-bearing for multi-class exposure.}}{36}{table.caption.95}\protected@file@percent }
+\newlabel{tab:realistic_epsilon}{{17}{36}{Safe differential misclassification thresholds $\varepsilon ^*_{\text {safe}}$ by dataset/K. For $K{=}2$ (binary), no configuration produces sign reversal up to $\varepsilon {=}0.50$. For $K{\geq }3$, the majority of configurations are fragile ($\varepsilon ^*_{\text {safe}}{=}0$), confirming that the non-differential assumption is load-bearing for multi-class exposure}{table.caption.95}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Proportional effects validation with 23 real LLM confusion matrices under mediation DGP. $\lambda (C) \in [0,1]$: proportion satisfying the Theorem~\ref {thm:monotone} bound. Sign pres.: sign preservation rate of the direct effect estimate.}}{36}{table.caption.96}\protected@file@percent }
+\newlabel{tab:proportional_empirical}{{18}{36}{Proportional effects validation with 23 real LLM confusion matrices under mediation DGP. $\lambda (C) \in [0,1]$: proportion satisfying the Theorem~\ref {thm:monotone} bound. Sign pres.: sign preservation rate of the direct effect estimate}{table.caption.96}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces End-to-end demo over 100 replicates (N=10,000, K=3, 20\% gold). Confounding: plug-in corrections leave the treatment coefficient unchanged (FWL invariance), so Algorithm~1 routes to ``no correction''. Exposure: PPI++ recovers the target coefficient. IV: Wald estimator instability produces large bias; PPI++ (OLS-based) is limited, routing to MC-SIMEX.}}{36}{table.caption.97}\protected@file@percent }
+\newlabel{tab:e2e-demo}{{19}{36}{End-to-end demo over 100 replicates (N=10,000, K=3, 20\% gold). Confounding: plug-in corrections leave the treatment coefficient unchanged (FWL invariance), so Algorithm~1 routes to ``no correction''. Exposure: PPI++ recovers the target coefficient. IV: Wald estimator instability produces large bias; PPI++ (OLS-based) is limited, routing to MC-SIMEX}{table.caption.97}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Semi-real case study with VAST K=3 confusion matrices from 10 LLM configurations. Bias is relative to true $\tau $. Exposure: PPI++ substantially reduces bias. Confounding: plug-in correction is ineffective (FWL invariance).}}{36}{table.caption.98}\protected@file@percent }
+\newlabel{tab:e2e-real-cm}{{20}{36}{Semi-real case study with VAST K=3 confusion matrices from 10 LLM configurations. Bias is relative to true $\tau $. Exposure: PPI++ substantially reduces bias. Confounding: plug-in correction is ineffective (FWL invariance)}{table.caption.98}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Top correction method and RMSE reduction (\%) by topology across $K$. Bold = top method for that topology--$K$ combination.}}{36}{table.caption.101}\protected@file@percent }
+\newlabel{tab:correction_k}{{21}{36}{Top correction method and RMSE reduction (\%) by topology across $K$. Bold = top method for that topology--$K$ combination}{table.caption.101}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Comparison of sensitivity frameworks.}}{36}{table.caption.102}\protected@file@percent }
+\newlabel{tab:sensitivity_comparison}{{22}{36}{Comparison of sensitivity frameworks}{table.caption.102}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Within-topology Spearman $\rho (F_1, |\text  {bias}|)$ across 23 empirical LLM configurations $\times $ 3 datasets. Negative $\rho $: higher $F_1$ $\to $ lower bias (expected). Positive $\rho $: higher $F_1$ $\to $ higher bias (protective attenuation removed).}}{36}{table.caption.103}\protected@file@percent }
+\newlabel{tab:within_topo_f1}{{23}{36}{Within-topology Spearman $\rho (F_1, |\text {bias}|)$ across 23 empirical LLM configurations $\times $ 3 datasets. Negative $\rho $: higher $F_1$ $\to $ lower bias (expected). Positive $\rho $: higher $F_1$ $\to $ higher bias (protective attenuation removed)}{table.caption.103}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces $\hat  {C}$ estimation robustness: safe/fragile partition stability and ASV ranking correlation (Spearman $\rho $ vs.\ true-$C$ ranking) under multinomial bootstrap from finite gold sets. 8 empirical matrices $\times $ 200 bootstrap replicates per $n_{\text  {gold}}$.}}{36}{table.caption.104}\protected@file@percent }
+\newlabel{tab:c_robustness}{{24}{36}{$\hat {C}$ estimation robustness: safe/fragile partition stability and ASV ranking correlation (Spearman $\rho $ vs.\ true-$C$ ranking) under multinomial bootstrap from finite gold sets. 8 empirical matrices $\times $ 200 bootstrap replicates per $n_{\text {gold}}$}{table.caption.104}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Sign reversal rates by $K$ and best single-feature decision rule. Rule: $\det (C) < 0.014 \to $ sign reversal (accuracy 91.3\%, sensitivity 85.7\%, specificity 100\%). An AND rule ($\min _k C_{kk} < 0.55$ and mean entropy $> 0.40$) achieves 95.7\% accuracy with 100\% sensitivity.}}{36}{table.caption.105}\protected@file@percent }
+\newlabel{tab:sign_determinants}{{25}{36}{Sign reversal rates by $K$ and best single-feature decision rule. Rule: $\det (C) < 0.014 \to $ sign reversal (accuracy 91.3\%, sensitivity 85.7\%, specificity 100\%). An AND rule ($\min _k C_{kk} < 0.55$ and mean entropy $> 0.40$) achieves 95.7\% accuracy with 100\% sensitivity}{table.caption.105}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Y-stratified non-differential test. Content-independent Y (text length) shows no significant violation (1/12 rejection $\approx $ expected false positive rate at $\alpha {=}0.05$). Content-dependent proxies (topic, sentiment) show expected violations since LLMs observe text content.}}{37}{table.caption.106}\protected@file@percent }
+\newlabel{tab:y_stratified}{{26}{37}{Y-stratified non-differential test. Content-independent Y (text length) shows no significant violation (1/12 rejection $\approx $ expected false positive rate at $\alpha {=}0.05$). Content-dependent proxies (topic, sentiment) show expected violations since LLMs observe text content}{table.caption.106}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces Key notation used throughout the paper.}}{37}{table.caption.107}\protected@file@percent }
+\newlabel{tab:notation}{{27}{37}{Key notation used throughout the paper}{table.caption.107}{}}
+\gdef \@abspage@last{37}

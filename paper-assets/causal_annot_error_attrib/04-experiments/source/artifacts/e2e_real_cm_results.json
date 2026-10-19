@@ -1,0 +1,510 @@
+{
+  "meta": {
+    "description": "Semi-real case study: confusion matrices estimated from production LLM annotation on VAST stance detection (K=3); DGP is controlled synthetic to isolate causal mechanism.",
+    "seed": 42,
+    "N": 10000,
+    "K": 3,
+    "gold_fraction": 0.2,
+    "n_reps": 100,
+    "n_vast_configs": 10,
+    "source_files": [
+      "plan011_frontier_cms.json",
+      "plan011_new_cms.json",
+      "plan011_new_cms_round2.json",
+      "plan011_new_cms_vast_qwen3_zs.json"
+    ],
+    "exposure_params": {
+      "p_A": [
+        0.4,
+        0.35,
+        0.25
+      ],
+      "beta": [
+        0.0,
+        1.0,
+        -0.5
+      ]
+    },
+    "confounding_params": {
+      "p_A": [
+        0.4,
+        0.35,
+        0.25
+      ],
+      "alpha": [
+        0.6,
+        -0.3
+      ],
+      "beta_A": [
+        0.8,
+        -0.4
+      ],
+      "beta_T": 0.5,
+      "sigma_T": 1.0
+    }
+  },
+  "vast_matrices": {
+    "vast_deepseek_few-shot-3": {
+      "C0": [
+        [
+          0.5139,
+          0.1017,
+          0.2888
+        ],
+        [
+          0.3212,
+          0.7985,
+          0.5498
+        ],
+        [
+          0.1649,
+          0.0998,
+          0.1614
+        ]
+      ],
+      "diagonal": [
+        0.5139,
+        0.7985,
+        0.1614
+      ],
+      "d_rel": 0.3014163669336166,
+      "accuracy": 0.4912666666666667
+    },
+    "vast_deepseek_few-shot-5": {
+      "C0": [
+        [
+          0.5268,
+          0.1149,
+          0.3068
+        ],
+        [
+          0.3105,
+          0.7853,
+          0.5398
+        ],
+        [
+          0.1627,
+          0.0998,
+          0.1534
+        ]
+      ],
+      "diagonal": [
+        0.5268,
+        0.7853,
+        0.1534
+      ],
+      "d_rel": 0.2952183454104202,
+      "accuracy": 0.4885
+    },
+    "vast_deepseek_zero-shot": {
+      "C0": [
+        [
+          0.5674518201284796,
+          0.11299435028248588,
+          0.3187250996015936
+        ],
+        [
+          0.29978586723768735,
+          0.8097928436911488,
+          0.5597609561752988
+        ],
+        [
+          0.13276231263383298,
+          0.07721280602636535,
+          0.12151394422310757
+        ]
+      ],
+      "diagonal": [
+        0.5674518201284796,
+        0.8097928436911488,
+        0.12151394422310757
+      ],
+      "d_rel": 0.3139466224364681,
+      "accuracy": 0.4995862026809119
+    },
+    "vast_llama4_few-shot-3": {
+      "C0": [
+        [
+          0.6595289079229122,
+          0.1807909604519774,
+          0.4043824701195219
+        ],
+        [
+          0.31263383297644537,
+          0.800376647834275,
+          0.5597609561752988
+        ],
+        [
+          0.027837259100642397,
+          0.018832391713747645,
+          0.035856573705179286
+        ]
+      ],
+      "diagonal": [
+        0.6595289079229122,
+        0.800376647834275,
+        0.035856573705179286
+      ],
+      "d_rel": 0.3661078064516667,
+      "accuracy": 0.4985873764874555
+    },
+    "vast_llama4_few-shot-5": {
+      "C0": [
+        [
+          0.6024096385542169,
+          0.125,
+          0.25
+        ],
+        [
+          0.3493975903614458,
+          0.8579545454545454,
+          0.5
+        ],
+        [
+          0.04819277108433735,
+          0.017045454545454544,
+          0.25
+        ]
+      ],
+      "diagonal": [
+        0.6024096385542169,
+        0.8579545454545454,
+        0.25
+      ],
+      "d_rel": 0.3169446515428141,
+      "accuracy": 0.5701213946695874
+    },
+    "vast_llama4_zero-shot": {
+      "C0": [
+        [
+          0.6781115879828327,
+          0.14393939393939395,
+          0.39641434262948205
+        ],
+        [
+          0.2982832618025751,
+          0.8409090909090909,
+          0.5577689243027888
+        ],
+        [
+          0.023605150214592276,
+          0.015151515151515152,
+          0.045816733067729085
+        ]
+      ],
+      "diagonal": [
+        0.6781115879828327,
+        0.8409090909090909,
+        0.045816733067729085
+      ],
+      "d_rel": 0.36167080161363896,
+      "accuracy": 0.5216124706532176
+    },
+    "vast_qwen2.5-7b_few-shot-3": {
+      "C0": [
+        [
+          0.4132762312633833,
+          0.08662900188323917,
+          0.22310756972111553
+        ],
+        [
+          0.44539614561027835,
+          0.8210922787193974,
+          0.651394422310757
+        ],
+        [
+          0.14132762312633834,
+          0.09227871939736347,
+          0.1254980079681275
+        ]
+      ],
+      "diagonal": [
+        0.4132762312633833,
+        0.8210922787193974,
+        0.1254980079681275
+      ],
+      "d_rel": 0.37782478203729547,
+      "accuracy": 0.4532888393169694
+    },
+    "vast_qwen2.5-7b_few-shot-5": {
+      "C0": [
+        [
+          0.4753747323340471,
+          0.1111111111111111,
+          0.2589641434262948
+        ],
+        [
+          0.39186295503211993,
+          0.775894538606403,
+          0.6155378486055777
+        ],
+        [
+          0.13276231263383298,
+          0.11299435028248588,
+          0.1254980079681275
+        ]
+      ],
+      "diagonal": [
+        0.4753747323340471,
+        0.775894538606403,
+        0.1254980079681275
+      ],
+      "d_rel": 0.3418446131208911,
+      "accuracy": 0.45892242630285923
+    },
+    "vast_qwen2.5-7b_zero-shot": {
+      "C0": [
+        [
+          0.4613733905579399,
+          0.07909604519774012,
+          0.2410358565737052
+        ],
+        [
+          0.4313304721030043,
+          0.847457627118644,
+          0.649402390438247
+        ],
+        [
+          0.1072961373390558,
+          0.07344632768361582,
+          0.10956175298804781
+        ]
+      ],
+      "diagonal": [
+        0.4613733905579399,
+        0.847457627118644,
+        0.10956175298804781
+      ],
+      "d_rel": 0.38094000989669663,
+      "accuracy": 0.47279759022154383
+    },
+    "vast_qwen3_zero-shot": {
+      "C0": [
+        [
+          0.6858974358974359,
+          0.16666666666666666,
+          0.40357852882703776
+        ],
+        [
+          0.23504273504273504,
+          0.7746212121212122,
+          0.5228628230616302
+        ],
+        [
+          0.07905982905982906,
+          0.058712121212121215,
+          0.073558648111332
+        ]
+      ],
+      "diagonal": [
+        0.6858974358974359,
+        0.7746212121212122,
+        0.073558648111332
+      ],
+      "d_rel": 0.31841053198441205,
+      "accuracy": 0.5113590987099933
+    }
+  },
+  "results": {
+    "exposure": {
+      "vast_deepseek_few-shot-3": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -61.288368066680285,
+        "naive_abs_bias": 0.6128836806668029,
+        "corrected_bias_pct": 0.12013377014955173,
+        "corrected_abs_bias": 0.03821748580409689,
+        "improvement_pct": 93.76431662162759,
+        "n_valid": 100
+      },
+      "vast_deepseek_few-shot-5": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -61.452035436746534,
+        "naive_abs_bias": 0.6145203543674653,
+        "corrected_bias_pct": -0.5003229272937275,
+        "corrected_abs_bias": 0.04078158127211144,
+        "improvement_pct": 93.36367282511114,
+        "n_valid": 100
+      },
+      "vast_deepseek_zero-shot": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -61.07259202025514,
+        "naive_abs_bias": 0.6107259202025515,
+        "corrected_bias_pct": -0.5398539228224082,
+        "corrected_abs_bias": 0.04027997352277544,
+        "improvement_pct": 93.40457442686953,
+        "n_valid": 100
+      },
+      "vast_llama4_few-shot-3": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -64.27374746233845,
+        "naive_abs_bias": 0.6427374746233845,
+        "corrected_bias_pct": 0.012149212675259147,
+        "corrected_abs_bias": 0.04098671307941678,
+        "improvement_pct": 93.62310201323905,
+        "n_valid": 100
+      },
+      "vast_llama4_few-shot-5": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -61.25125391753081,
+        "naive_abs_bias": 0.6125125391753081,
+        "corrected_bias_pct": 0.02257386004894013,
+        "corrected_abs_bias": 0.04055868759750988,
+        "improvement_pct": 93.3783090135398,
+        "n_valid": 100
+      },
+      "vast_llama4_zero-shot": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -59.34970806062964,
+        "naive_abs_bias": 0.5934970806062964,
+        "corrected_bias_pct": -0.21217316491034954,
+        "corrected_abs_bias": 0.038234961070908964,
+        "improvement_pct": 93.55768337868665,
+        "n_valid": 100
+      },
+      "vast_qwen2.5-7b_few-shot-3": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -68.92564160572736,
+        "naive_abs_bias": 0.6892564160572736,
+        "corrected_bias_pct": -0.5026742626395684,
+        "corrected_abs_bias": 0.03449824110172486,
+        "improvement_pct": 94.99486108536156,
+        "n_valid": 100
+      },
+      "vast_qwen2.5-7b_few-shot-5": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -68.68516421795374,
+        "naive_abs_bias": 0.6868516421795374,
+        "corrected_bias_pct": 0.285607208655951,
+        "corrected_abs_bias": 0.03990491103944442,
+        "improvement_pct": 94.19017025091226,
+        "n_valid": 100
+      },
+      "vast_qwen2.5-7b_zero-shot": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -65.48972845459132,
+        "naive_abs_bias": 0.6548972845459131,
+        "corrected_bias_pct": 0.25540407013403577,
+        "corrected_abs_bias": 0.043864294887160794,
+        "improvement_pct": 93.30211073976662,
+        "n_valid": 100
+      },
+      "vast_qwen3_zero-shot": {
+        "tau_true": 1.0,
+        "naive_bias_pct": -60.340903449463404,
+        "naive_abs_bias": 0.603409034494634,
+        "corrected_bias_pct": -0.4946808704009118,
+        "corrected_abs_bias": 0.03789309477135249,
+        "improvement_pct": 93.72016449785366,
+        "n_valid": 100
+      }
+    },
+    "confounding": {
+      "vast_deepseek_few-shot-3": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.49295692270334,
+        "naive_abs_bias": 0.1424647846135167,
+        "corrected_bias_pct": 28.49295692270342,
+        "corrected_abs_bias": 0.1424647846135171,
+        "improvement_pct": -2.886579864025407e-13,
+        "n_valid": 100
+      },
+      "vast_deepseek_few-shot-5": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.65947898890383,
+        "naive_abs_bias": 0.14329739494451915,
+        "corrected_bias_pct": 28.659478988903835,
+        "corrected_abs_bias": 0.14329739494451918,
+        "improvement_pct": -2.220446049250313e-14,
+        "n_valid": 100
+      },
+      "vast_deepseek_zero-shot": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.171442919103697,
+        "naive_abs_bias": 0.14085721459551848,
+        "corrected_bias_pct": 28.171442919103672,
+        "corrected_abs_bias": 0.14085721459551837,
+        "improvement_pct": 7.771561172376096e-14,
+        "n_valid": 100
+      },
+      "vast_llama4_few-shot-3": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.38959743891893,
+        "naive_abs_bias": 0.14194798719459464,
+        "corrected_bias_pct": 28.38959743891912,
+        "corrected_abs_bias": 0.14194798719459562,
+        "improvement_pct": -6.883382752675971e-13,
+        "n_valid": 100
+      },
+      "vast_llama4_few-shot-5": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 26.793902121184516,
+        "naive_abs_bias": 0.13396951060592258,
+        "corrected_bias_pct": 26.793902121184466,
+        "corrected_abs_bias": 0.13396951060592233,
+        "improvement_pct": 1.887379141862766e-13,
+        "n_valid": 100
+      },
+      "vast_llama4_zero-shot": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 27.85489786241327,
+        "naive_abs_bias": 0.13927448931206635,
+        "corrected_bias_pct": 27.854897862413292,
+        "corrected_abs_bias": 0.13927448931206646,
+        "improvement_pct": -8.881784197001252e-14,
+        "n_valid": 100
+      },
+      "vast_qwen2.5-7b_few-shot-3": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 29.326000728633243,
+        "naive_abs_bias": 0.14663000364316622,
+        "corrected_bias_pct": 29.32600072863326,
+        "corrected_abs_bias": 0.1466300036431663,
+        "improvement_pct": -6.661338147750939e-14,
+        "n_valid": 100
+      },
+      "vast_qwen2.5-7b_few-shot-5": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.992027497737986,
+        "naive_abs_bias": 0.14496013748868994,
+        "corrected_bias_pct": 28.992027497737926,
+        "corrected_abs_bias": 0.14496013748868963,
+        "improvement_pct": 2.1094237467877974e-13,
+        "n_valid": 100
+      },
+      "vast_qwen2.5-7b_zero-shot": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.69359429948685,
+        "naive_abs_bias": 0.14346797149743426,
+        "corrected_bias_pct": 28.693594299486904,
+        "corrected_abs_bias": 0.1434679714974345,
+        "improvement_pct": -1.7763568394002505e-13,
+        "n_valid": 100
+      },
+      "vast_qwen3_zero-shot": {
+        "tau_true": 0.5,
+        "naive_bias_pct": 28.164488846015896,
+        "naive_abs_bias": 0.14082244423007947,
+        "corrected_bias_pct": 28.164488846015985,
+        "corrected_abs_bias": 0.14082244423007992,
+        "improvement_pct": -3.1086244689504383e-13,
+        "n_valid": 100
+      }
+    }
+  },
+  "aggregate": {
+    "exposure": {
+      "median_improvement_pct": 93.59039269596285,
+      "min_improvement_pct": 93.30211073976662,
+      "max_improvement_pct": 94.99486108536156,
+      "mean_improvement_pct": 93.72989648529679,
+      "n_configs": 10
+    },
+    "confounding": {
+      "median_improvement_pct": -7.771561172376096e-14,
+      "min_improvement_pct": -6.883382752675971e-13,
+      "max_improvement_pct": 2.1094237467877974e-13,
+      "mean_improvement_pct": -1.1657341758564144e-13,
+      "n_configs": 10
+    }
+  }
+}

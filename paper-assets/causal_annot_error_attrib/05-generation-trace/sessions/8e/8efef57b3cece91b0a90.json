@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "8efef57b3cece91b0a90",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "ops plan011 check",
+  "task_key": "worker_ops_plan011_check_20260521T181532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_plan011_check_20260521T181532.jsonl",
+    "occurrence": 1,
+    "bytes": 165,
+    "sha256": "2f7bb376b1f284f0b42ac884a42d8ce098f6d21db6d15bc69eef7658db559039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:15:41.575226+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 2am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_plan011_check_20260521T181532"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-plan011-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44488db775f3796a7507",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "writing italic and formula cleanup",
+  "task_key": "worker_writing_italic_and_formula_cleanup_20260524T063512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_italic_and_formula_cleanup_20260524T063512_result.json",
+    "occurrence": 1,
+    "bytes": 1549,
+    "sha256": "e9dac098a1ba1d301f16dee5458208e0202732d99beadaf0cbdc279d406a34b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。0 errors, 0 undefined references, 36 pages（正文 8 页 + 附录）。\n\n---\n\n## 汇报\n\n### 1. 斜体修复清单\n\n| 文件:行号 | 修改 | 原因 |\n|---|---|---|\n| `appendix_proofs.tex:978` | `\\emph{confounding topology}` → `confounding topology` | \"confounding topology\" 在全文已出现数十次（method.tex、experiments.tex、附录多处），不是首次定义，属于重复强调 |\n\n其余所有 `\\emph{}` 和 `\\textit{}` 均为合法用途：\n- 证明步骤标题（Step 1:, Derivation., Sign analysis. 等）— 标准数学写作\n- 首次定义术语（starred-node, protective, immune, conditional indirect effect, component-wise diagonal dominance 等）\n- 命题标签（(a), (b), (c)）\n- 数学强调（all, constant, causes 等）— 强调普遍性/反直觉结果\n- 枚举配置标签（Diagonal-dominant, Moderate noise 等）\n- 关键结果强调（structure, vanishes, worsen 等）— 对比/反直觉语境\n\n### 2. 公式重复清理清单\n\n**无重复公式。** 附录中的方程使用与正文不同的数学形式：\n- `eq:plim_conf`（附录）用 FWL 标量形式 vs `eq:confounding`（正文）用矩阵形式\n- `eq:med_bias`（附录）用 Cov/Var 形式 vs `eq:mediation`（正文）用 λ(C) 参数化形式\n- 附录在需要引用正文公式时正确使用了 `\\ref{eq:xxx}`（如 line 445: \"Substituting back into~\\eqref{eq:mediation}\"）\n\n### 3. 编译结果\n\n- 0 errors\n- 0 undefined references\n- 36 pages（正文 8 页以内）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-italic-and-formula-cleanup.md"
+}

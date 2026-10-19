@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "259c5633ae81e36602cb",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "code e2e demo",
+  "task_key": "worker_code_e2e_demo_20260523T143128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_e2e_demo_20260523T143128.jsonl",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "2e86f4ba08b8c2f775eabbcd3bed759100c76d2c8f79a14cac7d5090b3afc582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T14:31:37.262480+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_e2e_demo_20260523T143128"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-e2e-demo.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "be4fa8d88c2ab7ab3eb7",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "analysis plan006 filter zero matrices",
+  "task_key": "worker_analysis_plan006_filter_zero_matrices_20260521T015919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_plan006_filter_zero_matrices_20260521T015919.jsonl",
+    "occurrence": 1,
+    "bytes": 193,
+    "sha256": "766ad1c821b66ac67cf50e55405f8b3447fb9ef5f3c82032e2fc0e84d39696f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T01:59:29.360760+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 2am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan006_filter_zero_matrices_20260521T015919"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-plan006-filter-zero-matrices.md"
+}

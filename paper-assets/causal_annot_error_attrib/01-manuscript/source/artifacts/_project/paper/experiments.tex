@@ -1,0 +1,160 @@
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate the multi-class bias taxonomy and ASV framework through analytical derivations validated by Monte Carlo simulation, covering seven canonical DAG topologies under $K{=}3$ non-differential misclassification.
+
+\subsection{Setup}
+\label{sec:setup}
+
+We study seven DAG topologies where annotation variable $A$ enters at structurally distinct positions: confounding, exposure, mediation, collider, M-bias, front-door, and instrumental variable (IV). For each topology, we sample $K{\times}K$ confusion matrices from a Dirichlet$(1,1,1)$ prior (each column independently), generating 100{,}000 random matrices per configuration. Each matrix defines a non-differential misclassification mechanism $C_{jk} = P(A^*{=}j \mid A{=}k)$.
+
+For every sampled $C$, we compute the analytical probability limit of the causal estimator and validate it against Monte Carlo simulation with $N{=}10{,}000$ samples per replication. ASV experiments use the parameterization $C(\delta) = (1{-}\delta)I + \delta C_0$, where $\delta{=}0$ recovers perfect classification and $\delta{=}1$ yields the reference matrix $C_0$.
+
+\subsection{Bias Taxonomy}
+\label{sec:taxonomy_results}
+
+\paragraph{Theory-MC agreement.}
+Analytical probability limits match Monte Carlo estimates with grand mean absolute percentage error (MAPE) of 2.0\% across 126 scenarios (18 empirical LLM configurations $\times$ 7 topologies, $N_{\text{MC}}{=}200$ replicates, $N{=}10{,}000$). Per-topology MAPE ranges from 0.5\% (confounding) to 5.5\% (IV); the IV maximum reflects finite-sample variance amplification in the Wald estimator's small denominator, consistent with known properties of the Wald ratio.
+
+\paragraph{Exposure DAG: catastrophic sign reversal.}
+Under the full Dirichlet$(1,1,1)$ prior, 85\% of $K{=}3$ confusion matrices produce bias that violates the binary ``toward-null'' guarantee. More critically, 83.4\% of matrices cause \emph{sign reversal} of at least one coefficient. The two failure modes are distinct: for a coefficient with true value $\beta_1{=}1.0$, a near-permutation $C$ produces $\hat{\gamma}_1{=}{-}0.84$ (sign reversal, magnitude $0.84{\times}$); for $\beta_2{=}{-}0.5$, the same $C$ yields $\hat{\gamma}_2{=}{-}1.41$ (same-sign amplification, $2.83{\times}$).
+
+This finding persists in practically relevant subspaces. When restricting to confusion matrices with diagonal entries $\geq 0.7$ (typical of current LLM classifiers achieving $F_1 > 0.8$), the violation rate remains 13.7\% with 2.1\% sign reversal and 11.7\% amplification. Even at diagonal $\geq 0.9$, violation persists at 11.9\%. In contrast, the $K{=}2$ control confirms that all six tested binary confusion matrices maintain the classical bias-toward-null guarantee~\cite{brenner1993}, establishing that the multi-class failure is structurally distinct from the binary case.
+
+\paragraph{Structural guarantee for non-exposure topologies.}
+Five of seven topologies exhibit a structural guarantee: $\tau$-specific sign flip rate equals exactly zero across all sampled confusion matrices (Table~\ref{tab:taxonomy}). Confounding, mediation, and front-door topologies show 100\% violation and amplification rates but never reverse the sign of the target causal parameter. Note that this zero sign-flip result for confounding is consistent with \citet{brenner1993} and \citet{dosemeci1990}, who showed that polytomous misclassification can bias \emph{away} from the null: their estimand compares the misclassified-adjusted estimate to the truth, whereas our sign-flip metric compares the misclassified-adjusted estimate to the unadjusted (omitted-variable) estimate. Amplification without sign reversal is expected under both definitions. Collider misclassification attenuates the spurious association induced by conditioning, providing a form of protection. M-bias shows the weakest sensitivity overall (53.2\% violation, 10.4\% amplification) because annotation error on a collider variable reduces, rather than amplifies, the spurious M-bias path.
+
+\paragraph{IV: Wald estimator instability.}
+The instrumental variable topology is the sole exception among non-exposure DAGs. The Wald estimator's first stage involves $C$ directly in the denominator, and 52.6\% of random confusion matrices cause the denominator to change sign, producing $\tau$-specific sign reversal. This rate remains stable across $K{=}3,5,7$, indicating that IV fragility is a structural property of the Wald estimator rather than a finite-$K$ artifact. Diagonal-dominance subspace analysis (Appendix~\ref{sec:iv_dirichlet_subspace}) reveals that IV sign reversal vanishes at diagonal $\geq 0.5$, but unlike exposure, the violation rate remains at 100\% (pure amplification) even at diagonal $\geq 0.9$.
+
+\paragraph{Cross-$K$ robustness.}
+Experiments at $K{=}5$ and $K{=}7$ (100{,}000 random matrices per topology) confirm that all structural patterns from $K{=}3$ persist. The sign-flip guarantee holds for the same five topologies, and IV sign-flip rates remain within 51--53\%. Worst-case bias magnitudes decrease modestly with $K$ for most topologies but increase for IV at low accuracy (worst case 14.0$\times$ at $K{=}3$ diagonal $\geq 0.5$).
+
+\begin{table}[t]
+\centering
+\caption{Bias characteristics of $K{=}3$ non-differential misclassification across 7 DAG topologies. Violation: $|\hat{\tau}| > |\tau|$; Sign flip: $\text{sign}(\hat{\tau}) \neq \text{sign}(\tau)$; Amplification: $|\hat{\tau}| > |\tau|$ with same sign. Rates computed over 100{,}000 Dirichlet$(1,1,1)$ random confusion matrices with $N{=}10{,}000$.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Topology} & \textbf{Violation} & \textbf{Sign Flip} & \textbf{Amplif.} & $\tau_{\text{sf}}{=}0$? \\
+\midrule
+Confounding & 100\% & 0\% & 100\% & \checkmark \\
+Exposure & 85\% & 83.4\% & 14.1\% & \ding{55} \\
+Mediation & 100\% & 0\% & 100\% & \checkmark \\
+Front-door & 100\% & 0\% & 100\% & \checkmark \\
+Collider & 100\% & 0\% & 100\% & \checkmark \\
+M-bias & 53.2\% & 0\% & 10.4\% & \checkmark \\
+IV & 100\% & 52.6\% & 100\% & \ding{55} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The bias distributions across topologies are visualized in Figure~\ref{fig:bias_distribution}, where the exposure panel's dominant red region (sign reversal) contrasts with the symmetric attenuation patterns of other topologies.
+
+\subsection{ASV Framework Validation}
+\label{sec:asv_results}
+
+\paragraph{Envelope monotonicity.}
+The ASV envelope (bias magnitude as a function of $\delta$) is monotonically non-decreasing for all seven topologies, with zero violations across all tested scenarios. This validates the theoretical monotonicity property and confirms that $\delta$ serves as a meaningful ``dial'' controlling annotation error severity.
+
+\paragraph{Magnitude ASV.}
+Table~\ref{tab:asv_grid} reports magnitude ASV ranges at $\tau{=}0.5$ with a 10\% bias threshold. The ranking from most fragile to most robust is: front-door (0.064--0.387) $<$ mediation (0.076--0.454) $<$ confounding (0.081--0.487) $<$ IV (0.101--0.607) $<$ collider (0.338--2.028) $<$ M-bias ($\infty$). The collider's high ASV reflects its protective nature: misclassification attenuates the spurious association rather than amplifying it. M-bias achieves infinite ASV because annotation error on the collider variable $A$ only reduces the already-small bias from the M-shaped confounding path.
+
+\paragraph{Significance power.}
+At $\tau{=}0.05$, the significance ASV filter achieves 100\% power for confounding, front-door, and M-bias (96--100\%). Power drops to 0\% for mediation, collider, and IV. For mediation and collider, this is correct behavior: these are attenuating topologies where the biased effect at small $\tau$ falls below the detection threshold $z_{\alpha/2} \cdot SE$, and the ASV filter correctly blocks all rejections. For IV, the Wald estimator is immediately fragile ($\text{signif\_ASV} \approx 0$), reflecting its extreme sensitivity to any annotation error. Type~I error is 0\% across all topologies.
+
+\paragraph{Sign-flip ASV.}
+For exposure, 83.4\% of reference matrices $C_0$ yield $\tau_{\text{sign\_flip}} < 1$, indicating catastrophic sensitivity to annotation error. For IV, sign-flip ASV ranges from 1.1 to 6.7, indicating moderate-to-high sensitivity depending on the reference matrix structure. All other topologies have undefined sign-flip ASV (no sign reversal is possible).
+
+The complete sensitivity ranking across ASV types is shown in Figure~\ref{fig:asv_ranking}, which reveals that different ASV types can yield different vulnerability orderings across topologies.
+
+\begin{table}[t]
+\centering
+\caption{ASV type applicability and sensitivity across DAG topologies. Magnitude ASV at $\tau{=}0.5$, 10\% threshold. Power at $\tau{=}0.05$ significance filter. \checkmark: effective and recommended; ($\checkmark$): applicable but less informative; ---: not applicable.}
+\label{tab:asv_grid}
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Topology} & \textbf{Mag. ASV} & \textbf{Signif.} & \textbf{Sign-flip} & \textbf{Rank} \\
+\midrule
+IV & 0.101--0.607 & 0\% & 1.1--6.7 & 1 (fragile) \\
+Front-door & 0.064--0.387 & 100\% & --- & 2 \\
+Confounding & 0.081--0.487 & 100\% & --- & 3 \\
+Mediation & 0.076--0.454 & 0\% & --- & 4 \\
+Collider & 0.338--2.028 & 0\% & --- & 5 \\
+M-bias & $\infty$ & 96--100\% & --- & 6 (immune) \\
+Exposure & --- & --- & 83.4\%$^*$ & --- \\
+\bottomrule
+\multicolumn{5}{l}{\scriptsize $^*$Fraction of $C_0$ with $\tau_{\text{sign\_flip}} < 1$. Exposure uses sign-flip ASV exclusively.}
+\end{tabular}
+\end{table}
+
+\subsection{$N$-Sensitivity}
+\label{sec:n_sensitivity}
+
+The significance ASV exhibits a sharp phase transition: for mediation at $\tau{=}0.05$, ASV-filtered power is exactly 0 for $N{\leq}5{,}000$ (blocking all rejections), then jumps to 1.0 at $N{=}10{,}000$. The critical sample size $N^* \approx 6{,}000$--$10{,}000$ is analytically computable, providing practitioners with a concrete minimum sample size for their topology and effect size.
+
+\subsection{Binarization Collapse}
+\label{sec:binarization}
+
+Collapsing $K{=}3$ annotations to binary introduces additional bias varying 147$\times$ across topologies: from $\bar{\Delta}{=}0.006$ (M-bias) to $\bar{\Delta}{=}0.926$ (IV). Exposure and IV also introduce sign flips during binarization (14\% and 17.5\%), a phenomenon absent in the other topologies. Full results are in Appendix~\ref{app:supplementary} (Figure~\ref{fig:binarization}).
+
+\subsection{Empirical Validation}
+\label{sec:empirical}
+
+We validate the theoretical framework using real LLM confusion matrices from three computational social science tasks spanning the full $K$ range: HumAID~\cite{alam2021humaid} ($K{=}10$, disaster response), VAST ($K{=}3$, stance detection), and CivilComments ($K{=}2$, toxicity). Four LLMs provide annotations: three frontier models (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) annotate HumAID via API under zero-shot and few-shot prompting (8 usable configurations; one excluded due to API failure), while Qwen2.5-7B-Instruct annotates VAST and CivilComments via local inference (3 configurations each), yielding 14 total configurations. Each produces a $K{\times}K$ confusion matrix plugged into the analytical bias expressions for all seven topologies (98 bias scenarios).
+
+\paragraph{HumAID ($K{=}10$): theory--practice alignment.}
+The empirical bias ranking matches the theoretical predictions. IV produces the largest bias (12.4--42.1\% relative bias), followed by exposure (9.0--17.4\%), mediation and front-door (10.7--14.8\%), while collider (4.1--5.6\%), confounding (4.9--6.2\%), and M-bias (5.1--6.5\%) remain below 10\%. This ordering is consistent with the ASV vulnerability spectrum from Section~\ref{sec:asv_results}.
+
+\paragraph{Cross-$K$ comparison.}
+Bias varies substantially across annotation settings: VAST ($K{=}3$) produces mean bias of 65.3\% with IV bias reaching 252.3\%, compared to 12.2\% mean bias and 30.3\% IV bias for HumAID ($K{=}10$), and CivilComments ($K{=}2$) exhibits 36.9\% mean bias with IV bias of 116.5\%. These differences reflect the combined effects of classification granularity ($K$), confusion matrix quality (diagonal dominance), and dataset difficulty; the three factors co-vary across datasets and cannot be attributed to $K$ alone. Nonetheless, even binary tasks with $F_1{=}0.72$--$0.75$ can produce catastrophic IV bias (101--131\%), confirming that classification accuracy does not predict downstream causal risk (Figure~\ref{fig:f1_vs_bias}).
+
+Zero sign reversals occur across all 98 bias scenarios ($14 \times 7$), confirming that the structural sign-flip guarantee is $K$-invariant.\footnote{Four additional valid frontier-model configurations for VAST (Llama-4-Maverick $\times 3$, DeepSeek-Chat $\times 1$) also exhibit zero sign flips, extending this result to 126 scenarios across 18 configurations.} Comparing model tiers, the 7B-to-235B bias ratio is 1.24, indicating that topology rather than model scale is the primary determinant of downstream bias.
+
+\emph{Caveat}: VAST and CivilComments use a 7B local model rather than frontier models, introducing model-tier asymmetry with HumAID. Additionally, VAST's confusion matrix exhibits near-degenerate structure (third-class recall $= 4.6\%$), which may disproportionately drive the extreme IV bias observed at $K{=}3$. These factors limit direct cross-dataset comparisons but do not affect the topology-dominance conclusion within each dataset.
+
+\paragraph{ASV diagnostic results.}
+For HumAID ($K{=}10$, 8 valid configurations $\times$ 7 topologies $=$ 56 scenarios), 55.4\% (31/56) are flagged as magnitude-ASV-unsafe, with magnitude ASV triggered for IV (8/8 configs, ASV $=$ 0.31--0.83), mediation (8/8, ASV $=$ 0.62--0.90), front-door (8/8, ASV $=$ 0.62--0.91), and exposure (7/8, ASV $=$ 0.65--1.11). Confounding, collider, and M-bias remain below the 10\% bias threshold across all configurations (Figure~\ref{fig:asv_heatmap}). For CivilComments ($K{=}2$), 100\% of scenarios (21/21) are ASV-unsafe despite $F_1{=}0.72$--$0.75$, underscoring that classification accuracy alone cannot guarantee downstream safety.
+
+\paragraph{Empirical confusion matrices on the theoretical landscape.}
+Figure~\ref{fig:dirichlet_overlay} overlays the 18 empirical confusion matrices onto the theoretical violation-rate curves from the Dirichlet subspace analysis. Each matrix is positioned at its minimum diagonal entry (a proxy for worst-class accuracy). VAST configurations ($K{=}3$, min-diagonal $\approx 0.11$--$0.13$) fall deep in the danger zone where both violation and sign-flip rates are high. HumAID ($K{=}10$, min-diagonal $\approx 0.29$--$0.43$) occupies the mid-range, while CivilComments ($K{=}2$, min-diagonal $\approx 0.68$--$0.74$) approaches the safe zone for exposure but remains in the IV amplification region. This visualization connects the theoretical Dirichlet analysis to the specific confusion matrices produced by current LLMs.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig7_dirichlet_overlay.pdf}
+\caption{Empirical LLM confusion matrices overlaid on theoretical violation-rate curves (exposure, left; IV, right). Theoretical curves are derived from $K{=}3$ Dirichlet random matrices; empirical points are positioned at their minimum diagonal entry. Markers denote datasets (circles: HumAID $K{=}10$; squares: VAST $K{=}3$; triangles: CivilComments $K{=}2$).}
+\label{fig:dirichlet_overlay}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig5_f1_vs_bias.pdf}
+\caption{Topology determines downstream causal bias, not $F_1$. Each point represents one LLM $\times$ topology combination from HumAID ($K{=}10$, 56 points). Within a narrow $F_1$ range (0.614--0.690), relative bias varies $10{\times}$: IV reaches 42.1\% while collider stays below 5.6\%. The $F_1$ disconnect persists across $K{=}2,3$ (see text).}
+\label{fig:f1_vs_bias}
+\end{figure}
+
+
+\subsection{Correction Guidance}
+\label{sec:correction}
+
+We evaluate five correction methods across all seven topologies under six error structures (210 configurations total): naive plug-in, maximum likelihood adjustment (MLA), design-based supervised learning (DSL)~\cite{egami_hinck_stewart_wei2023}, MC-SIMEX, and prediction-powered inference (PPI++)~\cite{angelopoulos2023}. Full per-topology results are in Table~\ref{tab:correction} and the decision procedure in Algorithm~\ref{alg:correction} (Appendix~\ref{app:supplementary}).
+
+\paragraph{FWL invariance.}
+For four topologies where $A$ enters as a covariate (confounding, mediation, collider, M-bias), the Frisch--Waugh--Lovell theorem implies that applying $C^{-1}$ to the dummy variables cannot change the $T$ coefficient. Naive plug-in and MLA achieve exactly 0.0\% bias reduction across these four topologies.
+
+\paragraph{Method ranking.}
+PPI++ achieves the highest grand-mean bias reduction (93.8\%) with nominal coverage (96.8\%), but requires gold-standard labels. MC-SIMEX provides moderate gold-free correction (20.9\%), serving as the only viable fallback for IV (64.7\% reduction). DSL corrects confounding (49.8\%) and mediation (70.3\%) but catastrophically amplifies bias for M-bias ($-$768\%). However, MC-SIMEX is harmful for front-door ($-$55.7\%) and exposure ($-$3.8\%), and should only be applied after topology identification. No single method dominates: correction effectiveness is itself topology-dependent.
+
+\paragraph{Empirical PPI++ validation.}
+We validate PPI++ on all 18 real LLM confusion matrices (126 scenarios) with 10\% gold-labeled data ($N{=}10{,}000$, $N_{\text{MC}}{=}50$ replicates). PPI++ achieves a grand-mean bias reduction of 96.2\%, consistent across $K$: 97.5\% ($K{=}2$), 96.4\% ($K{=}3$), and 95.5\% ($K{=}10$). Per-topology reduction ranges from 89.6\% (M-bias) to 100\% (IV, where $C^{-1}$ correction is exact by construction). The improvement over the simulated evaluation (93.8\%) reflects that real LLM confusion matrices tend to be more diagonally dominant than the synthetic error structures used in Table~\ref{tab:correction}.
+
+\paragraph{Applied illustration.}
+To demonstrate the framework's end-to-end utility, we apply it retrospectively to \citet{lee_wood_doughty2024}, who use ClinicalBERT to classify patient smoking status ($K{=}4$: never, past, current, unknown) from clinical notes and control for this predicted confounder when estimating the causal effect of echocardiography on mortality in 4{,}735 MIMIC-III sepsis patients.
+Our taxonomy identifies this as a \emph{confounding topology}: the annotated variable enters as a confounder between treatment and outcome.
+Three conclusions follow directly.
+First, the zero sign-flip guarantee for confounding (Table~\ref{tab:taxonomy}) ensures that the estimated protective effect (OR~$= 0.89$) cannot reverse direction due to annotation error---a reassurance unavailable without topology-specific analysis.
+Second, the FWL invariance result implies that any correction reducing to $C^{-1}$ applied to the dummy-coded confounder achieves exactly 0\% bias reduction for the treatment coefficient; naive plug-in is provably futile here.
+Third, our correction guidance ranks PPI++ (93.8\% bias reduction for confounding) above MC-SIMEX (20.9\%) when gold labels are available---a concrete recommendation the original study lacked.
+This example illustrates the intended workflow: DAG identification $\to$ topology-specific guarantees $\to$ correction method selection.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90a4327de3f8b250008f",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan005 iv magnitude fix",
+  "task_key": "worker_infra_plan005-iv-magnitude-fix_20260520T183544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan005-iv-magnitude-fix_20260520T183544_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "440e12e54a0ef0892435ec64a30598c1626420f5ed9d157301def582a68db9e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 当前 registry 值\n`plan005_asv_extended.metrics.asv_tau05.iv.magnitude_10pct` = **0**\n\n### 正确值（来自 plan005_fixed_run.log）\n\nIV magnitude_10pct at tau=0.5，6 个 C 结构：\n\n| C 结构 | magnitude_10pct |\n|--------|----------------|\n| IV_C1_sym | 0.3035 |\n| IV_C2_high | 0.6071 |\n| IV_C3_asym | 0.1881 |\n| IV_C4_weak | 0.1630 |\n| IV_C5_perm | 0.1012 |\n| IV_C6_diff | 0.3169 |\n\n范围：**0.101–0.607**\n\n注意：IV magnitude_10pct 在 tau=0.05/0.1/0.5 下数值相同（Wald 估计量的敏感性由分母驱动，与 tau 无关）。\n\n### 原因\nRegistry 是从原始（有 bug 的）运行填充的。原始运行中 IV tau_true 误设为 0.5（DGP 参数）而非 plim_iv(I)=0.6598，导致 magnitude ASV 计算返回 0.0。修复后的脚本 `plan_005_asv_extended_fixed.py` 输出了正确值。\n\n### 建议的 registry 更新\n\n**Path**: `plan005_asv_extended.metrics.asv_tau05.iv`\n\n**变更**:\n- 删除 `magnitude_10pct: 0`\n- 添加 `magnitude_10pct_range: \"0.101-0.607\"`（与 frontdoor 的 `magnitude_10pct_range` 字段格式一致）\n\n```yaml\n# Before\niv:\n  sign_flip_range: \"1.1-6.7\"\n  magnitude_10pct: 0\n\n# After\niv:\n  sign_flip_range: \"1.1-6.7\"\n  magnitude_10pct_range: \"0.101-0.607\"\n```\n\n需要我执行 `update_registry` 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan005-iv-magnitude-fix.md"
+}

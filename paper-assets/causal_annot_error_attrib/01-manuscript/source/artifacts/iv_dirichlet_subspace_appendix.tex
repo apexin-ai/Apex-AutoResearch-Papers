@@ -1,0 +1,91 @@
+% =====================================================================
+% IV topology Dirichlet subspace analysis
+% Source: artifacts/mvp_iv_dirichlet_subspace.py
+% Seed: 42, N=100,000 per threshold, K=3
+% =====================================================================
+
+\subsection{IV Wald Estimator: Diagonal-Dominance Subspaces}
+\label{sec:iv_dirichlet_subspace}
+
+Section~\ref{sec:taxonomy_results} reports a 52.6\% Wald sign-flip rate
+over the full Dirichlet$(1,1,1)$ prior. Because realistic LLM confusion
+matrices are diagonal-dominant, we replicate the exposure-DAG stratification
+of \S\ref{sec:taxonomy_results} for the IV topology, restricting the sample
+space to $\{C : \min_k C_{kk} \geq d\}$ for $d \in \{0, 0.5, 0.7, 0.9\}$.
+Sampling uses truncated Beta$(1,K{-}1)$ for each diagonal entry and a
+uniform split of the residual mass across off-diagonals, equivalent to
+Dirichlet$(1,1,1)$ per column conditioned on the diagonal constraint.
+
+The Wald probability limit under misclassification factors as
+\[
+\hat\tau_{\text{Wald}}(C)
+   \;=\; \frac{\mathrm{Cov}(Z,Y)/\mathrm{Var}(Z)}
+              {\bigl(C\,\mathrm{FS}\bigr)_{1}},
+\qquad
+\mathrm{FS}_k \;=\; \frac{\mathrm{Cov}(Z, D_k)}{\mathrm{Var}(Z)},
+\]
+where the reduced form ($\mathrm{RF}$) and first-stage vector
+$\mathrm{FS}$ are estimated from a 2{,}000{,}000-sample precomputation of
+\texttt{gen\_iv} with the default IV parameterization
+($\mathrm{d}_Z{=}(0,1,{-}0.5)$, $\mathrm{d}_U{=}(0,0.8,0.6)$,
+$\beta{=}(0,1,{-}0.5)$, $\lambda{=}1$); numerically,
+$\mathrm{RF}{=}0.3040$, $\mathrm{FS}{=}({-}0.0382,\,0.2154,\,{-}0.1772)$,
+$\tau_{\text{true}}{=}\mathrm{RF}/\mathrm{FS}_1{=}1.4114$.
+
+\paragraph{Subspace results.}
+Table~\ref{tab:iv_dirichlet_subspace} reports the violation, sign-flip,
+amplification, and worst-case severity over 100{,}000 random matrices per
+threshold. The full-space sign-flip rate replicates the 52.6\% headline
+within Monte-Carlo error (51.7\%). Critically, diagonal-dominance \emph{does
+not protect} the Wald estimator: the violation rate is 100\% at every
+$d \geq 0.5$, and the only effect of increasing $d$ is to convert sign
+flips into same-sign amplification.
+
+\begin{table}[t]
+\centering
+\caption{IV Wald estimator bias by minimum-diagonal subspace.
+Violation: $|\hat\tau| > |\tau|$.
+Sign flip: $\mathrm{sign}(\hat\tau) \neq \mathrm{sign}(\tau)$.
+Amplification: $|\hat\tau| > |\tau|$ with same sign (disjoint from sign flip).
+Worst severity: $\max |\hat\tau / \tau|$ conditional on violation.
+Rates over 100{,}000 Dirichlet-truncated random $C$ per threshold,
+$K{=}3$, $\tau_{\text{true}}{=}1.411$.}
+\label{tab:iv_dirichlet_subspace}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Subspace} & \textbf{Violation} & \textbf{Sign Flip} & \textbf{Amplif.} & \textbf{Worst} \\
+\midrule
+Full           & 100.0\% & 51.7\% & 48.3\% & $10^{5}\!\times$ \\
+$d \geq 0.5$   & 100.0\% & 0.0\%  & 100.0\% & $28.6\times$ \\
+$d \geq 0.7$   & 100.0\% & 0.0\%  & 100.0\% & $2.4\times$ \\
+$d \geq 0.9$   & 100.0\% & 0.0\%  & 100.0\% & $1.2\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Mechanism.}
+For the calibrated DGP, $\mathrm{FS}_1$ is the unique maximizer of
+$\mathrm{FS}$ over $k$. Any column-stochastic $C$ with $C_{11}<1$ replaces
+some of the first-stage signal on category~1 with a convex combination of
+the weaker (and oppositely-signed) signals on $k\in\{0,2\}$, so
+$(C\,\mathrm{FS})_1 < \mathrm{FS}_1$ almost surely. Because
+$\mathrm{RF}$ is invariant to $C$, the Wald ratio inflates monotonically as
+the denominator contracts. Sign flips occur precisely when the contraction
+overshoots zero. Diagonal-dominance bounds how close $(C\,\mathrm{FS})_1$
+can approach zero but does not bound it away from $\mathrm{FS}_1$;
+consequently amplification is unavoidable while sign reversal becomes
+infeasible for sufficiently large $d$. Numerically, the boundary sits
+near $d{\approx}0.5$: at this threshold, sign reversal has already
+disappeared but worst-case amplification still reaches $28.6\times$.
+
+\paragraph{Implications.}
+The qualitative diagonal-dominance argument that rescues the exposure DAG
+in the $d{\geq}0.7$ subspace (\S\ref{sec:taxonomy_results}) does not
+generalize to IV. Even at $d{\geq}0.9$---a high-accuracy regime that few
+LLM classifiers attain on three-way tasks---the Wald estimator amplifies
+$|\tau|$ with probability $\approx 1$, with a worst-case inflation of
+$1.24\times$. Researchers running Wald-style IV with annotated treatments
+should therefore (i) report the empirical $\min_k C_{kk}$ of their
+classifier, and (ii) treat any reported point estimate as an upper bound on
+$|\tau|$ unless they explicitly correct for misclassification.

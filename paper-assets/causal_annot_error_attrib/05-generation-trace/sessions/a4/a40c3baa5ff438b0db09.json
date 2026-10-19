@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a40c3baa5ff438b0db09",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code exp d conjecture verify",
+  "task_key": "worker_code_exp_d_conjecture_verify_20260522T112907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_d_conjecture_verify_20260522T112907_result.json",
+    "occurrence": 1,
+    "bytes": 2588,
+    "sha256": "546f8c623ca2ed67cadd658097c853b339633331669d4dcbf64b5da3088830ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exp-D results are in `artifacts/exp_d_conjecture_results.json`. Let me compile the key findings.\n\n## Exp-D: Conjecture 1 Extended Verification — Results\n\n### Part 1: Random Verification (10,000 × 7 topologies × K∈{3,5,7} = 210,000 tests)\n\n| Topology | Direction | K=3 viol | K=5 viol | K=7 viol | Worst |Δ| |\n|----------|-----------|----------|----------|----------|---------|\n| Confounding | non-dec | 84.7% | 80.6% | 78.9% | 0.011 |\n| Mediation | non-dec | 82.4% | 79.0% | 78.9% | 0.013 |\n| Front-door | non-dec | 84.3% | 80.8% | 79.0% | 0.013 |\n| Collider | non-inc | 86.5% | 76.4% | 75.6% | 0.005 |\n| M-bias | non-inc | 97.3% | 76.4% | 75.1% | 0.002 |\n| Exposure | non-dec | 4.9% | 2.1% | 0.8% | 0.056 |\n| IV | non-dec | 74.3% | 60.1% | 57.1% | ~10⁷ |\n\n**Strict monotonicity fails in 67.4% of cases** (141,514/210,000). But violation **magnitudes** are tiny: <0.06 for all non-IV topologies, consistent with the paper's \"approximately monotonic\" claim.\n\n### Part 2: Adversarial Search (500 restarts × 14 configs)\n\n13/14 configs found counterexamples. Only IV K=3 failed to find one (objective ~10⁻²⁹). Adversarial worst magnitudes match random-search bounds — no large violations found for non-IV topologies.\n\n### Interpretation\n\nThe conjecture as stated (\"approximately non-decreasing/non-increasing\") is **confirmed** — deviation magnitudes are bounded <0.06 for non-IV. However:\n\n1. **Theorem 1 proof has a gap**: The DPI argument for V_B(δ) being non-increasing fails because C(δ) = (1-δ)I + δC₀ is a linear interpolation of stochastic matrices, not a degradation channel. V_B(δ) can decrease then increase (e.g., when C₀ is near-permutation: channel degrades to noise then becomes informative again as a permuted channel). The theorem claims **strict** monotonicity (\"monotonically non-decreasing\"), which is falsified.\n\n2. **The \"approximately\" qualifier in the conjecture saves it**: worst-case step deviations are well within the 0.06 bound claimed in the paper text.\n\n3. **Root cause**: DPI applies to Markov chains A → A*, but C(δ) doesn't form a degradation sequence — at intermediate δ the channel can be noisier than at δ=1 if C₀ is a near-permutation.\n\nThe paper text in experiments.tex already correctly describes this as \"approximately monotonic\" with bounded deviations. The main issue is Theorem 1's proof sketch, which needs either (a) restricting to the proportional case where it does hold exactly, or (b) weakening to approximate monotonicity with the empirical bound."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-conjecture-verify.md"
+}

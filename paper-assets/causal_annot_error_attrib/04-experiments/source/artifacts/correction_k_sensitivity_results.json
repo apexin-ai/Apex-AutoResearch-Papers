@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "description": "Correction method ranking stability across K values",
+    "k_values": [
+      3,
+      5,
+      10
+    ],
+    "n_samples": 5000,
+    "n_reps": 100,
+    "n_confusion_matrices": 5,
+    "gold_fraction": 0.1,
+    "seed": 2026,
+    "topologies": [
+      "confounding",
+      "mediation",
+      "collider",
+      "exposure",
+      "mbias",
+      "iv",
+      "frontdoor"
+    ],
+    "methods": [
+      "ppi",
+      "naive_plugin",
+      "dsl",
+      "mcsimex",
+      "mla"
+    ]
+  },
+  "k_values": [
+    3,
+    5,
+    10
+  ],
+  "results": {
+    "K=3": {
+      "confounding": {
+        "ppi": 85.57,
+        "naive_plugin": -0.0,
+        "dsl": 28.08,
+        "mcsimex": 40.8,
+        "mla": 0.0
+      },
+      "mediation": {
+        "ppi": 57.08,
+        "naive_plugin": 0.0,
+        "dsl": 39.34,
+        "mcsimex": 50.69,
+        "mla": 0.0
+      },
+      "collider": {
+        "ppi": 51.38,
+        "naive_plugin": 0.0,
+        "dsl": -140.6,
+        "mcsimex": 55.44,
+        "mla": 0.0
+      },
+      "exposure": {
+        "ppi": 70.08,
+        "naive_plugin": -81.37,
+        "dsl": -164.2,
+        "mcsimex": 72.53,
+        "mla": -91.56
+      },
+      "mbias": {
+        "ppi": -75.19,
+        "naive_plugin": -0.0,
+        "dsl": -327.58,
+        "mcsimex": 3.17,
+        "mla": 0.0
+      },
+      "iv": {
+        "ppi": -15.47,
+        "naive_plugin": null,
+        "dsl": null,
+        "mcsimex": 30.9,
+        "mla": null
+      },
+      "frontdoor": {
+        "ppi": 82.91,
+        "naive_plugin": 0.0,
+        "dsl": 7.43,
+        "mcsimex": 45.09,
+        "mla": 0.0
+      }
+    },
+    "K=5": {
+      "confounding": {
+        "ppi": 76.43,
+        "naive_plugin": -0.0,
+        "dsl": -87.11,
+        "mcsimex": 64.88,
+        "mla": -0.0
+      },
+      "mediation": {
+        "ppi": 33.19,
+        "naive_plugin": 0.0,
+        "dsl": -27.69,
+        "mcsimex": 59.69,
+        "mla": 0.0
+      },
+      "collider": {
+        "ppi": 41.92,
+        "naive_plugin": 0.0,
+        "dsl": -38.48,
+        "mcsimex": 63.43,
+        "mla": 0.0
+      },
+      "exposure": {
+        "ppi": 29.27,
+        "naive_plugin": -141.52,
+        "dsl": -321.61,
+        "mcsimex": 64.96,
+        "mla": -132.72
+      },
+      "mbias": {
+        "ppi": 4.27,
+        "naive_plugin": -0.0,
+        "dsl": -177.6,
+        "mcsimex": 47.03,
+        "mla": 0.0
+      },
+      "iv": {
+        "ppi": -99.55,
+        "naive_plugin": null,
+        "dsl": null,
+        "mcsimex": 30.4,
+        "mla": null
+      },
+      "frontdoor": {
+        "ppi": 69.05,
+        "naive_plugin": -0.0,
+        "dsl": -66.29,
+        "mcsimex": 67.95,
+        "mla": 0.0
+      }
+    },
+    "K=10": {
+      "confounding": {
+        "ppi": 75.64,
+        "naive_plugin": -0.0,
+        "dsl": -19.48,
+        "mcsimex": 65.48,
+        "mla": -0.0
+      },
+      "mediation": {
+        "ppi": 8.98,
+        "naive_plugin": 0.0,
+        "dsl": -45.55,
+        "mcsimex": 58.96,
+        "mla": 0.0
+      },
+      "collider": {
+        "ppi": 16.88,
+        "naive_plugin": 0.0,
+        "dsl": -21.47,
+        "mcsimex": 57.3,
+        "mla": 0.0
+      },
+      "exposure": {
+        "ppi": -11.24,
+        "naive_plugin": -190.15,
+        "dsl": -287.93,
+        "mcsimex": 47.28,
+        "mla": -246.83
+      },
+      "mbias": {
+        "ppi": -6.68,
+        "naive_plugin": 0.0,
+        "dsl": -196.27,
+        "mcsimex": 43.74,
+        "mla": 0.0
+      },
+      "iv": {
+        "ppi": -124.15,
+        "naive_plugin": null,
+        "dsl": null,
+        "mcsimex": 27.09,
+        "mla": null
+      },
+      "frontdoor": {
+        "ppi": 60.2,
+        "naive_plugin": 0.0,
+        "dsl": -52.74,
+        "mcsimex": 70.09,
+        "mla": -0.0
+      }
+    }
+  },
+  "rank_stability": {
+    "K3_vs_K5_spearman": 0.8,
+    "K3_vs_K5_pvalue": 8.101406721570165e-09,
+    "K3_vs_K10_spearman": 0.8429,
+    "K3_vs_K10_pvalue": 2.1290541016347006e-10,
+    "K5_vs_K10_spearman": 0.9286,
+    "K5_vs_K10_pvalue": 9.22345077002382e-16,
+    "per_topology": {
+      "confounding": {
+        "K3_vs_K5": 1.0,
+        "K3_vs_K10": 1.0
+      },
+      "mediation": {
+        "K3_vs_K5": 0.8947,
+        "K3_vs_K10": 0.8947
+      },
+      "collider": {
+        "K3_vs_K5": 1.0,
+        "K3_vs_K10": 1.0
+      },
+      "exposure": {
+        "K3_vs_K5": 0.9,
+        "K3_vs_K10": 1.0
+      },
+      "mbias": {
+        "K3_vs_K5": 1.0,
+        "K3_vs_K10": 1.0
+      },
+      "iv": {
+        "K3_vs_K5": 1.0,
+        "K3_vs_K10": 1.0
+      },
+      "frontdoor": {
+        "K3_vs_K5": 1.0,
+        "K3_vs_K10": 0.8947
+      }
+    },
+    "stable": true
+  }
+}

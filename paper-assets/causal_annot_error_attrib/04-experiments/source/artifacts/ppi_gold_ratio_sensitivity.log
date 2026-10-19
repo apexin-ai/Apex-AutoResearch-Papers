@@ -1,0 +1,60 @@
+========================================================================
+PPI++ Gold Label Ratio Sensitivity
+========================================================================
+K=3, N=10000, n_reps=100, n_cms=5
+gold_fractions=[0.05, 0.1, 0.2, 0.5, 1.0]
+topologies=['exposure', 'confounding', 'iv', 'mediation']
+
+Computing tau_true for each topology (N=500k)...
+  exposure    : tau_true = +1.001004
+  confounding : tau_true = +1.999533
+  iv          : tau_true = +0.658326
+  mediation   : tau_true = +0.502042
+
+Sampling confusion matrices...
+  CM[0] diag = [0.818, 0.827, 0.896]
+  CM[1] diag = [0.711, 0.904, 0.965]
+  CM[2] diag = [0.756, 0.640, 0.919]
+  CM[3] diag = [0.666, 0.780, 0.949]
+  CM[4] diag = [0.671, 0.619, 0.934]
+
+--- Topology: exposure (tau_true=+1.0010) ---
+  gold=0.05  naive_rmse=0.36141  ppi_rmse=0.08958  reduction= +75.2%  [1/20, 5.9s]
+  gold=0.10  naive_rmse=0.36202  ppi_rmse=0.06132  reduction= +83.1%  [2/20, 7.5s]
+  gold=0.20  naive_rmse=0.36075  ppi_rmse=0.04662  reduction= +87.1%  [3/20, 10.8s]
+  gold=0.50  naive_rmse=0.36372  ppi_rmse=0.03185  reduction= +91.2%  [4/20, 23.7s]
+  gold=1.00  naive_rmse=0.36271  ppi_rmse=0.02231  reduction= +93.8%  [5/20, 38.0s]
+
+--- Topology: confounding (tau_true=+1.9995) ---
+  gold=0.05  naive_rmse=0.20624  ppi_rmse=0.03139  reduction= +84.8%  [6/20, 7.2s]
+  gold=0.10  naive_rmse=0.20749  ppi_rmse=0.02367  reduction= +88.6%  [7/20, 10.0s]
+  gold=0.20  naive_rmse=0.20701  ppi_rmse=0.01688  reduction= +91.8%  [8/20, 16.5s]
+  gold=0.50  naive_rmse=0.20719  ppi_rmse=0.01194  reduction= +94.2%  [9/20, 31.2s]
+  gold=1.00  naive_rmse=0.20708  ppi_rmse=0.00996  reduction= +95.2%  [10/20, 60.5s]
+
+--- Topology: iv (tau_true=+0.6583) ---
+  gold=0.05  naive_rmse=0.43445  ppi_rmse=0.42845  reduction=  +1.4%  [11/20, 5.6s]
+  gold=0.10  naive_rmse=0.42210  ppi_rmse=0.32891  reduction= +22.1%  [12/20, 6.8s]
+  gold=0.20  naive_rmse=0.42558  ppi_rmse=0.21221  reduction= +50.1%  [13/20, 9.1s]
+  gold=0.50  naive_rmse=0.41959  ppi_rmse=0.13966  reduction= +66.7%  [14/20, 17.1s]
+  gold=1.00  naive_rmse=0.42273  ppi_rmse=0.09974  reduction= +76.4%  [15/20, 27.6s]
+
+--- Topology: mediation (tau_true=+0.5020) ---
+  gold=0.05  naive_rmse=0.18349  ppi_rmse=0.07944  reduction= +56.7%  [16/20, 8.1s]
+  gold=0.10  naive_rmse=0.18486  ppi_rmse=0.05464  reduction= +70.4%  [17/20, 11.1s]
+  gold=0.20  naive_rmse=0.18298  ppi_rmse=0.04163  reduction= +77.2%  [18/20, 16.9s]
+  gold=0.50  naive_rmse=0.18268  ppi_rmse=0.02684  reduction= +85.3%  [19/20, 31.8s]
+  gold=1.00  naive_rmse=0.18287  ppi_rmse=0.02066  reduction= +88.7%  [20/20, 57.0s]
+
+========================================================================
+SUMMARY (RMSE reduction vs naive, %)
+========================================================================
+topology        gold=0.05  gold=0.10  gold=0.20  gold=0.50  gold=1.00
+---------------------------------------------------------------------
+exposure          +75.2%    +83.1%    +87.1%    +91.2%    +93.8%
+confounding       +84.8%    +88.6%    +91.8%    +94.2%    +95.2%
+iv                 +1.4%    +22.1%    +50.1%    +66.7%    +76.4%
+mediation         +56.7%    +70.4%    +77.2%    +85.3%    +88.7%
+
+Saved to: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_gold_ratio_results.json
+Total runtime: 402.9s

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4c2d87a4afec6a3f3f1",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 tau metrics",
+  "task_key": "worker_code_plan001-tau-metrics_20260520T112757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-tau-metrics_20260520T112757_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "76e287d13b93775ee5e97d14f54e7e655c5e496c681c37216163cbaf2eed0e1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成所有修改。两个脚本均已补充 τ-specific 指标（`tau_violation`、`tau_sign_flip`、`tau_amplification`），保留原有全系数指标。\n\n核心发现：**τ 的 sign_flip 在所有四个拓扑下均为 0%**，而全系数 sign_flip 高达 65-100%。之前的高 sign_flip 率完全由非 τ 系数（β₁, β₂）驱动。M-bias 的 τ violation 仅 53.2%（全系数 100%），说明 M-bias 拓扑对 treatment effect 的偏差相对温和。Registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-tau-metrics.md"
+}

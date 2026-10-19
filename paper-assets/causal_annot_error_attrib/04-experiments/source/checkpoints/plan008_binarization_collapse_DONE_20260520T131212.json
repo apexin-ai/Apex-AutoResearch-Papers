@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan008_binarization_collapse",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:13:14.577Z",
+    "updated_at": "2026-05-20T13:12:12.429Z",
+    "hypothesis": "将 K≥3 标注变量折叠为二分类（K→2）不是安全的简化——折叠本身引入新的、方向不可预测的偏差，且该偏差与 DAG 拓扑交互。6 个拓扑的折叠偏差 Δ=|bias_K3 - bias_K2| 具有系统性差异，证明多分类处理不可简化为二分类。MVP 已在 confounding DAG 观察到 Δ=0.103。Claim 1 支撑：binarization 是危险的捷径。parent: plan001_dag_taxonomy",
+    "parent": "plan001_dag_taxonomy",
+    "spec": {
+      "command": "python3 /home/sonny/causal_annot_error_attrib/plan_008_binarization_collapse.py",
+      "server": "home-1x5090",
+      "data_path": "/home/sonny/causal_annot_error_attrib/",
+      "data_count": 100000,
+      "model_name": "analytical_plim",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "synthetic_dirichlet_100k",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/plan_008.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T13:12:12.429Z"
+  },
+  "timestamp": "2026-05-20T13:12:12.449741+00:00",
+  "trigger": "update_registry"
+}

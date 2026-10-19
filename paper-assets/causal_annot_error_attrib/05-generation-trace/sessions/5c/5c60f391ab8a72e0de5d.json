@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c60f391ab8a72e0de5d",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan006 humaid run",
+  "task_key": "worker_code_plan006-humaid-run_20260520T230721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-humaid-run_20260520T230721_result.json",
+    "occurrence": 1,
+    "bytes": 4174,
+    "sha256": "58aa85dc0ece4595f867c289181522c4973cf55d5a9f1bfcadeb235cca2fb171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已获取。下面是汇总分析。\n\n---\n\n## plan_006 humaid 实证结果汇总\n\n### 1. 运行状态\n- **成功**，2.9 分钟完成\n- 9 个矩阵加载（3 模型 × 3 prompt），其中 **qwen3/few-shot-5 全零**（coverage=0, n_valid=0，标注完全失败），实际有效 **8/9 组合**\n\n### 2. 混淆矩阵摘要\n\n| 模型 | prompt | mean_diag | min_diag | worst confusion |\n|------|--------|-----------|----------|-----------------|\n| llama4 | zero-shot | 0.671 | 0.426 | C[6,0]=0.370 |\n| llama4 | few-shot-3 | 0.676 | 0.407 | C[6,0]=0.407 |\n| llama4 | few-shot-5 | 0.688 | 0.415 | C[6,0]=0.396 |\n| qwen3 | zero-shot | 0.715 | 0.340 | C[6,5]=0.252 |\n| qwen3 | few-shot-3 | 0.706 | 0.393 | C[6,5]=0.298 |\n| qwen3 | few-shot-5 | **0.000** | 0.000 | **全零（失败）** |\n| deepseek | zero-shot | 0.724 | 0.294 | C[8,7]=0.228 |\n| deepseek | few-shot-3 | 0.725 | 0.385 | C[6,0]=0.250 |\n| deepseek | few-shot-5 | 0.724 | 0.374 | C[8,7]=0.268 |\n\n- deepseek 最好（diag 0.724），llama4 最差（diag 0.671）\n- 最常见混淆：class 6 (\"other_relevant_information\") 是所有模型的主要混淆目标\n\n### 3. F1 vs |downstream bias|\n\n- **Macro F1 范围：0.614–0.690**，全部低于 0.93\n- **Baumann check: 0%**（没有 F1>0.93 的情况，因为 humaid K=10 是高难度任务）\n- 最大 bias 按 topology：\n  - **IV: 12.4%–42.1%**（最脆弱）\n  - **exposure: 9.0%–17.4%**\n  - **mediation/frontdoor: 10.7%–14.8%**\n  - **confounding: 4.9%–6.2%**\n  - **mbias: 5.1%–6.5%**\n  - **collider: 4.1%–5.6%**（最稳健）\n- **0 sign flips**\n\n### 4. ASV 值\n\n| ASV type | non-None | range |\n|----------|----------|-------|\n| magnitude | 32/63 | 0.307–1.114 |\n| significance | 2/63 | 1.681–1.704 |\n| sign_flip | 0/63 | — |\n\n- magnitude ASV 只有 4 个 topology 触发：mediation (0.62–0.90), exposure (0.65–1.11), IV (0.31–0.83), frontdoor (0.62–0.91)\n- confounding/collider/mbias 的 bias 始终不超过 10% threshold → 无 magnitude ASV\n\n### 5. Type I/II error\n\n| topology | T1 range (before) | T1 after ASV filter | Power (before) |\n|----------|-------------------|---------------------|----------------|\n| confounding | **1.000** | 1.000 (safe) | 1.000 |\n| mbias | 0.611–0.746 | same (safe) | 1.000 |\n| mediation | 0.429–0.716 | 0 (unsafe) | 1.000 |\n| collider | 0.111–0.217 | same (safe) | 1.000 |\n| exposure | 0.040–0.061 | 0 (unsafe) | 1.000 |\n| frontdoor | 0.041–0.059 | 0 (unsafe) | 1.000 |\n| IV | 0.035–0.050 | 0 (unsafe) | 0.754–0.785 |\n\n- **ASV-unsafe: 31/63 (49.2%)**\n- confounding 的 Type I error = 100%（完全膨胀，符合预期）\n- ASV 过滤过于保守：unsafe 的 topology 直接把 power 降到 0\n\n### 6. Inter-model error correlation (humaid, 排除 qwen3/few-shot-5)\n\n| prompt | pair | agreement | kappa | error_corr |\n|--------|------|-----------|-------|------------|\n| zero-shot | llama4-qwen3 | 0.485 | 0.417 | 0.121 |\n| zero-shot | llama4-deepseek | 0.485 | 0.419 | 0.074 |\n| zero-shot | qwen3-deepseek | 0.559 | 0.491 | 0.085 |\n| few-shot-3 | llama4-qwen3 | 0.490 | 0.420 | 0.157 |\n| few-shot-3 | llama4-deepseek | 0.465 | 0.392 | 0.056 |\n| few-shot-3 | qwen3-deepseek | 0.507 | 0.433 | 0.051 |\n\n- **Agreement 0.465–0.559**, **Kappa 0.392–0.491**（fair to moderate）\n- **Error correlation 0.051–0.157**（低），模型犯错较独立\n\n### 7. 异常/与预期不符\n\n1. **qwen3/few-shot-5 全零** — 该组合标注完全失败，需排除\n2. **confounding T1=100%** — 高但符合理论预期（K=10 放大了混杂效应）\n3. **ASV 过滤过于保守** — unsafe 时 power 直接归零，实际应该有梯度式衰减\n4. **0 sign flips** — K=10 时对角占优仍然足够保持符号正确\n5. **IV bias 达 42%** — 这是 Wald estimator 对测量误差的已知脆弱性\n\n### 8. 输出文件\n\n| 文件 | 大小 |\n|------|------|\n| `artifacts/plan006/asv_empirical_results.json` | 119K |\n| `artifacts/plan006/f1_vs_bias.png` | 171K |\n| `artifacts/plan006/asv_heatmap.png` | 72K |\n| `artifacts/plan006/plan006_humaid_run.log` | 2.9K |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-humaid-run.md"
+}

@@ -1,0 +1,51 @@
+plan_004 ASV Framework v3-fixed
+Significance-based ASV filter + Magnitude ASV reporting
+======================================================================
+
+=== PART 5: Small-tau Type I/II (500 MC x N=5000) ===
+Filter: significance-based ASV (v2 logic)
+reject if |tau_hat/SE|>1.96 AND (signif_ASV is None OR signif_ASV > 1)
+
+--- tau = 0.05 ---
+
+[Confounding]
+  C1_sym       H0   naive=1.000  asv=0.000  sasv=0.00  masv=0.00
+  C1_sym       H1   naive=1.000  asv=1.000  sasv=N/A   masv=0.02
+  C2_high      H0   naive=1.000  asv=0.000  sasv=0.00  masv=0.00
+  C2_high      H1   naive=1.000  asv=1.000  sasv=N/A   masv=0.05
+  C3_asym      H0   naive=1.000  asv=0.000  sasv=0.00  masv=0.00
+  C3_asym      H1   naive=1.000  asv=1.000  sasv=N/A   masv=0.02
+  C4_weak      H0   naive=1.000  asv=0.000  sasv=0.00  masv=0.00
+  C4_weak      H1   naive=1.000  asv=1.000  sasv=N/A   masv=0.01
+  C5_perm      H0   naive=1.000  asv=0.000  sasv=0.00  masv=0.00
+  C5_perm      H1   naive=1.000  asv=1.000  sasv=N/A   masv=0.01
+  C6_diff      H0   naive=1.000  asv=0.000  sasv=0.00  masv=0.00
+  C6_diff      H1   naive=1.000  asv=1.000  sasv=N/A   masv=0.02
+
+[Mediation]
+  C1_sym       H0   naive=1.000  asv=0.000
+  C1_sym       H1   naive=1.000  asv=0.000  (power loss: effect too small relative to SE)
+  All C0s: H0 ASV=0.000, H1 ASV=0.000
+
+[Collider]
+  H0: ASV=0.000 across all C0s (naive up to 0.378)
+  H1: ASV=0.000 across all C0s (naive up to 0.940)
+  (power loss: effect too small, collider bias + binary T → high SE)
+
+--- tau = 0.10 ---
+
+[Confounding] H0: ASV=0.000, H1: ASV=1.000 across all C0s
+[Mediation]   H0: ASV=0.000, H1: ASV=1.000 across all C0s
+[Collider]    H0: ASV=0.000, H1: ASV=1.000 across all C0s
+
+=== PART 6: Aggregated Summary ===
+  Topology       tau | naive_TI   ASV_TI naive_Pow  ASV_Pow
+  --------------------------------------------------
+  confounding   0.05 |    1.000    0.000     1.000    1.000
+  mediation     0.05 |    1.000    0.000     1.000    0.000
+  collider      0.05 |    0.378    0.000     0.390    0.000
+  confounding   0.10 |    1.000    0.000     1.000    1.000
+  mediation     0.10 |    1.000    0.000     1.000    1.000
+  collider      0.10 |    0.378    0.000     1.000    1.000
+
+Total time: 28.2s

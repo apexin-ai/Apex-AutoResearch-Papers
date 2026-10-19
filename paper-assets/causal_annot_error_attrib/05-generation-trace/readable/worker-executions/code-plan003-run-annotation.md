@@ -1,0 +1,1373 @@
+# code plan003 run annotation
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_code_plan003-run-annotation_20260520T101531.log`
+- **Structured JSON:** [`d36edb55b95ee9583d34.json`](../../sessions/d3/d36edb55b95ee9583d34.json)
+
+## Before a recorded user message
+
+29 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "279758b0-a278-45b6-94f4-ea4f27b7d585",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779415200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.77,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "5a0202a1-58f2-4feb-854d-d9cec7775745",
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the environment on the server. I'll follow the steps outlined in the task.
+
+Step 1: SSH connect and check environment. Let me use ssh_read_only to check everything.
+
+First, I need to load the MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "6903e381-b37e-4493-9b3b-bebc3d912545",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMBACYQsqVGJi12YmPNry1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12518,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12518
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行 plan_003 标注管线启动流程。先检查服务器环境。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "b7c434f6-5396-414a-97b7-87d12a76fb3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMBACYQsqVGJi12YmPNry1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12518,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12518
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S4tfJaeTisuxTfTfwQ3pst`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "d4ac3361-19b1-4b9e-9eb4-fdc6a3a718f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMBACYQsqVGJi12YmPNry1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12518,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12518
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T10:15:45.117Z_
+
+<details><summary>↩ Tool result · `toolu_01S4tfJaeTisuxTfTfwQ3pst`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "683ecc1c-2a0c-434e-884b-0abbf1189343",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the environment on the server. I'll start with Step 1 - checking everything needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "346533e6-9eae-4f5b-ad0c-b87428d178bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tuKyyFdTUU2D9zJ8X3Yz5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2422,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2422
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H9L1Qu9WBiykCP1wTNUz4w`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -la /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "d5c2c641-34bf-4a00-9fa6-ac56dc32bdac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tuKyyFdTUU2D9zJ8X3Yz5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2422,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2422
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T10:15:51.065Z_
+
+<details><summary>↩ Tool result · `toolu_01H9L1Qu9WBiykCP1wTNUz4w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny 24322 May 20 03:10 /home/sonny/causal_annot_error_attrib/annotate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "26ec2f90-1f30-4151-a4d0-f6607b6f5f32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-rw-r-- 1 sonny sonny 24322 May 20 03:10 /home/sonny/causal_annot_error_attrib/annotate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny 24322 May 20 03:10 /home/sonny/causal_annot_error_attrib/annotate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lr6muRrttytdVx3Vq8RycN`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -la /home/sonny/causal_annot_error_attrib/data/humaid.jsonl /home/sonny/causal_annot_error_attrib/data/vast.jsonl /home/sonny/causal_annot_error_attrib/data/civil_comments.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "9555ac36-5db0-408c-a410-fd80d4492071",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVimQGUkZGQiG6t2mYeaWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 291,
+      "cache_read_input_tokens": 26781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 291
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T10:15:55.249Z_
+
+<details><summary>↩ Tool result · `toolu_01Lr6muRrttytdVx3Vq8RycN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/causal_annot_error_attrib/data/humaid.jsonl': No such file or directory\\nls: cannot access '/home/sonny/causal_annot_error_attrib/data/vast.jsonl': No such file or directory\\nls: cannot access '/home/sonny/causal_annot_error_attrib/data/civil_comments.jsonl': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "14133e32-d275-42aa-99c6-ba63602a1859",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/home/sonny/causal_annot_error_attrib/data/humaid.jsonl': No such file or directory\\\\nls: cannot access '/home/sonny/causal_annot_error_attrib/data/vast.jsonl': No such file or directory\\\\nls: cannot access '/home/sonny/causal_annot_error_attrib/data/civil_comments.jsonl': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/causal_annot_error_attrib/data/humaid.jsonl': No such file or directory\\nls: cannot access '/home/sonny/causal_annot_error_attrib/data/vast.jsonl': No such file or directory\\nls: cannot access '/home/sonny/causal_annot_error_attrib/data/civil_comments.jsonl': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Data files don't exist. Let me check what's in the data directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "b5fdc06d-f989-48d9-90ca-94618a200ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYspoqKoqMMicRzXEJxu7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 27072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+数据文件不存在，检查 data 目录实际内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "a2f2f871-5a6c-4899-885e-5df65b9a816b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYspoqKoqMMicRzXEJxu7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 27072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RtMaMtuRvZkPDFybuwsnGT`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -la /home/sonny/causal_annot_error_attrib/data/",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "56b12d50-4f18-4a27-80ec-9b1edee895b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYspoqKoqMMicRzXEJxu7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 27072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T10:15:59.983Z_
+
+<details><summary>↩ Tool result · `toolu_01RtMaMtuRvZkPDFybuwsnGT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 40\\ndrwxrwxr-x 6 sonny sonny 4096 May 20 03:09 .\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 03:08 ..\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 02:54 civil_comments\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 02:54 humaid\\n-rw-rw-r-- 1 sonny sonny 4522 May 20 03:09 preprocess.py\\n-rw-rw-r-- 1 sonny sonny 4389 May 20 03:09 preprocess.py.bak\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 03:09 __pycache__\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 02:54 vast\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "a80b8be9-c23f-4771-8d88-84ee71551068",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40\\\\ndrwxrwxr-x 6 sonny sonny 4096 May 20 03:09 .\\\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 03:08 ..\\\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 02:54 civil_comments\\\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 02:54 humaid\\\\n-rw-rw-r-- 1 sonny sonny 4522 May 20 03:09 preprocess.py\\\\n-rw-rw-r-- 1 sonny sonny 4389 May 20 03:09 preprocess.py.bak\\\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 03:09 __pycache__\\\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 02:54 vast\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 40\\ndrwxrwxr-x 6 sonny sonny 4096 May 20 03:09 .\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 03:08 ..\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 02:54 civil_comments\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 02:54 humaid\\n-rw-rw-r-- 1 sonny sonny 4522 May 20 03:09 preprocess.py\\n-rw-rw-r-- 1 sonny sonny 4389 May 20 03:09 preprocess.py.bak\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 03:09 __pycache__\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 02:54 vast\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+数据是子目录而非 jsonl 文件。检查子目录内容和 annotate.py 的参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "2363fac4-76fb-48c7-86d7-5403f503433b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3EmHitXM6MT8hUu83ipnq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 519,
+      "cache_read_input_tokens": 27436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 519
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KM4VtgcZKeN33FWchCQf8y`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -la /home/sonny/causal_annot_error_attrib/data/humaid/ /home/sonny/causal_annot_error_attrib/data/vast/ /home/sonny/causal_annot_error_attrib/data/civil_comments/",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "0e5ab194-ce62-4cb4-bf5c-f0db6100a678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3EmHitXM6MT8hUu83ipnq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 519,
+      "cache_read_input_tokens": 27436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 519
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T10:16:04.767Z_
+
+<details><summary>↩ Tool result · `toolu_01KM4VtgcZKeN33FWchCQf8y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/data/civil_comments/:\\ntotal 106996\\ndrwxrwxr-x 2 sonny sonny     4096 May 20 02:54 .\\ndrwxrwxr-x 6 sonny sonny     4096 May 20 03:09 ..\\n-rw-rw-r-- 1 sonny sonny 35705230 May 20 02:54 test.jsonl\\n-rw-rw-r-- 1 sonny sonny 37980585 May 20 02:54 train.jsonl\\n-rw-rw-r-- 1 sonny sonny 35863372 May 20 02:54 val.jsonl\\n\\n/home/sonny/causal_annot_error_attrib/data/humaid/:\\ntotal 17264\\ndrwxrwxr-x 2 sonny sonny     4096 May 20 02:54 .\\ndrwxrwxr-x 6 sonny sonny     4096 May 20 03:09 ..\\n-rw-rw-r-- 1 sonny sonny  3494445 May 20 02:54 test.jsonl\\n-rw-rw-r-- 1 sonny sonny 12384448 May 20 02:54 train.jsonl\\n-rw-rw-r-- 1 sonny sonny  1783374 May 20 02:54 val.jsonl\\n\\n/home/sonny/causal_annot_error_attrib/data/vast/:\\ntotal 12304\\ndrwxrwxr-x 3 sonny sonny    4096 May 20 02:54 .\\ndrwxrwxr-x 6 sonny sonny    4096 May 20 03:09 ..\\ndrwxrwxr-x 8 sonny sonny    4096 May 20 02:52 _repo\\n-rw-rw-r-- 1 sonny sonny 2048819 May 20 03:09 test.jsonl\\n-rw-rw-r-- 1 sonny sonny 9150725 May 20 03:09 train.jsonl\\n-rw-rw-r-- 1 sonny sonny 1379990 May 20 03:09 val.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "aaaee460-9c44-4342-88fe-f6ffcc412ba1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/causal_annot_error_attrib/data/civil_comments/:\\\\ntotal 106996\\\\ndrwxrwxr-x 2 sonny sonny     4096 May 20 02:54 .\\\\ndrwxrwxr-x 6 sonny sonny     4096 May 20 03:09 ..\\\\n-rw-rw-r-- 1 sonny sonny 35705230 May 20 02:54 test.jsonl\\\\n-rw-rw-r-- 1 sonny sonny 37980585 May 20 02:54 train.jsonl\\\\n-rw-rw-r-- 1 sonny sonny 35863372 May 20 02:54 val.jsonl\\\\n\\\\n/home/sonny/causal_annot_error_attrib/data/humaid/:\\\\ntotal 17264\\\\ndrwxrwxr-x 2 sonny sonny     4096 May 20 02:54 .\\\\ndrwxrwxr-x 6 sonny sonny     4096 May 20 03:09 ..\\\\n-rw-rw-r-- 1 sonny sonny  3494445 May 20 02:54 test.jsonl\\\\n-rw-rw-r-- 1 sonny sonny 12384448 May 20 02:54 train.jsonl\\\\n-rw-rw-r-- 1 sonny sonny  1783374 May 20 02:54 val.jsonl\\\\n\\\\n/home/sonny/causal_annot_error_attrib/data/vast/:\\\\ntotal 12304\\\\ndrwxrwxr-x 3 sonny sonny    4096 May 20 02:54 .\\\\ndrwxrwxr-x 6 sonny sonny    4096 May 20 03:09 ..\\\\ndrwxrwxr-x 8 sonny sonny    4096 May 20 02:52 _repo\\\\n-rw-rw-r-- 1 sonny sonny 2048819 May 20 03:09 test.jsonl\\\\n-rw-rw-r-- 1 sonny sonny 9150725 May 20 03:09 train.jsonl\\\\n-rw-rw-r-- 1 sonny sonny 1379990 May 20 03:09 val.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/data/civil_comments/:\\ntotal 106996\\ndrwxrwxr-x 2 sonny sonny     4096 May 20 02:54 .\\ndrwxrwxr-x 6 sonny sonny     4096 May 20 03:09 ..\\n-rw-rw-r-- 1 sonny sonny 35705230 May 20 02:54 test.jsonl\\n-rw-rw-r-- 1 sonny sonny 37980585 May 20 02:54 train.jsonl\\n-rw-rw-r-- 1 sonny sonny 35863372 May 20 02:54 val.jsonl\\n\\n/home/sonny/causal_annot_error_attrib/data/humaid/:\\ntotal 17264\\ndrwxrwxr-x 2 sonny sonny     4096 May 20 02:54 .\\ndrwxrwxr-x 6 sonny sonny     4096 May 20 03:09 ..\\n-rw-rw-r-- 1 sonny sonny  3494445 May 20 02:54 test.jsonl\\n-rw-rw-r-- 1 sonny sonny 12384448 May 20 02:54 train.jsonl\\n-rw-rw-r-- 1 sonny sonny  1783374 May 20 02:54 val.jsonl\\n\\n/home/sonny/causal_annot_error_attrib/data/vast/:\\ntotal 12304\\ndrwxrwxr-x 3 sonny sonny    4096 May 20 02:54 .\\ndrwxrwxr-x 6 sonny sonny    4096 May 20 03:09 ..\\ndrwxrwxr-x 8 sonny sonny    4096 May 20 02:52 _repo\\n-rw-rw-r-- 1 sonny sonny 2048819 May 20 03:09 test.jsonl\\n-rw-rw-r-- 1 sonny sonny 9150725 May 20 03:09 train.jsonl\\n-rw-rw-r-- 1 sonny sonny 1379990 May 20 03:09 val.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BbR6WoxdpfSf9ieu99E8qp`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -200 /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "0251a1a4-8180-4df7-a68b-3175ce638ce2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8nCtUJRZdfaqbuo1zS7yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 27955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 906
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T10:16:08.462Z_
+
+<details><summary>↩ Tool result · `toolu_01BbR6WoxdpfSf9ieu99E8qp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 118 字符] ...\\n\\nration\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"Open borders threaten national security and jobs.\\\", \\\"topic\\\": \\\"Immigration\\\", \\\"label\\\": \\\"con\\\"},\\n        ],\\n    },\\n    \\\"civil_comments\\\": {\\n        \\\"classes\\\": [\\n            \\\"non_toxic\\\",\\n            \\\"toxic\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify whether this comment is toxic or non-toxic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"I think we should consider all perspectives before making a decision.\\\", \\\"label\\\": \\\"non_toxic\\\"},\\n            {\\\"text\\\": \\\"You are an absolute idiot and should never speak again.\\\", \\\"label\\\": \\\"toxic\\\"},\\n            {\\\"text\\\": \\\"This policy change could have both positive and negative effects.\\\", \\\"label\\\": \\\"non_toxic\\\"},\\n            {\\\"text\\\": \\\"People like you are what's wrong with this country, just shut up.\\\", \\\"label\\\": \\\"toxic\\\"},\\n            {\\\"text\\\": \\\"I respectfully disagree with the author's conclusions.\\\", \\\"label\\\": \\\"non_toxic\\\"},\\n        ],\\n    },\\n}\\n\\n\\n# ── Prompt Templates ─────────────────────────────────────────────────────────\\n\\nclass PromptTemplates:\\n\\n    @staticmethod\\n    def _format_classes(classes):\\n        return \\\", \\\".join(f'\\\"{c}\\\"' for c in classes)\\n\\n    @staticmethod\\n    def zero_shot(text, config):\\n        classes_str = PromptTemplates._format_classes(config[\\\"classes\\\"])\\n        task = config[\\\"task\\\"]\\n        topic_line = \\\"\\\"\\n        if \\\"topic_field\\\" in config and \\\"__topic__\\\" in text:\\n            parts = text.split(\\\"__topic__:\\\", 1)\\n            actual_text = parts[0].strip()\\n            topic = parts[1].strip()\\n            topic_line = f\\\"\\\\nTopic: {topic}\\\"\\n            text = actual_text\\n        prompt = (\\n            f\\\"{task}\\\\n\\\"\\n            f\\\"\\\\nCategories: {classes_str}\\\"\\n            f\\\"{topic_line}\\\"\\n            f\\\"\\\\n\\\\nText: \\\\\\\"{text}\\\\\\\"\\\"\\n            f\\\"\\\\n\\\\nRespond with ONLY a JSON object in this exact format:\\\"\\n            f\\\"\\\\n{{\\\\\\\"label\\\\\\\": \\\\\\\"&lt;category_name>\\\\\\\"}}\\\"\\n        )\\n        return prompt\\n\\n    @staticmethod\\n    def few_shot(text, config, n_examples):\\n        classes_str = PromptTemplates._format_classes(config[\\\"classes\\\"])\\n        task = config[\\\"task\\\"]\\n        examples = config[\\\"few_shot_examples\\\"][:n_examples]\\n        has_topic = \\\"topic_field\\\" in config\\n\\n        topic_line = \\\"\\\"\\n        if has_topic and \\\"__topic__:\\\" in text:\\n            parts = text.split(\\\"__topic__:\\\", 1)\\n            actual_text = parts[0].strip()\\n            topic = parts[1].strip()\\n            topic_line = f\\\"\\\\nTopic: {topic}\\\"\\n            text = actual_text\\n\\n        prompt = (\\n            f\\\"{task}\\\\n\\\"\\n            f\\\"\\\\nCategories: {classes_str}\\\\n\\\"\\n            f\\\"\\\\nHere are some examples:\\\\n\\\"\\n        )\\n        for i, ex in enumerate(examples, 1):\\n            ex_topic = \\\"\\\"\\n            if has_topic and \\\"topic\\\" in ex:\\n                ex_topic = f\\\"\\\\nTopic: {ex['topic']}\\\"\\n            prompt += (\\n                f\\\"\\\\nExample {i}:\\\"\\n                f\\\"{ex_topic}\\\"\\n                f\\\"\\\\nText: \\\\\\\"{ex['text']}\\\\\\\"\\\"\\n                f\\\"\\\\nAnswer: {{\\\\\\\"label\\\\\\\": \\\\\\\"{ex['label']}\\\\\\\"}}\\\\n\\\"\\n            )\\n\\n        prompt += (\\n            f\\\"\\\\nNow classify the following:\\\"\\n            f\\\"{topic_line}\\\"\\n            f\\\"\\\\nText: \\\\\\\"{text}\\\\\\\"\\\"\\n            f\\\"\\\\n\\\\nRespond with ONLY a JSON object in this exact format:\\\"\\n            f\\\"\\\\n{{\\\\\\\"label\\\\\\\": \\\\\\\"&lt;category_name>\\\\\\\"}}\\\"\\n        )\\n        return prompt\\n\\n\\n# ── Label Parsing ────────────────────────────────────────────────────────────\\n\\ndef parse_label(raw_response, classes):\\n    \\\"\\\"\\\"Extract predicted label from LLM response via JSON parsing + fuzzy matching.\\\"\\\"\\\"\\n    text = raw_response.strip()\\n\\n    # Try JSON extraction\\n    json_match = re.search(r'\\\\{[^}]*\\\"label\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"[^}]*\\\\}', text)\\n    if json_match:\\n        candidate = json_match.group(1).strip()\\n        matched = _match_to_class(candidate, classes)\\n        if matched:\\n            return matched\\n\\n    # Try \\\"Category: X\\\" or \\\"Label: X\\\" pattern\\n    pattern_match = re.search(r'(?:category|label|class|answer)\\\\s*[:=]\\\\s*[\\\"\\\\']?([^\\\"\\\\'\\\\n,}]+)', text, re.IGNORECASE)\\n    if pattern_match:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "980f14dd-778e-481c-81b6-71cda71e5aff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\\\n\\\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\\\n\\\\nUsage:\\\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\\\n  python annotate.py --all --sample 500  # run all combinations\\\\n\\\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nimport traceback\\\\nfrom pathlib import Path\\\\nfrom difflib import SequenceMatcher\\\\n\\\\nimport numpy as np\\\\nimport requests\\\\n\\\\n# ── API Configuration ────────────────────────────────────────────────────────\\\\n\\\\nAPI_BASE = \\\\\\\"http://47.94.22.126/v1\\\\\\\"\\\\n\\\\nMODELS = {\\\\n    \\\\\\\"llama4\\\\\\\": \\\\\\\"meta-llama/llama-4-maverick\\\\\\\",\\\\n    \\\\\\\"qwen3\\\\\\\": \\\\\\\"qwen/qwen3-235b-a22b\\\\\\\",\\\\n    \\\\\\\"deepseek\\\\\\\": \\\\\\\"deepseek/deepseek-chat\\\\\\\",\\\\n}\\\\n\\\\nPROJECT_ROOT = Path(__file__).resolve().parent\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = PROJECT_ROOT / \\\\\\\"results\\\\\\\"\\\\n\\\\n\\\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\\\n\\\\nDATASET_CONFIGS = {\\\\n    \\\\\\\"humaid\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"caution_and_advice\\\\\\\",\\\\n            \\\\\\\"displaced_people_and_evacuations\\\\\\\",\\\\n            \\\\\\\"infrastructure_and_utility_damage\\\\\\\",\\\\n            \\\\\\\"injured_or_dead_people\\\\\\\",\\\\n            \\\\\\\"missing_or_found_people\\\\\\\",\\\\n            \\\\\\\"not_humanitarian\\\\\\\",\\\\n            \\\\\\\"other_relevant_information\\\\\\\",\\\\n            \\\\\\\"requests_or_urgent_needs\\\\\\\",\\\\n            \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\",\\\\n            \\\\\\\"sympathy_and_support\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Classify this tweet into one of the following crisis event categories.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Please stay away from the coastal areas. Tsunami warning issued.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"caution_and_advice\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Over 500 families displaced from their homes due to flooding.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"displaced_people_and_evacuations\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The main bridge on Highway 5 has completely collapsed.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"infrastructure_and_utility_damage\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Sadly, 12 people confirmed dead after the earthquake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"injured_or_dead_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"missing_or_found_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"not_humanitarian\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"other_relevant_information\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"requests_or_urgent_needs\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"sympathy_and_support\\\\\\\"},\\\\n        ],\\\\n    },\\\\n    \\\\\\\"vast\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"pro\\\\\\\",\\\\n            \\\\\\\"con\\\\\\\",\\\\n            \\\\\\\"neutral\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Determine the stance expressed in this text toward the given topic.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"topic_field\\\\\\\": \\\\\\\"topic\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Gun control is essential for public safety.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"pro\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"More regulations will not stop criminals from getting guns.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The debate on gun control continues across the country.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\n\\\\n... [截断: 输出过长，省略 118 字符] ...\\\\n\\\\nration\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"pro\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Open borders threaten national security and jobs.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Immigration\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"},\\\\n        ],\\\\n    },\\\\n    \\\\\\\"civil_comments\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"non_toxic\\\\\\\",\\\\n            \\\\\\\"toxic\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Classify whether this comment is toxic or non-toxic.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"I think we should consider all perspectives before making a decision.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"non_toxic\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"You are an absolute idiot and should never speak again.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"toxic\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"This policy change could have both positive and negative effects.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"non_toxic\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"People like you are what's wrong with this country, just shut up.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"toxic\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"I respectfully disagree with the author's conclusions.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"non_toxic\\\\\\\"},\\\\n        ],\\\\n    },\\\\n}\\\\n\\\\n\\\\n# ── Prompt Templates ─────────────────────────────────────────────────────────\\\\n\\\\nclass PromptTemplates:\\\\n\\\\n    @staticmethod\\\\n    def _format_classes(classes):\\\\n        return \\\\\\\", \\\\\\\".join(f'\\\\\\\"{c}\\\\\\\"' for c in classes)\\\\n\\\\n    @staticmethod\\\\n    def zero_shot(text, config):\\\\n        classes_str = PromptTemplates._format_classes(config[\\\\\\\"classes\\\\\\\"])\\\\n        task = config[\\\\\\\"task\\\\\\\"]\\\\n        topic_line = \\\\\\\"\\\\\\\"\\\\n        if \\\\\\\"topic_field\\\\\\\" in config and \\\\\\\"__topic__\\\\\\\" in text:\\\\n            parts = text.split(\\\\\\\"__topic__:\\\\\\\", 1)\\\\n            actual_text = parts[0].strip()\\\\n            topic = parts[1].strip()\\\\n            topic_line = f\\\\\\\"\\\\\\\\nTopic: {topic}\\\\\\\"\\\\n            text = actual_text\\\\n        prompt = (\\\\n            f\\\\\\\"{task}\\\\\\\\n\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\nCategories: {classes_str}\\\\\\\"\\\\n            f\\\\\\\"{topic_line}\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\n\\\\\\\\nText: \\\\\\\\\\\\\\\"{text}\\\\\\\\\\\\\\\"\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\n\\\\\\\\nRespond with ONLY a JSON object in this exact format:\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\n{{\\\\\\\\\\\\\\\"label\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"&lt;category_name>\\\\\\\\\\\\\\\"}}\\\\\\\"\\\\n        )\\\\n        return prompt\\\\n\\\\n    @staticmethod\\\\n    def few_shot(text, config, n_examples):\\\\n        classes_str = PromptTemplates._format_classes(config[\\\\\\\"classes\\\\\\\"])\\\\n        task = config[\\\\\\\"task\\\\\\\"]\\\\n        examples = config[\\\\\\\"few_shot_examples\\\\\\\"][:n_examples]\\\\n        has_topic = \\\\\\\"topic_field\\\\\\\" in config\\\\n\\\\n        topic_line = \\\\\\\"\\\\\\\"\\\\n        if has_topic and \\\\\\\"__topic__:\\\\\\\" in text:\\\\n            parts = text.split(\\\\\\\"__topic__:\\\\\\\", 1)\\\\n            actual_text = parts[0].strip()\\\\n            topic = parts[1].strip()\\\\n            topic_line = f\\\\\\\"\\\\\\\\nTopic: {topic}\\\\\\\"\\\\n            text = actual_text\\\\n\\\\n        prompt = (\\\\n            f\\\\\\\"{task}\\\\\\\\n\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\nCategories: {classes_str}\\\\\\\\n\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\nHere are some examples:\\\\\\\\n\\\\\\\"\\\\n        )\\\\n        for i, ex in enumerate(examples, 1):\\\\n            ex_topic = \\\\\\\"\\\\\\\"\\\\n            if has_topic and \\\\\\\"topic\\\\\\\" in ex:\\\\n                ex_topic = f\\\\\\\"\\\\\\\\nTopic: {ex['topic']}\\\\\\\"\\\\n            prompt += (\\\\n                f\\\\\\\"\\\\\\\\nExample {i}:\\\\\\\"\\\\n                f\\\\\\\"{ex_topic}\\\\\\\"\\\\n                f\\\\\\\"\\\\\\\\nText: \\\\\\\\\\\\\\\"{ex['text']}\\\\\\\\\\\\\\\"\\\\\\\"\\\\n                f\\\\\\\"\\\\\\\\nAnswer: {{\\\\\\\\\\\\\\\"label\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"{ex['label']}\\\\\\\\\\\\\\\"}}\\\\\\\\n\\\\\\\"\\\\n            )\\\\n\\\\n        prompt += (\\\\n            f\\\\\\\"\\\\\\\\nNow classify the following:\\\\\\\"\\\\n            f\\\\\\\"{topic_line}\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\nText: \\\\\\\\\\\\\\\"{text}\\\\\\\\\\\\\\\"\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\n\\\\\\\\nRespond with ONLY a JSON object in this exact format:\\\\\\\"\\\\n            f\\\\\\\"\\\\\\\\n{{\\\\\\\\\\\\\\\"label\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"&lt;category_name>\\\\\\\\\\\\\\\"}}\\\\\\\"\\\\n        )\\\\n        return prompt\\\\n\\\\n\\\\n# ── Label Parsing ────────────────────────────────────────────────────────────\\\\n\\\\ndef parse_label(raw_response, classes):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract predicted label from LLM response via JSON parsing + fuzzy matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    text = raw_response.strip()\\\\n\\\\n    # Try JSON extraction\\\\n    json_match = re.search(r'\\\\\\\\{[^}]*\\\\\\\"label\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"[^}]*\\\\\\\\}', text)\\\\n    if json_match:\\\\n        candidate = json_match.group(1).strip()\\\\n        matched = _match_to_class(candidate, classes)\\\\n        if matched:\\\\n            return matched\\\\n\\\\n    # Try \\\\\\\"Category: X\\\\\\\" or \\\\\\\"Label: X\\\\\\\" pattern\\\\n    pattern_match = re.search(r'(?:category|label|class|answer)\\\\\\\\s*[:=]\\\\\\\\s*[\\\\\\\"\\\\\\\\']?([^\\\\\\\"\\\\\\\\'\\\\\\\\n,}]+)', text, re.IGNORECASE)\\\\n    if pattern_match:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 118 字符] ...\\n\\nration\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"Open borders threaten national security and jobs.\\\", \\\"topic\\\": \\\"Immigration\\\", \\\"label\\\": \\\"con\\\"},\\n        ],\\n    },\\n    \\\"civil_comments\\\": {\\n        \\\"classes\\\": [\\n            \\\"non_toxic\\\",\\n            \\\"toxic\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify whether this comment is toxic or non-toxic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"I think we should consider all perspectives before making a decision.\\\", \\\"label\\\": \\\"non_toxic\\\"},\\n            {\\\"text\\\": \\\"You are an absolute idiot and should never speak again.\\\", \\\"label\\\": \\\"toxic\\\"},\\n            {\\\"text\\\": \\\"This policy change could have both positive and negative effects.\\\", \\\"label\\\": \\\"non_toxic\\\"},\\n            {\\\"text\\\": \\\"People like you are what's wrong with this country, just shut up.\\\", \\\"label\\\": \\\"toxic\\\"},\\n            {\\\"text\\\": \\\"I respectfully disagree with the author's conclusions.\\\", \\\"label\\\": \\\"non_toxic\\\"},\\n        ],\\n    },\\n}\\n\\n\\n# ── Prompt Templates ─────────────────────────────────────────────────────────\\n\\nclass PromptTemplates:\\n\\n    @staticmethod\\n    def _format_classes(classes):\\n        return \\\", \\\".join(f'\\\"{c}\\\"' for c in classes)\\n\\n    @staticmethod\\n    def zero_shot(text, config):\\n        classes_str = PromptTemplates._format_classes(config[\\\"classes\\\"])\\n        task = config[\\\"task\\\"]\\n        topic_line = \\\"\\\"\\n        if \\\"topic_field\\\" in config and \\\"__topic__\\\" in text:\\n            parts = text.split(\\\"__topic__:\\\", 1)\\n            actual_text = parts[0].strip()\\n            topic = parts[1].strip()\\n            topic_line = f\\\"\\\\nTopic: {topic}\\\"\\n            text = actual_text\\n        prompt = (\\n            f\\\"{task}\\\\n\\\"\\n            f\\\"\\\\nCategories: {classes_str}\\\"\\n            f\\\"{topic_line}\\\"\\n            f\\\"\\\\n\\\\nText: \\\\\\\"{text}\\\\\\\"\\\"\\n            f\\\"\\\\n\\\\nRespond with ONLY a JSON object in this exact format:\\\"\\n            f\\\"\\\\n{{\\\\\\\"label\\\\\\\": \\\\\\\"&lt;category_name>\\\\\\\"}}\\\"\\n        )\\n        return prompt\\n\\n    @staticmethod\\n    def few_shot(text, config, n_examples):\\n        classes_str = PromptTemplates._format_classes(config[\\\"classes\\\"])\\n        task = config[\\\"task\\\"]\\n        examples = config[\\\"few_shot_examples\\\"][:n_examples]\\n        has_topic = \\\"topic_field\\\" in config\\n\\n        topic_line = \\\"\\\"\\n        if has_topic and \\\"__topic__:\\\" in text:\\n            parts = text.split(\\\"__topic__:\\\", 1)\\n            actual_text = parts[0].strip()\\n            topic = parts[1].strip()\\n            topic_line = f\\\"\\\\nTopic: {topic}\\\"\\n            text = actual_text\\n\\n        prompt = (\\n            f\\\"{task}\\\\n\\\"\\n            f\\\"\\\\nCategories: {classes_str}\\\\n\\\"\\n            f\\\"\\\\nHere are some examples:\\\\n\\\"\\n        )\\n        for i, ex in enumerate(examples, 1):\\n            ex_topic = \\\"\\\"\\n            if has_topic and \\\"topic\\\" in ex:\\n                ex_topic = f\\\"\\\\nTopic: {ex['topic']}\\\"\\n            prompt += (\\n                f\\\"\\\\nExample {i}:\\\"\\n                f\\\"{ex_topic}\\\"\\n                f\\\"\\\\nText: \\\\\\\"{ex['text']}\\\\\\\"\\\"\\n                f\\\"\\\\nAnswer: {{\\\\\\\"label\\\\\\\": \\\\\\\"{ex['label']}\\\\\\\"}}\\\\n\\\"\\n            )\\n\\n        prompt += (\\n            f\\\"\\\\nNow classify the following:\\\"\\n            f\\\"{topic_line}\\\"\\n            f\\\"\\\\nText: \\\\\\\"{text}\\\\\\\"\\\"\\n            f\\\"\\\\n\\\\nRespond with ONLY a JSON object in this exact format:\\\"\\n            f\\\"\\\\n{{\\\\\\\"label\\\\\\\": \\\\\\\"&lt;category_name>\\\\\\\"}}\\\"\\n        )\\n        return prompt\\n\\n\\n# ── Label Parsing ────────────────────────────────────────────────────────────\\n\\ndef parse_label(raw_response, classes):\\n    \\\"\\\"\\\"Extract predicted label from LLM response via JSON parsing + fuzzy matching.\\\"\\\"\\\"\\n    text = raw_response.strip()\\n\\n    # Try JSON extraction\\n    json_match = re.search(r'\\\\{[^}]*\\\"label\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"[^}]*\\\\}', text)\\n    if json_match:\\n        candidate = json_match.group(1).strip()\\n        matched = _match_to_class(candidate, classes)\\n        if matched:\\n            return matched\\n\\n    # Try \\\"Category: X\\\" or \\\"Label: X\\\" pattern\\n    pattern_match = re.search(r'(?:category|label|class|answer)\\\\s*[:=]\\\\s*[\\\"\\\\']?([^\\\"\\\\'\\\\n,}]+)', text, re.IGNORECASE)\\n    if pattern_match:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Eqe752f7oCaVf3CpvZVF5c`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -200 /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "45a59d1c-8e42-4b41-b1a2-531610ad9ba7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG8kYpoiaYaWeQ5HfEZ9tF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3540,
+      "cache_read_input_tokens": 28861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3540
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T10:16:13.172Z_
+
+<details><summary>↩ Tool result · `toolu_01Eqe752f7oCaVf3CpvZVF5c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"n_total\\\": len(gold_labels),\\n        \\\"n_valid\\\": n_valid,\\n        \\\"n_skipped\\\": n_skipped,\\n        \\\"coverage\\\": n_valid / len(gold_labels) if gold_labels else 0,\\n        \\\"raw_counts\\\": C.tolist(),\\n    }\\n\\n    return C_norm, class_to_idx, stats\\n\\n\\n# ── I/O ──────────────────────────────────────────────────────────────────────\\n\\ndef load_data(dataset_name, split, sample_size, seed=42):\\n    \\\"\\\"\\\"Load dataset from data/{dataset}/{split}.jsonl, optionally sample.\\\"\\\"\\\"\\n    path = DATA_DIR / dataset_name / f\\\"{split}.jsonl\\\"\\n    if not path.exists():\\n        print(f\\\"ERROR: Data file not found: {path}\\\")\\n        print(f\\\"Run preprocess.py first to prepare the datasets.\\\")\\n        sys.exit(1)\\n\\n    samples = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                samples.append(json.loads(line))\\n\\n    if sample_size and sample_size < len(samples):\\n        rng = np.random.default_rng(seed)\\n        indices = rng.choice(len(samples), size=sample_size, replace=False)\\n        indices.sort()\\n        samples = [samples[i] for i in indices]\\n\\n    for i, s in enumerate(samples):\\n        if \\\"idx\\\" not in s:\\n            s[\\\"idx\\\"] = i\\n\\n    return samples\\n\\n\\ndef load_existing_results(output_path):\\n    \\\"\\\"\\\"Load already-completed results for resume support.\\\"\\\"\\\"\\n    if not output_path.exists():\\n        return {}\\n    existing = {}\\n    with open(output_path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                r = json.loads(line)\\n                existing[r[\\\"idx\\\"]] = r\\n    return existing\\n\\n\\ndef save_results(results, confusion_matrix, class_to_idx, stats, output_dir, model_key, prompt_type):\\n    \\\"\\\"\\\"Save annotations as JSONL and confusion matrix as npz.\\\"\\\"\\\"\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    jsonl_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n    with open(jsonl_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n    npz_path = output_dir / f\\\"{model_key}_{prompt_type}_confusion_matrix.npz\\\"\\n    np.savez(\\n        npz_path,\\n        C=confusion_matrix,\\n        classes=list(class_to_idx.keys()),\\n        **{f\\\"stat_{k}\\\": v for k, v in stats.items() if not isinstance(v, list)},\\n        raw_counts=np.array(stats[\\\"raw_counts\\\"]),\\n    )\\n\\n    print(f\\\"  Saved: {jsonl_path}\\\")\\n    print(f\\\"  Saved: {npz_path}\\\")\\n    return jsonl_path, npz_path\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────────────\\n\\ndef run_single(dataset_name, model_key, prompt_type, sample_size, split, api_key):\\n    \\\"\\\"\\\"Run annotation for one (dataset, model, prompt) combination.\\\"\\\"\\\"\\n    config = DATASET_CONFIGS[dataset_name]\\n    model_id = MODELS[model_key]\\n\\n    output_dir = RESULTS_DIR / dataset_name\\n    output_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Dataset: {dataset_name} | Model: {model_key} ({model_id})\\\")\\n    print(f\\\"Prompt: {prompt_type} | Sample: {sample_size} | Split: {split}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    samples = load_data(dataset_name, split, sample_size)\\n    print(f\\\"Loaded {len(samples)} samples\\\")\\n\\n    # Resume support\\n    existing = load_existing_results(output_path)\\n    if existing:\\n        remaining = [s for s in samples if s[\\\"idx\\\"] not in existing]\\n        print(f\\\"Resuming: {len(existing)} done, {len(remaining)} remaining\\\")\\n    else:\\n        remaining = samples\\n\\n    if not remaining:\\n        print(\\\"All samples already annotated. Recomputing confusion matrix...\\\")\\n        all_results = [existing[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in existing]\\n    else:\\n        pipeline = AnnotationPipeline(API_BASE, api_key, model_id)\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\n\\n        merged = dict(existing)\\n        for r in new_results:\\n            merged[r[\\\"idx\\\"]] = r\\n        all_results = [merged[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "9f5b5f1a-31f3-4159-b788-c17c6509fccd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"n_total\\\\\\\": len(gold_labels),\\\\n        \\\\\\\"n_valid\\\\\\\": n_valid,\\\\n        \\\\\\\"n_skipped\\\\\\\": n_skipped,\\\\n        \\\\\\\"coverage\\\\\\\": n_valid / len(gold_labels) if gold_labels else 0,\\\\n        \\\\\\\"raw_counts\\\\\\\": C.tolist(),\\\\n    }\\\\n\\\\n    return C_norm, class_to_idx, stats\\\\n\\\\n\\\\n# ── I/O ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef load_data(dataset_name, split, sample_size, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load dataset from data/{dataset}/{split}.jsonl, optionally sample.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = DATA_DIR / dataset_name / f\\\\\\\"{split}.jsonl\\\\\\\"\\\\n    if not path.exists():\\\\n        print(f\\\\\\\"ERROR: Data file not found: {path}\\\\\\\")\\\\n        print(f\\\\\\\"Run preprocess.py first to prepare the datasets.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    samples = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                samples.append(json.loads(line))\\\\n\\\\n    if sample_size and sample_size < len(samples):\\\\n        rng = np.random.default_rng(seed)\\\\n        indices = rng.choice(len(samples), size=sample_size, replace=False)\\\\n        indices.sort()\\\\n        samples = [samples[i] for i in indices]\\\\n\\\\n    for i, s in enumerate(samples):\\\\n        if \\\\\\\"idx\\\\\\\" not in s:\\\\n            s[\\\\\\\"idx\\\\\\\"] = i\\\\n\\\\n    return samples\\\\n\\\\n\\\\ndef load_existing_results(output_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load already-completed results for resume support.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not output_path.exists():\\\\n        return {}\\\\n    existing = {}\\\\n    with open(output_path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                r = json.loads(line)\\\\n                existing[r[\\\\\\\"idx\\\\\\\"]] = r\\\\n    return existing\\\\n\\\\n\\\\ndef save_results(results, confusion_matrix, class_to_idx, stats, output_dir, model_key, prompt_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Save annotations as JSONL and confusion matrix as npz.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    jsonl_path = output_dir / f\\\\\\\"{model_key}_{prompt_type}.jsonl\\\\\\\"\\\\n    with open(jsonl_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n    npz_path = output_dir / f\\\\\\\"{model_key}_{prompt_type}_confusion_matrix.npz\\\\\\\"\\\\n    np.savez(\\\\n        npz_path,\\\\n        C=confusion_matrix,\\\\n        classes=list(class_to_idx.keys()),\\\\n        **{f\\\\\\\"stat_{k}\\\\\\\": v for k, v in stats.items() if not isinstance(v, list)},\\\\n        raw_counts=np.array(stats[\\\\\\\"raw_counts\\\\\\\"]),\\\\n    )\\\\n\\\\n    print(f\\\\\\\"  Saved: {jsonl_path}\\\\\\\")\\\\n    print(f\\\\\\\"  Saved: {npz_path}\\\\\\\")\\\\n    return jsonl_path, npz_path\\\\n\\\\n\\\\n# ── Main ─────────────────────────────────────────────────────────────────────\\\\n\\\\ndef run_single(dataset_name, model_key, prompt_type, sample_size, split, api_key):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run annotation for one (dataset, model, prompt) combination.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    config = DATASET_CONFIGS[dataset_name]\\\\n    model_id = MODELS[model_key]\\\\n\\\\n    output_dir = RESULTS_DIR / dataset_name\\\\n    output_path = output_dir / f\\\\\\\"{model_key}_{prompt_type}.jsonl\\\\\\\"\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Dataset: {dataset_name} | Model: {model_key} ({model_id})\\\\\\\")\\\\n    print(f\\\\\\\"Prompt: {prompt_type} | Sample: {sample_size} | Split: {split}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    samples = load_data(dataset_name, split, sample_size)\\\\n    print(f\\\\\\\"Loaded {len(samples)} samples\\\\\\\")\\\\n\\\\n    # Resume support\\\\n    existing = load_existing_results(output_path)\\\\n    if existing:\\\\n        remaining = [s for s in samples if s[\\\\\\\"idx\\\\\\\"] not in existing]\\\\n        print(f\\\\\\\"Resuming: {len(existing)} done, {len(remaining)} remaining\\\\\\\")\\\\n    else:\\\\n        remaining = samples\\\\n\\\\n    if not remaining:\\\\n        print(\\\\\\\"All samples already annotated. Recomputing confusion matrix...\\\\\\\")\\\\n        all_results = [existing[s[\\\\\\\"idx\\\\\\\"]] for s in samples if s[\\\\\\\"idx\\\\\\\"] in existing]\\\\n    else:\\\\n        pipeline = AnnotationPipeline(API_BASE, api_key, model_id)\\\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\\\n\\\\n        merged = dict(existing)\\\\n        for r in new_results:\\\\n            merged[r[\\\\\\\"idx\\\\\\\"]] = r\\\\n        all_results = [merged[s[\\\\\\\"idx\\\\\\\"]] for s in samples if s[\\\\\\\"idx\\\\\\\"] in merged]\\\\n\\\\n    # Compute confusion matrix\\\\n    gold = [r[\\\\\\\"gold_label\\\\\\\"] for r in all_results]\\\\n    pred = [r[\\\\\\\"pred_label\\\\\\\"] for r in all_results]\\\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\\\\\"classes\\\\\\\"])\\\\n\\\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\\\n\\\\n    n_parsed = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] is not None)\\\\n    n_correct = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] == r[\\\\\\\"gold_label\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\\\\\"\\\\n          f\\\\\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix C (column-stochastic):\\\\\\\\n{np.array2string(C, precision=3)}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dataset\\\\\\\",\\\\n        choices=[\\\\\\\"humaid\\\\\\\", \\\\\\\"vast\\\\\\\", \\\\\\\"civil_comments\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Dataset to annotate\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model\\\\\\\",\\\\n        choices=[\\\\\\\"llama4\\\\\\\", \\\\\\\"qwen3\\\\\\\", \\\\\\\"deepseek\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Model to use\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--prompt\\\\\\\",\\\\n        choices=[\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Prompt variant\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--sample\\\\\\\", type=int, default=1500, help=\\\\\\\"Sample size per dataset (default: 1500)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--split\\\\\\\", default=\\\\\\\"test\\\\\\\", help=\\\\\\\"Which split to annotate (default: test)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--all\\\\\\\", action=\\\\\\\"store_true\\\\\\\", dest=\\\\\\\"run_all\\\\\\\", help=\\\\\\\"Run all (dataset x model x prompt) combinations\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--delay\\\\\\\", type=float, default=0.5, help=\\\\\\\"Delay between API calls in seconds (default: 0.5)\\\\\\\"\\\\n    )\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.run_all:\\\\n        args.dataset = \\\\\\\"all\\\\\\\"\\\\n        args.model = \\\\\\\"all\\\\\\\"\\\\n        args.prompt = \\\\\\\"all\\\\\\\"\\\\n\\\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\\\n        parser.error(\\\\\\\"Specify --dataset, --model, --prompt (or use --all)\\\\\\\")\\\\n\\\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\\\\\")\\\\n    if not api_key:[REDACTED]        print(\\\\\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\\\\\"all\\\\\\\" else [args.dataset]\\\\n    models = list(MODELS.keys()) if args.model == \\\\\\\"all\\\\\\\" else [args.model]\\\\n    prompts = [\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\"] if args.prompt == \\\\\\\"all\\\\\\\" else [args.prompt]\\\\n\\\\n    total = len(datasets) * len(models) * len(prompts)\\\\n    done = 0\\\\n\\\\n    for ds in datasets:\\\\n        for mdl in models:\\\\n            for pt in prompts:\\\\n                done += 1\\\\n                print(f\\\\\\\"\\\\\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\\\\\")\\\\n                try:\\\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"FAILED: {e}\\\\\\\")\\\\n                    traceback.print_exc()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {done}/{total} combinations processed.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"n_total\\\": len(gold_labels),\\n        \\\"n_valid\\\": n_valid,\\n        \\\"n_skipped\\\": n_skipped,\\n        \\\"coverage\\\": n_valid / len(gold_labels) if gold_labels else 0,\\n        \\\"raw_counts\\\": C.tolist(),\\n    }\\n\\n    return C_norm, class_to_idx, stats\\n\\n\\n# ── I/O ──────────────────────────────────────────────────────────────────────\\n\\ndef load_data(dataset_name, split, sample_size, seed=42):\\n    \\\"\\\"\\\"Load dataset from data/{dataset}/{split}.jsonl, optionally sample.\\\"\\\"\\\"\\n    path = DATA_DIR / dataset_name / f\\\"{split}.jsonl\\\"\\n    if not path.exists():\\n        print(f\\\"ERROR: Data file not found: {path}\\\")\\n        print(f\\\"Run preprocess.py first to prepare the datasets.\\\")\\n        sys.exit(1)\\n\\n    samples = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                samples.append(json.loads(line))\\n\\n    if sample_size and sample_size < len(samples):\\n        rng = np.random.default_rng(seed)\\n        indices = rng.choice(len(samples), size=sample_size, replace=False)\\n        indices.sort()\\n        samples = [samples[i] for i in indices]\\n\\n    for i, s in enumerate(samples):\\n        if \\\"idx\\\" not in s:\\n            s[\\\"idx\\\"] = i\\n\\n    return samples\\n\\n\\ndef load_existing_results(output_path):\\n    \\\"\\\"\\\"Load already-completed results for resume support.\\\"\\\"\\\"\\n    if not output_path.exists():\\n        return {}\\n    existing = {}\\n    with open(output_path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                r = json.loads(line)\\n                existing[r[\\\"idx\\\"]] = r\\n    return existing\\n\\n\\ndef save_results(results, confusion_matrix, class_to_idx, stats, output_dir, model_key, prompt_type):\\n    \\\"\\\"\\\"Save annotations as JSONL and confusion matrix as npz.\\\"\\\"\\\"\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    jsonl_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n    with open(jsonl_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n    npz_path = output_dir / f\\\"{model_key}_{prompt_type}_confusion_matrix.npz\\\"\\n    np.savez(\\n        npz_path,\\n        C=confusion_matrix,\\n        classes=list(class_to_idx.keys()),\\n        **{f\\\"stat_{k}\\\": v for k, v in stats.items() if not isinstance(v, list)},\\n        raw_counts=np.array(stats[\\\"raw_counts\\\"]),\\n    )\\n\\n    print(f\\\"  Saved: {jsonl_path}\\\")\\n    print(f\\\"  Saved: {npz_path}\\\")\\n    return jsonl_path, npz_path\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────────────\\n\\ndef run_single(dataset_name, model_key, prompt_type, sample_size, split, api_key):\\n    \\\"\\\"\\\"Run annotation for one (dataset, model, prompt) combination.\\\"\\\"\\\"\\n    config = DATASET_CONFIGS[dataset_name]\\n    model_id = MODELS[model_key]\\n\\n    output_dir = RESULTS_DIR / dataset_name\\n    output_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Dataset: {dataset_name} | Model: {model_key} ({model_id})\\\")\\n    print(f\\\"Prompt: {prompt_type} | Sample: {sample_size} | Split: {split}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    samples = load_data(dataset_name, split, sample_size)\\n    print(f\\\"Loaded {len(samples)} samples\\\")\\n\\n    # Resume support\\n    existing = load_existing_results(output_path)\\n    if existing:\\n        remaining = [s for s in samples if s[\\\"idx\\\"] not in existing]\\n        print(f\\\"Resuming: {len(existing)} done, {len(remaining)} remaining\\\")\\n    else:\\n        remaining = samples\\n\\n    if not remaining:\\n        print(\\\"All samples already annotated. Recomputing confusion matrix...\\\")\\n        all_results = [existing[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in existing]\\n    else:\\n        pipeline = AnnotationPipeline(API_BASE, api_key, model_id)\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\n\\n        merged = dict(existing)\\n        for r in new_results:\\n            merged[r[\\\"idx\\\"]] = r\\n        all_results = [merged[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the script. Let me check Python environment and API keys.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "475f550f-b95b-4f28-bf88-f389f970369f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsAGMX1ZSfGrqXhxvpNKnx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3157,
+      "cache_read_input_tokens": 32401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3157
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+脚本支持 `--all` 运行所有组合，有 resume 支持，默认 sample=1500。检查 Python 环境和 API key。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "7c85439d-412f-401a-9fd6-656dfa7f589f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsAGMX1ZSfGrqXhxvpNKnx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3157,
+      "cache_read_input_tokens": 32401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3157
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mr1Lh97vrj1T6AKY25wYSC`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "python3 --version",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "f8e93ddd-20b6-46dd-b17f-fddd63087acb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsAGMX1ZSfGrqXhxvpNKnx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3157,
+      "cache_read_input_tokens": 32401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3157
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T10:16:18.217Z_
+
+<details><summary>↩ Tool result · `toolu_01Mr1Lh97vrj1T6AKY25wYSC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Python 3.10.12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "97505de6-21f4-4166-8f25-ac578b8cfb23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Python 3.10.12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Python 3.10.12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011ehfbRMxiMigdAtAgqjfT7`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "python3 -c \"import numpy, requests, json; print('OK')\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "1de6efed-31fe-4dde-84ab-16ed54fcf65b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013D3pd75rcDD3Zp5rJuZ4jy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 270,
+      "cache_read_input_tokens": 35558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 270
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T10:16:21.720Z_
+
+<details><summary>↩ Tool result · `toolu_011ehfbRMxiMigdAtAgqjfT7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a84a00c2-af30-4f4e-adc5-e9bddcb6f578",
+  "uuid": "b68d0a99-36a4-4c3d-93d0-9601d6a62335",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5935539c9fb5cbd8649c",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan 010 w1w2 fix",
+  "task_key": "worker_code_plan_010_w1w2_fix_20260520T235049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_w1w2_fix_20260520T235049_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "d4f46150c714f53b4a23d9fd5a045ef2fa6b01dbf50c8bb0c1015edd6ca73a70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "47/47 pass. Summary:\n\n**W1 (IV Wald fix)**: Added `_plim_iv()` and IV-specific precomputation (RF, FS) to `bias.py`. IV topology now uses Wald estimator `RF / (C @ FS)[1]` instead of OLS. Near-permutation C produces -762.8% bias with sign flip, matching the paper's finding.\n\n**W2 (Correction tests)**: Added 12 new tests in two classes:\n- `TestIVWald` (4 tests): identity zero bias, near-permutation sign flip, ASV sign_flip finite, symmetric_high moderate bias\n- `TestCorrectionMethods` (8 tests): 5 smoke tests, PPI++ bias reduction >50%, DSL catastrophic on mbias, end-to-end pipeline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-w1w2-fix.md"
+}

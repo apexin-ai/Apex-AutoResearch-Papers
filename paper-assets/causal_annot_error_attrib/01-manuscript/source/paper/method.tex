@@ -1,0 +1,98 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Setup and Notation}
+\label{sec:notation}
+
+Let $A$ denote a true $K$-class categorical variable (e.g., sentiment with $K{=}3$ levels) and $A^*$ its observed, potentially misclassified version produced by an LLM annotator. The misclassification process is characterized by a $K{\times}K$ confusion matrix $C$ with entries $C_{jk} = P(A^*{=}j \mid A{=}k)$, where each column sums to one. Following \citet{hernan_cole2009}, we represent this measurement process using \emph{starred-node} DAGs: the true variable $A$ is latent, and the observed $A^*$ is connected to $A$ via a dashed measurement edge.
+
+\begin{definition}[Non-differential misclassification]
+\label{def:nondiff}
+Misclassification of $A$ is non-differential with respect to outcome $Y$ and covariates $\mathbf{Z}$ if $P(A^*{=}j \mid A{=}k, Y, \mathbf{Z}) = P(A^*{=}j \mid A{=}k) = C_{jk}$ for all $j,k$.
+\end{definition}
+
+We study seven canonical DAG topologies (Figure~\ref{fig:dag_taxonomy})~\cite{pearl2009} in which $A$ occupies structurally distinct causal roles: confounder, exposure, mediator, collider, M-bias variable, front-door mediator, and instrument. Each role induces a different functional relationship between $C$ and the probability limit of the standard causal estimator, yielding topology-dependent bias.
+
+\subsection{Multi-Class Bias Expressions}
+\label{sec:bias_expressions}
+
+For each topology, we derive the probability limit of the naive estimator that substitutes $A^*$ for $A$. Let $\tau$ denote the target causal parameter and $\hat{\tau}(A^*)$ the estimator using misclassified annotations.
+
+\paragraph{Confounding ($A$ = confounder).}
+When $A$ confounds the $X{\to}Y$ relationship, the OLS estimator controlling for $A^*$ has probability limit
+\begin{equation}
+\label{eq:confounding}
+\text{plim}\;\hat{\tau}(A^*) = \bigl(\mathbb{E}[Z^{\prime}Z]\bigr)^{-1}\mathbb{E}[Z^{\prime}X]\,\boldsymbol{\beta},
+\end{equation}
+where $Z = [X, \text{dummies}(A^*)]$, $\boldsymbol{\beta}$ contains the true coefficients, and the target parameter $\tau$ is the coefficient on $X$. Misclassification produces residual confounding that monotonically approaches the omitted variable bias, but the sign of $\hat{\tau}$ is preserved: $\tau_{\text{sign\_flip}} = 0$ structurally.
+
+\paragraph{Exposure ($A$ = treatment variable).}
+When $A$ is the exposure of interest, the biased coefficient for category $j$ becomes a weighted combination of true coefficients:
+\begin{equation}
+\label{eq:exposure}
+\text{plim}\;\hat{\beta}_j(A^*) = \sum_{k=1}^{K} w_{jk}\,\beta_k,
+\end{equation}
+where $w_{jk}$ depends on the confusion matrix $C$ and the marginal distribution of $A$. Unlike the binary case, where non-differential misclassification guarantees attenuation toward the null~\cite{brenner1993}, the $K{\geq}3$ case permits $w_{jk}$ to assign negative weight to categories with opposite-sign coefficients, producing \emph{sign reversal}. A near-permutation confusion matrix effectively swaps category labels, making sign reversal the dominant outcome (83.4\% under uniform Dirichlet prior). This failure mode is structurally impossible at $K{=}2$ because a $2{\times}2$ stochastic matrix with positive diagonal cannot reverse the sign of a single coefficient.
+
+\paragraph{Mediation ($A$ = mediator).}
+When $A$ mediates the $X{\to}Y$ relationship, the direct effect estimator controlling for $A^*$ has probability limit
+\begin{equation}
+\label{eq:mediation}
+\text{plim}\;\hat{\tau}_{\text{direct}}(A^*) = \tau_{\text{direct}} + \bigl(1 - \lambda(C)\bigr)\,\tau_{\text{indirect}},
+\end{equation}
+where $\lambda(C) \in [0,1]$ summarizes the weighted attenuation structure (see Appendix~\ref{app:proof}, Proposition~3 for the general multi-dimensional form), with $\lambda(I) = 1$ under perfect classification. Misclassification compresses the mediator's explanatory power ($\lambda(C) < 1$), causing the residual indirect effect $(1{-}\lambda)\tau_{\text{indirect}}$ to be absorbed into the direct path estimate. This produces upward bias in $|\hat{\tau}_{\text{direct}}|$ but preserves the sign ($\tau_{\text{sign\_flip}} = 0$).
+
+\paragraph{Collider ($A$ = collider, conditioned on $A^*$).}
+Conditioning on a collider $A$ of $X$ and $Y$ opens a spurious path. When we condition on $A^*$ instead, misclassification attenuates this spurious association because $A^*$ is a noisy proxy for $A$. The collider topology thus exhibits a \emph{protective} property: annotation error reduces rather than amplifies the bias from collider stratification, with $\tau_{\text{sign\_flip}} = 0$.
+
+\paragraph{M-bias ($A$ = intermediate collider).}
+In the M-shaped DAG ($U_1 \to X$, $U_1 \to A$, $U_2 \to A$, $U_2 \to Y$, $X \to Y$), adjusting for $A$ introduces a small spurious association via the M-bias path~\cite{greenland2003}. Misclassifying $A$ weakens this adjustment, reducing the M-bias. This topology is \emph{immune}: $\hat{\tau}(A^*)$ is closer to $\tau$ than $\hat{\tau}(A)$ for all non-trivial confusion matrices, yielding $\text{ASV} = \infty$.
+
+\paragraph{Front-door ($A$ = front-door mediator).}
+In the front-door DAG ($X \to A \to Y$ with unmeasured $U \to X$, $U \to Y$), the front-door estimator~\cite{bellemare_bloem2024} uses $A$ to identify the causal effect of $X$ on $Y$ despite unmeasured confounding. Misclassification of $A$ attenuates the estimated $X \to A$ and $A \to Y$ relationships, producing moderate bias. The sign of the causal effect is preserved ($\tau_{\text{sign\_flip}} = 0$).
+
+\paragraph{Instrumental variable ($A$ = instrument).}
+The Wald estimator~\cite{angrist_imbens1995} in the binary instrument case takes the form $\hat{\tau}_{\text{IV}} = \hat{\text{cov}}(A^*, Y) / \hat{\text{cov}}(A^*, X)$. For $K{\geq}3$, the multi-class analog replaces the scalar first-stage coefficient with a vector of category-specific coefficients, but the core vulnerability persists: $C$ enters the denominator directly, so misclassification can drive individual first-stage coefficients toward zero or reverse their sign, causing the ratio estimator to diverge or flip. Under random Dirichlet confusion matrices, 52.6\% produce $\tau$-specific sign reversal, making IV the most fragile topology.
+
+\paragraph{Structural sign-flip guarantee.}
+\begin{proposition}
+\label{prop:signflip}
+Under non-differential misclassification with $C_{kk} > 0$ for all $k$ (no category has zero self-classification probability), and provided the true effect and the omitted-variable bias share the same sign (a condition satisfied under standard DGP parameterizations), the following topologies satisfy $\tau_{\text{sign\_flip}} = 0$: confounding, mediation, collider, M-bias, and front-door. Sign reversal is possible only in the exposure and IV topologies.
+\end{proposition}
+
+\emph{Proof sketch.}
+For confounding and mediation, a Frisch--Waugh--Lovell decomposition shows the bias is $B(C) = R(C)/D(C)$, where $D(C)>0$ and $|R(C)|$ is bounded by the Cauchy--Schwarz inequality. The bound ensures $|B(C)| < |\tau|$ whenever the true effect and the omitted-variable (or total) effect share the same sign, guaranteeing sign preservation for all column-stochastic $C$. This sign-alignment condition is parameter-dependent but holds generically: it is satisfied whenever the confounder's effect on the treatment and outcome have the same direction, which is the standard assumption motivating adjustment in the first place. Collider and M-bias produce monotonically attenuating bias. For exposure, we construct an explicit $K{=}3$ counterexample with diagonal-dominant $C$ ($C_{kk}{>}0.5$) yielding sign reversal. Full proofs are in Appendix~\ref{app:proof} (Propositions~\ref{prop:conf_prop}--\ref{prop:conf_gen} for confounding, Proposition~\ref{prop:med_sign} for mediation, Proposition~\ref{prop:exp_counter} for the exposure counterexample); Table~\ref{tab:sign_conditions} summarizes the sufficient conditions for all seven topologies.
+
+\subsection{Annotation Sensitivity Values}
+\label{sec:asv}
+
+We introduce Annotation Sensitivity Values (ASVs) as a unified sensitivity analysis framework, analogous to E-values for unmeasured confounding~\cite{vanderweele_ding2017} but designed for annotation-induced bias.
+
+\paragraph{Parameterization.}
+We parameterize the confusion matrix as $C(\delta) = (1{-}\delta)I + \delta C_0$, where $C_0$ is a reference confusion matrix (e.g., estimated from a validation set) and $\delta \in [0, \infty)$ controls the severity of misclassification. At $\delta{=}0$, classification is perfect; at $\delta{=}1$, classification matches $C_0$; for $\delta{>}1$, misclassification exceeds the reference level.
+
+\paragraph{Three ASV types.}
+We define three complementary sensitivity measures, each answering a distinct practical question:
+
+\begin{enumerate}
+\item \textbf{Magnitude ASV}: $\delta^*_{\text{mag}} = \min\{\delta : |\text{plim}\;\hat{\tau}(C(\delta)) - \tau| > \epsilon\}$, the minimum misclassification level at which bias exceeds a threshold $\epsilon$. This is directly analogous to the E-value and applies to all topologies.
+
+\item \textbf{Significance ASV}: $\delta^*_{\text{sig}} = \min\{\delta : |\text{plim}\;\hat{\tau}(C(\delta))| < z_{\alpha/2} \cdot SE(N)\}$, the minimum misclassification level at which the effect becomes statistically non-significant. This is relevant for attenuating topologies (confounding, mediation, collider) where bias reduces the observed effect.
+
+\item \textbf{Sign-flip ASV}: $\delta^*_{\text{sf}} = \min\{\delta : \text{sign}(\text{plim}\;\hat{\tau}(C(\delta))) \neq \text{sign}(\tau)\}$, the minimum misclassification level at which the estimated effect changes sign. This applies only to exposure and IV topologies.
+\end{enumerate}
+
+\begin{theorem}[Envelope monotonicity]
+\label{thm:monotone}
+For confounding, exposure, and mediation topologies, the bias envelope $|\text{plim}\;\hat{\tau}(C(\delta)) - \tau|$ is monotonically non-decreasing in $\delta$ for $\delta \geq 0$.
+\end{theorem}
+
+Monotonicity is verified numerically for all seven topologies across 545{,}945 adversarial envelope curves with maximum deviation 1.6\% of $|\tau|$ (Appendix~\ref{app:monotonicity}).
+
+\paragraph{$N$-sensitivity.}
+The significance ASV depends on sample size through $SE(N)$. We define the critical sample size $N^*$ as the smallest $N$ at which $z_{\alpha/2} \cdot SE(N) < |\tau|$. For $N < N^*$, the significance ASV equals zero (all rejections blocked); for $N > N^*$, the ASV jumps to infinity (no rejections blocked). This sharp phase transition provides practitioners with a concrete minimum sample size for their topology.
+
+\subsection{Binarization Collapse}
+\label{sec:binarization_method}
+
+A common simplification in applied work is to collapse $K$-class annotations to binary before analysis. We quantify the additional bias from this ``binarization collapse'' as $\Delta = |\text{bias}_{K} - \text{bias}_{K \to 2}|$, where $\text{bias}_K$ is the bias under the original $K$-class confusion matrix and $\text{bias}_{K \to 2}$ is the bias after folding categories into two groups with the corresponding collapsed $2{\times}2$ confusion matrix. This quantity captures the information lost by discarding the multi-class error structure.

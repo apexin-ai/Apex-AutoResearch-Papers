@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f30aff92c2f9caca18b8",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "sim theory empirical mape",
+  "task_key": "worker_sim_theory_empirical_mape_20260521T080347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sim_theory_empirical_mape_20260521T080347_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "f03e57e224f8bce0c1ebfc8f9839639d0a1711fa8f4965897bacb88ce608111b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `artifacts/theory_empirical_mape.json`.\n\n**Setup**\n- N_MC=200 replicates × N=10k samples each\n- Scope: 8 valid humaid configs (K=10) × 7 topologies = **56 scenarios**\n- 1 zero matrix excluded (humaid_qwen3_few-shot-5). VAST (K=3) and civil_comments (K=2) confusion matrices are not in `artifacts/plan006/asv_empirical_results.json` locally — they live in `plan006_full` on the remote server.\n- Used plan_006's own K-dependent DGP (which is what produced the analytical biases), not `annot_sensitivity/dgp.py` (which is K=3-only).\n\n**Results**\n\n| Topology | MAPE | Median APE | Max APE |\n|---|---|---|---|\n| confounding | 0.70% | 0.58% | 1.68% |\n| frontdoor | 1.24% | 1.12% | 2.78% |\n| collider | 1.86% | 1.59% | 3.53% |\n| mbias | 2.08% | 1.75% | 7.43% |\n| exposure | 2.11% | 1.79% | 4.92% |\n| mediation | 2.40% | 2.22% | 4.50% |\n| iv | 3.32% | 2.01% | 9.60% |\n| **grand** | **1.96%** | — | — |\n\nAll topologies well under the 15% benign-topology threshold. IV's worst-case APE (9.6%) is on `humaid_qwen3_zero-shot`, where the analytical IV bias is small (0.138) so any MC noise translates to a larger relative error — consistent with the \"plim converges slowly when denominator is small\" caveat in the task spec."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sim-theory-empirical-mape.md"
+}

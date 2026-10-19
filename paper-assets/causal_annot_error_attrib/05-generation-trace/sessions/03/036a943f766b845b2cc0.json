@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "036a943f766b845b2cc0",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "data table3 extract",
+  "task_key": "worker_data_table3_extract_20260520T213524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_table3_extract_20260520T213524_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "2a463b2e5353b8c9b2ac2b0474751877553d7581569669291ebffe1352e33ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已提取并写入 `artifacts/table3_source_data.txt`。\n\n关键发现：JSON 源数据与论文 Table 3 存在显著差异：\n\n- **MC-SIMEX 差异最大**：frontdoor 论文 +8.7% vs 数据 -55.7%（符号翻转），collider 12.4% vs 37.1%（差 25pp），mediation 24.6% vs 42.4%（差 18pp）\n- **PPI++ 小幅差异**：confounding 97.8→99.3，collider 98.6→97.0，iv 98.4→99.5\n- **Naive/MLA**：论文用 \"<0\" 模糊处理，实际值为 frontdoor -53.5/-112.5，exposure -45.6/-89.9，iv -40.9/-59.2\n- **Grand mean 完全一致**：所有 5 个方法的 grand mean 在论文和数据间精确匹配\n\nGrand mean 匹配但个别值不匹配，可能论文写入时用了不同版本的中间结果或不同的聚合方式。建议用 JSON 源数据更新论文 Table 3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-table3-extract.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "empirical_annotation_补跑",
+  "project": "causal_annot_error_attrib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:09:55.599Z",
+    "updated_at": "2026-05-24T06:10:09.850Z",
+    "hypothesis": "Adding qwen2.5-7b annotations (3 prompt configs × HumAID/VAST/CivilComments) completes 36/36 model×dataset×prompt coverage for rebuttal readiness"
+  },
+  "timestamp": "2026-05-24T06:10:09.893505+00:00",
+  "trigger": "update_registry"
+}

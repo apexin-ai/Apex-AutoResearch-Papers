@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4296800c2b58ce2c603",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan003 nohup launch",
+  "task_key": "worker_code_plan003-nohup-launch_20260520T110218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-nohup-launch_20260520T110218_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "6018011a20da2cc09d56c20197aae13b096d42c128ec3751818e67f54be721e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，registry 已更新。总结：\n\n**plan_003 标注管线已用 nohup 后台启动**\n\n| 检查项 | 结果 |\n|--------|------|\n| PID 存活 | PID 401208, PPID=1 (已脱离 SSH) |\n| 日志有进度 | `[1/27] humaid / llama4 / zero-shot`, 已载入 1500 样本 |\n| 无崩溃迹象 | 状态 Sl, 运行正常 |\n\n注意事项：\n- API 响应较慢（~11s/请求），27 个组合 × 1500 样本预计耗时较长\n- 用 `PYTHONUNBUFFERED=1` 启动，日志实时可查：`tail -f /home/sonny/causal_annot_error_attrib/plan003_run.log`\n- 进程已完全脱离 SSH 会话，断开连接不会影响运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-nohup-launch.md"
+}

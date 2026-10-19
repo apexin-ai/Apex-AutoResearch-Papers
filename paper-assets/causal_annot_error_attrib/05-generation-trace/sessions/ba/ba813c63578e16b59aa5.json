@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "ba813c63578e16b59aa5",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "audit page fitting",
+  "task_key": "worker_audit_page_fitting_20260522T021756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_page_fitting_20260522T021756_result.json",
+    "occurrence": 1,
+    "bytes": 2114885,
+    "sha256": "85276c8ab2d84e3b8eae750424ac47f2e975e500970ec8950ed505796ada8238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ba813c63578e16b59aa5-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/audit-page-fitting.md"
+}

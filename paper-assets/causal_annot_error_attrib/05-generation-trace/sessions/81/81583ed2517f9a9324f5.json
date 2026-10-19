@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "81583ed2517f9a9324f5",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "code within topo f1 bias",
+  "task_key": "worker_code_within_topo_f1_bias_20260523T145204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_within_topo_f1_bias_20260523T145204.jsonl",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "5540362c29301ffb37df0202a0e5ae1ef4bc8571a29330e4b3eb80b801e31fae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T14:52:13.420706+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_within_topo_f1_bias_20260523T145204"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-within-topo-f1-bias.md"
+}

@@ -1,0 +1,229 @@
+\begin{thebibliography}{31}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Angelopoulos et~al.(2023)Angelopoulos, Bates, Fannjiang, Jordan, and
+  Zrni{\'c}]{angelopoulos2023}
+Anastasios~N. Angelopoulos, Stephen Bates, Clara Fannjiang, Michael~I. Jordan,
+  and Tijana Zrni{\'c}.
+\newblock Prediction-powered inference.
+\newblock \emph{Science}, 382\penalty0 (6671):\penalty0 669--674, 2023.
+\newblock \doi{10.1126/science.adi6000}.
+
+\bibitem[Angrist and Imbens(1995)]{angrist_imbens1995}
+Joshua~D. Angrist and Guido~W. Imbens.
+\newblock Two-stage least squares estimation of average causal effects in
+  models with variable treatment intensity.
+\newblock \emph{Journal of the American Statistical Association}, 90\penalty0
+  (430):\penalty0 431--442, 1995.
+\newblock \doi{10.1080/01621459.1995.10476535}.
+
+\bibitem[Audinet~de Pieuchon et~al.(2025)Audinet~de Pieuchon, Daoud, Jerzak,
+  Johansson, and Johansson]{audinet2025}
+Nicolas Audinet~de Pieuchon, Adel Daoud, Connor~Thomas Jerzak, Moa Johansson,
+  and Richard Johansson.
+\newblock Benchmarking debiasing methods for {LLM}-based parameter estimates.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}, pages 19757--19772, 2025.
+
+\bibitem[Baumann et~al.(2025)Baumann, R{\"o}ttger, Urman, Wendsj{\"o},
+  Plaza-del Arco, Gruber, and Hovy]{baumann2025}
+Maximilian Baumann, Paul R{\"o}ttger, Aleksandra Urman, Sina Wendsj{\"o},
+  Flor~Miriam Plaza-del Arco, Nora Gruber, and Dirk Hovy.
+\newblock Large language model hacking: Quantifying the hidden risks of using
+  {LLM}s for text annotation.
+\newblock \emph{arXiv preprint arXiv:2509.08825}, 2025.
+
+\bibitem[Bellemare et~al.(2024)Bellemare, Bloem, and
+  Wexler]{bellemare_bloem2024}
+Marc~F. Bellemare, Jeffrey~R. Bloem, and Noah Wexler.
+\newblock The paper of how: Estimating treatment effects using the front-door
+  criterion.
+\newblock \emph{Oxford Bulletin of Economics and Statistics}, 86\penalty0
+  (4):\penalty0 951--993, 2024.
+\newblock \doi{10.1111/obes.12598}.
+
+\bibitem[Brenner(1993)]{brenner1993}
+Hermann Brenner.
+\newblock Bias due to non-differential misclassification of polytomous
+  confounders.
+\newblock \emph{Journal of Clinical Epidemiology}, 46\penalty0 (1):\penalty0
+  57--63, 1993.
+\newblock \doi{10.1016/0895-4356(93)90009-P}.
+
+\bibitem[Chen et~al.(2024)Chen, Bhattacharya, and
+  Keith]{chen_bhattacharya_keith2024}
+Jiayi~Maggie Chen, Rohit Bhattacharya, and Katherine~A. Keith.
+\newblock Proximal causal inference with text data.
+\newblock In \emph{Advances in Neural Information Processing Systems 37}, 2024.
+
+\bibitem[Cheng et~al.(2024)Cheng, Mayya, and Sedoc]{cheng_mayya_sedoc2024}
+Xiang Cheng, Raveesh Mayya, and Jo{\~a}o Sedoc.
+\newblock To err is human; to annotate, {SILICON}? reducing measurement error
+  in {LLM} annotation.
+\newblock \emph{arXiv preprint arXiv:2412.14461}, 2024.
+
+\bibitem[Ding and VanderWeele(2016)]{ding_vanderweele2016}
+Peng Ding and Tyler~J. VanderWeele.
+\newblock Sensitivity analysis without assumptions.
+\newblock \emph{Epidemiology}, 27\penalty0 (3):\penalty0 368--377, 2016.
+\newblock \doi{10.1097/EDE.0000000000000457}.
+
+\bibitem[Edwards et~al.(2021)Edwards, Lessler, and
+  Naimi]{edwards_lessler_naimi2021}
+Jessie~K. Edwards, Justin Lessler, and Ashley~I. Naimi.
+\newblock An underappreciated misclassification mechanism: Implications of
+  nondifferential dependent misclassification of covariate and exposure.
+\newblock \emph{Annals of Epidemiology}, 58:\penalty0 104--123, 2021.
+\newblock \doi{10.1016/j.annepidem.2021.02.007}.
+
+\bibitem[Egami et~al.(2023)Egami, Hinck, Stewart, and
+  Wei]{egami_hinck_stewart_wei2023}
+Naoki Egami, Musashi Hinck, Brandon~M. Stewart, and Hanying Wei.
+\newblock Using imperfect surrogates for downstream inference: Design-based
+  supervised learning for social science applications of large language models.
+\newblock In \emph{Advances in Neural Information Processing Systems 36}, 2023.
+
+\bibitem[Gligori{\'c} et~al.(2025)Gligori{\'c}, Zrni{\'c}, Lee, Cand{\`e}s, and
+  Jurafsky]{gligoric2025}
+Kristina Gligori{\'c}, Tijana Zrni{\'c}, Sara~Y. Lee, Emmanuel~J. Cand{\`e}s,
+  and Dan Jurafsky.
+\newblock Can unconfident {LLM} annotations be used for confident conclusions?
+\newblock In \emph{Proceedings of the 2025 Conference of the North American
+  Chapter of the Association for Computational Linguistics}, 2025.
+
+\bibitem[Greenland(2003)]{greenland2003}
+Sander Greenland.
+\newblock Quantifying biases in causal models: Classical confounding vs
+  collider-stratification bias.
+\newblock \emph{Epidemiology}, 14:\penalty0 300--306, 2003.
+\newblock \doi{10.1097/01.EDE.0000042804.12056.6C}.
+
+\bibitem[Gustafson(2004)]{gustafson2004}
+Paul Gustafson.
+\newblock \emph{Measurement Error and Misclassification in Statistics and
+  Epidemiology: Impacts and {B}ayesian Adjustments}.
+\newblock Chapman \& Hall/CRC, 2004.
+\newblock ISBN 978-1-58488-335-7.
+
+\bibitem[Hern{\'a}n and Cole(2009)]{hernan_cole2009}
+Miguel~A. Hern{\'a}n and Stephen~R. Cole.
+\newblock Invited commentary: Causal diagrams and measurement bias.
+\newblock \emph{American Journal of Epidemiology}, 170\penalty0 (8):\penalty0
+  959--962, 2009.
+\newblock \doi{10.1093/aje/kwp293}.
+
+\bibitem[Keith et~al.(2020)Keith, Jensen, and
+  O'Connor]{keith_jensen_oconnor2020}
+Katherine~A. Keith, David~D. Jensen, and Brendan~T. O'Connor.
+\newblock Text and causal inference: A review of using text to remove
+  confounding from causal estimates.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics}, 2020.
+\newblock \doi{10.18653/v1/2020.acl-main.474}.
+
+\bibitem[Kim et~al.(2025)Kim, Garg, Peng, and Garg]{kim_garg2025}
+Junsol Kim, Siddharth Garg, Yuxiao Peng, and Nikhil Garg.
+\newblock Correlated errors in large language models.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}, 2025.
+
+\bibitem[Lee and Wood-Doughty(2024)]{lee_wood_doughty2024}
+Samuel Lee and Zach Wood-Doughty.
+\newblock Controlling for unobserved confounding with large language model
+  classification of patient smoking status.
+\newblock In \emph{AIM-FM Workshop, NeurIPS 2024}, 2024.
+
+\bibitem[Messing(2026)]{messing2026}
+Solomon Messing.
+\newblock Hidden measurement error in {LLM} pipelines distorts annotation,
+  evaluation, and benchmarking.
+\newblock \emph{arXiv preprint arXiv:2604.11581}, 2026.
+
+\bibitem[Ogburn and VanderWeele(2012)]{ogburn_vanderweele2012}
+Elizabeth~L. Ogburn and Tyler~J. VanderWeele.
+\newblock On the nondifferential misclassification of a binary confounder.
+\newblock \emph{Epidemiology}, 23\penalty0 (3):\penalty0 433--439, 2012.
+\newblock \doi{10.1097/EDE.0b013e31824d1f63}.
+
+\bibitem[Pearl(2009)]{pearl2009}
+Judea Pearl.
+\newblock \emph{Causality: Models, Reasoning and Inference}.
+\newblock Cambridge University Press, 2nd edition, 2009.
+\newblock ISBN 978-0-521-89560-6.
+
+\bibitem[Rosenbaum(2002)]{rosenbaum2002}
+Paul~R. Rosenbaum.
+\newblock \emph{Observational Studies}.
+\newblock Springer, 2nd edition, 2002.
+\newblock \doi{10.1007/978-1-4757-3692-2}.
+
+\bibitem[Smith et~al.(2021)Smith, Mathur, and
+  VanderWeele]{smith_vanderweele2021}
+Louisa~H. Smith, Maya~B. Mathur, and Tyler~J. VanderWeele.
+\newblock Multiple-bias sensitivity analysis using bounds.
+\newblock \emph{Epidemiology}, 32:\penalty0 625--634, 2021.
+\newblock \doi{10.1097/EDE.0000000000001380}.
+
+\bibitem[Stolwijk et~al.(2025)Stolwijk, Boukes, and
+  Trilling]{stolwijk_boukes_trilling2025}
+Sjoerd~B. Stolwijk, Mark Boukes, and Damian Trilling.
+\newblock Are generative {AI} text annotations systematically biased?
+\newblock \emph{arXiv preprint arXiv:2512.08404}, 2025.
+
+\bibitem[TeBlunthuis et~al.(2024)TeBlunthuis, Hase, and Chan]{teblunthuis2024}
+Nathan TeBlunthuis, Valerie Hase, and Chung-hong Chan.
+\newblock Misclassification in automated content analysis causes bias in
+  regression. {C}an we fix it? {Y}es we can!
+\newblock \emph{Communication Methods and Measures}, 18\penalty0 (3):\penalty0
+  278--299, 2024.
+\newblock \doi{10.1080/19312458.2023.2293713}.
+
+\bibitem[VanderWeele and Ding(2017)]{vanderweele_ding2017}
+Tyler~J. VanderWeele and Peng Ding.
+\newblock Sensitivity analysis in observational research: Introducing the
+  {E}-value.
+\newblock \emph{Annals of Internal Medicine}, 167:\penalty0 268--274, 2017.
+\newblock \doi{10.7326/M16-2607}.
+
+\bibitem[VanderWeele and Li(2019)]{vanderweele_li2019}
+Tyler~J. VanderWeele and Yige Li.
+\newblock Simple sensitivity analysis for differential measurement error.
+\newblock \emph{American Journal of Epidemiology}, 188\penalty0 (10):\penalty0
+  1823--1829, 2019.
+\newblock \doi{10.1093/aje/kwz133}.
+
+\bibitem[Veier{\o}d and Laake(2001)]{veirod_laake2001}
+Marit~B. Veier{\o}d and Petter Laake.
+\newblock Exposure misclassification: Bias in category specific {P}oisson
+  regression coefficients.
+\newblock \emph{Statistics in Medicine}, 20\penalty0 (5):\penalty0 771--784,
+  2001.
+\newblock \doi{10.1002/sim.712}.
+
+\bibitem[Wood-Doughty et~al.(2018)Wood-Doughty, Shpitser, and
+  Dredze]{wood_doughty2018}
+Zach Wood-Doughty, Ilya Shpitser, and Mark Dredze.
+\newblock Challenges of using text classifiers for causal inference.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}, 2018.
+\newblock \doi{10.18653/v1/D18-1488}.
+
+\bibitem[Yang et~al.(2018)Yang, Adomavicius, Burtch, and
+  Ren]{yang_adomavicius2018}
+Mochen Yang, Gediminas Adomavicius, Gordon Burtch, and Yuqing Ren.
+\newblock Mind the gap: Accounting for measurement error and misclassification
+  in variables generated via data mining.
+\newblock \emph{Information Systems Research}, 2018.
+\newblock \doi{10.1287/isre.2017.0727}.
+
+\bibitem[Zrni{\'c} and Cand{\`e}s(2024)]{zrnic_candes2024}
+Tijana Zrni{\'c} and Emmanuel~J. Cand{\`e}s.
+\newblock Cross-prediction-powered inference.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 2024.
+\newblock \doi{10.1073/pnas.2322083121}.
+
+\end{thebibliography}

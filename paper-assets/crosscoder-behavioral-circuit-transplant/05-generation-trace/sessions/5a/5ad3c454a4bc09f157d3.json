@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ad3c454a4bc09f157d3",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "kind": "result",
+  "title": "code mvp A 003",
+  "task_key": "worker_code_mvp-A-003_20260510T132700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-A-003_20260510T132700_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "0ec85dda07259f642127154ad83ce84350e04a0a22e44a071f275790c70478ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nWORKER_RESULT:\nstatus: completed\nexp_id: mvp-A-003\nscript: /home/sonny/crosscoder-bct/mvp_a003_bias_injection.py\nlog: /home/sonny/crosscoder-bct/run_a003.log\nresult: H2 NOT CONFIRMED — bias injection also fails\n  - All 5 alphas fail Gate 3 (movement threshold ≥50%)\n  - Best: alpha=2.0, movement=2.84%, ppl_ratio=1.0109\n  - Alpha=5.0 also breaks Gate 4 (ppl_ratio=1.0827)\n  - Feature k=1353 (same as mvp-A-001), ratio=6.93\n  - Conclusion: problem is NOT the surgery site — both W_out rank-1 and residual bias injection produce <8% movement\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-a-003.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b6d5246dbe713e767178",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan002 k57 extension",
+  "task_key": "worker_code_plan002-k57-extension_20260520T150023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-k57-extension_20260520T150023.log",
+    "occurrence": 1,
+    "bytes": 632722,
+    "sha256": "114bb28d1f38bbcbab83915e7968244311adcb6905c9627b8580f7f0dccd5e83"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 1,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 4,
+      "assistant": 48,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "b6d5246dbe713e767178-part-0001.json",
+          "message_count": 96
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "b6d5246dbe713e767178-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "b6d5246dbe713e767178-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan002-k57-extension.md"
+}

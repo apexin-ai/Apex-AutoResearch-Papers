@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_exposure_dag",
+  "project": "causal_annot_error_attrib",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:43:17.960Z",
+    "updated_at": "2026-05-20T07:43:38.458Z",
+    "hypothesis": "K=3 非差异性 exposure 误分类打破二分类 bias-toward-null 保证：存在 C 结构使 treatment effect 估计产生符号反转或效应放大，而 K=2 下非差异性误分类始终保证衰减",
+    "spec": {
+      "command": "python3 mvp_exposure_dag.py",
+      "server": "local",
+      "data_path": "synthetic (in-script DGP)",
+      "data_count": "6 C-structures x 1000 reps x N=10000 + 100k random search",
+      "model_name": "N/A (analytical + MC)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T07:43:38.471210+00:00",
+  "trigger": "update_registry"
+}

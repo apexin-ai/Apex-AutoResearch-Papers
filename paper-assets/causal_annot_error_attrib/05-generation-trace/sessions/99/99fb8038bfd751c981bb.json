@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99fb8038bfd751c981bb",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan003 data download",
+  "task_key": "worker_code_plan003-data-download_20260520T095123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-data-download_20260520T095123_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "ee657c66c91547399fefbeccbeca2e3cee304fcb2b828c95c2f9b5dc4f9e348f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。VAST 的 `_repo` 目录占了 301M（含 git），可以清理。以下是汇总：\n\n---\n\n### 数据集统计\n\n| Dataset | K | Train | Val | Test | Total | 磁盘 |\n|---------|---|-------|-----|------|-------|------|\n| **HumAID** | 10 | 53,531 | 7,793 | 15,160 | 76,484 | 17M |\n| **VAST** | 3 | 13,477 | 2,062 | 3,006 | 18,545 | 301M* |\n| **Civil Comments** | 2 | 100,000 | 97,320 | 97,320 | 294,640 | 105M |\n\n*VAST 含 git clone 的 `_repo`，JSONL 本身很小\n\n**HumAID (K=10)**：实际标签数是 10（非 11），类别为 caution_and_advice, displaced_people_and_evacuations, infrastructure_and_utility_damage, injured_or_dead_people, missing_or_found_people, not_humanitarian, other_relevant_information, requests_or_urgent_needs, rescue_volunteering_or_donation_effort, sympathy_and_support。最大类 rescue_volunteering_or_donation_effort (21K)，最小类 missing_or_found_people (358)。\n\n**VAST (K=3)**：con=7297, neutral=4296, pro=6952，分布相对均匀。\n\n**Civil Comments (K=2)**：non_toxic=272K, toxic=22K，极度不平衡（~7.6% toxic）。Train 取了前 100K 条以节省磁盘。\n\n**输出格式**：每个数据集 `{train,val,test}.jsonl`，每行 `{\"text\", \"label\", \"label_name\", \"split\"}`。\n\n**脚本位置**：`/home/sonny/causal_annot_error_attrib/data/preprocess.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-data-download.md"
+}

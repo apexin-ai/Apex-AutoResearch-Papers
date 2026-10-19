@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edca30072d919fc0cd43",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan 010 toolkit",
+  "task_key": "worker_code_plan_010_toolkit_20260520T232412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_010_toolkit_20260520T232412_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "a8ee2e16e478b316df10f9a95e04e2ee840891d866e4b03db5fe8270a3f7ef0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three verification steps pass:\n\n1. **Import** — works\n2. **35/35 pytest tests** — all pass (14s)\n3. **Worked example** — runs correctly, shows confounding bias of +10.2% with symmetric_high C, ASV at δ=0.967, recommends PPI++ with gold / DSL without\n\nPackage structure created:\n\n```\nannot_sensitivity/\n├── __init__.py          # Public API: compute_bias, compute_asv, recommend_correction, ...\n├── utils.py             # softmax_sample, misclassify, make_dummies, ols, ols_with_se\n├── confusion.py         # validate, random, interpolate, predefined matrices\n├── dgp.py               # 7 topology DGPs with DEFAULT_PARAMS\n├── bias.py              # compute_bias via precomputed plim (2M samples, cached)\n├── asv.py               # compute_asv with magnitude/significance/sign_flip thresholds\n├── correction.py        # 5 correction methods + recommend_correction\n├── examples/\n│   └── confounding_k3.py   # Full workflow demo\n└── tests/\n    ├── __init__.py\n    └── test_core.py     # 35 tests across all modules\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-010-toolkit.md"
+}

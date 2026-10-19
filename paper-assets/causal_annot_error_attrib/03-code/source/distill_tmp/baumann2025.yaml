@@ -1,0 +1,292 @@
+paper_key: "baumann2025"
+title: "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Baseline 1 (random conclusions): randomly assigns statistical conclusions with 50% probability"
+    - "Baseline 2 (random labels): assigns annotation labels uniformly at random"
+    - "Baseline 3 (random errors): generates annotations with controlled F1 scores by flipping random labels"
+  metrics:
+    - {name: "LLM Hacking Risk (avg of Type I + Type II + Type S Risk / 2)", direction: "lower_better"}
+    - {name: "Type I Risk (false positive rate)", direction: "lower_better"}
+    - {name: "Type II Risk (false negative rate)", direction: "lower_better"}
+    - {name: "Type S Risk (sign error rate)", direction: "lower_better"}
+    - {name: "Type M Risk (magnitude error, ratio of estimated to true effect size)", direction: "lower_better"}
+    - {name: "LLM Hacking Feasibility (intentional, proportion where at least one config yields wrong conclusion)", direction: "lower_better"}
+    - {name: "Weighted F1 score (annotation performance)", direction: "higher_better"}
+  datasets:
+    - {name: "37 annotation tasks from 21 published CSS datasets", size: "145,277 used / 1,533,400 total datapoints"}
+    - {name: "essay (6 tasks)", size: "489/489 per task"}
+    - {name: "ideology_news", size: "9,968/37,554"}
+    - {name: "manifestos_uk (4 tasks)", size: "2,091-9,983 per task"}
+    - {name: "tone", size: "859/859"}
+    - {name: "politeness_stack", size: "3,298/3,298"}
+    - {name: "politeness_wiki", size: "2,171/2,171"}
+    - {name: "emotion", size: "7,276/7,276"}
+    - {name: "topic", size: "10,000/10,000"}
+    - {name: "hatespeech (3 tasks)", size: "5,475-6,135 per task"}
+    - {name: "issue_survey", size: "9,922/101,930"}
+    - {name: "misinfo", size: "9,991/25,164"}
+    - {name: "news (framesI, relevance)", size: "326-1,599"}
+    - {name: "tweets17/tweets23/tweets (multiple framing/relevance tasks)", size: "150-1,934"}
+    - {name: "stance_climate", size: "1,793/1,793"}
+    - {name: "manifestos (issues detailed)", size: "9,986/1,239,149"}
+    - {name: "factuality", size: "9,965/15,225"}
+    - {name: "fakenews", size: "7,954/7,954"}
+    - {name: "ideology_tweets", size: "4,099/4,099"}
+    - {name: "humor", size: "9,999/15,817"}
+  ablation_dimensions:
+    - "model family and size (Llama 3 1B-70B, Qwen2.5 1.5B-72B, Qwen3 1.7B-32B, Gemma 3 1B-27B, GPT-4o-mini, GPT-4o)"
+    - "prompt formulation (5-7 per task, 199 total; 89.4% zero-shot, 10.6% few-shot)"
+    - "task type (37 tasks across ideology, stance, emotion, hate speech, topic, etc.)"
+    - "human annotation sampling strategy (random, low confidence, active learning)"
+    - "data usage strategy (GT only, GT+LLM, GT+LLM+correction)"
+    - "model selection strategy (random, GPT-4o, best-performing)"
+    - "number of human annotations (25, 50, 100, 250, 500, 1000)"
+    - "statistical correction method (DSL, CDI, none)"
+  training_recipe:
+    optimizer: "N/A (zero-shot/few-shot prompting, no training)"
+    lr: "N/A"
+    hardware: "Swiss AI Initiative compute resources"
+    decoding: "temperature=0, max_tokens=20, regex output mapping"
+  method_family: "empirical measurement of LLM annotation error propagation to downstream hypothesis testing"
+
+positioning:
+  core_claim: "LLM configuration choices (model, prompt, parameters) create a 'garden of forking paths' that leads to incorrect scientific conclusions in 31-50% of cases, constituting a new layer of research vulnerability distinct from p-hacking that operates at the data generation stage."
+  key_results: >
+    LLM Hacking Risk: 31% for SOTA 70B+ models, 50% for 1B models.
+    Intentional hacking feasibility: 94.4% Type I, 98.1% Type II, 68.3% Type S.
+    Type M risk: 41-77% effect size deviation.
+    Task range: 5% (humor) to >65% (ideology/frame classification).
+    Proximity to p=0.05: error rates approaching 70%.
+    100 human annotations outperform 100K LLM annotations for Type I error control (~10% vs 30-40%).
+    DSL/CDI reduce Type I errors but increase Type II by up to 60 percentage points.
+    No correlation between human inter-annotator agreement and LLM hacking risk (p>0.1).
+    Prompt engineering explains <1% of variance in LLM hacking risk.
+    Predictor hierarchy: significant difference found (56.6%), task (20.8%), distance from threshold (10.2%), F1 (7.7%), model (2.5%).
+  limitations:
+    - "Assumes noise-free ground truth annotations and effective significance thresholds (p=0.05)"
+    - "Real human annotations contain biases; detailed annotator bias analyses unavailable for their datasets"
+    - "Risk estimates depend on configuration space considered; misspecified prompts could inflate risk"
+    - "Compares conclusions between GT regressions and LLM regressions, which may not reflect true population effects"
+    - "English-language CSS tasks only; generalization to other languages/domains unverified"
+    - "Model snapshot at 2024-2025; rapid model development means specific numbers may shift"
+  relation_to_us: "complementary"
+  # This paper provides the most comprehensive empirical evidence that LLM annotation errors
+  # propagate to wrong downstream conclusions -- exactly the motivation for our causal annotation
+  # error attribution work. Their Type I/II/S/M error taxonomy, the formal LLM hacking definitions,
+  # and the finding that correction methods (DSL, CDI) trade off error types are directly relevant.
+  # Our work can build on their evidence base while providing causal-inference-grounded correction methods.
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with enthusiastic framing of LLMs transforming research ('easily instructed to process
+    unstructured data for virtually any analytical purpose'), then immediately pivots to reveal
+    'a fundamental threat to scientific validity that has remained largely unexamined.' The
+    positive-then-ominous structure creates dramatic tension.
+  tension: >
+    Sets up a credibility crisis: the literature 'almost entirely overlooks how annotation errors
+    propagate through statistical analyses.' Despite well-established evidence that LLMs are
+    'extremely brittle annotation tools,' the prevailing sentiment is that LLMs can seamlessly
+    automate annotation. The gap between adoption enthusiasm (91.4% of 93 reviewed papers
+    recommend LLMs) and validation reality (56.5% disregard model validation, only 4 papers
+    mention downstream error risk) creates the core tension.
+  key_insight: >
+    Introduced in Section 2 with formal definitions. The key conceptual move is distinguishing
+    LLM hacking from p-hacking: both exploit researcher degrees of freedom for false conclusions,
+    but LLM hacking operates at the DATA GENERATION stage rather than the analysis stage,
+    creating 'an entirely new layer of vulnerability.' This is formalized via Definition 1
+    (L(phi) = 1[theta_hat(phi) != theta*]) and the LLM Hacking Risk as E[L(phi)].
+  argument_chain: >
+    problem (LLM annotation errors propagate to wrong conclusions) ->
+    conceptualization (formal definition of LLM hacking, distinction from p-hacking, 3 definitions) ->
+    systematic literature review (93 papers show widespread uncritical adoption) ->
+    large-scale replication (37 tasks, 18 LLMs, 13M labels, 1.4M regressions) ->
+    intentional hacking feasibility (94.4% Type I feasibility demonstrates manipulation ease) ->
+    accidental hacking risk (31-50% across model scales) ->
+    predictor analysis (proximity to significance threshold is key driver) ->
+    mitigation evaluation (21 techniques; human annotations > correction methods) ->
+    evidence-based guidelines (Table 5)
+  contribution_framing: >
+    Section 1.1 'Key contributions' lists contributions implicitly through a summary paragraph
+    rather than a numbered list. The framing emphasizes: (1) introducing the concept of LLM
+    hacking, (2) quantifying risk through large-scale empirical assessment (13M+ annotations,
+    37 tasks, 18 LLMs, 2,361 hypotheses), (3) systematic literature review of 93 papers,
+    (4) evaluation of 21 mitigation techniques. The paper also has 4 explicit Research Questions
+    (RQ1-RQ4) structuring the investigation.
+  intro_structure: >
+    ~6 paragraphs + RQ list + contribution subsection:
+    P1: Hook -- LLMs transforming research at unprecedented scale.
+    P2: Historical context -- evolution from human annotators to supervised ML to LLMs;
+        identifies the overlooked gap (annotation errors propagating to analyses).
+    P3: Configuration choices as 'garden of forking paths'; sensitivity to minor input changes;
+        concrete example (conservative vs progressive political discourse).
+    P4: Introduces 'LLM hacking' concept formally; distinguishes from p-hacking; positions
+        as 'entirely new layer of vulnerability.'
+    P5: Stakes -- demands 'fundamental reconsideration' of LLM integration; previews
+        practical recommendations.
+    Research Questions: RQ1 (current practices), RQ2 (intentional feasibility), RQ3 (accidental risk),
+    RQ4 (mitigation effectiveness).
+    Section 1.1: Key contributions.
+    Section 1.2: Summary of findings (detailed preview of all major results with bold key claims).
+  notable_technique: >
+    The 'Summary of findings' subsection (1.2) is masterful: each paragraph opens with a bold,
+    declarative claim ('It is strikingly easy to present virtually any desired finding as statistically
+    significant') followed by specific numbers. This creates a devastating cascade of evidence
+    before the reader even reaches the methods section. The paper also uses 'Practical
+    Recommendation' boxes (blue-highlighted) after each results subsection, making findings
+    immediately actionable. The analogy to p-hacking is strategically chosen to leverage existing
+    concern about research integrity, positioning LLM hacking as an even more dangerous variant.
+
+figures:
+  figure_count: 12
+  figure1:
+    type: "method_overview"
+    description: >
+      Three-panel overview: (left) 37 social science annotation tasks shown as colored rounded
+      rectangles (ideology, topic, emotion, frames, stance, politeness, tone, issue, hate speech,
+      misinformation) with '2,361 realistic hypotheses' below; (middle) '18 large language models'
+      and '13 million annotations' feeding into '1.4 million regressions' to 'test the validity of
+      scientific conclusions'; (right) concrete example showing a task 'Is manifesto left or right?'
+      with ground truth p>0.05, where different LLM configs yield p=0.242 (correct), p=0.001
+      (wrong), p=0.424 (correct), demonstrating 'LLM hacking risk = 31%-50%' with checkmarks
+      and crosses.
+    narrative_role: >
+      Establishes the entire experimental pipeline in one glance and immediately conveys the
+      punchline (31-50% risk). The concrete example on the right makes the abstract concept
+      of LLM hacking tangible -- same task, same ground truth, different conclusions from
+      different configs.
+    design_elements:
+      - "three-panel left-to-right flow (setup -> process -> result)"
+      - "colored category pills for task diversity"
+      - "concrete example with actual p-values"
+      - "checkmark/cross visual for correct/incorrect conclusions"
+      - "green highlighting for key numbers"
+      - "emoji-style icons for LLMs and human annotators"
+    visual_style: >
+      Clean infographic style with mint/teal color scheme. Rounded rectangles for task categories.
+      The right panel uses a structured table-like layout showing model-config-p-value-verdict
+      rows. Bold '31%-50%' at bottom right anchors the main finding. Light pastel background
+      separates the three panels.
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "horizontal_bar_chart"
+      what_compared: "Intentional LLM hacking feasibility rates (red) vs correct conclusion feasibility (green) for H0 (top) and HA (bottom) hypotheses, split by all models vs top models only"
+      how_gain_highlighted: "Red bars (incorrect/hacking) are alarming -- 94.4% Type I feasibility. Hatched bars for top-models-only show feasibility remains high (69.7%) even with best models. Green bars provide contrast showing correct conclusions are also feasible, emphasizing the fundamental unreliability."
+      design_note: "Two-panel (H0/HA) horizontal bar layout with percentage labels inside bars. Hatched vs solid distinguishes all-models from top-models subsets. The near-100% red bars create immediate visual alarm."
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Left: LLM hacking risk vs model size (1B to 80B) for 4 model families (Llama, Qwen2.5, Qwen3, Gemma). Right: F1 score vs model size for same families."
+      how_gain_highlighted: "Monotonically decreasing risk curves show scaling helps but saturates. Even the largest models (70B+) remain at ~31% risk. Diminishing returns are visually obvious from the flattening curves."
+      design_note: "Log-scale x-axis for model size. Dual-panel showing risk and performance side-by-side enables direct comparison. Color-coded by model family with consistent colors across panels."
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Average weighted F1 scores (bottom) and LLM hacking risk (top) across all 37 annotation tasks, sorted by decreasing hacking risk"
+      how_gain_highlighted: "Dual-panel showing disconnect between high F1 and high risk -- several tasks with F1>0.93 still have >50% hacking risk. Error bars (95% CI) show substantial variance across configurations."
+      design_note: "Tasks sorted by risk (not performance) to emphasize that performance doesn't predict safety. Colorful per-task bars. Star markers highlight GPT-4o performance specifically."
+    - figure_id: "Figure 8"
+      viz_type: "scatter_with_fit"
+      what_compared: "Left: Type I/II/S risk by ground truth p-values. Right: False Discovery/Nondiscovery/Type S rates by LLM-derived p-values."
+      how_gain_highlighted: "Dramatic spike near p=0.05 threshold in both panels. Vertical dashed line at p=0.05 anchors the critical finding. The left panel shows the theoretical view (ground truth known), the right shows the practical view (only LLM p-values observable)."
+      design_note: "Two-panel design separating 'oracle' view from 'practical' view. Color-coded risk types. Linear fits show trends. The spike near 0.05 is the paper's most visually striking finding about proximity to significance thresholds."
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "histogram_and_cumulative"
+      dimensions_varied: ["Type M error magnitude", "model (7 top models)"]
+      design_note: "Left panel: histogram of relative magnitude errors with density curves per model. Right panel: cumulative distribution. Shows that even for GPT-4o, only 2.7% of correctly identified effects have magnitude estimates within 10% of truth. Effective for conveying systematic effect size distortion."
+    - figure_id: "Figure 7"
+      viz_type: "scatter_grid"
+      dimensions_varied: ["F1 score vs LLM hacking risk", "37 annotation tasks (one subplot each)"]
+      design_note: "7x5 small-multiples grid with one scatter plot per task. Red regression lines and green baseline 3 lines. R-squared values in each panel show huge variation in how well performance predicts risk (R2 from 0.001 to 0.921). Highly effective for showing task-dependent relationships."
+    - figure_id: "Figure 9"
+      viz_type: "scatter"
+      dimensions_varied: ["Krippendorff's alpha (human agreement)", "LLM hacking risk across tasks"]
+      design_note: "Shows NO correlation (p>0.1) between human IAA and LLM hacking risk. Tasks with perfect agreement (alpha=1.0) span the full risk range. Challenges the intuition that 'easy for humans' means 'safe for LLMs'."
+    - figure_id: "Figure 10"
+      viz_type: "scatter"
+      dimensions_varied: ["Type I Risk vs Type II+S Risk", "mitigation strategy (M1-M9)", "model", "GT sample size (100 vs 1000)"]
+      design_note: "Pareto frontier visualization of error trade-offs. Marker shapes encode mitigation strategies, colors encode models, sizes encode GT sample count. Origin (0,0) is ideal. Shows GT-only (M1) is on the Pareto frontier while correction methods (DSL, CDI) cluster in different trade-off regions. Highly informative multi-dimensional comparison."
+    - figure_id: "Figure 11"
+      viz_type: "line_plot"
+      dimensions_varied: ["significance threshold alpha (0.0001 to 0.4)", "GT sample size (100 vs 1000)", "mitigation strategy"]
+      design_note: "Two-panel (100 vs 1000 GT samples) showing Type I vs Type II+S trade-off curves as alpha varies. Confidence bands visualize uncertainty. Shows that GT-only (M1) achieves Pareto-optimal trade-offs at any threshold."
+    - figure_id: "Figure 12"
+      viz_type: "line_plot"
+      dimensions_varied: ["number of GT samples (50-1000)", "mitigation strategy", "model selection strategy"]
+      design_note: "Three-panel (overall risk, Type I, Type II+S) showing how risk decreases with more human annotations. Green lines (best-performing model selection) consistently beat red (GPT-4o default). Shows diminishing returns -- 100 to 250 samples is the sweet spot."
+  figure_narrative_role: >
+    Figure 1 (method overview + punchline) -> Figure 2 (intentional hacking: how bad it CAN be) ->
+    Figure 3 (scaling: bigger models help but don't solve it) -> Figure 4 (task variation: F1 vs risk disconnect) ->
+    Figure 5 (effect size distortion: even correct conclusions are biased) ->
+    Figure 7 (per-task F1-risk relationship: highly variable) ->
+    Figure 8 (THE key insight: proximity to p=0.05 drives risk) ->
+    Figure 9 (human agreement doesn't predict risk) ->
+    Figures 10-12 (mitigation: trade-offs, human annotations are king).
+    The narrative arc moves from establishing the problem's existence and magnitude (Figs 1-5)
+    to understanding its mechanisms (Figs 7-9) to evaluating solutions (Figs 10-12).
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "models (18 LLMs + 2 baselines)"
+    col_axis: "LLM Hacking Risk, Type I Risk, Type II Risk, Type S Risk, Type M Risk"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "green highlight for best values, red highlight for worst values per column"
+    statistical_reporting: "single aggregated values averaged across all tasks and hypotheses"
+    num_baselines: 2
+    design_note: >
+      Models grouped by family (Llama, Qwen2.5, Qwen3, Gemma, GPT) with dotted lines separating
+      families. Best/worst highlighting per column makes cross-model comparison immediate.
+      GPT-4o achieves best overall LLM Hacking Risk (0.312) but NOT best on every metric
+      (Llama-3.1-70B has lowest Type I at 0.257). Baselines at bottom provide calibration --
+      random conclusions yield 0.625 risk, showing LLMs are better but far from safe.
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["Predictors of LLM hacking: significant difference found, task, distance from threshold, F1, model, prompt type, prompt detail"]
+      variation_style: "full_numbers"
+      design_note: >
+        Variable importance table using LMG method (relaimpo package). R2=0.154 total.
+        Reveals the predictor hierarchy: significance found (56.6%) >> task (20.8%) >> threshold
+        distance (10.2%) >> F1 (7.7%) >> model (2.5%) >> prompt (<1%). The stark dominance
+        of significance-related predictors over model/prompt choices is the key takeaway.
+    - table_id: "Table 1"
+      what_varied: ["21 datasets, 37 tasks, number of datapoints, ground truth classes, prompts, groupings, annotator counts, Krippendorff's alpha"]
+      variation_style: "full_numbers"
+      design_note: >
+        Comprehensive task inventory table. Dataset-task hierarchy with dotted line grouping.
+        Includes both methodological details (prompt counts, zero-shot percentage) and quality
+        indicators (K.alpha). Summary row at bottom: 145,277/1,533,400 datapoints, 266 ground
+        truth classes, 199 prompts, 2,361 hypotheses, 0.91 average K.alpha.
+    - table_id: "Table 2"
+      what_varied: ["Sampling strategy (random, low confidence, active) x Data usage (GT only, GT+LLM, GT+LLM+correction) x Model selection (random, GPT-4o, best-performing)"]
+      variation_style: "checkmark_grid"
+      design_note: >
+        3x3 matrix layout (sampling x data usage) with model selection as a third dimension
+        noted below. Cells labeled M1-M9 with correction method noted (DSL or CDI).
+        Elegant compact representation of 21 mitigation approaches (9 strategies x ~3 model
+        selection options minus some inapplicable combos).
+    - table_id: "Table 5"
+      what_varied: ["Practical recommendation categories: A. Risk Mitigation (task-unspecific, human-annotated), B. Transparency (documentation, pre-registration)"]
+      variation_style: "full_numbers"
+      design_note: >
+        Evidence-based guidelines table. Two-level category structure with specific actionable
+        bullet points per category. Includes concrete numbers (70B+ show ~27% risk vs 47% for 1B;
+        risk >70% near p=0.05). The 'no human samples required' vs 'human-annotated samples
+        required' distinction is practical for researchers with different resource constraints.
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Extensive appendix tables including: Table 6-9 (detailed per-task results for all error types),
+      Table 10 (full OLS regression results for predictor analysis), Table 11 (per-task F1-risk
+      correlations), Table 12 (configuration constraint combinations for reducing intentional
+      hacking), Table 14 (dataset sizes after preprocessing), and additional model/prompt details.
+    reason: >
+      Main paper keeps 5 tables focused on: task overview (T1), mitigation strategy matrix (T2),
+      main results by model (T3), predictor importance (T4), and guidelines (T5). Per-task
+      breakdowns and detailed regression outputs relegated to appendix to maintain readability
+      while providing full reproducibility information.

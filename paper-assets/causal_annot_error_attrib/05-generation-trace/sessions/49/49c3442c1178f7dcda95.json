@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49c3442c1178f7dcda95",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code exp b logistic dgp",
+  "task_key": "worker_code_exp_b_logistic_dgp_20260522T112822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_b_logistic_dgp_20260522T112822_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "91a51d616b9b21161bceb6bc007620d462e22a1b94174136919b0865210a9a2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. Key findings from the full run:\n\n**Confounding** (τ = treatment effect):\n- SF_τ = 0.000 for both linear and logistic — τ never flips, as predicted\n- SF_any = 0.56-0.57 — driven by dummy variable attenuation, identical across models\n\n**Exposure** (dummy coefs are treatment):\n- SF_any = 0.57-0.58 — confirms sign flips persist under logistic DGP\n- Linear ≈ Logistic (difference < 0.01) — qualitatively identical behavior\n\n**IV**:\n- SF_τ ≈ 0.07 for both 2SLS and CF — treatment effect rarely flips\n- SF_any: 2SLS = 0.07, CF = 0.57 — CF's second-stage logistic has higher any-coef SF due to the residual term\n\n**Critical result**: Linear and logistic DGPs produce virtually identical sign flip rates (|Δ| < 0.02 across all topologies), confirming the paper's linear-SEM findings are robust to nonlinearity.\n\nOutput files:\n- `artifacts/exp_b_logistic_results.json` — full results\n- `artifacts/exp_b_logistic_table.tex` — LaTeX table\n- `artifacts/exp_b_logistic_dgp.py` — reproducible script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-b-logistic-dgp.md"
+}

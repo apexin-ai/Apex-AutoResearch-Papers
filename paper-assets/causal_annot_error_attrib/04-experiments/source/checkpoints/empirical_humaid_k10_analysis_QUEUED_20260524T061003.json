@@ -1,0 +1,15 @@
+{
+  "exp_id": "empirical_humaid_k10_analysis",
+  "project": "causal_annot_error_attrib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:09:57.894Z",
+    "updated_at": "2026-05-24T06:10:03.455Z",
+    "hypothesis": "Empirical LLM confusion matrices on HumAID K=10 reproduce the topology-dependent bias ranking from Dirichlet simulation, with IV highest and collider lowest"
+  },
+  "timestamp": "2026-05-24T06:10:03.498655+00:00",
+  "trigger": "update_registry"
+}

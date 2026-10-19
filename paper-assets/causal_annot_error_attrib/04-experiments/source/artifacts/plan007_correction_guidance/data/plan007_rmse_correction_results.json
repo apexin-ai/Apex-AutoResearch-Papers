@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "source": "plan007 correction_guidance_results.json",
+    "n_sim": 1000,
+    "n_scenarios": 42,
+    "topologies": 7,
+    "c_structures": 6,
+    "methods": 5,
+    "note": "RMSE reduction computed as 1 - rmse_corrected/rmse_uncorrected"
+  },
+  "grand_means": {
+    "ppi": {
+      "bias_reduction_pct": 93.8,
+      "rmse_reduction_pct": 47.0,
+      "abs_rmse": 0.0797,
+      "coverage_95_pct": 96.8,
+      "inflation_ratio": 2.0
+    },
+    "mcsimex": {
+      "bias_reduction_pct": 20.9,
+      "rmse_reduction_pct": 13.3,
+      "abs_rmse": 0.3803,
+      "coverage_95_pct": 37.6,
+      "inflation_ratio": 1.57
+    },
+    "naive_plugin": {
+      "bias_reduction_pct": -20.0,
+      "rmse_reduction_pct": -19.7,
+      "abs_rmse": 0.418,
+      "coverage_95_pct": 14.6,
+      "inflation_ratio": 1.02
+    },
+    "dsl": {
+      "bias_reduction_pct": -144.8,
+      "rmse_reduction_pct": -79.0,
+      "abs_rmse": 0.4994,
+      "coverage_95_pct": 6.5,
+      "inflation_ratio": 1.83
+    },
+    "mla": {
+      "bias_reduction_pct": -37.4,
+      "rmse_reduction_pct": -37.0,
+      "abs_rmse": 0.5794,
+      "coverage_95_pct": 14.6,
+      "inflation_ratio": 1.01
+    }
+  },
+  "ppi_by_topology": {
+    "confounding": {
+      "bias_reduction_pct": 99.3,
+      "rmse_reduction_pct": 83.2,
+      "n_configs": 6
+    },
+    "mediation": {
+      "bias_reduction_pct": 98.8,
+      "rmse_reduction_pct": 54.1,
+      "n_configs": 6
+    },
+    "collider": {
+      "bias_reduction_pct": 97.0,
+      "rmse_reduction_pct": 50.5,
+      "n_configs": 6
+    },
+    "exposure": {
+      "bias_reduction_pct": 98.8,
+      "rmse_reduction_pct": 75.5,
+      "n_configs": 6
+    },
+    "mbias": {
+      "bias_reduction_pct": 63.7,
+      "rmse_reduction_pct": -88.0,
+      "n_configs": 6
+    },
+    "iv": {
+      "bias_reduction_pct": 99.5,
+      "rmse_reduction_pct": 79.4,
+      "n_configs": 6
+    },
+    "frontdoor": {
+      "bias_reduction_pct": 99.3,
+      "rmse_reduction_pct": 74.1,
+      "n_configs": 6
+    }
+  },
+  "mcsimex_by_topology": {
+    "confounding": {
+      "bias_reduction_pct": 35.9,
+      "rmse_reduction_pct": 35.1,
+      "n_configs": 6
+    },
+    "mediation": {
+      "bias_reduction_pct": 42.4,
+      "rmse_reduction_pct": 39.1,
+      "n_configs": 6
+    },
+    "collider": {
+      "bias_reduction_pct": 37.1,
+      "rmse_reduction_pct": 31.8,
+      "n_configs": 6
+    },
+    "exposure": {
+      "bias_reduction_pct": -3.8,
+      "rmse_reduction_pct": -9.8,
+      "n_configs": 6
+    },
+    "mbias": {
+      "bias_reduction_pct": 25.7,
+      "rmse_reduction_pct": 0.1,
+      "n_configs": 6
+    },
+    "iv": {
+      "bias_reduction_pct": 64.7,
+      "rmse_reduction_pct": 59.4,
+      "n_configs": 6
+    },
+    "frontdoor": {
+      "bias_reduction_pct": -55.7,
+      "rmse_reduction_pct": -62.4,
+      "n_configs": 6
+    }
+  },
+  "all_methods_by_topology": {
+    "confounding": {
+      "ppi": {
+        "bias_reduction_pct": 99.3,
+        "rmse_reduction_pct": 83.2
+      },
+      "mcsimex": {
+        "bias_reduction_pct": 35.9,
+        "rmse_reduction_pct": 35.1
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": 0.0,
+        "rmse_reduction_pct": 0.0
+      },
+      "dsl": {
+        "bias_reduction_pct": 49.8,
+        "rmse_reduction_pct": 48.0
+      },
+      "mla": {
+        "bias_reduction_pct": -0.0,
+        "rmse_reduction_pct": 0.0
+      }
+    },
+    "mediation": {
+      "ppi": {
+        "bias_reduction_pct": 98.8,
+        "rmse_reduction_pct": 54.1
+      },
+      "mcsimex": {
+        "bias_reduction_pct": 42.4,
+        "rmse_reduction_pct": 39.1
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": -0.0,
+        "rmse_reduction_pct": -0.0
+      },
+      "dsl": {
+        "bias_reduction_pct": 70.3,
+        "rmse_reduction_pct": 52.9
+      },
+      "mla": {
+        "bias_reduction_pct": 0.0,
+        "rmse_reduction_pct": -0.0
+      }
+    },
+    "collider": {
+      "ppi": {
+        "bias_reduction_pct": 97.0,
+        "rmse_reduction_pct": 50.5
+      },
+      "mcsimex": {
+        "bias_reduction_pct": 37.1,
+        "rmse_reduction_pct": 31.8
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": 0.0,
+        "rmse_reduction_pct": 0.0
+      },
+      "dsl": {
+        "bias_reduction_pct": -89.2,
+        "rmse_reduction_pct": -92.6
+      },
+      "mla": {
+        "bias_reduction_pct": 0.0,
+        "rmse_reduction_pct": 0.0
+      }
+    },
+    "exposure": {
+      "ppi": {
+        "bias_reduction_pct": 98.8,
+        "rmse_reduction_pct": 75.5
+      },
+      "mcsimex": {
+        "bias_reduction_pct": -3.8,
+        "rmse_reduction_pct": -9.8
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": -45.6,
+        "rmse_reduction_pct": -44.8
+      },
+      "dsl": {
+        "bias_reduction_pct": -59.6,
+        "rmse_reduction_pct": -59.5
+      },
+      "mla": {
+        "bias_reduction_pct": -89.9,
+        "rmse_reduction_pct": -89.0
+      }
+    },
+    "mbias": {
+      "ppi": {
+        "bias_reduction_pct": 63.7,
+        "rmse_reduction_pct": -88.0
+      },
+      "mcsimex": {
+        "bias_reduction_pct": 25.7,
+        "rmse_reduction_pct": 0.1
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": 0.0,
+        "rmse_reduction_pct": 0.0
+      },
+      "dsl": {
+        "bias_reduction_pct": -768.0,
+        "rmse_reduction_pct": -266.9
+      },
+      "mla": {
+        "bias_reduction_pct": 0.0,
+        "rmse_reduction_pct": 0.0
+      }
+    },
+    "iv": {
+      "ppi": {
+        "bias_reduction_pct": 99.5,
+        "rmse_reduction_pct": 79.4
+      },
+      "mcsimex": {
+        "bias_reduction_pct": 64.7,
+        "rmse_reduction_pct": 59.4
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": -40.9,
+        "rmse_reduction_pct": -40.4
+      },
+      "dsl": {
+        "bias_reduction_pct": -187.4,
+        "rmse_reduction_pct": -206.1
+      },
+      "mla": {
+        "bias_reduction_pct": -59.2,
+        "rmse_reduction_pct": -58.7
+      }
+    },
+    "frontdoor": {
+      "ppi": {
+        "bias_reduction_pct": 99.3,
+        "rmse_reduction_pct": 74.1
+      },
+      "mcsimex": {
+        "bias_reduction_pct": -55.7,
+        "rmse_reduction_pct": -62.4
+      },
+      "naive_plugin": {
+        "bias_reduction_pct": -53.5,
+        "rmse_reduction_pct": -52.7
+      },
+      "dsl": {
+        "bias_reduction_pct": -29.2,
+        "rmse_reduction_pct": -29.0
+      },
+      "mla": {
+        "bias_reduction_pct": -112.5,
+        "rmse_reduction_pct": -111.5
+      }
+    }
+  },
+  "key_finding": {
+    "issue": "bias_reduction systematically inflates correction effectiveness vs RMSE reduction",
+    "ppi_inflation": "93.8% (bias_red) vs 47.0% (rmse_red) = 2.00x",
+    "mcsimex_inflation": "20.9% (bias_red) vs 13.3% (rmse_red) = 1.57x",
+    "ppi_mbias_warning": "PPI bias_red=63.7% but rmse_red=-88.0% (PPI increases RMSE on mbias)",
+    "recommendation": "Report RMSE reduction alongside bias reduction; revise \u00a75.5 PPI++ numbers"
+  }
+}

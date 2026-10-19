@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df23d1fd54478dac533",
+  "project": "diagprm-stage-reasoning",
+  "kind": "result",
+  "title": "code integration test",
+  "task_key": "worker_code_integration-test_20260511T150451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integration-test_20260511T150451_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "53571eb58c48700eee365fa3325480e677fbeaad2a2a9a98749926bbb0a4d1e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "集成测试全部通过，无需代码修改。汇总：\n\n**数据加载** — 成功加载 5 条真实轨迹，steps 数 23-111，字段（instance_id, steps, resolved, role, content, tool_calls）均正确解析。\n\n**Pipeline dry-run** — 完整跑通三个阶段：\n- Stage Segmentation：355 steps 全部分段完成\n- Quality Assessment：5 条轨迹全部评估完成\n- Agreement Report：输出 3 个文件（agreement_report.json / quality_results.json / segmentation_results.json）\n\n**输出指标**（mock 随机标注，仅验证流程正确性）：\n- Segmentation kappa: 0.253\n- Quality kappa: -0.105\n- Partially-good ratio: 0.8\n\n**代码修改**：无，data_loader.py 和 pipeline 代码直接兼容真实数据格式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-integration-test.md"
+}

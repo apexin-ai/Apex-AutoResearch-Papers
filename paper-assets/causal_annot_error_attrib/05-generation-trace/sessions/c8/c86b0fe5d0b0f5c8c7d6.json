@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c86b0fe5d0b0f5c8c7d6",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code e2e real cm demo",
+  "task_key": "worker_code_e2e_real_cm_demo_20260523T202030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e2e_real_cm_demo_20260523T202030_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "ddcad4eef6c3424dd5b9538add200c02c28224d3686199b1c47a654c73134dfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n1. **No errors** — script runs in 21.6s\n2. **Exposure topology**: PPI++ reduces bias from -59% to -74% (naive) down to ±0.5% (corrected), median improvement **+93.7%**\n3. **Confounding topology**: plug-in correction improvement is **≈0%** across all 10 configs (FWL invariance confirmed — naive and corrected bias are identical to machine precision)\n4. **JSON and LaTeX outputs are consistent**\n\nFiles created:\n- `artifacts/e2e_real_cm_demo.py` — the script\n- `artifacts/e2e_real_cm_results.json` — full results with metadata\n- `artifacts/e2e_real_cm_table.tex` — LaTeX table for appendix"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e2e-real-cm-demo.md"
+}

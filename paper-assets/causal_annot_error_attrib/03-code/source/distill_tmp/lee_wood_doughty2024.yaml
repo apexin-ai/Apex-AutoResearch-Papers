@@ -1,0 +1,116 @@
+paper_key: "lee_wood_doughty2024"
+title: "Controlling for Unobserved Confounding with Large Language Model Classification of Patient Smoking Status"
+venue: "NeurIPS 2024 AIM-FM Workshop"
+full_text_available: true
+
+research:
+  baselines:
+    - "Doubly Robust Unbalanced (Feng et al. 2018)"
+    - "Doubly Robust All (Feng et al. 2018)"
+    - "Propensity Score IPW (Feng et al. 2018)"
+    - "Propensity Score Matching (Feng et al. 2018)"
+    - "Multivariate Regression (Feng et al. 2018)"
+    - "MC-SIMEX (Kuchenhoff et al. 2005)"
+  metrics:
+    - {name: "Odds Ratio", direction: "closer_to_true_effect"}
+    - {name: "Risk Ratio", direction: "closer_to_true_effect"}
+    - {name: "95% Confidence Interval Width", direction: "lower_better"}
+    - {name: "Classifier Accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "MIMIC-III (sepsis cohort)", size: "4,735 patients with 39 covariates"}
+    - {name: "n2c2 2006 Smoking Challenge", size: "398 train + 101 test clinical notes"}
+  ablation_dimensions:
+    - "Bootstrap source (MIMIC-only vs n2c2-only vs combined)"
+    - "Smoking subgroup stratification (past/current/never/unknown)"
+    - "Measurement error method (matrix adjustment vs MC-SIMEX)"
+  training_recipe:
+    model: "ClinicalBERT + LSTM"
+    pretraining: "PubMed abstracts + PMC articles + MIMIC-III notes"
+    epochs: 1000
+    training_data: "398 n2c2 clinical notes"
+    test_accuracy: "86.1% on 101 test records"
+    hardware: "not specified"
+  method_family: "measurement_error_correction_for_causal_inference"
+
+positioning:
+  core_claim: "LLM classifiers can impute unobserved categorical confounders from clinical text, and matrix-method measurement error correction recovers unbiased causal effects despite classifier errors."
+  key_results: "OR=0.89 [0.60, 0.98] (matrix adjustment), OR=0.90 [0.83, 1.00] (MC-SIMEX); both confirm TTE protective effect on mortality; classifier accuracy 86.1% on 4-class smoking status"
+  limitations:
+    - "Assumes classifier error rate transfers identically from n2c2 to MIMIC-III (no domain-specific validation)"
+    - "Non-differential measurement error assumption (classifier error independent of treatment, outcome, covariates) may not hold"
+    - "Small n2c2 test set (101 patients) introduces high variance in error matrix estimation, especially after matrix inversion"
+    - "Cannot quantify uncertainty from BERT pretraining or classifier fine-tuning"
+    - "Only addresses single unobserved confounder; extension to multiple confounders unexplored"
+    - "Non-smoker subgroup shows RR>1.0 for matrix adjustment (1.13), suggesting instability with small cells"
+  relation_to_us: "foundation"
+  # This paper is foundational because it demonstrates the core pipeline we build on:
+  # (1) LLM/classifier predicts text-derived variable, (2) estimate confusion matrix,
+  # (3) apply measurement error correction to recover causal effects.
+  # It extends from binary to categorical, which is directly relevant to our multi-class setting.
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the fundamental tension in evidence-based medicine: RCTs are gold standard but often impossible/unethical, forcing reliance on observational data with confounding."
+  tension: "Prior measurement error correction work was limited to synthetic data, simple classifiers, and binary variables. Real clinical applications require categorical variables (4-class smoking status) and complex classifiers (LLMs on clinical notes). The gap between theory and practice is the tension."
+  key_insight: "The key insight is revealed in Section 3.2: the confusion matrix from any multi-class classifier can be directly inverted as a stochastic matrix to correct for measurement error in categorical confounders, extending Pearl's binary framework. This is presented as a natural mathematical generalization rather than a novel theoretical contribution."
+  argument_chain: "clinical need for causal inference from observational data → unobserved confounders invalidate standard methods → smoking status is clinically important but unobserved in structured data → LLM can classify smoking from clinical notes → classifier errors introduce measurement error → matrix adjustment corrects for categorical measurement error → validated on real MIMIC data against 5 established baselines"
+  contribution_framing: "Single primary contribution stated explicitly: 'This primary contribution of this paper is a methodology for imputing unmeasured variables with large language models and then estimating unbiased causal effects with a measurement error correction.' Modest framing — positions as methodological demonstration extending prior work rather than theoretical breakthrough."
+  intro_structure: "4 paragraphs. P1: Evidence-based medicine motivation, RCT limitations, observational data challenges. P2: Causal assumptions, unobserved confounding problem. P3: Proxy variable approach via measurement error literature (Pearl, Kuroki-Pearl), cites Wood-Doughty et al. 2020. P4: This paper's extension to LLMs + real data + categorical variables, contribution statement."
+  notable_technique: "The paper effectively uses a 'standing on shoulders' framing — it does not claim theoretical novelty but positions the contribution as the first practical demonstration of an established theoretical framework (measurement error correction) applied with modern tools (LLMs) on real clinical data. This is a strong strategy for workshop papers that combine existing ideas in new ways."
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "problem_illustration"
+    description: "Directed Acyclic Graph (DAG) showing treatment X, outcome Y, observed confounders C, unobserved confounder U, and noisy proxy U*. Standard causal DAG with arrows showing the data-generating process."
+    narrative_role: "Formalizes the problem setup — shows exactly where measurement error enters the causal graph (U* is observed instead of U). Anchors the entire methodology by making the abstract 'unobserved confounding with proxy' problem visually concrete."
+    design_elements: ["Standard DAG notation", "Clear distinction between observed (U*) and unobserved (U) nodes", "Minimal — only essential variables shown"]
+    visual_style: "Clean black-and-white DAG diagram with labeled nodes and directed edges. Minimalist academic style typical of causal inference papers. No color coding — relies on variable naming convention (U vs U*) to distinguish true vs proxy."
+  result_figures: []
+  # No result figures — all results presented in tables
+  ablation_figures: []
+  # No ablation figures — subgroup analysis presented in Table 4
+  figure_narrative_role: "Figure 1 (DAG) establishes the causal framework → Figure 2 (methodology overview) shows the complete pipeline from data through classifiers to causal estimates. Two-figure structure: problem formalization then solution overview. All quantitative results are in tables, not figures."
+
+  figure2:
+    type: "method_overview"
+    description: "Process flow diagram showing the complete methodology: n2c2 data trains ClinicalBERT classifier, classifier applied to MIMIC patients to predict smoking status, confusion matrix from n2c2 test set feeds into both matrix adjustment and MC-SIMEX correction, producing causal effect estimates."
+    narrative_role: "Provides the methodological roadmap — reader can see the entire pipeline at a glance before diving into mathematical details in Section 3."
+    design_elements: ["Flow diagram with connected boxes", "Shows data flow between datasets and methods", "Connects training and estimation phases"]
+    visual_style: "Workflow/pipeline diagram connecting datasets (n2c2, MIMIC) to classifier to estimation methods. Likely box-and-arrow style."
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "Odds Ratio and 95% CI"
+    row_organization: "by_category"
+    # Two proposed methods (Matrix Adjustment, MC-SIMEX) then five prior baselines from Feng et al.
+    col_organization: "flat"
+    highlight_strategy: "No explicit bolding. All values <1.0 indicate protective effect, creating implicit visual consistency. The paper notes their estimates are 'more conservative' than prior work."
+    statistical_reporting: "Point estimate with bootstrapped 95% CI for proposed methods; CIs from original papers for baselines"
+    num_baselines: 5
+    design_note: "Effective comparison strategy: places proposed methods alongside 5 established baselines from a single prior study (Feng et al. 2018). All methods agree on direction of effect (OR<1), so the comparison validates the new approach rather than showing superiority. This is appropriate for a methodological contribution — the goal is consistency, not beating baselines."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["Bootstrap source (MIMIC-only, n2c2-only, both)", "Estimation method (Matrix Adjustment, MC-SIMEX)", "Estimand (Risk Ratio, Odds Ratio)"]
+      variation_style: "full_numbers"
+      design_note: "Orthogonal uncertainty decomposition — separates variance from downstream data (MIMIC bootstrap) vs. error matrix estimation (n2c2 bootstrap) vs. combined. Reveals that n2c2 bootstrap introduces much more variance for matrix adjustment (due to small test set and matrix inversion), a key practical insight."
+    - table_id: "Table 4"
+      what_varied: ["Smoking subgroup (Past, Current, Non-smoker, Unknown)", "Estimation method", "Bootstrap source"]
+      variation_style: "full_numbers"
+      design_note: "Subgroup stratification reveals instability: non-smoker RR=1.13 for matrix adjustment (opposite direction from overall), current smoker has near-zero CI width. Honest reporting of where the method struggles."
+  supplementary_tables:
+    in_appendix: false
+    content: "Table 1 (confusion matrix) is presented in the methodology section as a prerequisite for understanding the correction. All tables are in the main text."
+    reason: "Workshop paper format — compact presentation with no appendix needed for 4 tables."
+
+  # Additional table detail
+  table1_detail:
+    table_id: "Table 1"
+    type: "confusion_matrix"
+    description: "4x4 confusion matrix for smoking status classifier on n2c2 test set. True labels on rows, predictions on columns. Categories: Past, Current, Never, Unknown."
+    diagonal_values: [8, 4, 14, 61]
+    total_test_size: 101
+    narrative_role: "This table IS the measurement error matrix — it directly becomes the M(U*,U) used in the correction. Placing it in the methodology section (not results) emphasizes its role as an input to the causal estimation, not just a classifier evaluation metric."

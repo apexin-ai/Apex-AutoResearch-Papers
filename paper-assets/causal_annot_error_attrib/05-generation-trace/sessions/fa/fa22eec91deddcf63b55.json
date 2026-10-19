@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa22eec91deddcf63b55",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code within topo f1 bias",
+  "task_key": "worker_code_within_topo_f1_bias_20260523T145204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_within_topo_f1_bias_20260523T145204_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "f3652778b5744f52a26c73ab5fac811b3cf6e29d839b7cb08867352736b1e030"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results written. Key findings:\n\n**Overall**: ρ = −0.14 (p=0.07, n=161). HumAID alone gives ρ = −0.10 (p=0.46), consistent with the paper.\n\n**Per-topology (pooled, n=23 each)**:\n\n| Topology | ρ | p |\n|---|---|---|\n| confounding | −0.56 | 0.006 |\n| mediation | −0.57 | 0.005 |\n| collider | +0.31 | 0.150 |\n| exposure | −0.53 | 0.009 |\n| **mbias** | **+0.87** | **<0.001** |\n| frontdoor | −0.57 | 0.005 |\n| iv | −0.70 | <0.001 |\n\nThe weak overall ρ is a Simpson's paradox: within 5 of 7 topologies the correlation is strongly negative (−0.53 to −0.70, all p < 0.01), meaning higher F1 → lower |bias| as expected. But **M-bias** shows a strong *positive* ρ (+0.87) and **collider** a weak positive (+0.31) — consistent with Conjecture 1 (collider/M-bias have non-standard bias behavior). Pooling across topologies with opposing signs washes out the signal.\n\nCivilComments gives ρ = −1.0 everywhere because K=2 makes bias a monotonic function of the confusion matrix, so F1 rank perfectly determines bias rank."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-within-topo-f1-bias.md"
+}

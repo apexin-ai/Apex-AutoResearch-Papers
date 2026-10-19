@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "925bef10d530d0cd2cfa",
+  "project": "diagprm-stage-reasoning",
+  "kind": "result",
+  "title": "research swe smith data",
+  "task_key": "worker_research_swe-smith-data_20260511T145404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_swe-smith-data_20260511T145404_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "938f98e4d4c6f9b6323815adb046e3f58ae271a9ac751e17117349adbb86b957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，跳过注册。报告已写入：\n\n**`artifacts/swe-smith-trajectory-research.md`**\n\n核心结论：\n\n1. **SWE-smith 轨迹完全可用** — `SWE-bench/SWE-smith-trajectories` (HuggingFace, MIT)，76k 条轨迹，包含 `resolved` 标签\n2. **包含自然语言推理** — SWE-agent 的 Thought-Action-Observation 范式，assistant content 中有诊断分析、推理策略等自然语言文本，不是纯工具调用序列\n3. **三种格式 split**：`tool`（function call）、`xml`（XML 标签）、`ticks`（反引号），推荐用 `tool` split\n4. **字段**：`messages`（JSON string，role/content 对话格式）、`instance_id`、`resolved`（bool）、`model`、`traj_id`、`patch`\n5. **备选**：`nebius/SWE-agent-trajectories`（80k 条，CC-BY-4.0，unresolved 比例更高）\n\n加载命令：\n```python\nfrom datasets import load_dataset\nds = load_dataset(\"SWE-bench/SWE-smith-trajectories\", \"tool\")\n```\n\n待实际加载确认的事项：messages 是否需要 `json.loads()` 解析、thought 和 action 在 content 中的分隔方式、tool split 的 function call 具体结构。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-swe-smith-data.md"
+}

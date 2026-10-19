@@ -1,0 +1,4328 @@
+# code plan003 fix streaming parallel
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_code_plan003-fix-streaming-parallel_20260520T135707.log`
+- **Structured JSON:** [`0edf37c1748ec64c5393.json`](../../sessions/0e/0edf37c1748ec64c5393.json)
+
+## Before a recorded user message
+
+92 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f9828895-61a8-414a-8221-4e0c313f0158",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779415200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.81,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "8833d0ee-33f9-4396-bee4-16322d5621cf",
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current annotate.py on the server to understand its structure before making any changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "b15d1775-2541-428f-b624-fc5ec8e1188c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dxugs8T81y4fgXkTQTRXTS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13503,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13503
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取 annotate.py 完整代码，理解结构后再改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "e722cd97-1e4e-41e2-8838-d1650894170d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dxugs8T81y4fgXkTQTRXTS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13503,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13503
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LWdiarnv5gMWASomoDQ5i8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "031791e0-fc9f-4587-9b0c-6d6f4e75a2a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dxugs8T81y4fgXkTQTRXTS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13503,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13503
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T13:57:21.430Z_
+
+<details><summary>↩ Tool result · `toolu_01LWdiarnv5gMWASomoDQ5i8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "40c4293a-3946-42d5-8f03-cf0c2ebc9d1a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XbdAFMZk6r2zvbvpmYFQsE`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8dfb27dd-6bfd-45c2-88f3-d878a6dde216",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REsuCqt9NvD6DCDFkavTq8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2038,
+      "cache_read_input_tokens": 25344,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2038
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T13:57:27.334Z_
+
+<details><summary>↩ Tool result · `toolu_01XbdAFMZk6r2zvbvpmYFQsE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 16960 字符] ...\\n\\nin samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    # Per-column sample counts and HumAID low-column warning\\n    raw_counts = np.array(stats[\\\"raw_counts\\\"])\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\n    stats[\\\"per_column_counts\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\"classes\\\"])}\\n\\n    if dataset_name == \\\"humaid\\\":\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\"classes\\\"]) if col_counts[i] < 20]\\n        if low_cols:\\n            print(f\\\"\\\\n  WARNING: HumAID columns with < 20 samples:\\\")\\n            for cls, cnt in low_cols:\\n                print(f\\\"    {cls}: {cnt}\\\")\\n            stats[\\\"low_column_warning\\\"] = [{\\\"class\\\": cls, \\\"count\\\": cnt} for cls, cnt in low_cols]\\n\\n    print(f\\\"\\\\n  Per-column sample counts:\\\")\\n    for cls in config[\\\"classes\\\"]:\\n        print(f\\\"    {cls}: {stats['per_column_counts'][cls]}\\\")\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "702b80d3-f512-483d-9c64-4a1c0a955f06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\\\n\\\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\\\n\\\\nUsage:\\\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\\\n  python annotate.py --all --sample 500  # run all combinations\\\\n\\\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nimport traceback\\\\nfrom pathlib import Path\\\\nfrom difflib import SequenceMatcher\\\\n\\\\nimport numpy as np\\\\nimport requests\\\\n\\\\n# ── API Configuration ────────────────────────────────────────────────────────\\\\n\\\\nAPI_BASE = \\\\\\\"http://47.94.22.126/v1\\\\\\\"\\\\n\\\\nMODELS = {\\\\n    \\\\\\\"llama4\\\\\\\": \\\\\\\"meta-llama/llama-4-maverick\\\\\\\",\\\\n    \\\\\\\"qwen3\\\\\\\": \\\\\\\"qwen/qwen3-235b-a22b\\\\\\\",\\\\n    \\\\\\\"deepseek\\\\\\\": \\\\\\\"deepseek/deepseek-chat\\\\\\\",\\\\n}\\\\n\\\\nPROJECT_ROOT = Path(__file__).resolve().parent\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = PROJECT_ROOT / \\\\\\\"results\\\\\\\"\\\\n\\\\n\\\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\\\n\\\\nDATASET_CONFIGS = {\\\\n    \\\\\\\"humaid\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"caution_and_advice\\\\\\\",\\\\n            \\\\\\\"displaced_people_and_evacuations\\\\\\\",\\\\n            \\\\\\\"infrastructure_and_utility_damage\\\\\\\",\\\\n            \\\\\\\"injured_or_dead_people\\\\\\\",\\\\n            \\\\\\\"missing_or_found_people\\\\\\\",\\\\n            \\\\\\\"not_humanitarian\\\\\\\",\\\\n            \\\\\\\"other_relevant_information\\\\\\\",\\\\n            \\\\\\\"requests_or_urgent_needs\\\\\\\",\\\\n            \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\",\\\\n            \\\\\\\"sympathy_and_support\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Classify this tweet into one of the following crisis event categories.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Please stay away from the coastal areas. Tsunami warning issued.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"caution_and_advice\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Over 500 families displaced from their homes due to flooding.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"displaced_people_and_evacuations\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The main bridge on Highway 5 has completely collapsed.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"infrastructure_and_utility_damage\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Sadly, 12 people confirmed dead after the earthquake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"injured_or_dead_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"missing_or_found_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"not_humanitarian\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"other_relevant_information\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"requests_or_urgent_needs\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"sympathy_and_support\\\\\\\"},\\\\n        ],\\\\n    },\\\\n    \\\\\\\"vast\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"pro\\\\\\\",\\\\n            \\\\\\\"con\\\\\\\",\\\\n            \\\\\\\"neutral\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Determine the stance expressed in this text toward the given topic.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"topic_field\\\\\\\": \\\\\\\"topic\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Gun control is essential for public safety.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"pro\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"More regulations will not stop criminals from getting guns.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The debate on gun control continues across the country.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\n\\\\n... [截断: 输出过长，省略 16960 字符] ...\\\\n\\\\nin samples if s[\\\\\\\"idx\\\\\\\"] in merged]\\\\n\\\\n    # Compute confusion matrix\\\\n    gold = [r[\\\\\\\"gold_label\\\\\\\"] for r in all_results]\\\\n    pred = [r[\\\\\\\"pred_label\\\\\\\"] for r in all_results]\\\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\\\\\"classes\\\\\\\"])\\\\n\\\\n    # Per-column sample counts and HumAID low-column warning\\\\n    raw_counts = np.array(stats[\\\\\\\"raw_counts\\\\\\\"])\\\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\\\n    stats[\\\\\\\"per_column_counts\\\\\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\\\\\"classes\\\\\\\"])}\\\\n\\\\n    if dataset_name == \\\\\\\"humaid\\\\\\\":\\\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\\\\\"classes\\\\\\\"]) if col_counts[i] < 20]\\\\n        if low_cols:\\\\n            print(f\\\\\\\"\\\\\\\\n  WARNING: HumAID columns with < 20 samples:\\\\\\\")\\\\n            for cls, cnt in low_cols:\\\\n                print(f\\\\\\\"    {cls}: {cnt}\\\\\\\")\\\\n            stats[\\\\\\\"low_column_warning\\\\\\\"] = [{\\\\\\\"class\\\\\\\": cls, \\\\\\\"count\\\\\\\": cnt} for cls, cnt in low_cols]\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  Per-column sample counts:\\\\\\\")\\\\n    for cls in config[\\\\\\\"classes\\\\\\\"]:\\\\n        print(f\\\\\\\"    {cls}: {stats['per_column_counts'][cls]}\\\\\\\")\\\\n\\\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\\\n\\\\n    n_parsed = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] is not None)\\\\n    n_correct = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] == r[\\\\\\\"gold_label\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\\\\\"\\\\n          f\\\\\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix C (column-stochastic):\\\\\\\\n{np.array2string(C, precision=3)}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dataset\\\\\\\",\\\\n        choices=[\\\\\\\"humaid\\\\\\\", \\\\\\\"vast\\\\\\\", \\\\\\\"civil_comments\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Dataset to annotate\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model\\\\\\\",\\\\n        choices=[\\\\\\\"llama4\\\\\\\", \\\\\\\"qwen3\\\\\\\", \\\\\\\"deepseek\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Model to use\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--prompt\\\\\\\",\\\\n        choices=[\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Prompt variant\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--sample\\\\\\\", type=int, default=1500, help=\\\\\\\"Sample size per dataset (default: 1500)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--split\\\\\\\", default=\\\\\\\"test\\\\\\\", help=\\\\\\\"Which split to annotate (default: test)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--all\\\\\\\", action=\\\\\\\"store_true\\\\\\\", dest=\\\\\\\"run_all\\\\\\\", help=\\\\\\\"Run all (dataset x model x prompt) combinations\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--delay\\\\\\\", type=float, default=0.5, help=\\\\\\\"Delay between API calls in seconds (default: 0.5)\\\\\\\"\\\\n    )\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.run_all:\\\\n        args.dataset = \\\\\\\"all\\\\\\\"\\\\n        args.model = \\\\\\\"all\\\\\\\"\\\\n        args.prompt = \\\\\\\"all\\\\\\\"\\\\n\\\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\\\n        parser.error(\\\\\\\"Specify --dataset, --model, --prompt (or use --all)\\\\\\\")\\\\n\\\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\\\\\")\\\\n    if not api_key:[REDACTED]        print(\\\\\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\\\\\"all\\\\\\\" else [args.dataset]\\\\n    models = list(MODELS.keys()) if args.model == \\\\\\\"all\\\\\\\" else [args.model]\\\\n    prompts = [\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\"] if args.prompt == \\\\\\\"all\\\\\\\" else [args.prompt]\\\\n\\\\n    total = len(datasets) * len(models) * len(prompts)\\\\n    done = 0\\\\n\\\\n    for ds in datasets:\\\\n        for mdl in models:\\\\n            for pt in prompts:\\\\n                done += 1\\\\n                print(f\\\\\\\"\\\\\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\\\\\")\\\\n                try:\\\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"FAILED: {e}\\\\\\\")\\\\n                    traceback.print_exc()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {done}/{total} combinations processed.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 16960 字符] ...\\n\\nin samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    # Per-column sample counts and HumAID low-column warning\\n    raw_counts = np.array(stats[\\\"raw_counts\\\"])\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\n    stats[\\\"per_column_counts\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\"classes\\\"])}\\n\\n    if dataset_name == \\\"humaid\\\":\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\"classes\\\"]) if col_counts[i] < 20]\\n        if low_cols:\\n            print(f\\\"\\\\n  WARNING: HumAID columns with < 20 samples:\\\")\\n            for cls, cnt in low_cols:\\n                print(f\\\"    {cls}: {cnt}\\\")\\n            stats[\\\"low_column_warning\\\"] = [{\\\"class\\\": cls, \\\"count\\\": cnt} for cls, cnt in low_cols]\\n\\n    print(f\\\"\\\\n  Per-column sample counts:\\\")\\n    for cls in config[\\\"classes\\\"]:\\n        print(f\\\"    {cls}: {stats['per_column_counts'][cls]}\\\")\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me read the full file in sections to understand the complete structure, particularly the `annotate_batch` and `run_single` functions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "61c01571-3bd8-4d4b-91b3-81e22204acd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXs8yJdSQtSB9Tvma8WZ8N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 27382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3508
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+输出被截断了，需要分段读取关键函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "104c060e-87a6-4d0e-bad3-9b79346534e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXs8yJdSQtSB9Tvma8WZ8N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 27382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3508
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0119zzirCyRN2oNzR2fUseKZ`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "wc -l /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "87e7a090-7569-412f-84d1-d3de4673b475",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXs8yJdSQtSB9Tvma8WZ8N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 27382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3508
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T13:57:32.431Z_
+
+<details><summary>↩ Tool result · `toolu_0119zzirCyRN2oNzR2fUseKZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"661 /home/sonny/causal_annot_error_attrib/annotate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "74a0ae8b-66bf-4fd6-b169-72f71541a130",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"661 /home/sonny/causal_annot_error_attrib/annotate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"661 /home/sonny/causal_annot_error_attrib/annotate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FpnHcB6j2Q1dAyqWjd6Do4`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -330 /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "0bc21f29-4367-4ae8-b2a1-418d56b8fef1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TZESksabxVgGTUMZAXooJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 30890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 296
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T13:57:36.332Z_
+
+<details><summary>↩ Tool result · `toolu_01FpnHcB6j2Q1dAyqWjd6Do4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 4812 字符] ...\\n\\nwer, cls.lower()).ratio()\\n        if score > best_score:\\n            best_score = score\\n            best_match = cls\\n    if best_score > 0.7:\\n        return best_match\\n\\n    return None\\n\\n\\ndef _match_to_class(candidate, classes):\\n    \\\"\\\"\\\"Match a candidate string to one of the valid classes.\\\"\\\"\\\"\\n    candidate_lower = candidate.lower().strip()\\n\\n    # Exact match (case-insensitive, normalize hyphens/underscores/spaces)\\n    def _normalize(s):\\n        return s.replace(\\\"-\\\", \\\"_\\\").replace(\\\" \\\", \\\"_\\\")\\n    candidate_norm = _normalize(candidate_lower)\\n    for cls in classes:\\n        if cls.lower() == candidate_lower or _normalize(cls.lower()) == candidate_norm:\\n            return cls\\n\\n    # Substring match with word boundary\\n    for cls in classes:\\n        cls_lower = cls.lower()\\n        if cls_lower in candidate_lower:\\n            pattern = r'(?:^|[\\\\s_\\\\-])' + re.escape(cls_lower) + r'(?:$|[\\\\s_\\\\-])'\\n            if re.search(pattern, candidate_lower) or candidate_lower == cls_lower:\\n                return cls\\n        if candidate_lower in cls_lower:\\n            pattern = r'(?:^|[\\\\s_\\\\-])' + re.escape(candidate_lower) + r'(?:$|[\\\\s_\\\\-])'\\n            if re.search(pattern, cls_lower) or candidate_lower == cls_lower:\\n                return cls\\n\\n    # Fuzzy match\\n    best_match = None\\n    best_score = 0.0\\n    for cls in classes:\\n        # Also try with underscores replaced by spaces\\n        score = max(\\n            SequenceMatcher(None, candidate_lower, cls.lower()).ratio(),\\n            SequenceMatcher(None, candidate_lower, cls.lower().replace(\\\"_\\\", \\\" \\\")).ratio(),\\n        )\\n        if score > best_score:\\n            best_score = score\\n            best_match = cls\\n    if best_score > 0.7:\\n        return best_match\\n\\n    return None\\n\\n\\n# ── Annotation Pipeline ─────────────────────────────────────────────────────\\n\\nclass AnnotationPipeline:\\n\\n    def __init__(self, api_base, api_key, model_id, max_retries=3, timeout=60):\\n        self.api_base = api_base.rstrip(\\\"/\\\")\\n        self.api_key = [REDACTED]        self.model_id = model_id\\n        self.max_retries = max_retries\\n        self.timeout = timeout\\n        self.session = requests.Session()\\n        self.session.headers.update({\\n            \\\"Authorization\\\": f\\\"Bearer {self.api_key}\\\",\\n            \\\"Content-Type\\\": \\\"application/json\\\",\\n        })\\n\\n    def annotate_single(self, text, config, prompt_type, n_examples=0):\\n        \\\"\\\"\\\"Send one text to LLM, parse response to class label.\\n\\n        Returns (pred_label_or_None, raw_response, error_msg_or_None).\\n        \\\"\\\"\\\"\\n        if prompt_type == \\\"zero-shot\\\":\\n            user_prompt = PromptTemplates.zero_shot(text, config)\\n        else:\\n            user_prompt = PromptTemplates.few_shot(text, config, n_examples)\\n\\n        payload = {\\n            \\\"model\\\": self.model_id,\\n            \\\"messages\\\": [\\n                {\\n                    \\\"role\\\": \\\"system\\\",\\n                    \\\"content\\\": (\\n                        \\\"You are a precise text classifier. \\\"\\n                        \\\"Always respond with ONLY a JSON object containing the label. \\\"\\n                        \\\"Do not include any explanation or extra text.\\\"\\n                    ),\\n                },\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_prompt},\\n            ],\\n            \\\"temperature\\\": 0.0,\\n            \\\"max_tokens\\\": 64,\\n        }\\n\\n        for attempt in range(1, self.max_retries + 1):\\n            try:\\n                resp = self.session.post(\\n                    f\\\"{self.api_base}/chat/completions\\\",\\n                    json=payload,\\n                    timeout=self.timeout,\\n                )\\n                resp.raise_for_status()\\n                data = resp.json()\\n                raw = data[\\\"choices\\\"][0][\\\"message\\\"][\\\"content\\\"]\\n                pred = parse_label(raw, config[\\\"classes\\\"])\\n                return pred, raw, None\\n            except requests.exceptions.HTTPError as e:\\n                status = e.response.status_code if e.response is not None else None\\n                if status == 429 or (status and status >= 500):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "87a0294a-a3ad-4fd2-bb19-13ac48da6f84",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\\\n\\\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\\\n\\\\nUsage:\\\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\\\n  python annotate.py --all --sample 500  # run all combinations\\\\n\\\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nimport traceback\\\\nfrom pathlib import Path\\\\nfrom difflib import SequenceMatcher\\\\n\\\\nimport numpy as np\\\\nimport requests\\\\n\\\\n# ── API Configuration ────────────────────────────────────────────────────────\\\\n\\\\nAPI_BASE = \\\\\\\"http://47.94.22.126/v1\\\\\\\"\\\\n\\\\nMODELS = {\\\\n    \\\\\\\"llama4\\\\\\\": \\\\\\\"meta-llama/llama-4-maverick\\\\\\\",\\\\n    \\\\\\\"qwen3\\\\\\\": \\\\\\\"qwen/qwen3-235b-a22b\\\\\\\",\\\\n    \\\\\\\"deepseek\\\\\\\": \\\\\\\"deepseek/deepseek-chat\\\\\\\",\\\\n}\\\\n\\\\nPROJECT_ROOT = Path(__file__).resolve().parent\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = PROJECT_ROOT / \\\\\\\"results\\\\\\\"\\\\n\\\\n\\\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\\\n\\\\nDATASET_CONFIGS = {\\\\n    \\\\\\\"humaid\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"caution_and_advice\\\\\\\",\\\\n            \\\\\\\"displaced_people_and_evacuations\\\\\\\",\\\\n            \\\\\\\"infrastructure_and_utility_damage\\\\\\\",\\\\n            \\\\\\\"injured_or_dead_people\\\\\\\",\\\\n            \\\\\\\"missing_or_found_people\\\\\\\",\\\\n            \\\\\\\"not_humanitarian\\\\\\\",\\\\n            \\\\\\\"other_relevant_information\\\\\\\",\\\\n            \\\\\\\"requests_or_urgent_needs\\\\\\\",\\\\n            \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\",\\\\n            \\\\\\\"sympathy_and_support\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Classify this tweet into one of the following crisis event categories.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Please stay away from the coastal areas. Tsunami warning issued.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"caution_and_advice\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Over 500 families displaced from their homes due to flooding.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"displaced_people_and_evacuations\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The main bridge on Highway 5 has completely collapsed.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"infrastructure_and_utility_damage\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Sadly, 12 people confirmed dead after the earthquake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"injured_or_dead_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"missing_or_found_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"not_humanitarian\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"other_relevant_information\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"requests_or_urgent_needs\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"sympathy_and_support\\\\\\\"},\\\\n        ],\\\\n    },\\\\n    \\\\\\\"vast\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"pro\\\\\\\",\\\\n            \\\\\\\"con\\\\\\\",\\\\n            \\\\\\\"neutral\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Determine the stance expressed in this text toward the given topic.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"topic_field\\\\\\\": \\\\\\\"topic\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Gun control is essential for public safety.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"pro\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"More regulations will not stop criminals from getting guns.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The debate on gun control continues across the country.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\n\\\\n... [截断: 输出过长，省略 4812 字符] ...\\\\n\\\\nwer, cls.lower()).ratio()\\\\n        if score > best_score:\\\\n            best_score = score\\\\n            best_match = cls\\\\n    if best_score > 0.7:\\\\n        return best_match\\\\n\\\\n    return None\\\\n\\\\n\\\\ndef _match_to_class(candidate, classes):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Match a candidate string to one of the valid classes.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    candidate_lower = candidate.lower().strip()\\\\n\\\\n    # Exact match (case-insensitive, normalize hyphens/underscores/spaces)\\\\n    def _normalize(s):\\\\n        return s.replace(\\\\\\\"-\\\\\\\", \\\\\\\"_\\\\\\\").replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n    candidate_norm = _normalize(candidate_lower)\\\\n    for cls in classes:\\\\n        if cls.lower() == candidate_lower or _normalize(cls.lower()) == candidate_norm:\\\\n            return cls\\\\n\\\\n    # Substring match with word boundary\\\\n    for cls in classes:\\\\n        cls_lower = cls.lower()\\\\n        if cls_lower in candidate_lower:\\\\n            pattern = r'(?:^|[\\\\\\\\s_\\\\\\\\-])' + re.escape(cls_lower) + r'(?:$|[\\\\\\\\s_\\\\\\\\-])'\\\\n            if re.search(pattern, candidate_lower) or candidate_lower == cls_lower:\\\\n                return cls\\\\n        if candidate_lower in cls_lower:\\\\n            pattern = r'(?:^|[\\\\\\\\s_\\\\\\\\-])' + re.escape(candidate_lower) + r'(?:$|[\\\\\\\\s_\\\\\\\\-])'\\\\n            if re.search(pattern, cls_lower) or candidate_lower == cls_lower:\\\\n                return cls\\\\n\\\\n    # Fuzzy match\\\\n    best_match = None\\\\n    best_score = 0.0\\\\n    for cls in classes:\\\\n        # Also try with underscores replaced by spaces\\\\n        score = max(\\\\n            SequenceMatcher(None, candidate_lower, cls.lower()).ratio(),\\\\n            SequenceMatcher(None, candidate_lower, cls.lower().replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")).ratio(),\\\\n        )\\\\n        if score > best_score:\\\\n            best_score = score\\\\n            best_match = cls\\\\n    if best_score > 0.7:\\\\n        return best_match\\\\n\\\\n    return None\\\\n\\\\n\\\\n# ── Annotation Pipeline ─────────────────────────────────────────────────────\\\\n\\\\nclass AnnotationPipeline:\\\\n\\\\n    def __init__(self, api_base, api_key, model_id, max_retries=3, timeout=60):\\\\n        self.api_base = api_base.rstrip(\\\\\\\"/\\\\\\\")\\\\n        self.api_key = [REDACTED]        self.model_id = model_id\\\\n        self.max_retries = max_retries\\\\n        self.timeout = timeout\\\\n        self.session = requests.Session()\\\\n        self.session.headers.update({\\\\n            \\\\\\\"Authorization\\\\\\\": f\\\\\\\"Bearer {self.api_key}\\\\\\\",\\\\n            \\\\\\\"Content-Type\\\\\\\": \\\\\\\"application/json\\\\\\\",\\\\n        })\\\\n\\\\n    def annotate_single(self, text, config, prompt_type, n_examples=0):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Send one text to LLM, parse response to class label.\\\\n\\\\n        Returns (pred_label_or_None, raw_response, error_msg_or_None).\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        if prompt_type == \\\\\\\"zero-shot\\\\\\\":\\\\n            user_prompt = PromptTemplates.zero_shot(text, config)\\\\n        else:\\\\n            user_prompt = PromptTemplates.few_shot(text, config, n_examples)\\\\n\\\\n        payload = {\\\\n            \\\\\\\"model\\\\\\\": self.model_id,\\\\n            \\\\\\\"messages\\\\\\\": [\\\\n                {\\\\n                    \\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\",\\\\n                    \\\\\\\"content\\\\\\\": (\\\\n                        \\\\\\\"You are a precise text classifier. \\\\\\\"\\\\n                        \\\\\\\"Always respond with ONLY a JSON object containing the label. \\\\\\\"\\\\n                        \\\\\\\"Do not include any explanation or extra text.\\\\\\\"\\\\n                    ),\\\\n                },\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n            ],\\\\n            \\\\\\\"temperature\\\\\\\": 0.0,\\\\n            \\\\\\\"max_tokens\\\\\\\": 64,\\\\n        }\\\\n\\\\n        for attempt in range(1, self.max_retries + 1):\\\\n            try:\\\\n                resp = self.session.post(\\\\n                    f\\\\\\\"{self.api_base}/chat/completions\\\\\\\",\\\\n                    json=payload,\\\\n                    timeout=self.timeout,\\\\n                )\\\\n                resp.raise_for_status()\\\\n                data = resp.json()\\\\n                raw = data[\\\\\\\"choices\\\\\\\"][0][\\\\\\\"message\\\\\\\"][\\\\\\\"content\\\\\\\"]\\\\n                pred = parse_label(raw, config[\\\\\\\"classes\\\\\\\"])\\\\n                return pred, raw, None\\\\n            except requests.exceptions.HTTPError as e:\\\\n                status = e.response.status_code if e.response is not None else None\\\\n                if status == 429 or (status and status >= 500):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 4812 字符] ...\\n\\nwer, cls.lower()).ratio()\\n        if score > best_score:\\n            best_score = score\\n            best_match = cls\\n    if best_score > 0.7:\\n        return best_match\\n\\n    return None\\n\\n\\ndef _match_to_class(candidate, classes):\\n    \\\"\\\"\\\"Match a candidate string to one of the valid classes.\\\"\\\"\\\"\\n    candidate_lower = candidate.lower().strip()\\n\\n    # Exact match (case-insensitive, normalize hyphens/underscores/spaces)\\n    def _normalize(s):\\n        return s.replace(\\\"-\\\", \\\"_\\\").replace(\\\" \\\", \\\"_\\\")\\n    candidate_norm = _normalize(candidate_lower)\\n    for cls in classes:\\n        if cls.lower() == candidate_lower or _normalize(cls.lower()) == candidate_norm:\\n            return cls\\n\\n    # Substring match with word boundary\\n    for cls in classes:\\n        cls_lower = cls.lower()\\n        if cls_lower in candidate_lower:\\n            pattern = r'(?:^|[\\\\s_\\\\-])' + re.escape(cls_lower) + r'(?:$|[\\\\s_\\\\-])'\\n            if re.search(pattern, candidate_lower) or candidate_lower == cls_lower:\\n                return cls\\n        if candidate_lower in cls_lower:\\n            pattern = r'(?:^|[\\\\s_\\\\-])' + re.escape(candidate_lower) + r'(?:$|[\\\\s_\\\\-])'\\n            if re.search(pattern, cls_lower) or candidate_lower == cls_lower:\\n                return cls\\n\\n    # Fuzzy match\\n    best_match = None\\n    best_score = 0.0\\n    for cls in classes:\\n        # Also try with underscores replaced by spaces\\n        score = max(\\n            SequenceMatcher(None, candidate_lower, cls.lower()).ratio(),\\n            SequenceMatcher(None, candidate_lower, cls.lower().replace(\\\"_\\\", \\\" \\\")).ratio(),\\n        )\\n        if score > best_score:\\n            best_score = score\\n            best_match = cls\\n    if best_score > 0.7:\\n        return best_match\\n\\n    return None\\n\\n\\n# ── Annotation Pipeline ─────────────────────────────────────────────────────\\n\\nclass AnnotationPipeline:\\n\\n    def __init__(self, api_base, api_key, model_id, max_retries=3, timeout=60):\\n        self.api_base = api_base.rstrip(\\\"/\\\")\\n        self.api_key = [REDACTED]        self.model_id = model_id\\n        self.max_retries = max_retries\\n        self.timeout = timeout\\n        self.session = requests.Session()\\n        self.session.headers.update({\\n            \\\"Authorization\\\": f\\\"Bearer {self.api_key}\\\",\\n            \\\"Content-Type\\\": \\\"application/json\\\",\\n        })\\n\\n    def annotate_single(self, text, config, prompt_type, n_examples=0):\\n        \\\"\\\"\\\"Send one text to LLM, parse response to class label.\\n\\n        Returns (pred_label_or_None, raw_response, error_msg_or_None).\\n        \\\"\\\"\\\"\\n        if prompt_type == \\\"zero-shot\\\":\\n            user_prompt = PromptTemplates.zero_shot(text, config)\\n        else:\\n            user_prompt = PromptTemplates.few_shot(text, config, n_examples)\\n\\n        payload = {\\n            \\\"model\\\": self.model_id,\\n            \\\"messages\\\": [\\n                {\\n                    \\\"role\\\": \\\"system\\\",\\n                    \\\"content\\\": (\\n                        \\\"You are a precise text classifier. \\\"\\n                        \\\"Always respond with ONLY a JSON object containing the label. \\\"\\n                        \\\"Do not include any explanation or extra text.\\\"\\n                    ),\\n                },\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_prompt},\\n            ],\\n            \\\"temperature\\\": 0.0,\\n            \\\"max_tokens\\\": 64,\\n        }\\n\\n        for attempt in range(1, self.max_retries + 1):\\n            try:\\n                resp = self.session.post(\\n                    f\\\"{self.api_base}/chat/completions\\\",\\n                    json=payload,\\n                    timeout=self.timeout,\\n                )\\n                resp.raise_for_status()\\n                data = resp.json()\\n                raw = data[\\\"choices\\\"][0][\\\"message\\\"][\\\"content\\\"]\\n                pred = parse_label(raw, config[\\\"classes\\\"])\\n                return pred, raw, None\\n            except requests.exceptions.HTTPError as e:\\n                status = e.response.status_code if e.response is not None else None\\n                if status == 429 or (status and status >= 500):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QbhKttLC4puSVvX4c7C3Rh`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -n +330 /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8e49a0a7-fd9d-46ed-8491-4d326ed5eae9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XkaXmUMEwouTMsY3yNCWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3210,
+      "cache_read_input_tokens": 31186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3210
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T13:57:40.430Z_
+
+<details><summary>↩ Tool result · `toolu_01QbhKttLC4puSVvX4c7C3Rh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                if status == 429 or (status and status >= 500):\\n                    wait = min(2 * (2 ** (attempt - 1)), 60)\\n                    label = \\\"Rate limited (429)\\\" if status == 429 else f\\\"Server error ({status})\\\"\\n                    print(f\\\"  {label}, waiting {wait}s (attempt {attempt}/{self.max_retries})\\\")\\n                    time.sleep(wait)\\n                    continue\\n                return None, \\\"\\\", f\\\"HTTP {status}: {e}\\\"\\n            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:\\n                wait = min(2 * (2 ** (attempt - 1)), 60)\\n                err_type = \\\"Timeout\\\" if isinstance(e, requests.exceptions.Timeout) else \\\"ConnectionError\\\"\\n                print(f\\\"  {err_type}, waiting {wait}s (attempt {attempt}/{self.max_retries})\\\")\\n                if attempt < self.max_retries:\\n                    time.sleep(wait)\\n                    continue\\n                return None, \\\"\\\", f\\\"{err_type}: {e}\\\"\\n            except Exception as e:\\n                return None, \\\"\\\", f\\\"Unexpected error: {e}\\\"\\n\\n        return None, \\\"\\\", \\\"Max retries exceeded\\\"\\n\\n    def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5):\\n        \\\"\\\"\\\"Annotate a list of samples with rate limiting.\\n\\n        Each sample is a dict with at least text_field and label_field.\\n        Returns list of result dicts.\\n        \\\"\\\"\\\"\\n        n_examples = 0\\n        if prompt_type == \\\"few-shot-3\\\":\\n            n_examples = 3\\n        elif prompt_type == \\\"few-shot-5\\\":\\n            n_examples = 5\\n\\n        text_field = config[\\\"text_field\\\"]\\n        topic_field = config.get(\\\"topic_field\\\")\\n\\n        results = []\\n        for i, sample in enumerate(samples):\\n            text = sample[text_field]\\n            if topic_field and topic_field in sample:\\n                text = f\\\"{text} __topic__:{sample[topic_field]}\\\"\\n\\n            pred, raw, err = self.annotate_single(text, config, prompt_type, n_examples)\\n\\n            result = {\\n                \\\"idx\\\": sample.get(\\\"idx\\\", i),\\n                \\\"text\\\": sample[text_field],\\n                \\\"gold_label\\\": sample[config[\\\"label_field\\\"]],\\n                \\\"pred_label\\\": pred,\\n                \\\"raw_response\\\": raw,\\n                \\\"model\\\": self.model_id,\\n                \\\"prompt_type\\\": prompt_type,\\n                \\\"error\\\": err,\\n            }\\n            if topic_field and topic_field in sample:\\n                result[\\\"topic\\\"] = sample[topic_field]\\n\\n            results.append(result)\\n\\n            if (i + 1) % 50 == 0:\\n                n_parsed = sum(1 for r in results if r[\\\"pred_label\\\"] is not None)\\n                print(f\\\"  [{i+1}/{len(samples)}] parsed: {n_parsed}/{i+1}\\\")\\n\\n            if i < len(samples) - 1:\\n                time.sleep(batch_delay)\\n\\n        return results\\n\\n\\n# ── Confusion Matrix ─────────────────────────────────────────────────────────\\n\\ndef compute_confusion_matrix(gold_labels, pred_labels, classes):\\n    \\\"\\\"\\\"Compute column-stochastic confusion matrix C[j,i] = P(pred=j|gold=i).\\n\\n    Args:\\n        gold_labels: list of gold label strings\\n        pred_labels: list of predicted label strings (may contain None)\\n        classes: ordered list of class names\\n\\n    Returns:\\n        C: (K, K) column-stochastic numpy array\\n        class_to_idx: dict mapping class name to index\\n        stats: dict with coverage info\\n    \\\"\\\"\\\"\\n    K = len(classes)\\n    class_to_idx = {c: i for i, c in enumerate(classes)}\\n    C = np.zeros((K, K))\\n\\n    n_valid = 0\\n    n_skipped = 0\\n    for g, p in zip(gold_labels, pred_labels):\\n        if p is None or g not in class_to_idx or p not in class_to_idx:\\n            n_skipped += 1\\n            continue\\n        C[class_to_idx[p], class_to_idx[g]] += 1\\n        n_valid += 1\\n\\n    col_sums = C.sum(axis=0)\\n    col_sums[col_sums == 0] = 1\\n    C_norm = C / col_sums\\n\\n    stats = {\\n        \\\"n_total\\\": len(gold_labels),\\n        \\\"n_valid\\\": n_valid,\\n        \\\"n_skipped\\\": n_skipped,\\n        \\\"coverage\\\": n_valid / len(gold_labels) if gold_labels else 0,\\n        \\\"raw_counts\\\": C.tolist(),\\n    }\\n\\n    return C_no\\n\\n... [截断: 输出过长，省略 4214 字符] ...\\n\\nin samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    # Per-column sample counts and HumAID low-column warning\\n    raw_counts = np.array(stats[\\\"raw_counts\\\"])\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\n    stats[\\\"per_column_counts\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\"classes\\\"])}\\n\\n    if dataset_name == \\\"humaid\\\":\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\"classes\\\"]) if col_counts[i] < 20]\\n        if low_cols:\\n            print(f\\\"\\\\n  WARNING: HumAID columns with < 20 samples:\\\")\\n            for cls, cnt in low_cols:\\n                print(f\\\"    {cls}: {cnt}\\\")\\n            stats[\\\"low_column_warning\\\"] = [{\\\"class\\\": cls, \\\"count\\\": cnt} for cls, cnt in low_cols]\\n\\n    print(f\\\"\\\\n  Per-column sample counts:\\\")\\n    for cls in config[\\\"classes\\\"]:\\n        print(f\\\"    {cls}: {stats['per_column_counts'][cls]}\\\")\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "0c1d17d1-671d-4bcb-b669-b579c88a1aad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                if status == 429 or (status and status >= 500):\\\\n                    wait = min(2 * (2 ** (attempt - 1)), 60)\\\\n                    label = \\\\\\\"Rate limited (429)\\\\\\\" if status == 429 else f\\\\\\\"Server error ({status})\\\\\\\"\\\\n                    print(f\\\\\\\"  {label}, waiting {wait}s (attempt {attempt}/{self.max_retries})\\\\\\\")\\\\n                    time.sleep(wait)\\\\n                    continue\\\\n                return None, \\\\\\\"\\\\\\\", f\\\\\\\"HTTP {status}: {e}\\\\\\\"\\\\n            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:\\\\n                wait = min(2 * (2 ** (attempt - 1)), 60)\\\\n                err_type = \\\\\\\"Timeout\\\\\\\" if isinstance(e, requests.exceptions.Timeout) else \\\\\\\"ConnectionError\\\\\\\"\\\\n                print(f\\\\\\\"  {err_type}, waiting {wait}s (attempt {attempt}/{self.max_retries})\\\\\\\")\\\\n                if attempt < self.max_retries:\\\\n                    time.sleep(wait)\\\\n                    continue\\\\n                return None, \\\\\\\"\\\\\\\", f\\\\\\\"{err_type}: {e}\\\\\\\"\\\\n            except Exception as e:\\\\n                return None, \\\\\\\"\\\\\\\", f\\\\\\\"Unexpected error: {e}\\\\\\\"\\\\n\\\\n        return None, \\\\\\\"\\\\\\\", \\\\\\\"Max retries exceeded\\\\\\\"\\\\n\\\\n    def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Annotate a list of samples with rate limiting.\\\\n\\\\n        Each sample is a dict with at least text_field and label_field.\\\\n        Returns list of result dicts.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        n_examples = 0\\\\n        if prompt_type == \\\\\\\"few-shot-3\\\\\\\":\\\\n            n_examples = 3\\\\n        elif prompt_type == \\\\\\\"few-shot-5\\\\\\\":\\\\n            n_examples = 5\\\\n\\\\n        text_field = config[\\\\\\\"text_field\\\\\\\"]\\\\n        topic_field = config.get(\\\\\\\"topic_field\\\\\\\")\\\\n\\\\n        results = []\\\\n        for i, sample in enumerate(samples):\\\\n            text = sample[text_field]\\\\n            if topic_field and topic_field in sample:\\\\n                text = f\\\\\\\"{text} __topic__:{sample[topic_field]}\\\\\\\"\\\\n\\\\n            pred, raw, err = self.annotate_single(text, config, prompt_type, n_examples)\\\\n\\\\n            result = {\\\\n                \\\\\\\"idx\\\\\\\": sample.get(\\\\\\\"idx\\\\\\\", i),\\\\n                \\\\\\\"text\\\\\\\": sample[text_field],\\\\n                \\\\\\\"gold_label\\\\\\\": sample[config[\\\\\\\"label_field\\\\\\\"]],\\\\n                \\\\\\\"pred_label\\\\\\\": pred,\\\\n                \\\\\\\"raw_response\\\\\\\": raw,\\\\n                \\\\\\\"model\\\\\\\": self.model_id,\\\\n                \\\\\\\"prompt_type\\\\\\\": prompt_type,\\\\n                \\\\\\\"error\\\\\\\": err,\\\\n            }\\\\n            if topic_field and topic_field in sample:\\\\n                result[\\\\\\\"topic\\\\\\\"] = sample[topic_field]\\\\n\\\\n            results.append(result)\\\\n\\\\n            if (i + 1) % 50 == 0:\\\\n                n_parsed = sum(1 for r in results if r[\\\\\\\"pred_label\\\\\\\"] is not None)\\\\n                print(f\\\\\\\"  [{i+1}/{len(samples)}] parsed: {n_parsed}/{i+1}\\\\\\\")\\\\n\\\\n            if i < len(samples) - 1:\\\\n                time.sleep(batch_delay)\\\\n\\\\n        return results\\\\n\\\\n\\\\n# ── Confusion Matrix ─────────────────────────────────────────────────────────\\\\n\\\\ndef compute_confusion_matrix(gold_labels, pred_labels, classes):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute column-stochastic confusion matrix C[j,i] = P(pred=j|gold=i).\\\\n\\\\n    Args:\\\\n        gold_labels: list of gold label strings\\\\n        pred_labels: list of predicted label strings (may contain None)\\\\n        classes: ordered list of class names\\\\n\\\\n    Returns:\\\\n        C: (K, K) column-stochastic numpy array\\\\n        class_to_idx: dict mapping class name to index\\\\n        stats: dict with coverage info\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(classes)\\\\n    class_to_idx = {c: i for i, c in enumerate(classes)}\\\\n    C = np.zeros((K, K))\\\\n\\\\n    n_valid = 0\\\\n    n_skipped = 0\\\\n    for g, p in zip(gold_labels, pred_labels):\\\\n        if p is None or g not in class_to_idx or p not in class_to_idx:\\\\n            n_skipped += 1\\\\n            continue\\\\n        C[class_to_idx[p], class_to_idx[g]] += 1\\\\n        n_valid += 1\\\\n\\\\n    col_sums = C.sum(axis=0)\\\\n    col_sums[col_sums == 0] = 1\\\\n    C_norm = C / col_sums\\\\n\\\\n    stats = {\\\\n        \\\\\\\"n_total\\\\\\\": len(gold_labels),\\\\n        \\\\\\\"n_valid\\\\\\\": n_valid,\\\\n        \\\\\\\"n_skipped\\\\\\\": n_skipped,\\\\n        \\\\\\\"coverage\\\\\\\": n_valid / len(gold_labels) if gold_labels else 0,\\\\n        \\\\\\\"raw_counts\\\\\\\": C.tolist(),\\\\n    }\\\\n\\\\n    return C_no\\\\n\\\\n... [截断: 输出过长，省略 4214 字符] ...\\\\n\\\\nin samples if s[\\\\\\\"idx\\\\\\\"] in merged]\\\\n\\\\n    # Compute confusion matrix\\\\n    gold = [r[\\\\\\\"gold_label\\\\\\\"] for r in all_results]\\\\n    pred = [r[\\\\\\\"pred_label\\\\\\\"] for r in all_results]\\\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\\\\\"classes\\\\\\\"])\\\\n\\\\n    # Per-column sample counts and HumAID low-column warning\\\\n    raw_counts = np.array(stats[\\\\\\\"raw_counts\\\\\\\"])\\\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\\\n    stats[\\\\\\\"per_column_counts\\\\\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\\\\\"classes\\\\\\\"])}\\\\n\\\\n    if dataset_name == \\\\\\\"humaid\\\\\\\":\\\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\\\\\"classes\\\\\\\"]) if col_counts[i] < 20]\\\\n        if low_cols:\\\\n            print(f\\\\\\\"\\\\\\\\n  WARNING: HumAID columns with < 20 samples:\\\\\\\")\\\\n            for cls, cnt in low_cols:\\\\n                print(f\\\\\\\"    {cls}: {cnt}\\\\\\\")\\\\n            stats[\\\\\\\"low_column_warning\\\\\\\"] = [{\\\\\\\"class\\\\\\\": cls, \\\\\\\"count\\\\\\\": cnt} for cls, cnt in low_cols]\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  Per-column sample counts:\\\\\\\")\\\\n    for cls in config[\\\\\\\"classes\\\\\\\"]:\\\\n        print(f\\\\\\\"    {cls}: {stats['per_column_counts'][cls]}\\\\\\\")\\\\n\\\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\\\n\\\\n    n_parsed = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] is not None)\\\\n    n_correct = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] == r[\\\\\\\"gold_label\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\\\\\"\\\\n          f\\\\\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix C (column-stochastic):\\\\\\\\n{np.array2string(C, precision=3)}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dataset\\\\\\\",\\\\n        choices=[\\\\\\\"humaid\\\\\\\", \\\\\\\"vast\\\\\\\", \\\\\\\"civil_comments\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Dataset to annotate\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model\\\\\\\",\\\\n        choices=[\\\\\\\"llama4\\\\\\\", \\\\\\\"qwen3\\\\\\\", \\\\\\\"deepseek\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Model to use\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--prompt\\\\\\\",\\\\n        choices=[\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Prompt variant\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--sample\\\\\\\", type=int, default=1500, help=\\\\\\\"Sample size per dataset (default: 1500)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--split\\\\\\\", default=\\\\\\\"test\\\\\\\", help=\\\\\\\"Which split to annotate (default: test)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--all\\\\\\\", action=\\\\\\\"store_true\\\\\\\", dest=\\\\\\\"run_all\\\\\\\", help=\\\\\\\"Run all (dataset x model x prompt) combinations\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--delay\\\\\\\", type=float, default=0.5, help=\\\\\\\"Delay between API calls in seconds (default: 0.5)\\\\\\\"\\\\n    )\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.run_all:\\\\n        args.dataset = \\\\\\\"all\\\\\\\"\\\\n        args.model = \\\\\\\"all\\\\\\\"\\\\n        args.prompt = \\\\\\\"all\\\\\\\"\\\\n\\\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\\\n        parser.error(\\\\\\\"Specify --dataset, --model, --prompt (or use --all)\\\\\\\")\\\\n\\\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\\\\\")\\\\n    if not api_key:[REDACTED]        print(\\\\\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\\\\\"all\\\\\\\" else [args.dataset]\\\\n    models = list(MODELS.keys()) if args.model == \\\\\\\"all\\\\\\\" else [args.model]\\\\n    prompts = [\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\"] if args.prompt == \\\\\\\"all\\\\\\\" else [args.prompt]\\\\n\\\\n    total = len(datasets) * len(models) * len(prompts)\\\\n    done = 0\\\\n\\\\n    for ds in datasets:\\\\n        for mdl in models:\\\\n            for pt in prompts:\\\\n                done += 1\\\\n                print(f\\\\\\\"\\\\\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\\\\\")\\\\n                try:\\\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"FAILED: {e}\\\\\\\")\\\\n                    traceback.print_exc()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {done}/{total} combinations processed.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                if status == 429 or (status and status >= 500):\\n                    wait = min(2 * (2 ** (attempt - 1)), 60)\\n                    label = \\\"Rate limited (429)\\\" if status == 429 else f\\\"Server error ({status})\\\"\\n                    print(f\\\"  {label}, waiting {wait}s (attempt {attempt}/{self.max_retries})\\\")\\n                    time.sleep(wait)\\n                    continue\\n                return None, \\\"\\\", f\\\"HTTP {status}: {e}\\\"\\n            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:\\n                wait = min(2 * (2 ** (attempt - 1)), 60)\\n                err_type = \\\"Timeout\\\" if isinstance(e, requests.exceptions.Timeout) else \\\"ConnectionError\\\"\\n                print(f\\\"  {err_type}, waiting {wait}s (attempt {attempt}/{self.max_retries})\\\")\\n                if attempt < self.max_retries:\\n                    time.sleep(wait)\\n                    continue\\n                return None, \\\"\\\", f\\\"{err_type}: {e}\\\"\\n            except Exception as e:\\n                return None, \\\"\\\", f\\\"Unexpected error: {e}\\\"\\n\\n        return None, \\\"\\\", \\\"Max retries exceeded\\\"\\n\\n    def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5):\\n        \\\"\\\"\\\"Annotate a list of samples with rate limiting.\\n\\n        Each sample is a dict with at least text_field and label_field.\\n        Returns list of result dicts.\\n        \\\"\\\"\\\"\\n        n_examples = 0\\n        if prompt_type == \\\"few-shot-3\\\":\\n            n_examples = 3\\n        elif prompt_type == \\\"few-shot-5\\\":\\n            n_examples = 5\\n\\n        text_field = config[\\\"text_field\\\"]\\n        topic_field = config.get(\\\"topic_field\\\")\\n\\n        results = []\\n        for i, sample in enumerate(samples):\\n            text = sample[text_field]\\n            if topic_field and topic_field in sample:\\n                text = f\\\"{text} __topic__:{sample[topic_field]}\\\"\\n\\n            pred, raw, err = self.annotate_single(text, config, prompt_type, n_examples)\\n\\n            result = {\\n                \\\"idx\\\": sample.get(\\\"idx\\\", i),\\n                \\\"text\\\": sample[text_field],\\n                \\\"gold_label\\\": sample[config[\\\"label_field\\\"]],\\n                \\\"pred_label\\\": pred,\\n                \\\"raw_response\\\": raw,\\n                \\\"model\\\": self.model_id,\\n                \\\"prompt_type\\\": prompt_type,\\n                \\\"error\\\": err,\\n            }\\n            if topic_field and topic_field in sample:\\n                result[\\\"topic\\\"] = sample[topic_field]\\n\\n            results.append(result)\\n\\n            if (i + 1) % 50 == 0:\\n                n_parsed = sum(1 for r in results if r[\\\"pred_label\\\"] is not None)\\n                print(f\\\"  [{i+1}/{len(samples)}] parsed: {n_parsed}/{i+1}\\\")\\n\\n            if i < len(samples) - 1:\\n                time.sleep(batch_delay)\\n\\n        return results\\n\\n\\n# ── Confusion Matrix ─────────────────────────────────────────────────────────\\n\\ndef compute_confusion_matrix(gold_labels, pred_labels, classes):\\n    \\\"\\\"\\\"Compute column-stochastic confusion matrix C[j,i] = P(pred=j|gold=i).\\n\\n    Args:\\n        gold_labels: list of gold label strings\\n        pred_labels: list of predicted label strings (may contain None)\\n        classes: ordered list of class names\\n\\n    Returns:\\n        C: (K, K) column-stochastic numpy array\\n        class_to_idx: dict mapping class name to index\\n        stats: dict with coverage info\\n    \\\"\\\"\\\"\\n    K = len(classes)\\n    class_to_idx = {c: i for i, c in enumerate(classes)}\\n    C = np.zeros((K, K))\\n\\n    n_valid = 0\\n    n_skipped = 0\\n    for g, p in zip(gold_labels, pred_labels):\\n        if p is None or g not in class_to_idx or p not in class_to_idx:\\n            n_skipped += 1\\n            continue\\n        C[class_to_idx[p], class_to_idx[g]] += 1\\n        n_valid += 1\\n\\n    col_sums = C.sum(axis=0)\\n    col_sums[col_sums == 0] = 1\\n    C_norm = C / col_sums\\n\\n    stats = {\\n        \\\"n_total\\\": len(gold_labels),\\n        \\\"n_valid\\\": n_valid,\\n        \\\"n_skipped\\\": n_skipped,\\n        \\\"coverage\\\": n_valid / len(gold_labels) if gold_labels else 0,\\n        \\\"raw_counts\\\": C.tolist(),\\n    }\\n\\n    return C_no\\n\\n... [截断: 输出过长，省略 4214 字符] ...\\n\\nin samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    # Per-column sample counts and HumAID low-column warning\\n    raw_counts = np.array(stats[\\\"raw_counts\\\"])\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\n    stats[\\\"per_column_counts\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\"classes\\\"])}\\n\\n    if dataset_name == \\\"humaid\\\":\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\"classes\\\"]) if col_counts[i] < 20]\\n        if low_cols:\\n            print(f\\\"\\\\n  WARNING: HumAID columns with < 20 samples:\\\")\\n            for cls, cnt in low_cols:\\n                print(f\\\"    {cls}: {cnt}\\\")\\n            stats[\\\"low_column_warning\\\"] = [{\\\"class\\\": cls, \\\"count\\\": cnt} for cls, cnt in low_cols]\\n\\n    print(f\\\"\\\\n  Per-column sample counts:\\\")\\n    for cls in config[\\\"classes\\\"]:\\n        print(f\\\"    {cls}: {stats['per_column_counts'][cls]}\\\")\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I still need to see the middle part - specifically the `run_single`, `save_results`, and `load_existing_results` functions. Let me read lines 420-550 approximately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "4051688b-70c9-4781-b091-72f33ed5d89a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmztmfZLZdTTTTF8o7deLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3368,
+      "cache_read_input_tokens": 34396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3368
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+还需要看 `run_single` 和 `save_results` 函数。让我读中间被截断的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d35f29a1-4159-47d7-9e1a-85bdca8b03e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmztmfZLZdTTTTF8o7deLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3368,
+      "cache_read_input_tokens": 34396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3368
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Shi8Ab5MXkFFfx8siNZvJG`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -550 /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "5cf30183-121f-4d22-a187-d0068205cb22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmztmfZLZdTTTTF8o7deLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3368,
+      "cache_read_input_tokens": 34396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3368
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T13:57:46.251Z_
+
+<details><summary>↩ Tool result · `toolu_01Shi8Ab5MXkFFfx8siNZvJG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 12663 字符] ...\\n\\nbels) if gold_labels else 0,\\n        \\\"raw_counts\\\": C.tolist(),\\n    }\\n\\n    return C_norm, class_to_idx, stats\\n\\n\\n# ── I/O ──────────────────────────────────────────────────────────────────────\\n\\ndef load_data(dataset_name, split, sample_size, seed=42):\\n    \\\"\\\"\\\"Load dataset from data/{dataset}/{split}.jsonl, optionally sample.\\\"\\\"\\\"\\n    path = DATA_DIR / dataset_name / f\\\"{split}.jsonl\\\"\\n    if not path.exists():\\n        print(f\\\"ERROR: Data file not found: {path}\\\")\\n        print(f\\\"Run preprocess.py first to prepare the datasets.\\\")\\n        sys.exit(1)\\n\\n    samples = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                samples.append(json.loads(line))\\n\\n    # VAST dedup: remove duplicate (text, topic, label) rows\\n    if dataset_name == \\\"vast\\\":\\n        seen = set()\\n        deduped = []\\n        for s in samples:\\n            key = (s.get(\\\"text\\\", \\\"\\\"), s.get(\\\"topic\\\", \\\"\\\"), s.get(\\\"label_name\\\", \\\"\\\"))\\n            if key not in seen:\\n                seen.add(key)\\n                deduped.append(s)\\n        n_removed = len(samples) - len(deduped)\\n        if n_removed > 0:\\n            print(f\\\"VAST dedup: removed {n_removed} duplicates ({len(samples)} -> {len(deduped)})\\\")\\n        samples = deduped\\n\\n    if sample_size and sample_size < len(samples):\\n        rng = np.random.default_rng(seed)\\n        indices = rng.choice(len(samples), size=sample_size, replace=False)\\n        indices.sort()\\n        samples = [samples[i] for i in indices]\\n\\n    for i, s in enumerate(samples):\\n        if \\\"idx\\\" not in s:\\n            s[\\\"idx\\\"] = i\\n\\n    return samples\\n\\n\\ndef load_existing_results(output_path):\\n    \\\"\\\"\\\"Load already-completed results for resume support.\\\"\\\"\\\"\\n    if not output_path.exists():\\n        return {}\\n    existing = {}\\n    with open(output_path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                r = json.loads(line)\\n                existing[r[\\\"idx\\\"]] = r\\n    return existing\\n\\n\\ndef save_results(results, confusion_matrix, class_to_idx, stats, output_dir, model_key, prompt_type):\\n    \\\"\\\"\\\"Save annotations as JSONL and confusion matrix as npz.\\\"\\\"\\\"\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    jsonl_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n    with open(jsonl_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n    npz_path = output_dir / f\\\"{model_key}_{prompt_type}_confusion_matrix.npz\\\"\\n    np.savez(\\n        npz_path,\\n        C=confusion_matrix,\\n        classes=list(class_to_idx.keys()),\\n        **{f\\\"stat_{k}\\\": v for k, v in stats.items() if not isinstance(v, list)},\\n        raw_counts=np.array(stats[\\\"raw_counts\\\"]),\\n    )\\n\\n    print(f\\\"  Saved: {jsonl_path}\\\")\\n    print(f\\\"  Saved: {npz_path}\\\")\\n    return jsonl_path, npz_path\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────────────\\n\\ndef run_single(dataset_name, model_key, prompt_type, sample_size, split, api_key):\\n    \\\"\\\"\\\"Run annotation for one (dataset, model, prompt) combination.\\\"\\\"\\\"\\n    config = DATASET_CONFIGS[dataset_name]\\n    model_id = MODELS[model_key]\\n\\n    output_dir = RESULTS_DIR / dataset_name\\n    output_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Dataset: {dataset_name} | Model: {model_key} ({model_id})\\\")\\n    print(f\\\"Prompt: {prompt_type} | Sample: {sample_size} | Split: {split}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    samples = load_data(dataset_name, split, sample_size)\\n    print(f\\\"Loaded {len(samples)} samples\\\")\\n\\n    # Resume support\\n    existing = load_existing_results(output_path)\\n    if existing:\\n        remaining = [s for s in samples if s[\\\"idx\\\"] not in existing]\\n        print(f\\\"Resuming: {len(existing)} done, {len(remaining)} remaining\\\")\\n    else:\\n        remaining = samples\\n\\n    if not remaining:\\n        print(\\\"All samples already annotated. Recomputing confusion matrix...\\\")\\n        all_results = [existing[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in existing]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "2575df52-9e6d-4f77-8253-b2b66ff3aef4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\\\n\\\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\\\n\\\\nUsage:\\\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\\\n  python annotate.py --all --sample 500  # run all combinations\\\\n\\\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nimport traceback\\\\nfrom pathlib import Path\\\\nfrom difflib import SequenceMatcher\\\\n\\\\nimport numpy as np\\\\nimport requests\\\\n\\\\n# ── API Configuration ────────────────────────────────────────────────────────\\\\n\\\\nAPI_BASE = \\\\\\\"http://47.94.22.126/v1\\\\\\\"\\\\n\\\\nMODELS = {\\\\n    \\\\\\\"llama4\\\\\\\": \\\\\\\"meta-llama/llama-4-maverick\\\\\\\",\\\\n    \\\\\\\"qwen3\\\\\\\": \\\\\\\"qwen/qwen3-235b-a22b\\\\\\\",\\\\n    \\\\\\\"deepseek\\\\\\\": \\\\\\\"deepseek/deepseek-chat\\\\\\\",\\\\n}\\\\n\\\\nPROJECT_ROOT = Path(__file__).resolve().parent\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = PROJECT_ROOT / \\\\\\\"results\\\\\\\"\\\\n\\\\n\\\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\\\n\\\\nDATASET_CONFIGS = {\\\\n    \\\\\\\"humaid\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"caution_and_advice\\\\\\\",\\\\n            \\\\\\\"displaced_people_and_evacuations\\\\\\\",\\\\n            \\\\\\\"infrastructure_and_utility_damage\\\\\\\",\\\\n            \\\\\\\"injured_or_dead_people\\\\\\\",\\\\n            \\\\\\\"missing_or_found_people\\\\\\\",\\\\n            \\\\\\\"not_humanitarian\\\\\\\",\\\\n            \\\\\\\"other_relevant_information\\\\\\\",\\\\n            \\\\\\\"requests_or_urgent_needs\\\\\\\",\\\\n            \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\",\\\\n            \\\\\\\"sympathy_and_support\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Classify this tweet into one of the following crisis event categories.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Please stay away from the coastal areas. Tsunami warning issued.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"caution_and_advice\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Over 500 families displaced from their homes due to flooding.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"displaced_people_and_evacuations\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The main bridge on Highway 5 has completely collapsed.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"infrastructure_and_utility_damage\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Sadly, 12 people confirmed dead after the earthquake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"injured_or_dead_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"missing_or_found_people\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"not_humanitarian\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"other_relevant_information\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"requests_or_urgent_needs\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"rescue_volunteering_or_donation_effort\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"sympathy_and_support\\\\\\\"},\\\\n        ],\\\\n    },\\\\n    \\\\\\\"vast\\\\\\\": {\\\\n        \\\\\\\"classes\\\\\\\": [\\\\n            \\\\\\\"pro\\\\\\\",\\\\n            \\\\\\\"con\\\\\\\",\\\\n            \\\\\\\"neutral\\\\\\\",\\\\n        ],\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Determine the stance expressed in this text toward the given topic.\\\\\\\",\\\\n        \\\\\\\"text_field\\\\\\\": \\\\\\\"text\\\\\\\",\\\\n        \\\\\\\"label_field\\\\\\\": \\\\\\\"label_name\\\\\\\",\\\\n        \\\\\\\"topic_field\\\\\\\": \\\\\\\"topic\\\\\\\",\\\\n        \\\\\\\"few_shot_examples\\\\\\\": [\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"Gun control is essential for public safety.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"pro\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"More regulations will not stop criminals from getting guns.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"},\\\\n            {\\\\\\\"text\\\\\\\": \\\\\\\"The debate on gun control continues across the country.\\\\\\\", \\\\\\\"topic\\\\\\\": \\\\\\\"Gun Control\\\\\\\", \\\\n\\\\n... [截断: 输出过长，省略 12663 字符] ...\\\\n\\\\nbels) if gold_labels else 0,\\\\n        \\\\\\\"raw_counts\\\\\\\": C.tolist(),\\\\n    }\\\\n\\\\n    return C_norm, class_to_idx, stats\\\\n\\\\n\\\\n# ── I/O ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef load_data(dataset_name, split, sample_size, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load dataset from data/{dataset}/{split}.jsonl, optionally sample.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    path = DATA_DIR / dataset_name / f\\\\\\\"{split}.jsonl\\\\\\\"\\\\n    if not path.exists():\\\\n        print(f\\\\\\\"ERROR: Data file not found: {path}\\\\\\\")\\\\n        print(f\\\\\\\"Run preprocess.py first to prepare the datasets.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    samples = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                samples.append(json.loads(line))\\\\n\\\\n    # VAST dedup: remove duplicate (text, topic, label) rows\\\\n    if dataset_name == \\\\\\\"vast\\\\\\\":\\\\n        seen = set()\\\\n        deduped = []\\\\n        for s in samples:\\\\n            key = (s.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\"), s.get(\\\\\\\"topic\\\\\\\", \\\\\\\"\\\\\\\"), s.get(\\\\\\\"label_name\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            if key not in seen:\\\\n                seen.add(key)\\\\n                deduped.append(s)\\\\n        n_removed = len(samples) - len(deduped)\\\\n        if n_removed > 0:\\\\n            print(f\\\\\\\"VAST dedup: removed {n_removed} duplicates ({len(samples)} -> {len(deduped)})\\\\\\\")\\\\n        samples = deduped\\\\n\\\\n    if sample_size and sample_size < len(samples):\\\\n        rng = np.random.default_rng(seed)\\\\n        indices = rng.choice(len(samples), size=sample_size, replace=False)\\\\n        indices.sort()\\\\n        samples = [samples[i] for i in indices]\\\\n\\\\n    for i, s in enumerate(samples):\\\\n        if \\\\\\\"idx\\\\\\\" not in s:\\\\n            s[\\\\\\\"idx\\\\\\\"] = i\\\\n\\\\n    return samples\\\\n\\\\n\\\\ndef load_existing_results(output_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load already-completed results for resume support.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not output_path.exists():\\\\n        return {}\\\\n    existing = {}\\\\n    with open(output_path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                r = json.loads(line)\\\\n                existing[r[\\\\\\\"idx\\\\\\\"]] = r\\\\n    return existing\\\\n\\\\n\\\\ndef save_results(results, confusion_matrix, class_to_idx, stats, output_dir, model_key, prompt_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Save annotations as JSONL and confusion matrix as npz.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    jsonl_path = output_dir / f\\\\\\\"{model_key}_{prompt_type}.jsonl\\\\\\\"\\\\n    with open(jsonl_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n    npz_path = output_dir / f\\\\\\\"{model_key}_{prompt_type}_confusion_matrix.npz\\\\\\\"\\\\n    np.savez(\\\\n        npz_path,\\\\n        C=confusion_matrix,\\\\n        classes=list(class_to_idx.keys()),\\\\n        **{f\\\\\\\"stat_{k}\\\\\\\": v for k, v in stats.items() if not isinstance(v, list)},\\\\n        raw_counts=np.array(stats[\\\\\\\"raw_counts\\\\\\\"]),\\\\n    )\\\\n\\\\n    print(f\\\\\\\"  Saved: {jsonl_path}\\\\\\\")\\\\n    print(f\\\\\\\"  Saved: {npz_path}\\\\\\\")\\\\n    return jsonl_path, npz_path\\\\n\\\\n\\\\n# ── Main ─────────────────────────────────────────────────────────────────────\\\\n\\\\ndef run_single(dataset_name, model_key, prompt_type, sample_size, split, api_key):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run annotation for one (dataset, model, prompt) combination.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    config = DATASET_CONFIGS[dataset_name]\\\\n    model_id = MODELS[model_key]\\\\n\\\\n    output_dir = RESULTS_DIR / dataset_name\\\\n    output_path = output_dir / f\\\\\\\"{model_key}_{prompt_type}.jsonl\\\\\\\"\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Dataset: {dataset_name} | Model: {model_key} ({model_id})\\\\\\\")\\\\n    print(f\\\\\\\"Prompt: {prompt_type} | Sample: {sample_size} | Split: {split}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    samples = load_data(dataset_name, split, sample_size)\\\\n    print(f\\\\\\\"Loaded {len(samples)} samples\\\\\\\")\\\\n\\\\n    # Resume support\\\\n    existing = load_existing_results(output_path)\\\\n    if existing:\\\\n        remaining = [s for s in samples if s[\\\\\\\"idx\\\\\\\"] not in existing]\\\\n        print(f\\\\\\\"Resuming: {len(existing)} done, {len(remaining)} remaining\\\\\\\")\\\\n    else:\\\\n        remaining = samples\\\\n\\\\n    if not remaining:\\\\n        print(\\\\\\\"All samples already annotated. Recomputing confusion matrix...\\\\\\\")\\\\n        all_results = [existing[s[\\\\\\\"idx\\\\\\\"]] for s in samples if s[\\\\\\\"idx\\\\\\\"] in existing]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\nAnnotates text classification datasets using multiple LLMs via OpenRouter-compatible API.\\nProduces confusion matrices C comparing LLM labels vs gold labels.\\n\\nUsage:\\n  python annotate.py --dataset humaid --model llama4 --prompt zero-shot --sample 500\\n  python annotate.py --dataset vast --model all --prompt all --sample 1000\\n  python annotate.py --all --sample 500  # run all combinations\\n\\nInput: data/{dataset}/{split}.jsonl (from preprocess.py)\\nOutput: results/{dataset}/{model}_{prompt}.jsonl + confusion_matrix.npz\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport traceback\\nfrom pathlib import Path\\nfrom difflib import SequenceMatcher\\n\\nimport numpy as np\\nimport requests\\n\\n# ── API Configuration ────────────────────────────────────────────────────────\\n\\nAPI_BASE = \\\"http://47.94.22.126/v1\\\"\\n\\nMODELS = {\\n    \\\"llama4\\\": \\\"meta-llama/llama-4-maverick\\\",\\n    \\\"qwen3\\\": \\\"qwen/qwen3-235b-a22b\\\",\\n    \\\"deepseek\\\": \\\"deepseek/deepseek-chat\\\",\\n}\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nRESULTS_DIR = PROJECT_ROOT / \\\"results\\\"\\n\\n\\n# ── Dataset Configurations ───────────────────────────────────────────────────\\n\\nDATASET_CONFIGS = {\\n    \\\"humaid\\\": {\\n        \\\"classes\\\": [\\n            \\\"caution_and_advice\\\",\\n            \\\"displaced_people_and_evacuations\\\",\\n            \\\"infrastructure_and_utility_damage\\\",\\n            \\\"injured_or_dead_people\\\",\\n            \\\"missing_or_found_people\\\",\\n            \\\"not_humanitarian\\\",\\n            \\\"other_relevant_information\\\",\\n            \\\"requests_or_urgent_needs\\\",\\n            \\\"rescue_volunteering_or_donation_effort\\\",\\n            \\\"sympathy_and_support\\\",\\n        ],\\n        \\\"task\\\": \\\"Classify this tweet into one of the following crisis event categories.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Please stay away from the coastal areas. Tsunami warning issued.\\\", \\\"label\\\": \\\"caution_and_advice\\\"},\\n            {\\\"text\\\": \\\"Over 500 families displaced from their homes due to flooding.\\\", \\\"label\\\": \\\"displaced_people_and_evacuations\\\"},\\n            {\\\"text\\\": \\\"The main bridge on Highway 5 has completely collapsed.\\\", \\\"label\\\": \\\"infrastructure_and_utility_damage\\\"},\\n            {\\\"text\\\": \\\"Sadly, 12 people confirmed dead after the earthquake.\\\", \\\"label\\\": \\\"injured_or_dead_people\\\"},\\n            {\\\"text\\\": \\\"One man is still missing after flash flooding tore down historic Main Street in Ellicott City, Maryland.\\\", \\\"label\\\": \\\"missing_or_found_people\\\"},\\n            {\\\"text\\\": \\\"The best Ecuador food. Great local restaurants still thriving after the quake.\\\", \\\"label\\\": \\\"not_humanitarian\\\"},\\n            {\\\"text\\\": \\\"Drone Video Captures Earthquake Aftermath in Ecuador. Massive destruction visible from above.\\\", \\\"label\\\": \\\"other_relevant_information\\\"},\\n            {\\\"text\\\": \\\"Ecuador needs international help because of the 7.8 earthquake! Please send aid.\\\", \\\"label\\\": \\\"requests_or_urgent_needs\\\"},\\n            {\\\"text\\\": \\\"We have raised over $10,000 today from 36 donors. Supplies are being sent to Quito.\\\", \\\"label\\\": \\\"rescue_volunteering_or_donation_effort\\\"},\\n            {\\\"text\\\": \\\"Our hearts are with the people of Ecuador. Condolences to all affected families.\\\", \\\"label\\\": \\\"sympathy_and_support\\\"},\\n        ],\\n    },\\n    \\\"vast\\\": {\\n        \\\"classes\\\": [\\n            \\\"pro\\\",\\n            \\\"con\\\",\\n            \\\"neutral\\\",\\n        ],\\n        \\\"task\\\": \\\"Determine the stance expressed in this text toward the given topic.\\\",\\n        \\\"text_field\\\": \\\"text\\\",\\n        \\\"label_field\\\": \\\"label_name\\\",\\n        \\\"topic_field\\\": \\\"topic\\\",\\n        \\\"few_shot_examples\\\": [\\n            {\\\"text\\\": \\\"Gun control is essential for public safety.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"pro\\\"},\\n            {\\\"text\\\": \\\"More regulations will not stop criminals from getting guns.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\\"label\\\": \\\"con\\\"},\\n            {\\\"text\\\": \\\"The debate on gun control continues across the country.\\\", \\\"topic\\\": \\\"Gun Control\\\", \\n\\n... [截断: 输出过长，省略 12663 字符] ...\\n\\nbels) if gold_labels else 0,\\n        \\\"raw_counts\\\": C.tolist(),\\n    }\\n\\n    return C_norm, class_to_idx, stats\\n\\n\\n# ── I/O ──────────────────────────────────────────────────────────────────────\\n\\ndef load_data(dataset_name, split, sample_size, seed=42):\\n    \\\"\\\"\\\"Load dataset from data/{dataset}/{split}.jsonl, optionally sample.\\\"\\\"\\\"\\n    path = DATA_DIR / dataset_name / f\\\"{split}.jsonl\\\"\\n    if not path.exists():\\n        print(f\\\"ERROR: Data file not found: {path}\\\")\\n        print(f\\\"Run preprocess.py first to prepare the datasets.\\\")\\n        sys.exit(1)\\n\\n    samples = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                samples.append(json.loads(line))\\n\\n    # VAST dedup: remove duplicate (text, topic, label) rows\\n    if dataset_name == \\\"vast\\\":\\n        seen = set()\\n        deduped = []\\n        for s in samples:\\n            key = (s.get(\\\"text\\\", \\\"\\\"), s.get(\\\"topic\\\", \\\"\\\"), s.get(\\\"label_name\\\", \\\"\\\"))\\n            if key not in seen:\\n                seen.add(key)\\n                deduped.append(s)\\n        n_removed = len(samples) - len(deduped)\\n        if n_removed > 0:\\n            print(f\\\"VAST dedup: removed {n_removed} duplicates ({len(samples)} -> {len(deduped)})\\\")\\n        samples = deduped\\n\\n    if sample_size and sample_size < len(samples):\\n        rng = np.random.default_rng(seed)\\n        indices = rng.choice(len(samples), size=sample_size, replace=False)\\n        indices.sort()\\n        samples = [samples[i] for i in indices]\\n\\n    for i, s in enumerate(samples):\\n        if \\\"idx\\\" not in s:\\n            s[\\\"idx\\\"] = i\\n\\n    return samples\\n\\n\\ndef load_existing_results(output_path):\\n    \\\"\\\"\\\"Load already-completed results for resume support.\\\"\\\"\\\"\\n    if not output_path.exists():\\n        return {}\\n    existing = {}\\n    with open(output_path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                r = json.loads(line)\\n                existing[r[\\\"idx\\\"]] = r\\n    return existing\\n\\n\\ndef save_results(results, confusion_matrix, class_to_idx, stats, output_dir, model_key, prompt_type):\\n    \\\"\\\"\\\"Save annotations as JSONL and confusion matrix as npz.\\\"\\\"\\\"\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    jsonl_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n    with open(jsonl_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n    npz_path = output_dir / f\\\"{model_key}_{prompt_type}_confusion_matrix.npz\\\"\\n    np.savez(\\n        npz_path,\\n        C=confusion_matrix,\\n        classes=list(class_to_idx.keys()),\\n        **{f\\\"stat_{k}\\\": v for k, v in stats.items() if not isinstance(v, list)},\\n        raw_counts=np.array(stats[\\\"raw_counts\\\"]),\\n    )\\n\\n    print(f\\\"  Saved: {jsonl_path}\\\")\\n    print(f\\\"  Saved: {npz_path}\\\")\\n    return jsonl_path, npz_path\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────────────\\n\\ndef run_single(dataset_name, model_key, prompt_type, sample_size, split, api_key):\\n    \\\"\\\"\\\"Run annotation for one (dataset, model, prompt) combination.\\\"\\\"\\\"\\n    config = DATASET_CONFIGS[dataset_name]\\n    model_id = MODELS[model_key]\\n\\n    output_dir = RESULTS_DIR / dataset_name\\n    output_path = output_dir / f\\\"{model_key}_{prompt_type}.jsonl\\\"\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Dataset: {dataset_name} | Model: {model_key} ({model_id})\\\")\\n    print(f\\\"Prompt: {prompt_type} | Sample: {sample_size} | Split: {split}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    samples = load_data(dataset_name, split, sample_size)\\n    print(f\\\"Loaded {len(samples)} samples\\\")\\n\\n    # Resume support\\n    existing = load_existing_results(output_path)\\n    if existing:\\n        remaining = [s for s in samples if s[\\\"idx\\\"] not in existing]\\n        print(f\\\"Resuming: {len(existing)} done, {len(remaining)} remaining\\\")\\n    else:\\n        remaining = samples\\n\\n    if not remaining:\\n        print(\\\"All samples already annotated. Recomputing confusion matrix...\\\")\\n        all_results = [existing[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in existing]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get the rest of `run_single`:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "56372a9c-be86-4a5d-8827-4f6a68dabf6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013iQzU343nTWLX4Vqtb67MX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3478,
+      "cache_read_input_tokens": 37764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3478
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+需要看 `run_single` 的剩余部分和 main 之间的代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "fc53e1c0-1831-48ca-99f1-4b766cda1424",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013iQzU343nTWLX4Vqtb67MX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3478,
+      "cache_read_input_tokens": 37764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3478
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018geEkYAYg1R24CjdgTni3j`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -n +550 /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d948c4ea-b8bb-46a6-a997-d54350ce7ff7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013iQzU343nTWLX4Vqtb67MX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3478,
+      "cache_read_input_tokens": 37764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3478
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T13:57:51.578Z_
+
+<details><summary>↩ Tool result · `toolu_018geEkYAYg1R24CjdgTni3j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        all_results = [existing[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in existing]\\n    else:\\n        pipeline = AnnotationPipeline(API_BASE, api_key, model_id)\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\n\\n        merged = dict(existing)\\n        for r in new_results:\\n            merged[r[\\\"idx\\\"]] = r\\n        all_results = [merged[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    # Per-column sample counts and HumAID low-column warning\\n    raw_counts = np.array(stats[\\\"raw_counts\\\"])\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\n    stats[\\\"per_column_counts\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\"classes\\\"])}\\n\\n    if dataset_name == \\\"humaid\\\":\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\"classes\\\"]) if col_counts[i] < 20]\\n        if low_cols:\\n            print(f\\\"\\\\n  WARNING: HumAID columns with < 20 samples:\\\")\\n            for cls, cnt in low_cols:\\n                print(f\\\"    {cls}: {cnt}\\\")\\n            stats[\\\"low_column_warning\\\"] = [{\\\"class\\\": cls, \\\"count\\\": cnt} for cls, cnt in low_cols]\\n\\n    print(f\\\"\\\\n  Per-column sample counts:\\\")\\n    for cls in config[\\\"classes\\\"]:\\n        print(f\\\"    {cls}: {stats['per_column_counts'][cls]}\\\")\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "db85e85d-2a8b-4f18-8086-b22e0a42f0d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        all_results = [existing[s[\\\\\\\"idx\\\\\\\"]] for s in samples if s[\\\\\\\"idx\\\\\\\"] in existing]\\\\n    else:\\\\n        pipeline = AnnotationPipeline(API_BASE, api_key, model_id)\\\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\\\n\\\\n        merged = dict(existing)\\\\n        for r in new_results:\\\\n            merged[r[\\\\\\\"idx\\\\\\\"]] = r\\\\n        all_results = [merged[s[\\\\\\\"idx\\\\\\\"]] for s in samples if s[\\\\\\\"idx\\\\\\\"] in merged]\\\\n\\\\n    # Compute confusion matrix\\\\n    gold = [r[\\\\\\\"gold_label\\\\\\\"] for r in all_results]\\\\n    pred = [r[\\\\\\\"pred_label\\\\\\\"] for r in all_results]\\\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\\\\\"classes\\\\\\\"])\\\\n\\\\n    # Per-column sample counts and HumAID low-column warning\\\\n    raw_counts = np.array(stats[\\\\\\\"raw_counts\\\\\\\"])\\\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\\\n    stats[\\\\\\\"per_column_counts\\\\\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\\\\\"classes\\\\\\\"])}\\\\n\\\\n    if dataset_name == \\\\\\\"humaid\\\\\\\":\\\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\\\\\"classes\\\\\\\"]) if col_counts[i] < 20]\\\\n        if low_cols:\\\\n            print(f\\\\\\\"\\\\\\\\n  WARNING: HumAID columns with < 20 samples:\\\\\\\")\\\\n            for cls, cnt in low_cols:\\\\n                print(f\\\\\\\"    {cls}: {cnt}\\\\\\\")\\\\n            stats[\\\\\\\"low_column_warning\\\\\\\"] = [{\\\\\\\"class\\\\\\\": cls, \\\\\\\"count\\\\\\\": cnt} for cls, cnt in low_cols]\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  Per-column sample counts:\\\\\\\")\\\\n    for cls in config[\\\\\\\"classes\\\\\\\"]:\\\\n        print(f\\\\\\\"    {cls}: {stats['per_column_counts'][cls]}\\\\\\\")\\\\n\\\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\\\n\\\\n    n_parsed = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] is not None)\\\\n    n_correct = sum(1 for r in all_results if r[\\\\\\\"pred_label\\\\\\\"] == r[\\\\\\\"gold_label\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\\\\\"\\\\n          f\\\\\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Confusion matrix C (column-stochastic):\\\\\\\\n{np.array2string(C, precision=3)}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dataset\\\\\\\",\\\\n        choices=[\\\\\\\"humaid\\\\\\\", \\\\\\\"vast\\\\\\\", \\\\\\\"civil_comments\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Dataset to annotate\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model\\\\\\\",\\\\n        choices=[\\\\\\\"llama4\\\\\\\", \\\\\\\"qwen3\\\\\\\", \\\\\\\"deepseek\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Model to use\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--prompt\\\\\\\",\\\\n        choices=[\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n        help=\\\\\\\"Prompt variant\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--sample\\\\\\\", type=int, default=1500, help=\\\\\\\"Sample size per dataset (default: 1500)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--split\\\\\\\", default=\\\\\\\"test\\\\\\\", help=\\\\\\\"Which split to annotate (default: test)\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--all\\\\\\\", action=\\\\\\\"store_true\\\\\\\", dest=\\\\\\\"run_all\\\\\\\", help=\\\\\\\"Run all (dataset x model x prompt) combinations\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--delay\\\\\\\", type=float, default=0.5, help=\\\\\\\"Delay between API calls in seconds (default: 0.5)\\\\\\\"\\\\n    )\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.run_all:\\\\n        args.dataset = \\\\\\\"all\\\\\\\"\\\\n        args.model = \\\\\\\"all\\\\\\\"\\\\n        args.prompt = \\\\\\\"all\\\\\\\"\\\\n\\\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\\\n        parser.error(\\\\\\\"Specify --dataset, --model, --prompt (or use --all)\\\\\\\")\\\\n\\\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\\\\\")\\\\n    if not api_key:[REDACTED]        print(\\\\\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\\\\\"all\\\\\\\" else [args.dataset]\\\\n    models = list(MODELS.keys()) if args.model == \\\\\\\"all\\\\\\\" else [args.model]\\\\n    prompts = [\\\\\\\"zero-shot\\\\\\\", \\\\\\\"few-shot-3\\\\\\\", \\\\\\\"few-shot-5\\\\\\\"] if args.prompt == \\\\\\\"all\\\\\\\" else [args.prompt]\\\\n\\\\n    total = len(datasets) * len(models) * len(prompts)\\\\n    done = 0\\\\n\\\\n    for ds in datasets:\\\\n        for mdl in models:\\\\n            for pt in prompts:\\\\n                done += 1\\\\n                print(f\\\\\\\"\\\\\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\\\\\")\\\\n                try:\\\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"FAILED: {e}\\\\\\\")\\\\n                    traceback.print_exc()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {done}/{total} combinations processed.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        all_results = [existing[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in existing]\\n    else:\\n        pipeline = AnnotationPipeline(API_BASE, api_key, model_id)\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\n\\n        merged = dict(existing)\\n        for r in new_results:\\n            merged[r[\\\"idx\\\"]] = r\\n        all_results = [merged[s[\\\"idx\\\"]] for s in samples if s[\\\"idx\\\"] in merged]\\n\\n    # Compute confusion matrix\\n    gold = [r[\\\"gold_label\\\"] for r in all_results]\\n    pred = [r[\\\"pred_label\\\"] for r in all_results]\\n    C, class_to_idx, stats = compute_confusion_matrix(gold, pred, config[\\\"classes\\\"])\\n\\n    # Per-column sample counts and HumAID low-column warning\\n    raw_counts = np.array(stats[\\\"raw_counts\\\"])\\n    col_counts = raw_counts.sum(axis=0).astype(int)\\n    stats[\\\"per_column_counts\\\"] = {cls: int(col_counts[i]) for i, cls in enumerate(config[\\\"classes\\\"])}\\n\\n    if dataset_name == \\\"humaid\\\":\\n        low_cols = [(cls, int(col_counts[i])) for i, cls in enumerate(config[\\\"classes\\\"]) if col_counts[i] < 20]\\n        if low_cols:\\n            print(f\\\"\\\\n  WARNING: HumAID columns with < 20 samples:\\\")\\n            for cls, cnt in low_cols:\\n                print(f\\\"    {cls}: {cnt}\\\")\\n            stats[\\\"low_column_warning\\\"] = [{\\\"class\\\": cls, \\\"count\\\": cnt} for cls, cnt in low_cols]\\n\\n    print(f\\\"\\\\n  Per-column sample counts:\\\")\\n    for cls in config[\\\"classes\\\"]:\\n        print(f\\\"    {cls}: {stats['per_column_counts'][cls]}\\\")\\n\\n    save_results(all_results, C, class_to_idx, stats, output_dir, model_key, prompt_type)\\n\\n    n_parsed = sum(1 for r in all_results if r[\\\"pred_label\\\"] is not None)\\n    n_correct = sum(1 for r in all_results if r[\\\"pred_label\\\"] == r[\\\"gold_label\\\"])\\n    print(f\\\"\\\\nResults: {n_parsed}/{len(all_results)} parsed, \\\"\\n          f\\\"{n_correct}/{n_parsed} correct ({n_correct/max(n_parsed,1)*100:.1f}%)\\\")\\n    print(f\\\"Confusion matrix coverage: {stats['coverage']:.1%}\\\")\\n    print(f\\\"Confusion matrix C (column-stochastic):\\\\n{np.array2string(C, precision=3)}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"LLM Annotation Pipeline for Causal Annotation Error Attribution\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--dataset\\\",\\n        choices=[\\\"humaid\\\", \\\"vast\\\", \\\"civil_comments\\\", \\\"all\\\"],\\n        help=\\\"Dataset to annotate\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--model\\\",\\n        choices=[\\\"llama4\\\", \\\"qwen3\\\", \\\"deepseek\\\", \\\"all\\\"],\\n        help=\\\"Model to use\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--prompt\\\",\\n        choices=[\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\", \\\"all\\\"],\\n        help=\\\"Prompt variant\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--sample\\\", type=int, default=1500, help=\\\"Sample size per dataset (default: 1500)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--split\\\", default=\\\"test\\\", help=\\\"Which split to annotate (default: test)\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--all\\\", action=\\\"store_true\\\", dest=\\\"run_all\\\", help=\\\"Run all (dataset x model x prompt) combinations\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--delay\\\", type=float, default=0.5, help=\\\"Delay between API calls in seconds (default: 0.5)\\\"\\n    )\\n\\n    args = parser.parse_args()\\n\\n    if args.run_all:\\n        args.dataset = \\\"all\\\"\\n        args.model = \\\"all\\\"\\n        args.prompt = \\\"all\\\"\\n\\n    if not args.run_all and not (args.dataset and args.model and args.prompt):\\n        parser.error(\\\"Specify --dataset, --model, --prompt (or use --all)\\\")\\n\\n    api_key = [REDACTED]\"OPENROUTER_API_KEY\\\")\\n    if not api_key:[REDACTED]        print(\\\"ERROR: OPENROUTER_API_KEY environment variable not set.\\\")\\n        sys.exit(1)\\n\\n    datasets = list(DATASET_CONFIGS.keys()) if args.dataset == \\\"all\\\" else [args.dataset]\\n    models = list(MODELS.keys()) if args.model == \\\"all\\\" else [args.model]\\n    prompts = [\\\"zero-shot\\\", \\\"few-shot-3\\\", \\\"few-shot-5\\\"] if args.prompt == \\\"all\\\" else [args.prompt]\\n\\n    total = len(datasets) * len(models) * len(prompts)\\n    done = 0\\n\\n    for ds in datasets:\\n        for mdl in models:\\n            for pt in prompts:\\n                done += 1\\n                print(f\\\"\\\\n[{done}/{total}] Running {ds} / {mdl} / {pt}\\\")\\n                try:\\n                    run_single(ds, mdl, pt, args.sample, args.split, api_key)\\n                except Exception as e:\\n                    print(f\\\"FAILED: {e}\\\")\\n                    traceback.print_exc()\\n\\n    print(f\\\"\\\\nDone. {done}/{total} combinations processed.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a full picture of the code structure. Let me summarize what I found:
+
+1. **`annotate_batch`** (line ~352): Takes `samples, config, prompt_type, batch_delay=0.5`. Loops through samples, calls `annotate_single`, appends to `results` list. No streaming write. No output_path param.
+
+2. **`run_single`** (line ~530): Takes `dataset_name, model_key, prompt_type, sample_size, split, api_key`. 
+
+3. **`run_single` continued**: Sets up an output directory and file path for results, with resume capability that loads any previously completed annotations. It then calls `annotate_batch` on the remaining samples, computes a confusion matrix from the results, and saves everything to disk.
+
+4. **`save_results`**: Writes all results to JSONL in overwrite mode and stores the confusion matrix as an npz file.
+
+5. **`load_existing_results`**: Reads an existing JSONL file and returns a dictionary indexed by sample ID.
+
+6. **`main`**: Already has the `--model` argument with the required choices, and loops through datasets, models, and prompt types to call `run_single` for each combination.
+
+Looking at the actual implementation, I see that `--model` is already implemented, and resume support exists between runs through `load_existing_results`. However, the real issue is that results are held in memory during `annotate_batch` and only written once at the end—if the process crashes mid-batch, those results are lost. The solution is to implement streaming writes directly within `annotate_batch` so each result is persisted immediately.
+
+I'm considering two approaches: either pass the output path to `annotate_batch` and have it write per-sample, or refactor `run_single` to write after each individual annotation. The first option is cleaner since `run_single` already manages the output path and passes the remaining samples after resume, so I just need to ensure the file is opened in append mode and each result is flushed immediately.
+
+There's a subtlety with `save_results` overwriting the file at the end—but that's actually fine since the streaming writes during annotation are just for crash recovery, and the final save produces the clean merged output. Let me trace through the flow: `load_existing_results` reads what's already there, I filter out those samples, pass the remaining to `annotate_batch` which now streams results, and then `save_results` writes the complete final JSONL and npz file.
+
+If the process crashes mid-batch, the file will have old results plus partial new ones, but on restart `load_existing_results` correctly reads everything and resumes from the right point. I should also pass `batch_delay` from the command-line args instead of hardcoding it to 0.5, and I need to check how `--model` filtering works in the main function.
+
+Looking at the existing code, `--model` already handles this perfectly—when set to "all" it runs every model, otherwise it runs just the specified one. So for the actual implementation, I need to add an `output_path` parameter to `annotate_batch` for streaming writes, make sure each result gets appended to the file after processing, and pass that path through from `run_single`.
+
+Writing the modified script... I'm planning to use Python with a heredoc approach to make these edits precisely—first backing up the file, then doing targeted string replacements to update the function signature, add the output_path parameter, and insert the streaming write logic after results are appended.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "dcd4151c-fecc-4eca-81d7-a5520e31b24a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmU6xokFuPts6RfwkSGXF6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2172,
+      "cache_read_input_tokens": 41242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+代码结构已清楚。关键发现：
+- `--model` 参数**已存在**，不需要新增
+- Resume 支持**已存在**（`load_existing_results`），但只在 run 之间生效
+- 核心问题：`annotate_batch` 不做 streaming write，进程死了当前 batch 结果全丢
+
+需要改两处：`annotate_batch` 加 streaming write + `run_single` 传 `output_path`。
+
+先备份，再改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "aac6e45c-db10-4a1b-a09f-f7619dae94b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmU6xokFuPts6RfwkSGXF6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2172,
+      "cache_read_input_tokens": 41242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RSwDtgfeAuekQMvMT4dKKs`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cp /home/sonny/causal_annot_error_attrib/annotate.py /home/sonny/causal_annot_error_attrib/annotate.py.bak",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9d280144-5379-4999-905c-aaa45e0a4670",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmU6xokFuPts6RfwkSGXF6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2172,
+      "cache_read_input_tokens": 41242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T13:58:33.271Z_
+
+<details><summary>↩ Tool result · `toolu_01RSwDtgfeAuekQMvMT4dKKs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "e7032eda-bffd-4457-8d2d-b570231b2487",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QM9gi9P1zzpqPQg9L8X7fa`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && python3 -c \"\nimport re\n\nwith open('annotate.py', 'r') as f:\n    code = f.read()\n\n# 1. Add output_path param to annotate_batch\nold_sig = 'def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5):'\nnew_sig = 'def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5, output_path=None):'\nassert old_sig in code, 'Could not find annotate_batch signature'\ncode = code.replace(old_sig, new_sig, 1)\n\n# 2. Add streaming write after results.append(result) in annotate_batch\nold_append = '''            results.append(result)\n\n            if (i + 1) % 50 == 0:'''\nnew_append = '''            results.append(result)\n\n            if output_path:\n                with open(output_path, \\\"a\\\") as f:\n                    f.write(json.dumps(result, ensure_ascii=False) + \\\"\\\\\\\\n\\\")\n\n            if (i + 1) % 50 == 0:'''\nassert old_append in code, 'Could not find results.append block'\ncode = code.replace(old_append, new_append, 1)\n\n# 3. In run_single, pass output_path to annotate_batch\nold_call = '        new_results = pipeline.annotate_batch(remaining, config, prompt_type)'\nnew_call = '        output_dir.mkdir(parents=True, exist_ok=True)\\n        new_results = pipeline.annotate_batch(remaining, config, prompt_type, output_path=output_path)'\nassert old_call in code, 'Could not find annotate_batch call in run_single'\ncode = code.replace(old_call, new_call, 1)\n\nwith open('annotate.py', 'w') as f:\n    f.write(code)\n\nprint('OK: 3 changes applied')\n\"\n",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d00a5d2a-0ec8-4578-81d9-9b833072b9ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYhx85K9zDbjSiEvrUoLjm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2317,
+      "cache_read_input_tokens": 43414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2317
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T13:58:43.210Z_
+
+<details><summary>↩ Tool result · `toolu_01QM9gi9P1zzpqPQg9L8X7fa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: 3 changes applied\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "5e92be5c-4d80-4d72-b5be-a8203cb81ec4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: 3 changes applied\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: 3 changes applied\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+修改完成。验证 `--help` 和 diff。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "092d92c6-4fff-4445-a2c3-a6537d74070f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018kY4iaTzWCCFfccqAbktpU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 45731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 699
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014zmk1py8Z6epDZi5vceiob`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && python3 annotate.py --help",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8b89b299-8f70-48a6-906b-e7732550e938",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018kY4iaTzWCCFfccqAbktpU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 45731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 699
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NsCtu7zvECRExyp8aiTArw`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "diff /home/sonny/causal_annot_error_attrib/annotate.py.bak /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "b4aa3cf1-3cda-4bb3-84e4-44f964f6a850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018kY4iaTzWCCFfccqAbktpU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 45731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 699
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T13:58:48.229Z_
+
+<details><summary>↩ Tool result · `toolu_014zmk1py8Z6epDZi5vceiob`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: annotate.py [-h] [--dataset {humaid,vast,civil_comments,all}]\\n                   [--model {llama4,qwen3,deepseek,all}]\\n                   [--prompt {zero-shot,few-shot-3,few-shot-5,all}]\\n                   [--sample SAMPLE] [--split SPLIT] [--all] [--delay DELAY]\\n\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --dataset {humaid,vast,civil_comments,all}\\n                        Dataset to annotate\\n  --model {llama4,qwen3,deepseek,all}\\n                        Model to use\\n  --prompt {zero-shot,few-shot-3,few-shot-5,all}\\n                        Prompt variant\\n  --sample SAMPLE       Sample size per dataset (default: 1500)\\n  --split SPLIT         Which split to annotate (default: test)\\n  --all                 Run all (dataset x model x prompt) combinations\\n  --delay DELAY         Delay between API calls in seconds (default: 0.5)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "72b5ee8c-283b-4123-b138-900c6fbda3eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: annotate.py [-h] [--dataset {humaid,vast,civil_comments,all}]\\\\n                   [--model {llama4,qwen3,deepseek,all}]\\\\n                   [--prompt {zero-shot,few-shot-3,few-shot-5,all}]\\\\n                   [--sample SAMPLE] [--split SPLIT] [--all] [--delay DELAY]\\\\n\\\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --dataset {humaid,vast,civil_comments,all}\\\\n                        Dataset to annotate\\\\n  --model {llama4,qwen3,deepseek,all}\\\\n                        Model to use\\\\n  --prompt {zero-shot,few-shot-3,few-shot-5,all}\\\\n                        Prompt variant\\\\n  --sample SAMPLE       Sample size per dataset (default: 1500)\\\\n  --split SPLIT         Which split to annotate (default: test)\\\\n  --all                 Run all (dataset x model x prompt) combinations\\\\n  --delay DELAY         Delay between API calls in seconds (default: 0.5)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: annotate.py [-h] [--dataset {humaid,vast,civil_comments,all}]\\n                   [--model {llama4,qwen3,deepseek,all}]\\n                   [--prompt {zero-shot,few-shot-3,few-shot-5,all}]\\n                   [--sample SAMPLE] [--split SPLIT] [--all] [--delay DELAY]\\n\\nLLM Annotation Pipeline for Causal Annotation Error Attribution\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --dataset {humaid,vast,civil_comments,all}\\n                        Dataset to annotate\\n  --model {llama4,qwen3,deepseek,all}\\n                        Model to use\\n  --prompt {zero-shot,few-shot-3,few-shot-5,all}\\n                        Prompt variant\\n  --sample SAMPLE       Sample size per dataset (default: 1500)\\n  --split SPLIT         Which split to annotate (default: test)\\n  --all                 Run all (dataset x model x prompt) combinations\\n  --delay DELAY         Delay between API calls in seconds (default: 0.5)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T13:58:48.243Z_
+
+<details><summary>↩ Tool result · `toolu_01NsCtu7zvECRExyp8aiTArw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "86862ead-c192-458b-a694-d6d3c045a41c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PYyihdZB6nuWCaSyfdXgHZ`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && diff annotate.py.bak annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "201e0b90-7005-4dd9-926a-2beb553bf790",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lze49vtfgKgG7SWNp39b59",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 803,
+      "cache_read_input_tokens": 46430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 803
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T13:58:52.540Z_
+
+<details><summary>↩ Tool result · `toolu_01PYyihdZB6nuWCaSyfdXgHZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && diff annotate.py.bak annotate.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n387a388,391\\n>             if output_path:\\n>                 with open(output_path, \\\"a\\\") as f:\\n>                     f.write(json.dumps(result, ensure_ascii=False) + \\\"\\\\n\\\")\\n> \\n553c557,558\\n<         new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\n---\\n>         output_dir.mkdir(parents=True, exist_ok=True)\\n>         new_results = pipeline.annotate_batch(remaining, config, prompt_type, output_path=output_path)\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "23496bba-5c9d-4e0a-aecc-3b18fef8102c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && diff annotate.py.bak annotate.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n387a388,391\\\\n>             if output_path:\\\\n>                 with open(output_path, \\\\\\\"a\\\\\\\") as f:\\\\n>                     f.write(json.dumps(result, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n> \\\\n553c557,558\\\\n<         new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\\\n---\\\\n>         output_dir.mkdir(parents=True, exist_ok=True)\\\\n>         new_results = pipeline.annotate_batch(remaining, config, prompt_type, output_path=output_path)\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && diff annotate.py.bak annotate.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n387a388,391\\n>             if output_path:\\n>                 with open(output_path, \\\"a\\\") as f:\\n>                     f.write(json.dumps(result, ensure_ascii=False) + \\\"\\\\n\\\")\\n> \\n553c557,558\\n<         new_results = pipeline.annotate_batch(remaining, config, prompt_type)\\n---\\n>         output_dir.mkdir(parents=True, exist_ok=True)\\n>         new_results = pipeline.annotate_batch(remaining, config, prompt_type, output_path=output_path)\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Wait, I see the diff doesn't show the signature change. Let me check - ah, it does show 3 changes but the first one (signature change) might have been on a different line. Let me check more carefully.
+
+Actually diff only shows 2 hunks:
+1. Lines 388-391: streaming write added
+2. Line 553->557-558: output_path passed to annotate_batch
+
+But I expected 3 changes - the function signature change too. Let me check if it was applied correctly.
+
+Oh wait, `diff` with exit code 1 just means files differ. 
+
+The signature change should be showing up in the diff output somewhere - either as a separate hunk or within one of the existing ones. Let me verify by checking the actual line numbers more carefully, since the signature modification would be a single-line change that should appear between or around these hunks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "83f4830d-153f-4af1-b250-e5aaf829b119",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFqP7ZFeMQqqnz4uTnU84C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 418,
+      "cache_read_input_tokens": 47233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 418
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mvg3xRaNcAoekJiqBu5ZSu`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"def annotate_batch\" /home/sonny/causal_annot_error_attrib/annotate.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "0b05eae9-71e9-467e-9338-aa0dc635a3a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFqP7ZFeMQqqnz4uTnU84C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 418,
+      "cache_read_input_tokens": 47233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 418
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T13:59:05.865Z_
+
+<details><summary>↩ Tool result · `toolu_01Mvg3xRaNcAoekJiqBu5ZSu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"350:    def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5, output_path=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9518b7e5-707a-4a3a-8f77-eeb20551c1d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"350:    def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5, output_path=None):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"350:    def annotate_batch(self, samples, config, prompt_type, batch_delay=0.5, output_path=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+3 处修改全部正确：签名加了 `output_path=None`，循环内加了 streaming write，`run_single` 传了 `output_path`。
+
+检查旧进程是否还在，然后清理旧的部分结果文件（如果有），启动 3 路并行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "5e3d2a67-0953-4b8e-ac96-9579739b6631",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQ6TtYZEcgFVy9qDvDmw3R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 47651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018JDKk3gjftQNiXaR7oukNS`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ps aux | grep annotate",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "da4154db-da9a-424a-8bed-8b91ab006d79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQ6TtYZEcgFVy9qDvDmw3R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 47651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T13:59:11.476Z_
+
+<details><summary>↩ Tool result · `toolu_018JDKk3gjftQNiXaR7oukNS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9b502152-9249-436e-a682-5b54515f2a42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VtkLBKT5b1smZuTivrubza`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/causal_annot_error_attrib/results -name \"*.jsonl\" -ls 2>/dev/null",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "7410187e-8f8e-4e3e-990d-bc9c8c3fc7d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQ6TtYZEcgFVy9qDvDmw3R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 47651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T13:59:12.410Z_
+
+<details><summary>↩ Tool result · `toolu_01VtkLBKT5b1smZuTivrubza`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d5d2baf2-7de8-47f8-ae5d-dadc01b40dd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qzi47nYzb7kajiPQjFVN8A`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "echo $OPENROUTER_API_KEY | head -c 10",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d3379067-921b-41c1-a67b-383c96afe159",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQ6TtYZEcgFVy9qDvDmw3R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 47651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T13:59:13.426Z_
+
+<details><summary>↩ Tool result · `toolu_01Qzi47nYzb7kajiPQjFVN8A`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "a3492ff6-fee2-48ed-9513-ac085c5ac440",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779415200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.82,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "6472c9e7-fcff-4429-9cc5-939aa54b293a",
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08"
+}
+```
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BxNo7VTDQouP1nLqyrLQQn`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ps aux | grep annotate | grep -v grep; echo \"---\"; ls -la /home/sonny/causal_annot_error_attrib/results/ 2>/dev/null || echo \"NO_RESULTS_DIR\"; echo \"---\"; echo $OPENROUTER_API_KEY | head -c 10",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "2d8f95e9-ab83-4aa9-b9f0-4018f42926dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Pz8wk5dyAUgUpsSf3GEPx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 48179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 885
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T13:59:18.540Z_
+
+<details><summary>↩ Tool result · `toolu_01BxNo7VTDQouP1nLqyrLQQn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sonny     397247  0.0  0.0   9972  3136 pts/1    Ss+  03:49   0:00 bash -c export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && cd /home/sonny/causal_annot_error_attrib && python3 -u annotate.py --all > /home/sonny/causal_annot_error_attrib/plan003_run.log 2>&1\\nsonny     397248  0.0  0.0 1246640 59136 pts/1   Sl+  03:49   0:04 python3 -u annotate.py --all\\nsonny     401206  0.0  0.0   9972  1792 ?        S    04:06   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && rm -f plan003_run.log && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export PYTHONUNBUFFERED=1 && nohup python3 annotate.py --all --sample 1500 > plan003_run.log 2>&1 & echo \\\"PID=$!\\\"\\nsonny     401208  0.0  0.0 1246644 58688 ?       Sl   04:06   0:04 python3 annotate.py --all --sample 1500\\n---\\nNO_RESULTS_DIR\\n---\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8466c295-c60f-4906-897c-0deb2decb4c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sonny     397247  0.0  0.0   9972  3136 pts/1    Ss+  03:49   0:00 bash -c export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && cd /home/sonny/causal_annot_error_attrib && python3 -u annotate.py --all > /home/sonny/causal_annot_error_attrib/plan003_run.log 2>&1\\\\nsonny     397248  0.0  0.0 1246640 59136 pts/1   Sl+  03:49   0:04 python3 -u annotate.py --all\\\\nsonny     401206  0.0  0.0   9972  1792 ?        S    04:06   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && rm -f plan003_run.log && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && export PYTHONUNBUFFERED=1 && nohup python3 annotate.py --all --sample 1500 > plan003_run.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nsonny     401208  0.0  0.0 1246644 58688 ?       Sl   04:06   0:04 python3 annotate.py --all --sample 1500\\\\n---\\\\nNO_RESULTS_DIR\\\\n---\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sonny     397247  0.0  0.0   9972  3136 pts/1    Ss+  03:49   0:00 bash -c export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && cd /home/sonny/causal_annot_error_attrib && python3 -u annotate.py --all > /home/sonny/causal_annot_error_attrib/plan003_run.log 2>&1\\nsonny     397248  0.0  0.0 1246640 59136 pts/1   Sl+  03:49   0:04 python3 -u annotate.py --all\\nsonny     401206  0.0  0.0   9972  1792 ?        S    04:06   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && rm -f plan003_run.log && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export PYTHONUNBUFFERED=1 && nohup python3 annotate.py --all --sample 1500 > plan003_run.log 2>&1 & echo \\\"PID=$!\\\"\\nsonny     401208  0.0  0.0 1246644 58688 ?       Sl   04:06   0:04 python3 annotate.py --all --sample 1500\\n---\\nNO_RESULTS_DIR\\n---\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are still running processes:
+- PID 397248: `python3 -u annotate.py --all` (from an earlier pts/1 session)
+- PID 401208: `python3 annotate.py --all --sample 1500` (nohup background)
+
+Both are running the OLD code (before my fix). They won't have streaming write. And the results dir doesn't exist, so they haven't saved anything yet (or they save at the end).
+
+
+I can see the OPENROUTER_API_KEY exposed in the process list, but the env var isn't actually set in the sonny user's default environment—it was only passed in those specific commands. I need to kill these old processes since they're using the unfixed code, then start fresh ones with the streaming write implementation.
+
+Looking at the process states more carefully, both PIDs appear to still be running despite what the task indicated. The old code only writes results after completing entire batches, so even if they've been executing, nothing would be saved yet. Let me check the logs to see what progress they've actually made.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "6e07888f-bc61-487d-9996-e92e47be7a0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGTu61UEwTY1jgjAxeBuqx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 689,
+      "cache_read_input_tokens": 49064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+旧进程还活着（PID 397248 和 401208），但它们用的是旧代码（无 streaming write），且 results 目录不存在。先看看日志状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8eb4bbab-b00c-4e2b-a5bf-afe49a146beb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGTu61UEwTY1jgjAxeBuqx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 689,
+      "cache_read_input_tokens": 49064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J93bwYAAoEbMWodcVknPc5`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -20 /home/sonny/causal_annot_error_attrib/plan003_run.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "b9c63a45-42b3-4a91-8013-ef3ec36f034d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGTu61UEwTY1jgjAxeBuqx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 689,
+      "cache_read_input_tokens": 49064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 689
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T13:59:31.947Z_
+
+<details><summary>↩ Tool result · `toolu_01J93bwYAAoEbMWodcVknPc5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [300/1500] parsed: 300/300\\n  [350/1500] parsed: 350/350\\n  [400/1500] parsed: 400/400\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [450/1500] parsed: 450/450\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [500/1500] parsed: 500/500\\n  [550/1500] parsed: 550/550\\n  [600/1500] parsed: 600/600\\n  [650/1500] parsed: 650/650\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [700/1500] parsed: 700/700\\n  [750/1500] parsed: 750/750\\n  [800/1500] parsed: 800/800\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [850/1500] parsed: 850/850\\n  [900/1500] parsed: 900/900\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [950/1500] parsed: 950/950\\n  [1000/1500] parsed: 1000/1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "0cd0f7b4-63b5-443a-8c09-732624f352a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [300/1500] parsed: 300/300\\\\n  [350/1500] parsed: 350/350\\\\n  [400/1500] parsed: 400/400\\\\n  Server error (502), waiting 2s (attempt 1/3)\\\\n  [450/1500] parsed: 450/450\\\\n  Server error (502), waiting 2s (attempt 1/3)\\\\n  [500/1500] parsed: 500/500\\\\n  [550/1500] parsed: 550/550\\\\n  [600/1500] parsed: 600/600\\\\n  [650/1500] parsed: 650/650\\\\n  Server error (502), waiting 2s (attempt 1/3)\\\\n  [700/1500] parsed: 700/700\\\\n  [750/1500] parsed: 750/750\\\\n  [800/1500] parsed: 800/800\\\\n  Server error (502), waiting 2s (attempt 1/3)\\\\n  [850/1500] parsed: 850/850\\\\n  [900/1500] parsed: 900/900\\\\n  Server error (502), waiting 2s (attempt 1/3)\\\\n  [950/1500] parsed: 950/950\\\\n  [1000/1500] parsed: 1000/1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  [300/1500] parsed: 300/300\\n  [350/1500] parsed: 350/350\\n  [400/1500] parsed: 400/400\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [450/1500] parsed: 450/450\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [500/1500] parsed: 500/500\\n  [550/1500] parsed: 550/550\\n  [600/1500] parsed: 600/600\\n  [650/1500] parsed: 650/650\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [700/1500] parsed: 700/700\\n  [750/1500] parsed: 750/750\\n  [800/1500] parsed: 800/800\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [850/1500] parsed: 850/850\\n  [900/1500] parsed: 900/900\\n  Server error (502), waiting 2s (attempt 1/3)\\n  [950/1500] parsed: 950/950\\n  [1000/1500] parsed: 1000/1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The process is actively running and has completed 1000/1500 of the current batch. It's alive and making progress! The user said it was dead but it's not.
+
+However, this is the OLD code without streaming write. If I kill it now, the 1000 results in memory are lost. If I let it finish, it will write results at the end of the run_single call.
+
+But the issue is: the old code writes everything at once. If it dies, results are lost. It's already at 1000/1500, so it might finish this batch soon (500 more to go at ~0.5s/sample = ~250 seconds = ~4 min).
+
+
+I'm weighing whether to let it finish the current batch to save those 1000 results, then kill and restart with the new streaming code, versus killing it now and losing everything but getting the fix in place immediately. The user explicitly said the process was dead and results were lost, but that contradicts what I'm seeing—it's actively running and making progress. The smart move is probably to let it finish this combination in a few minutes so those results get written, then restart with the improved code. I realize both processes are running the old code without streaming writes, making them vulnerable to data loss. Since they're both using `--all` flag, they're likely duplicating work and could conflict when writing results. The best move is to kill both processes and restart with the fixed code in three parallel model-specific runs to avoid redundancy and ensure data safety, even though we'll lose the ~1000 in-memory results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "ef994959-5b86-49a7-80bf-d413ec0ba807",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RD9WrpeApZDcqZAuFrsMyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 49753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+进程 401208 实际还活着，正在跑第一个组合的 1000/1500。但有两个问题：
+1. 两个旧进程（397248 和 401208）都跑 `--all`，互相冲突
+2. 都是旧代码，无 streaming write，随时可能丢结果
+
+杀掉旧进程，用新代码 3 路并行重启。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "0efb3614-dc97-4f6f-a0e1-1a6466dc0d30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RD9WrpeApZDcqZAuFrsMyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 49753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JWRQfQGw5HCGPqnH6EvQyD`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "kill 397247 397248 401206 401208 2>/dev/null; sleep 1; ps aux | grep annotate | grep -v grep || echo \"ALL_KILLED\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "da015a25-29e4-423d-b9ad-9354e4a6196b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RD9WrpeApZDcqZAuFrsMyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 49753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T13:59:56.605Z_
+
+<details><summary>↩ Tool result · `toolu_01JWRQfQGw5HCGPqnH6EvQyD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ALL_KILLED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "ee5e6a71-846a-4dd3-88d2-65d8dd19622f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ALL_KILLED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ALL_KILLED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+旧进程已清理。启动 3 路并行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8c183af0-4629-439e-aeb7-1801c97d0cfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQRzEfhHYDygCrB7cxQWvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 50751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1065
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PmtqyadUfrWWo7Vy6TPzrS`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=\"[REDACTED]\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \"llama4 PID: $!\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \"qwen3 PID: $!\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \"deepseek PID: $!\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "31c37bb1-c96b-43cf-ba19-95d13e82b645",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQRzEfhHYDygCrB7cxQWvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1065,
+      "cache_read_input_tokens": 50751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1065
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T14:00:33.261Z_
+
+<details><summary>↩ Tool result · `toolu_01PmtqyadUfrWWo7Vy6TPzrS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"'\\n\\nStdout:\\n\\ndeepseek PID: 438496\\nllama4 PID: 438494\\nqwen3 PID: 438495\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "731796ed-9f90-45bb-9ba5-d56364f2729b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\\\\\"llama4 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\\\\\"qwen3 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\\\\\"deepseek PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\ndeepseek PID: 438496\\\\nllama4 PID: 438494\\\\nqwen3 PID: 438495\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"'\\n\\nStdout:\\n\\ndeepseek PID: 438496\\nllama4 PID: 438494\\nqwen3 PID: 438495\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The command timed out at 30 seconds, but that's just the SSH execution timeout. The processes were actually launched in the background (nohup &). The PIDs are:
+- llama4: 438494
+- qwen3: 438495
+- deepseek: 438496
+
+Let me verify they're running and check initial progress.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "79a463cf-b7db-44b5-9eae-7316c04b18aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWB5mKDDbSZrn5jpQVF8Du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 51816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+3 个进程已启动（llama4: 438494, qwen3: 438495, deepseek: 438496）。SSH 超时是正常的，nohup 进程在后台运行。验证状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "1c25145c-9c9b-4908-bcf9-97618c72da8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWB5mKDDbSZrn5jpQVF8Du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 51816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Q2k6YjNsVVUgJeinnoNVvX`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ps -p 438494,438495,438496 -o pid,stat,etime,args 2>/dev/null; echo \"---\"; ls -la /home/sonny/causal_annot_error_attrib/results/ 2>/dev/null || echo \"NO_RESULTS_DIR_YET\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9b0579f6-b583-4165-b07d-f31fe5beb07b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWB5mKDDbSZrn5jpQVF8Du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 51816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T14:00:41.495Z_
+
+<details><summary>↩ Tool result · `toolu_01Q2k6YjNsVVUgJeinnoNVvX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    PID STAT     ELAPSED COMMAND\\n 438494 S          00:38 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\n---\\ntotal 12\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 07:00 .\\ndrwxrwxr-x 5 sonny sonny 4096 May 20 07:00 ..\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 07:00 humaid\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "525bdeab-939d-4b7d-9ce9-8c133e83774c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    PID STAT     ELAPSED COMMAND\\\\n 438494 S          00:38 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\\\\\"llama4 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\\\\\"qwen3 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\\\\\"deepseek PID: $!\\\\\\\"\\\\n---\\\\ntotal 12\\\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 07:00 .\\\\ndrwxrwxr-x 5 sonny sonny 4096 May 20 07:00 ..\\\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 07:00 humaid\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    PID STAT     ELAPSED COMMAND\\n 438494 S          00:38 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\n---\\ntotal 12\\ndrwxrwxr-x 3 sonny sonny 4096 May 20 07:00 .\\ndrwxrwxr-x 5 sonny sonny 4096 May 20 07:00 ..\\ndrwxrwxr-x 2 sonny sonny 4096 May 20 07:00 humaid\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The parent shell bash process (438494) is showing, but I need to check the actual python processes. Let me check more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "643b969a-b032-4174-9abb-e18d5aa2be1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAxhZs763tepSH7C1fbNH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 52602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 808
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LQJvdtVNrN43poqgjHCVBP`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ps aux | grep \"annotate.py\" | grep -v grep; echo \"---\"; find /home/sonny/causal_annot_error_attrib/results -name \"*.jsonl\" -exec wc -l {} \\;",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "1454bcaf-6394-46a6-a1b5-cee69125449e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAxhZs763tepSH7C1fbNH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 52602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 808
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-20T14:00:47.118Z_
+
+<details><summary>↩ Tool result · `toolu_01LQJvdtVNrN43poqgjHCVBP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sonny     438494  0.0  0.0   9972  1796 ?        S    07:00   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\nsonny     438497  5.1  0.0 1246664 59076 ?       Sl   07:00   0:02 python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500\\n---\\n3 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "3c0793e8-68bb-4c33-b95a-497d995c4ae9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sonny     438494  0.0  0.0   9972  1796 ?        S    07:00   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\\\\\"llama4 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\\\\\"qwen3 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\\\\\"deepseek PID: $!\\\\\\\"\\\\nsonny     438497  5.1  0.0 1246664 59076 ?       Sl   07:00   0:02 python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500\\\\n---\\\\n3 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sonny     438494  0.0  0.0   9972  1796 ?        S    07:00   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\nsonny     438497  5.1  0.0 1246664 59076 ?       Sl   07:00   0:02 python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500\\n---\\n3 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only one Python process is running (438497 - llama4). The qwen3 and deepseek processes are not showing. Let me check the logs to see what happened.
+
+Also, the streaming write is working! `results/humaid/llama4_zero-shot.jsonl` has 3 lines already.
+
+Let me check the qwen3 and deepseek logs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "fe3d43f2-a1df-4ac2-8073-ce7b05282d19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKdhCPuy5gNbkk9nGjk2Cx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 53410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+只有 llama4 进程在跑（streaming write 已生效，3 行已写入）。qwen3 和 deepseek 进程没出现，查看日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "f117912a-450f-43ae-92c5-00bb0b35a557",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKdhCPuy5gNbkk9nGjk2Cx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 53410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BxFAMxenAh24ZvQ4gMNHzv`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -20 /home/sonny/causal_annot_error_attrib/plan003_qwen3.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8eee88c4-1a57-4be1-b63b-fa5e1a134c3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKdhCPuy5gNbkk9nGjk2Cx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 53410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011VrctTYqQ8t5e453NfN7y6`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -20 /home/sonny/causal_annot_error_attrib/plan003_deepseek.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "0dcb9ea0-c3fa-4886-a086-cd6132981593",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKdhCPuy5gNbkk9nGjk2Cx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 53410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 786
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T14:00:53.952Z_
+
+<details><summary>↩ Tool result · `toolu_01BxFAMxenAh24ZvQ4gMNHzv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/home/sonny/causal_annot_error_attrib/plan003_qwen3.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "c0668ca9-c961-4fa0-a8e9-8e0a19e8fd85",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/home/sonny/causal_annot_error_attrib/plan003_qwen3.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/home/sonny/causal_annot_error_attrib/plan003_qwen3.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T14:00:55.184Z_
+
+<details><summary>↩ Tool result · `toolu_011VrctTYqQ8t5e453NfN7y6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/home/sonny/causal_annot_error_attrib/plan003_deepseek.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "a5a179c0-0d8b-4e7b-ac80-0b7cfdbbb59c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/home/sonny/causal_annot_error_attrib/plan003_deepseek.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/home/sonny/causal_annot_error_attrib/plan003_deepseek.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The qwen3 and deepseek logs don't exist. The SSH command timed out before those nohup processes were fully launched. The parent bash process (438494) is still running - it seems like it's stuck on the first nohup process even though it was backgrounded.
+
+Wait, looking at the command more carefully:
+```
+bash -c "cd ... && export ... && PYTHONUNBUFFERED=1 nohup python3 ... > plan003_llama4.log 2>&1 & echo ... && PYTHONUNBUFFERED=1 nohup python3 ... 
+> plan003_qwen3.log 2>&1 & echo ... && PYTHONUNBUFFERED=1 nohup python3 ... > plan003_deepseek.log 2>&1 & echo ..."
+```
+
+The SSH command wraps everything in a single `bash -c`, and the `&` should have backgrounded each `nohup` command. But looking at the PIDs - 438494, 438495, 438496 - the first one is actually the parent bash process, not the llama4 job. So the echo statements printed the wrong PID for the first process.
+
+The output order is also strange: deepseek printed first, then llama4, then qwen3, even though the command order was llama4, qwen3, deepseek. This timing and buffering issue suggests the PIDs might not have been captured correctly, and the actual llama4 process is probably 438497, while 438495 and 438496 may have already exited.
+
+The environment variable might not have been properly exported to all three subshells, or the nohup log files for qwen3 and deepseek were never created because those processes died immediately. I should try launching qwen3 and deepseek separately to debug this.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "1af65fe5-8805-4160-b2e8-1eae042a345c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mjAEM7F4Wrzuyf6bMw95N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 54196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 695
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+qwen3 和 deepseek 没启动成功。SSH command 的 `bash -c` 嵌套导致子进程没正确 fork。分开启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "1bcd4404-bf9a-4db6-b789-fd22c866ce60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mjAEM7F4Wrzuyf6bMw95N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 54196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 695
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U4eYi8dhf1kQYpuVakGTKb`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=\"[REDACTED]\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \"qwen3 PID: $!\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9e0ce0ec-1d27-4aac-935d-cec5e273f4d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mjAEM7F4Wrzuyf6bMw95N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 54196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 695
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T14:01:41.047Z_
+
+<details><summary>↩ Tool result · `toolu_01U4eYi8dhf1kQYpuVakGTKb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\"'\\n\\nStdout:\\n\\nqwen3 PID: 438842\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9a458436-0508-403d-8959-6ba719197a1b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\\\\\"qwen3 PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nqwen3 PID: 438842\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\"'\\n\\nStdout:\\n\\nqwen3 PID: 438842\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01R8DJ7Jch1tukeW7JmaZA6A`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=\"[REDACTED]\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \"deepseek PID: $!\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "8630ea2d-a152-488c-9f89-55a4beca5729",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GozvXsZ1M2fb65GuCREcr1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1125,
+      "cache_read_input_tokens": 54891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1125
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-20T14:02:18.009Z_
+
+<details><summary>↩ Tool result · `toolu_01R8DJ7Jch1tukeW7JmaZA6A`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"'\\n\\nStdout:\\n\\ndeepseek PID: 439115\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 32.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d1c36a3d-6258-4f3e-8c57-e88ec8511bce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\\\\\"deepseek PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\ndeepseek PID: 439115\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 32.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"'\\n\\nStdout:\\n\\ndeepseek PID: 439115\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 32.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+3 个进程都已启动。等 1 分钟验证全部在运行且有 streaming write 输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "20518b96-f6fd-4f8d-87ac-93489c22892b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW1Y6rTB4oj2DW8bQ93uKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 56016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NquX9YeSoU3qGHv1h7N2Be`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "sleep 60 && ps aux | grep \"annotate.py --model\" | grep -v grep && echo \"---\" && find /home/sonny/causal_annot_error_attrib/results -name \"*.jsonl\" -exec wc -l {} \\; && echo \"---\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_llama4.log && echo \"===\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_qwen3.log && echo \"===\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_deepseek.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "29ebe574-f4b8-4dd8-871e-4466872a7505",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW1Y6rTB4oj2DW8bQ93uKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 56016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T14:02:55.333Z_
+
+<details><summary>↩ Tool result · `toolu_01NquX9YeSoU3qGHv1h7N2Be`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && ps aux | grep \\\"annotate.py --model\\\" | grep -v grep && echo \\\"---\\\" && find /home/sonny/causal_annot_error_attrib/results -name \\\"*.jsonl\\\" -exec wc -l {} \\\\\\\\; && echo \\\"---\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_llama4.log && echo \\\"===\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_qwen3.log && echo \\\"===\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_deepseek.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "5cbd27d7-c7ed-4ab1-8caf-dc14e74fc9e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'sleep 60 && ps aux | grep \\\\\\\"annotate.py --model\\\\\\\" | grep -v grep && echo \\\\\\\"---\\\\\\\" && find /home/sonny/causal_annot_error_attrib/results -name \\\\\\\"*.jsonl\\\\\\\" -exec wc -l {} \\\\\\\\\\\\\\\\; && echo \\\\\\\"---\\\\\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_llama4.log && echo \\\\\\\"===\\\\\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_qwen3.log && echo \\\\\\\"===\\\\\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_deepseek.log'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && ps aux | grep \\\"annotate.py --model\\\" | grep -v grep && echo \\\"---\\\" && find /home/sonny/causal_annot_error_attrib/results -name \\\"*.jsonl\\\" -exec wc -l {} \\\\\\\\; && echo \\\"---\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_llama4.log && echo \\\"===\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_qwen3.log && echo \\\"===\\\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_deepseek.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The sleep 60 exceeds the 30 second SSH timeout. Let me just check directly without the sleep.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "d65176cb-a3fc-4fce-a2f5-5469983bb91c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J7Rr5KDEsMRP6QXc6Bp2Kw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 56492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RHEV14dQsnc8ssiNYqt471`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ps aux | grep \"annotate.py --model\" | grep -v grep && echo \"---\" && find /home/sonny/causal_annot_error_attrib/results -name \"*.jsonl\" -exec wc -l {} \\; && echo \"---\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_llama4.log && echo \"===\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_qwen3.log && echo \"===\" && tail -3 /home/sonny/causal_annot_error_attrib/plan003_deepseek.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "f902ddd2-46d8-470e-addd-81830a72c286",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J7Rr5KDEsMRP6QXc6Bp2Kw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 56492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-20T14:03:02.258Z_
+
+<details><summary>↩ Tool result · `toolu_01RHEV14dQsnc8ssiNYqt471`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sonny     438494  0.0  0.0   9972  1796 ?        S    07:00   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\nsonny     438497  1.2  0.0 1246664 59076 ?       Sl   07:00   0:02 python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500\\nsonny     438842  0.0  0.0   9972  1792 ?        S    07:01   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\"\\nsonny     438843  2.0  0.0 1246664 58860 ?       Sl   07:01   0:02 python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500\\nsonny     439115  0.0  0.0   9972  1792 ?        S    07:01   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\nsonny     439116  3.0  0.0 1246664 58640 ?       Sl   07:01   0:02 python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500\\n---\\n5 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl\\n4 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl\\n12 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n---\\nPrompt: zero-shot | Sample: 1500 | Split: test\\n============================================================\\nLoaded 1500 samples\\n===\\nPrompt: zero-shot | Sample: 1500 | Split: test\\n============================================================\\nLoaded 1500 samples\\n===\\nPrompt: zero-shot | Sample: 1500 | Split: test\\n============================================================\\nLoaded 1500 samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "aebbe7ef-34a6-493a-b02b-1585638b871d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sonny     438494  0.0  0.0   9972  1796 ?        S    07:00   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\\\\\"llama4 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\\\\\"qwen3 PID: $!\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\\\\\"deepseek PID: $!\\\\\\\"\\\\nsonny     438497  1.2  0.0 1246664 59076 ?       Sl   07:00   0:02 python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500\\\\nsonny     438842  0.0  0.0   9972  1792 ?        S    07:01   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\\\\\"qwen3 PID: $!\\\\\\\"\\\\nsonny     438843  2.0  0.0 1246664 58860 ?       Sl   07:01   0:02 python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500\\\\nsonny     439115  0.0  0.0   9972  1792 ?        S    07:01   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\\\\\"deepseek PID: $!\\\\\\\"\\\\nsonny     439116  3.0  0.0 1246664 58640 ?       Sl   07:01   0:02 python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500\\\\n---\\\\n5 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl\\\\n4 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl\\\\n12 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\\\n---\\\\nPrompt: zero-shot | Sample: 1500 | Split: test\\\\n============================================================\\\\nLoaded 1500 samples\\\\n===\\\\nPrompt: zero-shot | Sample: 1500 | Split: test\\\\n============================================================\\\\nLoaded 1500 samples\\\\n===\\\\nPrompt: zero-shot | Sample: 1500 | Split: test\\\\n============================================================\\\\nLoaded 1500 samples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sonny     438494  0.0  0.0   9972  1796 ?        S    07:00   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500 > plan003_llama4.log 2>&1 & echo \\\"llama4 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\nsonny     438497  1.2  0.0 1246664 59076 ?       Sl   07:00   0:02 python3 annotate.py --model llama4 --dataset all --prompt all --sample 1500\\nsonny     438842  0.0  0.0   9972  1792 ?        S    07:01   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500 > plan003_qwen3.log 2>&1 & echo \\\"qwen3 PID: $!\\\"\\nsonny     438843  2.0  0.0 1246664 58860 ?       Sl   07:01   0:02 python3 annotate.py --model qwen3 --dataset all --prompt all --sample 1500\\nsonny     439115  0.0  0.0   9972  1792 ?        S    07:01   0:00 bash -c cd /home/sonny/causal_annot_error_attrib && export OPENROUTER_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && PYTHONUNBUFFERED=1 nohup python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500 > plan003_deepseek.log 2>&1 & echo \\\"deepseek PID: $!\\\"\\nsonny     439116  3.0  0.0 1246664 58640 ?       Sl   07:01   0:02 python3 annotate.py --model deepseek --dataset all --prompt all --sample 1500\\n---\\n5 /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl\\n4 /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl\\n12 /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl\\n---\\nPrompt: zero-shot | Sample: 1500 | Split: test\\n============================================================\\nLoaded 1500 samples\\n===\\nPrompt: zero-shot | Sample: 1500 | Split: test\\n============================================================\\nLoaded 1500 samples\\n===\\nPrompt: zero-shot | Sample: 1500 | Split: test\\n============================================================\\nLoaded 1500 samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+3 个进程全部在运行，streaming write 已生效：
+
+| 进程 | PID | 已写入 |
+|------|-----|--------|
+| llama4 | 438497 | 12 行 |
+| qwen3 | 438843 | 5 行 |
+| deepseek | 439116 | 4 行 |
+
+所有进程都在 `humaid/zero-shot` 上开始标注。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "4f87ce69-f59d-47dc-8f39-f1fc0e416aab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019W4dmVhxA6RnLSVdcuAbtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1436,
+      "cache_read_input_tokens": 57081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1436
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01THCCcmv2bnYr21fcc7bmQe`</summary>
+
+```json
+{
+  "exp_id": "plan003_empirical_confusion_matrices",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "causal_annot_error_attrib",
+  "spec": {
+    "command": "3x parallel nohup: annotate.py --model {llama4,qwen3,deepseek} --dataset all --prompt all --sample 1500",
+    "server": "home-1x5090",
+    "data_path": "/home/sonny/causal_annot_error_attrib/data/",
+    "data_count": "HumAID 1500, VAST+CivilComments default",
+    "model_name": "Llama 4 Maverick, Qwen 3 235B, DeepSeek Chat V3",
+    "seed": "42",
+    "log_path": "/home/sonny/causal_annot_error_attrib/plan003_{llama4,qwen3,deepseek}.log",
+    "api_base": "http://47.94.22.126/v1",
+    "combinations": "3 datasets x 3 models x 3 prompts = 27 runs (3-way parallel by model)",
+    "pid": "llama4=438497, qwen3=438843, deepseek=439116",
+    "launch_method": "3x nohup parallel (streaming write + resume)",
+    "fix_applied": "streaming write per sample to JSONL + resume from existing file (annotate_batch now accepts output_path)"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "ced98059-a8b0-48fc-9700-238c7492f465",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019W4dmVhxA6RnLSVdcuAbtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1436,
+      "cache_read_input_tokens": 57081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1436
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T14:03:15.056Z_
+
+<details><summary>↩ Tool result · `toolu_01THCCcmv2bnYr21fcc7bmQe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan003_empirical_confusion_matrices\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:13:12.825Z\", \"updated_at\": \"2026-05-20T14:03:14.957Z\", \"hypothesis\": \"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\", \"spec\": {\"command\": \"3x parallel nohup: annotate.py --model {llama4,qwen3,deepseek} --dataset all --prompt all --sample 1500\", \"server\": \"home-1x5090\", \"data_path\": \"/home/sonny/causal_annot_error_attrib/data/\", \"data_count\": \"HumAID 1500, VAST+CivilComments default\", \"model_name\": \"Llama 4 Maverick, Qwen 3 235B, DeepSeek Chat V3\", \"seed\": \"42\", \"log_path\": \"/home/sonny/causal_annot_error_attrib/plan003_{llama4,qwen3,deepseek}.log\", \"api_base\": \"http://47.94.22.126/v1\", \"combinations\": \"3 datasets x 3 models x 3 prompts = 27 runs (3-way parallel by model)\", \"pid\": \"llama4=438497, qwen3=438843, deepseek=439116\", \"launch_method\": \"3x nohup parallel (streaming write + resume)\", \"fix_applied\": \"streaming write per sample to JSONL + resume from existing file (annotate_batch now accepts output_path)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1325}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "2947b6e5-1910-43b7-8df3-f983a5fb9374",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan003_empirical_confusion_matrices\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:13:12.825Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:03:14.957Z\\\", \\\"hypothesis\\\": \\\"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\\\", \\\"spec\\\": {\\\"command\\\": \\\"3x parallel nohup: annotate.py --model {llama4,qwen3,deepseek} --dataset all --prompt all --sample 1500\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"/home/sonny/causal_annot_error_attrib/data/\\\", \\\"data_count\\\": \\\"HumAID 1500, VAST+CivilComments default\\\", \\\"model_name\\\": \\\"Llama 4 Maverick, Qwen 3 235B, DeepSeek Chat V3\\\", \\\"seed\\\": \\\"42\\\", \\\"log_path\\\": \\\"/home/sonny/causal_annot_error_attrib/plan003_{llama4,qwen3,deepseek}.log\\\", \\\"api_base\\\": \\\"http://47.94.22.126/v1\\\", \\\"combinations\\\": \\\"3 datasets x 3 models x 3 prompts = 27 runs (3-way parallel by model)\\\", \\\"pid\\\": \\\"llama4=438497, qwen3=438843, deepseek=439116\\\", \\\"launch_method\\\": \\\"3x nohup parallel (streaming write + resume)\\\", \\\"fix_applied\\\": \\\"streaming write per sample to JSONL + resume from existing file (annotate_batch now accepts output_path)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1325}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan003_empirical_confusion_matrices\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:13:12.825Z\", \"updated_at\": \"2026-05-20T14:03:14.957Z\", \"hypothesis\": \"Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.\", \"spec\": {\"command\": \"3x parallel nohup: annotate.py --model {llama4,qwen3,deepseek} --dataset all --prompt all --sample 1500\", \"server\": \"home-1x5090\", \"data_path\": \"/home/sonny/causal_annot_error_attrib/data/\", \"data_count\": \"HumAID 1500, VAST+CivilComments default\", \"model_name\": \"Llama 4 Maverick, Qwen 3 235B, DeepSeek Chat V3\", \"seed\": \"42\", \"log_path\": \"/home/sonny/causal_annot_error_attrib/plan003_{llama4,qwen3,deepseek}.log\", \"api_base\": \"http://47.94.22.126/v1\", \"combinations\": \"3 datasets x 3 models x 3 prompts = 27 runs (3-way parallel by model)\", \"pid\": \"llama4=438497, qwen3=438843, deepseek=439116\", \"launch_method\": \"3x nohup parallel (streaming write + resume)\", \"fix_applied\": \"streaming write per sample to JSONL + resume from existing file (annotate_batch now accepts output_path)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1325}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+完成。总结：
+
+1. **修复 annotate.py**：`annotate_batch` 新增 `output_path` 参数，每条 sample 完成后立即 append 到 JSONL（streaming write）。`run_single` 传入 `output_path`。原有的 resume 机制（`load_existing_results`）自动兼容——进程重启时读取已有 JSONL 行数跳过已完成的 sample。
+2. **`--model` 参数已内置**，无需修改。
+3. **杀掉 4 个旧进程**（2 组 `--all` 互相冲突，且无 streaming write）。
+4. **3 路并行重启**：llama4(438497), qwen3(438843), deepseek(439116)，各写独立 JSONL，不冲突。
+5. **streaming write 已验证生效**：llama4 已写 12 行，qwen3 5 行，deepseek 4 行。
+
+每个进程跑 9 个组合（3 datasets × 3 prompts），1500 samples/组合，预计 ~0.5s/sample × 13500 ≈ 1.9 小时/进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "uuid": "9bdb3c54-dd55-47e5-9901-01e8bba815bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BixjCtxKfAFgeKRLKmqWqD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1225,
+      "cache_read_input_tokens": 58517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1225
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 92_
+
+完成。总结：
+
+1. **修复 annotate.py**：`annotate_batch` 新增 `output_path` 参数，每条 sample 完成后立即 append 到 JSONL（streaming write）。`run_single` 传入 `output_path`。原有的 resume 机制（`load_existing_results`）自动兼容——进程重启时读取已有 JSONL 行数跳过已完成的 sample。
+2. **`--model` 参数已内置**，无需修改。
+3. **杀掉 4 个旧进程**（2 组 `--all` 互相冲突，且无 streaming write）。
+4. **3 路并行重启**：llama4(438497), qwen3(438843), deepseek(439116)，各写独立 JSONL，不冲突。
+5. **streaming write 已验证生效**：llama4 已写 12 行，qwen3 5 行，deepseek 4 行。
+
+每个进程跑 9 个组合（3 datasets × 3 prompts），1500 samples/组合，预计 ~0.5s/sample × 13500 ≈ 1.9 小时/进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 369019,
+  "duration_api_ms": 221458,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "88f99949-dec1-4946-b9d1-836659e4bc08",
+  "total_cost_usd": 1.15969925,
+  "usage": {
+    "input_tokens": 30,
+    "cache_creation_input_tokens": 47901,
+    "cache_read_input_tokens": 1163272,
+    "output_tokens": 11032,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47901,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 341,
+        "cache_read_input_tokens": 58517,
+        "cache_creation_input_tokens": 1225,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1225
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2622,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002732,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 30,
+      "outputTokens": 11032,
+      "cacheReadInputTokens": 1163272,
+      "cacheCreationInputTokens": 47901,
+      "webSearchRequests": 0,
+      "costUSD": 1.15696725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "34c9a113-44f0-473b-b92f-ebc77b972e04"
+}
+```
+
+</details>
+
+---

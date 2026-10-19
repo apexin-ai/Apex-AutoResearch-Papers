@@ -1,0 +1,33 @@
+{
+  "test1_dVB_sign": {
+    "n": 100000,
+    "violations": 0,
+    "status": "PASS"
+  },
+  "test2_confounding_proportional": {
+    "n": 10000,
+    "violations": 0,
+    "status": "PASS"
+  },
+  "test3_confounding_general": {
+    "n": 50000,
+    "violations": 4943,
+    "max_violation": 0.004127226337180641,
+    "violation_rate_pct": 9.89,
+    "status": "APPROXIMATE"
+  },
+  "test4_collider_proportional": {
+    "n": 10000,
+    "violations": 0,
+    "status": "PASS"
+  },
+  "test5_mediation_proportional": {
+    "n": 10000,
+    "violations": 0,
+    "status": "PASS"
+  },
+  "test6_derivative_accuracy": {
+    "max_rel_error": 4.721261532214961e-10,
+    "status": "PASS"
+  }
+}

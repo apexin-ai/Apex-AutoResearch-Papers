@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a463ccafbe60b45e34fd",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops anon repo push v7",
+  "task_key": "worker_ops_anon_repo_push_v7_20260524T044922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon_repo_push_v7_20260524T044922_result.json",
+    "occurrence": 1,
+    "bytes": 64,
+    "sha256": "5bda11c188e76ef214406fc7997b7b0ca384dc896ac949a48659cb5e12a0edf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已同步。匿名 repo commit hash: `2763dea`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-push-v7.md"
+}

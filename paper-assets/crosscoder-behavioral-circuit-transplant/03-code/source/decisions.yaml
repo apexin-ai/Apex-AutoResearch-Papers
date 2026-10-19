@@ -1,0 +1,77 @@
+_next_id: 6
+decisions:
+- id: D001
+  date: 2026-05-10 13:01 UTC
+  summary: 修正 donor/target 方向：Donor=强模型(late/large)，Target=弱模型(early/small)
+  rationale: 原始 MVP 指令和 ROADMAP 实验矩阵将 donor/target 写反。按 idea 原文"target model (smaller
+    or earlier-trained) fails a task that donor model handles correctly"，donor 应为能力来源（late
+    checkpoint / larger model），target 为被手术修复的弱模型。Pair D/E 的方向（160M-late→70M-late）也证实了此约定。已通知
+    Agent 修正 Worker 代码。
+  related_experiments:
+  - exp_id: mvp-A-001
+    role: affected
+    result: PREPARING — Worker 代码中 donor/target 可能写反，已通知修正
+  depends_on: []
+- id: D002
+  date: 2026-05-10 13:24 UTC
+  summary: MVP-A-001 NEGATIVE：批准 A-002(高稀疏度) + A-003(残差流bias) 并行验证两个修复假设
+  rationale: mvp-A-001 的 Gates 1-2 通过（crosscoder 有效），Gates 3/5 失败（手术无效）。L0=457.6 远超目标
+    40-80 是最可能原因（H1），手术位点（W_out vs residual stream）是第二可能原因（H2）。两个假设独立，可并行验证。不 pivot——仅
+    1 个 negative，失败点明确可修复。
+  related_experiments:
+  - exp_id: mvp-A-001
+    role: failed
+    result: Gates 1/2/4 PASS, Gates 3/5 FAIL (movement=0.62%, DA improvement=-0.28%)
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-10 13:26 UTC
+  summary: mvp-A-001 代码有两个 bug（Gate 1 漏检 L0 + 特征选择选最弱特征），实验结论不可信，修复实验须修正
+  rationale: Reviewer critical 发现：(1) Gate 1 代码仅检查 loss 是否下降，未检查 L0∈[20,100]，L0=457.6
+    应判 FAIL；(2) 按 ratio 排序选到 feat 1353 (donor_act=0.178)，忽略了 feat 901/567 (donor_act≈2.7)。两个
+    bug 联合导致我们对一个非稀疏 crosscoder 的最弱特征做手术——从未公平测试过该方法。A-002/003 已追加修正指令。
+  related_experiments:
+  - exp_id: mvp-A-001
+    role: invalidated
+    result: 代码 bug 导致 Gate 1 误判 PASS，下游结论不可信
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-10 15:53 UTC
+  summary: A-002 暴露架构瓶颈：ReLU+L1 无法达到目标稀疏度，切换 TopK crosscoder (K=50)
+  rationale: L1_lambda 从 1e-3 到 1e-1（100 倍），L0 从 457.6 到 515.1——几乎不变。ReLU 只截断负值，对正的小激活无效，模型用大量弱激活共同重建。这是架构限制而非超参问题。H1/H3
+    从未被公平检验。TopK SAE 强制每 token 只激活 top-K features，直接保证 L0=K=50，绕过 L1 调参。SAE 文献标准做法。如果
+    TopK 下 Gate 5 仍失败，才是方法论层面的 kill signal。
+  related_experiments:
+  - exp_id: mvp-A-002
+    role: failed
+    result: L0=582/515 远超目标，Gate 1 FAIL，架构瓶颈确认
+  - exp_id: mvp-A-001
+    role: context
+    result: L0=457.6，同样无法达到稀疏度
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-10 16:05 UTC
+  summary: mvp-A-005 TopK FAIL + Gate 5 跨 4 实验系统性失败，单特征 crosscoder-guided surgery
+    路线 kill
+  rationale: 证据链：(1) TopK(K=50) Gate 1 FAIL（recon MSE=0.169, 阈值0.145）；(2) Gate 5 跨
+    A-001/A-003v2/A-005 共~50组组合从未通过——DA improvement 始终为负；(3) TopK 稀疏特征比 ReLU 非稀疏特征手术效果更差（max
+    movement 49.1% vs 71.9%，PPL 1.434 vs 1.001），直接反驳"稀疏=更好手术"假设；(4) movement-damage
+    tradeoff 无甜蜜点（α大→movement大→PPL坏→DA负）。单特征 crosscoder-guided surgery 路线已被系统性排除。
+  related_experiments:
+  - exp_id: mvp-A-005
+    role: killed
+    result: Gate 1 FAIL (MSE 58.3% of initial, need <50%), Gate 5 FAIL, TopK sparse
+      worse than ReLU non-sparse
+  - exp_id: mvp-A-001
+    role: context
+    result: Gate 5 FAIL
+  - exp_id: mvp-A-003
+    role: context
+    result: Gate 5 systematic FAIL across 25 combos
+  - exp_id: mvp-A-002
+    role: context
+    result: Architecture bottleneck confirmed
+  depends_on:
+  - D004

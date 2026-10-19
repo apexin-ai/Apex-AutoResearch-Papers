@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "007815236a4a0fef842e",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper figure fig1 dag taxonomy",
+  "task_key": "worker_paper_figure_fig1_dag_taxonomy_20260520T150728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_dag_taxonomy_20260520T150728_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "2b885d7a08a6e233d9fae288a3f551e8ec7b44dcf81f8a0a56e8a317ff1228e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 生成完毕。\n\n**输出文件：**\n- PDF: `figures/paper/fig1_dag_taxonomy.pdf` (38 KB, 矢量)\n- PNG: `figures/paper/fig1_dag_taxonomy.png` (322 KB, 3135×1601 @ 300 DPI)\n\n**6 个 DAG 面板：**\n- **(a) Confounding** — A(latent)→X, A→Y, X→Y, A⇢A* | subtitle: *Attenuation (toward OVB)*\n- **(b) Exposure** — A→Y, A⇢A* | 红色边框突出 | subtitle: *Sign reversal (83.4%)*\n- **(c) Mediation** — X→A→Y + X→Y(curved direct), A⇢A* | subtitle: *Amplification*\n- **(d) Collider** — X→A←Y, A⇢A*(boxed=conditioned) | subtitle: *Attenuation (τ_sf = 0)*\n- **(e) M-bias** — U₁/U₂(latent), M-structure, A⇢A* | subtitle: *Immune*\n- **(f) IV** — A→X→Y, U→X/Y(confounding), A⇢A* | subtitle: *Fragile*\n\n生成脚本保留在 `figures/paper/gen_fig1.py`，需要微调节点位置可直接修改坐标重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-dag-taxonomy.md"
+}

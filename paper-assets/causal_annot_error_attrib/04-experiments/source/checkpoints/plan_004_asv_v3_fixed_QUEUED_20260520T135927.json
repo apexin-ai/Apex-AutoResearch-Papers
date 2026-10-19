@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_004_asv_v3_fixed",
+  "project": "causal_annot_error_attrib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:59:14.591Z",
+    "updated_at": "2026-05-20T13:59:27.940Z",
+    "hypothesis": "Significance-based ASV (v2 logic: min delta where |plim tau| < z_crit*SE) controls Type I error when used as hypothesis test filter, because under H0 the plim starts at tau_true=0 at delta=0, immediately non-significant, giving ASV=0 < 1 which blocks rejection. Magnitude ASV failed because tau=0 returns None which passed the filter."
+  },
+  "timestamp": "2026-05-20T13:59:27.986549+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15ac292ff031019ed5b3",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "download plan006 asv",
+  "task_key": "worker_download_plan006_asv_20260521T001021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_download_plan006_asv_20260521T001021_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "905ffbe745731092a6dac44e0fb1532a30f3be85e68b15054b8094e94bae75be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已存在于本地，无需下载。\n\n- 路径: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json`\n- 大小: 121,851 bytes (119 KB)\n- 格式: 有效 JSON，包含 7 个顶级键 (`confusion_matrices`, `biases`, `asvs`, `f1_vs_bias`, `type1_type2`, `inter_model_correlation`, `summary`)\n\nSSH 直连不可用（本机无 sonny 账户的密钥），但文件已在本地存在。如果需要从服务器拉取最新版本，需要通过有 SSH 工具权限的 Worker 来执行。\n\nDONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-plan006-asv.md"
+}

@@ -1,0 +1,122 @@
+{
+  "description": "ASV topology ranking stability analysis",
+  "config": {
+    "n_matrices": 100000,
+    "K": 3,
+    "asv_threshold": 0.05,
+    "perturbation_epsilon": 0.013,
+    "delta_step": 0.005,
+    "n_delta": 201,
+    "gh_quadrature_points": 100,
+    "mono_tol": 1e-12,
+    "seed": 42,
+    "theoretical_ranking": [
+      "iv",
+      "frontdoor",
+      "mediation",
+      "confounding",
+      "collider",
+      "mbias"
+    ]
+  },
+  "part1_ranking_stability": {
+    "n_valid_rankings": 100000,
+    "kendall_tau_mean": 0.6753497805814832,
+    "kendall_tau_median": 0.6900655593423543,
+    "kendall_tau_min": 0.08606629658238703,
+    "exact_match_count": 1,
+    "exact_match_fraction": 1e-05,
+    "tau_distribution": {
+      "ge_0.0": 1.0,
+      "ge_0.2": 0.99999,
+      "ge_0.4": 0.99999,
+      "ge_0.6": 0.95595,
+      "ge_0.8": 1e-05,
+      "ge_1.0": 0.0
+    }
+  },
+  "part2_perturbation_robustness": {
+    "n_checked": 100000,
+    "n_reversals": 99694,
+    "reversal_fraction": 0.99694,
+    "n_pair_reversals": 445610,
+    "n_pairs_total": 1500000,
+    "pair_reversal_fraction": 0.29707333333333336
+  },
+  "part3_conjecture_verification": {
+    "global_worst_step_deviation": 0.07450459955973943,
+    "global_worst_topology": "exposure",
+    "conjecture_holds_0_06": false,
+    "per_topology": {
+      "confounding": {
+        "worst_step_deviation": 0.007057647142043155,
+        "violation_count": 62655,
+        "direction": "non-dec"
+      },
+      "mediation": {
+        "worst_step_deviation": 0.006569093857354713,
+        "violation_count": 60002,
+        "direction": "non-dec"
+      },
+      "collider": {
+        "worst_step_deviation": 0.0024810188388727505,
+        "violation_count": 64623,
+        "direction": "non-inc"
+      },
+      "exposure": {
+        "worst_step_deviation": 0.07450459955973943,
+        "violation_count": 3053,
+        "direction": "non-dec"
+      },
+      "mbias": {
+        "worst_step_deviation": 0.000754698954728461,
+        "violation_count": 91671,
+        "direction": "non-inc"
+      },
+      "frontdoor": {
+        "worst_step_deviation": 0.006407382456918409,
+        "violation_count": 61275,
+        "direction": "non-dec"
+      }
+    }
+  },
+  "asv_summary": {
+    "iv": {
+      "median": 0.04,
+      "mean": 0.04342528425284253,
+      "pct_immune": 0.001,
+      "pct_nan": 0.0
+    },
+    "frontdoor": {
+      "median": 0.06,
+      "mean": 0.0684,
+      "pct_immune": 0.0,
+      "pct_nan": 0.0
+    },
+    "mediation": {
+      "median": 0.07,
+      "mean": 0.08115126151261513,
+      "pct_immune": 0.001,
+      "pct_nan": 0.0
+    },
+    "confounding": {
+      "median": 0.05,
+      "mean": 0.0531193,
+      "pct_immune": 0.0,
+      "pct_nan": 0.0
+    },
+    "collider": {
+      "median": null,
+      "mean": null,
+      "pct_immune": 100.0,
+      "pct_nan": 0.0
+    },
+    "mbias": {
+      "median": null,
+      "mean": null,
+      "pct_immune": 100.0,
+      "pct_nan": 0.0
+    }
+  },
+  "total_time_seconds": 234.5434877872467
+}

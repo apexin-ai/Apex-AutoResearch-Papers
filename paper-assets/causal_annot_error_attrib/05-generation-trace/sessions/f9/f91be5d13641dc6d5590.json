@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f91be5d13641dc6d5590",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan003 launch annotation",
+  "task_key": "worker_code_plan003-launch-annotation_20260520T104327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-launch-annotation_20260520T104327_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "f84efe275d3f433ab493890ec6387f3dd1ee07e9fcdec39493f56c3faef5054a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**执行摘要：**\n- 服务器上 `annotate.py` 缺少三个修复，已直接在服务器上打补丁：\n  1. **VAST dedup**：按 (text, topic, label_name) 去重\n  2. **API retry 改进**：统一 429/5xx 处理，改善日志输出\n  3. **HumAID column check**：低样本列预警\n- 注意：保留了服务器原有的 `label_field: \"label_name\"`（本地版本改为 `\"label\"` 会取到整数，是错误的）\n- 所有 3 个模型都走同一 API 网关（`http://47.94.22.126/v1`），只需 `OPENROUTER_API_KEY`，无需单独 DeepSeek key\n- 管线已在 tmux session `plan003` 中启动，正在运行 27 组组合（3 datasets × 3 models × 3 prompts），每组 1500 samples\n- 日志：`/home/sonny/causal_annot_error_attrib/plan003_run.log`\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-launch-annotation.md"
+}

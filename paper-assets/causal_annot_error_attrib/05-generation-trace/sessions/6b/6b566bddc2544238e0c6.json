@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b566bddc2544238e0c6",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan004 asv v3 rejection fix",
+  "task_key": "worker_code_plan004-asv-v3-rejection-fix_20260520T134535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-asv-v3-rejection-fix_20260520T134535_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "acb5fd65c339c8fb69309249d903d433dd7fd19053fb98a73ad6d4738d7be698"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n## 修改内容\n- **文件**: `/home/sonny/causal_annot_error_attrib/plan_004_asv_v3_fixed.py`（新建，未覆盖旧文件）\n- **核心修复**: Part 5 rejection filter 从 magnitude ASV 改为 significance-based ASV（v2 逻辑）\n  - `compute_signif_asv_fast(tau_curve, deltas, se)`: 找 min δ 使 |plim τ̂(C(δ))| < 1.96×SE\n  - Filter: reject if p<0.05 AND (signif_ASV is None OR signif_ASV > 1)\n- **Magnitude ASV**: 仅报告，τ=0 返回 0.0（不再是 None）\n- **Part 6**: 新增论文格式 aggregated summary table\n\n## 关键结果\n\n| Topology | τ | naive Type I | **ASV Type I** | naive Power | **ASV Power** |\n|----------|------|-------------|----------------|-------------|---------------|\n| Confounding | 0.05 | 100% | **0%** | 100% | **100%** |\n| Mediation | 0.05 | 100% | **0%** | 100% | 0%* |\n| Collider | 0.05 | 37.8% | **0%** | 39-94% | 0%* |\n| Confounding | 0.10 | 100% | **0%** | 100% | **100%** |\n| Mediation | 0.10 | 100% | **0%** | 100% | **100%** |\n| Collider | 0.10 | 37.8% | **0%** | 100% | **100%** |\n\n*τ=0.05 mediation/collider power=0%：效应太小，即使 δ=0（无误差）也 barely significant（SE 较大），ASV 保守但正确地阻止了 reject。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-asv-v3-rejection-fix.md"
+}

@@ -1,0 +1,136 @@
+paper_key: "kim_garg2025"
+title: "Correlated Errors in Large Language Models"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "random disagreement baseline (1/K for K-choice questions)"
+    - "uniformly random firm preferences (hiring market)"
+    - "same LLM monoculture"
+    - "same company LLMs"
+    - "latest LLMs (Llama 3.3 70b, Mistral Large, Amazon Nova Pro, Claude Sonnet, GPT-4o mini)"
+    - "random LLMs"
+  metrics:
+    - {name: "error agreement rate (when both models wrong)", direction: "descriptive"}
+    - {name: "correlation in residuals (resume evaluations)", direction: "descriptive"}
+    - {name: "R-squared of regression on agreement", direction: "higher_better"}
+    - {name: "accuracy inflation (LLM-as-judge)", direction: "lower_better"}
+    - {name: "systemic exclusion rate", direction: "lower_better"}
+    - {name: "average applicant rank", direction: "lower_better"}
+    - {name: "match probability", direction: "higher_better"}
+  datasets:
+    - {name: "HuggingFace MMLU Leaderboard", size: "349 models x 12,032 questions (91 MMLU datasets, 14 categories)"}
+    - {name: "Helm Leaderboard", size: "71 models x 14,042 questions (57 categories, 4-option MC)"}
+    - {name: "Resume-Job Description Pairs", size: "20 models x 1,800 pairs (60 resumes x 30 jobs), 450 human-labeled"}
+  ablation_dimensions:
+    - "same company vs different company"
+    - "same base architecture vs different"
+    - "model accuracy level (interaction term)"
+    - "model size similarity"
+    - "number of distinct LLMs in market"
+    - "firm preference method (monoculture vs polyculture spectrum)"
+    - "applicant preference source (random vs LLM-specified)"
+  training_recipe: {optimizer: "N/A (empirical analysis, no model training)", lr: "N/A", hardware: "N/A"}
+  method_family: "empirical measurement of LLM error correlation + regression analysis + matching market simulation"
+
+positioning:
+  core_claim: "LLM errors are highly correlated across models (60% agreement when both err vs 33% random), with more accurate models paradoxically showing higher correlation, challenging independence assumptions in multi-model systems."
+  key_results: "Helm error agreement: 60% (vs 33% random); HF agreement: 42.3% (vs 12.7% random); 97.5-100% of model pairs exceed random baseline; R-squared 0.34-0.62 for regression on agreement; accuracy interaction term is strongest predictor; monoculture-to-polyculture shift worsens applicant welfare despite reducing systemic exclusion."
+  limitations:
+    - "Evaluation limited to multiple-choice and resume-scoring tasks; does not cover open-ended generation or complex reasoning"
+    - "Agreement metric treats all incorrect answers identically, not capturing 'degree of wrongness'"
+    - "Resume dataset is small (20 models, 1,800 pairs) compared to MC datasets"
+    - "Matching market simulation uses simplified model of hiring (stability matching with threshold)"
+    - "Does not propose correction methods for correlated errors, only measures them"
+  relation_to_us: "complementary"
+  # Highly relevant: our project studies how LLM annotation errors propagate to causal inference.
+  # This paper provides the empirical foundation showing those errors are systematically correlated
+  # (not independent), which directly affects error correction methods that assume independence.
+  # Their "agreement rate when both wrong" metric and the finding that accuracy increases correlation
+  # are critical inputs for designing robust error attribution methods.
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the practical reality that LLMs are deployed in high-stakes multi-agent settings and that ecosystem diversity is assumed to be beneficial — immediately creating a false sense of security that the paper will dismantle."
+  tension: "The tension is built through a gap between assumption and evidence: 'we lack large-scale empirical evidence on whether different available models differ in a meaningful way.' The implicit assumption of beneficial diversity (wisdom-of-crowds, reduced correlated failure) is framed as untested, setting up the paper's empirical challenge."
+  key_insight: "Revealed in paragraph 4 of the intro via a specific number: '60% of the time models agree on the wrong answer, against a random baseline of 33%.' The insight deepens with the paradox that more accurate models are MORE correlated in their errors, not less — directly contradicting the intuition that better models are more independent."
+  argument_chain: "ecosystem diversity assumed beneficial → no empirical evidence for LLM error independence → measure correlation across 350+ models on 3 datasets → find high, pervasive correlation → regression shows accuracy is strongest predictor (paradoxically) → demonstrate downstream harm in LLM-as-judge (accuracy inflation) and hiring markets (monoculture paradox) → call for ecosystem-level monitoring"
+  contribution_framing: "Three contributions mapped directly to three RQs posed in paragraph 2. Not listed as bullet points but woven into the results preview (paragraphs 4-5). The framing is empirical-first: 'Here, we answer these questions' — presenting contributions as answers to questions rather than method innovations."
+  intro_structure: "5 paragraphs. P1: Context/motivation (LLMs in high-stakes multi-agent settings, diversity assumed beneficial). P2: Gap + three explicit RQs (how correlated? what explains? what downstream effects?). P3: Methodology overview (three datasets described). P4: Key finding on RQ1 (60% agreement rate). P5: Findings on RQ2-3 (regression results, downstream effects in judge and hiring settings)."
+  notable_technique: "The monoculture paradox as a narrative payoff: the paper builds toward the counterintuitive finding that full monoculture yields BETTER applicant welfare than diversity, while diversity reduces systemic exclusion — creating an irreducible tension that prevents simple policy conclusions and makes the contribution feel deeper than just 'errors are correlated'."
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "teaser_result"
+    description: "Two pairwise error agreement heatmaps (HuggingFace 349 models and Helm 71 models). Models sorted by accuracy on both axes. Color encodes agreement rate when both models are wrong. Viridis colormap from dark purple (low agreement ~0.2) through teal/green to bright yellow (high agreement ~0.8)."
+    narrative_role: "Serves as the central evidence for RQ1. The visual pattern — bright yellow concentrated in the upper-right (high-accuracy models) — immediately conveys the paradox that better models are more correlated. The sorted-by-accuracy ordering makes the gradient visually obvious without needing to read numbers."
+    design_elements:
+      - "sorted-by-accuracy axis ordering creates natural gradient"
+      - "viridis colormap (perceptually uniform, colorblind-safe)"
+      - "two panels (HF vs Helm) for cross-dataset validation"
+      - "model names on tick labels (tiny but present)"
+      - "diagonal excluded (self-agreement is trivial)"
+    visual_style: "Square symmetric heatmaps, side by side. Viridis palette. Dense 349x349 and 71x71 grids. Colorbar on right showing 'Error Agreement Rate'. Title format: 'Correlated Errors (HELM)' / 'Correlated Errors (HuggingFace)'. Clean matplotlib style with minimal chrome."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter_grid"
+      what_compared: "Accuracy inflation by LLM-as-judge for 18 different judge models (Helm). Each panel = one judge. X-axis = true accuracy of evaluated model, Y-axis = accuracy inflation when using that judge. Red vertical line = judge's own accuracy. Red dots = same-provider models."
+      how_gain_highlighted: "The consistent downward-sloping pattern (less accurate models get more inflated scores) is visually striking across ALL panels. Red dots for same-provider models clustering above the trendline highlights self-preferencing."
+      design_note: "Grid-of-scatter-plots design allows comparing 18 judges simultaneously while keeping each panel simple. Red dots for same-provider are the key design decision — they turn a correlation observation into an actionable insight about self-preferencing bias."
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Systemic exclusion rate as function of (a) number of distinct LLMs and (b) firm preference method. Compares 5 market configurations."
+      how_gain_highlighted: "Shows gap between LLM-based and random baseline growing with number of firms, making the monoculture cost visually clear."
+      design_note: "Two-panel design separates the 'how many models' dimension from the 'which models' dimension, avoiding a confusing 3D comparison."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Match probability vs true applicant rating across 5 market configurations. Shows how well the market rewards genuinely good applicants."
+      how_gain_highlighted: "Latest LLMs (most accurate but most correlated) produce the steepest positive slope, showing they best reward true quality despite high correlation."
+      design_note: "X-axis binning (rating ranges [t, t+1)) smooths noise while preserving the monotonic relationship that validates the market simulation."
+    - figure_id: "Figure 5"
+      viz_type: "dual_panel_line"
+      what_compared: "(a) Average applicant rank across market types; (b) Effect of differential application access (match probability vs number of applications)."
+      how_gain_highlighted: "Panel (b) reveals the monoculture paradox: under monoculture, more applications barely help (2x gain), while under diversity, more applications dramatically help (7x gain) — making inequality of access more consequential."
+      design_note: "The two panels work as a one-two punch: (a) shows the aggregate paradox, (b) explains the mechanism through differential access."
+  ablation_figures:
+    - figure_id: "Figure 3a"
+      viz_type: "line_plot"
+      dimensions_varied: ["number of distinct LLMs (1-20)", "market configuration type"]
+      design_note: "Varying number of models is the key ablation — it traces the monoculture-to-polyculture spectrum continuously rather than comparing discrete configurations."
+    - figure_id: "Figure 10"
+      viz_type: "line_plot"
+      dimensions_varied: ["applicant preference source (random vs LLM-specified)"]
+      design_note: "Appendix figure that validates main results hold when applicant preferences are also LLM-generated rather than random, strengthening the generality claim."
+  figure_narrative_role: "Figure 1 (heatmaps: the core phenomenon — errors ARE correlated) → Figure 2 (scatter grid: downstream consequence 1 — LLM-as-judge is biased) → Figure 3 (line plots: downstream consequence 2a — systemic exclusion in hiring) → Figure 4 (line plot: market mechanism — how correlation affects match quality) → Figure 5 (dual panel: the paradox — monoculture trades exclusion for welfare). The arc moves from measurement → mechanism → consequence → paradox."
+
+tables:
+  table_count: 12
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "regression coefficients (predictor variables)"
+    col_axis: "datasets (HuggingFace, Helm, Resumes)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "** notation for statistical significance (p < 0.01); bold for key interaction term (Accuracy 1 x Accuracy 2)"
+    statistical_reporting: "coefficient ± standard error, t-values, p-values in appendix tables"
+    num_baselines: 0
+    design_note: "Compact regression table with 3 datasets as columns. The Accuracy interaction term appearing significant across ALL three datasets is the table's key message. Supplementary tables (2-9) contain full regression output with confidence intervals, keeping the main table clean. Clever use of standardized features allows cross-dataset coefficient comparison."
+  ablation_tables:
+    - table_id: "Tables 2-4 (Appendix)"
+      what_varied: ["agreement metric (both wrong / either wrong / overall)", "dataset (HuggingFace)"]
+      variation_style: "full_numbers"
+      design_note: "Three variations of the dependent variable for the same dataset show robustness of findings across different correlation operationalizations."
+    - table_id: "Tables 5-7 (Appendix)"
+      what_varied: ["agreement metric (both wrong / either wrong / overall)", "dataset (Helm)"]
+      variation_style: "full_numbers"
+      design_note: "Mirror structure of Tables 2-4 for Helm dataset, enabling parallel reading."
+    - table_id: "Tables 8-9 (Appendix)"
+      what_varied: ["agreement metric (residual correlation / overall)", "dataset (Resumes)"]
+      variation_style: "full_numbers"
+      design_note: "Resume dataset uses different metric (residual correlation vs agreement rate) due to continuous rather than categorical response format."
+  supplementary_tables:
+    in_appendix: true
+    content: "Full regression output with standard errors, t-statistics, p-values, and confidence intervals for all 3 agreement metrics across all 3 datasets (Tables 2-9). Additional tables for robustness checks across metric variations."
+    reason: "Main paper shows only the coefficient summary (Table 1) for readability; appendix provides full statistical rigor for reviewers. The split follows ICML norms — one clean summary table in main text, full regression diagnostics in appendix."

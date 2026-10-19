@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d2c6c2a05e823e9c1fb",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp mf1a adversarial monotonicity",
+  "task_key": "worker_exp_mf1a_adversarial_monotonicity_20260523T173639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mf1a_adversarial_monotonicity_20260523T173639_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "712c5da1a7287fbe6cba48d325a3787533341300a4777b4e4f36f6bbe7d366ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MF-1a 完成。** 54,611 条曲线，14.3s 运行。\n\n核心发现：\n\n| 维度 | max ε_abs | 非单调率 |\n|------|-----------|----------|\n| **总体** | **0.0164** | 11.9% |\n| safe topos (conf/med/exp/fd) | 0.0164 | — |\n| fragile topos (col/mbias/iv) | 0.0132 | — |\n\n**按 adversarial 类型：**\n- **near_perm**: 最具对抗性，35.3% 非单调，max ε=0.016\n- **block_diag**: 0% 非单调（确定性结构，无违反）\n- **sparse**: 2.3% 非单调，max ε=0.003\n- **near_uniform**: 0% 非单调\n\n**按 topology：**\n- confounding/mediation/frontdoor 约 20% 曲线有微小违反（ε < 0.017）\n- exposure 仅 0.68%，mbias 1.44%\n- IV: 0 违反（过滤掉 2,089 条 weak-IV 曲线后）\n\n**结论：** 所有 adversarial 结构下 max ε_abs = 0.016，远低于论文声称的 0.06 bound。Conjecture 1 的 ε-approximate envelope monotonicity 在 adversarial 条件下成立。违反集中在 near-permutation 矩阵 + alternating_large β + 小 K 的组合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mf1a-adversarial-monotonicity.md"
+}

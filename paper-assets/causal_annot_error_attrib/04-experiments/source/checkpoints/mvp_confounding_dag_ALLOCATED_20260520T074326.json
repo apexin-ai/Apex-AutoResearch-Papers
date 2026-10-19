@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_confounding_dag",
+  "project": "causal_annot_error_attrib",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:43:15.817Z",
+    "updated_at": "2026-05-20T07:43:26.501Z",
+    "hypothesis": "K=3 混淆矩阵下 confounding DAG 的 OLS 偏差可由 plim=(E[Z'Z])^{-1}E[Z'X]β 精确预测，且 K=3 偏差与二分类折叠偏差系统性不同（多分类保留更多混杂信息）"
+  },
+  "timestamp": "2026-05-20T07:43:26.507757+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,115 @@
+paper_key: "gligoric2025"
+title: "Can Unconfident LLM Annotations Be Used for Confident Conclusions?"
+venue: "NAACL 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Human only (uniform sampling)"
+    - "LLM only (no human validation)"
+    - "Human + LLM non-adaptive (uniform sampling, PPI-style)"
+  metrics:
+    - {name: "Effective sample size gain (%)", direction: "higher_better"}
+    - {name: "Coverage (confidence interval)", direction: "closer_to_nominal_better"}
+    - {name: "Mean squared error", direction: "lower_better"}
+  datasets:
+    - {name: "Stanford Politeness Corpus (Stack Exchange + Wikipedia)", size: "5,480 instances"}
+    - {name: "Stance on Climate Change (headlines)", size: "2,300 instances"}
+    - {name: "Political Bias (news articles)", size: "2,000 instances"}
+  ablation_dimensions:
+    - "n_human budget (250-1150)"
+    - "LLM model (GPT-4o vs GPT-3.5)"
+    - "Confidence calibration quality"
+    - "Sampling strategy (confidence-driven vs uniform)"
+    - "Power tuning parameter lambda"
+  training_recipe:
+    optimizer: "N/A (no training; statistical estimation)"
+    lr: "N/A"
+    hardware: "API-based (GPT-4o zero-shot)"
+    annotation_method: "Two-stage prompting: (1) LLM provides annotation, (2) LLM provides verbalized confidence score C_i in [0,1]"
+  method_family: "Prediction-powered inference / active inference with confidence-guided sampling"
+
+positioning:
+  core_claim: "LLM annotations with varying confidence can yield statistically valid downstream conclusions when combined with strategically selected human annotations via confidence-guided active sampling, achieving 25-300%+ effective sample size gains while maintaining nominal coverage."
+  key_results: "At n_human=500: effective sample size gains of 30-319% across 5 tasks; non-adaptive baseline sometimes loses effective samples (-17% on politeness); LLM-only coverage as low as 0% (stance) vs ~95% for confidence-driven; 25%+ reduction in required human annotations to match pure-human accuracy."
+  limitations:
+    - "Only tested GPT-4o and GPT-3.5; no comprehensive LLM benchmark"
+    - "Treats human annotations as gold standard despite known annotator biases, disagreement, and positionality issues"
+    - "Datasets collected pre-LLM; cannot rule out crowd workers using LLMs during annotation"
+    - "Only English CSS tasks; generalization to other domains/languages untested"
+    - "Does not address causal estimation; only observational statistical inference"
+    - "Assumes i.i.d. samples; time-varying distribution shifts could violate validity"
+  relation_to_us: "foundation"
+  # Rationale: This paper provides the theoretical and methodological foundation for correcting
+  # unreliable LLM annotations in downstream statistical analysis. Our project extends this to
+  # causal inference (which they explicitly flag as a limitation/future direction). Their
+  # prediction-powered inference framework and confidence-driven sampling are directly applicable
+  # building blocks. The paper's explicit acknowledgment that "experiments do not address causal
+  # effects" positions our work as a natural extension.
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the promise-peril tension of LLM annotations: high agreement with humans BUT no guidelines for valid downstream conclusions. The title itself is a hook — a provocative question that challenges the assumption that uncertain annotations are useless."
+  tension: "Three-layer tension buildup: (1) LLMs show high agreement with humans, creating temptation to use them wholesale; (2) BUT they have documented biases and inconsistencies, so naive use 'may lead to inaccurate conclusions and potential societal harms, especially when such conclusions influence policy'; (3) Even moderate agreement (kappa=0.57) can yield estimates in the 'wrong direction' — the stance experiment shows LLM-only coverage at 0%. The gap between perceived reliability and actual statistical validity is the core tension."
+  key_insight: "Revealed in Section 3.2: the optimal human annotation sampling probability is proportional to the square root of expected LLM error — pi_i* proportional to sqrt(E[(H_hat_i - H_i)^2]). This connects LLM 'verbalized confidence' (a soft signal) to a rigorous active sampling criterion. The insight is that uncertainty itself, properly leveraged, becomes an asset rather than a liability."
+  argument_chain: "LLMs show promise for annotation -> BUT validity of downstream conclusions unknown -> formalize as M-estimation problem -> derive optimal sampling proportional to LLM error -> use verbalized confidence as error proxy -> prove unbiasedness regardless of LLM quality (power tuning safeguard) -> validate on 3 CSS tasks across 5 estimation targets -> show 25-300%+ gains with maintained coverage -> contrast with LLM-only approach that fails catastrophically"
+  contribution_framing: "Three contributions framed as a progression: (1) introduce the method (Confidence-Driven Inference), (2) provide theoretical safeguards ('guaranteeing that conclusions will be both valid and no less accurate'), (3) empirical validation across three CSS domains. The framing emphasizes the guarantee — the method can only help, never hurt. The word 'safeguards' appears prominently."
+  intro_structure: "5-6 paragraphs: P1 = LLMs as annotation promise (hook); P2 = validity problem and risks (tension); P3 = introduce Confidence-Driven Inference (solution); P4 = CSS application examples motivating the work (grounding); P5 = method overview and safeguards (contribution preview); P6 = summary of empirical results (teaser). Classic problem-solution-validation arc."
+  notable_technique: "The title-as-question technique is highly effective — it frames the entire paper as answering one provocative, practically relevant question. Combined with the 'unconfident/confident' wordplay (unconfident annotations -> confident conclusions), it creates memorable framing. The paper also excels at 'catastrophic failure' examples: showing LLM-only coverage at 0% for stance detection makes the case for their method viscerally compelling rather than just statistically justified."
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "Left-to-right pipeline diagram showing Confidence-Driven Inference in two phases: (1) Active collection — text corpus feeds into LLM annotations and LLM confidence, then strategically selects a small number of human annotations; (2) Statistical inference — combines all signals to produce unbiased estimate and valid confidence interval for 'valid downstream conclusion'."
+    narrative_role: "Serves as the single visual summary of the entire method. Placed early to give readers a mental model before the math. Emphasizes the two-phase structure (active collection + inference) and the flow from imperfect LLM outputs to valid conclusions."
+    design_elements:
+      - "Left-to-right flow matching reading direction"
+      - "Two clearly labeled phases: (1) Active collection, (2) Statistical inference"
+      - "Icons: document stack for corpus, robot for LLM, human figures for annotators"
+      - "Purple/gray color scheme, clean minimalist style"
+      - "Arrow-based flow connecting components"
+    visual_style: "Horizontal pipeline diagram with rounded rectangles and icons. Purple accent color for method components, gray background sections separating the two phases. Clean, infographic-style with minimal text. Compact single-row layout suitable for column width."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "multi-panel grid (3 columns x 5 rows)"
+      what_compared: "Confidence-driven (orange circles) vs non-adaptive human+LLM (green squares) vs human-only (blue diamonds) vs LLM-only (red triangles), across 5 estimation tasks. Column 1: confidence interval comparison across 5 trials; Column 2: n_effective vs n_human budget; Column 3: coverage vs n_human budget."
+      how_gain_highlighted: "Orange (confidence-driven) line consistently above blue (human-only) diagonal in n_effective plots, showing clear multiplicative gain. LLM-only (red) coverage dramatically below 0.9 reference line in coverage plots, making the failure mode visually stark. The horizontal dashed gray line at 0.9 coverage serves as visual benchmark."
+      design_note: "The 18-panel grid is information-dense but well-organized. Each row = one task, each column = one metric type. Color-coding is consistent across all panels. The confidence interval column (leftmost) uses horizontal bars with color-coding per method — wider bars = less precise. The contrast between the tight orange bars and wide green/blue bars sells the story visually. Coverage plots with the 0.9 reference line make the LLM-only failure immediately visible."
+    - figure_id: "Figure 2 - confidence interval panels"
+      viz_type: "horizontal confidence interval bars"
+      what_compared: "Width of confidence intervals across 5 trials for each method"
+      how_gain_highlighted: "Confidence-driven intervals are visibly narrower (tighter) than human-only intervals, while LLM-only intervals (red, at bottom) are narrow but systematically offset from the true value"
+      design_note: "Horizontal CI bars stacked vertically by method. The visual metaphor of 'width = uncertainty' is intuitive. Color groups (4 colors, 5 bars each) create clear visual separation. The LLM-only estimates being offset from the true parameter value (gray vertical line) visually demonstrates bias."
+  ablation_figures:
+    - figure_id: "Figure 2 - n_effective columns"
+      viz_type: "line_plot"
+      dimensions_varied: ["n_human budget (250-1150)", "estimation method"]
+      design_note: "Dashed lines with distinct markers (circle/square/diamond) aid black-and-white readability. The diagonal reference (where n_effective = n_human) is implicit — human-only follows it, while confidence-driven rises above, making the gain geometrically intuitive."
+    - figure_id: "Figure 3 (Appendix)"
+      viz_type: "calibration_plot"
+      dimensions_varied: ["confidence bin", "actual accuracy"]
+      design_note: "Standard calibration curve (predicted confidence vs actual accuracy). Validates the assumption that verbalized confidence is usable as an error proxy. Placed in appendix as supporting evidence rather than main result."
+  figure_narrative_role: "Figure 1 (method overview) -> Figure 2 (comprehensive results across all tasks and metrics) -> Figure 3 (appendix: confidence calibration validation). The paper is figure-efficient: one method figure and one dense result figure carry the entire visual argument. The 18-panel Figure 2 is the workhorse — it replaces what many papers would spread across 4-5 separate figures."
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "estimation tasks (5 tasks: politeness beta_hedge, politeness beta_1pp, stance O_agreement, bias p_left, bias p_right)"
+    col_axis: "methods x metrics (gain in effective sample size for confidence-driven and non-adaptive; coverage for confidence-driven, non-adaptive, human-only, LLM-only)"
+    row_organization: "by_category"  # grouped by dataset domain
+    col_organization: "grouped_by_metric"  # gain columns together, coverage columns together
+    highlight_strategy: "bold_best (gain column) for confidence-driven method"
+    statistical_reporting: "mean over 100 trials at n_human=500"
+    num_baselines: 3  # human-only, LLM-only, non-adaptive human+LLM
+    design_note: "Compact summary table that crystallizes the 18-panel Figure 2 into a single snapshot at the key budget point (n_human=500). The gain metric is cleverly defined as 'equivalent number of additional human annotations gained for free' — making the practical value immediately tangible. Negative gains for non-adaptive baseline (-16.76%, -8.05%) are particularly persuasive: they show that naive LLM integration can actually hurt."
+  ablation_tables:
+    - table_id: "Table 2 (Appendix)"
+      what_varied: ["LLM prompts", "hyperparameters across tasks"]
+      variation_style: "full_numbers"
+      design_note: "Placed in appendix for reproducibility rather than narrative impact. Contains exact prompt texts and parameter settings — good practice for LLM-based experiments."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 2 contains prompt texts and annotation parameters; appendix also includes GPT-3.5 robustness results and calibration analysis"
+    reason: "Main paper is tightly focused on the method and primary results. Appendix handles reproducibility details and robustness checks. The split keeps the main narrative clean while ensuring comprehensive documentation."

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2a9b36a6d9b1205860f3",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "audit final data check",
+  "task_key": "worker_audit_final_data_check_20260524T043115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final_data_check_20260524T043115.log",
+    "occurrence": 1,
+    "bytes": 764335,
+    "sha256": "9b251166be3327b81b8c531c6727fdacf65da6493028488cc238fcb7af6b2197"
+  },
+  "statistics": {
+    "messages": 507,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 298,
+      "record": 2,
+      "assistant": 48,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 507,
+      "chunks": [
+        {
+          "path": "2a9b36a6d9b1205860f3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a9b36a6d9b1205860f3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a9b36a6d9b1205860f3-part-0003.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-final-data-check.md"
+}

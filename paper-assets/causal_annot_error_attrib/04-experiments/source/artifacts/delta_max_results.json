@@ -1,0 +1,867 @@
+{
+  "meta": {
+    "description": "Delta_max constraint analysis for ASV parameterization",
+    "formula": "delta_max = min_j 1/(1 - (C0)_{jj})",
+    "property": "delta_max >= 1 always (diagonal entries in [0,1])",
+    "code_implementation": "annot_sensitivity/confusion.py:delta_range() computes this, ASV search bounded by [0, delta_max]"
+  },
+  "per_confusion_matrix": {
+    "humaid": {
+      "humaid_deepseek_few-shot-3": {
+        "name": "humaid_deepseek_few-shot-3",
+        "K": 10,
+        "diagonal": [
+          0.579545,
+          0.7,
+          0.617834,
+          0.936,
+          1.0,
+          0.715909,
+          0.384937,
+          0.754717,
+          0.831492,
+          0.726708
+        ],
+        "min_diagonal": 0.384937,
+        "min_diagonal_class": 6,
+        "delta_max": 1.62585,
+        "delta_max_code": 1.62585,
+        "trace": 7.247143,
+        "macro_recall": 0.724714
+      },
+      "humaid_deepseek_few-shot-5": {
+        "name": "humaid_deepseek_few-shot-5",
+        "K": 10,
+        "diagonal": [
+          0.575758,
+          0.762712,
+          0.620155,
+          0.936364,
+          1.0,
+          0.802198,
+          0.374429,
+          0.634146,
+          0.811912,
+          0.721519
+        ],
+        "min_diagonal": 0.374429,
+        "min_diagonal_class": 6,
+        "delta_max": 1.59854,
+        "delta_max_code": 1.59854,
+        "trace": 7.239193,
+        "macro_recall": 0.723919
+      },
+      "humaid_deepseek_zero-shot": {
+        "name": "humaid_deepseek_zero-shot",
+        "K": 10,
+        "diagonal": [
+          0.611111,
+          0.861111,
+          0.785714,
+          0.933333,
+          1.0,
+          0.699029,
+          0.294118,
+          0.578947,
+          0.780928,
+          0.691892
+        ],
+        "min_diagonal": 0.294118,
+        "min_diagonal_class": 6,
+        "delta_max": 1.416667,
+        "delta_max_code": 1.416667,
+        "trace": 7.236184,
+        "macro_recall": 0.723618
+      },
+      "humaid_llama4_few-shot-3": {
+        "name": "humaid_llama4_few-shot-3",
+        "K": 10,
+        "diagonal": [
+          0.407407,
+          0.722222,
+          0.556886,
+          0.859259,
+          1.0,
+          0.504854,
+          0.452206,
+          0.631579,
+          0.839793,
+          0.783784
+        ],
+        "min_diagonal": 0.407407,
+        "min_diagonal_class": 0,
+        "delta_max": 1.6875,
+        "delta_max_code": 1.6875,
+        "trace": 6.757991,
+        "macro_recall": 0.675799
+      },
+      "humaid_llama4_few-shot-5": {
+        "name": "humaid_llama4_few-shot-5",
+        "K": 10,
+        "diagonal": [
+          0.415094,
+          0.714286,
+          0.487952,
+          0.87218,
+          1.0,
+          0.578431,
+          0.464419,
+          0.709091,
+          0.859416,
+          0.775956
+        ],
+        "min_diagonal": 0.415094,
+        "min_diagonal_class": 0,
+        "delta_max": 1.709677,
+        "delta_max_code": 1.709677,
+        "trace": 6.876827,
+        "macro_recall": 0.687683
+      },
+      "humaid_llama4_zero-shot": {
+        "name": "humaid_llama4_zero-shot",
+        "K": 10,
+        "diagonal": [
+          0.425926,
+          0.722222,
+          0.589286,
+          0.859259,
+          1.0,
+          0.427184,
+          0.444853,
+          0.649123,
+          0.81701,
+          0.772973
+        ],
+        "min_diagonal": 0.425926,
+        "min_diagonal_class": 0,
+        "delta_max": 1.741935,
+        "delta_max_code": 1.741935,
+        "trace": 6.707837,
+        "macro_recall": 0.670784
+      },
+      "humaid_qwen3_few-shot-3": {
+        "name": "humaid_qwen3_few-shot-3",
+        "K": 10,
+        "diagonal": [
+          0.587629,
+          0.830769,
+          0.672727,
+          0.961832,
+          1.0,
+          0.425532,
+          0.39313,
+          0.690909,
+          0.835938,
+          0.664557
+        ],
+        "min_diagonal": 0.39313,
+        "min_diagonal_class": 6,
+        "delta_max": 1.647799,
+        "delta_max_code": 1.647799,
+        "trace": 7.063023,
+        "macro_recall": 0.706302
+      },
+      "humaid_qwen3_zero-shot": {
+        "name": "humaid_qwen3_zero-shot",
+        "K": 10,
+        "diagonal": [
+          0.583333,
+          0.888889,
+          0.785714,
+          0.97037,
+          1.0,
+          0.339806,
+          0.349265,
+          0.736842,
+          0.840206,
+          0.654054
+        ],
+        "min_diagonal": 0.339806,
+        "min_diagonal_class": 5,
+        "delta_max": 1.514706,
+        "delta_max_code": 1.514706,
+        "trace": 7.14848,
+        "macro_recall": 0.714848
+      }
+    },
+    "vast": {
+      "vast_deepseek_zero-shot": {
+        "name": "vast_deepseek_zero-shot",
+        "K": 3,
+        "diagonal": [
+          0.564551,
+          0.810964,
+          0.142857
+        ],
+        "min_diagonal": 0.142857,
+        "min_diagonal_class": 2,
+        "delta_max": 1.166667,
+        "delta_max_code": 1.166667,
+        "trace": 1.518373,
+        "macro_recall": 0.506124
+      },
+      "vast_llama4_few-shot-3": {
+        "name": "vast_llama4_few-shot-3",
+        "K": 3,
+        "diagonal": [
+          0.659529,
+          0.800377,
+          0.035857
+        ],
+        "min_diagonal": 0.035857,
+        "min_diagonal_class": 2,
+        "delta_max": 1.03719,
+        "delta_max_code": 1.03719,
+        "trace": 1.495762,
+        "macro_recall": 0.498587
+      },
+      "vast_llama4_few-shot-5": {
+        "name": "vast_llama4_few-shot-5",
+        "K": 3,
+        "diagonal": [
+          0.60241,
+          0.857955,
+          0.25
+        ],
+        "min_diagonal": 0.25,
+        "min_diagonal_class": 2,
+        "delta_max": 1.333333,
+        "delta_max_code": 1.333333,
+        "trace": 1.710364,
+        "macro_recall": 0.570121
+      },
+      "vast_llama4_zero-shot": {
+        "name": "vast_llama4_zero-shot",
+        "K": 3,
+        "diagonal": [
+          0.678112,
+          0.840909,
+          0.045817
+        ],
+        "min_diagonal": 0.045817,
+        "min_diagonal_class": 2,
+        "delta_max": 1.048017,
+        "delta_max_code": 1.048017,
+        "trace": 1.564837,
+        "macro_recall": 0.521612
+      },
+      "vast_qwen2.5-7b_few-shot-3": {
+        "name": "vast_qwen2.5-7b_few-shot-3",
+        "K": 3,
+        "diagonal": [
+          0.413276,
+          0.821092,
+          0.125498
+        ],
+        "min_diagonal": 0.125498,
+        "min_diagonal_class": 2,
+        "delta_max": 1.143508,
+        "delta_max_code": 1.143508,
+        "trace": 1.359867,
+        "macro_recall": 0.453289
+      },
+      "vast_qwen2.5-7b_few-shot-5": {
+        "name": "vast_qwen2.5-7b_few-shot-5",
+        "K": 3,
+        "diagonal": [
+          0.475375,
+          0.775895,
+          0.125498
+        ],
+        "min_diagonal": 0.125498,
+        "min_diagonal_class": 2,
+        "delta_max": 1.143508,
+        "delta_max_code": 1.143508,
+        "trace": 1.376767,
+        "macro_recall": 0.458922
+      },
+      "vast_qwen2.5-7b_zero-shot": {
+        "name": "vast_qwen2.5-7b_zero-shot",
+        "K": 3,
+        "diagonal": [
+          0.461373,
+          0.847458,
+          0.109562
+        ],
+        "min_diagonal": 0.109562,
+        "min_diagonal_class": 2,
+        "delta_max": 1.123043,
+        "delta_max_code": 1.123043,
+        "trace": 1.418393,
+        "macro_recall": 0.472798
+      }
+    },
+    "civil_comments": {
+      "civil_comments_qwen2.5-7b_few-shot-3": {
+        "name": "civil_comments_qwen2.5-7b_few-shot-3",
+        "K": 2,
+        "diagonal": [
+          0.67873,
+          0.780822
+        ],
+        "min_diagonal": 0.67873,
+        "min_diagonal_class": 0,
+        "delta_max": 3.112644,
+        "delta_max_code": 3.112644,
+        "trace": 1.459552,
+        "macro_recall": 0.729776
+      },
+      "civil_comments_qwen2.5-7b_few-shot-5": {
+        "name": "civil_comments_qwen2.5-7b_few-shot-5",
+        "K": 2,
+        "diagonal": [
+          0.737075,
+          0.760274
+        ],
+        "min_diagonal": 0.737075,
+        "min_diagonal_class": 0,
+        "delta_max": 3.803371,
+        "delta_max_code": 3.803371,
+        "trace": 1.497349,
+        "macro_recall": 0.748675
+      },
+      "civil_comments_qwen2.5-7b_zero-shot": {
+        "name": "civil_comments_qwen2.5-7b_zero-shot",
+        "K": 2,
+        "diagonal": [
+          0.748154,
+          0.684932
+        ],
+        "min_diagonal": 0.684932,
+        "min_diagonal_class": 1,
+        "delta_max": 3.173913,
+        "delta_max_code": 3.173913,
+        "trace": 1.433085,
+        "macro_recall": 0.716543
+      }
+    },
+    "predefined_k3": {
+      "C1_sym": {
+        "name": "C1_sym",
+        "K": 3,
+        "diagonal": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "min_diagonal": 0.8,
+        "min_diagonal_class": 0,
+        "delta_max": 5.0,
+        "delta_max_code": 5.0,
+        "trace": 2.4,
+        "macro_recall": 0.8
+      },
+      "C2_high": {
+        "name": "C2_high",
+        "K": 3,
+        "diagonal": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "min_diagonal": 0.9,
+        "min_diagonal_class": 0,
+        "delta_max": 10.0,
+        "delta_max_code": 10.0,
+        "trace": 2.7,
+        "macro_recall": 0.9
+      },
+      "C3_asym": {
+        "name": "C3_asym",
+        "K": 3,
+        "diagonal": [
+          0.736842,
+          0.666667,
+          0.75
+        ],
+        "min_diagonal": 0.666667,
+        "min_diagonal_class": 1,
+        "delta_max": 3.0,
+        "delta_max_code": 3.0,
+        "trace": 2.153509,
+        "macro_recall": 0.717836
+      },
+      "C4_weak": {
+        "name": "C4_weak",
+        "K": 3,
+        "diagonal": [
+          0.631579,
+          0.631579,
+          0.636364
+        ],
+        "min_diagonal": 0.631579,
+        "min_diagonal_class": 0,
+        "delta_max": 2.714286,
+        "delta_max_code": 2.714286,
+        "trace": 1.899522,
+        "macro_recall": 0.633174
+      },
+      "C5_perm": {
+        "name": "C5_perm",
+        "K": 3,
+        "diagonal": [
+          0.4,
+          0.4,
+          0.4
+        ],
+        "min_diagonal": 0.4,
+        "min_diagonal_class": 0,
+        "delta_max": 1.666667,
+        "delta_max_code": 1.666667,
+        "trace": 1.2,
+        "macro_recall": 0.4
+      },
+      "C6_diff": {
+        "name": "C6_diff",
+        "K": 3,
+        "diagonal": [
+          0.809524,
+          0.848485,
+          0.8
+        ],
+        "min_diagonal": 0.8,
+        "min_diagonal_class": 2,
+        "delta_max": 5.0,
+        "delta_max_code": 5.0,
+        "trace": 2.458009,
+        "macro_recall": 0.819336
+      }
+    }
+  },
+  "table3_asv_checks": [
+    {
+      "topology": "IV",
+      "asv_type": "magnitude",
+      "reported_range": [
+        0.101,
+        0.607
+      ],
+      "exceeds_any_delta_max": false,
+      "exceeds_min_delta_max": "False",
+      "min_delta_max_across_c0s": 1.6667,
+      "note": "All within range"
+    },
+    {
+      "topology": "IV",
+      "asv_type": "sign_flip",
+      "reported_range": [
+        1.1,
+        6.7
+      ],
+      "exceeds_any_delta_max": false,
+      "exceeds_min_delta_max": "True",
+      "min_delta_max_across_c0s": 1.6667,
+      "note": "Max ASV 6.7 > min delta_max 1.6667 across C0s, but each ASV is within its own C0's delta_max"
+    },
+    {
+      "topology": "Front-door",
+      "asv_type": "magnitude",
+      "reported_range": [
+        0.064,
+        0.387
+      ],
+      "exceeds_any_delta_max": false,
+      "exceeds_min_delta_max": "False",
+      "min_delta_max_across_c0s": 1.6667,
+      "note": "All within range"
+    },
+    {
+      "topology": "Confounding",
+      "asv_type": "magnitude",
+      "reported_range": [
+        0.081,
+        0.487
+      ],
+      "exceeds_any_delta_max": false,
+      "exceeds_min_delta_max": "False",
+      "min_delta_max_across_c0s": 1.6667,
+      "note": "All within range"
+    },
+    {
+      "topology": "Mediation",
+      "asv_type": "magnitude",
+      "reported_range": [
+        0.076,
+        0.454
+      ],
+      "exceeds_any_delta_max": false,
+      "exceeds_min_delta_max": "False",
+      "min_delta_max_across_c0s": 1.6667,
+      "note": "All within range"
+    },
+    {
+      "topology": "Collider",
+      "asv_type": "magnitude",
+      "reported_range": [
+        0.338,
+        2.028
+      ],
+      "exceeds_any_delta_max": false,
+      "exceeds_min_delta_max": "True",
+      "min_delta_max_across_c0s": 1.6667,
+      "note": "Max ASV 2.028 > min delta_max 1.6667 across C0s, but each ASV is within its own C0's delta_max"
+    },
+    {
+      "topology": "M-bias",
+      "asv_type": "magnitude",
+      "reported_value": "inf",
+      "exceeds_any_delta_max": false,
+      "note": "infinite ASV or fraction metric"
+    },
+    {
+      "topology": "Exposure",
+      "asv_type": "sign_flip_fraction",
+      "reported_value": "0.834",
+      "exceeds_any_delta_max": false,
+      "note": "infinite ASV or fraction metric"
+    }
+  ],
+  "humaid_empirical_asv_checks": [
+    {
+      "config": "humaid_llama4_zero-shot",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.619381,
+      "delta_max": 1.741935,
+      "exceeds_delta_max": "False",
+      "headroom": 1.122555
+    },
+    {
+      "config": "humaid_llama4_zero-shot",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.904087,
+      "delta_max": 1.741935,
+      "exceeds_delta_max": "False",
+      "headroom": 0.837849
+    },
+    {
+      "config": "humaid_llama4_zero-shot",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.318406,
+      "delta_max": 1.741935,
+      "exceeds_delta_max": "False",
+      "headroom": 1.42353
+    },
+    {
+      "config": "humaid_llama4_zero-shot",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.631001,
+      "delta_max": 1.741935,
+      "exceeds_delta_max": "False",
+      "headroom": 1.110934
+    },
+    {
+      "config": "humaid_llama4_few-shot-3",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.631546,
+      "delta_max": 1.6875,
+      "exceeds_delta_max": "False",
+      "headroom": 1.055954
+    },
+    {
+      "config": "humaid_llama4_few-shot-3",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.889343,
+      "delta_max": 1.6875,
+      "exceeds_delta_max": "False",
+      "headroom": 0.798157
+    },
+    {
+      "config": "humaid_llama4_few-shot-3",
+      "topology": "exposure",
+      "asv_type": "significance",
+      "asv_value": 1.680745,
+      "delta_max": 1.6875,
+      "exceeds_delta_max": "False",
+      "headroom": 0.006755
+    },
+    {
+      "config": "humaid_llama4_few-shot-3",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.317462,
+      "delta_max": 1.6875,
+      "exceeds_delta_max": "False",
+      "headroom": 1.370038
+    },
+    {
+      "config": "humaid_llama4_few-shot-3",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.637175,
+      "delta_max": 1.6875,
+      "exceeds_delta_max": "False",
+      "headroom": 1.050325
+    },
+    {
+      "config": "humaid_llama4_few-shot-5",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.620457,
+      "delta_max": 1.709677,
+      "exceeds_delta_max": "False",
+      "headroom": 1.089221
+    },
+    {
+      "config": "humaid_llama4_few-shot-5",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.882782,
+      "delta_max": 1.709677,
+      "exceeds_delta_max": "False",
+      "headroom": 0.826895
+    },
+    {
+      "config": "humaid_llama4_few-shot-5",
+      "topology": "exposure",
+      "asv_type": "significance",
+      "asv_value": 1.703975,
+      "delta_max": 1.709677,
+      "exceeds_delta_max": "False",
+      "headroom": 0.005703
+    },
+    {
+      "config": "humaid_llama4_few-shot-5",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.306807,
+      "delta_max": 1.709677,
+      "exceeds_delta_max": "False",
+      "headroom": 1.402871
+    },
+    {
+      "config": "humaid_llama4_few-shot-5",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.622738,
+      "delta_max": 1.709677,
+      "exceeds_delta_max": "False",
+      "headroom": 1.08694
+    },
+    {
+      "config": "humaid_qwen3_zero-shot",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.901346,
+      "delta_max": 1.514706,
+      "exceeds_delta_max": "False",
+      "headroom": 0.61336
+    },
+    {
+      "config": "humaid_qwen3_zero-shot",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.997341,
+      "delta_max": 1.514706,
+      "exceeds_delta_max": "False",
+      "headroom": 0.517365
+    },
+    {
+      "config": "humaid_qwen3_zero-shot",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.826571,
+      "delta_max": 1.514706,
+      "exceeds_delta_max": "False",
+      "headroom": 0.688135
+    },
+    {
+      "config": "humaid_qwen3_zero-shot",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.864969,
+      "delta_max": 1.514706,
+      "exceeds_delta_max": "False",
+      "headroom": 0.649737
+    },
+    {
+      "config": "humaid_qwen3_few-shot-3",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.705728,
+      "delta_max": 1.647799,
+      "exceeds_delta_max": "False",
+      "headroom": 0.94207
+    },
+    {
+      "config": "humaid_qwen3_few-shot-3",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 1.113556,
+      "delta_max": 1.647799,
+      "exceeds_delta_max": "False",
+      "headroom": 0.534243
+    },
+    {
+      "config": "humaid_qwen3_few-shot-3",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.512258,
+      "delta_max": 1.647799,
+      "exceeds_delta_max": "False",
+      "headroom": 1.135541
+    },
+    {
+      "config": "humaid_qwen3_few-shot-3",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.682644,
+      "delta_max": 1.647799,
+      "exceeds_delta_max": "False",
+      "headroom": 0.965155
+    },
+    {
+      "config": "humaid_deepseek_zero-shot",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.894986,
+      "delta_max": 1.416667,
+      "exceeds_delta_max": "False",
+      "headroom": 0.521681
+    },
+    {
+      "config": "humaid_deepseek_zero-shot",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.937514,
+      "delta_max": 1.416667,
+      "exceeds_delta_max": "False",
+      "headroom": 0.479153
+    },
+    {
+      "config": "humaid_deepseek_zero-shot",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.75795,
+      "delta_max": 1.416667,
+      "exceeds_delta_max": "False",
+      "headroom": 0.658717
+    },
+    {
+      "config": "humaid_deepseek_zero-shot",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.911997,
+      "delta_max": 1.416667,
+      "exceeds_delta_max": "False",
+      "headroom": 0.50467
+    },
+    {
+      "config": "humaid_deepseek_few-shot-3",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.649689,
+      "delta_max": 1.62585,
+      "exceeds_delta_max": "False",
+      "headroom": 0.976161
+    },
+    {
+      "config": "humaid_deepseek_few-shot-3",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.649689,
+      "delta_max": 1.62585,
+      "exceeds_delta_max": "False",
+      "headroom": 0.976161
+    },
+    {
+      "config": "humaid_deepseek_few-shot-3",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.310202,
+      "delta_max": 1.62585,
+      "exceeds_delta_max": "False",
+      "headroom": 1.315648
+    },
+    {
+      "config": "humaid_deepseek_few-shot-3",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.649689,
+      "delta_max": 1.62585,
+      "exceeds_delta_max": "False",
+      "headroom": 0.976161
+    },
+    {
+      "config": "humaid_deepseek_few-shot-5",
+      "topology": "mediation",
+      "asv_type": "magnitude",
+      "asv_value": 0.775276,
+      "delta_max": 1.59854,
+      "exceeds_delta_max": "False",
+      "headroom": 0.823264
+    },
+    {
+      "config": "humaid_deepseek_few-shot-5",
+      "topology": "exposure",
+      "asv_type": "magnitude",
+      "asv_value": 0.693163,
+      "delta_max": 1.59854,
+      "exceeds_delta_max": "False",
+      "headroom": 0.905377
+    },
+    {
+      "config": "humaid_deepseek_few-shot-5",
+      "topology": "iv",
+      "asv_type": "magnitude",
+      "asv_value": 0.388171,
+      "delta_max": 1.59854,
+      "exceeds_delta_max": "False",
+      "headroom": 1.210369
+    },
+    {
+      "config": "humaid_deepseek_few-shot-5",
+      "topology": "frontdoor",
+      "asv_type": "magnitude",
+      "asv_value": 0.756081,
+      "delta_max": 1.59854,
+      "exceeds_delta_max": "False",
+      "headroom": 0.842459
+    }
+  ],
+  "sign_flip_validity": {
+    "theorem": "delta_max >= 1 for all valid confusion matrices",
+    "proof": "Diagonal entries of C0 are in [0,1], so 1-min_diag in [0,1], so delta_max = 1/(1-min_diag) >= 1",
+    "implication": "All sign_flip_ASV < 1 values are within valid delta range",
+    "paper_claim": "83.4% of exposure matrices have sign_flip_ASV < 1",
+    "validity": "VALID - these all correspond to valid confusion matrices"
+  },
+  "summary": {
+    "total_empirical_asv_values": 34,
+    "empirical_exceeding_delta_max": 0,
+    "delta_max_ranges": {
+      "humaid_K10": {
+        "min": 1.4167,
+        "max": 1.7419
+      },
+      "vast_K3": {
+        "min": 1.0372,
+        "max": 1.3333
+      },
+      "civil_K2": {
+        "min": 3.1126,
+        "max": 3.8034
+      },
+      "predefined_K3": {
+        "min": 1.6667,
+        "max": 10.0
+      }
+    },
+    "key_findings": [
+      "delta_max >= 1 for all valid confusion matrices (mathematical guarantee)",
+      "All reported ASV values are within valid delta range by construction",
+      "The code (delta_range) already computes delta_max correctly",
+      "No ASV values need to be changed or marked as infinity",
+      "Sign-flip ASV < 1 is always valid since delta_max >= 1",
+      "The 83.4% sign-flip fraction for exposure is fully valid",
+      "Table 3 ranges aggregate across C0s with different delta_max values, but each individual ASV is within its own C0's valid range"
+    ],
+    "narrative_impact": "The reviewer's concern is addressed: the constraint is automatically satisfied. The code already restricts delta to [0, delta_max] via delta_range(C0). Since delta_max = 1/(1-min_diag) >= 1 always, and most ASV values of interest (especially sign-flip ASV < 1) are well below delta_max, no reported values change. This STRENGTHENS the paper by making explicit that the parameterization is always well-defined.",
+    "recommended_response": "Add a brief remark in the paper noting that delta_max = 1/(1-min_diag(C0)) >= 1 for all valid C0, so the non-negativity constraint is automatically satisfied for all delta in [0,1] and the ASV search range [0, delta_max] ensures C(delta) remains a valid confusion matrix."
+  }
+}

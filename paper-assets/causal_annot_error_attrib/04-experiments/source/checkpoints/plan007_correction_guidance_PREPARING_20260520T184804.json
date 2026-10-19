@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan007_correction_guidance",
+  "project": "causal_annot_error_attrib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:48:04.784Z",
+    "updated_at": "2026-05-20T18:48:04.784Z"
+  },
+  "timestamp": "2026-05-20T18:48:04.827657+00:00",
+  "trigger": "update_registry"
+}

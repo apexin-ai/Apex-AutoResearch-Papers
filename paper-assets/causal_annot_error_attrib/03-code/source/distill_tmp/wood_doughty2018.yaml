@@ -1,0 +1,90 @@
+paper_key: "wood_doughty2018"
+title: "Challenges of Using Text Classifiers for Causal Inference"
+venue: "EMNLP 2018"
+full_text_available: true
+
+research:
+  baselines:
+    - "naive (discard incomplete rows, use Eq 1 on complete data)"
+    - "no_text (missing data without text features)"
+    - "textless (measurement error without text features — failed due to singular matrix)"
+    - "no_y (misspecified missing data model: does not condition on Y)"
+    - "unadjusted (measurement error ignoring classifier error, treating predictions as ground truth)"
+  metrics:
+    - {name: "squared distance from perfect-data causal effect estimate", direction: "lower_better"}
+  datasets:
+    - {name: "synthetic Bernoulli data with bag-of-words text", size: "varies 10^2 to 10^7 samples, V=4334 vocabulary"}
+    - {name: "Yelp 2015 Dataset Challenge reviews", size: "4.7M reviews, 1M sample, V=4334 words"}
+  ablation_dimensions:
+    - "dataset size (10^2 to 10^7)"
+    - "vocabulary size (4334 vs 53197)"
+    - "missing data vs measurement error formulation"
+    - "correctly specified vs misspecified causal models"
+  training_recipe:
+    optimizer: "N/A (closed-form estimators, not learned)"
+    lr: "N/A"
+    hardware: "N/A"
+    text_model: "bag-of-words logistic regression (implicit via conditional probabilities)"
+  method_family: "causal inference with measurement error / missing data correction"
+
+positioning:
+  core_claim: "Text classifier outputs cannot be naively substituted into causal inference pipelines; the errors they introduce must be modeled as either missing data or measurement error using causal DAGs, and while theoretically correct adjustment formulas exist, the measurement error correction (matrix adjustment) is severely unstable in practice."
+  key_results: "Missing data formulation (full model) converges well with sample size. Measurement error adjustment is erratic — enormous fluctuations, sometimes worse than unadjusted baseline, because matrix adjustment divides by near-zero probabilities. On Yelp data, unadjusted model often outperforms adjusted model due to high classifier accuracy making the naive assumption less biased than the unstable correction."
+  limitations:
+    - "Assumes binary treatment, confounder, and outcome variables"
+    - "Uses bag-of-words text representation — does not explore neural text models"
+    - "Matrix adjustment for measurement error is numerically unstable (divides by small probabilities)"
+    - "Does not address identifiability and estimation jointly in real-world settings"
+    - "Yelp experiment does not claim to identify a true real-world causal effect — only demonstrates the method"
+    - "Does not consider when p(A|A*) is unknown and must be estimated with uncertainty"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Opens with the broad claim that causal inference has been confined to structured, low-dimensional data, while NLP can unlock unstructured text for causal analysis — immediately positions the work at the intersection of two major fields."
+  tension: "Text classifiers produce low-dimensional outputs that seem plug-compatible with causal inference, but this 'straightforward integration belies several potential issues' — classification errors are not random noise, they can systematically bias causal estimates. The paper frames this as an uncharted territory: 'their use in causal inference has not previously been studied.'"
+  key_insight: "The key conceptual move is mapping text classifier errors onto two well-studied causal frameworks — missing data and measurement error — via causal DAGs (Figures 1 and 3). This reframing transforms an ill-defined NLP problem into a tractable causal identification problem with known correction formulas. The insight is revealed in Section 3-4 through progressive DAG construction."
+  argument_chain: "causal inference needs structured variables → NLP can extract them from text → but classifier errors propagate to causal estimates → two existing frameworks (missing data, measurement error) can model this → extend DAGs to include text variables → derive correction formulas → synthetic + Yelp experiments show missing data works but measurement error correction is unstable → this instability is the central challenge for future work"
+  contribution_framing: "Three implicit contributions: (1) formalizing the problem of text classifier errors in causal inference via causal DAGs, (2) deriving correction formulas under missing data and measurement error models, (3) empirically demonstrating that measurement error correction is practically unstable. Contributions are woven into the narrative rather than enumerated in a bullet list."
+  intro_structure: "6 paragraphs. P1: NLP can help scientific analyses by converting text to structured variables. P2: Causal inference also benefits from NLP but has not been studied. P3: Text classifiers map high-dimensional text to low-dimensional variables, but errors can bias causal analysis. P4: High-dimensional domains are hard for classical causal methods. P5: Two modeling frameworks from causal literature — missing data and measurement error. P6: Paper roadmap — simulated and Yelp experiments, opportunities and challenges."
+  notable_technique: "The paper uses a running medical example (smoking status from hospital discharge notes → lung cancer outcome, adjusted for age) throughout Sections 3-5 to make abstract causal DAGs concrete. This anchoring example is introduced in Section 4 and carried through the entire paper, making the formalism accessible. Also notable: the paper's most important finding is a negative result (matrix adjustment instability), which is presented honestly as the central 'challenge' rather than being buried."
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "problem_illustration"
+    description: "Three causal DAGs showing (a) simple confounding (C→A, C→Y, A→Y), (b) missing data (with R_A indicator and A(1) counterfactual), (c) measurement error (with proxy A* replacing true A). Red nodes are unobserved. Blue edges show causal paths."
+    narrative_role: "Establishes the formal framework — maps the abstract problem into three concrete causal models that the entire paper builds on. This is the conceptual foundation before text is introduced."
+    design_elements: ["three-panel DAG comparison", "color coding (red=unobserved, blue=causal)", "progressive complexity from (a) to (c)", "consistent node positioning across panels"]
+    visual_style: "Clean DAG layout with circled nodes, directional arrows, two-color scheme (red for unobserved, blue for edges). Three panels side-by-side for direct comparison. Minimal, no decorative elements."
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Squared distance of causal effect estimates from perfect-data estimate, across dataset sizes (10^2 to 10^7), for multiple models under (a) missing data and (b) measurement error settings, on both synthetic and Yelp data"
+      how_gain_highlighted: "Correct models (full/adjusted) shown alongside baselines (naive/unadjusted/no_text/no_y) — convergence behavior reveals which approaches work. The measurement error panel (b) visually demonstrates the instability problem with wild fluctuations in adjusted model."
+      design_note: "Log-log scale (both axes) is essential for showing convergence rates across 5 orders of magnitude. Two-panel layout separates missing data (cleaner story) from measurement error (messy story). Color distinguishes Yelp (red) from synthetic (blue). The visual chaos of panel (b) IS the main result — the instability is immediately visible."
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Same as Figure 5 but with larger vocabulary (53,197 vs 4,334)"
+      how_gain_highlighted: "Shows robustness of findings across vocabulary sizes — same patterns hold"
+      design_note: "Placed in appendix as a replication study. Same visual format as Figure 5 for direct comparison."
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (DAGs without text) → Figure 2 (example data rows) → Figure 3 (DAGs with text variables added) → Figure 4 (formulas for causal effects) → Figure 5 (main experimental results) → Figure 6 (replication with larger vocabulary). The flow is: abstract framework → concrete data → extended framework → math → empirical validation → robustness check."
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "Notably, this paper has NO tables at all. All results are presented as line plots (Figures 5 and 6). This is unusual for an NLP paper and reflects the paper's focus on convergence behavior across dataset sizes rather than point-estimate comparisons. The continuous x-axis (dataset size) makes plots more natural than tables."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "Appendices contain derivations (A-C), data generation process (D), and additional experiments with larger vocabulary (E with Figure 6). No tables anywhere."
+    reason: "The paper's contribution is theoretical framework + convergence analysis, not benchmark leaderboard results. Plots showing convergence across orders of magnitude are more informative than fixed-size tables."

@@ -1,0 +1,135 @@
+=====================================================================================
+MVP Validation: Confounding DAG — K=3 Multiclass Annotation Error Bias
+=====================================================================================
+
+Setting: A is OBSERVED confounder with noisy LLM annotation A*.
+         Researcher adjusts for A* (not A) in OLS.  DAG: A->T, A->Y, T->Y, A->A*
+         (cf. Lee & Wood-Doughty 2024: UNOBSERVED confounding with proxy)
+
+DGP: P(A)=[0.4, 0.35, 0.25], alpha=[1.5, -1.0], beta_T=2.0, beta_A=[1.0, -0.5]
+     sigma_T=1.0, sigma_Y=1.0
+MC:  N=10,000, M=1,000, seed=42
+
+Unadjusted OVB (no A control): 0.299777
+  => plim(beta_T_hat_unadj) = 2.299777
+  => Direction: away from null
+
+=====================================================================================
+PART A: K=3 Multiclass — Theory vs Monte Carlo  (6 structures)
+=====================================================================================
+
+#  Config             Theory    MC Mean              MC 95% CI  Match?      Direction
+-------------------------------------------------------------------------------------
+1  1_sym_high       0.204262   0.204288 [ 0.203721,  0.204855]     YES AWAY from null  (2.8s)
+2  2_asymmetric     0.219880   0.219876 [ 0.219324,  0.220427]     YES AWAY from null  (2.8s)
+3  3_struct_12      0.263904   0.264000 [ 0.263502,  0.264497]     YES AWAY from null  (2.7s)
+4  4_weak_diag      0.298244   0.298365 [ 0.297893,  0.298837]     YES AWAY from null  (2.7s)
+5  5_near_perm      0.132254   0.131994 [ 0.131379,  0.132609]     YES AWAY from null  (2.8s)
+6  6_differen       0.252212   0.251993 [ 0.251476,  0.252509]     YES AWAY from null  (4.1s)
+
+=====================================================================================
+PART B: Binary Collapse — B=1[A in {1,2}]
+=====================================================================================
+
+#  Config            K3 Bias   Bin Bias     Bin MC          Bin MC 95% CI K3!=Bin?
+----------------------------------------------------------------------------------
+1  1_sym_high       0.204262   0.293041   0.293179 [ 0.292705,  0.293653]      YES  (1.8s)
+2  2_asymmetric     0.219880   0.292031   0.292165 [ 0.291691,  0.292639]      YES  (1.8s)
+3  3_struct_12      0.263904   0.287357   0.287517 [ 0.287044,  0.287990]      YES  (1.7s)
+4  4_weak_diag      0.298244   0.299436   0.299552 [ 0.299083,  0.300022]      YES  (1.7s)
+5  5_near_perm      0.132254   0.235366   0.235246 [ 0.234711,  0.235781]      YES  (1.7s)
+6  6_differen       0.252212   0.297842   0.297893 [ 0.297422,  0.298365]      YES  (3.3s)
+
+=====================================================================================
+PASS / FAIL SUMMARY
+=====================================================================================
+
+1. Theory vs MC 95% CI match: 6/6  PASS
+   1_sym_high: th=0.204262, CI=[0.203721, 0.204855] -> OK
+   2_asymmetric: th=0.219880, CI=[0.219324, 0.220427] -> OK
+   3_struct_12: th=0.263904, CI=[0.263502, 0.264497] -> OK
+   4_weak_diag: th=0.298244, CI=[0.297893, 0.298837] -> OK
+   5_near_perm: th=0.132254, CI=[0.131379, 0.132609] -> OK
+   6_differen: th=0.252212, CI=[0.251476, 0.252509] -> OK
+
+2. Non-diff C with away-from-null bias: 5/5  PASS
+   1_sym_high: bias=0.204262
+   2_asymmetric: bias=0.219880
+   3_struct_12: bias=0.263904
+   4_weak_diag: bias=0.298244
+   5_near_perm: bias=0.132254
+
+3. Binary collapse bias != K=3 theory: 6/6  PASS
+   1_sym_high: K3=0.204262, Bin=0.293041, Delta=-0.088779
+   2_asymmetric: K3=0.219880, Bin=0.292031, Delta=-0.072151
+   3_struct_12: K3=0.263904, Bin=0.287357, Delta=-0.023453
+   4_weak_diag: K3=0.298244, Bin=0.299436, Delta=-0.001193
+   5_near_perm: K3=0.132254, Bin=0.235366, Delta=-0.103112
+   6_differen: K3=0.252212, Bin=0.297842, Delta=-0.045630
+
+OVERALL: PASS
+
+=====================================================================================
+APPENDIX: Confusion Matrix Definitions
+=====================================================================================
+
+1_sym_high [NON-DIFF]
+  Symmetric high-accuracy: diag=0.8, uniform off-diagonal=0.1
+  [0.80  0.10  0.10]
+  [0.10  0.80  0.10]
+  [0.10  0.10  0.80]
+
+2_asymmetric [NON-DIFF]
+  Asymmetric: P(A*=1|A=0)=0.30 >> P(A*=0|A=1)=0.05
+  [0.65  0.05  0.10]
+  [0.30  0.85  0.10]
+  [0.05  0.10  0.80]
+
+3_struct_12 [NON-DIFF]
+  Structural: classes 1<->2 heavily confused (0.30), class 0 clean (off<0.02)
+  [0.96  0.01  0.01]
+  [0.02  0.69  0.30]
+  [0.02  0.30  0.69]
+
+4_weak_diag [NON-DIFF]
+  Weak diagonal dominance: diag~0.4, non-uniform off-diagonal
+  [0.40  0.35  0.25]
+  [0.35  0.40  0.35]
+  [0.25  0.25  0.40]
+
+5_near_perm [NON-DIFF]
+  Near-permutation: cyclic shift 0->1, 1->2, 2->0 (p=0.90)
+  [0.05  0.05  0.90]
+  [0.90  0.05  0.05]
+  [0.05  0.90  0.05]
+
+6_differen [DIFFERENTIAL]
+  Differential: base=C1, off-diagonal doubled when T>median
+  [0.80  0.10  0.10]
+  [0.10  0.80  0.10]
+  [0.10  0.10  0.80]
+  C_high (T>median):
+  [0.60  0.20  0.20]
+  [0.20  0.60  0.20]
+  [0.20  0.20  0.60]
+
+=====================================================================================
+TECHNICAL NOTE: Lee & Wood-Doughty (2024) Distinction
+=====================================================================================
+
+This MVP studies OBSERVED confounding with noisy measurement:
+  - A is an observable confounder (e.g., sentiment, topic)
+  - Researcher uses LLM to annotate A, producing A* with known error structure
+  - A* substitutes for A in regression adjustment for confounding
+  - Error structure: P(A*=j|A=i) = C[j,i], C is estimable from validation data
+
+Lee & Wood-Doughty (2024) study UNOBSERVED confounding with proxy:
+  - A is never observed (latent confounder)
+  - A* is the only available proxy (not a noisy version of something observed)
+  - Requires proxy relevance + exclusion restrictions for identification
+  - Different bias structure: proxy must satisfy E[T|A,A*] = E[T|A]
+
+Key implication: our bias formula plim = (E[Z'Z])^{-1} E[Z'X] beta assumes
+the researcher COULD observe A (and does, for validation), but CHOOSES to use
+A* at scale. The confusion matrix C is a design parameter, not a nuisance.
+

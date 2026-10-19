@@ -1,0 +1,132 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\begin{table}[t]
+\centering
+\caption{Bias under $K{=}3$ non-differential misclassification (100{,}000 Dirichlet$(1,1,1)$ matrices). Violation: $|\text{bias}| > 0$; Sign Flip: any coefficient reverses sign; Amplif.: $|\hat{\tau}| > |\tau|$. $\tau_{\text{sf}}{=}0$?: sign-flip guarantee holds unconditionally (Yes), conditionally (Cond.; Proposition~\ref{prop:signflip}), or not (No). Collider 100\% amplification reflects Berkson bias; misclassification is protective.}
+\label{tab:taxonomy}
+\small
+\resizebox{\columnwidth}{!}{\begin{tabular}{lcccc}
+\toprule
+\textbf{Topology} & \textbf{Violation} & \textbf{Sign Flip} & \textbf{Amplif.} & $\tau_{\text{sf}}{=}0$? \\
+\midrule
+Confounding & 100\% & 0\% & 100\% & Cond. \\
+Exposure & 85\% & 83.4\% & 14.1\% & No \\
+Mediation & 100\% & 0\% & 100\% & Cond. \\
+Front-door & 100\% & 0\% & 100\% & Cond. \\
+Collider & 100\% & 0\% & 100\% & Cond. \\
+M-bias & 53.2\% & 0\% & 10.4\% & Yes \\
+IV & 100\% & 52.6\% & 100\% & No \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+We validate through Monte Carlo simulation ($K{=}3$), cross-$K$ robustness checks ($K{=}5,7$), and empirical validation with real LLM confusion matrices from three natural language processing (NLP) tasks ($K{=}2,3,10$).
+
+\subsection{Setup}
+\label{sec:setup}
+
+For each topology, we sample 100{,}000 confusion matrices from a Dirichlet$(1,1,1)$ prior, compute analytical probability limits, and validate against Monte Carlo simulation ($N{=}10{,}000$). ASV experiments use $C(\delta) = (1{-}\delta)I + \delta C_0$.
+
+\subsection{Bias Taxonomy}
+\label{sec:taxonomy_results}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig7_dirichlet_overlay.pdf}
+\caption{Empirical LLM confusion matrices (markers) overlaid on theoretical violation-rate curves from $K{=}3$ Dirichlet analysis. Left: exposure; right: IV. Real-world accuracy places all models in the low-risk region for IV sign reversal but not for exposure.}
+\label{fig:dirichlet_overlay}
+\end{figure}
+
+\paragraph{Theory-MC agreement.}
+Analytical probability limits match Monte Carlo estimates with mean absolute percentage error (MAPE) of 1.6\%, averaged across 161 scenarios (23 LLM configurations $\times$ 7 topologies; per-topology range: 0.3\%--3.7\%), validating the closed-form derivations and justifying probability limits as practical bias diagnostics.
+
+\paragraph{Exposure DAG: sign reversal under multi-class misclassification.}
+Under realistic accuracy (diagonal $\geq 0.7$), the violation rate is 13.7\% with 2.1\% sign reversal; at diagonal $\geq 0.9$, violation persists at 11.9\% (Appendix~\ref{sec:iv_dirichlet_subspace}). Under the full Dirichlet prior, 85\% of matrices violate the binary ``toward-null'' guarantee and 83.4\% cause sign reversal; $\det(C) < 0.014$ predicts sign reversal with 91\% accuracy (Appendix~\ref{sec:sign_determinants}). The $K{=}2$ control confirms classical attenuation~\cite{brenner1993}. This establishes the multi-class failure as structurally distinct.
+
+\paragraph{Structural guarantee for non-exposure topologies.}
+Five topologies exhibit zero sign-flip rate (Table~\ref{tab:taxonomy}): confounding, mediation, and front-door show 100\% amplification~\cite{brenner1993, dosemeci1990} but never reverse the sign; collider is protective ($|B(C)|$ non-increasing; Conjecture~\ref{conj:monotone}); M-bias shows weakest sensitivity (53.2\% violation). All patterns persist at $K{=}5,7$ (Appendix~\ref{sec:cross_k_robustness}).
+
+\paragraph{IV: Wald estimator instability.}
+The IV topology is the sole non-exposure exception: 52.6\% of random matrices cause sign reversal, stable across $K{=}3,5,7$. Diagonal dominance ($C_{kk} > 0.5$) eliminates sign reversal but preserves amplification (Appendix~\ref{sec:iv_dirichlet_subspace}); however, all 23 empirical LLM configurations show zero IV sign reversal.
+
+Figure~\ref{fig:dirichlet_overlay} overlays all 23 empirical LLM configurations onto the theoretical violation-rate curves; real-world accuracy ($\min_k C_{kk} \geq 0.6$) places all models in the low-risk region for IV but leaves exposure vulnerable.
+
+\subsection{ASV Framework Validation}
+\label{sec:asv_results}
+
+\begin{table}[t]
+\centering
+\small
+\caption{ASV summary across topologies ($K{=}3$, $\tau{=}0.5$). ---: not applicable.}
+\label{tab:asv_summary}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Topology} & \textbf{Mag ASV} & \textbf{Power} & \textbf{Sign-flip} \\
+\midrule
+IV          & 0.10--0.61 & 0\%   & 1.1--6.7 \\
+Front-door  & 0.06--0.39 & 100\% & --- \\
+Confounding & 0.08--0.49 & 100\% & --- \\
+Mediation   & 0.08--0.45 & 0\%   & --- \\
+Collider    & 0.34--2.03 & 0\%   & --- \\
+M-bias      & $\infty$   & 98\%  & --- \\
+Exposure    & ---        & ---   & 83.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{ASV results.}
+The ASV envelope is $\varepsilon$-approximately monotonic ($\varepsilon < 0.02$; Conjecture~\ref{conj:monotone}); IV is maximally fragile, M-bias is immune ($\text{ASV} = \infty$; Figure~\ref{fig:asv_ranking}). Sign-flip ASV: 83.4\% of exposure matrices yield $\delta^*_{\text{sf}} < 1$; IV ranges 1.1--6.7 (Table~\ref{tab:asv_summary}). Significance ASV exhibits a phase transition at $N^* \approx 6{,}000$--$10{,}000$; bootstrap CIs (Appendix~\ref{sec:bootstrap_asv},~\ref{sec:c_robustness}) confirm stable topology ranking, with the safe/fragile partition recovering from $n_{\text{gold}} \geq 100$ (82\% stability; Appendix~\ref{sec:asv_diagnostics},~\ref{sec:asv_case_study}).
+
+\subsection{Empirical Validation}
+\label{sec:empirical}
+
+We validate using real LLM confusion matrices from HumAID~\cite{alam2021humaid} ($K{=}10$), VAST ($K{=}3$), and CivilComments ($K{=}2$): four LLMs, 23 configurations, 161 bias scenarios. HumAID ($K{=}10$) matches predictions: IV (12.4--42.1\%) and exposure (9.0--17.4\%) dominate; remaining topologies $<$15\%. $F_1$ does not exhibit significant rank correlation with bias ($\rho = -0.10$, $p = 0.45$; Figure~\ref{fig:f1_vs_bias}), but per-topology patterns diverge ($\rho \leq -0.53$ for five topologies vs.\ $0.87$ for M-bias; Appendix~\ref{sec:within_topo_f1}). Of exposure coefficients, 14/23 (61\%) exhibit sign reversal, all secondary; zero across 138 non-exposure scenarios.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig5_f1_vs_bias.pdf}
+\caption{Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\times}$ (IV 42.1\% vs.\ collider $<$5.6\%).}
+\label{fig:f1_vs_bias}
+\end{figure}
+
+\subsection{Correction Guidance}
+\label{sec:correction}
+
+We evaluate five correction methods (naive plug-in, maximum likelihood adjustment (MLA), design-based supervised learning (DSL)~\cite{egami_hinck_stewart_wei2023}, Monte Carlo simulation extrapolation (MC-SIMEX)~\cite{kuchenhoff2006simex}, PPI++~\cite{angelopoulos2023}) across all topologies (210 configurations; Table~\ref{tab:correction}, Appendix~\ref{app:supplementary}).
+
+\paragraph{FWL invariance.}
+Under linear regression, FWL invariance renders matrix-based methods (naive plug-in, MLA) provably ineffective for covariate topologies (0\% bias reduction; Appendix~\ref{app:fwl_proof}): the treatment coefficient depends only on the projection orthogonal to the covariate space, so relabeling $A^* \to A$ leaves the coefficient unchanged. Under logistic regression this invariance breaks, but the method ranking persists ($|\Delta| < 0.02$; Appendix~\ref{sec:fwl_nonlinear}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig4_binarization.pdf}
+\caption{Binarization collapse $\Delta$: additional bias from collapsing $K{=}3$ to binary. Topology determines severity ($>$145$\times$ range); exposure and IV exhibit sign flips.}
+\label{fig:binarization}
+\end{figure}
+
+\paragraph{Method ranking and decision procedure.}
+PPI++ achieves the highest root mean squared error (RMSE) reduction (47.0\% at $K{=}3$) but requires gold labels (Appendix~\ref{sec:ppi_gold_ratio}) and harms M-bias ($-$88\%); MC-SIMEX is gold-free and $K$-robust (27--70\%), though it harms front-door ($-$62.4\%); rankings are stable across $K$ ($\rho \geq 0.80$; Appendix~\ref{sec:correction_k_sensitivity}). Algorithm~\ref{alg:correction} routes through risk assessment, method selection, and FWL screening. End-to-end demos (Appendix~\ref{sec:e2e_demo},~\ref{sec:real_cm_demo},~\ref{app:case_study}) validate: PPI++ reduces exposure bias from 42.9\% to 0.2\%, while topology-agnostic IV correction amplifies bias ($-$139\%). Collapsing $K{=}3$ to binary is not a safe fallback: the additional bias $\Delta$ varies $>$145$\times$ by topology (Figure~\ref{fig:binarization}; Appendix~\ref{app:binarization}).
+
+\begin{algorithm}[t]
+\caption{Correction method selection for LLM-annotated causal inference.}
+\label{alg:correction}
+\footnotesize
+\begin{algorithmic}[1]
+\REQUIRE DAG topology $\mathcal{T}$, gold-label availability $G \in \{\textsc{yes}, \textsc{no}\}$
+\ENSURE Recommended method $M$, risk level $R$
+\STATE \textbf{Step 1: Risk assessment} \COMMENT{If $\mathcal{T}$ uncertain, repeat per candidate}
+\STATE $R \gets$ \textsc{Low} if M-bias; \textsc{Med} if Conf/Med/Coll/FD; \textsc{High} if Exp/IV
+\STATE \textbf{Step 2: Method selection}
+\IF{$G = \textsc{yes}$}
+    \STATE $M \gets \text{PPI++}$ (47\% RMSE red.) except M-bias $\to$ \textsc{None} ($-$88\%)
+\ELSE
+    \STATE $M \gets \text{DSL}$ if Conf/Med; \text{MC-SIMEX} if IV/Coll/M-bias; $\emptyset$ otherwise
+\ENDIF
+\STATE \textbf{Step 3: FWL screening}
+\IF{$\mathcal{T} \in \{\text{Conf., Med., Coll., M-bias}\}$}
+    \STATE Skip Naive plug-in and MLA \COMMENT{0\% bias red.\ on $T$}
+\ENDIF
+\RETURN $(M, R)$
+\end{algorithmic}
+\end{algorithm}

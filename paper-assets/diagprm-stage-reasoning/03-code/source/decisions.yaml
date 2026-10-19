@@ -1,0 +1,21 @@
+_next_id: 3
+decisions:
+- id: D001
+  date: 2026-05-11 14:51 UTC
+  summary: MVP 策略：annotation pilot 验证阶段分割和推理质量评估可靠性
+  rationale: DiagPRM 的核心假设是 LLM judge 可以可靠地将 code repair 轨迹分割为 3 个认知阶段并评估各阶段推理质量。这是整个方法的基石——如果分割不可靠或质量评估
+    kappa 过低，后续 PRM 训练和 targeted resampling 都无意义。用 30-50 条 SWE-smith 轨迹做 annotation
+    pilot，2-3 天内可出结果，不需 GPU，是最低成本验证路径。Pass 标准参考 IDEA_BRIEF 中的 kappa 阈值（0.4）并提高分割标准到
+    0.6。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-11 14:54 UTC
+  summary: MVP 判定标准从二档改三档（PASS/CONDITIONAL/FAIL），提前申请云 GPU
+  rationale: Reviewer 指出：(1) 质量 kappa 0.4 vs IDEA_BRIEF 优化方案 0.7 存在不一致，可能给假阳性；(2)
+    0.3-0.6 gray zone 无决策协议；(3) 等 MVP pass 再申请云 GPU 会因 lead time 丢研究窗口。采纳：质量 kappa
+    pass 提至 0.5，新增 conditional pass 档（0.4-0.5，需后续改进到 0.7），partially-good 下限从 15% 降至
+    10%。云 GPU 现在预申请，MVP fail 则取消。
+  related_experiments: []
+  depends_on:
+  - D001

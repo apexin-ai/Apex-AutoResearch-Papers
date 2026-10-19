@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan002_k57_extension",
+  "project": "causal_annot_error_attrib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:55:55.239Z",
+    "updated_at": "2026-05-20T14:56:24.081Z",
+    "hypothesis": "K=3 下观察到的拓扑依赖偏差模式（sign_flip=0% 结构性保证、IV 最脆弱、M-bias 免疫）在 K=5,7 下是否保持：K 增大引入更多 off-diagonal 自由度，可能使偏差更严重（更高 violation/amplification rate）或出现 K=3 未见的新偏差模式。同时验证 matrix-form bias 表达式的 general-K 推广是否成立，并通过 eigendecomposition 识别 dominant bias modes。",
+    "parent": "plan001_dag_taxonomy"
+  },
+  "timestamp": "2026-05-20T14:56:24.133612+00:00",
+  "trigger": "update_registry"
+}

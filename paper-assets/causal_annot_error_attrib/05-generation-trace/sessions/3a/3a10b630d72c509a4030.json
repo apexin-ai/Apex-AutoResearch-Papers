@@ -1,0 +1,1010 @@
+{
+  "schema_version": "1.0",
+  "id": "3a10b630d72c509a4030",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "exp mf1a rerun n1000",
+  "task_key": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mf1a_rerun_n1000_20260523T175940.log",
+    "occurrence": 1,
+    "bytes": 89917,
+    "sha256": "eaee2ea1f2df97f35a8b561cd009a4ec7218260e7dd1b591ac79d255618e5e9b"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2a5a49b3-348f-498f-a1f7-78d52dafa942",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779570000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "713b7056-ba38-4936-9ce8-7db97b5e16ff",
+                "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the script first to find the N_C0 constant, then modify and run it.",
+              "signature": "EpQCCmMIDhgCKkDUza9t2AmSZfRsI3rFNuBKbVnIkTPM9fltOkXYxgab2canB/QWxEQzK/Tq+76KVVZoSZHI4de0V+otauf2FhTPMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGp/pvkAWXhTZSA2WhoMTKtfac0+4kvlReiiIjDumZhipk93DibYS3zYFpZl3Ui1VU3b9zEWOo9vSbKhO5yl5Hy4F7e/7pS77JjEyJQqXxyiNjJEB8CMt36/2OzFmV8wLak/UcH8dXqq9b2ejuX0MhekD0NXhdxiLSlbd9gb2Bl02MmhU18boZgkgRBIHsQudmIStfVmEwMNtBmtIHAeNJmTMKoOaF/xVP+VK7IQGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "dcd1bc0a-5ffd-4bb2-8180-cda88f48c5fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0122qKDoRVmmyEvY7xpRx1fz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13016,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13016
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UNoKZ2BtnhfAVP3waabyFB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "792deb9c-10f3-4ce2-914d-eb5c621675f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0122qKDoRVmmyEvY7xpRx1fz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13016,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13016
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T17:59:55.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UNoKZ2BtnhfAVP3waabyFB",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tMF-1a: Adversarial Monotonicity Test for Conjecture 1.\n4\t\n5\tVerifies ε-approximate envelope monotonicity of |B(C(δ))| along\n6\tC(δ)=(1-δ)I+δC₀ for δ∈[0,1] under 4 adversarial confusion matrix structures.\n7\t\n8\tGrid: 4 adversarial C₀ types × ~9 param configs × 3 K × 7 topologies × 3 β × 100 C₀\n9\t\"\"\"\n10\t\n11\timport json\n12\timport os\n13\timport sys\n14\timport time\n15\timport numpy as np\n16\t\n17\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n18\tfrom exp_d_conjecture_verify_v2 import (\n19\t    ALL_TOPOS, NON_DECREASING, NON_INCREASING,\n20\t    _COMPUTE_SS, make_all_params, get_tau_true,\n21\t    compute_bias_curve,\n22\t)\n23\t\n24\tK_VALUES = [3, 5, 7]\n25\tN_DELTA = 101\n26\tDELTA_STEP = 0.01\n27\tN_C0 = 100\n28\tSEED = 2024\n29\tEPS_THRESHOLD = 0.001\n30\t\n31\tBETA_CONFIGS = ['alternating_large', 'same_sign', 'alternating_small']\n32\tADV_TYPES = ['near_perm', 'block_diag', 'sparse', 'near_uniform']\n33\tADV_PARAMS = {\n34\t    'near_perm': [{'eps': 0.05}, {'eps': 0.1}, {'eps': 0.2}],\n35\t    'block_diag': [{}],\n36\t    'sparse': [{'p_diag': 0.3}, {'p_diag': 0.5}, {'p_diag': 0.7}],\n37\t    'near_uniform': [{'eps': 0.01}, {'eps': 0.05}],\n38\t}\n39\t\n40\tOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n41\t\n42\t\n43\tdef make_beta_vec(name, K):\n44\t    pools = {\n45\t        'alternating_large': [0, 1, -0.5, 0.3, -0.2, 0.1, -0.08],\n46\t        'same_sign':         [0, 0.5, 0.3, 0.2, 0.1, 0.08, 0.05],\n47\t        'alternating_small': [0, 0.2, -0.1, 0.05, -0.03, 0.02, -0.01],\n48\t    }\n49\t    return np.array(pools[name][:K])\n50\t\n51\t\n52\tdef make_params_with_beta(K, beta_name):\n53\t    params = make_all_params(K)\n54\t    bv = make_beta_vec(beta_name, K)\n55\t    params['exposure']['beta'] = bv.copy()\n56\t    params['iv']['beta'] = bv.copy()\n57\t    params['mediation']['beta'] = bv.copy()\n58\t    params['frontdoor']['beta'] = bv.copy()\n59\t    params['confounding']['beta_A'] = bv[1:].copy()\n60\t    params['collider']['dY'] = bv.copy()\n61\t    params['mbias']['a1'] = bv.copy()\n62\t    return params\n63\t\n64\t\n65\tdef gen_C0(adv_type, cfg, K, rng):\n66\t    if adv_type == 'near_perm':\n67\t        perm = rng.permutation(K)\n68\t        P = np.zeros((K, K))\n69\t        P[perm, np.arange(K)] = 1.0\n70\t        e = cfg['eps']\n71\t        return (1 - e) * P + e / K\n72\t\n73\t    if adv_type == 'block_diag':\n74\t        split = max(1, K // 2)\n75\t        C0 = np.zeros((K, K))\n76\t        for j in range(K):\n77\t            if j < split:\n78\t                C0[:split, j] = 1.0 / split\n79\t            else:\n80\t                C0[split:, j] = 1.0 / (K - split)\n81\t        return C0\n82\t\n83\t    if adv_type == 'sparse':\n84\t        pd = cfg['p_diag']\n85\t        C0 = np.zeros((K, K))\n86\t        for k in range(K):\n87\t            C0[k, k] = pd\n88\t            off = [i for i in range(K) if i != k]\n89\t            C0[rng.choice(off), k] = 1 - pd\n90\t        return C0\n91\t\n92\t    if adv_type == 'near_uniform':\n93\t        e = cfg['eps']\n94\t        dv = 1.0 / K + e\n95\t        ov = (1 - dv) / (K - 1)\n96\t        C0 = np.full((K, K), ov)\n97\t        np.fill_diagonal(C0, dv)\n98\t        return C0\n99\t\n100\t\n101\tdef compute_fixed_curve(topo, C0, ss, tau_true):\n102\t    \"\"\"Compute |B(C(δ))| for δ∈[0,1]. Returns (bias_abs[0:101], weak_iv).\"\"\"\n103\t    if topo == 'iv':\n104\t        FS = ss.FS\n105\t        a = float(FS[1])\n106\t        b = float((C0 @ FS)[1])\n107\t        if abs(a) < 1e-15:\n108\t            return None, True\n109\t        if abs(a - b) > 1e-15:\n110\t            d_cross = a / (a - b)\n111\t            if 0 < d_cross < 1:\n112\t                return None, True\n113\t\n114\t    deltas_full, bias_full = compute_bias_curve(\n115\t        topo, C0, ss, tau_true, delta_step=DELTA_STEP)\n116\t    n = min(N_DELTA, len(bias_full))\n117\t    if n < N_DELTA:\n118\t        return None, False\n119\t    return bias_full[:N_DELTA], False\n120\t\n121\t\n122\tdef measure_violation(bias_abs, topo):\n123\t    \"\"\"Return max single-step violation magnitude.\"\"\"\n124\t    valid = ~np.isnan(bias_abs)\n125\t    ba = bias_abs[valid]\n126\t    if len(ba) < 2:\n127\t        return 0.0\n128\t    diffs = np.diff(ba)\n129\t    if topo in NON_DECREASING:\n130\t        drops = -diffs[diffs < 0]\n131\t    else:\n132\t        drops = diffs[diffs > 0]\n133\t    return float(drops.max()) if len(drops) > 0 else 0.0\n134\t\n135\t\n136\tdef main():\n137\t    t0 = time.time()\n138\t    rng = np.random.default_rng(SEED)\n139\t\n140\t    print(\"=\" * 78)\n141\t    print(\"MF-1a: Adversarial Monotonicity Test\")\n142\t    print(f\"  K={K_VALUES}  β={BETA_CONFIGS}\")\n143\t    print(f\"  Adversarial: {ADV_TYPES}\")\n144\t    print(f\"  N_C0={N_C0}  δ steps={N_DELTA}  ε threshold={EPS_THRESHOLD}\")\n145\t    print(\"=\" * 78)\n146\t    sys.stdout.flush()\n147\t\n148\t    all_eps = []\n149\t    by_adv = {a: {'n': 0, 'nm': 0, 'mx': 0.0} for a in ADV_TYPES}\n150\t    by_topo = {t: {'n': 0, 'nm': 0, 'mx': 0.0} for t in ALL_TOPOS}\n151\t    by_K = {str(k): {'n': 0, 'nm': 0, 'mx': 0.0} for k in K_VALUES}\n152\t    worst = []\n153\t    total_weak_iv = 0\n154\t    total_skipped = 0\n155\t\n156\t    n_adv_cfgs = sum(len(v) for v in ADV_PARAMS.values())\n157\t    n_cells = len(K_VALUES) * len(BETA_CONFIGS) * len(ALL_TOPOS) * n_adv_cfgs\n158\t    cell_i = 0\n159\t\n160\t    for K in K_VALUES:\n161\t        for beta_name in BETA_CONFIGS:\n162\t            params = make_params_with_beta(K, beta_name)\n163\t\n164\t            for topo in ALL_TOPOS:\n165\t                ss = _COMPUTE_SS[topo](K, params[topo])\n166\t                tau_true = get_tau_true(topo, K, params, ss)\n167\t\n168\t                if np.isnan(tau_true) or abs(tau_true) < 1e-12:\n169\t                    cell_i += n_adv_cfgs\n170\t                    total_skipped += n_adv_cfgs * N_C0\n171\t                    continue\n172\t\n173\t                for adv_type in ADV_TYPES:\n174\t                    for adv_cfg in ADV_PARAMS[adv_type]:\n175\t                        cell_i += 1\n176\t                        cell_eps = []\n177\t                        cell_nm = 0\n178\t                        cell_weak = 0\n179\t\n180\t                        for _ in range(N_C0):\n181\t                            C0 = gen_C0(adv_type, adv_cfg, K, rng)\n182\t                            curve, weak = compute_fixed_curve(\n183\t                                topo, C0, ss, tau_true)\n184\t\n185\t                            if weak:\n186\t                                cell_weak += 1\n187\t                                continue\n188\t                            if curve is None:\n189\t                                continue\n190\t\n191\t                            eps = measure_violation(curve, topo)\n192\t                            cell_eps.append(eps)\n193\t                            if eps > EPS_THRESHOLD:\n194\t                                cell_nm += 1\n195\t\n196\t                        n_valid = len(cell_eps)\n197\t                        if n_valid == 0:\n198\t                            total_weak_iv += cell_weak\n199\t                            continue\n200\t\n201\t                        mx = max(cell_eps)\n202\t                        total_weak_iv += cell_weak\n203\t                        all_eps.extend(cell_eps)\n204\t\n205\t                        for acc, key in [(by_adv, adv_type),\n206\t                                         (by_topo, topo),\n207\t                                         (by_K, str(K))]:\n208\t                            acc[key]['n'] += n_valid\n209\t                            acc[key]['nm'] += cell_nm\n210\t                            acc[key]['mx'] = max(acc[key]['mx'], mx)\n211\t\n212\t                        if mx > EPS_THRESHOLD:\n213\t                            worst.append({\n214\t                                'topology': topo, 'K': K,\n215\t                                'adversarial': adv_type,\n216\t                                'adv_config': json.dumps(adv_cfg)\n217\t                                              if adv_cfg else \"{}\",\n218\t                                'beta': beta_name,\n219\t                                'eps_abs': mx,\n220\t                                'non_mono_frac': cell_nm / n_valid,\n221\t                                'n_valid': n_valid,\n222\t                                'weak_iv': cell_weak,\n223\t                            })\n224\t\n225\t                        if cell_i % 63 == 0 or cell_i == n_cells:\n226\t                            print(\n227\t                                f\"  [{cell_i:>4}/{n_cells}] K={K} \"\n228\t                                f\"{topo:<12} {adv_type:<14} \"\n229\t                                f\"β={beta_name:<18} max_ε={mx:.6f} \"\n230\t                                f\"nm={cell_nm}/{n_valid}  \"\n231\t                                f\"({time.time()-t0:.1f}s)\")\n232\t                            sys.stdout.flush()\n233\t\n234\t    eps_arr = np.array(all_eps) if all_eps else np.array([0.0])\n235\t    total_curves = len(all_eps)\n236\t    total_nm = sum(1 for e in all_eps if e > EPS_THRESHOLD)\n237\t\n238\t    safe_topos = {'confounding', 'mediation', 'exposure', 'frontdoor'}\n239\t    fragile_topos = {'collider', 'mbias', 'iv'}\n240\t\n241\t    def fmt_acc(d):\n242\t        return {k: {\n243\t            'total_curves': v['n'],\n244\t            'non_monotone_count': v['nm'],\n245\t            'non_monotone_fraction': v['nm'] / max(v['n'], 1),\n246\t            'max_eps_abs': v['mx'],\n247\t        } for k, v in d.items()}\n248\t\n249\t    worst.sort(key=lambda x: -x['eps_abs'])\n250\t    worst = worst[:20]\n251\t\n252\t    output = {\n253\t        'description':\n254\t            'Adversarial envelope monotonicity test for Conjecture 1',\n255\t        'config': {\n256\t            'K_values': K_VALUES,\n257\t            'adversarial_types': ADV_TYPES,\n258\t            'adversarial_params': ADV_PARAMS,\n259\t            'topologies': ALL_TOPOS,\n260\t            'beta_configs': BETA_CONFIGS,\n261\t            'n_C0_per_cell': N_C0,\n262\t            'n_delta_steps': N_DELTA,\n263\t            'delta_step': DELTA_STEP,\n264\t            'eps_threshold': EPS_THRESHOLD,\n265\t            'seed': SEED,\n266\t        },\n267\t        'summary': {\n268\t            'total_curves': total_curves,\n269\t            'non_monotone_fraction':\n270\t                total_nm / max(total_curves, 1),\n271\t            'max_eps_abs': float(eps_arr.max()),\n272\t            'median_eps_abs': float(np.median(eps_arr)),\n273\t            'mean_eps_abs': float(np.mean(eps_arr)),\n274\t            'p95_eps_abs': float(np.percentile(eps_arr, 95)),\n275\t            'p99_eps_abs': float(np.percentile(eps_arr, 99)),\n276\t            'safe_topo_max_eps': float(\n277\t                max(by_topo[t]['mx'] for t in safe_topos)),\n278\t            'fragile_topo_max_eps': float(\n279\t                max(by_topo[t]['mx'] for t in fragile_topos)),\n280\t            'total_weak_iv_filtered': total_weak_iv,\n281\t            'total_skipped_zero_tau': total_skipped,\n282\t        },\n283\t        'by_adversarial_type': fmt_acc(by_adv),\n284\t        'by_topology': fmt_acc(by_topo),\n285\t        'by_K': fmt_acc(by_K),\n286\t        'worst_cases': worst,\n287\t        'elapsed_seconds': time.time() - t0,\n288\t    }\n289\t\n290\t    out_path = os.path.join(OUT_DIR, 'adversarial_monotonicity_results.json')\n291\t    with open(out_path, 'w') as f:\n292\t        json.dump(output, f, indent=2, default=str)\n293\t\n294\t    print(f\"\\nJSON -> {out_path}\")\n295\t    print(f\"\\n{'='*60}\")\n296\t    print(f\"Total curves: {total_curves:,}  \"\n297\t          f\"Non-monotone: {total_nm} \"\n298\t          f\"({total_nm/max(total_curves,1)*100:.3f}%)\")\n299\t    print(f\"Max ε_abs: {eps_arr.max():.6f}  \"\n300\t          f\"Median: {np.median(eps_arr):.6f}\")\n301\t    print(f\"Safe max ε: \"\n302\t          f\"{max(by_topo[t]['mx'] for t in safe_topos):.6f}  \"\n303\t          f\"Fragile max ε: \"\n304\t          f\"{max(by_topo[t]['mx'] for t in fragile_topos):.6f}\")\n305\t    print(f\"Weak-IV filtered: {total_weak_iv}\")\n306\t\n307\t    print(f\"\\nBy topology:\")\n308\t    for t in ALL_TOPOS:\n309\t        d = by_topo[t]\n310\t        dr = 'non-dec' if t in NON_DECREASING else 'non-inc'\n311\t        print(f\"  {t:<14} [{dr}]  n={d['n']:>6}  nm={d['nm']:>5}  \"\n312\t              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n313\t              f\"max_ε={d['mx']:.6f}\")\n314\t\n315\t    print(f\"\\nBy adversarial type:\")\n316\t    for a in ADV_TYPES:\n317\t        d = by_adv[a]\n318\t        print(f\"  {a:<14}  n={d['n']:>6}  nm={d['nm']:>5}  \"\n319\t              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n320\t              f\"max_ε={d['mx']:.6f}\")\n321\t\n322\t    print(f\"\\nBy K:\")\n323\t    for k in K_VALUES:\n324\t        d = by_K[str(k)]\n325\t        print(f\"  K={k}  n={d['n']:>6}  nm={d['nm']:>5}  \"\n326\t              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n327\t              f\"max_ε={d['mx']:.6f}\")\n328\t\n329\t    if worst:\n330\t        print(f\"\\nWorst cases (top 5):\")\n331\t        for w in worst[:5]:\n332\t            print(f\"  {w['topology']:<14} K={w['K']} \"\n333\t                  f\"{w['adversarial']:<14} \"\n334\t                  f\"β={w['beta']:<18} ε={w['eps_abs']:.6f}\")\n335\t\n336\t    print(f\"\\nElapsed: {time.time()-t0:.1f}s\")\n337\t    print('=' * 60)\n338\t\n339\t\n340\tif __name__ == '__main__':\n341\t    main()\n342\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "0919f76b-c76f-4b89-8cc6-5473495cde8b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nMF-1a: Adversarial Monotonicity Test for Conjecture 1.\n\nVerifies ε-approximate envelope monotonicity of |B(C(δ))| along\nC(δ)=(1-δ)I+δC₀ for δ∈[0,1] under 4 adversarial confusion matrix structures.\n\nGrid: 4 adversarial C₀ types × ~9 param configs × 3 K × 7 topologies × 3 β × 100 C₀\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nimport numpy as np\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom exp_d_conjecture_verify_v2 import (\n    ALL_TOPOS, NON_DECREASING, NON_INCREASING,\n    _COMPUTE_SS, make_all_params, get_tau_true,\n    compute_bias_curve,\n)\n\nK_VALUES = [3, 5, 7]\nN_DELTA = 101\nDELTA_STEP = 0.01\nN_C0 = 100\nSEED = 2024\nEPS_THRESHOLD = 0.001\n\nBETA_CONFIGS = ['alternating_large', 'same_sign', 'alternating_small']\nADV_TYPES = ['near_perm', 'block_diag', 'sparse', 'near_uniform']\nADV_PARAMS = {\n    'near_perm': [{'eps': 0.05}, {'eps': 0.1}, {'eps': 0.2}],\n    'block_diag': [{}],\n    'sparse': [{'p_diag': 0.3}, {'p_diag': 0.5}, {'p_diag': 0.7}],\n    'near_uniform': [{'eps': 0.01}, {'eps': 0.05}],\n}\n\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n\n\ndef make_beta_vec(name, K):\n    pools = {\n        'alternating_large': [0, 1, -0.5, 0.3, -0.2, 0.1, -0.08],\n        'same_sign':         [0, 0.5, 0.3, 0.2, 0.1, 0.08, 0.05],\n        'alternating_small': [0, 0.2, -0.1, 0.05, -0.03, 0.02, -0.01],\n    }\n    return np.array(pools[name][:K])\n\n\ndef make_params_with_beta(K, beta_name):\n    params = make_all_params(K)\n    bv = make_beta_vec(beta_name, K)\n    params['exposure']['beta'] = bv.copy()\n    params['iv']['beta'] = bv.copy()\n    params['mediation']['beta'] = bv.copy()\n    params['frontdoor']['beta'] = bv.copy()\n    params['confounding']['beta_A'] = bv[1:].copy()\n    params['collider']['dY'] = bv.copy()\n    params['mbias']['a1'] = bv.copy()\n    return params\n\n\ndef gen_C0(adv_type, cfg, K, rng):\n    if adv_type == 'near_perm':\n        perm = rng.permutation(K)\n        P = np.zeros((K, K))\n        P[perm, np.arange(K)] = 1.0\n        e = cfg['eps']\n        return (1 - e) * P + e / K\n\n    if adv_type == 'block_diag':\n        split = max(1, K // 2)\n        C0 = np.zeros((K, K))\n        for j in range(K):\n            if j < split:\n                C0[:split, j] = 1.0 / split\n            else:\n                C0[split:, j] = 1.0 / (K - split)\n        return C0\n\n    if adv_type == 'sparse':\n        pd = cfg['p_diag']\n        C0 = np.zeros((K, K))\n        for k in range(K):\n            C0[k, k] = pd\n            off = [i for i in range(K) if i != k]\n            C0[rng.choice(off), k] = 1 - pd\n        return C0\n\n    if adv_type == 'near_uniform':\n        e = cfg['eps']\n        dv = 1.0 / K + e\n        ov = (1 - dv) / (K - 1)\n        C0 = np.full((K, K), ov)\n        np.fill_diagonal(C0, dv)\n        return C0\n\n\ndef compute_fixed_curve(topo, C0, ss, tau_true):\n    \"\"\"Compute |B(C(δ))| for δ∈[0,1]. Returns (bias_abs[0:101], weak_iv).\"\"\"\n    if topo == 'iv':\n        FS = ss.FS\n        a = float(FS[1])\n        b = float((C0 @ FS)[1])\n        if abs(a) < 1e-15:\n            return None, True\n        if abs(a - b) > 1e-15:\n            d_cross = a / (a - b)\n            if 0 < d_cross < 1:\n                return None, True\n\n    deltas_full, bias_full = compute_bias_curve(\n        topo, C0, ss, tau_true, delta_step=DELTA_STEP)\n    n = min(N_DELTA, len(bias_full))\n    if n < N_DELTA:\n        return None, False\n    return bias_full[:N_DELTA], False\n\n\ndef measure_violation(bias_abs, topo):\n    \"\"\"Return max single-step violation magnitude.\"\"\"\n    valid = ~np.isnan(bias_abs)\n    ba = bias_abs[valid]\n    if len(ba) < 2:\n        return 0.0\n    diffs = np.diff(ba)\n    if topo in NON_DECREASING:\n        drops = -diffs[diffs < 0]\n    else:\n        drops = diffs[diffs > 0]\n    return float(drops.max()) if len(drops) > 0 else 0.0\n\n\ndef main():\n    t0 = time.time()\n    rng = np.random.default_rng(SEED)\n\n    print(\"=\" * 78)\n    print(\"MF-1a: Adversarial Monotonicity Test\")\n    print(f\"  K={K_VALUES}  β={BETA_CONFIGS}\")\n    print(f\"  Adversarial: {ADV_TYPES}\")\n    print(f\"  N_C0={N_C0}  δ steps={N_DELTA}  ε threshold={EPS_THRESHOLD}\")\n    print(\"=\" * 78)\n    sys.stdout.flush()\n\n    all_eps = []\n    by_adv = {a: {'n': 0, 'nm': 0, 'mx': 0.0} for a in ADV_TYPES}\n    by_topo = {t: {'n': 0, 'nm': 0, 'mx': 0.0} for t in ALL_TOPOS}\n    by_K = {str(k): {'n': 0, 'nm': 0, 'mx': 0.0} for k in K_VALUES}\n    worst = []\n    total_weak_iv = 0\n    total_skipped = 0\n\n    n_adv_cfgs = sum(len(v) for v in ADV_PARAMS.values())\n    n_cells = len(K_VALUES) * len(BETA_CONFIGS) * len(ALL_TOPOS) * n_adv_cfgs\n    cell_i = 0\n\n    for K in K_VALUES:\n        for beta_name in BETA_CONFIGS:\n            params = make_params_with_beta(K, beta_name)\n\n            for topo in ALL_TOPOS:\n                ss = _COMPUTE_SS[topo](K, params[topo])\n                tau_true = get_tau_true(topo, K, params, ss)\n\n                if np.isnan(tau_true) or abs(tau_true) < 1e-12:\n                    cell_i += n_adv_cfgs\n                    total_skipped += n_adv_cfgs * N_C0\n                    continue\n\n                for adv_type in ADV_TYPES:\n                    for adv_cfg in ADV_PARAMS[adv_type]:\n                        cell_i += 1\n                        cell_eps = []\n                        cell_nm = 0\n                        cell_weak = 0\n\n                        for _ in range(N_C0):\n                            C0 = gen_C0(adv_type, adv_cfg, K, rng)\n                            curve, weak = compute_fixed_curve(\n                                topo, C0, ss, tau_true)\n\n                            if weak:\n                                cell_weak += 1\n                                continue\n                            if curve is None:\n                                continue\n\n                            eps = measure_violation(curve, topo)\n                            cell_eps.append(eps)\n                            if eps > EPS_THRESHOLD:\n                                cell_nm += 1\n\n                        n_valid = len(cell_eps)\n                        if n_valid == 0:\n                            total_weak_iv += cell_weak\n                            continue\n\n                        mx = max(cell_eps)\n                        total_weak_iv += cell_weak\n                        all_eps.extend(cell_eps)\n\n                        for acc, key in [(by_adv, adv_type),\n                                         (by_topo, topo),\n                                         (by_K, str(K))]:\n                            acc[key]['n'] += n_valid\n                            acc[key]['nm'] += cell_nm\n                            acc[key]['mx'] = max(acc[key]['mx'], mx)\n\n                        if mx > EPS_THRESHOLD:\n                            worst.append({\n                                'topology': topo, 'K': K,\n                                'adversarial': adv_type,\n                                'adv_config': json.dumps(adv_cfg)\n                                              if adv_cfg else \"{}\",\n                                'beta': beta_name,\n                                'eps_abs': mx,\n                                'non_mono_frac': cell_nm / n_valid,\n                                'n_valid': n_valid,\n                                'weak_iv': cell_weak,\n                            })\n\n                        if cell_i % 63 == 0 or cell_i == n_cells:\n                            print(\n                                f\"  [{cell_i:>4}/{n_cells}] K={K} \"\n                                f\"{topo:<12} {adv_type:<14} \"\n                                f\"β={beta_name:<18} max_ε={mx:.6f} \"\n                                f\"nm={cell_nm}/{n_valid}  \"\n                                f\"({time.time()-t0:.1f}s)\")\n                            sys.stdout.flush()\n\n    eps_arr = np.array(all_eps) if all_eps else np.array([0.0])\n    total_curves = len(all_eps)\n    total_nm = sum(1 for e in all_eps if e > EPS_THRESHOLD)\n\n    safe_topos = {'confounding', 'mediation', 'exposure', 'frontdoor'}\n    fragile_topos = {'collider', 'mbias', 'iv'}\n\n    def fmt_acc(d):\n        return {k: {\n            'total_curves': v['n'],\n            'non_monotone_count': v['nm'],\n            'non_monotone_fraction': v['nm'] / max(v['n'], 1),\n            'max_eps_abs': v['mx'],\n        } for k, v in d.items()}\n\n    worst.sort(key=lambda x: -x['eps_abs'])\n    worst = worst[:20]\n\n    output = {\n        'description':\n            'Adversarial envelope monotonicity test for Conjecture 1',\n        'config': {\n            'K_values': K_VALUES,\n            'adversarial_types': ADV_TYPES,\n            'adversarial_params': ADV_PARAMS,\n            'topologies': ALL_TOPOS,\n            'beta_configs': BETA_CONFIGS,\n            'n_C0_per_cell': N_C0,\n            'n_delta_steps': N_DELTA,\n            'delta_step': DELTA_STEP,\n            'eps_threshold': EPS_THRESHOLD,\n            'seed': SEED,\n        },\n        'summary': {\n            'total_curves': total_curves,\n            'non_monotone_fraction':\n                total_nm / max(total_curves, 1),\n            'max_eps_abs': float(eps_arr.max()),\n            'median_eps_abs': float(np.median(eps_arr)),\n            'mean_eps_abs': float(np.mean(eps_arr)),\n            'p95_eps_abs': float(np.percentile(eps_arr, 95)),\n            'p99_eps_abs': float(np.percentile(eps_arr, 99)),\n            'safe_topo_max_eps': float(\n                max(by_topo[t]['mx'] for t in safe_topos)),\n            'fragile_topo_max_eps': float(\n                max(by_topo[t]['mx'] for t in fragile_topos)),\n            'total_weak_iv_filtered': total_weak_iv,\n            'total_skipped_zero_tau': total_skipped,\n        },\n        'by_adversarial_type': fmt_acc(by_adv),\n        'by_topology': fmt_acc(by_topo),\n        'by_K': fmt_acc(by_K),\n        'worst_cases': worst,\n        'elapsed_seconds': time.time() - t0,\n    }\n\n    out_path = os.path.join(OUT_DIR, 'adversarial_monotonicity_results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2, default=str)\n\n    print(f\"\\nJSON -> {out_path}\")\n    print(f\"\\n{'='*60}\")\n    print(f\"Total curves: {total_curves:,}  \"\n          f\"Non-monotone: {total_nm} \"\n          f\"({total_nm/max(total_curves,1)*100:.3f}%)\")\n    print(f\"Max ε_abs: {eps_arr.max():.6f}  \"\n          f\"Median: {np.median(eps_arr):.6f}\")\n    print(f\"Safe max ε: \"\n          f\"{max(by_topo[t]['mx'] for t in safe_topos):.6f}  \"\n          f\"Fragile max ε: \"\n          f\"{max(by_topo[t]['mx'] for t in fragile_topos):.6f}\")\n    print(f\"Weak-IV filtered: {total_weak_iv}\")\n\n    print(f\"\\nBy topology:\")\n    for t in ALL_TOPOS:\n        d = by_topo[t]\n        dr = 'non-dec' if t in NON_DECREASING else 'non-inc'\n        print(f\"  {t:<14} [{dr}]  n={d['n']:>6}  nm={d['nm']:>5}  \"\n              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n              f\"max_ε={d['mx']:.6f}\")\n\n    print(f\"\\nBy adversarial type:\")\n    for a in ADV_TYPES:\n        d = by_adv[a]\n        print(f\"  {a:<14}  n={d['n']:>6}  nm={d['nm']:>5}  \"\n              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n              f\"max_ε={d['mx']:.6f}\")\n\n    print(f\"\\nBy K:\")\n    for k in K_VALUES:\n        d = by_K[str(k)]\n        print(f\"  K={k}  n={d['n']:>6}  nm={d['nm']:>5}  \"\n              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n              f\"max_ε={d['mx']:.6f}\")\n\n    if worst:\n        print(f\"\\nWorst cases (top 5):\")\n        for w in worst[:5]:\n            print(f\"  {w['topology']:<14} K={w['K']} \"\n                  f\"{w['adversarial']:<14} \"\n                  f\"β={w['beta']:<18} ε={w['eps_abs']:.6f}\")\n\n    print(f\"\\nElapsed: {time.time()-t0:.1f}s\")\n    print('=' * 60)\n\n\nif __name__ == '__main__':\n    main()\n",
+                "numLines": 342,
+                "startLine": 1,
+                "totalLines": 342
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011CujdWpJGJMMhj431G1uwS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "3bab5a54-066c-4ac3-8234-a2cf06fde6a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0122qKDoRVmmyEvY7xpRx1fz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13016,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13016
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T17:59:55.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011CujdWpJGJMMhj431G1uwS",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"description\": \"Adversarial envelope monotonicity test for Conjecture 1\",\n3\t  \"config\": {\n4\t    \"K_values\": [\n5\t      3,\n6\t      5,\n7\t      7\n8\t    ],\n9\t    \"adversarial_types\": [\n10\t      \"near_perm\",\n11\t      \"block_diag\",\n12\t      \"sparse\",\n13\t      \"near_uniform\"\n14\t    ],\n15\t    \"adversarial_params\": {\n16\t      \"near_perm\": [\n17\t        {\n18\t          \"eps\": 0.05\n19\t        },\n20\t        {\n21\t          \"eps\": 0.1\n22\t        },\n23\t        {\n24\t          \"eps\": 0.2\n25\t        }\n26\t      ],\n27\t      \"block_diag\": [\n28\t        {}\n29\t      ],\n30\t      \"sparse\": [\n31\t        {\n32\t          \"p_diag\": 0.3\n33\t        },\n34\t        {\n35\t          \"p_diag\": 0.5\n36\t        },\n37\t        {\n38\t          \"p_diag\": 0.7\n39\t        }\n40\t      ],\n41\t      \"near_uniform\": [\n42\t        {\n43\t          \"eps\": 0.01\n44\t        },\n45\t        {\n46\t          \"eps\": 0.05\n47\t        }\n48\t      ]\n49\t    },\n50\t    \"topologies\": [\n51\t      \"confounding\",\n52\t      \"mediation\",\n53\t      \"collider\",\n54\t      \"exposure\",\n55\t      \"mbias\",\n56\t      \"iv\",\n57\t      \"frontdoor\"\n58\t    ],\n59\t    \"beta_configs\": [\n60\t      \"alternating_large\",\n61\t      \"same_sign\",\n62\t      \"alternating_small\"\n63\t    ],\n64\t    \"n_C0_per_cell\": 100,\n65\t    \"n_delta_steps\": 101,\n66\t    \"delta_step\": 0.01,\n67\t    \"eps_threshold\": 0.001,\n68\t    \"seed\": 2024\n69\t  },\n70\t  \"summary\": {\n71\t    \"total_curves\": 54611,\n72\t    \"non_monotone_fraction\": 0.11933493252275183,\n73\t    \"max_eps_abs\": 0.01636529529573094,\n74\t    \"median_eps_abs\": 0.0,\n75\t    \"mean_eps_abs\": 0.00047372456391479953,\n76\t    \"p95_eps_abs\": 0.002532176988620627,\n77\t    \"p99_eps_abs\": 0.008253228263722434,\n78\t    \"safe_topo_max_eps\": 0.01636529529573094,\n79\t    \"fragile_topo_max_eps\": 0.013176775652375183,\n80\t    \"total_weak_iv_filtered\": 2089,\n81\t    \"total_skipped_zero_tau\": 0\n82\t  },\n83\t  \"by_adversarial_type\": {\n84\t    \"near_perm\": {\n85\t      \"total_curves\": 17279,\n86\t      \"non_monotone_count\": 6096,\n87\t      \"non_monotone_fraction\": 0.35279819433995024,\n88\t      \"max_eps_abs\": 0.01636529529573094\n89\t    },\n90\t    \"block_diag\": {\n91\t      \"total_curves\": 6300,\n92\t      \"non_monotone_count\": 0,\n93\t      \"non_monotone_fraction\": 0.0,\n94\t      \"max_eps_abs\": 0.0003959986339877597\n95\t    },\n96\t    \"sparse\": {\n97\t      \"total_curves\": 18432,\n98\t      \"non_monotone_count\": 421,\n99\t      \"non_monotone_fraction\": 0.022840711805555556,\n100\t      \"max_eps_abs\": 0.0026147855238671802\n101\t    },\n102\t    \"near_uniform\": {\n103\t      \"total_curves\": 12600,\n104\t      \"non_monotone_count\": 0,\n105\t      \"non_monotone_fraction\": 0.0,\n106\t      \"max_eps_abs\": 0.0\n107\t    }\n108\t  },\n109\t  \"by_topology\": {\n110\t    \"confounding\": {\n111\t      \"total_curves\": 8100,\n112\t      \"non_monotone_count\": 1706,\n113\t      \"non_monotone_fraction\": 0.2106172839506173,\n114\t      \"max_eps_abs\": 0.01636529529573094\n115\t    },\n116\t    \"mediation\": {\n117\t      \"total_curves\": 8100,\n118\t      \"non_monotone_count\": 1612,\n119\t      \"non_monotone_fraction\": 0.19901234567901235,\n120\t      \"max_eps_abs\": 0.013039414209438105\n121\t    },\n122\t    \"collider\": {\n123\t      \"total_curves\": 8100,\n124\t      \"non_monotone_count\": 1431,\n125\t      \"non_monotone_fraction\": 0.17666666666666667,\n126\t      \"max_eps_abs\": 0.013176775652375183\n127\t    },\n128\t    \"exposure\": {\n129\t      \"total_curves\": 8100,\n130\t      \"non_monotone_count\": 55,\n131\t      \"non_monotone_fraction\": 0.006790123456790123,\n132\t      \"max_eps_abs\": 0.008412534039272779\n133\t    },\n134\t    \"mbias\": {\n135\t      \"total_curves\": 8100,\n136\t      \"non_monotone_count\": 117,\n137\t      \"non_monotone_fraction\": 0.014444444444444444,\n138\t      \"max_eps_abs\": 0.001425926795405319\n139\t    },\n140\t    \"iv\": {\n141\t      \"total_curves\": 6011,\n142\t      \"non_monotone_count\": 0,\n143\t      \"non_monotone_fraction\": 0.0,\n144\t      \"max_eps_abs\": 0.0\n145\t    },\n146\t    \"frontdoor\": {\n147\t      \"total_curves\": 8100,\n148\t      \"non_monotone_count\": 1596,\n149\t      \"non_monotone_fraction\": 0.19703703703703704,\n150\t      \"max_eps_abs\": 0.01582784663255976\n151\t    }\n152\t  },\n153\t  \"by_K\": {\n154\t    \"3\": {\n155\t      \"total_curves\": 18068,\n156\t      \"non_monotone_count\": 2595,\n157\t      \"non_monotone_fraction\": 0.14362408678326322,\n158\t      \"max_eps_abs\": 0.01636529529573094\n159\t    },\n160\t    \"5\": {\n161\t      \"total_curves\": 18239,\n162\t      \"non_monotone_count\": 2177,\n163\t      \"non_monotone_fraction\": 0.1193596140139262,\n164\t      \"max_eps_abs\": 0.013448880884805892\n165\t    },\n166\t    \"7\": {\n167\t      \"total_curves\": 18304,\n168\t      \"non_monotone_count\": 1745,\n169\t      \"non_monotone_fraction\": 0.09533435314685315,\n170\t      \"max_eps_abs\": 0.01228196943393689\n171\t    }\n172\t  },\n173\t  \"worst_cases\": [\n174\t    {\n175\t      \"topology\": \"confounding\",\n176\t      \"K\": 3,\n177\t      \"adversarial\": \"near_perm\",\n178\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n179\t      \"beta\": \"alternating_large\",\n180\t      \"eps_abs\": 0.01636529529573094,\n181\t      \"non_mono_frac\": 0.83,\n182\t      \"n_valid\": 100,\n183\t      \"weak_iv\": 0\n184\t    },\n185\t    {\n186\t      \"topology\": \"frontdoor\",\n187\t      \"K\": 3,\n188\t      \"adversarial\": \"near_perm\",\n189\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n190\t      \"beta\": \"alternating_large\",\n191\t      \"eps_abs\": 0.01582784663255976,\n192\t      \"non_mono_frac\": 0.83,\n193\t      \"n_valid\": 100,\n194\t      \"weak_iv\": 0\n195\t    },\n196\t    {\n197\t      \"topology\": \"confounding\",\n198\t      \"K\": 5,\n199\t      \"adversarial\": \"near_perm\",\n200\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n201\t      \"beta\": \"alternating_large\",\n202\t      \"eps_abs\": 0.013448880884805892,\n203\t      \"non_mono_frac\": 0.93,\n204\t      \"n_valid\": 100,\n205\t      \"weak_iv\": 0\n206\t    },\n207\t    {\n208\t      \"topology\": \"collider\",\n209\t      \"K\": 3,\n210\t      \"adversarial\": \"near_perm\",\n211\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n212\t      \"beta\": \"alternating_large\",\n213\t      \"eps_abs\": 0.013176775652375183,\n214\t      \"non_mono_frac\": 0.85,\n215\t      \"n_valid\": 100,\n216\t      \"weak_iv\": 0\n217\t    },\n218\t    {\n219\t      \"topology\": \"frontdoor\",\n220\t      \"K\": 3,\n221\t      \"adversarial\": \"near_perm\",\n222\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n223\t      \"beta\": \"alternating_large\",\n224\t      \"eps_abs\": 0.013119570146454929,\n225\t      \"non_mono_frac\": 0.67,\n226\t      \"n_valid\": 100,\n227\t      \"weak_iv\": 0\n228\t    },\n229\t    {\n230\t      \"topology\": \"mediation\",\n231\t      \"K\": 3,\n232\t      \"adversarial\": \"near_perm\",\n233\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n234\t      \"beta\": \"alternating_large\",\n235\t      \"eps_abs\": 0.013039414209438105,\n236\t      \"non_mono_frac\": 0.68,\n237\t      \"n_valid\": 100,\n238\t      \"weak_iv\": 0\n239\t    },\n240\t    {\n241\t      \"topology\": \"confounding\",\n242\t      \"K\": 3,\n243\t      \"adversarial\": \"near_perm\",\n244\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n245\t      \"beta\": \"alternating_large\",\n246\t      \"eps_abs\": 0.012757437777432656,\n247\t      \"non_mono_frac\": 0.59,\n248\t      \"n_valid\": 100,\n249\t      \"weak_iv\": 0\n250\t    },\n251\t    {\n252\t      \"topology\": \"confounding\",\n253\t      \"K\": 7,\n254\t      \"adversarial\": \"near_perm\",\n255\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n256\t      \"beta\": \"alternating_large\",\n257\t      \"eps_abs\": 0.01228196943393689,\n258\t      \"non_mono_frac\": 0.97,\n259\t      \"n_valid\": 100,\n260\t      \"weak_iv\": 0\n261\t    },\n262\t    {\n263\t      \"topology\": \"frontdoor\",\n264\t      \"K\": 5,\n265\t      \"adversarial\": \"near_perm\",\n266\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n267\t      \"beta\": \"alternating_large\",\n268\t      \"eps_abs\": 0.011683394507531975,\n269\t      \"non_mono_frac\": 0.93,\n270\t      \"n_valid\": 100,\n271\t      \"weak_iv\": 0\n272\t    },\n273\t    {\n274\t      \"topology\": \"collider\",\n275\t      \"K\": 3,\n276\t      \"adversarial\": \"near_perm\",\n277\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n278\t      \"beta\": \"alternating_large\",\n279\t      \"eps_abs\": 0.011415854138354109,\n280\t      \"non_mono_frac\": 0.64,\n281\t      \"n_valid\": 100,\n282\t      \"weak_iv\": 0\n283\t    },\n284\t    {\n285\t      \"topology\": \"collider\",\n286\t      \"K\": 5,\n287\t      \"adversarial\": \"near_perm\",\n288\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n289\t      \"beta\": \"alternating_large\",\n290\t      \"eps_abs\": 0.011211164249701366,\n291\t      \"non_mono_frac\": 0.9,\n292\t      \"n_valid\": 100,\n293\t      \"weak_iv\": 0\n294\t    },\n295\t    {\n296\t      \"topology\": \"mediation\",\n297\t      \"K\": 3,\n298\t      \"adversarial\": \"near_perm\",\n299\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n300\t      \"beta\": \"alternating_large\",\n301\t      \"eps_abs\": 0.011106313189383377,\n302\t      \"non_mono_frac\": 0.7,\n303\t      \"n_valid\": 100,\n304\t      \"weak_iv\": 0\n305\t    },\n306\t    {\n307\t      \"topology\": \"confounding\",\n308\t      \"K\": 5,\n309\t      \"adversarial\": \"near_perm\",\n310\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n311\t      \"beta\": \"alternating_large\",\n312\t      \"eps_abs\": 0.01085926805028814,\n313\t      \"non_mono_frac\": 0.88,\n314\t      \"n_valid\": 100,\n315\t      \"weak_iv\": 0\n316\t    },\n317\t    {\n318\t      \"topology\": \"frontdoor\",\n319\t      \"K\": 5,\n320\t      \"adversarial\": \"near_perm\",\n321\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n322\t      \"beta\": \"alternating_large\",\n323\t      \"eps_abs\": 0.010074228393916806,\n324\t      \"non_mono_frac\": 0.9,\n325\t      \"n_valid\": 100,\n326\t      \"weak_iv\": 0\n327\t    },\n328\t    {\n329\t      \"topology\": \"confounding\",\n330\t      \"K\": 7,\n331\t      \"adversarial\": \"near_perm\",\n332\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n333\t      \"beta\": \"alternating_large\",\n334\t      \"eps_abs\": 0.009905378807955945,\n335\t      \"non_mono_frac\": 0.9,\n336\t      \"n_valid\": 100,\n337\t      \"weak_iv\": 0\n338\t    },\n339\t    {\n340\t      \"topology\": \"collider\",\n341\t      \"K\": 5,\n342\t      \"adversarial\": \"near_perm\",\n343\t      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n344\t      \"beta\": \"alternating_large\",\n345\t      \"eps_abs\": 0.009610794170357817,\n346\t      \"non_mono_frac\": 0.88,\n347\t      \"n_valid\": 100,\n348\t      \"weak_iv\": 0\n349\t    },\n350\t    {\n351\t      \"topology\": \"mediation\",\n352\t      \"K\": 5,\n353\t      \"adversarial\": \"near_perm\",\n354\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n355\t      \"beta\": \"alternating_large\",\n356\t      \"eps_abs\": 0.009526241091829313,\n357\t      \"non_mono_frac\": 0.91,\n358\t      \"n_valid\": 100,\n359\t      \"weak_iv\": 0\n360\t    },\n361\t    {\n362\t      \"topology\": \"collider\",\n363\t      \"K\": 7,\n364\t      \"adversarial\": \"near_perm\",\n365\t      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n366\t      \"beta\": \"alternating_large\",\n367\t      \"eps_abs\": 0.00931339722668767,\n368\t      \"non_mono_frac\": 0.91,\n369\t      \"n_valid\": 100,\n370\t      \"weak_iv\": 0\n371\t    },\n372\t    {\n373\t      \"topology\": \"frontdoor\",\n374\t      \"K\": 3,\n375\t      \"adversarial\": \"near_perm\",\n376\t      \"adv_config\": \"{\\\"eps\\\": 0.2}\",\n377\t      \"beta\": \"alternating_large\",\n378\t      \"eps_abs\": 0.009193851154494781,\n379\t      \"non_mono_frac\": 0.71,\n380\t      \"n_valid\": 100,\n381\t      \"weak_iv\": 0\n382\t    },\n383\t    {\n384\t      \"topology\": \"collider\",\n385\t      \"K\": 3,\n386\t      \"adversarial\": \"near_perm\",\n387\t      \"adv_config\": \"{\\\"eps\\\": 0.2}\",\n388\t      \"beta\": \"alternating_large\",\n389\t      \"eps_abs\": 0.008602903194176226,\n390\t      \"non_mono_frac\": 0.67,\n391\t      \"n_valid\": 100,\n392\t      \"weak_iv\": 0\n393\t    }\n394\t  ],\n395\t  \"elapsed_seconds\": 14.309123754501343\n396\t}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "2a0ad7b3-0bfe-4aca-85a1-94b1b45f2d09",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json",
+                "content": "{\n  \"description\": \"Adversarial envelope monotonicity test for Conjecture 1\",\n  \"config\": {\n    \"K_values\": [\n      3,\n      5,\n      7\n    ],\n    \"adversarial_types\": [\n      \"near_perm\",\n      \"block_diag\",\n      \"sparse\",\n      \"near_uniform\"\n    ],\n    \"adversarial_params\": {\n      \"near_perm\": [\n        {\n          \"eps\": 0.05\n        },\n        {\n          \"eps\": 0.1\n        },\n        {\n          \"eps\": 0.2\n        }\n      ],\n      \"block_diag\": [\n        {}\n      ],\n      \"sparse\": [\n        {\n          \"p_diag\": 0.3\n        },\n        {\n          \"p_diag\": 0.5\n        },\n        {\n          \"p_diag\": 0.7\n        }\n      ],\n      \"near_uniform\": [\n        {\n          \"eps\": 0.01\n        },\n        {\n          \"eps\": 0.05\n        }\n      ]\n    },\n    \"topologies\": [\n      \"confounding\",\n      \"mediation\",\n      \"collider\",\n      \"exposure\",\n      \"mbias\",\n      \"iv\",\n      \"frontdoor\"\n    ],\n    \"beta_configs\": [\n      \"alternating_large\",\n      \"same_sign\",\n      \"alternating_small\"\n    ],\n    \"n_C0_per_cell\": 100,\n    \"n_delta_steps\": 101,\n    \"delta_step\": 0.01,\n    \"eps_threshold\": 0.001,\n    \"seed\": 2024\n  },\n  \"summary\": {\n    \"total_curves\": 54611,\n    \"non_monotone_fraction\": 0.11933493252275183,\n    \"max_eps_abs\": 0.01636529529573094,\n    \"median_eps_abs\": 0.0,\n    \"mean_eps_abs\": 0.00047372456391479953,\n    \"p95_eps_abs\": 0.002532176988620627,\n    \"p99_eps_abs\": 0.008253228263722434,\n    \"safe_topo_max_eps\": 0.01636529529573094,\n    \"fragile_topo_max_eps\": 0.013176775652375183,\n    \"total_weak_iv_filtered\": 2089,\n    \"total_skipped_zero_tau\": 0\n  },\n  \"by_adversarial_type\": {\n    \"near_perm\": {\n      \"total_curves\": 17279,\n      \"non_monotone_count\": 6096,\n      \"non_monotone_fraction\": 0.35279819433995024,\n      \"max_eps_abs\": 0.01636529529573094\n    },\n    \"block_diag\": {\n      \"total_curves\": 6300,\n      \"non_monotone_count\": 0,\n      \"non_monotone_fraction\": 0.0,\n      \"max_eps_abs\": 0.0003959986339877597\n    },\n    \"sparse\": {\n      \"total_curves\": 18432,\n      \"non_monotone_count\": 421,\n      \"non_monotone_fraction\": 0.022840711805555556,\n      \"max_eps_abs\": 0.0026147855238671802\n    },\n    \"near_uniform\": {\n      \"total_curves\": 12600,\n      \"non_monotone_count\": 0,\n      \"non_monotone_fraction\": 0.0,\n      \"max_eps_abs\": 0.0\n    }\n  },\n  \"by_topology\": {\n    \"confounding\": {\n      \"total_curves\": 8100,\n      \"non_monotone_count\": 1706,\n      \"non_monotone_fraction\": 0.2106172839506173,\n      \"max_eps_abs\": 0.01636529529573094\n    },\n    \"mediation\": {\n      \"total_curves\": 8100,\n      \"non_monotone_count\": 1612,\n      \"non_monotone_fraction\": 0.19901234567901235,\n      \"max_eps_abs\": 0.013039414209438105\n    },\n    \"collider\": {\n      \"total_curves\": 8100,\n      \"non_monotone_count\": 1431,\n      \"non_monotone_fraction\": 0.17666666666666667,\n      \"max_eps_abs\": 0.013176775652375183\n    },\n    \"exposure\": {\n      \"total_curves\": 8100,\n      \"non_monotone_count\": 55,\n      \"non_monotone_fraction\": 0.006790123456790123,\n      \"max_eps_abs\": 0.008412534039272779\n    },\n    \"mbias\": {\n      \"total_curves\": 8100,\n      \"non_monotone_count\": 117,\n      \"non_monotone_fraction\": 0.014444444444444444,\n      \"max_eps_abs\": 0.001425926795405319\n    },\n    \"iv\": {\n      \"total_curves\": 6011,\n      \"non_monotone_count\": 0,\n      \"non_monotone_fraction\": 0.0,\n      \"max_eps_abs\": 0.0\n    },\n    \"frontdoor\": {\n      \"total_curves\": 8100,\n      \"non_monotone_count\": 1596,\n      \"non_monotone_fraction\": 0.19703703703703704,\n      \"max_eps_abs\": 0.01582784663255976\n    }\n  },\n  \"by_K\": {\n    \"3\": {\n      \"total_curves\": 18068,\n      \"non_monotone_count\": 2595,\n      \"non_monotone_fraction\": 0.14362408678326322,\n      \"max_eps_abs\": 0.01636529529573094\n    },\n    \"5\": {\n      \"total_curves\": 18239,\n      \"non_monotone_count\": 2177,\n      \"non_monotone_fraction\": 0.1193596140139262,\n      \"max_eps_abs\": 0.013448880884805892\n    },\n    \"7\": {\n      \"total_curves\": 18304,\n      \"non_monotone_count\": 1745,\n      \"non_monotone_fraction\": 0.09533435314685315,\n      \"max_eps_abs\": 0.01228196943393689\n    }\n  },\n  \"worst_cases\": [\n    {\n      \"topology\": \"confounding\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.01636529529573094,\n      \"non_mono_frac\": 0.83,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"frontdoor\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.01582784663255976,\n      \"non_mono_frac\": 0.83,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"confounding\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.013448880884805892,\n      \"non_mono_frac\": 0.93,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"collider\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.013176775652375183,\n      \"non_mono_frac\": 0.85,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"frontdoor\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.013119570146454929,\n      \"non_mono_frac\": 0.67,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"mediation\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.013039414209438105,\n      \"non_mono_frac\": 0.68,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"confounding\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.012757437777432656,\n      \"non_mono_frac\": 0.59,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"confounding\",\n      \"K\": 7,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.01228196943393689,\n      \"non_mono_frac\": 0.97,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"frontdoor\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.011683394507531975,\n      \"non_mono_frac\": 0.93,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"collider\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.011415854138354109,\n      \"non_mono_frac\": 0.64,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"collider\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.011211164249701366,\n      \"non_mono_frac\": 0.9,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"mediation\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.011106313189383377,\n      \"non_mono_frac\": 0.7,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"confounding\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.01085926805028814,\n      \"non_mono_frac\": 0.88,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"frontdoor\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.010074228393916806,\n      \"non_mono_frac\": 0.9,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"confounding\",\n      \"K\": 7,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.009905378807955945,\n      \"non_mono_frac\": 0.9,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"collider\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.1}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.009610794170357817,\n      \"non_mono_frac\": 0.88,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"mediation\",\n      \"K\": 5,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.009526241091829313,\n      \"non_mono_frac\": 0.91,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"collider\",\n      \"K\": 7,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.05}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.00931339722668767,\n      \"non_mono_frac\": 0.91,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"frontdoor\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.2}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.009193851154494781,\n      \"non_mono_frac\": 0.71,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    },\n    {\n      \"topology\": \"collider\",\n      \"K\": 3,\n      \"adversarial\": \"near_perm\",\n      \"adv_config\": \"{\\\"eps\\\": 0.2}\",\n      \"beta\": \"alternating_large\",\n      \"eps_abs\": 0.008602903194176226,\n      \"non_mono_frac\": 0.67,\n      \"n_valid\": 100,\n      \"weak_iv\": 0\n    }\n  ],\n  \"elapsed_seconds\": 14.309123754501343\n}",
+                "numLines": 396,
+                "startLine": 1,
+                "totalLines": 396
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Found it. Line 27: `N_C0 = 100`. I need to change it to 1000. Let me save the old results for comparison, then modify and run.\n\nKey old values to compare:\n- total_curves: 54,611\n- non_monotone_fraction: 0.1193\n- max_eps_abs: 0.01637\n- median_eps_abs: 0.0\n- mean_eps_abs: 0.000474\n- p95_eps_abs: 0.00253\n\n\n- p99_eps_abs: 0.00825\n- elapsed_seconds: 14.3s",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "5de11777-d2e3-4696-ac12-f3edb1953bf5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEqWFDWUd2DP8Cvda4hBt3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10183,
+                "cache_read_input_tokens": 24857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10183
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "N=100 baseline noted. Changing N_C0 to 1000 and running."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "2364df2e-34ca-4f79-b84d-0557cc17d1ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEqWFDWUd2DP8Cvda4hBt3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10183,
+                "cache_read_input_tokens": 24857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10183
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011oU6VQ2nvNmZuA3XpZ13dE",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py",
+                "old_string": "N_C0 = 100",
+                "new_string": "N_C0 = 1000"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "3023aa94-cc42-44eb-b097-82087f7b7f8a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEqWFDWUd2DP8Cvda4hBt3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10183,
+                "cache_read_input_tokens": 24857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10183
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T18:00:04.610Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011oU6VQ2nvNmZuA3XpZ13dE",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "f663a4d9-51a5-41bb-a7c8-8887dffc87a0",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py",
+              "oldString": "N_C0 = 100",
+              "newString": "N_C0 = 1000",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"\nMF-1a: Adversarial Monotonicity Test for Conjecture 1.\n\nVerifies ε-approximate envelope monotonicity of |B(C(δ))| along\nC(δ)=(1-δ)I+δC₀ for δ∈[0,1] under 4 adversarial confusion matrix structures.\n\nGrid: 4 adversarial C₀ types × ~9 param configs × 3 K × 7 topologies × 3 β × 100 C₀\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\nimport numpy as np\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom exp_d_conjecture_verify_v2 import (\n    ALL_TOPOS, NON_DECREASING, NON_INCREASING,\n    _COMPUTE_SS, make_all_params, get_tau_true,\n    compute_bias_curve,\n)\n\nK_VALUES = [3, 5, 7]\nN_DELTA = 101\nDELTA_STEP = 0.01\nN_C0 = 100\nSEED = 2024\nEPS_THRESHOLD = 0.001\n\nBETA_CONFIGS = ['alternating_large', 'same_sign', 'alternating_small']\nADV_TYPES = ['near_perm', 'block_diag', 'sparse', 'near_uniform']\nADV_PARAMS = {\n    'near_perm': [{'eps': 0.05}, {'eps': 0.1}, {'eps': 0.2}],\n    'block_diag': [{}],\n    'sparse': [{'p_diag': 0.3}, {'p_diag': 0.5}, {'p_diag': 0.7}],\n    'near_uniform': [{'eps': 0.01}, {'eps': 0.05}],\n}\n\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n\n\ndef make_beta_vec(name, K):\n    pools = {\n        'alternating_large': [0, 1, -0.5, 0.3, -0.2, 0.1, -0.08],\n        'same_sign':         [0, 0.5, 0.3, 0.2, 0.1, 0.08, 0.05],\n        'alternating_small': [0, 0.2, -0.1, 0.05, -0.03, 0.02, -0.01],\n    }\n    return np.array(pools[name][:K])\n\n\ndef make_params_with_beta(K, beta_name):\n    params = make_all_params(K)\n    bv = make_beta_vec(beta_name, K)\n    params['exposure']['beta'] = bv.copy()\n    params['iv']['beta'] = bv.copy()\n    params['mediation']['beta'] = bv.copy()\n    params['frontdoor']['beta'] = bv.copy()\n    params['confounding']['beta_A'] = bv[1:].copy()\n    params['collider']['dY'] = bv.copy()\n    params['mbias']['a1'] = bv.copy()\n    return params\n\n\ndef gen_C0(adv_type, cfg, K, rng):\n    if adv_type == 'near_perm':\n        perm = rng.permutation(K)\n        P = np.zeros((K, K))\n        P[perm, np.arange(K)] = 1.0\n        e = cfg['eps']\n        return (1 - e) * P + e / K\n\n    if adv_type == 'block_diag':\n        split = max(1, K // 2)\n        C0 = np.zeros((K, K))\n        for j in range(K):\n            if j < split:\n                C0[:split, j] = 1.0 / split\n            else:\n                C0[split:, j] = 1.0 / (K - split)\n        return C0\n\n    if adv_type == 'sparse':\n        pd = cfg['p_diag']\n        C0 = np.zeros((K, K))\n        for k in range(K):\n            C0[k, k] = pd\n            off = [i for i in range(K) if i != k]\n            C0[rng.choice(off), k] = 1 - pd\n        return C0\n\n    if adv_type == 'near_uniform':\n        e = cfg['eps']\n        dv = 1.0 / K + e\n        ov = (1 - dv) / (K - 1)\n        C0 = np.full((K, K), ov)\n        np.fill_diagonal(C0, dv)\n        return C0\n\n\ndef compute_fixed_curve(topo, C0, ss, tau_true):\n    \"\"\"Compute |B(C(δ))| for δ∈[0,1]. Returns (bias_abs[0:101], weak_iv).\"\"\"\n    if topo == 'iv':\n        FS = ss.FS\n        a = float(FS[1])\n        b = float((C0 @ FS)[1])\n        if abs(a) < 1e-15:\n            return None, True\n        if abs(a - b) > 1e-15:\n            d_cross = a / (a - b)\n            if 0 < d_cross < 1:\n                return None, True\n\n    deltas_full, bias_full = compute_bias_curve(\n        topo, C0, ss, tau_true, delta_step=DELTA_STEP)\n    n = min(N_DELTA, len(bias_full))\n    if n < N_DELTA:\n        return None, False\n    return bias_full[:N_DELTA], False\n\n\ndef measure_violation(bias_abs, topo):\n    \"\"\"Return max single-step violation magnitude.\"\"\"\n    valid = ~np.isnan(bias_abs)\n    ba = bias_abs[valid]\n    if len(ba) < 2:\n        return 0.0\n    diffs = np.diff(ba)\n    if topo in NON_DECREASING:\n        drops = -diffs[diffs < 0]\n    else:\n        drops = diffs[diffs > 0]\n    return float(drops.max()) if len(drops) > 0 else 0.0\n\n\ndef main():\n    t0 = time.time()\n    rng = np.random.default_rng(SEED)\n\n    print(\"=\" * 78)\n    print(\"MF-1a: Adversarial Monotonicity Test\")\n    print(f\"  K={K_VALUES}  β={BETA_CONFIGS}\")\n    print(f\"  Adversarial: {ADV_TYPES}\")\n    print(f\"  N_C0={N_C0}  δ steps={N_DELTA}  ε threshold={EPS_THRESHOLD}\")\n    print(\"=\" * 78)\n    sys.stdout.flush()\n\n    all_eps = []\n    by_adv = {a: {'n': 0, 'nm': 0, 'mx': 0.0} for a in ADV_TYPES}\n    by_topo = {t: {'n': 0, 'nm': 0, 'mx': 0.0} for t in ALL_TOPOS}\n    by_K = {str(k): {'n': 0, 'nm': 0, 'mx': 0.0} for k in K_VALUES}\n    worst = []\n    total_weak_iv = 0\n    total_skipped = 0\n\n    n_adv_cfgs = sum(len(v) for v in ADV_PARAMS.values())\n    n_cells = len(K_VALUES) * len(BETA_CONFIGS) * len(ALL_TOPOS) * n_adv_cfgs\n    cell_i = 0\n\n    for K in K_VALUES:\n        for beta_name in BETA_CONFIGS:\n            params = make_params_with_beta(K, beta_name)\n\n            for topo in ALL_TOPOS:\n                ss = _COMPUTE_SS[topo](K, params[topo])\n                tau_true = get_tau_true(topo, K, params, ss)\n\n                if np.isnan(tau_true) or abs(tau_true) < 1e-12:\n                    cell_i += n_adv_cfgs\n                    total_skipped += n_adv_cfgs * N_C0\n                    continue\n\n                for adv_type in ADV_TYPES:\n                    for adv_cfg in ADV_PARAMS[adv_type]:\n                        cell_i += 1\n                        cell_eps = []\n                        cell_nm = 0\n                        cell_weak = 0\n\n                        for _ in range(N_C0):\n                            C0 = gen_C0(adv_type, adv_cfg, K, rng)\n                            curve, weak = compute_fixed_curve(\n                                topo, C0, ss, tau_true)\n\n                            if weak:\n                                cell_weak += 1\n                                continue\n                            if curve is None:\n                                continue\n\n                            eps = measure_violation(curve, topo)\n                            cell_eps.append(eps)\n                            if eps > EPS_THRESHOLD:\n                                cell_nm += 1\n\n                        n_valid = len(cell_eps)\n                        if n_valid == 0:\n                            total_weak_iv += cell_weak\n                            continue\n\n                        mx = max(cell_eps)\n                        total_weak_iv += cell_weak\n                        all_eps.extend(cell_eps)\n\n                        for acc, key in [(by_adv, adv_type),\n                                         (by_topo, topo),\n                                         (by_K, str(K))]:\n                            acc[key]['n'] += n_valid\n                            acc[key]['nm'] += cell_nm\n                            acc[key]['mx'] = max(acc[key]['mx'], mx)\n\n                        if mx > EPS_THRESHOLD:\n                            worst.append({\n                                'topology': topo, 'K': K,\n                                'adversarial': adv_type,\n                                'adv_config': json.dumps(adv_cfg)\n                                              if adv_cfg else \"{}\",\n                                'beta': beta_name,\n                                'eps_abs': mx,\n                                'non_mono_frac': cell_nm / n_valid,\n                                'n_valid': n_valid,\n                                'weak_iv': cell_weak,\n                            })\n\n                        if cell_i % 63 == 0 or cell_i == n_cells:\n                            print(\n                                f\"  [{cell_i:>4}/{n_cells}] K={K} \"\n                                f\"{topo:<12} {adv_type:<14} \"\n                                f\"β={beta_name:<18} max_ε={mx:.6f} \"\n                                f\"nm={cell_nm}/{n_valid}  \"\n                                f\"({time.time()-t0:.1f}s)\")\n                            sys.stdout.flush()\n\n    eps_arr = np.array(all_eps) if all_eps else np.array([0.0])\n    total_curves = len(all_eps)\n    total_nm = sum(1 for e in all_eps if e > EPS_THRESHOLD)\n\n    safe_topos = {'confounding', 'mediation', 'exposure', 'frontdoor'}\n    fragile_topos = {'collider', 'mbias', 'iv'}\n\n    def fmt_acc(d):\n        return {k: {\n            'total_curves': v['n'],\n            'non_monotone_count': v['nm'],\n            'non_monotone_fraction': v['nm'] / max(v['n'], 1),\n            'max_eps_abs': v['mx'],\n        } for k, v in d.items()}\n\n    worst.sort(key=lambda x: -x['eps_abs'])\n    worst = worst[:20]\n\n    output = {\n        'description':\n            'Adversarial envelope monotonicity test for Conjecture 1',\n        'config': {\n            'K_values': K_VALUES,\n            'adversarial_types': ADV_TYPES,\n            'adversarial_params': ADV_PARAMS,\n            'topologies': ALL_TOPOS,\n            'beta_configs': BETA_CONFIGS,\n            'n_C0_per_cell': N_C0,\n            'n_delta_steps': N_DELTA,\n            'delta_step': DELTA_STEP,\n            'eps_threshold': EPS_THRESHOLD,\n            'seed': SEED,\n        },\n        'summary': {\n            'total_curves': total_curves,\n            'non_monotone_fraction':\n                total_nm / max(total_curves, 1),\n            'max_eps_abs': float(eps_arr.max()),\n            'median_eps_abs': float(np.median(eps_arr)),\n            'mean_eps_abs': float(np.mean(eps_arr)),\n            'p95_eps_abs': float(np.percentile(eps_arr, 95)),\n            'p99_eps_abs': float(np.percentile(eps_arr, 99)),\n            'safe_topo_max_eps': float(\n                max(by_topo[t]['mx'] for t in safe_topos)),\n            'fragile_topo_max_eps': float(\n                max(by_topo[t]['mx'] for t in fragile_topos)),\n            'total_weak_iv_filtered': total_weak_iv,\n            'total_skipped_zero_tau': total_skipped,\n        },\n        'by_adversarial_type': fmt_acc(by_adv),\n        'by_topology': fmt_acc(by_topo),\n        'by_K': fmt_acc(by_K),\n        'worst_cases': worst,\n        'elapsed_seconds': time.time() - t0,\n    }\n\n    out_path = os.path.join(OUT_DIR, 'adversarial_monotonicity_results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2, default=str)\n\n    print(f\"\\nJSON -> {out_path}\")\n    print(f\"\\n{'='*60}\")\n    print(f\"Total curves: {total_curves:,}  \"\n          f\"Non-monotone: {total_nm} \"\n          f\"({total_nm/max(total_curves,1)*100:.3f}%)\")\n    print(f\"Max ε_abs: {eps_arr.max():.6f}  \"\n          f\"Median: {np.median(eps_arr):.6f}\")\n    print(f\"Safe max ε: \"\n          f\"{max(by_topo[t]['mx'] for t in safe_topos):.6f}  \"\n          f\"Fragile max ε: \"\n          f\"{max(by_topo[t]['mx'] for t in fragile_topos):.6f}\")\n    print(f\"Weak-IV filtered: {total_weak_iv}\")\n\n    print(f\"\\nBy topology:\")\n    for t in ALL_TOPOS:\n        d = by_topo[t]\n        dr = 'non-dec' if t in NON_DECREASING else 'non-inc'\n        print(f\"  {t:<14} [{dr}]  n={d['n']:>6}  nm={d['nm']:>5}  \"\n              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n              f\"max_ε={d['mx']:.6f}\")\n\n    print(f\"\\nBy adversarial type:\")\n    for a in ADV_TYPES:\n        d = by_adv[a]\n        print(f\"  {a:<14}  n={d['n']:>6}  nm={d['nm']:>5}  \"\n              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n              f\"max_ε={d['mx']:.6f}\")\n\n    print(f\"\\nBy K:\")\n    for k in K_VALUES:\n        d = by_K[str(k)]\n        print(f\"  K={k}  n={d['n']:>6}  nm={d['nm']:>5}  \"\n              f\"({d['nm']/max(d['n'],1)*100:.2f}%)  \"\n              f\"max_ε={d['mx']:.6f}\")\n\n    if worst:\n        print(f\"\\nWorst cases (top 5):\")\n        for w in worst[:5]:\n            print(f\"  {w['topology']:<14} K={w['K']} \"\n                  f\"{w['adversarial']:<14} \"\n                  f\"β={w['beta']:<18} ε={w['eps_abs']:.6f}\")\n\n    print(f\"\\nElapsed: {time.time()-t0:.1f}s\")\n    print('=' * 60)\n\n\nif __name__ == '__main__':\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 24,
+                  "oldLines": 7,
+                  "newStart": 24,
+                  "newLines": 7,
+                  "lines": [
+                    " K_VALUES = [3, 5, 7]",
+                    " N_DELTA = 101",
+                    " DELTA_STEP = 0.01",
+                    "-N_C0 = 100",
+                    "+N_C0 = 1000",
+                    " SEED = 2024",
+                    " EPS_THRESHOLD = 0.001",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GWkBc9R5qYxo2uspdasJRg",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 adversarial_monotonicity_test.py",
+                "description": "Run adversarial monotonicity test with N_C0=1000",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "626cc0d4-5c7a-4d11-a526-2f4cc2cbc87c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016PUVcjhNG5jBddCfJTbcPJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 410,
+                "cache_read_input_tokens": 35040,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 410
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b2ecklq06",
+                "tool_use_id": "toolu_01GWkBc9R5qYxo2uspdasJRg",
+                "description": "Run adversarial monotonicity test with N_C0=1000",
+                "task_type": "local_bash",
+                "uuid": "4ee32622-ec03-4f60-805e-833f4323a806",
+                "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b2ecklq06",
+                "tool_use_id": "toolu_01GWkBc9R5qYxo2uspdasJRg",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run adversarial monotonicity test with N_C0=1000",
+                "uuid": "7acdf526-840c-42fb-9cef-3be3b44c2382",
+                "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T18:02:24.699Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GWkBc9R5qYxo2uspdasJRg",
+              "type": "tool_result",
+              "content": "==============================================================================\nMF-1a: Adversarial Monotonicity Test\n  K=[3, 5, 7]  β=['alternating_large', 'same_sign', 'alternating_small']\n  Adversarial: ['near_perm', 'block_diag', 'sparse', 'near_uniform']\n  N_C0=1000  δ steps=101  ε threshold=0.001\n==============================================================================\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py:682: RuntimeWarning: divide by zero encountered in divide\n  taus = np.where(np.abs(denom) < 1e-15, np.nan, ss.RF / denom)\n  [  63/567] K=3 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (14.3s)\n  [ 126/567] K=3 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (27.0s)\n  [ 189/567] K=3 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (40.0s)\n  [ 252/567] K=5 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (55.0s)\n  [ 315/567] K=5 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (69.2s)\n  [ 378/567] K=5 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (83.1s)\n  [ 441/567] K=7 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (100.4s)\n  [ 504/567] K=7 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (118.4s)\n  [ 567/567] K=7 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (135.7s)\n\nJSON -> /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json\n\n============================================================\nTotal curves: 545,945  Non-monotone: 65182 (11.939%)\nMax ε_abs: 0.016365  Median: 0.000000\nSafe max ε: 0.016365  Fragile max ε: 0.013177\nWeak-IV filtered: 21055\n\nBy topology:\n  confounding    [non-dec]  n= 81000  nm=17407  (21.49%)  max_ε=0.016365\n  mediation      [non-dec]  n= 81000  nm=15990  (19.74%)  max_ε=0.013039\n  collider       [non-inc]  n= 81000  nm=14031  (17.32%)  max_ε=0.013177\n  exposure       [non-dec]  n= 81000  nm=  594  (0.73%)  max_ε=0.008413\n  mbias          [non-inc]  n= 81000  nm= 1163  (1.44%)  max_ε=0.001532\n  iv             [non-dec]  n= 59945  nm=    0  (0.00%)  max_ε=0.000000\n  frontdoor      [non-dec]  n= 81000  nm=15997  (19.75%)  max_ε=0.015828\n\nBy adversarial type:\n  near_perm       n=172403  nm=61004  (35.38%)  max_ε=0.016365\n  block_diag      n= 63000  nm=    0  (0.00%)  max_ε=0.000396\n  sparse          n=184542  nm= 4178  (2.26%)  max_ε=0.002615\n  near_uniform    n=126000  nm=    0  (0.00%)  max_ε=0.000000\n\nBy K:\n  K=3  n=180683  nm=26007  (14.39%)  max_ε=0.016365\n  K=5  n=182402  nm=21721  (11.91%)  max_ε=0.013449\n  K=7  n=182860  nm=17454  (9.55%)  max_ε=0.012378\n\nWorst cases (top 5):\n  confounding    K=3 near_perm      β=alternating_large  ε=0.016365\n  frontdoor      K=3 near_perm      β=alternating_large  ε=0.015828\n  confounding    K=5 near_perm      β=alternating_large  ε=0.013449\n  collider       K=3 near_perm      β=alternating_large  ε=0.013177\n  frontdoor      K=3 near_perm      β=alternating_large  ε=0.013120\n\nElapsed: 135.8s\n============================================================",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "5dd5a45a-54bb-4846-8e7c-04f09c7bbdf8",
+            "tool_use_result": {
+              "stdout": "==============================================================================\nMF-1a: Adversarial Monotonicity Test\n  K=[3, 5, 7]  β=['alternating_large', 'same_sign', 'alternating_small']\n  Adversarial: ['near_perm', 'block_diag', 'sparse', 'near_uniform']\n  N_C0=1000  δ steps=101  ε threshold=0.001\n==============================================================================\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py:682: RuntimeWarning: divide by zero encountered in divide\n  taus = np.where(np.abs(denom) < 1e-15, np.nan, ss.RF / denom)\n  [  63/567] K=3 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (14.3s)\n  [ 126/567] K=3 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (27.0s)\n  [ 189/567] K=3 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (40.0s)\n  [ 252/567] K=5 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (55.0s)\n  [ 315/567] K=5 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (69.2s)\n  [ 378/567] K=5 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (83.1s)\n  [ 441/567] K=7 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (100.4s)\n  [ 504/567] K=7 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (118.4s)\n  [ 567/567] K=7 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (135.7s)\n\nJSON -> /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json\n\n============================================================\nTotal curves: 545,945  Non-monotone: 65182 (11.939%)\nMax ε_abs: 0.016365  Median: 0.000000\nSafe max ε: 0.016365  Fragile max ε: 0.013177\nWeak-IV filtered: 21055\n\nBy topology:\n  confounding    [non-dec]  n= 81000  nm=17407  (21.49%)  max_ε=0.016365\n  mediation      [non-dec]  n= 81000  nm=15990  (19.74%)  max_ε=0.013039\n  collider       [non-inc]  n= 81000  nm=14031  (17.32%)  max_ε=0.013177\n  exposure       [non-dec]  n= 81000  nm=  594  (0.73%)  max_ε=0.008413\n  mbias          [non-inc]  n= 81000  nm= 1163  (1.44%)  max_ε=0.001532\n  iv             [non-dec]  n= 59945  nm=    0  (0.00%)  max_ε=0.000000\n  frontdoor      [non-dec]  n= 81000  nm=15997  (19.75%)  max_ε=0.015828\n\nBy adversarial type:\n  near_perm       n=172403  nm=61004  (35.38%)  max_ε=0.016365\n  block_diag      n= 63000  nm=    0  (0.00%)  max_ε=0.000396\n  sparse          n=184542  nm= 4178  (2.26%)  max_ε=0.002615\n  near_uniform    n=126000  nm=    0  (0.00%)  max_ε=0.000000\n\nBy K:\n  K=3  n=180683  nm=26007  (14.39%)  max_ε=0.016365\n  K=5  n=182402  nm=21721  (11.91%)  max_ε=0.013449\n  K=7  n=182860  nm=17454  (9.55%)  max_ε=0.012378\n\nWorst cases (top 5):\n  confounding    K=3 near_perm      β=alternating_large  ε=0.016365\n  frontdoor      K=3 near_perm      β=alternating_large  ε=0.015828\n  confounding    K=5 near_perm      β=alternating_large  ε=0.013449\n  collider       K=3 near_perm      β=alternating_large  ε=0.013177\n  frontdoor      K=3 near_perm      β=alternating_large  ε=0.013120\n\nElapsed: 135.8s\n============================================================",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "3e838354-b39f-4aba-85e3-b4f2e4aa5fa3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X5DbyoWYb7bykRNX3JXFYw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1589,
+                "cache_read_input_tokens": 35450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1589
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SJ5qBmafmRDvyK24kYzdGM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "2f85e20d-d782-48c9-ad0c-32524a6da12d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X5DbyoWYb7bykRNX3JXFYw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1589,
+                "cache_read_input_tokens": 35450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1589
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T18:02:29.053Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01SJ5qBmafmRDvyK24kYzdGM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "803783c6-c346-4944-b2ec-21da8b89883d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013cDrbLqmZWMaP1DiEon2bS",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "adversarial_monotonicity_results_N1000",
+                "type": "data",
+                "description": "MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous). 545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.",
+                "project": "causal_annot_error_attrib",
+                "source_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json",
+                "tags": [
+                  "MF-1a",
+                  "monotonicity",
+                  "conjecture1",
+                  "adversarial"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "db11332d-0ebb-4734-afd0-beff6347cb5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012iggkhpkyWgex8nLAgksTT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 37039,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 49,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T18:02:35.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013cDrbLqmZWMaP1DiEon2bS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_b60bb1\\\", \\\"name\\\": \\\"adversarial_monotonicity_results_N1000\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous). 545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.\\\", \\\"path\\\": \\\"projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results_b60bb1.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"causal_annot_error_attrib\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T18:02:35.685975+00:00\\\", \\\"tags\\\": [\\\"MF-1a\\\", \\\"monotonicity\\\", \\\"conjecture1\\\", \\\"adversarial\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "ad8cca07-5784-47a7-b860-b677a62f0cb9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_b60bb1\\\", \\\"name\\\": \\\"adversarial_monotonicity_results_N1000\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous). 545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.\\\", \\\"path\\\": \\\"projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results_b60bb1.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"causal_annot_error_attrib\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T18:02:35.685975+00:00\\\", \\\"tags\\\": [\\\"MF-1a\\\", \\\"monotonicity\\\", \\\"conjecture1\\\", \\\"adversarial\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_b60bb1\", \"name\": \"adversarial_monotonicity_results_N1000\", \"type\": \"data\", \"description\": \"MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous). 545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.\", \"path\": \"projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results_b60bb1.json\", \"url\": null, \"project\": \"causal_annot_error_attrib\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T18:02:35.685975+00:00\", \"tags\": [\"MF-1a\", \"monotonicity\", \"conjecture1\", \"adversarial\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "N=1000 重跑完成（135.8s）。核心数字对比：\n\n| 指标 | N=100 | N=1000 | 变化 |\n|------|-------|--------|------|\n| total_curves | 54,611 | 545,945 | ×10 |\n| non_monotone_fraction | 11.93% | 11.94% | 稳定 |\n| max_eps_abs | 0.01637 | 0.01637 | 不变 |\n| median_eps_abs | 0.0 | 0.0 | 不变 |\n| mean_eps_abs | 0.000474 | — | — |\n| p95_eps_abs | 0.00253 | — | — |\n| p99_eps_abs | 0.00825 | — | — |\n| safe_topo_max_eps | 0.01637 | 0.01637 | 不变 |\n| fragile_topo_max_eps | 0.01318 | 0.01318 | 不变 |\n| weak_iv_filtered | 2,089 | 21,055 | ×10 |\n\n结论：10 倍采样量下所有关键指标高度稳定，max ε bound 未被突破，non-monotone fraction 收敛于 ~11.9%，bound 可信度得到增强。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "uuid": "e6482836-d4b1-4089-bd1e-d99dda3b51d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015g1qCTp1iXpiHxK6LAKmyE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 37762,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 623
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "N=1000 重跑完成（135.8s）。核心数字对比：\n\n| 指标 | N=100 | N=1000 | 变化 |\n|------|-------|--------|------|\n| total_curves | 54,611 | 545,945 | ×10 |\n| non_monotone_fraction | 11.93% | 11.94% | 稳定 |\n| max_eps_abs | 0.01637 | 0.01637 | 不变 |\n| median_eps_abs | 0.0 | 0.0 | 不变 |\n| mean_eps_abs | 0.000474 | — | — |\n| p95_eps_abs | 0.00253 | — | — |\n| p99_eps_abs | 0.00825 | — | — |\n| safe_topo_max_eps | 0.01637 | 0.01637 | 不变 |\n| fragile_topo_max_eps | 0.01318 | 0.01318 | 不变 |\n| weak_iv_filtered | 2,089 | 21,055 | ×10 |\n\n结论：10 倍采样量下所有关键指标高度稳定，max ε bound 未被突破，non-monotone fraction 收敛于 ~11.9%，bound 可信度得到增强。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 176362,
+            "duration_api_ms": 40817,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "b93770e6-3894-40fd-a47d-ec8fb4d700d4",
+            "total_cost_usd": 0.29412550000000004,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 26544,
+              "cache_read_input_tokens": 181989,
+              "output_tokens": 1442,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26544,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 368,
+                  "cache_read_input_tokens": 37762,
+                  "cache_creation_input_tokens": 623,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 623
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1021,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001136,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1442,
+                "cacheReadInputTokens": 181989,
+                "cacheCreationInputTokens": 26544,
+                "webSearchRequests": 0,
+                "costUSD": 0.2929895,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4eb3351a-bf4e-479a-99ab-df5c228e08e8"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-mf1a-rerun-n1000.md"
+}

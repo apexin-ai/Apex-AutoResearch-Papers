@@ -1,0 +1,69 @@
+# reviewer / loop_1.md
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_1.md`
+- **Structured JSON:** [`bde2620d5950abf62a74.json`](../../sessions/bd/bde2620d5950abf62a74.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_wall_time
+updated: '2026-05-21T01:29:09+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 服务器 home-1x5090(sonny) 的 GPU 白名单未在 execution config 中明确看到，但本项目主要是 CPU 计算（plim 解析 + 混淆矩阵运算），训练类 GPU 审查暂不适用
+- plan_006 JSON 数据（`artifacts/plan006/asv_empirical_results.json`）是论文唯一实证数据源——任何修改必须同步 fig5/fig6 脚本 + experiments.tex 数值
+- 论文目标 AAAI 2027（abstract DDL 2026-07-21），但 LaTeX 用 aaai2026.sty——如果发现 style file 不匹配要提醒
+- Qwen2.5-7B 本地推理结果（civil_comments/vast）与 HumAID frontier 模型数据不能混用作同一级别实证，已 warning Director
+
+### 2. 🖥️ 基础设施快照
+- 服务器：home-1x5090(sonny)，代码根目录 `/home/sonny/causal_annot_error_attrib`
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/`
+- 论文：`docs/paper/` 下 main.tex + 各章节 .tex
+- 核心代码：`annot_sensitivity/` toolkit（bias.py / asv.py / correction.py / dgp.py / confusion.py / utils.py），47 tests 全通过
+- 关键数据：`artifacts/plan006/asv_empirical_results.json`（121KB，HumAID K=10 实证）
+- 新增数据：服务器上 `results/{civil_comments,vast}/qwen2.5-7b_*.{jsonl,npz}`（本地 7B 推理，6 组）
+- 无 wandb 配置，无活跃训练进程，无 cron 任务
+
+### 3. 📊 当前状态
+**刚完成的审查**：
+1. M007 数据完整性最终验证 — 4/4 PASS（gen_diagnostic_plots.py 已改为直接读 JSON，unsafe 比例正确，§4.6 L116 修正，无残留 mock）
+2. Introduction + Related Work 叙事审查 — Overall 7/10，2 warning（em-dash AI 风格 4 处需清零；Contribution 3 过载 binarization 应移走）+ 4 info
+3. 本地推理 worker 审查 — warning（Qwen2.5-7B 与 frontier 模型档次不一致；VAST 46% 精度近随机）
+
+**等待中**：
+- Paper Agent 对 Introduction/Related Work 审查意见的响应（是否修 em-dash、重组 Contribution 3）
+- Director 对本地推理 warning 的决策（是否用 7B 数据、是否充值 API 重跑 frontier）
+- API 402 充值后 vast/civil_comments 18 tasks 重跑
+
+### 4. 📋 待办
+- Paper Agent 提交修改后的 Intro/RW → 再次审查（关注 em-dash 是否清零、binarization 是否移出 Contribution 3）
+- Director 决定用 Qwen2.5-7B 数据 → 审查论文中是否明确标注模型档次差异，VAST 低精度是否诚实披露
+- API 充值完成 + frontier 模型重跑 vast/civil_comments → 审查新混淆矩阵质量，验证 K=3 exposure sign reversal 实证
+- 新 experiments.tex 章节提交 → 全面 Step 5 审查（数字溯源 + 叙事一致性）
+- fig5/fig6 重新生成后 → 视觉审查（pdf_to_images 验证图表质量）
+- deepseek few-shot parsing errors 修复后 → 验证是否增加可用 config 数量
+
+### 5. 🎯 战略上下文
+- **核心结论链**：K≥3 打破 binary toward-null guarantee → 5/7 拓扑有 sign-flip guarantee（3 formal proof + 7 MC）→ exposure 83.4% + IV 52.6% sign reversal → ASV 三类型量化脆弱性谱 → FWL invariance 证明 4/7 拓扑矩阵校正无效 → PPI++ 93.8% 但需 gold labels
+- **最容易判断错的事**：(1) bias_pct 在 JSON 中存储为**分数**（如 0.421 = 42.1%），不是已乘 100 的百分比——gen_diagnostic_plots.py 的 `*100` 是正确的；(2) §4.6 的 "63 scenarios" 包含 failed config 的 7 个 trivially-safe 条目，不是 56；(3) exposure unsafe 是 7/9=77.8% 不是 8/9，其余三个 unsafe 拓扑（mediation/frontdoor/iv）才是 8/9=88.9%
+- **容易踩的坑**：不要把 Qwen2.5-7B 本地结果与 HumAID frontier 结果等同对待——模型档次差一个数量级；VAST 46% 精度的混淆矩阵不能作为 "practical LLM annotation" 的代表
+
+
+---

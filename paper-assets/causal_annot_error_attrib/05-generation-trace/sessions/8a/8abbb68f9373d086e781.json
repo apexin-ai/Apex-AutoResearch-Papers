@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8abbb68f9373d086e781",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "viz fig5 fig6 regen",
+  "task_key": "worker_viz_fig5_fig6_regen_20260521T080430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig5_fig6_regen_20260521T080430_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "bd36a529a061a01c8beb6aea2b1f1f15dc9ed9938817361f7c00fc4f47f37e66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Report\n\n**Status**: needed fix. fig5 was already correct; fig6 had wrong denominator.\n\n**Bug found**: `gen_diagnostic_plots.py` filtered `macro_f1 > 0` only for fig5 scatter. The fig6 ASV heatmap loop over `data['type1_type2']` did **not** filter, so denominators were 9 (including `qwen3 few-shot-5` zero-matrix config):\n- exposure showed 7/9 (77.8%) instead of 7/8 (87.5%)\n- mediation/IV/frontdoor showed 8/9 (88.9%) instead of 8/8 (100%)\n\n**Fix**: added top-level `zero_configs` set derived from `macro_f1 == 0` entries and `is_valid(e)` helper; applied filter to both `f1_vs_bias` and `type1_type2` reads. (`gen_diagnostic_plots.py:23-29, 39, 91`)\n\n**Regenerated outputs** (`figures/paper/`):\n- `fig5_f1_vs_bias.pdf/.png` — 56 points, unchanged\n- `fig6_asv_heatmap.pdf/.png` — IV 8/8, mediation 8/8, frontdoor 8/8, exposure 7/8, confounding/collider/mbias 0/8 → 31/56 = 55.4%, matches paper"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig5-fig6-regen.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fd6775b9c488e6c2b88",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 metric backport",
+  "task_key": "worker_code_plan001-metric-backport_20260520T104333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-metric-backport_20260520T104333_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "5fc030efb2c75637e9fe16269995e97c6370f05ba20b277232cd36c27e919639"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- Collider/M-bias 的 violation metrics 已与 mediation/frontdoor 统一：violation/sign_flip/amplification 基于全部 4 个 OLS 系数 vs C=I baseline 计算\n- 所有 theory-MC 匹配通过，无回归\n- IV 部分未改动（Wald/OLS 结构不同，按原计划排除）\n- Registry `plan001_dag_taxonomy` metrics 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-metric-backport.md"
+}

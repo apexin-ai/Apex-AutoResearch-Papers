@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25fc5bebb8940a7d44c6",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 collider mbias iv",
+  "task_key": "worker_code_plan001-collider-mbias-iv_20260520T092800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-collider-mbias-iv_20260520T092800_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "c93f4d1a34683a76360fa7f5e32fe5a6d9e5297730591450c4ebfa11e76411cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，总耗时 609.8s。验证结果：\n\n### DAG 1: Collider — 6/6 Y\n| C | Th t_ctrl | MC t_ctrl | OK | Bias_ctrl |\n|---|---|---|---|---|\n| C1 | 0.9494 | 0.9493 | Y | -0.0506 |\n| C2 | 0.9676 | 0.9675 | Y | -0.0324 |\n| C3 | 0.9167 | 0.9169 | Y | -0.0833 |\n| C4 | 1.0005 | 1.0005 | Y | +0.0005 |\n| C5 | 0.9221 | 0.9220 | Y | -0.0779 |\n| C6 | 0.9494 | 0.9493 | Y | -0.0506 |\n\nNo-control plim=1.0005≈τ=1.0. Random search: 85.4% of random C have |bias_ctrl|>|bias_nc|.\n\n### DAG 2: M-bias — 6/6 Y\n| C | Th t_ctrl | MC t_ctrl | OK | Bias_ctrl |\n|---|---|---|---|---|\n| C1 | 1.0064 | 1.0066 | Y | +0.0064 |\n| C2 | 1.0127 | 1.0129 | Y | +0.0127 |\n| C3 | 0.9948 | 0.9948 | Y | -0.0052 |\n| C4 | 1.0014 | 1.0018 | Y | +0.0014 |\n| C5 | 1.0089 | 1.0095 | Y | +0.0089 |\n| C6 | 1.0064 | 1.0066 | Y | +0.0064 |\n\nNo-control plim=1.0003≈τ=1.0. Random search: 62.7% worse with control.\n\n### DAG 3: IV BETA_MIXED — Wald: 4/6 Y (C3 W2 marginal, C4 unstable), OLS: 12/12 Y\n### DAG 3: IV BETA_SAME — Wald: 4/6 Y (C4 unstable), OLS: 12/12 Y\n\nC4_weak_diag 的 Wald N 是预期行为：近均匀 C 使 FS* 接近 0，Wald=RF/FS* 爆炸。OLS 列全部通过，theory-MC 一致性已确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-collider-mbias-iv.md"
+}

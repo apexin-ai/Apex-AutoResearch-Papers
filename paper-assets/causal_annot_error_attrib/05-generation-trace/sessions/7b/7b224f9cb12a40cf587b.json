@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b224f9cb12a40cf587b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "oneshot read plan006 artifacts",
+  "task_key": "worker_oneshot_read_plan006_artifacts_20260520T232901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_oneshot_read_plan006_artifacts_20260520T232901_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "64c96cd89f8cbd1af13ff09469bf701232578bc5d1a2dd0616592586ec299d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `/artifacts/plan006_empirical_data.txt`. \n\n**Caveat**: This contains the structured summary from the worker result JSON, not the raw `asv_empirical_results.json` (119K) from the remote server. The `ssh_read_only` tool is only available to workers spawned with `tool_groups=[\"ssh\"]` — it's not accessible in this session. To get the raw JSON, you'd need to either:\n1. Allow me to spawn a worker with `tool_groups=[\"ssh\"]`\n2. Manually `scp` it: `scp implicit5638.xyfu.me:/home/sonny/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json ./artifacts/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/oneshot-read-plan006-artifacts.md"
+}

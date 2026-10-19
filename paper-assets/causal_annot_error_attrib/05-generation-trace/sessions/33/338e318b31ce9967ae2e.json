@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "338e318b31ce9967ae2e",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan006 asv calibration",
+  "task_key": "worker_code_plan006-asv-calibration_20260520T210016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-asv-calibration_20260520T210016.log",
+    "occurrence": 1,
+    "bytes": 1073638,
+    "sha256": "08016ae68b45867b8c87ec0ec05c377036ab834c605024a8ae2273028e40d072"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 3,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "assistant": 60,
+      "record": 5,
+      "tool_call": 103,
+      "user": 3,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "338e318b31ce9967ae2e-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "338e318b31ce9967ae2e-part-0001.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "338e318b31ce9967ae2e-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "338e318b31ce9967ae2e-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "338e318b31ce9967ae2e-part-0002.json",
+          "message_count": 98
+        },
+        {
+          "path": "338e318b31ce9967ae2e-part-0003.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan006-asv-calibration.md"
+}

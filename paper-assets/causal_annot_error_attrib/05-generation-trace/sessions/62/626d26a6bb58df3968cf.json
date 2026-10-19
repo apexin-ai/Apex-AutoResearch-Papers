@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "626d26a6bb58df3968cf",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp empirical humaid analysis",
+  "task_key": "worker_exp_empirical_humaid_analysis_20260524T054924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_empirical_humaid_analysis_20260524T054924_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "418c3b800398822dd1c1328c9705b7c8aae0d33918134358b4e712cad702f9fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/empirical_humaid_k10_results.json`。\n\n**关键发现：**\n\n| 指标 | 值 |\n|------|-----|\n| 配置数 | 8 (3 models × 2-3 prompt strategies) |\n| K | 10 |\n| 总场景 | 56 (8×7 topologies) |\n| 平均 \\|bias%\\| | 12.2% |\n| 总 sign flips | 7（全部在 exposure 拓扑） |\n| F1 范围 | [0.614, 0.690] |\n| F1 vs bias 相关性 | -0.156（弱负相关） |\n\n**拓扑排序（按 mean \\|bias%\\|）：**\n1. **IV** — 30.3%（最高，但无 sign flip）\n2. **front-door** — 13.2%\n3. **mediation** — 13.0%\n4. **exposure** — 12.5%（唯一出现 sign flip 的拓扑，7/8 configs 翻转）\n5. **M-bias** — 6.0%\n6. **confounding** — 5.7%\n7. **collider** — 4.9%\n\n注意服务器上还有 `qwen3_few-shot-5` 文件（plan006 中有 CM），但任务指定的 8 个有效配置不含它，故未纳入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-empirical-humaid-analysis.md"
+}

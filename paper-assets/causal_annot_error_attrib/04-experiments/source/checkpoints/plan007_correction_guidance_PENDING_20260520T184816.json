@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan007_correction_guidance",
+  "project": "causal_annot_error_attrib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:48:04.784Z",
+    "updated_at": "2026-05-20T18:48:16.603Z",
+    "hypothesis": "不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。",
+    "parent": "plan001_dag_taxonomy"
+  },
+  "timestamp": "2026-05-20T18:48:16.669852+00:00",
+  "trigger": "update_registry"
+}

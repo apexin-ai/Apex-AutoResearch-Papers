@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7595c4e7e4e9a527be6a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan004 asv scaffold",
+  "task_key": "worker_code_plan004-asv-scaffold_20260520T121229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-asv-scaffold_20260520T121229_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "d45479cf88dc5c53787d3e32ba3b9615539771eeefe48e7863ee1609450e1463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。结果总结：\n\n**三个 plim 函数均正常工作：**\n- **Confounding** (closed-form): C=I 精确恢复真参数 ✓，C=C₀ 下 τ 偏差 +0.119\n- **Mediation** (closed-form, 从 plan_001 移植): C=I 精确恢复 ✓，C=C₀ 下 τ 偏差 +0.174\n- **Collider** (precomputed moments, 从 plan_001 移植): C=I 下 τ=0.887 (collider bias 使 τ 从 1.0 缩小)，C=C₀ 下额外 misclass 偏差 +0.063\n\n**compute_asv 框架正常运行：** 三个 DAG 的 ASV 均为 None（对称高精度 C₀ + LinearInterpolation 下 τ 未翻转符号，符合预期——τ 在整个 δ 范围内保持正值）。\n\n**待完成：**\n1. C(δ) 参数化方案选定后替换 LinearInterpolation\n2. mc_coverage_test / type_error_analysis 实现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-asv-scaffold.md"
+}

@@ -1,0 +1,24 @@
+\paragraph{Case Study: LLM-Exposure Earnings Effects~\cite{sushkov2025llmlabor}.}
+\citet{sushkov2025llmlabor} estimate the short-run wage impact of generative
+AI using occupation-level synthetic difference-in-differences, where each
+occupation's ``exposure'' is built by aggregating Claude's K{=}3 task-level
+classification (\emph{automative} / \emph{augmentative} / \emph{neither})
+from the Anthropic Economic Index~\cite{handa2025economic}. Above-median
+exposed occupations gained $+\$89$ in weekly earnings after ChatGPT
+($\text{SE}{\approx}\$20$, $N{=}188$ months). The task classifier sits at
+the exposure node of an $A{\to}Y$ DAG, placing the design squarely on the
+fragile end of our taxonomy (Sec.~\ref{sec:taxonomy_results}). Plugging a
+realistic Claude confusion matrix (diagonal $\approx 0.80$, matching reported
+auditor agreement) into the K{=}3 exposure plim yields
+$\hat{\tau}_{\text{auto}}{=}0.72\tau_{\text{auto}}$ -- an attenuation of
+$27.8\%$ -- with magnitude $\text{ASV}{=}0.37$, well below the safe threshold
+of $1$. Monte-Carlo over Dirichlet matrices anchored at the same diagonal
+yields $|\text{bias}|$ p95 of $56\%$, so the headline magnitude could
+plausibly understate the true automative effect by a factor of two. The
+sign-flip $\text{ASV}{=}3.2$, however, places the result outside the
+catastrophic exposure-DAG regime: the qualitative direction of the earnings
+effect is robust unless Claude's classifier degrades by more than $3{\times}$.
+Practitioners reading the $+\$89$ figure should treat the sign as a credible
+finding, but interpret the magnitude as a lower bound; auditing $10\%$ of
+tasks against human annotators and applying PPI++ (Sec.~\ref{sec:correction})
+recovers the unattenuated coefficient at negligible extra cost.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40620943d816fc28563d",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 mediation frontdoor",
+  "task_key": "worker_code_plan001-mediation-frontdoor_20260520T092702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-mediation-frontdoor_20260520T092702_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "5d30cd84cb36635f273d58ee5b4ac333601cb11a6aec91920a82d541e991e097"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成部署和验证，所有部分通过：\n\n- **Mediation (closed-form)**: 12/12 entries ✓ at 2σ\n- **Front-door (large-sample approx)**: 12/12 entries ✓ at 3σ\n- **Random search**: 100k Dirichlet(1,1,1) matrices, 100% violation rate\n\n本地和远程 `/home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py` 同步，N_LARGE=50M，运行时间 ~37s。\n\n有新任务可以继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-mediation-frontdoor.md"
+}

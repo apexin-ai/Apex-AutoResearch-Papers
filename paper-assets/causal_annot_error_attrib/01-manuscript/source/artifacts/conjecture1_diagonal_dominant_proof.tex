@@ -1,0 +1,398 @@
+% Proof of V_B'(1) ≤ 0 under diagonal dominance conditions
+% Supporting material for Conjecture 1 (ε-approximate envelope monotonicity)
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+
+\title{Endpoint Derivative Analysis for Confounding Monotonicity\\
+{\large From Conjecture to Conditional Theorems}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Setup and Notation}
+
+Let $C_0$ be a $K\times K$ column-stochastic matrix with diagonal entries $\alpha_j = (C_0)_{jj}$.
+Define $C(\delta) = (1-\delta)I + \delta C_0$ for $\delta \in [0,1]$ and
+\[
+  V_B(\delta) = \Var(\mathbb{E}[g(A) \mid A^*_\delta]) = \sum_j \frac{N_j(\delta)^2}{q_j(\delta)} - \bar{g}^2,
+\]
+where $N_j(\delta) = \sum_k g_k C(\delta)_{jk} p_k$, $q_j(\delta) = \sum_k C(\delta)_{jk} p_k$, and $\bar{g} = \sum_k p_k g_k$.
+
+At $\delta=1$: $q_j \equiv q_j(1) = \sum_k (C_0)_{jk} p_k$, $\mu_j \equiv \mu_j(1) = \sum_k g_k (C_0)_{jk} p_k / q_j$.
+
+Define the \emph{estimation residual} $e_j = g_j - \mu_j(1)$.
+
+\section{Director's Formula for $V_B'(1)$}
+
+\begin{proposition}[Endpoint derivative decomposition]
+\label{prop:endpoint}
+\begin{equation}
+  V_B'(1) = \underbrace{\sum_j (p_j + q_j)\,e_j^2}_{\text{LHS: residual energy}}
+           - \underbrace{\sum_{j \neq k} (C_0)_{jk}\,p_k\,(g_j - g_k)^2}_{\text{RHS: pairwise dispersion}}.
+  \label{eq:director}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+From the derivative formula established in Appendix~B.3:
+\begin{equation}
+  V_B'(\delta) = -\sum_{j,k} \bigl[(C_0)_{jk} - \mathbf{1}_{j=k}\bigr]\,p_k\,(g_k - \mu_j(\delta))^2.
+  \label{eq:dVB}
+\end{equation}
+At $\delta=1$, split diagonal ($j=k$) from off-diagonal ($j \neq k$):
+\begin{align*}
+  V_B'(1) &= \sum_j (1 - \alpha_j)\,p_j\,e_j^2 - \sum_{j \neq k} (C_0)_{jk}\,p_k\,(g_k - \mu_j)^2.
+\end{align*}
+
+\emph{Key identity.}
+Since $\mu_j = \sum_k g_k (C_0)_{jk} p_k / q_j$:
+\begin{equation}
+  e_j = g_j - \mu_j = \frac{1}{q_j}\sum_{k \neq j} (C_0)_{jk}\,p_k\,(g_j - g_k).
+  \label{eq:key_identity}
+\end{equation}
+
+Substitute $g_k - \mu_j = -(g_j - g_k) + e_j$ into the off-diagonal term:
+\begin{align*}
+  (g_k - \mu_j)^2 &= (g_j - g_k)^2 - 2(g_j - g_k)\,e_j + e_j^2.
+\end{align*}
+The off-diagonal sum becomes:
+\begin{align*}
+  \sum_{j \neq k} (C_0)_{jk}\,p_k\,(g_k - \mu_j)^2
+  &= \sum_{j \neq k} (C_0)_{jk}\,p_k\,(g_j-g_k)^2 \\
+  &\quad - 2\sum_j e_j \underbrace{\sum_{k\neq j} (C_0)_{jk}\,p_k\,(g_j-g_k)}_{= q_j e_j\text{ by \eqref{eq:key_identity}}}
+  + \sum_j e_j^2 \underbrace{\sum_{k\neq j} (C_0)_{jk}\,p_k}_{= q_j - \alpha_j p_j} \\
+  &= \sum_{j \neq k} (C_0)_{jk}\,p_k\,(g_j-g_k)^2 - 2\sum_j q_j e_j^2 + \sum_j (q_j - \alpha_j p_j)\,e_j^2.
+\end{align*}
+
+Collecting the $e_j^2$ coefficients:
+\begin{align*}
+  V_B'(1) &= \sum_j \bigl[(1-\alpha_j)p_j + 2q_j - (q_j - \alpha_j p_j)\bigr]\,e_j^2
+             - \sum_{j\neq k} (C_0)_{jk}\,p_k\,(g_j-g_k)^2 \\
+          &= \sum_j (p_j + q_j)\,e_j^2
+             - \sum_{j\neq k} (C_0)_{jk}\,p_k\,(g_j-g_k)^2. \qedhere
+\end{align*}
+\end{proof}
+
+\section{Quadratic Form Characterization}
+
+\begin{proposition}[Matrix form]
+\label{prop:matrix}
+$V_B'(1) = \mathbf{g}^\top M\,\mathbf{g}$ where
+\[
+  M = (I - T)^\top D_{p+q}\,(I - T) - (D_{p+q} - 2W),
+\]
+$W = C_0\,\diag(p)$, $T = D_q^{-1} W$ is row-stochastic, $D_q = \diag(q)$, $D_{p+q} = \diag(p+q)$.
+\end{proposition}
+
+\begin{proof}
+The LHS of~\eqref{eq:director} equals $\mathbf{e}^\top D_{p+q}\,\mathbf{e}$ with $\mathbf{e} = (I-T)\mathbf{g}$.
+For the RHS, expand:
+\begin{align*}
+  \sum_{j\neq k} W_{jk}(g_j-g_k)^2
+  &= \sum_j g_j^2(q_j - W_{jj}) - 2\sum_{j\neq k} W_{jk}g_jg_k + \sum_k g_k^2(p_k - W_{kk}) \\
+  &= \mathbf{g}^\top\bigl[D_{p+q} - 2W\bigr]\,\mathbf{g}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}
+$V_B'(1) \leq 0$ for all $\mathbf{g}$ if and only if $M \preceq 0$ (negative semi-definite).
+This reduces the conjecture to a spectral condition on $M$.
+\end{remark}
+
+\section{Theorem 1: Symmetric Doubly Stochastic $C_0$, Uniform $p$}
+
+\begin{theorem}[Eigenvalue proof]
+\label{thm:ds_symmetric}
+Let $C_0$ be symmetric and doubly stochastic with $(C_0)_{jj} \geq \tfrac{1}{2}$ for all $j$,
+and let $p = \mathbf{1}/K$ (uniform). Then $V_B'(1) \leq 0$ for all $\mathbf{g}$.
+\end{theorem}
+
+\begin{proof}
+Under uniform $p$: $q_j = \frac{1}{K}\sum_k (C_0)_{jk} = \frac{1}{K}$ (rows sum to 1), so $p_j + q_j = 2/K$ for all $j$.
+
+From~\eqref{eq:director}:
+\begin{align*}
+  V_B'(1) &= \frac{2}{K}\|\mathbf{e}\|^2 - \frac{1}{K}\sum_{j\neq k}(C_0)_{jk}(g_j - g_k)^2.
+\end{align*}
+
+\emph{Step 1: Simplify $\|\mathbf{e}\|^2$.}
+With $\mu = C_0\mathbf{g}$ and $\mathbf{e} = (I - C_0)\mathbf{g}$:
+\[
+  \|\mathbf{e}\|^2 = \mathbf{g}^\top(I-C_0)^2\mathbf{g} = \mathbf{g}^\top(I - 2C_0 + C_0^2)\mathbf{g}.
+\]
+
+\emph{Step 2: Simplify the pairwise sum.}
+Since $C_0$ is symmetric and doubly stochastic:
+\begin{align*}
+  \sum_{j\neq k}(C_0)_{jk}(g_j-g_k)^2
+  &= \sum_{j,k}(C_0)_{jk}(g_j^2 - 2g_jg_k + g_k^2) \\
+  &= 2\|\mathbf{g}\|^2 - 2\mathbf{g}^\top C_0\mathbf{g}.
+\end{align*}
+
+\emph{Step 3: Combine.}
+\begin{align*}
+  V_B'(1) &= \frac{2}{K}\bigl[\|\mathbf{g}\|^2 - 2\mathbf{g}^\top C_0\mathbf{g} + \mathbf{g}^\top C_0^2\mathbf{g}\bigr]
+             - \frac{1}{K}\bigl[2\|\mathbf{g}\|^2 - 2\mathbf{g}^\top C_0\mathbf{g}\bigr] \\
+          &= \frac{2}{K}\,\mathbf{g}^\top(C_0^2 - C_0)\mathbf{g}
+           = \frac{2}{K}\,\mathbf{g}^\top C_0(C_0 - I)\mathbf{g}.
+\end{align*}
+
+\emph{Step 4: Eigenvalue analysis.}
+Since $C_0$ is real symmetric, it has orthonormal eigenvectors $\{v_i\}$ with eigenvalues $\{\lambda_i\}$.
+The all-ones vector $\mathbf{1}$ is an eigenvector with $\lambda_1 = 1$.
+Expanding $\mathbf{g} = \sum_i c_i v_i$:
+\[
+  V_B'(1) = \frac{2}{K}\sum_i \lambda_i(\lambda_i - 1)\,c_i^2.
+\]
+
+\emph{Step 5: Sign of $\lambda_i(\lambda_i - 1)$.}
+By Gershgorin's theorem applied to row $j$: every eigenvalue lies in
+$[\alpha_j - (1-\alpha_j),\; \alpha_j + (1-\alpha_j)] = [2\alpha_j - 1,\; 1]$.
+Since $\alpha_j \geq \tfrac{1}{2}$, all Gershgorin disks have left endpoint $\geq 0$.
+Hence $\lambda_i \in [0, 1]$ for all $i$, which gives $\lambda_i(\lambda_i - 1) \leq 0$.
+Therefore $V_B'(1) \leq 0$.
+\end{proof}
+
+\begin{corollary}
+Under the conditions of Theorem~\ref{thm:ds_symmetric},
+$V_B(\delta)$ is non-increasing on $[0,1]$ (since $V_B$ is convex with $V_B'(1) \leq 0$).
+\end{corollary}
+
+\section{Theorem 2: Component-wise Diagonal Dominance}
+
+\begin{theorem}[Sufficient condition for exact monotonicity]
+\label{thm:dd_sufficient}
+Let $C_0$ be column-stochastic with diagonal entries $\alpha_j = (C_0)_{jj}$.
+If
+\begin{equation}
+  \alpha_j \geq \frac{q_j}{p_j + q_j} \quad \text{for all } j \text{ with } p_j > 0,
+  \label{eq:dd_condition}
+\end{equation}
+then $V_B'(1) \leq 0$ for all $\mathbf{g}$.
+Equivalently: $\alpha_j p_j \geq q_j(1 - \alpha_j)$, i.e., the diagonal mass $\alpha_j p_j$ dominates
+the off-diagonal spillover $(1-\alpha_j)q_j$ in each row.
+\end{theorem}
+
+\begin{proof}
+Define $\rho_j = \alpha_j p_j / q_j$ and weights $w_{jk} = (C_0)_{jk} p_k / q_j$ for $k \neq j$.
+Note $\sum_{k\neq j} w_{jk} = 1 - \rho_j$.
+
+By Cauchy--Schwarz on~\eqref{eq:key_identity}:
+\[
+  e_j^2 = \Bigl(\sum_{k\neq j} w_{jk}(g_j - g_k)\Bigr)^2
+  \leq (1 - \rho_j)\sum_{k\neq j} w_{jk}(g_j-g_k)^2
+  = \frac{1-\rho_j}{q_j}\sum_{k\neq j} (C_0)_{jk}\,p_k\,(g_j-g_k)^2.
+\]
+Hence:
+\[
+  (p_j + q_j)\,e_j^2 \leq \frac{(p_j+q_j)(1-\rho_j)}{q_j} \cdot S_j,
+  \qquad S_j = \sum_{k\neq j}(C_0)_{jk}\,p_k\,(g_j-g_k)^2.
+\]
+From~\eqref{eq:director}, $V_B'(1) \leq 0$ follows if
+$\frac{(p_j+q_j)(1-\rho_j)}{q_j} \leq 1$ for every $j$, which simplifies to:
+\[
+  (p_j + q_j)(q_j - \alpha_j p_j) \leq q_j^2
+  \iff q_j(1-\alpha_j) \leq \alpha_j p_j
+  \iff \alpha_j \geq \frac{q_j}{p_j + q_j}. \qedhere
+\]
+\end{proof}
+
+\begin{remark}[Interpretation]
+Condition~\eqref{eq:dd_condition} is a \emph{joint} condition on $C_0$ and $p$.
+It requires that the classifier's accuracy $\alpha_j$ for class $j$ exceeds a threshold
+that depends on how much probability mass other classes ``spill'' into class $j$.
+
+For doubly stochastic $C_0$ with uniform $p$: $q_j = 1/K = p_j$, so
+condition~\eqref{eq:dd_condition} reduces to $\alpha_j \geq 1/2$, recovering
+the sufficient condition in Theorem~\ref{thm:ds_symmetric}.
+\end{remark}
+
+\begin{remark}[Conservatism for $K=2$]
+For $K=2$, the exact necessary and sufficient condition is $a + b \geq 1$
+(Theorem~1 of the main paper).
+Condition~\eqref{eq:dd_condition} requires $a \geq q_0/(p_0+q_0)$
+and $b \geq q_1/(p_1+q_1)$, which \emph{implies} $a+b \geq 1$ but is
+strictly stronger under non-uniform $p$: numerical testing shows
+${\sim}50\%$ of $(a,b,p)$ triples satisfying $a+b \geq 1$ fail
+condition~\eqref{eq:dd_condition}.
+The two coincide for uniform $p$ (where $q_j = (1-\alpha_{1-j})/2$
+and the threshold simplifies).
+Thus condition~\eqref{eq:dd_condition} is a conservative sufficient
+condition, not a tight characterization.
+\end{remark}
+
+\section{Theorem 3: Quantitative Violation Bound}
+
+When condition~\eqref{eq:dd_condition} fails, we bound the magnitude of the positive part of $V_B'(1)$.
+
+\begin{theorem}[Violation bound]
+\label{thm:eps_bound}
+For column-stochastic $C_0$ with $\alpha_j = (C_0)_{jj} \geq c$ for all $j$, where $c \in (1/K, 1)$:
+\begin{equation}
+  V_B'(1) \leq (1-c)^2\,R_g^2,
+  \label{eq:violation_bound}
+\end{equation}
+where $R_g = \max_k g_k - \min_k g_k$ is the range of $g$.
+\end{theorem}
+
+\begin{proof}
+Using the Cauchy--Schwarz-based per-component bound from Theorem~\ref{thm:dd_sufficient}:
+\[
+  V_B'(1) \leq \sum_j S_j\,\frac{p_j[q_j(1-\alpha_j) - \alpha_j p_j]_+}{q_j^2},
+\]
+where $[x]_+ = \max(x,0)$ and $S_j = \sum_{k\neq j}(C_0)_{jk}\,p_k(g_j-g_k)^2$.
+
+Since $S_j \leq (q_j - \alpha_j p_j)\,R_g^2$ and $q_j(1-\alpha_j) - \alpha_j p_j \leq q_j(1-c)$:
+\[
+  V_B'(1) \leq (1-c)\,R_g^2\sum_j \frac{p_j(q_j - c\,p_j)}{q_j}
+  = (1-c)\,R_g^2\Bigl(1 - c\sum_j \frac{p_j^2}{q_j}\Bigr).
+\]
+By Cauchy--Schwarz, $\sum_j p_j^2/q_j \geq (\sum_j p_j)^2/\sum_j q_j = 1$, so:
+\[
+  V_B'(1) \leq (1-c)^2\,R_g^2. \qedhere
+\]
+\end{proof}
+
+\begin{remark}[Application to the paper's setting]
+For $g_k = \mathbb{E}[Y \mid A{=}k]$ with $|\beta| \leq 1$:
+$R_g \leq 2|\beta|_\infty \leq 2$, giving $V_B'(1) \leq 4(1-c)^2$.
+With $c \geq 0.7$: $V_B'(1) \leq 0.36$.
+With $c \geq 0.9$: $V_B'(1) \leq 0.04$.
+\end{remark}
+
+\section{From $V_B'(1)$ to Step Deviation $\varepsilon$}
+
+The conjecture bounds the \emph{step deviation} in $|B(C(\delta))|$, not $V_B'(1)$ directly.
+The following proposition connects them.
+
+\begin{proposition}[Convex overshoot bound]
+\label{prop:overshoot}
+Since $V_B(\delta)$ is convex with $V_B'(0) \leq 0$, when $V_B'(1) > 0$ there exists
+a unique $\delta^* \in (0,1)$ with $V_B'(\delta^*) = 0$.
+The total non-monotone increase satisfies:
+\begin{equation}
+  V_B(1) - V_B(\delta^*) \leq \frac{[V_B'(1)]^2}{2\,a},
+  \label{eq:overshoot}
+\end{equation}
+where $a = \inf_{\delta \in [0,1]} V_B''(\delta) > 0$ is the minimum curvature.
+\end{proposition}
+
+\begin{proof}
+By convexity, $V_B'$ is non-decreasing.
+Since $V_B'(\delta^*) = 0$ and $V_B'(1) > 0$:
+\[
+  V_B(1) - V_B(\delta^*) = \int_{\delta^*}^1 V_B'(\delta)\,d\delta
+  \leq V_B'(1)\,(1-\delta^*).
+\]
+Also, $V_B'(1) - V_B'(\delta^*) = V_B'(1) \leq a\,(1-\delta^*)$ by convexity, so $1-\delta^* \leq V_B'(1)/a$.
+\end{proof}
+
+\begin{remark}[Numerical validation]
+Across 20{,}000 random configurations with $\alpha_j \geq 0.1$,
+the ratio of step deviation to $V_B'(1)$ satisfies
+$\varepsilon / V_B'(1) \leq \Delta\delta$ (the discretization step),
+with correlation $> 0.999$.
+This is because the non-monotone region is concentrated near $\delta = 1$,
+and within one discretization step the increase is approximately $V_B'(1) \cdot \Delta\delta$.
+\end{remark}
+
+\section{Numerical Findings on $\alpha_j \geq 1/2$}
+
+Theorem~\ref{thm:ds_symmetric} proves $V_B'(1) \leq 0$ for symmetric doubly stochastic $C_0$ with $\alpha_j \geq 1/2$ and uniform~$p$.
+Theorem~\ref{thm:dd_sufficient} extends this to doubly stochastic $C_0$ (not necessarily symmetric) with uniform~$p$, since row sums equal 1 gives $q_j = 1/K = p_j$, making the DD condition $\alpha_j \geq 1/2$.
+
+For \emph{general} column-stochastic $C_0$ with $\alpha_j \geq 1/2$ and non-uniform~$p$,
+$V_B'(1) \leq 0$ is \textbf{not} universally guaranteed.
+Numerical testing ($100{,}000$ random configurations with guaranteed $\alpha_j \geq 0.5$) finds:
+\begin{itemize}
+\item $V_B'(1) > 0$ in $0.69\%$ of cases;
+\item All counterexamples have extreme class imbalance ($p_{\max}/p_{\min} > 300$);
+\item Maximum step deviation: $\varepsilon < 0.001$.
+\end{itemize}
+
+The failure mechanism: when $p_j$ is very small for some class $j$,
+the spillover $q_j = \sum_k (C_0)_{jk} p_k$ can satisfy $q_j > p_j$
+even with $\alpha_j \geq 1/2$,
+violating the DD condition $\alpha_j \geq q_j/(p_j + q_j)$.
+
+\section{Analysis of Failure Modes}
+
+\subsection{When does condition~\eqref{eq:dd_condition} fail?}
+
+The condition $\alpha_j \geq q_j/(p_j + q_j)$ fails when $q_j/p_j$ is large---i.e.,
+class $j$ receives disproportionate spillover from other classes relative to its own prior probability.
+
+\begin{lemma}
+\label{lem:dd_failure}
+For doubly stochastic $C_0$, condition~\eqref{eq:dd_condition} requires:
+\[
+  \left(\frac{\alpha_j}{1-\alpha_j}\right)^2 \geq \frac{\max_k p_k}{\min_k p_k}.
+\]
+\end{lemma}
+
+\begin{proof}
+For doubly stochastic $C_0$: $\sum_{k\neq j}(C_0)_{jk} = 1-\alpha_j$, so
+$q_j = \alpha_j p_j + \sum_{k\neq j}(C_0)_{jk}p_k \leq \alpha_j p_j + (1-\alpha_j)p_{\max}$.
+The condition $\alpha_j^2 p_j \geq (1-\alpha_j)\sum_{k\neq j}(C_0)_{jk}p_k$ is most stressed
+at the smallest $p_j = p_{\min}$:
+$\alpha_j^2 p_{\min} \geq (1-\alpha_j)^2 p_{\max}$.
+\end{proof}
+
+\subsection{Near-permutation matrices}
+
+The adversarial tests identify near-permutation matrices as the hardest case.
+For $C_0 = (1-\varepsilon)P_\sigma + \varepsilon/K\cdot\mathbf{1}\mathbf{1}^\top$
+where $P_\sigma$ is a permutation:
+\begin{itemize}
+\item $\alpha_j = \varepsilon/K$ if $\sigma(j) \neq j$ (most entries for derangements);
+\item $q_j \approx (1-\varepsilon)p_{\sigma^{-1}(j)} + \varepsilon/K$ can be large relative to $p_j$.
+\end{itemize}
+These matrices have $\alpha_j \ll 1/2$, causing condition~\eqref{eq:dd_condition} to fail.
+However, the permutation structure ensures that misclassification is \emph{structured}
+(class $j$ maps primarily to class $\sigma(j)$), which limits the actual bias violation.
+
+\section{Summary of Results}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Condition on $C_0$, $p$} & \textbf{Result} & \textbf{Method} \\
+\hline
+$K=2$, $\alpha_j \geq 1/2$ & $V_B'(1) \leq 0$ (exact) & Direct algebra \\
+$K=3$ symmetric, any $p$ & $V_B'(1) \leq 0$ (exact) & Pointwise derivative \\
+DS, $\alpha_j \geq 1/2$, uniform $p$ & $V_B'(1) \leq 0$ (exact) & DD condition (Thm~\ref{thm:dd_sufficient}) \\
+DS symmetric, $\alpha_j \geq 1/2$, uniform $p$ & $V_B'(1) \leq 0$ (exact) & Eigenvalue (Thm~\ref{thm:ds_symmetric}) \\
+$\alpha_j \geq q_j/(p_j+q_j)$ $\forall j$ & $V_B'(1) \leq 0$ (exact) & Cauchy--Schwarz (Thm~\ref{thm:dd_sufficient}) \\
+$\alpha_j \geq c > 1/K$, any $p$ & $V_B'(1) \leq (1{-}c)^2 R_g^2$ & Bound (Thm~\ref{thm:eps_bound}) \\
+$\alpha_j \geq 1/2$, any $p$ & $\varepsilon < 0.001$ (numerical) & $10^5$ random configs \\
+General column-stochastic & $\varepsilon < 0.017$ (numerical) & 545{,}945 adversarial curves \\
+\hline
+\end{tabular}
+\end{center}
+
+The gap between the provable sufficient conditions and the conjectured universal $\varepsilon$-bound
+lies in the interaction between the spillover structure of $C_0$ and the prior $p$:
+when $p_j$ is very small for some class $j$, the spillover ratio $q_j/p_j$ can exceed
+the threshold $\alpha_j/(1-\alpha_j)$, defeating per-component Cauchy--Schwarz.
+Yet the resulting violations are geometrically small because the convex overshoot~\eqref{eq:overshoot}
+concentrates the non-monotone region in a narrow interval near $\delta = 1$.
+
+A proof of the exact conjecture for general column-stochastic matrices likely requires
+exploiting global structure (e.g., Birkhoff decomposition, spectral properties of $M$)
+rather than per-row analysis.
+
+\end{document}

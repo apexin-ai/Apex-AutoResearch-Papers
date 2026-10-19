@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd829c9f276445b5795",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code c estimation robustness",
+  "task_key": "worker_code_c_estimation_robustness_20260523T145144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c_estimation_robustness_20260523T145144_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "59c9a21840a8ce40f2edadcc938327d894f1f581936d9cf4b591564386ff9ea3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功，结果已写入 JSON。\n\n**结果摘要：**\n\n| n_gold | Partition 稳定率 | Spearman ρ (mean) | Spearman ρ (median) |\n|--------|-----------------|-------------------|---------------------|\n| 50     | 50.4%           | 0.857             | 0.991               |\n| 100    | 82.0%           | 0.993             | 1.000               |\n| 200    | 85.6%           | 0.995             | 1.000               |\n| 500    | 88.5%           | 0.996             | 1.000               |\n\n所有 8 个源矩阵的 truth partition 都匹配 canonical fragile set {exposure, iv}。n_gold=50 时 partition 稳定率较低主要是 llama4 两个矩阵拖累（0%），但这两个矩阵在 n_gold=100 时跳至 99.5-100%。ASV 排名相关性（ρ）从 n_gold≥100 起即达 >0.99，说明有限 gold set 下 Ĉ 估计对 safe/fragile 划分是鲁棒的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c-estimation-robustness.md"
+}

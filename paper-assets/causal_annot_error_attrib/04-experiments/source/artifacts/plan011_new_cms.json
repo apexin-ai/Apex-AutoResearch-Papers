@@ -1,0 +1,34 @@
+{
+  "vast/deepseek_few-shot-3": {
+    "confusion_matrix_normalized": [
+      [0.5139, 0.1017, 0.2888],
+      [0.3212, 0.7985, 0.5498],
+      [0.1649, 0.0998, 0.1614]
+    ],
+    "labels": ["pro", "con", "neutral"],
+    "n_valid": 1500,
+    "source": "npz",
+    "accuracy": 0.4967,
+    "confusion_matrix_counts": [
+      [240, 54, 145],
+      [150, 424, 276],
+      [77, 53, 81]
+    ]
+  },
+  "vast/deepseek_few-shot-5": {
+    "confusion_matrix_normalized": [
+      [0.5268, 0.1149, 0.3068],
+      [0.3105, 0.7853, 0.5398],
+      [0.1627, 0.0998, 0.1534]
+    ],
+    "labels": ["pro", "con", "neutral"],
+    "n_valid": 1500,
+    "source": "npz",
+    "accuracy": 0.4933,
+    "confusion_matrix_counts": [
+      [246, 61, 154],
+      [145, 417, 271],
+      [76, 53, 77]
+    ]
+  }
+}

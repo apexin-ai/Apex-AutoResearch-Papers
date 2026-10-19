@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5140c1afb9d8abf8391",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops anon repo push v4",
+  "task_key": "worker_ops_anon_repo_push_v4_20260524T034755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon_repo_push_v4_20260524T034755_result.json",
+    "occurrence": 1,
+    "bytes": 67,
+    "sha256": "c52b7ed06874232d2d8a1cf351749e259e79101b4e4b008c6b87a9f26c094119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。匿名 repo commit hash: `8b433e9`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-push-v4.md"
+}

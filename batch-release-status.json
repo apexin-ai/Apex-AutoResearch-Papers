@@ -22,6 +22,56 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
+    },
+    "causal_annot_error_attrib/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 361523005,
+        "etag": "\"a51f5171ca774986da3e5c335caf43d1-44\"",
+        "modified": "2026-05-31T17:29:10+00:00"
+      },
+      "archive_sha256": "79c194cf0f980db206fbabd462b3d915ccd684d9d8b1fda6dd5ab87126e021be",
+      "projects": [
+        "crosscoder-behavioral-circuit-transplant",
+        "diagprm-stage-reasoning",
+        "prod_0510",
+        "causal_annot_error_attrib"
+      ],
+      "counts": [
+        {
+          "project": "crosscoder-behavioral-circuit-transplant",
+          "title": "crosscoder behavioral circuit transplant",
+          "paper_pdf": null,
+          "code_count": 13,
+          "data_count": 33,
+          "trace_count": 20
+        },
+        {
+          "project": "diagprm-stage-reasoning",
+          "title": "diagprm stage reasoning",
+          "paper_pdf": null,
+          "code_count": 15,
+          "data_count": 1,
+          "trace_count": 18
+        },
+        {
+          "project": "prod_0510",
+          "title": "prod 0510",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 0
+        },
+        {
+          "project": "causal_annot_error_attrib",
+          "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction",
+          "paper_pdf": "paper.pdf",
+          "code_count": 212,
+          "data_count": 303,
+          "trace_count": 475
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39265650589"
     }
   }
 }

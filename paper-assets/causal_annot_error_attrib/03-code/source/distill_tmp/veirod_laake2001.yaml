@@ -1,0 +1,25 @@
+paper_key: "veirod_laake2001"
+title: "Exposure misclassification: bias in category specific Poisson regression coefficients"
+venue: "Statistics in Medicine 2001"
+full_text_available: false
+
+research:
+  baselines: ["correctly-classified Poisson regression", "naive Poisson regression with misclassified exposure"]
+  metrics:
+    - {name: "bias in regression coefficients", direction: "lower_better"}
+    - {name: "relative risk bias", direction: "lower_better"}
+  datasets:
+    - {name: "simulation studies and dietary exposure examples", size: "N/A"}
+  ablation_dimensions: ["number of exposure categories", "misclassification matrix structure", "sample size"]
+  training_recipe: "N/A (analytical/simulation)"
+  method_family: "misclassification bias in regression with categorical exposure"
+
+positioning:
+  core_claim: "Derives analytical expressions for bias in category-specific Poisson regression coefficients due to exposure misclassification, showing bias depends on full misclassification matrix structure"
+  key_results: "Bias formulas for polytomous exposure misclassification in Poisson regression"
+  limitations: ["limited to Poisson regression", "requires known misclassification probabilities"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

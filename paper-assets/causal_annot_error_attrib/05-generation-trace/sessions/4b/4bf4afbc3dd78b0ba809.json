@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bf4afbc3dd78b0ba809",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper missing refs r6",
+  "task_key": "worker_paper_missing_refs_r6_20260522T180857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_missing_refs_r6_20260522T180857_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "8a2b0fee0d5563a24cde4301c8389a0b3b69916d6c8418a389cb4d035b2dd62a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**references.bib** 新增 4 个条目（按 verified 元数据）：\n- `neuhaus1999` — Biometrika 86(4):843–855, DOI 10.1093/biomet/86.4.843\n- `shu_yi2019a` — Statistics in Medicine 38(10):1835–1854, DOI 10.1002/sim.8073\n- `shu_yi2019b` — Statistical Methods in Medical Research 28(7):2049–2068, DOI 10.1177/0962280217743777\n- `cadei2025` — arXiv:2502.06343\n\n**related_work.tex** 引用插入位置：\n- Measurement error 段：`\\citet{neuhaus1999}` 跟在 \"biases toward the null\" 后面，附量化语；`\\citet{shu_yi2019a, shu_yi2019b}` 接在 `\\citet{edwards_lessler_naimi2021}` 之后，描述 IPW 下联合处理 covariate+outcome 误测的加权估计\n- Correction 段：`\\citet{cadei2025}` 接在 `\\citet{zrnic_candes2024}` 之后，描述 deconfounded risk 目标对 PPI 在处理效应上的适配\n\n**编译结果**：`main.pdf` 27 页输出成功，`main.bbl` 已包含全部 4 个 `\\bibitem`，`main.log` 无 undefined citation / undefined reference 警告（仅 `h→ht` float specifier 与 hyperref Unicode 提示，与本次改动无关）。\n\nSources:\n- [Shu & Yi 2019a — Statistics in Medicine](https://onlinelibrary.wiley.com/doi/10.1002/sim.8073)\n- [Shu & Yi 2019b — SMMR](https://journals.sagepub.com/doi/10.1177/0962280217743777)\n- [Cadei et al. 2025 — arXiv:2502.06343](https://arxiv.org/abs/2502.06343)\n- [Neuhaus 1999 — Biometrika](https://academic.oup.com/biomet/article-abstract/86/4/843/276226)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-missing-refs-r6.md"
+}

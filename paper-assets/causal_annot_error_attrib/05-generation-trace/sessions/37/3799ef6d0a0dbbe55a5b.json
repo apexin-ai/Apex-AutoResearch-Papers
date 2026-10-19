@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3799ef6d0a0dbbe55a5b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan006 asv calibration",
+  "task_key": "worker_code_plan006-asv-calibration_20260520T210016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-asv-calibration_20260520T210016_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "9fd4d17ec318c41ea13130cc36e30acba75d0361a0a57b13a920699fda222da2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run complete. Summary:\n\n**Deployment & execution: all passed.**\n\n| Check | Result |\n|-------|--------|\n| File deployed | 1047 lines, md5 verified |\n| All 6 modules ran | Yes |\n| JSON output valid | Yes — 0 NaN, 0 Infinity |\n| Null values | 348 (expected: ASV entries where no threshold found, e.g. no sign flip) |\n| Runtime | 18.3s |\n\n**Key numbers from mock dry-run:**\n- **ASV magnitude**: 0.134–3.769, median 0.577 (173/189 non-None)\n- **ASV sign-flip**: 1.956–7.218, median 3.646 (41/189 non-None) — many topologies don't flip sign\n- **ASV significance**: 1.863–6.931, median 2.911 (21/189 non-None)\n- **Type I/II**: ASV-unsafe 113/189 (59.8%) → PPI++ recommended for those\n- **F1 vs bias**: F1>0.93 with |bias|>0.05 = 0% (mock data doesn't trigger Baumann disconnect)\n- **Inter-model correlation**: agreement 0.53–0.87, kappa 0.44–0.73, error correlations near 0 (independent mock errors)\n- **K=10 (humaid)**: all topologies ran cleanly, no numerical issues"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-asv-calibration.md"
+}

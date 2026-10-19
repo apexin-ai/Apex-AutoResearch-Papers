@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan003_empirical_confusion_matrices",
+  "project": "causal_annot_error_attrib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:12.825Z",
+    "updated_at": "2026-05-20T10:13:29.102Z",
+    "hypothesis": "实证验证 LLM 标注的 confusion matrix 具有结构化非均匀离对角误差模式：(1) 不同模型×任务产生系统性不同的 C 结构，(2) 这些经验 C 在 plan_001 理论框架下产生可度量的下游因果估计偏差，(3) 模型间误差相关性（inter-model error correlation）违反独立误差假设——为 plan_007 校正方法选择提供经验基础。Claim 1 支撑实验。"
+  },
+  "timestamp": "2026-05-20T10:13:29.156830+00:00",
+  "trigger": "update_registry"
+}

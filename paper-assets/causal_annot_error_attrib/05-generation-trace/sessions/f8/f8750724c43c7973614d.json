@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8750724c43c7973614d",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops fig fix",
+  "task_key": "worker_ops_fig_fix_20260524T070952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig_fix_20260524T070952_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "9d49ea0a22373e5f15a95cf7c2cb322e89f7c1f6173a24dc3da7cf3bea35e5c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All figures verified. Summary of changes:\n\n**Fig 2** — Removed stats box (lines 428–437 deleted). Subtitle no longer overlapped. `\\vspace{-6pt}` removed from `docs/paper/method.tex`.\n\n**Fig 3** — Font sizes already ≥ 9, no changes needed. Regenerated and copied.\n\n**Fig 4** — Legend moved from `loc='lower right'` to `loc='upper right', bbox_to_anchor=(1.0, 1.0)` — now in the empty upper-right area away from data points.\n\n**Fig 7** — Font sizes and layout already fine. Regenerated and copied.\n\nAll 4 PDFs copied to `docs/paper/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fig-fix.md"
+}

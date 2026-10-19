@@ -1,0 +1,242 @@
+paper:
+  title: causal_annot_error_attrib
+  version: 24
+  generated_at: '2026-05-20T20:55:23.362087+00:00'
+  source: auto-bootstrap from existing tex files
+claims:
+- text: Large language models (LLMs) are increasingly used as annotators in computational
+    social science, yet annotation errors propagate into downstream causal estimates
+    in ways that binary measurement error
+  type: quantitative
+  location:
+    section: abstract
+    context: result_statement
+  id: C001
+  evidence: []
+  deprecated: false
+- text: We introduce Annotation Sensitivity Values (ASVs), a sensitivity analysis
+    framework with three complementary measures that reveal a topology-dependent vulnerability
+    spectrum
+  type: methodological
+  location:
+    section: abstract
+    context: finding_statement
+  id: C002
+  evidence: []
+  deprecated: false
+- text: We presented the first systematic characterization of how multi-class annotation
+    errors interact with causal DAG topology. Our bias taxonomy across seven topologies
+    reveals that the classical binary g
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C003
+  evidence: []
+  deprecated: false
+- text: This finding persists in practically relevant subspaces. When restricting
+    to confusion matrices with diagonal entries $ 0.7$ (typical of current LLM classifiers
+    achieving $F_1 > 0.8$), the violation r
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C004
+  evidence: []
+  deprecated: false
+- text: 'Five of seven topologies exhibit a structural guarantee: $$-specific sign
+    flip rate equals exactly zero across all sampled confusion matrices (Table~tab:taxonomy).
+    Confounding, mediation, and front-do'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C005
+  evidence: []
+  deprecated: false
+- text: The instrumental variable topology is the sole exception among non-exposure
+    DAGs. The Wald estimator's first stage involves $C$ directly in the denominator,
+    and 52.6\% of random confusion matrices cau
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C006
+  evidence: []
+  deprecated: false
+- text: Experiments at $K{=5$ and $K{=7$ (100{,000 random matrices per topology) confirm
+    that all structural patterns from $K{=3$ persist. The sign-flip guarantee holds
+    for the same five topologies, and IV si
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C007
+  evidence: []
+  deprecated: false
+- text: 'Table~tab:asv_grid reports magnitude ASV ranges at $=0.5$ with a 10\% bias
+    threshold. The ranking from most fragile to most robust is: front-door (0.064--0.387)
+    $<$ confounding (0.076--0.487) $$ media'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C008
+  evidence: []
+  deprecated: false
+- text: At $=0.05$, the significance ASV filter achieves 100\% power for confounding,
+    front-door, and M-bias (96--100\%). Power drops to 0\% for mediation, collider,
+    and IV. For mediation and collider, this i
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C009
+  evidence: []
+  deprecated: false
+- text: For exposure, 83.4\% of reference matrices $C_0$ yield $_{sign\_flip < 1$,
+    indicating catastrophic sensitivity to annotation error. For IV, sign-flip ASV
+    ranges from 1.1 to 6.7, indicating moderate-to
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C010
+  evidence: []
+  deprecated: false
+- text: 'ASV type applicability and sensitivity across DAG topologies. Magnitude ASV
+    at $=0.5$, 10\% threshold. Power at $=0.05$ significance filter. : effective and
+    recommended; ($$): applicable but less info'
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C011
+  evidence: []
+  deprecated: false
+- text: Collapsing $K{=3$ annotations to binary introduces additional bias $ = |bias_{K=3
+    - bias_{K  2|$ that varies by 150$$ across topologies (Figure~fig:binarization).
+    Under 100{,000 Dirichlet samples, M-b
+  type: quantitative
+  location:
+    section: experiments
+    context: result_statement
+  id: C012
+  evidence: []
+  deprecated: false
+- text: Large language models are rapidly replacing human annotators in computational
+    social science, with researchers using LLM-generated labels for tasks ranging
+    from sentiment classification to political s
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C013
+  evidence: []
+  deprecated: false
+- text: 'The consequences can be catastrophic. Under $K{=3$ non-differential exposure
+    misclassification, 83.4\% of confusion matrices cause sign reversal of the estimated
+    treatment effect, where the estimated '
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C014
+  evidence: []
+  deprecated: false
+- text: 'Annotation Sensitivity Values (ASVs). We propose a unified sensitivity analysis
+    framework with three complementary measures: magnitude ASV (E-value analogue for
+    annotation error), significance ASV (hy'
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C015
+  evidence: []
+  deprecated: false
+- text: Binarization collapse quantification. We show that collapsing $K{=3$ annotations
+    to binary introduces additional bias $$ that varies 150$$ across topologies (from
+    ${=0.006$ for M-bias to ${=0.926$ for
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C016
+  evidence: []
+  deprecated: false
+- text: 'We propose a unified sensitivity analysis framework with three complementary
+    measures: magnitude ASV (E-value analogue for annotation error), significance
+    ASV (h'
+  type: methodological
+  location:
+    section: introduction
+    context: finding_statement
+  id: C017
+  evidence: []
+  deprecated: false
+- text: We show that collapsing $K{=3$ annotations to binary introduces additional
+    bias $$ that varies 150$$ across topologies (from ${=0.00
+  type: methodological
+  location:
+    section: introduction
+    context: finding_statement
+  id: C018
+  evidence: []
+  deprecated: false
+- text: where $w_{jk$ depends on the confusion matrix $C$ and the marginal distribution
+    of $A$. Unlike the binary case, where non-differential misclassification guarantees
+    attenuation toward the null~brenner1
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C019
+  evidence: []
+  deprecated: false
+- text: The Wald estimator $_{IV = cov(A^*, Y) / cov(A^*, X)$ is immediately sensitive
+    to misclassification because $C$ enters the denominator directly. When misclassification
+    causes the first-stage coefficie
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C020
+  evidence: []
+  deprecated: false
+- text: We introduce Annotation Sensitivity Values (ASVs) as a unified sensitivity
+    analysis framework, analogous to E-values for unmeasured confounding~vanderweele_d
+  type: methodological
+  location:
+    section: method
+    context: finding_statement
+  id: C021
+  evidence: []
+  deprecated: false
+tables:
+- caption: Bias characteristics of $K{=
+  label: tab:taxonomy
+  location:
+    section: experiments
+  cells: []
+  id: T001
+  deprecated: false
+- caption: ASV type applicability and sensitivity across DAG topologies. Magnitude
+    ASV at $\tau{=
+  label: tab:asv_grid
+  location:
+    section: experiments
+  cells: []
+  id: T002
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 0/21
+  claims: 21
+  tables: 2
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 0
+    tier3: 21
+    tierX: 0
+  last_checked: '2026-05-20T20:55:23.362138+00:00'

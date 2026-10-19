@@ -1,0 +1,25 @@
+{
+  "exp_id": "plan009_pathological_matrices",
+  "project": "causal_annot_error_attrib",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:10:16.587Z",
+    "updated_at": "2026-05-20T18:37:43.916Z",
+    "hypothesis": "病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\"安全区\"和\"灾难区\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。",
+    "parent": "plan001_dag_taxonomy",
+    "spec": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "command": "python plan_009_pathological_matrices.py --M 1000 --K 3 5 7 --device cuda:0",
+      "data_path": "/home/sonny/causal_annot_error_attrib/ (uses plim functions from plan_001/002 scripts)",
+      "data_count": "M=1000 random C per (topo, K, C_type), 7 topos × 3 K × 7 C-type configs",
+      "model_name": "N/A (MC simulation)",
+      "seed": "SHA-256 deterministic per (topo, K, C_type)"
+    }
+  },
+  "timestamp": "2026-05-20T18:37:43.994538+00:00",
+  "trigger": "update_registry"
+}

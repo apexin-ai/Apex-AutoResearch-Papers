@@ -1,0 +1,385 @@
+{
+  "dgp_configs": [
+    {
+      "name": "alternating_large",
+      "beta": [
+        0.0,
+        1.0,
+        -0.5
+      ],
+      "tau": 0.5,
+      "p": [
+        0.5,
+        0.33,
+        0.17
+      ]
+    },
+    {
+      "name": "same_sign_medium",
+      "beta": [
+        0.0,
+        0.5,
+        0.3
+      ],
+      "tau": 0.5,
+      "p": [
+        0.5,
+        0.33,
+        0.17
+      ]
+    },
+    {
+      "name": "alternating_small",
+      "beta": [
+        0.0,
+        0.2,
+        -0.1
+      ],
+      "tau": 0.5,
+      "p": [
+        0.5,
+        0.33,
+        0.17
+      ]
+    }
+  ],
+  "C0_diag_values": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "results": {
+    "confounding": {
+      "alternating_large": {
+        "mag_asv_10pct": 0.348,
+        "mag_asv_50pct": null
+      },
+      "same_sign_medium": {
+        "mag_asv_10pct": null,
+        "mag_asv_50pct": null
+      },
+      "alternating_small": {
+        "mag_asv_10pct": null,
+        "mag_asv_50pct": null
+      }
+    },
+    "exposure": {
+      "alternating_large": {
+        "mag_asv_10pct": 0.09,
+        "mag_asv_50pct": 0.5561,
+        "sign_flip_asv": 2.2232
+      },
+      "same_sign_medium": {
+        "mag_asv_10pct": 0.223,
+        "mag_asv_50pct": 1.1741,
+        "sign_flip_asv": 2.2232
+      },
+      "alternating_small": {
+        "mag_asv_10pct": 0.09,
+        "mag_asv_50pct": 0.5561,
+        "sign_flip_asv": 2.2232
+      }
+    },
+    "iv": {
+      "alternating_large": {
+        "mag_asv_10pct": 0.203,
+        "mag_asv_50pct": 0.7411
+      },
+      "same_sign_medium": {
+        "mag_asv_10pct": 0.203,
+        "mag_asv_50pct": 0.7411
+      },
+      "alternating_small": {
+        "mag_asv_10pct": 0.203,
+        "mag_asv_50pct": 0.7411
+      }
+    }
+  },
+  "per_C0_results": {
+    "confounding": {
+      "alternating_large": [
+        {
+          "mag_asv_10pct": 0.209,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.261,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.34803480348034804,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.5220000000000001,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 1.044,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.9
+        }
+      ],
+      "same_sign_medium": [
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.9
+        }
+      ],
+      "alternating_small": [
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": null,
+          "mag_asv_50pct": null,
+          "C0_diag": 0.9
+        }
+      ]
+    },
+    "exposure": {
+      "alternating_large": [
+        {
+          "mag_asv_10pct": 0.054,
+          "mag_asv_50pct": 0.334,
+          "sign_flip_asv": 1.334,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.068,
+          "mag_asv_50pct": 0.417,
+          "sign_flip_asv": 1.667,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.09000900090009001,
+          "mag_asv_50pct": 0.5560556055605561,
+          "sign_flip_asv": 2.2232223222322234,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.13500000000000004,
+          "mag_asv_50pct": 0.8340000000000002,
+          "sign_flip_asv": 3.334000000000001,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 0.269,
+          "mag_asv_50pct": 1.668,
+          "sign_flip_asv": 6.667,
+          "C0_diag": 0.9
+        }
+      ],
+      "same_sign_medium": [
+        {
+          "mag_asv_10pct": 0.134,
+          "mag_asv_50pct": 0.705,
+          "sign_flip_asv": 1.334,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.168,
+          "mag_asv_50pct": 0.881,
+          "sign_flip_asv": 1.667,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.223022302230223,
+          "mag_asv_50pct": 1.1741174117411741,
+          "sign_flip_asv": 2.2232223222322234,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.3350000000000001,
+          "mag_asv_50pct": 1.7610000000000003,
+          "sign_flip_asv": 3.334000000000001,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 0.669,
+          "mag_asv_50pct": 3.521,
+          "sign_flip_asv": 6.667,
+          "C0_diag": 0.9
+        }
+      ],
+      "alternating_small": [
+        {
+          "mag_asv_10pct": 0.054,
+          "mag_asv_50pct": 0.334,
+          "sign_flip_asv": 1.334,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.068,
+          "mag_asv_50pct": 0.417,
+          "sign_flip_asv": 1.667,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.09000900090009001,
+          "mag_asv_50pct": 0.5560556055605561,
+          "sign_flip_asv": 2.2232223222322234,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.13500000000000004,
+          "mag_asv_50pct": 0.8340000000000002,
+          "sign_flip_asv": 3.334000000000001,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 0.269,
+          "mag_asv_50pct": 1.668,
+          "sign_flip_asv": 6.667,
+          "C0_diag": 0.9
+        }
+      ]
+    },
+    "iv": {
+      "alternating_large": [
+        {
+          "mag_asv_10pct": 0.122,
+          "mag_asv_50pct": 0.445,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.152,
+          "mag_asv_50pct": 0.556,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.20302030203020302,
+          "mag_asv_50pct": 0.7410741074107411,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.30400000000000005,
+          "mag_asv_50pct": 1.1120000000000003,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 0.607,
+          "mag_asv_50pct": 2.223,
+          "C0_diag": 0.9
+        }
+      ],
+      "same_sign_medium": [
+        {
+          "mag_asv_10pct": 0.122,
+          "mag_asv_50pct": 0.445,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.152,
+          "mag_asv_50pct": 0.556,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.20302030203020302,
+          "mag_asv_50pct": 0.7410741074107411,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.30400000000000005,
+          "mag_asv_50pct": 1.1120000000000003,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 0.607,
+          "mag_asv_50pct": 2.223,
+          "C0_diag": 0.9
+        }
+      ],
+      "alternating_small": [
+        {
+          "mag_asv_10pct": 0.122,
+          "mag_asv_50pct": 0.445,
+          "C0_diag": 0.5
+        },
+        {
+          "mag_asv_10pct": 0.152,
+          "mag_asv_50pct": 0.556,
+          "C0_diag": 0.6
+        },
+        {
+          "mag_asv_10pct": 0.20302030203020302,
+          "mag_asv_50pct": 0.7410741074107411,
+          "C0_diag": 0.7
+        },
+        {
+          "mag_asv_10pct": 0.30400000000000005,
+          "mag_asv_50pct": 1.1120000000000003,
+          "C0_diag": 0.8
+        },
+        {
+          "mag_asv_10pct": 0.607,
+          "mag_asv_50pct": 2.223,
+          "C0_diag": 0.9
+        }
+      ]
+    }
+  },
+  "rankings": {
+    "alternating_large": [
+      "exposure",
+      "iv",
+      "confounding"
+    ],
+    "same_sign_medium": [
+      "iv",
+      "exposure",
+      "confounding"
+    ],
+    "alternating_small": [
+      "exposure",
+      "iv",
+      "confounding"
+    ]
+  },
+  "ranking_stable": false,
+  "ranking_stability": "Rankings vary across DGPs"
+}

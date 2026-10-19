@@ -1,0 +1,306 @@
+meta:
+  venue: AAAI 2027
+  track: main
+  template: templates/latex/aaai2026/
+  template_note: "AAAI 2027 模板尚未发布，复用 aaai2026 模板；Worker Step 4 启动前确认是否有更新"
+  page_limit: 8
+  deadline: 2026-07-28
+  abstract_deadline: 2026-07-21
+  title: "Multi-Class Annotation Errors Are Not Created Equal: Bias Taxonomy and Sensitivity Analysis for LLM-Annotated Causal Studies"
+  core_claim: "Multi-class annotation errors interact with DAG topology to produce qualitatively different bias — from structural immunity (M-bias) to catastrophic sign reversal (exposure DAG, 83.4%) — requiring topology-aware sensitivity analysis (ASVs) and correction guidance."
+  created_at: 2026-05-20T15:30:00Z
+
+  # Story Arc (内部参考，不写入论文)
+  story_arc:
+    hook: "LLMs with F1>0.93 produce >50% downstream error risk in causal studies (Baumann 2025); 83.4% of K=3 confusion matrices cause sign reversal in exposure DAG"
+    gap: "Binary measurement error theory breaks for K≥3; existing work covers ≤1 topology; no sensitivity framework for annotation-induced causal bias"
+    insight: "The same confusion matrix produces qualitatively different bias across DAG topologies — bias direction is topology-determined, not just error-magnitude-determined"
+    mechanism: "Closed-form bias expressions for 6 topologies + ASV parameterization C(δ)=(1-δ)I+δC₀ with three complementary ASV types + topology-dependent correction routing"
+    evidence: "83.4% sign reversal (exposure DAG), τ_sign_flip=0 structural guarantee (non-exposure), 150x binarization collapse variation, IV maximally fragile vs M-bias immune"
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: LLMs are replacing human annotators in computational social science, but annotation errors propagate to downstream causal estimates in ways that binary measurement error theory cannot predict"
+      - "Gap: No systematic framework characterizes how K×K confusion matrix structure interacts with DAG topology to determine bias direction and magnitude"
+      - "Method: Closed-form bias expressions for 6 canonical DAG topologies under K-class non-differential misclassification; Annotation Sensitivity Values (ASVs) — three complementary sensitivity measures parameterized by confusion matrix amplification"
+      - "Results: Exposure DAG shows 83.4% sign reversal (vs τ_sign_flip=0 structural guarantee for non-exposure topologies); ASV sensitivity ranking from IV (maximally fragile) to M-bias (immune); binarization collapse Δ varies 150x across topologies"
+      - "Implication: Classification F1 is not downstream safety — topology-aware sensitivity analysis is necessary"
+    dependencies: [experiments, method]
+
+  - section: introduction
+    word_budget: 1000
+    core_bullets:
+      - "Hook (Adoption-validity gap): LLMs rapidly adopted as annotators in CSS — Baumann 2025 shows 31-50% of hypotheses yield incorrect conclusions with SOTA LLMs, even F1>0.93 produces >50% error risk"
+      - "Catastrophic failure teaser: Under K=3 non-differential exposure misclassification, 83.4% of confusion matrices cause sign reversal — the binary guarantee (bias toward null, Bross 1954) breaks"
+      - "Gap: (1) Brenner 1993 identified polytomous reversal possibility but no systematic characterization; (2) Lee & Wood-Doughty 2024 extend to categorical but cover 1 topology; (3) No sensitivity framework analogous to E-values for annotation error"
+      - "Insight: The SAME confusion matrix is benign in one DAG topology and catastrophic in another — bias direction is topology-determined"
+      - "Kim & Garg 2025: cross-model errors are 60% correlated — ensembles cannot escape, error STRUCTURE analysis is irreplaceable"
+      - "Contributions: C1 = Multi-class bias taxonomy (6 DAG × K×K, closed-form); C2 = ASV framework (3 types, topology-aware sensitivity ranking); C3 = Correction guidance mapping [partial, pending empirical validation]"
+    dependencies: [experiments]
+    citation_hints:
+      - "Baumann 2025 — adoption-validity gap, 31-50% incorrect conclusions"
+      - "Brenner 1993 — polytomous confounder reversal"
+      - "Hernán & Cole 2009 — starred-node DAG framework"
+      - "Kim & Garg 2025 — correlated LLM errors, 60% agreement when both err"
+      - "Wood-Doughty 2018, TeBlunthuis 2024, Lee & Wood-Doughty 2024 — positioning predecessors"
+      - "VanderWeele & Ding 2017 — E-value analogy for ASVs"
+    figures: [fig1_dag_taxonomy]
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - "Cluster 1 (Measurement error in causal inference): Hernán & Cole 2009 DAG framework + Brenner 1993 polytomous + Veierød & Laake 2001 → all binary or single-topology; we extend systematically to multi-class × multi-topology"
+      - "Cluster 2 (Text classifier errors in CSS): Wood-Doughty 2018 DAG reasoning but no theorems → TeBlunthuis 2024 complete binary MLA → Lee & Wood-Doughty 2024 categorical 1 topology → we provide full taxonomy + ASVs"
+      - "Cluster 3 (LLM annotation quality): Baumann 2025 diagnoses problem (31-50%), Kim & Garg 2025 shows correlated errors, Messing 2026 decomposes variance → they diagnose; we provide the causal-analytic bridge"
+      - "Cluster 4 (Sensitivity analysis): E-values (VanderWeele & Ding 2017) for unmeasured confounding, VanderWeele & Li 2019 for binary measurement error → our ASVs extend to multi-class with sample-dependent precision"
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 1800
+    core_bullets:
+      - "§3.1 Setup & Notation: K-class annotation A, observed A* via C_{jk}=P(A*=j|A=k); starred-node DAG (Hernán & Cole 2009); non-differential misclassification definition; 6 canonical topologies + running example (exposure DAG)"
+      - "§3.2 Multi-Class Bias Expressions (Claim 1 core):"
+      - "  Confounding: plim=(E[Z'Z])^{-1}E[Z'X]β — monotonic toward OVB, no sign reversal"
+      - "  Exposure: plim = Σ_k C_{jk}β_k — breaks bias-toward-null; near-permutation C → label swap → sign reversal (structurally impossible in K=2)"
+      - "  Mediation: misclassified mediator amplifies indirect effect"
+      - "  Collider: misclassified collider attenuates spurious association (τ_sign_flip=0)"
+      - "  Front-door: front-door criterion with misclassified intermediate variable"
+      - "  IV: Wald estimator C directly scales first-stage → immediate sensitivity"
+      - "  Key structural result: τ_sign_flip=0 is a structural guarantee for non-exposure topologies under non-differential error"
+      - "§3.3 ASV Framework (Claim 2 core):"
+      - "  Parameterization: C(δ)=(1-δ)I+δC₀, δ=0 → perfect, δ=1 → reference C₀"
+      - "  Three ASV types: (a) Magnitude ASV — min δ where |Δbias| > threshold (E-value-style robustness, all topologies); (b) Significance ASV — min δ where |plim τ| < z_crit·SE (hypothesis test filter, attenuating topologies); (c) Sign-flip ASV — min δ where sign(plim τ) flips (exposure DAG)"
+      - "  Theorem: Envelope monotonicity for confounding/exposure/mediation (formal); MC-validated for all 6"
+      - "  N-sensitivity: Critical N* where SE < τ is analytically computable; sharp phase transition"
+      - "§3.4 Binarization Collapse: K→2 folding introduces new bias Δ=|bias_K - bias_K→2|; Δ varies 150x across topologies; sign flip only in exposure+IV"
+    dependencies: []
+    notation_table:
+      A: "True K-class annotation variable"
+      "A*": "Observed (misclassified) annotation"
+      C: "K×K confusion matrix, C_{jk} = P(A*=j|A=k)"
+      "δ": "Amplification factor, C(δ)=(1-δ)I+δC₀"
+      "C₀": "Reference confusion matrix"
+      "τ": "Causal effect parameter"
+      "β": "Regression coefficients (true)"
+      ASV: "Annotation Sensitivity Value"
+      "N*": "Critical sample size for ASV phase transition"
+    tables: [tab1_taxonomy]
+    figures: []
+    registry_refs: [plan001_dag_taxonomy, plan004_asv_framework, plan005_asv_extended, plan008_binarization_collapse]
+
+  - section: experiments
+    word_budget: 1500
+    core_bullets:
+      - "§4.1 Setup: 6 topologies × Dirichlet(1,1,1) random K=3 confusion matrices × 1000 reps × N=10,000; analytical plim + MC validation"
+      - "§4.2 Taxonomy Results (Claim 1 validation):"
+      - "  Theory-MC match: all topologies within 95% CI"
+      - "  Exposure DAG: 85% violation, 83.4% sign reversal, worst severity 2.83x"
+      - "  Dirichlet subspace (practical relevance): diag≥0.7 (typical LLM) → 13.7% violation, 11.7% amplification persists"
+      - "  Non-exposure structural guarantee: τ_sign_flip=0 across confounding/mediation/collider/M-bias"
+      - "§4.3 ASV Validation (Claim 2 validation):"
+      - "  Envelope monotonicity: 0 violations across all topologies"
+      - "  MC coverage: 100% for all topologies at τ=0.05 and τ=0.1"
+      - "  Significance filter: Type I=0%, power=100% for τ≥0.1; power=0% at τ=0.05 for attenuating topologies (correct — effect below detection)"
+      - "  Sensitivity ranking: IV(ASV_sign=1.1-6.7, maximally fragile) → front-door(magnitude 0.064-0.387) → confounding → mediation → collider → M-bias(ASV=∞, immune)"
+      - "§4.4 N-Sensitivity: Mediation τ=0.05 — sharp phase transition at N~6000-10000; below N*: ASV=0 blocks all rejections; above N*: ASV=∞ passes all (zero extra conservatism)"
+      - "§4.5 Binarization Collapse: IV D_mean=0.926 vs M-bias D_mean=0.006 (150x); sign flip rate: exposure 14%, IV 17.5%, others 0%"
+      - "[PLACEHOLDER §4.6] Empirical Validation: 3 CSS tasks (HumAID, VAST, CivilComments) × 3 LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) — plan_003 running, ~40-50h to completion"
+      - "[PLACEHOLDER §4.7] Correction Guidance: {topology × error structure × ASV} → correction method mapping — plan_007 pending plan_003"
+    dependencies: []
+    registry_refs:
+      - plan001_dag_taxonomy
+      - plan004_asv_framework
+      - plan005_asv_extended
+      - plan008_binarization_collapse
+      - mvp_exposure_dag
+      - mvp_confounding_dag
+      - mvp_exposure_dirichlet_subspace
+    tables: [tab2_asv_grid, tab3_binarization]
+    figures: [fig2_bias_distribution, fig3_asv_ranking, fig4_binarization]
+
+  - section: conclusion
+    word_budget: 350
+    core_bullets:
+      - "Summary: First systematic characterization of multi-class annotation error × DAG topology interaction; ASVs as the missing diagnostic layer between annotation quality and causal estimate reliability"
+      - "Key message: Classification F1 is not downstream safety — researchers must assess annotation error sensitivity under their specific causal design"
+      - "Limitations (honest): K=3 closed-form (K≥5 numerical only in appendix); formal sharpness proofs for 3 priority topologies; non-differential error assumption (differential is more realistic but harder)"
+      - "Future work: Differential error extension; dependence-aware multi-LLM correction (Kim & Garg 2025 motivation); integration with PPI/DSL frameworks (Gligoric 2025); practitioner toolkit"
+    dependencies: [experiments, method]
+
+visualization_plan:
+  - fig_id: fig1_dag_taxonomy
+    type: conceptual
+    tool: paperbanana
+    description: "6 canonical DAG topologies with starred-node notation showing where annotation error enters and its qualitative effect"
+    narrative_intent: "The same annotation error (starred node) enters at different positions across 6 DAG topologies — confounding attenuates, exposure reverses, collider is immune — this taxonomy is the organizing principle"
+    design_notes:
+      - "Follow Hernán & Cole 2009 starred-node convention: A* with star for misclassified, A for true (latent)"
+      - "2×3 grid layout: [confounding, exposure, mediation] top row, [collider, M-bias, IV] bottom row (or [front-door] replacing one)"
+      - "Each DAG labeled with one-word bias character: 'Attenuation', 'Reversal', 'Amplification', 'Attenuation', 'Immune', 'Fragile'"
+      - "Minimal black-and-white line style, consistent with epi/causal literature"
+      - "Subtle red border or red star on exposure DAG panel to signal catastrophic case"
+      - "学 Hernán & Cole 2009 Fig 1 + Lee 2024 Fig 1 的 DAG 画法"
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "manual (DAG structures from paper_framing.md)"
+
+  - fig_id: fig2_bias_distribution
+    type: statistical
+    tool: matplotlib
+    description: "Multi-panel bias distribution across 6 topologies under Dirichlet(1,1,1) random K=3 confusion matrices"
+    narrative_intent: "Exposure DAG shows 83.4% sign reversal (catastrophic red zone) while non-exposure topologies maintain τ_sign_flip=0 — the topology determines whether annotation error is benign or dangerous"
+    design_notes:
+      - "Pattern H: 2×3 multi-panel grid, one KDE/histogram per topology"
+      - "Pattern A: regime bands — green 'safe zone' (bias near zero) + red 'danger zone' (sign reversal region)"
+      - "Pattern C: dashed vertical line at true τ as reference anchor"
+      - "Panel subtitles as insights (L2 原则5): e.g., 'τ_sign_flip=0 (structural)' for collider, '83.4% reversal' for exposure"
+      - "学 Gligoric 2025 dense multi-panel layout: 信息密度高但每面板回答一个子问题"
+      - "Shared x-axis scale across panels for cross-topology comparison"
+      - "Use SEMANTIC_COLORS: safe=#009E73, collapse=#D55E00"
+    data_source: "registry: plan001_dag_taxonomy, mvp_exposure_dag, mvp_exposure_dirichlet_subspace"
+    placement: experiments
+    aspect_ratio: "3:2"
+
+  - fig_id: fig3_asv_ranking
+    type: statistical
+    tool: matplotlib
+    description: "ASV sensitivity ranking — forest plot style, ordered from most fragile (IV) to immune (M-bias)"
+    narrative_intent: "ASVs reveal a striking sensitivity spectrum: IV estimates shatter at any annotation error (ASV_sign=1.1) while M-bias is immune (ASV=∞) — this ranking is the practical output for researchers"
+    design_notes:
+      - "Pattern L: Forest plot — each topology as a row, ASV value as horizontal position with CI"
+      - "Three ASV types as different markers: magnitude ● blue, significance ▲ orange, sign-flip ◆ vermillion"
+      - "Pattern A: vertical regime band at ASV=1 dividing 'fragile' (left) from 'robust' (right)"
+      - "Topologies ordered top-to-bottom by fragility (IV at top, M-bias at bottom)"
+      - "Right-side inline columns with numeric ASV values (Pattern L statistics column)"
+      - "M-bias row: arrow pointing right with '∞' label"
+    data_source: "registry: plan004_asv_framework, plan005_asv_extended"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+  - fig_id: fig4_binarization
+    type: statistical
+    tool: matplotlib
+    description: "Binarization collapse Δ=|bias_K3-bias_K2| distribution across 6 topologies"
+    narrative_intent: "Collapsing K=3 to binary to escape multi-class complexity is a dangerous shortcut — Δ varies 150x from M-bias (0.006) to IV (0.926), and sign flips emerge in exposure+IV"
+    design_notes:
+      - "Box plot or violin with 6 topologies on x-axis, Δ on y-axis"
+      - "Log scale y-axis to accommodate 150x range"
+      - "Pattern A: horizontal danger band at Δ>0.05 marking 'practically significant'"
+      - "Sort topologies by median Δ ascending for visual impact (L1 rule 7)"
+      - "Annotate sign_flip fraction above exposure (14%) and IV (17.5%) boxes"
+      - "Color by severity tier: low Δ = blue, high Δ = vermillion"
+    data_source: "registry: plan008_binarization_collapse"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+table_plan:
+  - table_id: tab1_taxonomy
+    caption: "Bias characteristics of K=3 non-differential misclassification across 6 DAG topologies. Violation = |biased estimate| > |true effect|; amplification = |biased| > |true|; sign flip = sign(biased) ≠ sign(true)."
+    placement: method
+    type: comparison
+    columns: [Topology, "Role of A*", Violation, Sign Flip, Amplification, Bias Direction, "τ_sign_flip=0?"]
+    data_source: "registry: plan001_dag_taxonomy, mvp_exposure_dag"
+    notes: "Dense taxonomy table — Claim 1 core artifact. Highlight exposure DAG row (83.4% sign reversal). Last column marks structural guarantee with ✓/✗. Rates from Dirichlet(1,1,1) uniform prior, N=10000, 1000 reps."
+
+  - table_id: tab2_asv_grid
+    caption: "ASV type applicability and recommended usage across DAG topologies."
+    placement: experiments
+    type: comparison
+    columns: [Topology, Magnitude ASV, Significance ASV, Sign-flip ASV, Primary Use, Sensitivity Rank]
+    data_source: "registry: plan004_asv_framework, plan005_asv_extended"
+    notes: "Checkmark grid: ✓ = effective + recommended, (✓) = applicable but less informative, — = not applicable. Reinforces Claim 1: ASV type choice is itself topology-dependent. Include sensitivity rank 1 (IV, most fragile) to 6 (M-bias, immune)."
+
+  - table_id: tab3_binarization
+    caption: "Binarization collapse statistics: Δ=|bias_{K=3} - bias_{K→2}| across topologies."
+    placement: experiments
+    type: statistics
+    columns: [Topology, "Δ_mean", "Δ_median", "Δ_P95", "Δ_max", "Frac(Δ>0.01)", "Frac(Δ>0.05)", "Sign Flip"]
+    data_source: "registry: plan008_binarization_collapse"
+    notes: "May merge into body text or move to appendix if main text space is tight. Key message: exposure (0.516) and IV (0.926) have dramatically higher collapse bias than M-bias (0.006)."
+    fallback: "appendix if space tight"
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "measurement error in causal inference (epidemiology tradition)"
+    - "LLM annotation quality and downstream validity (NLP/CSS)"
+    - "sensitivity analysis for observational studies"
+  micro_clusters:
+    - cluster_name: "causal-text-classification"
+      search_queries:
+        - "text classifier measurement error causal inference 2023 2024 2025"
+        - "NLP annotation error causal effect propagation"
+        - "automated content analysis misclassification regression bias"
+      must_cite:
+        - "Wood-Doughty et al. 2018 (EMNLP)"
+        - "TeBlunthuis et al. 2024 (CMM)"
+        - "Lee & Wood-Doughty 2024"
+      target_count: 6
+
+    - cluster_name: "measurement-error-epidemiology"
+      search_queries:
+        - "misclassification bias polytomous confounder exposure"
+        - "measurement error DAG causal diagram epidemiology"
+        - "non-differential misclassification multi-category"
+      must_cite:
+        - "Hernán & Cole 2009"
+        - "Brenner 1993"
+      target_count: 6
+
+    - cluster_name: "sensitivity-analysis"
+      search_queries:
+        - "E-value sensitivity analysis unmeasured confounding 2023 2024 2025"
+        - "sensitivity bounds misclassification exposure outcome"
+        - "Rosenbaum sensitivity analysis observational study"
+      must_cite:
+        - "VanderWeele & Ding 2017 (E-value)"
+        - "VanderWeele & Li 2019"
+      target_count: 5
+
+    - cluster_name: "llm-annotation-quality"
+      search_queries:
+        - "LLM annotation quality downstream task validity 2024 2025 2026"
+        - "large language model text annotation error social science"
+        - "LLM hacking annotation bias computational social science"
+      must_cite:
+        - "Baumann et al. 2025"
+        - "Kim & Garg 2025 (ICML)"
+        - "Gligoric et al. 2025 (NAACL)"
+      target_count: 6
+
+    - cluster_name: "correction-methods"
+      search_queries:
+        - "prediction-powered inference annotation correction 2024 2025"
+        - "design-based supervised learning text classification"
+        - "measurement error correction matrix adjustment maximum likelihood"
+      must_cite:
+        - "Gligoric 2025 (DSL/PPI)"
+      target_count: 5
+
+    - cluster_name: "causal-inference-methodology"
+      search_queries:
+        - "front-door criterion identification causal inference"
+        - "instrumental variable weak instruments bias"
+        - "M-bias collider stratification"
+      must_cite: []
+      target_count: 4
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion
+
+# 禁止句式 (下传给所有 Worker)
+banned_phrases:
+  - "XXX has achieved remarkable success in recent years"
+  - "This demonstrates the effectiveness of our approach"
+  - "To the best of our knowledge, we are the first to..."
+  - "Extensive experiments demonstrate that..."
+  - "has garnered significant attention"
+  - "plays a crucial role"
+  - "It is worth noting that"

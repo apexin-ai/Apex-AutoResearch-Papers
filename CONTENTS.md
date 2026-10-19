@@ -1,15 +1,19 @@
 # Contents
 
-This catalogue covers **9 research projects**. Open a project README for its manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **13 research projects**. Open a project README for its manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
 | [acr-vla-conformal-refinement](paper-assets/acr-vla-conformal-refinement/README.md) | [PDF](paper-assets/acr-vla-conformal-refinement/01-manuscript/paper.pdf) | 1,517 | 7,791 | 7,114 | 391,607 |
+| [causal_annot_error_attrib](paper-assets/causal_annot_error_attrib/README.md) | [PDF](paper-assets/causal_annot_error_attrib/01-manuscript/paper.pdf) | 212 | 303 | 475 | 66,314 |
 | [causal_style_decomp_judge](paper-assets/causal_style_decomp_judge/README.md) | [PDF](paper-assets/causal_style_decomp_judge/01-manuscript/paper.pdf) | 51 | 38 | 506 | 73,378 |
 | [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 82 | 520 | 880 | 97,735 |
+| [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
+| [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
 | [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) | 27 | 74 | 434 | 75,488 |
 | [entrainment_gated_ft](paper-assets/entrainment_gated_ft/README.md) | [PDF](paper-assets/entrainment_gated_ft/01-manuscript/paper.pdf) | 25 | 92 | 599 | 80,801 |
 | [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |
+| [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 70 | 44 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |

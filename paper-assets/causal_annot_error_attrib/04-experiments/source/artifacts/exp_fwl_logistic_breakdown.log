@@ -1,0 +1,25 @@
+Loaded 6 VAST K=3 CMs: ['deepseek_zero-shot', 'llama4_few-shot-3', 'llama4_few-shot-5', 'llama4_zero-shot', 'qwen2.5-7b_few-shot-3', 'qwen2.5-7b_few-shot-5']
+Computing oracle logistic tau (N=2M)...
+  tau_true_ols     = 0.500000
+  tau_true_logistic = 0.496713  (large-N plim under correct A)
+  [1/6] deepseek_zero-shot           OLS_br=  +0.0000 LOG_br=  -0.0009 OLS|max_diff|=2.33e-15 LOG|max_diff|=8.14e-04 (98s, ETA 491s)
+  [2/6] llama4_few-shot-3            OLS_br=  +0.0000 LOG_br=  -0.0007 OLS|max_diff|=5.22e-15 LOG|max_diff|=6.77e-04 (175s, ETA 351s)
+  [3/6] llama4_few-shot-5            OLS_br=  +0.0000 LOG_br=  -0.0006 OLS|max_diff|=4.33e-15 LOG|max_diff|=6.82e-04 (236s, ETA 236s)
+  [4/6] llama4_zero-shot             OLS_br=  +0.0000 LOG_br=  -0.0005 OLS|max_diff|=1.55e-15 LOG|max_diff|=5.93e-04 (315s, ETA 157s)
+  [5/6] qwen2.5-7b_few-shot-3        OLS_br=  -0.0000 LOG_br=  -0.0001 OLS|max_diff|=7.22e-15 LOG|max_diff|=6.77e-04 (397s, ETA 79s)
+  [6/6] qwen2.5-7b_few-shot-5        OLS_br=  +0.0000 LOG_br=  +0.0005 OLS|max_diff|=8.22e-15 LOG|max_diff|=5.63e-04 (526s, ETA 0s)
+
+Wrote /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_fwl_logistic_results.json
+
+==========================================================================================
+CM                            OLS bias red.  LOG bias red.      OLS |Δ|      LOG |Δ|
+------------------------------------------------------------------------------------------
+deepseek_zero-shot                 +0.0000%       -0.0902%     2.33e-15     8.14e-04
+llama4_few-shot-3                  +0.0000%       -0.0699%     5.22e-15     6.77e-04
+llama4_few-shot-5                  +0.0000%       -0.0569%     4.33e-15     6.82e-04
+llama4_zero-shot                   +0.0000%       -0.0535%     1.55e-15     5.93e-04
+qwen2.5-7b_few-shot-3              -0.0000%       -0.0112%     7.22e-15     6.77e-04
+qwen2.5-7b_few-shot-5              +0.0000%       +0.0462%     8.22e-15     5.63e-04
+------------------------------------------------------------------------------------------
+MEAN                               +0.0000%       -0.0392%     8.22e-15     8.14e-04
+==========================================================================================

@@ -1,0 +1,19 @@
+source_archive,member_path,source_bytes,sanitized_bytes,processing
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_research_swe-smith-data_20260511T145404_result.json,1176,1176,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_infra_env-setup_20260511T145351.log,85023,82877,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_data_download-swe-smith_20260511T145803_result.json,1697,1697,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_code_integration-test_20260511T150451_result.json,768,768,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_code_fix-data-loader_20260511T150747.log,116669,109225,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_code_annotation-pipeline_20260511T145447_result.json,995,995,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_research_sample-analysis_20260511T144006_result.json,15,15,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_infra_env-setup_20260511T145351_result.json,498,498,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_research_swe-smith-data_20260511T145404.log,127061,121977,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_data_download-swe-smith_20260511T145803.log,159314,158792,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_code_fix-data-loader_20260511T150747_result.json,899,899,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_code_annotation-pipeline_20260511T145447.log,324100,278326,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_research_data-survey_20260511T143846_result.json,15,15,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/workers/worker_code_integration-test_20260511T150451.log,28584,28584,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/chats/feishu_group_oc_5da570efb598ccf9c072529b59616e6b.jsonl,68991,68131,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/chats/feishu_group_oc_5da570efb598ccf9c072529b59616e6b_reviewer.jsonl,136499,134533,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/chats/feishu_group_oc_c3c1d850356979963039cbb110c4c39c_director.jsonl,174936,172461,Credentials and binary attachments redacted
+causal_annot_error_attrib/workspace.tar.gz,logs/chats/feishu_group_oc_7e34897319ebca72b5448fb0cb430a22.jsonl,5241,5068,Credentials and binary attachments redacted

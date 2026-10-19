@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "76bfac5d8998ac6c6c78",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan005 asv extended",
+  "task_key": "worker_code_plan005-asv-extended_20260520T135157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan005-asv-extended_20260520T135157.log",
+    "occurrence": 1,
+    "bytes": 1119740,
+    "sha256": "9883230858850dae4324bd61cdbcc37b24fa61213260151fd674080ffc7fe41b"
+  },
+  "statistics": {
+    "messages": 398,
+    "user_turns": 2,
+    "tool_calls": 155,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 74,
+      "tool_call": 155,
+      "tool_result": 155,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "76bfac5d8998ac6c6c78-part-0001.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 262,
+      "chunks": [
+        {
+          "path": "76bfac5d8998ac6c6c78-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "76bfac5d8998ac6c6c78-part-0003.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "76bfac5d8998ac6c6c78-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan005-asv-extended.md"
+}

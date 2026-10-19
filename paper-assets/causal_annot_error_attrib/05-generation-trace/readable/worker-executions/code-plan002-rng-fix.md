@@ -1,0 +1,4718 @@
+# code plan002 rng fix
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 100
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_code_plan002-rng-fix_20260520T160418.log`
+- **Structured JSON:** [`2624f09d6f396962a966.json`](../../sessions/26/2624f09d6f396962a966.json)
+
+## Before a recorded user message
+
+100 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bbd57b7d-8224-4c0a-80c8-87db444f72eb",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779415200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.87,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "56b6e87a-eac9-4504-99f4-68e2cf5e723d",
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the 7-topo version of the code to understand the structure and find where random C matrices are generated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "6c460398-2126-449f-a956-23db065988c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUtx7rtJDiXCuaFuZRp8PG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12210,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12210
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取两个版本的代码，定位 RNG 问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "11574dd2-d2ba-4dc0-b848-50cac1fbfb0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUtx7rtJDiXCuaFuZRp8PG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12210,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12210
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HUJA2tP8fc9At8DcDitkmo`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "0e0adb08-dd8e-4de8-8d12-c9f86fca4e9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUtx7rtJDiXCuaFuZRp8PG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12210,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12210
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T16:04:30.752Z_
+
+<details><summary>↩ Tool result · `toolu_01HUJA2tP8fc9At8DcDitkmo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "3e8cdf81-b3b9-4aef-85fe-d425fb5581e6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JJJib5mbESGR7c43TxxeHc`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "23a9b950-0e7f-4fa5-876d-50d2b1134920",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QGNSookXAegmUgrDhqMwmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 24051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 935
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012g1KBKPCiMQRNNGwMHf3DP`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f567b687-a182-4696-9a27-296a4964e24a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QGNSookXAegmUgrDhqMwmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 24051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 935
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T16:04:38.967Z_
+
+<details><summary>↩ Tool result · `toolu_01JJJib5mbESGR7c43TxxeHc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\n\\nTopologies:\\n  1. Confounding: A→T, A→Y, T→Y\\n  2. Mediation: T→A→Y\\n  3. Collider: T→A←Y\\n  4. Exposure: A→Y\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\n  6. IV: Z→A→Y, U→{A,Y}\\n  7. Front-door: T→M→Y, U→{T,Y}\\n\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport time\\nimport os\\nimport sys\\n\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\n\\n\\ndef make_p_A(K):\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_all_params(K):\\n    p_A = make_p_A(K)\\n    return dict(\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\n                      dY=np.array(_DY_POOL[:K])),\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n    )\\n\\n\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_collider(K, N, p, rng):\\n    T = rng.normal(0, 1, N)\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    return T, Y, A\\n\\n\\ndef gen_exposure(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1\\n\\n... [截断: 输出过长，省略 10722 字符] ...\\n\\n       metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\n\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\")\\n\\n            else:\\n                rng = np.random.default_rng(SEED)\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\n                tau_true = plim_true[1].item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\n\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\")\\n\\n            m = metrics\\n            def _pct(x): return f\\\"{x:.1%}\\\" if x == x else \\\"nan\\\"\\n\\n            print(f\\\"    all_coef: violation={_pct(m['violation'])}  \\\"\\n                  f\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\")\\n            if 'tau_violation' in m:\\n                print(f\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\"\\n                      f\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\")\\n                print(f\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\"\\n                      f\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\")\\n            for thr, wv in m.get('worst_case', {}).items():\\n                print(f\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\"\\n                      f\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\")\\n            print(f\\\"    [{time.time()-tk:.1f}s]\\\")\\n            sys.stdout.flush()\\n\\n    # Summary Table\\n    print(f\\\"\\\\n{'='*140}\\\")\\n    print(\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\")\\n    print(f\\\"{'='*140}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\"\\n           f\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-'*105}\\\")\\n\\n    for topo in ALL_TOPOS:\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\n            sf = m.get('sign_flip', float('nan'))\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\n\\n            wc = m.get('worst_case', {})\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\n\\n            def _f(x, w=11):\\n                return f\\\"{x:>{w}.1%}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n            def _fw(x, w=10):\\n                return f\\\"{x:>{w}.4f}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n\\n            print(f\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\"\\n                  f\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\")\\n        print()\\n\\n    print(\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\")\\n    for topo in ALL_TOPOS:\\n        vals = []\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\n            vals.append(v if v == v else 0.0)\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.005 else (\\\"STABLE\\\" if abs(d) <= 0.005 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "206fe14b-f706-48e8-a5a3-fbb0307f85de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\\\n\\\\nTopologies:\\\\n  1. Confounding: A→T, A→Y, T→Y\\\\n  2. Mediation: T→A→Y\\\\n  3. Collider: T→A←Y\\\\n  4. Exposure: A→Y\\\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\\\n  6. IV: Z→A→Y, U→{A,Y}\\\\n  7. Front-door: T→M→Y, U→{T,Y}\\\\n\\\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport time\\\\nimport os\\\\nimport sys\\\\n\\\\nK_VALUES = [3, 5, 7]\\\\nN_RANDOM = 100_000\\\\nN_LARGE = 5_000_000\\\\nSEED = 42\\\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\\\nDTYPE = torch.float64\\\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\\\n\\\\n\\\\ndef make_p_A(K):\\\\n    if K == 3:\\\\n        return np.array([0.40, 0.35, 0.25])\\\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\\\n    return raw / raw.sum()\\\\n\\\\n\\\\ndef make_all_params(K):\\\\n    p_A = make_p_A(K)\\\\n    return dict(\\\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\\\n                      dY=np.array(_DY_POOL[:K])),\\\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n    )\\\\n\\\\n\\\\ndef _softmax_rows(logits):\\\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\\\n    return e / e.sum(axis=-1, keepdims=True)\\\\n\\\\n\\\\ndef _sample_cat(probs, rng):\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\\\n    return (u >= cum).sum(axis=1).astype(int)\\\\n\\\\n\\\\ndef gen_confounding(K, N, p, rng):\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1).astype(float)\\\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_mediation(K, N, p, rng):\\\\n    T = rng.binomial(1, 0.5, N).astype(float)\\\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\\\n    A = _sample_cat(_softmax_rows(logits), rng)\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1)\\\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_collider(K, N, p, rng):\\\\n    T = rng.normal(0, 1, N)\\\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\\\n    A = _sample_cat(_softmax_rows(logits), rng)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_exposure(K, N, p, rng):\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1\\\\n\\\\n... [截断: 输出过长，省略 10722 字符] ...\\\\n\\\\n       metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\\\n\\\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\\\\\")\\\\n\\\\n            else:\\\\n                rng = np.random.default_rng(SEED)\\\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\\\n\\\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\\\n                tau_true = plim_true[1].item()\\\\n\\\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\\\n                plim_all = plim_with_T(ss, C_rand)\\\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\\\n\\\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\\\\\")\\\\n\\\\n            m = metrics\\\\n            def _pct(x): return f\\\\\\\"{x:.1%}\\\\\\\" if x == x else \\\\\\\"nan\\\\\\\"\\\\n\\\\n            print(f\\\\\\\"    all_coef: violation={_pct(m['violation'])}  \\\\\\\"\\\\n                  f\\\\\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\\\\\")\\\\n            if 'tau_violation' in m:\\\\n                print(f\\\\\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\\\\\"\\\\n                      f\\\\\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\\\\\")\\\\n                print(f\\\\\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\\\\\")\\\\n            for thr, wv in m.get('worst_case', {}).items():\\\\n                print(f\\\\\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\\\\\")\\\\n            print(f\\\\\\\"    [{time.time()-tk:.1f}s]\\\\\\\")\\\\n            sys.stdout.flush()\\\\n\\\\n    # Summary Table\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*140}\\\\\\\")\\\\n    print(\\\\\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\\\\\")\\\\n    print(f\\\\\\\"{'='*140}\\\\\\\")\\\\n\\\\n    hdr = (f\\\\\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\\\\\"\\\\n           f\\\\\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\\\\\")\\\\n    print(hdr)\\\\n    print(f\\\\\\\"  {'-'*105}\\\\\\\")\\\\n\\\\n    for topo in ALL_TOPOS:\\\\n        for K_val in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K_val}\\\\\\\"]\\\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\\\n            sf = m.get('sign_flip', float('nan'))\\\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\\\n\\\\n            wc = m.get('worst_case', {})\\\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\\\n\\\\n            def _f(x, w=11):\\\\n                return f\\\\\\\"{x:>{w}.1%}\\\\\\\" if x == x else f\\\\\\\"{'nan':>{w}}\\\\\\\"\\\\n            def _fw(x, w=10):\\\\n                return f\\\\\\\"{x:>{w}.4f}\\\\\\\" if x == x else f\\\\\\\"{'nan':>{w}}\\\\\\\"\\\\n\\\\n            print(f\\\\\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\\\\\"\\\\n                  f\\\\\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\\\\\")\\\\n        print()\\\\n\\\\n    print(\\\\\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\\\\\")\\\\n    for topo in ALL_TOPOS:\\\\n        vals = []\\\\n        for K_val in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K_val}\\\\\\\"]\\\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\\\n            vals.append(v if v == v else 0.0)\\\\n        d = vals[-1] - vals[0]\\\\n        trend = \\\\\\\"WORSENS\\\\\\\" if d > 0.005 else (\\\\\\\"STABLE\\\\\\\" if abs(d) <= 0.005 else \\\\\\\"IMPROVES\\\\\\\")\\\\n        print(f\\\\\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {time.time() - t0:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\n\\nTopologies:\\n  1. Confounding: A→T, A→Y, T→Y\\n  2. Mediation: T→A→Y\\n  3. Collider: T→A←Y\\n  4. Exposure: A→Y\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\n  6. IV: Z→A→Y, U→{A,Y}\\n  7. Front-door: T→M→Y, U→{T,Y}\\n\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport time\\nimport os\\nimport sys\\n\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\n\\n\\ndef make_p_A(K):\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_all_params(K):\\n    p_A = make_p_A(K)\\n    return dict(\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\n                      dY=np.array(_DY_POOL[:K])),\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n    )\\n\\n\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_collider(K, N, p, rng):\\n    T = rng.normal(0, 1, N)\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    return T, Y, A\\n\\n\\ndef gen_exposure(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1\\n\\n... [截断: 输出过长，省略 10722 字符] ...\\n\\n       metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\n\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\")\\n\\n            else:\\n                rng = np.random.default_rng(SEED)\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\n                tau_true = plim_true[1].item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\n\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\")\\n\\n            m = metrics\\n            def _pct(x): return f\\\"{x:.1%}\\\" if x == x else \\\"nan\\\"\\n\\n            print(f\\\"    all_coef: violation={_pct(m['violation'])}  \\\"\\n                  f\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\")\\n            if 'tau_violation' in m:\\n                print(f\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\"\\n                      f\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\")\\n                print(f\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\"\\n                      f\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\")\\n            for thr, wv in m.get('worst_case', {}).items():\\n                print(f\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\"\\n                      f\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\")\\n            print(f\\\"    [{time.time()-tk:.1f}s]\\\")\\n            sys.stdout.flush()\\n\\n    # Summary Table\\n    print(f\\\"\\\\n{'='*140}\\\")\\n    print(\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\")\\n    print(f\\\"{'='*140}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\"\\n           f\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-'*105}\\\")\\n\\n    for topo in ALL_TOPOS:\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\n            sf = m.get('sign_flip', float('nan'))\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\n\\n            wc = m.get('worst_case', {})\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\n\\n            def _f(x, w=11):\\n                return f\\\"{x:>{w}.1%}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n            def _fw(x, w=10):\\n                return f\\\"{x:>{w}.4f}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n\\n            print(f\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\"\\n                  f\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\")\\n        print()\\n\\n    print(\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\")\\n    for topo in ALL_TOPOS:\\n        vals = []\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\n            vals.append(v if v == v else 0.0)\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.005 else (\\\"STABLE\\\" if abs(d) <= 0.005 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T16:04:39.997Z_
+
+<details><summary>↩ Tool result · `toolu_012g1KBKPCiMQRNNGwMHf3DP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# -*- coding: utf-8 -*-\\n\\\"\\\"\\\"\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\n\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\nheatmaps as interpretability tools.\\n\\nInput:  DGP parameters per topology (auto-generated for each K)\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\n\\nDependencies: torch (GPU), numpy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport time\\nimport os\\nimport sys\\n\\n# ================================================================\\n# Configuration\\n# ================================================================\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n\\n# ================================================================\\n# DGP Parameters for general K\\n# ================================================================\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n\\n\\ndef make_p_A(K):\\n    \\\"\\\"\\\"Slightly imbalanced category probabilities.\\\"\\\"\\\"\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_params(K):\\n    \\\"\\\"\\\"DGP parameters for all topologies at given K.\\\"\\\"\\\"\\n    p_A = make_p_A(K)\\n\\n    conf = dict(\\n        p_A=p_A,\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\n        beta_T=2.0,\\n        sigma_T=1.0,\\n    )\\n\\n    med = dict(\\n        tau=0.5,\\n        gamma=np.array(_GAMMA_POOL[:K]),\\n        delta=np.array(_DELTA_POOL[:K]),\\n        beta=np.array(_BETA_POOL[:K]),\\n    )\\n\\n    coll = dict(\\n        tau=1.0,\\n        g=np.zeros(K),\\n        dT=np.array(_DT_POOL[:K]),\\n        dY=np.array(_DY_POOL[:K]),\\n    )\\n\\n    exp = dict(\\n        beta=np.array(_BETA_POOL[:K]),\\n        p_A=p_A,\\n    )\\n\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\n\\n\\n# ================================================================\\n# DGP Generators\\n# ================================================================\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    \\\"\\\"\\\"Sample from row-wise categorical probabilities [N, K].\\\"\\\"\\\"\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    \\\"\\\"\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\"\\\"\\\"\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    \\\"\\\"\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\"\\\"\\\"\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    probs = _softmax_rows(logits)\\n    A = _sample_cat(probs, rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n\\n... [截断: 输出过长，省略 15832 字符] ...\\n\\n   f\\\"std={metrics['tau_bias_std']:.6f}  \\\"\\n                      f\\\"max={metrics['tau_bias_max']:.6f}\\\")\\n\\n            # 5. Eigendecomposition\\n            top3 = eigen_analysis(plim_all, plim_true)\\n            print(f\\\"  Eigen top-{len(top3)} var explained: \\\"\\n                  + '  '.join(f'{v:.1%}' for v in top3))\\n\\n            # 6. Worst-case bounds\\n            wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\n            for thr, v in wc.items():\\n                print(f\\\"  Worst-case (diag≥{thr}): \\\"\\n                      f\\\"max|Δτ|={v['max_bias']:.6f}  \\\"\\n                      f\\\"mean={v['mean_bias']:.6f}  \\\"\\n                      f\\\"P95={v['p95_bias']:.6f}\\\")\\n\\n            # 7. Sensitivity heatmap\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            sensitivity_heatmap(ss, plim_fn, K, DEVICE, hm_path, topo)\\n            print(f\\\"  Heatmap → {os.path.basename(hm_path)}\\\")\\n\\n            print(f\\\"  [{time.time() - tk:.1f}s]\\\")\\n\\n    # ==================================================================\\n    # Cross-K Summary\\n    # ==================================================================\\n    print(f\\\"\\\\n{'=' * 90}\\\")\\n    print(\\\"  CROSS-K COMPARISON\\\")\\n    print(f\\\"{'=' * 90}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3}\\\"\\n           f\\\" {'violat':>8} {'sflip':>8} {'amplif':>8}\\\"\\n           f\\\" {'τ_viol':>8} {'τ_sflip':>8} {'τ_amp':>8}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-' * 73}\\\")\\n\\n    for topo in topologies:\\n        for K in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K}\\\"]\\n            tv = m.get('tau_violation', None)\\n            ts = m.get('tau_sign_flip', None)\\n            ta = m.get('tau_amplification', None)\\n            tvs = f\\\"{tv:.1%}\\\" if tv is not None else \\\"  —\\\"\\n            tss = f\\\"{ts:.1%}\\\" if ts is not None else \\\"  —\\\"\\n            tas = f\\\"{ta:.1%}\\\" if ta is not None else \\\"  —\\\"\\n            print(f\\\"  {topo:<14} {K:>3}\\\"\\n                  f\\\" {m['violation']:>8.1%} {m['sign_flip']:>8.1%}\\\"\\n                  f\\\" {m['amplification']:>8.1%}\\\"\\n                  f\\\" {tvs:>8} {tss:>8} {tas:>8}\\\")\\n        print()\\n\\n    # Trend analysis\\n    print(\\\"  K-TREND ANALYSIS (does bias worsen with K?)\\\")\\n    for topo in topologies:\\n        if topo == 'exposure':\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['violation'] for K in K_VALUES]\\n            label = 'violation'\\n        else:\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['tau_violation'] for K in K_VALUES]\\n            label = 'τ_violation'\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.01 else (\\\"STABLE\\\" if abs(d) <= 0.01 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14} ({label}): \\\"\\n              f\\\"K=3 {vals[0]:.1%} → K=5 {vals[1]:.1%} → K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    # ==================================================================\\n    # Combined sensitivity figure (K=5 and K=7 side by side per topology)\\n    # ==================================================================\\n    fig, axes = plt.subplots(len(topologies), 2, figsize=(12, 4 * len(topologies)))\\n    for row, topo in enumerate(topologies):\\n        for col, K in enumerate([5, 7]):\\n            ax = axes[row, col]\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            if os.path.exists(hm_path):\\n                img = plt.imread(hm_path)\\n                ax.imshow(img)\\n                ax.axis('off')\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n            else:\\n                ax.text(0.5, 0.5, 'N/A', ha='center', va='center', transform=ax.transAxes)\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n    fig.suptitle('Sensitivity Heatmaps: |∂bias(τ)/∂C_ij|', fontsize=13)\\n    fig.tight_layout(rect=[0, 0, 1, 0.97])\\n    combined_path = os.path.join(OUT_DIR, 'plan002_sensitivity_combined.png')\\n    fig.savefig(combined_path, dpi=150, bbox_inches='tight')\\n    plt.close(fig)\\n    print(f\\\"\\\\n  Combined heatmap → {os.path.basename(combined_path)}\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "b01441e4-2405-4918-a3e7-8cb4cf5e6477",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# -*- coding: utf-8 -*-\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\\\n\\\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\\\nheatmaps as interpretability tools.\\\\n\\\\nInput:  DGP parameters per topology (auto-generated for each K)\\\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\\\n\\\\nDependencies: torch (GPU), numpy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport time\\\\nimport os\\\\nimport sys\\\\n\\\\n# ================================================================\\\\n# Configuration\\\\n# ================================================================\\\\nK_VALUES = [3, 5, 7]\\\\nN_RANDOM = 100_000\\\\nN_LARGE = 5_000_000\\\\nSEED = 42\\\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\\\nDTYPE = torch.float64\\\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\n\\\\n# ================================================================\\\\n# DGP Parameters for general K\\\\n# ================================================================\\\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\\\n\\\\n\\\\ndef make_p_A(K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Slightly imbalanced category probabilities.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if K == 3:\\\\n        return np.array([0.40, 0.35, 0.25])\\\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\\\n    return raw / raw.sum()\\\\n\\\\n\\\\ndef make_params(K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DGP parameters for all topologies at given K.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p_A = make_p_A(K)\\\\n\\\\n    conf = dict(\\\\n        p_A=p_A,\\\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\\\n        beta_T=2.0,\\\\n        sigma_T=1.0,\\\\n    )\\\\n\\\\n    med = dict(\\\\n        tau=0.5,\\\\n        gamma=np.array(_GAMMA_POOL[:K]),\\\\n        delta=np.array(_DELTA_POOL[:K]),\\\\n        beta=np.array(_BETA_POOL[:K]),\\\\n    )\\\\n\\\\n    coll = dict(\\\\n        tau=1.0,\\\\n        g=np.zeros(K),\\\\n        dT=np.array(_DT_POOL[:K]),\\\\n        dY=np.array(_DY_POOL[:K]),\\\\n    )\\\\n\\\\n    exp = dict(\\\\n        beta=np.array(_BETA_POOL[:K]),\\\\n        p_A=p_A,\\\\n    )\\\\n\\\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\\\n\\\\n\\\\n# ================================================================\\\\n# DGP Generators\\\\n# ================================================================\\\\ndef _softmax_rows(logits):\\\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\\\n    return e / e.sum(axis=-1, keepdims=True)\\\\n\\\\n\\\\ndef _sample_cat(probs, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sample from row-wise categorical probabilities [N, K].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\\\n    return (u >= cum).sum(axis=1).astype(int)\\\\n\\\\n\\\\ndef gen_confounding(K, N, p, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1).astype(float)\\\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_mediation(K, N, p, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    T = rng.binomial(1, 0.5, N).astype(float)\\\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\\\n    probs = _softmax_rows(logits)\\\\n    A = _sample_cat(probs, rng)\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1)\\\\n\\\\n... [截断: 输出过长，省略 15832 字符] ...\\\\n\\\\n   f\\\\\\\"std={metrics['tau_bias_std']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"max={metrics['tau_bias_max']:.6f}\\\\\\\")\\\\n\\\\n            # 5. Eigendecomposition\\\\n            top3 = eigen_analysis(plim_all, plim_true)\\\\n            print(f\\\\\\\"  Eigen top-{len(top3)} var explained: \\\\\\\"\\\\n                  + '  '.join(f'{v:.1%}' for v in top3))\\\\n\\\\n            # 6. Worst-case bounds\\\\n            wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\\\n            for thr, v in wc.items():\\\\n                print(f\\\\\\\"  Worst-case (diag≥{thr}): \\\\\\\"\\\\n                      f\\\\\\\"max|Δτ|={v['max_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"mean={v['mean_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"P95={v['p95_bias']:.6f}\\\\\\\")\\\\n\\\\n            # 7. Sensitivity heatmap\\\\n            hm_path = os.path.join(OUT_DIR, f\\\\\\\"plan002_sensitivity_{topo}_K{K}.png\\\\\\\")\\\\n            sensitivity_heatmap(ss, plim_fn, K, DEVICE, hm_path, topo)\\\\n            print(f\\\\\\\"  Heatmap → {os.path.basename(hm_path)}\\\\\\\")\\\\n\\\\n            print(f\\\\\\\"  [{time.time() - tk:.1f}s]\\\\\\\")\\\\n\\\\n    # ==================================================================\\\\n    # Cross-K Summary\\\\n    # ==================================================================\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 90}\\\\\\\")\\\\n    print(\\\\\\\"  CROSS-K COMPARISON\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * 90}\\\\\\\")\\\\n\\\\n    hdr = (f\\\\\\\"  {'Topology':<14} {'K':>3}\\\\\\\"\\\\n           f\\\\\\\" {'violat':>8} {'sflip':>8} {'amplif':>8}\\\\\\\"\\\\n           f\\\\\\\" {'τ_viol':>8} {'τ_sflip':>8} {'τ_amp':>8}\\\\\\\")\\\\n    print(hdr)\\\\n    print(f\\\\\\\"  {'-' * 73}\\\\\\\")\\\\n\\\\n    for topo in topologies:\\\\n        for K in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"]\\\\n            tv = m.get('tau_violation', None)\\\\n            ts = m.get('tau_sign_flip', None)\\\\n            ta = m.get('tau_amplification', None)\\\\n            tvs = f\\\\\\\"{tv:.1%}\\\\\\\" if tv is not None else \\\\\\\"  —\\\\\\\"\\\\n            tss = f\\\\\\\"{ts:.1%}\\\\\\\" if ts is not None else \\\\\\\"  —\\\\\\\"\\\\n            tas = f\\\\\\\"{ta:.1%}\\\\\\\" if ta is not None else \\\\\\\"  —\\\\\\\"\\\\n            print(f\\\\\\\"  {topo:<14} {K:>3}\\\\\\\"\\\\n                  f\\\\\\\" {m['violation']:>8.1%} {m['sign_flip']:>8.1%}\\\\\\\"\\\\n                  f\\\\\\\" {m['amplification']:>8.1%}\\\\\\\"\\\\n                  f\\\\\\\" {tvs:>8} {tss:>8} {tas:>8}\\\\\\\")\\\\n        print()\\\\n\\\\n    # Trend analysis\\\\n    print(\\\\\\\"  K-TREND ANALYSIS (does bias worsen with K?)\\\\\\\")\\\\n    for topo in topologies:\\\\n        if topo == 'exposure':\\\\n            vals = [all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"]['violation'] for K in K_VALUES]\\\\n            label = 'violation'\\\\n        else:\\\\n            vals = [all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"]['tau_violation'] for K in K_VALUES]\\\\n            label = 'τ_violation'\\\\n        d = vals[-1] - vals[0]\\\\n        trend = \\\\\\\"WORSENS\\\\\\\" if d > 0.01 else (\\\\\\\"STABLE\\\\\\\" if abs(d) <= 0.01 else \\\\\\\"IMPROVES\\\\\\\")\\\\n        print(f\\\\\\\"  {topo:<14} ({label}): \\\\\\\"\\\\n              f\\\\\\\"K=3 {vals[0]:.1%} → K=5 {vals[1]:.1%} → K=7 {vals[2]:.1%}  [{trend}]\\\\\\\")\\\\n\\\\n    # ==================================================================\\\\n    # Combined sensitivity figure (K=5 and K=7 side by side per topology)\\\\n    # ==================================================================\\\\n    fig, axes = plt.subplots(len(topologies), 2, figsize=(12, 4 * len(topologies)))\\\\n    for row, topo in enumerate(topologies):\\\\n        for col, K in enumerate([5, 7]):\\\\n            ax = axes[row, col]\\\\n            hm_path = os.path.join(OUT_DIR, f\\\\\\\"plan002_sensitivity_{topo}_K{K}.png\\\\\\\")\\\\n            if os.path.exists(hm_path):\\\\n                img = plt.imread(hm_path)\\\\n                ax.imshow(img)\\\\n                ax.axis('off')\\\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\\\n            else:\\\\n                ax.text(0.5, 0.5, 'N/A', ha='center', va='center', transform=ax.transAxes)\\\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\\\n    fig.suptitle('Sensitivity Heatmaps: |∂bias(τ)/∂C_ij|', fontsize=13)\\\\n    fig.tight_layout(rect=[0, 0, 1, 0.97])\\\\n    combined_path = os.path.join(OUT_DIR, 'plan002_sensitivity_combined.png')\\\\n    fig.savefig(combined_path, dpi=150, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"\\\\\\\\n  Combined heatmap → {os.path.basename(combined_path)}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {time.time() - t0:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# -*- coding: utf-8 -*-\\n\\\"\\\"\\\"\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\n\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\nheatmaps as interpretability tools.\\n\\nInput:  DGP parameters per topology (auto-generated for each K)\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\n\\nDependencies: torch (GPU), numpy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport time\\nimport os\\nimport sys\\n\\n# ================================================================\\n# Configuration\\n# ================================================================\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n\\n# ================================================================\\n# DGP Parameters for general K\\n# ================================================================\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n\\n\\ndef make_p_A(K):\\n    \\\"\\\"\\\"Slightly imbalanced category probabilities.\\\"\\\"\\\"\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_params(K):\\n    \\\"\\\"\\\"DGP parameters for all topologies at given K.\\\"\\\"\\\"\\n    p_A = make_p_A(K)\\n\\n    conf = dict(\\n        p_A=p_A,\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\n        beta_T=2.0,\\n        sigma_T=1.0,\\n    )\\n\\n    med = dict(\\n        tau=0.5,\\n        gamma=np.array(_GAMMA_POOL[:K]),\\n        delta=np.array(_DELTA_POOL[:K]),\\n        beta=np.array(_BETA_POOL[:K]),\\n    )\\n\\n    coll = dict(\\n        tau=1.0,\\n        g=np.zeros(K),\\n        dT=np.array(_DT_POOL[:K]),\\n        dY=np.array(_DY_POOL[:K]),\\n    )\\n\\n    exp = dict(\\n        beta=np.array(_BETA_POOL[:K]),\\n        p_A=p_A,\\n    )\\n\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\n\\n\\n# ================================================================\\n# DGP Generators\\n# ================================================================\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    \\\"\\\"\\\"Sample from row-wise categorical probabilities [N, K].\\\"\\\"\\\"\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    \\\"\\\"\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\"\\\"\\\"\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    \\\"\\\"\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\"\\\"\\\"\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    probs = _softmax_rows(logits)\\n    A = _sample_cat(probs, rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n\\n... [截断: 输出过长，省略 15832 字符] ...\\n\\n   f\\\"std={metrics['tau_bias_std']:.6f}  \\\"\\n                      f\\\"max={metrics['tau_bias_max']:.6f}\\\")\\n\\n            # 5. Eigendecomposition\\n            top3 = eigen_analysis(plim_all, plim_true)\\n            print(f\\\"  Eigen top-{len(top3)} var explained: \\\"\\n                  + '  '.join(f'{v:.1%}' for v in top3))\\n\\n            # 6. Worst-case bounds\\n            wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\n            for thr, v in wc.items():\\n                print(f\\\"  Worst-case (diag≥{thr}): \\\"\\n                      f\\\"max|Δτ|={v['max_bias']:.6f}  \\\"\\n                      f\\\"mean={v['mean_bias']:.6f}  \\\"\\n                      f\\\"P95={v['p95_bias']:.6f}\\\")\\n\\n            # 7. Sensitivity heatmap\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            sensitivity_heatmap(ss, plim_fn, K, DEVICE, hm_path, topo)\\n            print(f\\\"  Heatmap → {os.path.basename(hm_path)}\\\")\\n\\n            print(f\\\"  [{time.time() - tk:.1f}s]\\\")\\n\\n    # ==================================================================\\n    # Cross-K Summary\\n    # ==================================================================\\n    print(f\\\"\\\\n{'=' * 90}\\\")\\n    print(\\\"  CROSS-K COMPARISON\\\")\\n    print(f\\\"{'=' * 90}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3}\\\"\\n           f\\\" {'violat':>8} {'sflip':>8} {'amplif':>8}\\\"\\n           f\\\" {'τ_viol':>8} {'τ_sflip':>8} {'τ_amp':>8}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-' * 73}\\\")\\n\\n    for topo in topologies:\\n        for K in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K}\\\"]\\n            tv = m.get('tau_violation', None)\\n            ts = m.get('tau_sign_flip', None)\\n            ta = m.get('tau_amplification', None)\\n            tvs = f\\\"{tv:.1%}\\\" if tv is not None else \\\"  —\\\"\\n            tss = f\\\"{ts:.1%}\\\" if ts is not None else \\\"  —\\\"\\n            tas = f\\\"{ta:.1%}\\\" if ta is not None else \\\"  —\\\"\\n            print(f\\\"  {topo:<14} {K:>3}\\\"\\n                  f\\\" {m['violation']:>8.1%} {m['sign_flip']:>8.1%}\\\"\\n                  f\\\" {m['amplification']:>8.1%}\\\"\\n                  f\\\" {tvs:>8} {tss:>8} {tas:>8}\\\")\\n        print()\\n\\n    # Trend analysis\\n    print(\\\"  K-TREND ANALYSIS (does bias worsen with K?)\\\")\\n    for topo in topologies:\\n        if topo == 'exposure':\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['violation'] for K in K_VALUES]\\n            label = 'violation'\\n        else:\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['tau_violation'] for K in K_VALUES]\\n            label = 'τ_violation'\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.01 else (\\\"STABLE\\\" if abs(d) <= 0.01 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14} ({label}): \\\"\\n              f\\\"K=3 {vals[0]:.1%} → K=5 {vals[1]:.1%} → K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    # ==================================================================\\n    # Combined sensitivity figure (K=5 and K=7 side by side per topology)\\n    # ==================================================================\\n    fig, axes = plt.subplots(len(topologies), 2, figsize=(12, 4 * len(topologies)))\\n    for row, topo in enumerate(topologies):\\n        for col, K in enumerate([5, 7]):\\n            ax = axes[row, col]\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            if os.path.exists(hm_path):\\n                img = plt.imread(hm_path)\\n                ax.imshow(img)\\n                ax.axis('off')\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n            else:\\n                ax.text(0.5, 0.5, 'N/A', ha='center', va='center', transform=ax.transAxes)\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n    fig.suptitle('Sensitivity Heatmaps: |∂bias(τ)/∂C_ij|', fontsize=13)\\n    fig.tight_layout(rect=[0, 0, 1, 0.97])\\n    combined_path = os.path.join(OUT_DIR, 'plan002_sensitivity_combined.png')\\n    fig.savefig(combined_path, dpi=150, bbox_inches='tight')\\n    plt.close(fig)\\n    print(f\\\"\\\\n  Combined heatmap → {os.path.basename(combined_path)}\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to specifically read the `gen_random_C` function and the `worst_case_bounds`/`worst_case_ols` functions from both files. Let me grep for those specific functions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "28d5e40a-e5e1-42dc-89a3-fc09cb5a110d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7LFAjrH833tTL13zrKdEg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8050,
+      "cache_read_input_tokens": 24986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+输出被截断了，需要看到 `gen_random_C` 和 worst-case 相关函数的完整定义。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "5e696d6e-a5ee-46bd-a48f-f1c24831f30d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7LFAjrH833tTL13zrKdEg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8050,
+      "cache_read_input_tokens": 24986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F1zSeZg4sHhFtpRzZZwZ8Z`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"def gen_random_C\\|def worst_case\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f3dde21e-c129-49ab-aec7-8ed95342a2c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7LFAjrH833tTL13zrKdEg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8050,
+      "cache_read_input_tokens": 24986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T16:04:46.962Z_
+
+<details><summary>↩ Tool result · `toolu_01F1zSeZg4sHhFtpRzZZwZ8Z`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "23615989-ccae-40bc-b2b4-972d4466ec7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EHVNep7mkARNc8iZvyrKrV`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"def gen_random_C\\|def worst_case\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "ca2bcee5-5a57-4d51-947d-ae4e47eea21c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7LFAjrH833tTL13zrKdEg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8050,
+      "cache_read_input_tokens": 24986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T16:04:47.680Z_
+
+<details><summary>↩ Tool result · `toolu_01EHVNep7mkARNc8iZvyrKrV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "89fab3af-a865-405a-abfe-0f1c1fe876d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CRriatXDALSkywxjjCZnNy`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"def gen_random_C\\|def worst_case\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "de24acc4-04b9-416e-85db-bb40a72a765d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AB9aqW7aqxv54VtKbXRWTE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 631,
+      "cache_read_input_tokens": 33036,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 631
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T16:04:50.990Z_
+
+<details><summary>↩ Tool result · `toolu_01CRriatXDALSkywxjjCZnNy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "b3cdbee0-a146-4315-a011-b832581344b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YBYWNEXc51537jrzmM63KM`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"def gen_random_C\\|def worst_case\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "326ff9ce-4c75-4530-8469-e36abfeedeff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AB9aqW7aqxv54VtKbXRWTE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 631,
+      "cache_read_input_tokens": 33036,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 631
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T16:04:51.627Z_
+
+<details><summary>↩ Tool result · `toolu_01YBYWNEXc51537jrzmM63KM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "05d37fec-4538-44ce-a29d-59659b2dde2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in `\|` is being blocked. Let me use `-e` flags instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "8937db7d-c2d7-491a-811d-1a446076145b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGNSdH7FsVDDJtob1SN6BH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 33667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FvzvFFGg3VLH7mDFZ8VCGa`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n -e \"def gen_random_C\" -e \"def worst_case\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "902a9ea8-6648-4c5b-872b-8916b5c298ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGNSdH7FsVDDJtob1SN6BH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 33667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019quKZa7DJctzSvPJajPCJ6`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n -e \"def gen_random_C\" -e \"def worst_case\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "586695ce-cd73-4b83-b67b-20fb9c2cea37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGNSdH7FsVDDJtob1SN6BH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 33667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T16:04:56.783Z_
+
+<details><summary>↩ Tool result · `toolu_01FvzvFFGg3VLH7mDFZ8VCGa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"253:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n316:def worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n337:def worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "75f15d8d-b7fc-4b91-ad57-e4fbc4d75295",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"253:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n316:def worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\\\n337:def worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"253:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n316:def worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n337:def worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T16:04:58.419Z_
+
+<details><summary>↩ Tool result · `toolu_019quKZa7DJctzSvPJajPCJ6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"276:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n395:def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "e8f85a0a-45b7-4e42-837f-267febffce80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"276:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n395:def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"276:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n395:def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012KnSJRvvRqWbgixY6u7r1m`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -380 /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "24b17967-e39d-4086-8172-5fcccabb9cb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015otEdxiuid9KKFC7QZ4Em6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 34195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RZPTLhFezHCYyUD6iXSiP2`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -460 /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "5dd7ad93-5f79-49ab-ae01-005cf5a9b626",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015otEdxiuid9KKFC7QZ4Em6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 34195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T16:05:03.197Z_
+
+<details><summary>↩ Tool result · `toolu_012KnSJRvvRqWbgixY6u7r1m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\n\\nTopologies:\\n  1. Confounding: A→T, A→Y, T→Y\\n  2. Mediation: T→A→Y\\n  3. Collider: T→A←Y\\n  4. Exposure: A→Y\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\n  6. IV: Z→A→Y, U→{A,Y}\\n  7. Front-door: T→M→Y, U→{T,Y}\\n\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport time\\nimport os\\nimport sys\\n\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\n\\n\\ndef make_p_A(K):\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_all_params(K):\\n    p_A = make_p_A(K)\\n    return dict(\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\n                      dY=np.array(_DY_POOL[:K])),\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n    )\\n\\n\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_collider(K, N, p, rng):\\n    T = rng.normal(0, 1, N)\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    return T, Y, A\\n\\n\\ndef gen_exposure(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1\\n\\n... [截断: 输出过长，省略 5170 字符] ...\\n\\n] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\n    n_valid = valid.sum().item()\\n    if n_valid == 0:\\n        base = {k: float('nan') for k in\\n                ['violation', 'sign_flip', 'amplification']}\\n        base['n_valid'] = 0\\n        return base\\n\\n    pb = plim_batch[valid]\\n    diff = pb - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\n\\n    nz = plim_true.abs() > 1e-6\\n    if nz.any():\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\n                     ).any(dim=1).float().mean().item()\\n    else:\\n        sign_flip = 0.0\\n\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip,\\n             amplification=amplification, n_valid=n_valid)\\n\\n    if tau_idx is not None:\\n        tb = pb[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\n        m['tau_sign_flip'] = (\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\n        ).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\n        valid = torch.isfinite(pb)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v - tau_I).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 100)\\n    print(\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"  Device: {DEVICE}\\\")\\n    if DEVICE.type == 'cuda':\\n        print(f\\\"  GPU: {torch.cuda.get_device_name(0)}\\\")\\n        print(f\\\"  VRAM: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB\\\")\\n    print(f\\\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\\\")\\n    sys.stdout.flush()\\n\\n    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\\n                 'mbias', 'iv', 'frontdoor']\\n    all_results = {}\\n\\n    for K in K_VALUES:\\n        params = make_all_params(K)\\n        print(f\\\"\\\\n{'='*100}\\\")\\n        print(f\\\"  K = {K}\\\")\\n        print(f\\\"{'='*100}\\\")\\n        sys.stdout.flush()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "272e98cc-3e95-43ce-9d4e-69dd674c2c15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\\\n\\\\nTopologies:\\\\n  1. Confounding: A→T, A→Y, T→Y\\\\n  2. Mediation: T→A→Y\\\\n  3. Collider: T→A←Y\\\\n  4. Exposure: A→Y\\\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\\\n  6. IV: Z→A→Y, U→{A,Y}\\\\n  7. Front-door: T→M→Y, U→{T,Y}\\\\n\\\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport time\\\\nimport os\\\\nimport sys\\\\n\\\\nK_VALUES = [3, 5, 7]\\\\nN_RANDOM = 100_000\\\\nN_LARGE = 5_000_000\\\\nSEED = 42\\\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\\\nDTYPE = torch.float64\\\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\\\n\\\\n\\\\ndef make_p_A(K):\\\\n    if K == 3:\\\\n        return np.array([0.40, 0.35, 0.25])\\\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\\\n    return raw / raw.sum()\\\\n\\\\n\\\\ndef make_all_params(K):\\\\n    p_A = make_p_A(K)\\\\n    return dict(\\\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\\\n                      dY=np.array(_DY_POOL[:K])),\\\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n    )\\\\n\\\\n\\\\ndef _softmax_rows(logits):\\\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\\\n    return e / e.sum(axis=-1, keepdims=True)\\\\n\\\\n\\\\ndef _sample_cat(probs, rng):\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\\\n    return (u >= cum).sum(axis=1).astype(int)\\\\n\\\\n\\\\ndef gen_confounding(K, N, p, rng):\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1).astype(float)\\\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_mediation(K, N, p, rng):\\\\n    T = rng.binomial(1, 0.5, N).astype(float)\\\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\\\n    A = _sample_cat(_softmax_rows(logits), rng)\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1)\\\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_collider(K, N, p, rng):\\\\n    T = rng.normal(0, 1, N)\\\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\\\n    A = _sample_cat(_softmax_rows(logits), rng)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_exposure(K, N, p, rng):\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1\\\\n\\\\n... [截断: 输出过长，省略 5170 字符] ...\\\\n\\\\n] = col\\\\n    else:\\\\n        for j in range(K):\\\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\\\n\\\\n\\\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\\\n    n_valid = valid.sum().item()\\\\n    if n_valid == 0:\\\\n        base = {k: float('nan') for k in\\\\n                ['violation', 'sign_flip', 'amplification']}\\\\n        base['n_valid'] = 0\\\\n        return base\\\\n\\\\n    pb = plim_batch[valid]\\\\n    diff = pb - plim_true.unsqueeze(0)\\\\n\\\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\\\n\\\\n    nz = plim_true.abs() > 1e-6\\\\n    if nz.any():\\\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\\\n                     ).any(dim=1).float().mean().item()\\\\n    else:\\\\n        sign_flip = 0.0\\\\n\\\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\\\n                     ).any(dim=1).float().mean().item()\\\\n\\\\n    m = dict(violation=violation, sign_flip=sign_flip,\\\\n             amplification=amplification, n_valid=n_valid)\\\\n\\\\n    if tau_idx is not None:\\\\n        tb = pb[:, tau_idx]\\\\n        tt = plim_true[tau_idx]\\\\n        td = tb - tt\\\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\\\n        m['tau_sign_flip'] = (\\\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\\\n        ).float().mean().item()\\\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\\\n        m['tau_bias_mean'] = td.mean().item()\\\\n        m['tau_bias_std'] = td.std().item()\\\\n        m['tau_bias_max'] = td.abs().max().item()\\\\n    return m\\\\n\\\\n\\\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_fn(ss, Cb)\\\\n        valid = torch.isfinite(pb).all(dim=1)\\\\n        pb_v = pb[valid]\\\\n        if len(pb_v) == 0:\\\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\\\n            continue\\\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\\\n        valid = torch.isfinite(pb)\\\\n        pb_v = pb[valid]\\\\n        if len(pb_v) == 0:\\\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\\\n            continue\\\\n        bias = (pb_v - tau_I).abs()\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(f\\\\\\\"  Device: {DEVICE}\\\\\\\")\\\\n    if DEVICE.type == 'cuda':\\\\n        print(f\\\\\\\"  GPU: {torch.cuda.get_device_name(0)}\\\\\\\")\\\\n        print(f\\\\\\\"  VRAM: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB\\\\\\\")\\\\n    print(f\\\\\\\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\\\\\\\")\\\\n    sys.stdout.flush()\\\\n\\\\n    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\\\\n                 'mbias', 'iv', 'frontdoor']\\\\n    all_results = {}\\\\n\\\\n    for K in K_VALUES:\\\\n        params = make_all_params(K)\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n        print(f\\\\\\\"  K = {K}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n        sys.stdout.flush()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\n\\nTopologies:\\n  1. Confounding: A→T, A→Y, T→Y\\n  2. Mediation: T→A→Y\\n  3. Collider: T→A←Y\\n  4. Exposure: A→Y\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\n  6. IV: Z→A→Y, U→{A,Y}\\n  7. Front-door: T→M→Y, U→{T,Y}\\n\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport time\\nimport os\\nimport sys\\n\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\n\\n\\ndef make_p_A(K):\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_all_params(K):\\n    p_A = make_p_A(K)\\n    return dict(\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\n                      dY=np.array(_DY_POOL[:K])),\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n    )\\n\\n\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_collider(K, N, p, rng):\\n    T = rng.normal(0, 1, N)\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    return T, Y, A\\n\\n\\ndef gen_exposure(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1\\n\\n... [截断: 输出过长，省略 5170 字符] ...\\n\\n] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\n    n_valid = valid.sum().item()\\n    if n_valid == 0:\\n        base = {k: float('nan') for k in\\n                ['violation', 'sign_flip', 'amplification']}\\n        base['n_valid'] = 0\\n        return base\\n\\n    pb = plim_batch[valid]\\n    diff = pb - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\n\\n    nz = plim_true.abs() > 1e-6\\n    if nz.any():\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\n                     ).any(dim=1).float().mean().item()\\n    else:\\n        sign_flip = 0.0\\n\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip,\\n             amplification=amplification, n_valid=n_valid)\\n\\n    if tau_idx is not None:\\n        tb = pb[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\n        m['tau_sign_flip'] = (\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\n        ).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\n        valid = torch.isfinite(pb)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v - tau_I).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 100)\\n    print(\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"  Device: {DEVICE}\\\")\\n    if DEVICE.type == 'cuda':\\n        print(f\\\"  GPU: {torch.cuda.get_device_name(0)}\\\")\\n        print(f\\\"  VRAM: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB\\\")\\n    print(f\\\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\\\")\\n    sys.stdout.flush()\\n\\n    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\\n                 'mbias', 'iv', 'frontdoor']\\n    all_results = {}\\n\\n    for K in K_VALUES:\\n        params = make_all_params(K)\\n        print(f\\\"\\\\n{'='*100}\\\")\\n        print(f\\\"  K = {K}\\\")\\n        print(f\\\"{'='*100}\\\")\\n        sys.stdout.flush()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T16:05:04.075Z_
+
+<details><summary>↩ Tool result · `toolu_01RZPTLhFezHCYyUD6iXSiP2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# -*- coding: utf-8 -*-\\n\\\"\\\"\\\"\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\n\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\nheatmaps as interpretability tools.\\n\\nInput:  DGP parameters per topology (auto-generated for each K)\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\n\\nDependencies: torch (GPU), numpy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport time\\nimport os\\nimport sys\\n\\n# ================================================================\\n# Configuration\\n# ================================================================\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n\\n# ================================================================\\n# DGP Parameters for general K\\n# ================================================================\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n\\n\\ndef make_p_A(K):\\n    \\\"\\\"\\\"Slightly imbalanced category probabilities.\\\"\\\"\\\"\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_params(K):\\n    \\\"\\\"\\\"DGP parameters for all topologies at given K.\\\"\\\"\\\"\\n    p_A = make_p_A(K)\\n\\n    conf = dict(\\n        p_A=p_A,\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\n        beta_T=2.0,\\n        sigma_T=1.0,\\n    )\\n\\n    med = dict(\\n        tau=0.5,\\n        gamma=np.array(_GAMMA_POOL[:K]),\\n        delta=np.array(_DELTA_POOL[:K]),\\n        beta=np.array(_BETA_POOL[:K]),\\n    )\\n\\n    coll = dict(\\n        tau=1.0,\\n        g=np.zeros(K),\\n        dT=np.array(_DT_POOL[:K]),\\n        dY=np.array(_DY_POOL[:K]),\\n    )\\n\\n    exp = dict(\\n        beta=np.array(_BETA_POOL[:K]),\\n        p_A=p_A,\\n    )\\n\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\n\\n\\n# ================================================================\\n# DGP Generators\\n# ================================================================\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    \\\"\\\"\\\"Sample from row-wise categorical probabilities [N, K].\\\"\\\"\\\"\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    \\\"\\\"\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\"\\\"\\\"\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    \\\"\\\"\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\"\\\"\\\"\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    probs = _softmax_rows(logits)\\n    A = _sample_cat(probs, rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n\\n... [截断: 输出过长，省略 7780 字符] ...\\n\\nfor k in range(K - 1):\\n            Astar += (u >= cum[k]).astype(int)\\n\\n        Dstar = np.zeros((n_mc, K - 1))\\n        for j in range(K - 1):\\n            Dstar[:, j] = (Astar == j + 1).astype(float)\\n\\n        ones = np.ones((n_mc, 1))\\n        if T is not None:\\n            Z = np.hstack([ones, T[:, None], Dstar])\\n        else:\\n            Z = np.hstack([ones, Dstar])\\n        b = np.linalg.lstsq(Z, Y, rcond=None)[0]\\n        coefs.append(b)\\n    return np.mean(coefs, axis=0), np.std(coefs, axis=0) / np.sqrt(n_reps)\\n\\n\\n# ================================================================\\n# Interpretability (a): Eigendecomposition of bias vectors\\n# ================================================================\\ndef eigen_analysis(plim_batch, plim_true):\\n    \\\"\\\"\\\"PCA on bias = plim(C) - plim(I). Returns top-3 variance ratios.\\n\\n    The bias vectors live in R^{K+1} (or R^K for exposure).\\n    Eigendecomposition of bias covariance identifies which linear\\n    combinations of coefficients carry most of the bias variance.\\n    \\\"\\\"\\\"\\n    bias = (plim_batch - plim_true.unsqueeze(0)).cpu().numpy()\\n    bias_c = bias - bias.mean(axis=0)\\n    _, S, Vt = np.linalg.svd(bias_c, full_matrices=False)\\n    var = S ** 2\\n    ratios = var / var.sum()\\n    return ratios[:min(3, len(ratios))]\\n\\n\\n# ================================================================\\n# Interpretability (b): Worst-case bounds under diagonal constraint\\n# ================================================================\\ndef worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    \\\"\\\"\\\"max|τ̂ − τ_true| over column-stochastic C with min diag(C) ≥ thr.\\n\\n    For each threshold, sample 50k constrained C matrices and report\\n    the maximum, mean, and 95th-percentile |bias|.\\n    \\\"\\\"\\\"\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    has_T = plim_I.shape[0] > K\\n    idx = 1 if has_T else 1\\n\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb = pb[valid]\\n        if has_T:\\n            bias = (pb[:, idx] - plim_I[idx]).abs()\\n        else:\\n            bias = (pb[:, 1:] - plim_I[1:].unsqueeze(0)).abs().max(dim=1).values\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\n# ================================================================\\n# Interpretability (c): Sensitivity heatmap via finite differences\\n# ================================================================\\ndef sensitivity_heatmap(ss, plim_fn, K, device, out_path, topo_name):\\n    \\\"\\\"\\\"∂|bias(τ)|/∂C_ij evaluated at C = I via finite differences.\\n\\n    For off-diagonal (i,j): perturb C[i,j] += δ and C[j,j] -= δ to keep\\n    column j stochastic. Measures which misclassification patterns most\\n    affect the τ estimate.\\n    \\\"\\\"\\\"\\n    delta = 0.01\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    has_T = plim_I.shape[0] > K\\n    tau_idx = 1 if has_T else 1\\n    tau_I = plim_I[tau_idx].item()\\n\\n    sens = np.zeros((K, K))\\n    for i in range(K):\\n        for j in range(K):\\n            if i == j:\\n                continue\\n            C = torch.eye(K, dtype=DTYPE, device=device)\\n            C[i, j] += delta\\n            C[j, j] -= delta\\n            p = plim_fn(ss, C.unsqueeze(0)).squeeze(0)\\n            sens[i, j] = abs(p[tau_idx].item() - tau_I) / delta\\n\\n    fig, ax = plt.subplots(figsize=(max(3.5, K * 0.7), max(3.5, K * 0.7)))\\n    im = ax.imshow(sens, cmap='YlOrRd', aspect='equal')\\n    ax.set_xlabel('True category j')\\n    ax.set_ylabel('Observed category i')\\n    ax.set_title(f'{topo_name} K={K}: |∂bias(τ)/∂C_ij|')\\n    ax.set_xticks(range(K))\\n    ax.set_yticks(range(K))\\n    for i in range(K):\\n        for j in range(K):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "09912aa2-56c8-4ed6-b6db-afaefa3f52a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# -*- coding: utf-8 -*-\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\\\n\\\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\\\nheatmaps as interpretability tools.\\\\n\\\\nInput:  DGP parameters per topology (auto-generated for each K)\\\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\\\n\\\\nDependencies: torch (GPU), numpy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport time\\\\nimport os\\\\nimport sys\\\\n\\\\n# ================================================================\\\\n# Configuration\\\\n# ================================================================\\\\nK_VALUES = [3, 5, 7]\\\\nN_RANDOM = 100_000\\\\nN_LARGE = 5_000_000\\\\nSEED = 42\\\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\\\nDTYPE = torch.float64\\\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\n\\\\n# ================================================================\\\\n# DGP Parameters for general K\\\\n# ================================================================\\\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\\\n\\\\n\\\\ndef make_p_A(K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Slightly imbalanced category probabilities.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if K == 3:\\\\n        return np.array([0.40, 0.35, 0.25])\\\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\\\n    return raw / raw.sum()\\\\n\\\\n\\\\ndef make_params(K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DGP parameters for all topologies at given K.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p_A = make_p_A(K)\\\\n\\\\n    conf = dict(\\\\n        p_A=p_A,\\\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\\\n        beta_T=2.0,\\\\n        sigma_T=1.0,\\\\n    )\\\\n\\\\n    med = dict(\\\\n        tau=0.5,\\\\n        gamma=np.array(_GAMMA_POOL[:K]),\\\\n        delta=np.array(_DELTA_POOL[:K]),\\\\n        beta=np.array(_BETA_POOL[:K]),\\\\n    )\\\\n\\\\n    coll = dict(\\\\n        tau=1.0,\\\\n        g=np.zeros(K),\\\\n        dT=np.array(_DT_POOL[:K]),\\\\n        dY=np.array(_DY_POOL[:K]),\\\\n    )\\\\n\\\\n    exp = dict(\\\\n        beta=np.array(_BETA_POOL[:K]),\\\\n        p_A=p_A,\\\\n    )\\\\n\\\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\\\n\\\\n\\\\n# ================================================================\\\\n# DGP Generators\\\\n# ================================================================\\\\ndef _softmax_rows(logits):\\\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\\\n    return e / e.sum(axis=-1, keepdims=True)\\\\n\\\\n\\\\ndef _sample_cat(probs, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sample from row-wise categorical probabilities [N, K].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\\\n    return (u >= cum).sum(axis=1).astype(int)\\\\n\\\\n\\\\ndef gen_confounding(K, N, p, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1).astype(float)\\\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_mediation(K, N, p, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    T = rng.binomial(1, 0.5, N).astype(float)\\\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\\\n    probs = _softmax_rows(logits)\\\\n    A = _sample_cat(probs, rng)\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1)\\\\n\\\\n... [截断: 输出过长，省略 7780 字符] ...\\\\n\\\\nfor k in range(K - 1):\\\\n            Astar += (u >= cum[k]).astype(int)\\\\n\\\\n        Dstar = np.zeros((n_mc, K - 1))\\\\n        for j in range(K - 1):\\\\n            Dstar[:, j] = (Astar == j + 1).astype(float)\\\\n\\\\n        ones = np.ones((n_mc, 1))\\\\n        if T is not None:\\\\n            Z = np.hstack([ones, T[:, None], Dstar])\\\\n        else:\\\\n            Z = np.hstack([ones, Dstar])\\\\n        b = np.linalg.lstsq(Z, Y, rcond=None)[0]\\\\n        coefs.append(b)\\\\n    return np.mean(coefs, axis=0), np.std(coefs, axis=0) / np.sqrt(n_reps)\\\\n\\\\n\\\\n# ================================================================\\\\n# Interpretability (a): Eigendecomposition of bias vectors\\\\n# ================================================================\\\\ndef eigen_analysis(plim_batch, plim_true):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"PCA on bias = plim(C) - plim(I). Returns top-3 variance ratios.\\\\n\\\\n    The bias vectors live in R^{K+1} (or R^K for exposure).\\\\n    Eigendecomposition of bias covariance identifies which linear\\\\n    combinations of coefficients carry most of the bias variance.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    bias = (plim_batch - plim_true.unsqueeze(0)).cpu().numpy()\\\\n    bias_c = bias - bias.mean(axis=0)\\\\n    _, S, Vt = np.linalg.svd(bias_c, full_matrices=False)\\\\n    var = S ** 2\\\\n    ratios = var / var.sum()\\\\n    return ratios[:min(3, len(ratios))]\\\\n\\\\n\\\\n# ================================================================\\\\n# Interpretability (b): Worst-case bounds under diagonal constraint\\\\n# ================================================================\\\\ndef worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"max|τ̂ − τ_true| over column-stochastic C with min diag(C) ≥ thr.\\\\n\\\\n    For each threshold, sample 50k constrained C matrices and report\\\\n    the maximum, mean, and 95th-percentile |bias|.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\\\n    has_T = plim_I.shape[0] > K\\\\n    idx = 1 if has_T else 1\\\\n\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_fn(ss, Cb)\\\\n        valid = torch.isfinite(pb).all(dim=1)\\\\n        pb = pb[valid]\\\\n        if has_T:\\\\n            bias = (pb[:, idx] - plim_I[idx]).abs()\\\\n        else:\\\\n            bias = (pb[:, 1:] - plim_I[1:].unsqueeze(0)).abs().max(dim=1).values\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\n# ================================================================\\\\n# Interpretability (c): Sensitivity heatmap via finite differences\\\\n# ================================================================\\\\ndef sensitivity_heatmap(ss, plim_fn, K, device, out_path, topo_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"∂|bias(τ)|/∂C_ij evaluated at C = I via finite differences.\\\\n\\\\n    For off-diagonal (i,j): perturb C[i,j] += δ and C[j,j] -= δ to keep\\\\n    column j stochastic. Measures which misclassification patterns most\\\\n    affect the τ estimate.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    delta = 0.01\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\\\n    has_T = plim_I.shape[0] > K\\\\n    tau_idx = 1 if has_T else 1\\\\n    tau_I = plim_I[tau_idx].item()\\\\n\\\\n    sens = np.zeros((K, K))\\\\n    for i in range(K):\\\\n        for j in range(K):\\\\n            if i == j:\\\\n                continue\\\\n            C = torch.eye(K, dtype=DTYPE, device=device)\\\\n            C[i, j] += delta\\\\n            C[j, j] -= delta\\\\n            p = plim_fn(ss, C.unsqueeze(0)).squeeze(0)\\\\n            sens[i, j] = abs(p[tau_idx].item() - tau_I) / delta\\\\n\\\\n    fig, ax = plt.subplots(figsize=(max(3.5, K * 0.7), max(3.5, K * 0.7)))\\\\n    im = ax.imshow(sens, cmap='YlOrRd', aspect='equal')\\\\n    ax.set_xlabel('True category j')\\\\n    ax.set_ylabel('Observed category i')\\\\n    ax.set_title(f'{topo_name} K={K}: |∂bias(τ)/∂C_ij|')\\\\n    ax.set_xticks(range(K))\\\\n    ax.set_yticks(range(K))\\\\n    for i in range(K):\\\\n        for j in range(K):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# -*- coding: utf-8 -*-\\n\\\"\\\"\\\"\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\n\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\nheatmaps as interpretability tools.\\n\\nInput:  DGP parameters per topology (auto-generated for each K)\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\n\\nDependencies: torch (GPU), numpy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport time\\nimport os\\nimport sys\\n\\n# ================================================================\\n# Configuration\\n# ================================================================\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n\\n# ================================================================\\n# DGP Parameters for general K\\n# ================================================================\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n\\n\\ndef make_p_A(K):\\n    \\\"\\\"\\\"Slightly imbalanced category probabilities.\\\"\\\"\\\"\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_params(K):\\n    \\\"\\\"\\\"DGP parameters for all topologies at given K.\\\"\\\"\\\"\\n    p_A = make_p_A(K)\\n\\n    conf = dict(\\n        p_A=p_A,\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\n        beta_T=2.0,\\n        sigma_T=1.0,\\n    )\\n\\n    med = dict(\\n        tau=0.5,\\n        gamma=np.array(_GAMMA_POOL[:K]),\\n        delta=np.array(_DELTA_POOL[:K]),\\n        beta=np.array(_BETA_POOL[:K]),\\n    )\\n\\n    coll = dict(\\n        tau=1.0,\\n        g=np.zeros(K),\\n        dT=np.array(_DT_POOL[:K]),\\n        dY=np.array(_DY_POOL[:K]),\\n    )\\n\\n    exp = dict(\\n        beta=np.array(_BETA_POOL[:K]),\\n        p_A=p_A,\\n    )\\n\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\n\\n\\n# ================================================================\\n# DGP Generators\\n# ================================================================\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    \\\"\\\"\\\"Sample from row-wise categorical probabilities [N, K].\\\"\\\"\\\"\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    \\\"\\\"\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\"\\\"\\\"\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    \\\"\\\"\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\"\\\"\\\"\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    probs = _softmax_rows(logits)\\n    A = _sample_cat(probs, rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n\\n... [截断: 输出过长，省略 7780 字符] ...\\n\\nfor k in range(K - 1):\\n            Astar += (u >= cum[k]).astype(int)\\n\\n        Dstar = np.zeros((n_mc, K - 1))\\n        for j in range(K - 1):\\n            Dstar[:, j] = (Astar == j + 1).astype(float)\\n\\n        ones = np.ones((n_mc, 1))\\n        if T is not None:\\n            Z = np.hstack([ones, T[:, None], Dstar])\\n        else:\\n            Z = np.hstack([ones, Dstar])\\n        b = np.linalg.lstsq(Z, Y, rcond=None)[0]\\n        coefs.append(b)\\n    return np.mean(coefs, axis=0), np.std(coefs, axis=0) / np.sqrt(n_reps)\\n\\n\\n# ================================================================\\n# Interpretability (a): Eigendecomposition of bias vectors\\n# ================================================================\\ndef eigen_analysis(plim_batch, plim_true):\\n    \\\"\\\"\\\"PCA on bias = plim(C) - plim(I). Returns top-3 variance ratios.\\n\\n    The bias vectors live in R^{K+1} (or R^K for exposure).\\n    Eigendecomposition of bias covariance identifies which linear\\n    combinations of coefficients carry most of the bias variance.\\n    \\\"\\\"\\\"\\n    bias = (plim_batch - plim_true.unsqueeze(0)).cpu().numpy()\\n    bias_c = bias - bias.mean(axis=0)\\n    _, S, Vt = np.linalg.svd(bias_c, full_matrices=False)\\n    var = S ** 2\\n    ratios = var / var.sum()\\n    return ratios[:min(3, len(ratios))]\\n\\n\\n# ================================================================\\n# Interpretability (b): Worst-case bounds under diagonal constraint\\n# ================================================================\\ndef worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    \\\"\\\"\\\"max|τ̂ − τ_true| over column-stochastic C with min diag(C) ≥ thr.\\n\\n    For each threshold, sample 50k constrained C matrices and report\\n    the maximum, mean, and 95th-percentile |bias|.\\n    \\\"\\\"\\\"\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    has_T = plim_I.shape[0] > K\\n    idx = 1 if has_T else 1\\n\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb = pb[valid]\\n        if has_T:\\n            bias = (pb[:, idx] - plim_I[idx]).abs()\\n        else:\\n            bias = (pb[:, 1:] - plim_I[1:].unsqueeze(0)).abs().max(dim=1).values\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\n# ================================================================\\n# Interpretability (c): Sensitivity heatmap via finite differences\\n# ================================================================\\ndef sensitivity_heatmap(ss, plim_fn, K, device, out_path, topo_name):\\n    \\\"\\\"\\\"∂|bias(τ)|/∂C_ij evaluated at C = I via finite differences.\\n\\n    For off-diagonal (i,j): perturb C[i,j] += δ and C[j,j] -= δ to keep\\n    column j stochastic. Measures which misclassification patterns most\\n    affect the τ estimate.\\n    \\\"\\\"\\\"\\n    delta = 0.01\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    has_T = plim_I.shape[0] > K\\n    tau_idx = 1 if has_T else 1\\n    tau_I = plim_I[tau_idx].item()\\n\\n    sens = np.zeros((K, K))\\n    for i in range(K):\\n        for j in range(K):\\n            if i == j:\\n                continue\\n            C = torch.eye(K, dtype=DTYPE, device=device)\\n            C[i, j] += delta\\n            C[j, j] -= delta\\n            p = plim_fn(ss, C.unsqueeze(0)).squeeze(0)\\n            sens[i, j] = abs(p[tau_idx].item() - tau_I) / delta\\n\\n    fig, ax = plt.subplots(figsize=(max(3.5, K * 0.7), max(3.5, K * 0.7)))\\n    im = ax.imshow(sens, cmap='YlOrRd', aspect='equal')\\n    ax.set_xlabel('True category j')\\n    ax.set_ylabel('Observed category i')\\n    ax.set_title(f'{topo_name} K={K}: |∂bias(τ)/∂C_ij|')\\n    ax.set_xticks(range(K))\\n    ax.set_yticks(range(K))\\n    for i in range(K):\\n        for j in range(K):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see the `gen_random_C` function from both files. Let me get those specific sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "0091c136-2901-4c68-99c0-5bf209b17af6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015YWYA56Um8QYPkrenRuJVM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7845,
+      "cache_read_input_tokens": 35011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Now let me see the `gen_random_C` function and the main loop from both files, plus the parts that were truncated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "6b66f2ad-a37e-40cf-986d-a277e20ab529",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015YWYA56Um8QYPkrenRuJVM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7845,
+      "cache_read_input_tokens": 35011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DbhUcicqb9cScxibAtJ2Uq`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -n +253 /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "0072ca9a-86f0-4e57-ad6c-6be257106c94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015YWYA56Um8QYPkrenRuJVM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7845,
+      "cache_read_input_tokens": 35011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MonTx4g5eEQHeUCQPYEuWG`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -n +276 /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "b31b979e-c688-4974-bb66-1e523869e3b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015YWYA56Um8QYPkrenRuJVM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7845,
+      "cache_read_input_tokens": 35011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T16:05:11.931Z_
+
+<details><summary>↩ Tool result · `toolu_01DbhUcicqb9cScxibAtJ2Uq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n    rng = np.random.default_rng(seed)\\n    C = np.zeros((N, K, K))\\n    if min_diag is not None and min_diag > 0:\\n        for j in range(K):\\n            diag = rng.uniform(min_diag, 1.0, N)\\n            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\\n            col = np.zeros((N, K))\\n            col[:, j] = diag\\n            off_idx = 0\\n            for i in range(K):\\n                if i != j:\\n                    col[:, i] = offdiag[:, off_idx]\\n                    off_idx += 1\\n            C[:, :, j] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\n    n_valid = valid.sum().item()\\n    if n_valid == 0:\\n        base = {k: float('nan') for k in\\n                ['violation', 'sign_flip', 'amplification']}\\n        base['n_valid'] = 0\\n        return base\\n\\n    pb = plim_batch[valid]\\n    diff = pb - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\n\\n    nz = plim_true.abs() > 1e-6\\n    if nz.any():\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\n                     ).any(dim=1).float().mean().item()\\n    else:\\n        sign_flip = 0.0\\n\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip,\\n             amplification=amplification, n_valid=n_valid)\\n\\n    if tau_idx is not None:\\n        tb = pb[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\n        m['tau_sign_flip'] = (\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\n        ).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\n        valid = torch.isfinite(pb)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v - tau_I).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 100)\\n    print(\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"  Device: {DEVICE}\\\")\\n    if\\n\\n... [截断: 输出过长，省略 2129 字符] ...\\n\\n       metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\n\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\")\\n\\n            else:\\n                rng = np.random.default_rng(SEED)\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\n                tau_true = plim_true[1].item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\n\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\")\\n\\n            m = metrics\\n            def _pct(x): return f\\\"{x:.1%}\\\" if x == x else \\\"nan\\\"\\n\\n            print(f\\\"    all_coef: violation={_pct(m['violation'])}  \\\"\\n                  f\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\")\\n            if 'tau_violation' in m:\\n                print(f\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\"\\n                      f\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\")\\n                print(f\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\"\\n                      f\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\")\\n            for thr, wv in m.get('worst_case', {}).items():\\n                print(f\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\"\\n                      f\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\")\\n            print(f\\\"    [{time.time()-tk:.1f}s]\\\")\\n            sys.stdout.flush()\\n\\n    # Summary Table\\n    print(f\\\"\\\\n{'='*140}\\\")\\n    print(\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\")\\n    print(f\\\"{'='*140}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\"\\n           f\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-'*105}\\\")\\n\\n    for topo in ALL_TOPOS:\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\n            sf = m.get('sign_flip', float('nan'))\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\n\\n            wc = m.get('worst_case', {})\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\n\\n            def _f(x, w=11):\\n                return f\\\"{x:>{w}.1%}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n            def _fw(x, w=10):\\n                return f\\\"{x:>{w}.4f}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n\\n            print(f\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\"\\n                  f\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\")\\n        print()\\n\\n    print(\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\")\\n    for topo in ALL_TOPOS:\\n        vals = []\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\n            vals.append(v if v == v else 0.0)\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.005 else (\\\"STABLE\\\" if abs(d) <= 0.005 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "d01a326f-05bb-40de-91a2-e929dd2dad6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n    rng = np.random.default_rng(seed)\\\\n    C = np.zeros((N, K, K))\\\\n    if min_diag is not None and min_diag > 0:\\\\n        for j in range(K):\\\\n            diag = rng.uniform(min_diag, 1.0, N)\\\\n            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\\\\n            col = np.zeros((N, K))\\\\n            col[:, j] = diag\\\\n            off_idx = 0\\\\n            for i in range(K):\\\\n                if i != j:\\\\n                    col[:, i] = offdiag[:, off_idx]\\\\n                    off_idx += 1\\\\n            C[:, :, j] = col\\\\n    else:\\\\n        for j in range(K):\\\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\\\n\\\\n\\\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\\\n    n_valid = valid.sum().item()\\\\n    if n_valid == 0:\\\\n        base = {k: float('nan') for k in\\\\n                ['violation', 'sign_flip', 'amplification']}\\\\n        base['n_valid'] = 0\\\\n        return base\\\\n\\\\n    pb = plim_batch[valid]\\\\n    diff = pb - plim_true.unsqueeze(0)\\\\n\\\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\\\n\\\\n    nz = plim_true.abs() > 1e-6\\\\n    if nz.any():\\\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\\\n                     ).any(dim=1).float().mean().item()\\\\n    else:\\\\n        sign_flip = 0.0\\\\n\\\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\\\n                     ).any(dim=1).float().mean().item()\\\\n\\\\n    m = dict(violation=violation, sign_flip=sign_flip,\\\\n             amplification=amplification, n_valid=n_valid)\\\\n\\\\n    if tau_idx is not None:\\\\n        tb = pb[:, tau_idx]\\\\n        tt = plim_true[tau_idx]\\\\n        td = tb - tt\\\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\\\n        m['tau_sign_flip'] = (\\\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\\\n        ).float().mean().item()\\\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\\\n        m['tau_bias_mean'] = td.mean().item()\\\\n        m['tau_bias_std'] = td.std().item()\\\\n        m['tau_bias_max'] = td.abs().max().item()\\\\n    return m\\\\n\\\\n\\\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_fn(ss, Cb)\\\\n        valid = torch.isfinite(pb).all(dim=1)\\\\n        pb_v = pb[valid]\\\\n        if len(pb_v) == 0:\\\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\\\n            continue\\\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\\\n        valid = torch.isfinite(pb)\\\\n        pb_v = pb[valid]\\\\n        if len(pb_v) == 0:\\\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\\\n            continue\\\\n        bias = (pb_v - tau_I).abs()\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(f\\\\\\\"  Device: {DEVICE}\\\\\\\")\\\\n    if\\\\n\\\\n... [截断: 输出过长，省略 2129 字符] ...\\\\n\\\\n       metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\\\n\\\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\\\\\")\\\\n\\\\n            else:\\\\n                rng = np.random.default_rng(SEED)\\\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\\\n\\\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\\\n                tau_true = plim_true[1].item()\\\\n\\\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\\\n                plim_all = plim_with_T(ss, C_rand)\\\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\\\n\\\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\\\\\")\\\\n\\\\n            m = metrics\\\\n            def _pct(x): return f\\\\\\\"{x:.1%}\\\\\\\" if x == x else \\\\\\\"nan\\\\\\\"\\\\n\\\\n            print(f\\\\\\\"    all_coef: violation={_pct(m['violation'])}  \\\\\\\"\\\\n                  f\\\\\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\\\\\")\\\\n            if 'tau_violation' in m:\\\\n                print(f\\\\\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\\\\\"\\\\n                      f\\\\\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\\\\\")\\\\n                print(f\\\\\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\\\\\")\\\\n            for thr, wv in m.get('worst_case', {}).items():\\\\n                print(f\\\\\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\\\\\")\\\\n            print(f\\\\\\\"    [{time.time()-tk:.1f}s]\\\\\\\")\\\\n            sys.stdout.flush()\\\\n\\\\n    # Summary Table\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*140}\\\\\\\")\\\\n    print(\\\\\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\\\\\")\\\\n    print(f\\\\\\\"{'='*140}\\\\\\\")\\\\n\\\\n    hdr = (f\\\\\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\\\\\"\\\\n           f\\\\\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\\\\\")\\\\n    print(hdr)\\\\n    print(f\\\\\\\"  {'-'*105}\\\\\\\")\\\\n\\\\n    for topo in ALL_TOPOS:\\\\n        for K_val in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K_val}\\\\\\\"]\\\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\\\n            sf = m.get('sign_flip', float('nan'))\\\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\\\n\\\\n            wc = m.get('worst_case', {})\\\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\\\n\\\\n            def _f(x, w=11):\\\\n                return f\\\\\\\"{x:>{w}.1%}\\\\\\\" if x == x else f\\\\\\\"{'nan':>{w}}\\\\\\\"\\\\n            def _fw(x, w=10):\\\\n                return f\\\\\\\"{x:>{w}.4f}\\\\\\\" if x == x else f\\\\\\\"{'nan':>{w}}\\\\\\\"\\\\n\\\\n            print(f\\\\\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\\\\\"\\\\n                  f\\\\\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\\\\\")\\\\n        print()\\\\n\\\\n    print(\\\\\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\\\\\")\\\\n    for topo in ALL_TOPOS:\\\\n        vals = []\\\\n        for K_val in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K_val}\\\\\\\"]\\\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\\\n            vals.append(v if v == v else 0.0)\\\\n        d = vals[-1] - vals[0]\\\\n        trend = \\\\\\\"WORSENS\\\\\\\" if d > 0.005 else (\\\\\\\"STABLE\\\\\\\" if abs(d) <= 0.005 else \\\\\\\"IMPROVES\\\\\\\")\\\\n        print(f\\\\\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {time.time() - t0:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n    rng = np.random.default_rng(seed)\\n    C = np.zeros((N, K, K))\\n    if min_diag is not None and min_diag > 0:\\n        for j in range(K):\\n            diag = rng.uniform(min_diag, 1.0, N)\\n            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\\n            col = np.zeros((N, K))\\n            col[:, j] = diag\\n            off_idx = 0\\n            for i in range(K):\\n                if i != j:\\n                    col[:, i] = offdiag[:, off_idx]\\n                    off_idx += 1\\n            C[:, :, j] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\n    n_valid = valid.sum().item()\\n    if n_valid == 0:\\n        base = {k: float('nan') for k in\\n                ['violation', 'sign_flip', 'amplification']}\\n        base['n_valid'] = 0\\n        return base\\n\\n    pb = plim_batch[valid]\\n    diff = pb - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\n\\n    nz = plim_true.abs() > 1e-6\\n    if nz.any():\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\n                     ).any(dim=1).float().mean().item()\\n    else:\\n        sign_flip = 0.0\\n\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip,\\n             amplification=amplification, n_valid=n_valid)\\n\\n    if tau_idx is not None:\\n        tb = pb[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\n        m['tau_sign_flip'] = (\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\n        ).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\n        valid = torch.isfinite(pb)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v - tau_I).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 100)\\n    print(\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"  Device: {DEVICE}\\\")\\n    if\\n\\n... [截断: 输出过长，省略 2129 字符] ...\\n\\n       metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\n\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\")\\n\\n            else:\\n                rng = np.random.default_rng(SEED)\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\n                tau_true = plim_true[1].item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\n\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\")\\n\\n            m = metrics\\n            def _pct(x): return f\\\"{x:.1%}\\\" if x == x else \\\"nan\\\"\\n\\n            print(f\\\"    all_coef: violation={_pct(m['violation'])}  \\\"\\n                  f\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\")\\n            if 'tau_violation' in m:\\n                print(f\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\"\\n                      f\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\")\\n                print(f\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\"\\n                      f\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\")\\n            for thr, wv in m.get('worst_case', {}).items():\\n                print(f\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\"\\n                      f\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\")\\n            print(f\\\"    [{time.time()-tk:.1f}s]\\\")\\n            sys.stdout.flush()\\n\\n    # Summary Table\\n    print(f\\\"\\\\n{'='*140}\\\")\\n    print(\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\")\\n    print(f\\\"{'='*140}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\"\\n           f\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-'*105}\\\")\\n\\n    for topo in ALL_TOPOS:\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\n            sf = m.get('sign_flip', float('nan'))\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\n\\n            wc = m.get('worst_case', {})\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\n\\n            def _f(x, w=11):\\n                return f\\\"{x:>{w}.1%}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n            def _fw(x, w=10):\\n                return f\\\"{x:>{w}.4f}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n\\n            print(f\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\"\\n                  f\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\")\\n        print()\\n\\n    print(\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\")\\n    for topo in ALL_TOPOS:\\n        vals = []\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\n            vals.append(v if v == v else 0.0)\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.005 else (\\\"STABLE\\\" if abs(d) <= 0.005 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T16:05:13.256Z_
+
+<details><summary>↩ Tool result · `toolu_01MonTx4g5eEQHeUCQPYEuWG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n    \\\"\\\"\\\"Sample N column-stochastic K×K matrices via Dirichlet(1,...,1).\\n\\n    Each column independently drawn. If min_diag is set, each diagonal\\n    element is drawn from U[min_diag, 1] and the remaining mass is\\n    distributed Dirichlet among off-diagonal entries.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    C = np.zeros((N, K, K))\\n\\n    if min_diag is not None and min_diag > 0:\\n        for j in range(K):\\n            diag = rng.uniform(min_diag, 1.0, N)\\n            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\\n            col = np.zeros((N, K))\\n            col[:, j] = diag\\n            idx = 0\\n            for i in range(K):\\n                if i != j:\\n                    col[:, i] = offdiag[:, idx]\\n                    idx += 1\\n            C[:, :, j] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\n# ================================================================\\n# Metrics\\n# ================================================================\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    \\\"\\\"\\\"Violation / sign-flip / amplification rates.\\n\\n    tau_idx: index of τ coefficient (1 for topologies with T, None for exposure).\\n    \\\"\\\"\\\"\\n    diff = plim_batch - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 1e-8).any(dim=1).float().mean().item()\\n\\n    s0 = torch.sign(plim_true).unsqueeze(0)\\n    s1 = torch.sign(plim_batch)\\n    sign_flip = ((s0 != s1) & (s0 != 0) & (s1 != 0)).any(dim=1).float().mean().item()\\n\\n    amplification = (plim_batch.abs() > plim_true.abs().unsqueeze(0) + 1e-10\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip, amplification=amplification)\\n\\n    if tau_idx is not None:\\n        tb = plim_batch[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 1e-8).float().mean().item()\\n        m['tau_sign_flip'] = ((torch.sign(tb) != torch.sign(tt)) &\\n                              (torch.sign(tt) != 0) &\\n                              (torch.sign(tb) != 0)).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-10).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\n# ================================================================\\n# MC Verification (small-scale, a few named C matrices)\\n# ================================================================\\ndef mc_verify(K, topo, params, C_np, n_reps=500, n_mc=10_000, seed=0):\\n    \\\"\\\"\\\"Monte Carlo OLS estimate of plim for a single C, as validation.\\\"\\\"\\\"\\n    gen_fn = _GEN[topo]\\n    coefs = []\\n    for r in range(n_reps):\\n        rng = np.random.default_rng(seed + r)\\n        T, Y, A = gen_fn(K, n_mc, params, rng)\\n\\n        # Misclassify\\n        probs = C_np[:, A]       # [K, N]\\n        cum = np.cumsum(probs, axis=0)\\n        u = rng.uniform(size=n_mc)\\n        Astar = np.zeros(n_mc, dtype=int)\\n        for k in range(K - 1):\\n            Astar += (u >= cum[k]).astype(int)\\n\\n        Dstar = np.zeros((n_mc, K - 1))\\n        for j in range(K - 1):\\n            Dstar[:, j] = (Astar == j + 1).astype(float)\\n\\n        ones = np.ones((n_mc, 1))\\n        if T is not None:\\n            Z = np.hstack([ones, T[:, None], Dstar])\\n        else:\\n            Z = np.hstack([ones, Dstar])\\n        b = np.linalg.lstsq(Z, Y, rcond=None)[0]\\n        coefs.append(b)\\n    return np.mean(coefs, axis=0), np.std(coefs, axis=0) / np.sqrt(n_reps)\\n\\n\\n# ================================================================\\n# Interpretability (a): Eigendecomposition of bias vectors\\n# ================================================================\\ndef eigen_analysis(plim_batch, plim_true):\\n    \\\"\\\"\\\"PCA on bias = plim(C) - plim(I). Returns top-3 variance ratios.\\n\\n    The bias vectors live in\\n\\n... [截断: 输出过长，省略 7198 字符] ...\\n\\n   f\\\"std={metrics['tau_bias_std']:.6f}  \\\"\\n                      f\\\"max={metrics['tau_bias_max']:.6f}\\\")\\n\\n            # 5. Eigendecomposition\\n            top3 = eigen_analysis(plim_all, plim_true)\\n            print(f\\\"  Eigen top-{len(top3)} var explained: \\\"\\n                  + '  '.join(f'{v:.1%}' for v in top3))\\n\\n            # 6. Worst-case bounds\\n            wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\n            for thr, v in wc.items():\\n                print(f\\\"  Worst-case (diag≥{thr}): \\\"\\n                      f\\\"max|Δτ|={v['max_bias']:.6f}  \\\"\\n                      f\\\"mean={v['mean_bias']:.6f}  \\\"\\n                      f\\\"P95={v['p95_bias']:.6f}\\\")\\n\\n            # 7. Sensitivity heatmap\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            sensitivity_heatmap(ss, plim_fn, K, DEVICE, hm_path, topo)\\n            print(f\\\"  Heatmap → {os.path.basename(hm_path)}\\\")\\n\\n            print(f\\\"  [{time.time() - tk:.1f}s]\\\")\\n\\n    # ==================================================================\\n    # Cross-K Summary\\n    # ==================================================================\\n    print(f\\\"\\\\n{'=' * 90}\\\")\\n    print(\\\"  CROSS-K COMPARISON\\\")\\n    print(f\\\"{'=' * 90}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3}\\\"\\n           f\\\" {'violat':>8} {'sflip':>8} {'amplif':>8}\\\"\\n           f\\\" {'τ_viol':>8} {'τ_sflip':>8} {'τ_amp':>8}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-' * 73}\\\")\\n\\n    for topo in topologies:\\n        for K in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K}\\\"]\\n            tv = m.get('tau_violation', None)\\n            ts = m.get('tau_sign_flip', None)\\n            ta = m.get('tau_amplification', None)\\n            tvs = f\\\"{tv:.1%}\\\" if tv is not None else \\\"  —\\\"\\n            tss = f\\\"{ts:.1%}\\\" if ts is not None else \\\"  —\\\"\\n            tas = f\\\"{ta:.1%}\\\" if ta is not None else \\\"  —\\\"\\n            print(f\\\"  {topo:<14} {K:>3}\\\"\\n                  f\\\" {m['violation']:>8.1%} {m['sign_flip']:>8.1%}\\\"\\n                  f\\\" {m['amplification']:>8.1%}\\\"\\n                  f\\\" {tvs:>8} {tss:>8} {tas:>8}\\\")\\n        print()\\n\\n    # Trend analysis\\n    print(\\\"  K-TREND ANALYSIS (does bias worsen with K?)\\\")\\n    for topo in topologies:\\n        if topo == 'exposure':\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['violation'] for K in K_VALUES]\\n            label = 'violation'\\n        else:\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['tau_violation'] for K in K_VALUES]\\n            label = 'τ_violation'\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.01 else (\\\"STABLE\\\" if abs(d) <= 0.01 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14} ({label}): \\\"\\n              f\\\"K=3 {vals[0]:.1%} → K=5 {vals[1]:.1%} → K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    # ==================================================================\\n    # Combined sensitivity figure (K=5 and K=7 side by side per topology)\\n    # ==================================================================\\n    fig, axes = plt.subplots(len(topologies), 2, figsize=(12, 4 * len(topologies)))\\n    for row, topo in enumerate(topologies):\\n        for col, K in enumerate([5, 7]):\\n            ax = axes[row, col]\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            if os.path.exists(hm_path):\\n                img = plt.imread(hm_path)\\n                ax.imshow(img)\\n                ax.axis('off')\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n            else:\\n                ax.text(0.5, 0.5, 'N/A', ha='center', va='center', transform=ax.transAxes)\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n    fig.suptitle('Sensitivity Heatmaps: |∂bias(τ)/∂C_ij|', fontsize=13)\\n    fig.tight_layout(rect=[0, 0, 1, 0.97])\\n    combined_path = os.path.join(OUT_DIR, 'plan002_sensitivity_combined.png')\\n    fig.savefig(combined_path, dpi=150, bbox_inches='tight')\\n    plt.close(fig)\\n    print(f\\\"\\\\n  Combined heatmap → {os.path.basename(combined_path)}\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "eea68cd5-8f6f-4427-8275-593d7d374715",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sample N column-stochastic K×K matrices via Dirichlet(1,...,1).\\\\n\\\\n    Each column independently drawn. If min_diag is set, each diagonal\\\\n    element is drawn from U[min_diag, 1] and the remaining mass is\\\\n    distributed Dirichlet among off-diagonal entries.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    C = np.zeros((N, K, K))\\\\n\\\\n    if min_diag is not None and min_diag > 0:\\\\n        for j in range(K):\\\\n            diag = rng.uniform(min_diag, 1.0, N)\\\\n            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\\\\n            col = np.zeros((N, K))\\\\n            col[:, j] = diag\\\\n            idx = 0\\\\n            for i in range(K):\\\\n                if i != j:\\\\n                    col[:, i] = offdiag[:, idx]\\\\n                    idx += 1\\\\n            C[:, :, j] = col\\\\n    else:\\\\n        for j in range(K):\\\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\\\n\\\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\\\n\\\\n\\\\n# ================================================================\\\\n# Metrics\\\\n# ================================================================\\\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Violation / sign-flip / amplification rates.\\\\n\\\\n    tau_idx: index of τ coefficient (1 for topologies with T, None for exposure).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    diff = plim_batch - plim_true.unsqueeze(0)\\\\n\\\\n    violation = (diff.abs() > 1e-8).any(dim=1).float().mean().item()\\\\n\\\\n    s0 = torch.sign(plim_true).unsqueeze(0)\\\\n    s1 = torch.sign(plim_batch)\\\\n    sign_flip = ((s0 != s1) & (s0 != 0) & (s1 != 0)).any(dim=1).float().mean().item()\\\\n\\\\n    amplification = (plim_batch.abs() > plim_true.abs().unsqueeze(0) + 1e-10\\\\n                     ).any(dim=1).float().mean().item()\\\\n\\\\n    m = dict(violation=violation, sign_flip=sign_flip, amplification=amplification)\\\\n\\\\n    if tau_idx is not None:\\\\n        tb = plim_batch[:, tau_idx]\\\\n        tt = plim_true[tau_idx]\\\\n        td = tb - tt\\\\n        m['tau_violation'] = (td.abs() > 1e-8).float().mean().item()\\\\n        m['tau_sign_flip'] = ((torch.sign(tb) != torch.sign(tt)) &\\\\n                              (torch.sign(tt) != 0) &\\\\n                              (torch.sign(tb) != 0)).float().mean().item()\\\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-10).float().mean().item()\\\\n        m['tau_bias_mean'] = td.mean().item()\\\\n        m['tau_bias_std'] = td.std().item()\\\\n        m['tau_bias_max'] = td.abs().max().item()\\\\n    return m\\\\n\\\\n\\\\n# ================================================================\\\\n# MC Verification (small-scale, a few named C matrices)\\\\n# ================================================================\\\\ndef mc_verify(K, topo, params, C_np, n_reps=500, n_mc=10_000, seed=0):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Monte Carlo OLS estimate of plim for a single C, as validation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gen_fn = _GEN[topo]\\\\n    coefs = []\\\\n    for r in range(n_reps):\\\\n        rng = np.random.default_rng(seed + r)\\\\n        T, Y, A = gen_fn(K, n_mc, params, rng)\\\\n\\\\n        # Misclassify\\\\n        probs = C_np[:, A]       # [K, N]\\\\n        cum = np.cumsum(probs, axis=0)\\\\n        u = rng.uniform(size=n_mc)\\\\n        Astar = np.zeros(n_mc, dtype=int)\\\\n        for k in range(K - 1):\\\\n            Astar += (u >= cum[k]).astype(int)\\\\n\\\\n        Dstar = np.zeros((n_mc, K - 1))\\\\n        for j in range(K - 1):\\\\n            Dstar[:, j] = (Astar == j + 1).astype(float)\\\\n\\\\n        ones = np.ones((n_mc, 1))\\\\n        if T is not None:\\\\n            Z = np.hstack([ones, T[:, None], Dstar])\\\\n        else:\\\\n            Z = np.hstack([ones, Dstar])\\\\n        b = np.linalg.lstsq(Z, Y, rcond=None)[0]\\\\n        coefs.append(b)\\\\n    return np.mean(coefs, axis=0), np.std(coefs, axis=0) / np.sqrt(n_reps)\\\\n\\\\n\\\\n# ================================================================\\\\n# Interpretability (a): Eigendecomposition of bias vectors\\\\n# ================================================================\\\\ndef eigen_analysis(plim_batch, plim_true):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"PCA on bias = plim(C) - plim(I). Returns top-3 variance ratios.\\\\n\\\\n    The bias vectors live in\\\\n\\\\n... [截断: 输出过长，省略 7198 字符] ...\\\\n\\\\n   f\\\\\\\"std={metrics['tau_bias_std']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"max={metrics['tau_bias_max']:.6f}\\\\\\\")\\\\n\\\\n            # 5. Eigendecomposition\\\\n            top3 = eigen_analysis(plim_all, plim_true)\\\\n            print(f\\\\\\\"  Eigen top-{len(top3)} var explained: \\\\\\\"\\\\n                  + '  '.join(f'{v:.1%}' for v in top3))\\\\n\\\\n            # 6. Worst-case bounds\\\\n            wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\\\n            for thr, v in wc.items():\\\\n                print(f\\\\\\\"  Worst-case (diag≥{thr}): \\\\\\\"\\\\n                      f\\\\\\\"max|Δτ|={v['max_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"mean={v['mean_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"P95={v['p95_bias']:.6f}\\\\\\\")\\\\n\\\\n            # 7. Sensitivity heatmap\\\\n            hm_path = os.path.join(OUT_DIR, f\\\\\\\"plan002_sensitivity_{topo}_K{K}.png\\\\\\\")\\\\n            sensitivity_heatmap(ss, plim_fn, K, DEVICE, hm_path, topo)\\\\n            print(f\\\\\\\"  Heatmap → {os.path.basename(hm_path)}\\\\\\\")\\\\n\\\\n            print(f\\\\\\\"  [{time.time() - tk:.1f}s]\\\\\\\")\\\\n\\\\n    # ==================================================================\\\\n    # Cross-K Summary\\\\n    # ==================================================================\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 90}\\\\\\\")\\\\n    print(\\\\\\\"  CROSS-K COMPARISON\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * 90}\\\\\\\")\\\\n\\\\n    hdr = (f\\\\\\\"  {'Topology':<14} {'K':>3}\\\\\\\"\\\\n           f\\\\\\\" {'violat':>8} {'sflip':>8} {'amplif':>8}\\\\\\\"\\\\n           f\\\\\\\" {'τ_viol':>8} {'τ_sflip':>8} {'τ_amp':>8}\\\\\\\")\\\\n    print(hdr)\\\\n    print(f\\\\\\\"  {'-' * 73}\\\\\\\")\\\\n\\\\n    for topo in topologies:\\\\n        for K in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"]\\\\n            tv = m.get('tau_violation', None)\\\\n            ts = m.get('tau_sign_flip', None)\\\\n            ta = m.get('tau_amplification', None)\\\\n            tvs = f\\\\\\\"{tv:.1%}\\\\\\\" if tv is not None else \\\\\\\"  —\\\\\\\"\\\\n            tss = f\\\\\\\"{ts:.1%}\\\\\\\" if ts is not None else \\\\\\\"  —\\\\\\\"\\\\n            tas = f\\\\\\\"{ta:.1%}\\\\\\\" if ta is not None else \\\\\\\"  —\\\\\\\"\\\\n            print(f\\\\\\\"  {topo:<14} {K:>3}\\\\\\\"\\\\n                  f\\\\\\\" {m['violation']:>8.1%} {m['sign_flip']:>8.1%}\\\\\\\"\\\\n                  f\\\\\\\" {m['amplification']:>8.1%}\\\\\\\"\\\\n                  f\\\\\\\" {tvs:>8} {tss:>8} {tas:>8}\\\\\\\")\\\\n        print()\\\\n\\\\n    # Trend analysis\\\\n    print(\\\\\\\"  K-TREND ANALYSIS (does bias worsen with K?)\\\\\\\")\\\\n    for topo in topologies:\\\\n        if topo == 'exposure':\\\\n            vals = [all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"]['violation'] for K in K_VALUES]\\\\n            label = 'violation'\\\\n        else:\\\\n            vals = [all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"]['tau_violation'] for K in K_VALUES]\\\\n            label = 'τ_violation'\\\\n        d = vals[-1] - vals[0]\\\\n        trend = \\\\\\\"WORSENS\\\\\\\" if d > 0.01 else (\\\\\\\"STABLE\\\\\\\" if abs(d) <= 0.01 else \\\\\\\"IMPROVES\\\\\\\")\\\\n        print(f\\\\\\\"  {topo:<14} ({label}): \\\\\\\"\\\\n              f\\\\\\\"K=3 {vals[0]:.1%} → K=5 {vals[1]:.1%} → K=7 {vals[2]:.1%}  [{trend}]\\\\\\\")\\\\n\\\\n    # ==================================================================\\\\n    # Combined sensitivity figure (K=5 and K=7 side by side per topology)\\\\n    # ==================================================================\\\\n    fig, axes = plt.subplots(len(topologies), 2, figsize=(12, 4 * len(topologies)))\\\\n    for row, topo in enumerate(topologies):\\\\n        for col, K in enumerate([5, 7]):\\\\n            ax = axes[row, col]\\\\n            hm_path = os.path.join(OUT_DIR, f\\\\\\\"plan002_sensitivity_{topo}_K{K}.png\\\\\\\")\\\\n            if os.path.exists(hm_path):\\\\n                img = plt.imread(hm_path)\\\\n                ax.imshow(img)\\\\n                ax.axis('off')\\\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\\\n            else:\\\\n                ax.text(0.5, 0.5, 'N/A', ha='center', va='center', transform=ax.transAxes)\\\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\\\n    fig.suptitle('Sensitivity Heatmaps: |∂bias(τ)/∂C_ij|', fontsize=13)\\\\n    fig.tight_layout(rect=[0, 0, 1, 0.97])\\\\n    combined_path = os.path.join(OUT_DIR, 'plan002_sensitivity_combined.png')\\\\n    fig.savefig(combined_path, dpi=150, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"\\\\\\\\n  Combined heatmap → {os.path.basename(combined_path)}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {time.time() - t0:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n    \\\"\\\"\\\"Sample N column-stochastic K×K matrices via Dirichlet(1,...,1).\\n\\n    Each column independently drawn. If min_diag is set, each diagonal\\n    element is drawn from U[min_diag, 1] and the remaining mass is\\n    distributed Dirichlet among off-diagonal entries.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    C = np.zeros((N, K, K))\\n\\n    if min_diag is not None and min_diag > 0:\\n        for j in range(K):\\n            diag = rng.uniform(min_diag, 1.0, N)\\n            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\\n            col = np.zeros((N, K))\\n            col[:, j] = diag\\n            idx = 0\\n            for i in range(K):\\n                if i != j:\\n                    col[:, i] = offdiag[:, idx]\\n                    idx += 1\\n            C[:, :, j] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\n# ================================================================\\n# Metrics\\n# ================================================================\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    \\\"\\\"\\\"Violation / sign-flip / amplification rates.\\n\\n    tau_idx: index of τ coefficient (1 for topologies with T, None for exposure).\\n    \\\"\\\"\\\"\\n    diff = plim_batch - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 1e-8).any(dim=1).float().mean().item()\\n\\n    s0 = torch.sign(plim_true).unsqueeze(0)\\n    s1 = torch.sign(plim_batch)\\n    sign_flip = ((s0 != s1) & (s0 != 0) & (s1 != 0)).any(dim=1).float().mean().item()\\n\\n    amplification = (plim_batch.abs() > plim_true.abs().unsqueeze(0) + 1e-10\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip, amplification=amplification)\\n\\n    if tau_idx is not None:\\n        tb = plim_batch[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 1e-8).float().mean().item()\\n        m['tau_sign_flip'] = ((torch.sign(tb) != torch.sign(tt)) &\\n                              (torch.sign(tt) != 0) &\\n                              (torch.sign(tb) != 0)).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-10).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\n# ================================================================\\n# MC Verification (small-scale, a few named C matrices)\\n# ================================================================\\ndef mc_verify(K, topo, params, C_np, n_reps=500, n_mc=10_000, seed=0):\\n    \\\"\\\"\\\"Monte Carlo OLS estimate of plim for a single C, as validation.\\\"\\\"\\\"\\n    gen_fn = _GEN[topo]\\n    coefs = []\\n    for r in range(n_reps):\\n        rng = np.random.default_rng(seed + r)\\n        T, Y, A = gen_fn(K, n_mc, params, rng)\\n\\n        # Misclassify\\n        probs = C_np[:, A]       # [K, N]\\n        cum = np.cumsum(probs, axis=0)\\n        u = rng.uniform(size=n_mc)\\n        Astar = np.zeros(n_mc, dtype=int)\\n        for k in range(K - 1):\\n            Astar += (u >= cum[k]).astype(int)\\n\\n        Dstar = np.zeros((n_mc, K - 1))\\n        for j in range(K - 1):\\n            Dstar[:, j] = (Astar == j + 1).astype(float)\\n\\n        ones = np.ones((n_mc, 1))\\n        if T is not None:\\n            Z = np.hstack([ones, T[:, None], Dstar])\\n        else:\\n            Z = np.hstack([ones, Dstar])\\n        b = np.linalg.lstsq(Z, Y, rcond=None)[0]\\n        coefs.append(b)\\n    return np.mean(coefs, axis=0), np.std(coefs, axis=0) / np.sqrt(n_reps)\\n\\n\\n# ================================================================\\n# Interpretability (a): Eigendecomposition of bias vectors\\n# ================================================================\\ndef eigen_analysis(plim_batch, plim_true):\\n    \\\"\\\"\\\"PCA on bias = plim(C) - plim(I). Returns top-3 variance ratios.\\n\\n    The bias vectors live in\\n\\n... [截断: 输出过长，省略 7198 字符] ...\\n\\n   f\\\"std={metrics['tau_bias_std']:.6f}  \\\"\\n                      f\\\"max={metrics['tau_bias_max']:.6f}\\\")\\n\\n            # 5. Eigendecomposition\\n            top3 = eigen_analysis(plim_all, plim_true)\\n            print(f\\\"  Eigen top-{len(top3)} var explained: \\\"\\n                  + '  '.join(f'{v:.1%}' for v in top3))\\n\\n            # 6. Worst-case bounds\\n            wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\n            for thr, v in wc.items():\\n                print(f\\\"  Worst-case (diag≥{thr}): \\\"\\n                      f\\\"max|Δτ|={v['max_bias']:.6f}  \\\"\\n                      f\\\"mean={v['mean_bias']:.6f}  \\\"\\n                      f\\\"P95={v['p95_bias']:.6f}\\\")\\n\\n            # 7. Sensitivity heatmap\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            sensitivity_heatmap(ss, plim_fn, K, DEVICE, hm_path, topo)\\n            print(f\\\"  Heatmap → {os.path.basename(hm_path)}\\\")\\n\\n            print(f\\\"  [{time.time() - tk:.1f}s]\\\")\\n\\n    # ==================================================================\\n    # Cross-K Summary\\n    # ==================================================================\\n    print(f\\\"\\\\n{'=' * 90}\\\")\\n    print(\\\"  CROSS-K COMPARISON\\\")\\n    print(f\\\"{'=' * 90}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3}\\\"\\n           f\\\" {'violat':>8} {'sflip':>8} {'amplif':>8}\\\"\\n           f\\\" {'τ_viol':>8} {'τ_sflip':>8} {'τ_amp':>8}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-' * 73}\\\")\\n\\n    for topo in topologies:\\n        for K in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K}\\\"]\\n            tv = m.get('tau_violation', None)\\n            ts = m.get('tau_sign_flip', None)\\n            ta = m.get('tau_amplification', None)\\n            tvs = f\\\"{tv:.1%}\\\" if tv is not None else \\\"  —\\\"\\n            tss = f\\\"{ts:.1%}\\\" if ts is not None else \\\"  —\\\"\\n            tas = f\\\"{ta:.1%}\\\" if ta is not None else \\\"  —\\\"\\n            print(f\\\"  {topo:<14} {K:>3}\\\"\\n                  f\\\" {m['violation']:>8.1%} {m['sign_flip']:>8.1%}\\\"\\n                  f\\\" {m['amplification']:>8.1%}\\\"\\n                  f\\\" {tvs:>8} {tss:>8} {tas:>8}\\\")\\n        print()\\n\\n    # Trend analysis\\n    print(\\\"  K-TREND ANALYSIS (does bias worsen with K?)\\\")\\n    for topo in topologies:\\n        if topo == 'exposure':\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['violation'] for K in K_VALUES]\\n            label = 'violation'\\n        else:\\n            vals = [all_results[f\\\"{topo}_K{K}\\\"]['tau_violation'] for K in K_VALUES]\\n            label = 'τ_violation'\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.01 else (\\\"STABLE\\\" if abs(d) <= 0.01 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14} ({label}): \\\"\\n              f\\\"K=3 {vals[0]:.1%} → K=5 {vals[1]:.1%} → K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    # ==================================================================\\n    # Combined sensitivity figure (K=5 and K=7 side by side per topology)\\n    # ==================================================================\\n    fig, axes = plt.subplots(len(topologies), 2, figsize=(12, 4 * len(topologies)))\\n    for row, topo in enumerate(topologies):\\n        for col, K in enumerate([5, 7]):\\n            ax = axes[row, col]\\n            hm_path = os.path.join(OUT_DIR, f\\\"plan002_sensitivity_{topo}_K{K}.png\\\")\\n            if os.path.exists(hm_path):\\n                img = plt.imread(hm_path)\\n                ax.imshow(img)\\n                ax.axis('off')\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n            else:\\n                ax.text(0.5, 0.5, 'N/A', ha='center', va='center', transform=ax.transAxes)\\n                ax.set_title(f'{topo} K={K}', fontsize=10)\\n    fig.suptitle('Sensitivity Heatmaps: |∂bias(τ)/∂C_ij|', fontsize=13)\\n    fig.tight_layout(rect=[0, 0, 1, 0.97])\\n    combined_path = os.path.join(OUT_DIR, 'plan002_sensitivity_combined.png')\\n    fig.savefig(combined_path, dpi=150, bbox_inches='tight')\\n    plt.close(fig)\\n    print(f\\\"\\\\n  Combined heatmap → {os.path.basename(combined_path)}\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the problem. Let me understand the issue:
+
+1. Both files have `gen_random_C(K, N, device, seed=SEED, min_diag=None)` which takes a seed parameter and creates an RNG from it.
+
+2. The problem is in `worst_case_ols` (7-topo) / `worst_case_bounds` (4-topo) and the main loop:
+   - In the main loop, `gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)` is called for each topology with the same seed
+   - In `worst_case_ols`/`worst_case_bounds`, `gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)` is called
+
+Actually, I'm realizing the `gen_random_C` function already handles its own RNG initialization with the seed parameter, so it should be independent of global state. But there might be something more subtle happening in how the main loop uses these functions.
+
+Looking at the 7-topo version, I see it's calling `gen_random_C` with explicit seeds in both the main loop and within `worst_case_ols`, which should make them deterministic. The issue is that the worst-case bounds are differing between the 4-topo and 7-topo versions, so I need to examine what's actually different in how these functions are being called and what parameters are being passed through. I'm noticing that `gen_random_C` creates its own RNG with the seed each time it's called, so the global RNG state shouldn't affect it. But the real issue might be in how the DGP generates data—each topology gets a fresh RNG initialized with the same seed, which should make things deterministic. Let me check how the 4-topo version structures its worst-case computation...
+
+Defining worst_case_bounds... I'm noticing the exposure topology case uses a different random number generation approach compared to the other topologies, which could explain why the worst-case bounds differ between the two versions. Let me trace through how the exposure case specifically handles the C matrix generation and seeding to see where the discrepancy might be coming from. be the same. The different results must come from different sufficient statistics, which means the DGP data itself varies between versions. Let me trace through the exposure generation more carefully—both versions create a fresh random number generator with the same seed for each topology, so the DGP should actually be identical. I need to look at how the 7-topo version handles exposure in its main loop to see where the divergence might be occurring. I see the issue now - looking at how the 7-topo version handles the exposure topology, it's calling `gen_random_C` with a seed parameter, and then `worst_case_ols` is also invoking `gen_random_C` internally, which means there could be multiple random number generations happening in sequence that might not be synchronized the same way between the two versions. The user mentioned the global RNG state gets affected by the call order—whichever topologies run first change the random number sequence for the ones that follow. But looking at the code, `gen_random_C` creates a local RNG with an explicit seed, so it shouldn't depend on global state. There might be something else going on in the exposure DGP generation that I'm missing. Let me trace through the main loop more carefully to see where the RNG dependency actually comes from. I'm trying to figure out where the exposure case gets its DGP data from since that block appears truncated. Let me check if there's a global torch seed being set somewhere that could be affecting the randomness, since everything else seems to use local numpy RNGs properly.
+
+Actually, I'm realizing the real issue now - in the main loop, `gen_random_C` is called with the same fixed seed for every topology, which means all topologies are testing against identical random C matrices by design. But in `worst_case_ols`, the seed is being modified based on the threshold value, so different thresholds get different C matrices. The user wants me to apply that same pattern to make the random C generation deterministic but varied based on the topology and parameters. The sufficient statistics might actually be diverging between versions—if the exposure data generation consumes the global numpy RNG differently depending on which topologies ran first, that could produce different worst-case bounds even with identical seeds. I need to check the section of the 7-topo main loop that got cut off to see the exact order of operations around the exposure calculation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "225c78c0-2910-4b9e-a1d6-b132b1908886",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4WMeLxGDjTBUGr9iQwjWx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 42856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+需要看到 7-topo 文件主循环中被截断的部分（特别是 exposure/iv/frontdoor 处理逻辑）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "ba9704dc-af1d-4181-8232-181cab602156",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4WMeLxGDjTBUGr9iQwjWx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 42856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FzPwKhFyuLcPa1gNNpBzuR`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -n +380 /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "e35560b3-34f9-4cb4-b999-fcead4aa7025",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4WMeLxGDjTBUGr9iQwjWx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 42856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WuQuGf5iTmK2HHnNBjJDhD`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -n 380 /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "21dfc825-6218-490c-82bc-7844db962c5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4WMeLxGDjTBUGr9iQwjWx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7295,
+      "cache_read_input_tokens": 42856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T16:06:18.091Z_
+
+<details><summary>↩ Tool result · `toolu_01FzPwKhFyuLcPa1gNNpBzuR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        for topo in ALL_TOPOS:\\n            tk = time.time()\\n            p = params[topo]\\n\\n            if topo == 'iv':\\n                rng = np.random.default_rng(SEED)\\n                Z, Y, A = gen_iv(K, N_LARGE, p, rng)\\n                ss = IVSuffStats(Z, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                tau_true_t = plim_iv_batched(ss, I_batch)[0, 0]\\n                tau_true = tau_true_t.item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_iv_batched(ss, C_rand)\\n                metrics = compute_metrics(plim_all, tau_true_t.unsqueeze(0), tau_idx=0)\\n\\n                wc = worst_case_iv(ss, K, DEVICE)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true(Wald)={tau_true:.6f}  \\\"\\n                      f\\\"RF={ss.RF:.6f}  FS={np.array2string(ss.FS, precision=4)}  \\\"\\n                      f\\\"valid={metrics['n_valid']}/{N_RANDOM}\\\")\\n\\n            elif topo == 'exposure':\\n                rng = np.random.default_rng(SEED)\\n                _, Y, A = gen_exposure(K, N_LARGE, p, rng)\\n                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_exposure(ss, I_batch).squeeze(0)\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_exposure(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\n\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\")\\n\\n            else:\\n                rng = np.random.default_rng(SEED)\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\n                tau_true = plim_true[1].item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\n\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\")\\n\\n            m = metrics\\n            def _pct(x): return f\\\"{x:.1%}\\\" if x == x else \\\"nan\\\"\\n\\n            print(f\\\"    all_coef: violation={_pct(m['violation'])}  \\\"\\n                  f\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\")\\n            if 'tau_violation' in m:\\n                print(f\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\"\\n                      f\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\")\\n                print(f\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\"\\n                      f\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\")\\n            for thr, wv in m.get('worst_case', {}).items():\\n                print(f\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\"\\n                      f\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\")\\n            print(f\\\"    [{time.time()-tk:.1f}s]\\\")\\n            sys.stdout.flush()\\n\\n    # Summary Table\\n    print(f\\\"\\\\n{'='*140}\\\")\\n    print(\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\")\\n    print(f\\\"{'='*140}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\"\\n           f\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-'*105}\\\")\\n\\n    for topo in ALL_TOPOS:\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\n            sf = m.get('sign_flip', float('nan'))\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\n\\n            wc = m.get('worst_case', {})\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\n\\n            def _f(x, w=11):\\n                return f\\\"{x:>{w}.1%}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n            def _fw(x, w=10):\\n                return f\\\"{x:>{w}.4f}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n\\n            print(f\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\"\\n                  f\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\")\\n        print()\\n\\n    print(\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\")\\n    for topo in ALL_TOPOS:\\n        vals = []\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\n            vals.append(v if v == v else 0.0)\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.005 else (\\\"STABLE\\\" if abs(d) <= 0.005 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "06947100-8207-4814-95b3-e6562c6357f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n        for topo in ALL_TOPOS:\\\\n            tk = time.time()\\\\n            p = params[topo]\\\\n\\\\n            if topo == 'iv':\\\\n                rng = np.random.default_rng(SEED)\\\\n                Z, Y, A = gen_iv(K, N_LARGE, p, rng)\\\\n                ss = IVSuffStats(Z, Y, A, K).to_device(DEVICE)\\\\n\\\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n                tau_true_t = plim_iv_batched(ss, I_batch)[0, 0]\\\\n                tau_true = tau_true_t.item()\\\\n\\\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\\\n                plim_all = plim_iv_batched(ss, C_rand)\\\\n                metrics = compute_metrics(plim_all, tau_true_t.unsqueeze(0), tau_idx=0)\\\\n\\\\n                wc = worst_case_iv(ss, K, DEVICE)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: tau_true(Wald)={tau_true:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"RF={ss.RF:.6f}  FS={np.array2string(ss.FS, precision=4)}  \\\\\\\"\\\\n                      f\\\\\\\"valid={metrics['n_valid']}/{N_RANDOM}\\\\\\\")\\\\n\\\\n            elif topo == 'exposure':\\\\n                rng = np.random.default_rng(SEED)\\\\n                _, Y, A = gen_exposure(K, N_LARGE, p, rng)\\\\n                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\\\\n\\\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n                plim_true = plim_exposure(ss, I_batch).squeeze(0)\\\\n\\\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\\\n                plim_all = plim_exposure(ss, C_rand)\\\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\\\n\\\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\\\\\")\\\\n\\\\n            else:\\\\n                rng = np.random.default_rng(SEED)\\\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\\\n\\\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\\\n                tau_true = plim_true[1].item()\\\\n\\\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\\\n                plim_all = plim_with_T(ss, C_rand)\\\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\\\n\\\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\\\n                metrics['worst_case'] = wc\\\\n                all_results[f\\\\\\\"{topo}_K{K}\\\\\\\"] = metrics\\\\n\\\\n                print(f\\\\\\\"\\\\\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\\\\\")\\\\n\\\\n            m = metrics\\\\n            def _pct(x): return f\\\\\\\"{x:.1%}\\\\\\\" if x == x else \\\\\\\"nan\\\\\\\"\\\\n\\\\n            print(f\\\\\\\"    all_coef: violation={_pct(m['violation'])}  \\\\\\\"\\\\n                  f\\\\\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\\\\\")\\\\n            if 'tau_violation' in m:\\\\n                print(f\\\\\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\\\\\"\\\\n                      f\\\\\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\\\\\")\\\\n                print(f\\\\\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\\\\\")\\\\n            for thr, wv in m.get('worst_case', {}).items():\\\\n                print(f\\\\\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\\\\\"\\\\n                      f\\\\\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\\\\\")\\\\n            print(f\\\\\\\"    [{time.time()-tk:.1f}s]\\\\\\\")\\\\n            sys.stdout.flush()\\\\n\\\\n    # Summary Table\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*140}\\\\\\\")\\\\n    print(\\\\\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\\\\\")\\\\n    print(f\\\\\\\"{'='*140}\\\\\\\")\\\\n\\\\n    hdr = (f\\\\\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\\\\\"\\\\n           f\\\\\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\\\\\")\\\\n    print(hdr)\\\\n    print(f\\\\\\\"  {'-'*105}\\\\\\\")\\\\n\\\\n    for topo in ALL_TOPOS:\\\\n        for K_val in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K_val}\\\\\\\"]\\\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\\\n            sf = m.get('sign_flip', float('nan'))\\\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\\\n\\\\n            wc = m.get('worst_case', {})\\\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\\\n\\\\n            def _f(x, w=11):\\\\n                return f\\\\\\\"{x:>{w}.1%}\\\\\\\" if x == x else f\\\\\\\"{'nan':>{w}}\\\\\\\"\\\\n            def _fw(x, w=10):\\\\n                return f\\\\\\\"{x:>{w}.4f}\\\\\\\" if x == x else f\\\\\\\"{'nan':>{w}}\\\\\\\"\\\\n\\\\n            print(f\\\\\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\\\\\"\\\\n                  f\\\\\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\\\\\")\\\\n        print()\\\\n\\\\n    print(\\\\\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\\\\\")\\\\n    for topo in ALL_TOPOS:\\\\n        vals = []\\\\n        for K_val in K_VALUES:\\\\n            m = all_results[f\\\\\\\"{topo}_K{K_val}\\\\\\\"]\\\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\\\n            vals.append(v if v == v else 0.0)\\\\n        d = vals[-1] - vals[0]\\\\n        trend = \\\\\\\"WORSENS\\\\\\\" if d > 0.005 else (\\\\\\\"STABLE\\\\\\\" if abs(d) <= 0.005 else \\\\\\\"IMPROVES\\\\\\\")\\\\n        print(f\\\\\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {time.time() - t0:.0f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n        for topo in ALL_TOPOS:\\n            tk = time.time()\\n            p = params[topo]\\n\\n            if topo == 'iv':\\n                rng = np.random.default_rng(SEED)\\n                Z, Y, A = gen_iv(K, N_LARGE, p, rng)\\n                ss = IVSuffStats(Z, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                tau_true_t = plim_iv_batched(ss, I_batch)[0, 0]\\n                tau_true = tau_true_t.item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_iv_batched(ss, C_rand)\\n                metrics = compute_metrics(plim_all, tau_true_t.unsqueeze(0), tau_idx=0)\\n\\n                wc = worst_case_iv(ss, K, DEVICE)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true(Wald)={tau_true:.6f}  \\\"\\n                      f\\\"RF={ss.RF:.6f}  FS={np.array2string(ss.FS, precision=4)}  \\\"\\n                      f\\\"valid={metrics['n_valid']}/{N_RANDOM}\\\")\\n\\n            elif topo == 'exposure':\\n                rng = np.random.default_rng(SEED)\\n                _, Y, A = gen_exposure(K, N_LARGE, p, rng)\\n                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_exposure(ss, I_batch).squeeze(0)\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_exposure(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\\n\\n                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\\\")\\n\\n            else:\\n                rng = np.random.default_rng(SEED)\\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n\\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                plim_true = plim_with_T(ss, I_batch).squeeze(0)\\n                tau_true = plim_true[1].item()\\n\\n                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\\n                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\\n\\n                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n                metrics['worst_case'] = wc\\n                all_results[f\\\"{topo}_K{K}\\\"] = metrics\\n\\n                print(f\\\"\\\\n  {topo} K={K}: tau_true={tau_true:.6f}\\\")\\n\\n            m = metrics\\n            def _pct(x): return f\\\"{x:.1%}\\\" if x == x else \\\"nan\\\"\\n\\n            print(f\\\"    all_coef: violation={_pct(m['violation'])}  \\\"\\n                  f\\\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\\\")\\n            if 'tau_violation' in m:\\n                print(f\\\"    tau_spec: violation={_pct(m['tau_violation'])}  \\\"\\n                      f\\\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\\\")\\n                print(f\\\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \\\"\\n                      f\\\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\\\")\\n            for thr, wv in m.get('worst_case', {}).items():\\n                print(f\\\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \\\"\\n                      f\\\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\\\")\\n            print(f\\\"    [{time.time()-tk:.1f}s]\\\")\\n            sys.stdout.flush()\\n\\n    # Summary Table\\n    print(f\\\"\\\\n{'='*140}\\\")\\n    print(\\\"  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\")\\n    print(f\\\"{'='*140}\\\")\\n\\n    hdr = (f\\\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \\\"\\n           f\\\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\\\")\\n    print(hdr)\\n    print(f\\\"  {'-'*105}\\\")\\n\\n    for topo in ALL_TOPOS:\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\\n            sf = m.get('sign_flip', float('nan'))\\n            v = m.get('tau_violation', m.get('violation', float('nan')))\\n            a = m.get('tau_amplification', m.get('amplification', float('nan')))\\n\\n            wc = m.get('worst_case', {})\\n            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\\n            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\\n            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\\n\\n            def _f(x, w=11):\\n                return f\\\"{x:>{w}.1%}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n            def _fw(x, w=10):\\n                return f\\\"{x:>{w}.4f}\\\" if x == x else f\\\"{'nan':>{w}}\\\"\\n\\n            print(f\\\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \\\"\\n                  f\\\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\\\")\\n        print()\\n\\n    print(\\\"  K-TREND ANALYSIS (tau_specific_sign_flip)\\\")\\n    for topo in ALL_TOPOS:\\n        vals = []\\n        for K_val in K_VALUES:\\n            m = all_results[f\\\"{topo}_K{K_val}\\\"]\\n            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\\n            vals.append(v if v == v else 0.0)\\n        d = vals[-1] - vals[0]\\n        trend = \\\"WORSENS\\\" if d > 0.005 else (\\\"STABLE\\\" if abs(d) <= 0.005 else \\\"IMPROVES\\\")\\n        print(f\\\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\\\")\\n\\n    print(f\\\"\\\\nTotal: {time.time() - t0:.0f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T16:06:19.314Z_
+
+<details><summary>↩ Tool result · `toolu_01WuQuGf5iTmK2HHnNBjJDhD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\n\\nTopologies:\\n  1. Confounding: A→T, A→Y, T→Y\\n  2. Mediation: T→A→Y\\n  3. Collider: T→A←Y\\n  4. Exposure: A→Y\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\n  6. IV: Z→A→Y, U→{A,Y}\\n  7. Front-door: T→M→Y, U→{T,Y}\\n\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport time\\nimport os\\nimport sys\\n\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\n\\n\\ndef make_p_A(K):\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_all_params(K):\\n    p_A = make_p_A(K)\\n    return dict(\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\n                      dY=np.array(_DY_POOL[:K])),\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n    )\\n\\n\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_collider(K, N, p, rng):\\n    T = rng.normal(0, 1, N)\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    return T, Y, A\\n\\n\\ndef gen_exposure(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1\\n\\n... [截断: 输出过长，省略 5170 字符] ...\\n\\n] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\n    n_valid = valid.sum().item()\\n    if n_valid == 0:\\n        base = {k: float('nan') for k in\\n                ['violation', 'sign_flip', 'amplification']}\\n        base['n_valid'] = 0\\n        return base\\n\\n    pb = plim_batch[valid]\\n    diff = pb - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\n\\n    nz = plim_true.abs() > 1e-6\\n    if nz.any():\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\n                     ).any(dim=1).float().mean().item()\\n    else:\\n        sign_flip = 0.0\\n\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip,\\n             amplification=amplification, n_valid=n_valid)\\n\\n    if tau_idx is not None:\\n        tb = pb[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\n        m['tau_sign_flip'] = (\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\n        ).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\n        valid = torch.isfinite(pb)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v - tau_I).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 100)\\n    print(\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"  Device: {DEVICE}\\\")\\n    if DEVICE.type == 'cuda':\\n        print(f\\\"  GPU: {torch.cuda.get_device_name(0)}\\\")\\n        print(f\\\"  VRAM: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB\\\")\\n    print(f\\\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\\\")\\n    sys.stdout.flush()\\n\\n    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\\n                 'mbias', 'iv', 'frontdoor']\\n    all_results = {}\\n\\n    for K in K_VALUES:\\n        params = make_all_params(K)\\n        print(f\\\"\\\\n{'='*100}\\\")\\n        print(f\\\"  K = {K}\\\")\\n        print(f\\\"{'='*100}\\\")\\n        sys.stdout.flush()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "eb3ccf97-54e4-4951-b943-1afdfda15227",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\\\n\\\\nTopologies:\\\\n  1. Confounding: A→T, A→Y, T→Y\\\\n  2. Mediation: T→A→Y\\\\n  3. Collider: T→A←Y\\\\n  4. Exposure: A→Y\\\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\\\n  6. IV: Z→A→Y, U→{A,Y}\\\\n  7. Front-door: T→M→Y, U→{T,Y}\\\\n\\\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport time\\\\nimport os\\\\nimport sys\\\\n\\\\nK_VALUES = [3, 5, 7]\\\\nN_RANDOM = 100_000\\\\nN_LARGE = 5_000_000\\\\nSEED = 42\\\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\\\nDTYPE = torch.float64\\\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\\\n\\\\n\\\\ndef make_p_A(K):\\\\n    if K == 3:\\\\n        return np.array([0.40, 0.35, 0.25])\\\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\\\n    return raw / raw.sum()\\\\n\\\\n\\\\ndef make_all_params(K):\\\\n    p_A = make_p_A(K)\\\\n    return dict(\\\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\\\n                      dY=np.array(_DY_POOL[:K])),\\\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\\\n    )\\\\n\\\\n\\\\ndef _softmax_rows(logits):\\\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\\\n    return e / e.sum(axis=-1, keepdims=True)\\\\n\\\\n\\\\ndef _sample_cat(probs, rng):\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\\\n    return (u >= cum).sum(axis=1).astype(int)\\\\n\\\\n\\\\ndef gen_confounding(K, N, p, rng):\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1).astype(float)\\\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_mediation(K, N, p, rng):\\\\n    T = rng.binomial(1, 0.5, N).astype(float)\\\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\\\n    A = _sample_cat(_softmax_rows(logits), rng)\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1)\\\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_collider(K, N, p, rng):\\\\n    T = rng.normal(0, 1, N)\\\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\\\n    A = _sample_cat(_softmax_rows(logits), rng)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_exposure(K, N, p, rng):\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1\\\\n\\\\n... [截断: 输出过长，省略 5170 字符] ...\\\\n\\\\n] = col\\\\n    else:\\\\n        for j in range(K):\\\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\\\n\\\\n\\\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\\\n    n_valid = valid.sum().item()\\\\n    if n_valid == 0:\\\\n        base = {k: float('nan') for k in\\\\n                ['violation', 'sign_flip', 'amplification']}\\\\n        base['n_valid'] = 0\\\\n        return base\\\\n\\\\n    pb = plim_batch[valid]\\\\n    diff = pb - plim_true.unsqueeze(0)\\\\n\\\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\\\n\\\\n    nz = plim_true.abs() > 1e-6\\\\n    if nz.any():\\\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\\\n                     ).any(dim=1).float().mean().item()\\\\n    else:\\\\n        sign_flip = 0.0\\\\n\\\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\\\n                     ).any(dim=1).float().mean().item()\\\\n\\\\n    m = dict(violation=violation, sign_flip=sign_flip,\\\\n             amplification=amplification, n_valid=n_valid)\\\\n\\\\n    if tau_idx is not None:\\\\n        tb = pb[:, tau_idx]\\\\n        tt = plim_true[tau_idx]\\\\n        td = tb - tt\\\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\\\n        m['tau_sign_flip'] = (\\\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\\\n        ).float().mean().item()\\\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\\\n        m['tau_bias_mean'] = td.mean().item()\\\\n        m['tau_bias_std'] = td.std().item()\\\\n        m['tau_bias_max'] = td.abs().max().item()\\\\n    return m\\\\n\\\\n\\\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_fn(ss, Cb)\\\\n        valid = torch.isfinite(pb).all(dim=1)\\\\n        pb_v = pb[valid]\\\\n        if len(pb_v) == 0:\\\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\\\n            continue\\\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\\\n    results = {}\\\\n    for thr in thresholds:\\\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\\\n        valid = torch.isfinite(pb)\\\\n        pb_v = pb[valid]\\\\n        if len(pb_v) == 0:\\\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\\\n            continue\\\\n        bias = (pb_v - tau_I).abs()\\\\n        results[thr] = dict(\\\\n            max_bias=bias.max().item(),\\\\n            mean_bias=bias.mean().item(),\\\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\\\n        )\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    t0 = time.time()\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(f\\\\\\\"  Device: {DEVICE}\\\\\\\")\\\\n    if DEVICE.type == 'cuda':\\\\n        print(f\\\\\\\"  GPU: {torch.cuda.get_device_name(0)}\\\\\\\")\\\\n        print(f\\\\\\\"  VRAM: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB\\\\\\\")\\\\n    print(f\\\\\\\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\\\\\\\")\\\\n    sys.stdout.flush()\\\\n\\\\n    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\\\\n                 'mbias', 'iv', 'frontdoor']\\\\n    all_results = {}\\\\n\\\\n    for K in K_VALUES:\\\\n        params = make_all_params(K)\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*100}\\\\\\\")\\\\n        print(f\\\\\\\"  K = {K}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*100}\\\\\\\")\\\\n        sys.stdout.flush()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPlan 002 Extended: All 7 topologies × K={3,5,7}\\n\\nTopologies:\\n  1. Confounding: A→T, A→Y, T→Y\\n  2. Mediation: T→A→Y\\n  3. Collider: T→A←Y\\n  4. Exposure: A→Y\\n  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\\n  6. IV: Z→A→Y, U→{A,Y}\\n  7. Front-door: T→M→Y, U→{T,Y}\\n\\nFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\\nplim-based bias metrics including tau_specific_sign_flip (key paper claim).\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport time\\nimport os\\nimport sys\\n\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\\n\\n\\ndef make_p_A(K):\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_all_params(K):\\n    p_A = make_p_A(K)\\n    return dict(\\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\\n                      dY=np.array(_DY_POOL[:K])),\\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\\n    )\\n\\n\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1)\\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_collider(K, N, p, rng):\\n    T = rng.normal(0, 1, N)\\n    Y = p['tau'] * T + rng.normal(0, 1, N)\\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\\n    A = _sample_cat(_softmax_rows(logits), rng)\\n    return T, Y, A\\n\\n\\ndef gen_exposure(K, N, p, rng):\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1\\n\\n... [截断: 输出过长，省略 5170 字符] ...\\n\\n] = col\\n    else:\\n        for j in range(K):\\n            C[:, :, j] = rng.dirichlet(np.ones(K), N)\\n    return torch.tensor(C, dtype=DTYPE, device=device)\\n\\n\\ndef compute_metrics(plim_batch, plim_true, tau_idx=None):\\n    valid = torch.isfinite(plim_batch).all(dim=1)\\n    n_valid = valid.sum().item()\\n    if n_valid == 0:\\n        base = {k: float('nan') for k in\\n                ['violation', 'sign_flip', 'amplification']}\\n        base['n_valid'] = 0\\n        return base\\n\\n    pb = plim_batch[valid]\\n    diff = pb - plim_true.unsqueeze(0)\\n\\n    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\\n\\n    nz = plim_true.abs() > 1e-6\\n    if nz.any():\\n        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\\n                     ).any(dim=1).float().mean().item()\\n    else:\\n        sign_flip = 0.0\\n\\n    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\\n                     ).any(dim=1).float().mean().item()\\n\\n    m = dict(violation=violation, sign_flip=sign_flip,\\n             amplification=amplification, n_valid=n_valid)\\n\\n    if tau_idx is not None:\\n        tb = pb[:, tau_idx]\\n        tt = plim_true[tau_idx]\\n        td = tb - tt\\n        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\\n        m['tau_sign_flip'] = (\\n            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\\n        ).float().mean().item()\\n        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\\n        m['tau_bias_mean'] = td.mean().item()\\n        m['tau_bias_std'] = td.std().item()\\n        m['tau_bias_max'] = td.abs().max().item()\\n    return m\\n\\n\\ndef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    plim_I = plim_fn(ss, I_batch).squeeze(0)\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\\n    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\\n    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\\n    results = {}\\n    for thr in thresholds:\\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)[:, 0]\\n        valid = torch.isfinite(pb)\\n        pb_v = pb[valid]\\n        if len(pb_v) == 0:\\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\\n            continue\\n        bias = (pb_v - tau_I).abs()\\n        results[thr] = dict(\\n            max_bias=bias.max().item(),\\n            mean_bias=bias.mean().item(),\\n            p95_bias=torch.quantile(bias, 0.95).item(),\\n        )\\n    return results\\n\\n\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 100)\\n    print(\\\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"  Device: {DEVICE}\\\")\\n    if DEVICE.type == 'cuda':\\n        print(f\\\"  GPU: {torch.cuda.get_device_name(0)}\\\")\\n        print(f\\\"  VRAM: {torch.cuda.get_device_properties(0).total_memory // 1024**3} GB\\\")\\n    print(f\\\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\\\")\\n    sys.stdout.flush()\\n\\n    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\\n                 'mbias', 'iv', 'frontdoor']\\n    all_results = {}\\n\\n    for K in K_VALUES:\\n        params = make_all_params(K)\\n        print(f\\\"\\\\n{'='*100}\\\")\\n        print(f\\\"  K = {K}\\\")\\n        print(f\\\"{'='*100}\\\")\\n        sys.stdout.flush()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have a complete picture of both files. Let me also see the middle section of the 7-topo file that was truncated - specifically the frontdoor and mbias DGP generators, and the plim functions.
+
+Actually wait, I now have the full main loop of the 7-topo version. Let me look at it:
+
+```python
+for K in K_VALUES:
+    params = make_all_params(K)
+    ...
+    for topo in ALL_TOPOS:
+        tk = time.time()
+        p = params[topo]
+
+
+```
+
+For each topology, I'm generating the appropriate instrumental variables or exposure data with the corresponding parameters, creating random coefficient matrices, and computing worst-case bounds.
+
+```
+
+Wait, I need to switch to prose since the current rewritten thinking already contains code. Let me revise:
+
+For each topology variant, I'm setting up the data generation process with seeded randomness, creating random coefficient matrices, and calculating the worst-case bounds using the appropriate loss function for that topology. The key insight is that every topology independently initializes its own random number generator with the same seed, so the results should be reproducible across runs.
+
+But the user is reporting different results depending on the order of topologies. Let me trace through what could cause this non-determinism. I'm checking whether `frontdoor` is properly registered in the generator mapping—looking at the 7-topology configuration, I can see it includes a `gen_frontdoor` function in the `_GEN_OLS` dictionary, so that's not the issue.
+
+Now I'm examining the `worst_case_ols` function more carefully. It generates random covariance matrices using a seed derived from the threshold value—adding `int(thr * 1000)` to the base seed. This means the same C matrices should be generated regardless of which topology is being processed, since the seed calculation is independent of topology order.
+
+However, the sufficient statistics that feed into the worst-case bound calculation are topology-specific, derived from DGP data generated with a fixed seed. So while the C matrices are identical across topologies, the bounds themselves will differ because they're computed against different sufficient statistics. The real puzzle is why the exposure parameters themselves would differ between the 4-topology and 7-topology versions, since both should be pulling from the same beta pool and p_A values. Continuing with the worst_case_bounds function, I'm iterating through different thresholds to generate random matrices with minimum diagonal values, then computing the bias between the results and the identity case. There's a bug here where the index selection doesn't actually depend on whether we have a time dimension—it always picks index 1 regardless. For the time dimension case, I'm computing bias directly, but when there's no time dimension, I'm taking the maximum absolute difference across all non-identity columns.
+
+Now I'm seeing the discrepancy between how the 4-topo and 7-topo versions handle exposure: the 4-topo version takes the worst-case bias across all coefficients when there's no time dimension, while the 7-topo version with worst_case_ols only looks at a single coefficient at index 1, which is a fundamentally different comparison.
+
+The user's diagnosis points to an RNG issue though, so rather than chase down the exact semantic difference, I should implement their suggested fix: making each combination of topology, K, and threshold use its own deterministic seed derived from those parameters ensures reproducibility regardless of any hidden state dependencies. I'll need to modify the random generation function to accept the topology name and use it as part of the seed derivation. The user is right to push back on this. Looking at the actual discrepancy—the 4-topo version reports 0.269 for exposure K=5 while the 7-topo version reports 0.219—I need to trace where this difference comes from. The two scripts use different functions entirely: `worst_case_bounds` in one version takes the maximum across all coefficients, while `worst_case_ols` in the other only examines the coefficient at tau_idx=1, which would naturally produce different results for the same underlying data.
+
+Rather than continuing to debug the RNG behavior, I should just implement the fix the user is suggesting: modifying both scripts to use deterministic per-combination seeds that are derived from the topology, K value, and threshold, which will make the results reproducible and the seeding logic explicit. I need to compute the seed at each call site based on the topology, K, and threshold rather than modifying `gen_random_C` itself. For the main loop, I'll hash the tuple of topology, K, and a label with the base seed, and for the worst-case functions, I'll do the same but include the threshold value in the hash. the seed is set inside `worst_case_ols`/`worst_case_iv`/`worst_case_bounds`. These functions need to know the topo name. So I should add a `topo_name` parameter to those functions, or compute the seed at the call site and pass it in.
+
+Actually, the simplest approach: add `topo_name` parameter to `worst_case_ols`, `worst_case_iv`, and `worst_case_bounds`, and use it in the seed computation. I'm computing deterministic seeds by hashing the topology name, K, and threshold values together, then passing those seeds to the random C generation function. The main loop will do the same for random C matrices. I need to use a deterministic hash function instead of Python's built-in `hash()` since it's not consistent across sessions. I'll create a helper that generates reproducible seeds from the topology name, K value, and tag using SHA256, then apply this seed formula consistently to both the 7-topo and 4-topo versions.
+
+Writing the patches... Writing Python script to patch files... I'm modifying the seed generation in both `worst_case_ols` and `worst_case_iv` functions to use the deterministic seed function with the topology name and threshold parameters, then updating the main loop's `gen_random_C` calls to pass the same seeding approach. Writing patching script...
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f4a1a59e-1ef2-4bfc-b9da-aadd9dc77346",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2XdeNNHxZ6X44TBbHWcXz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10872,
+      "cache_read_input_tokens": 50151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10872
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+现在我有了两个文件的完整结构。问题分析：
+
+1. `gen_random_C` 已经用了 local rng (`np.random.default_rng(seed)`)，但 seed 不区分 topology：主循环用 `seed=SEED`，worst-case 用 `seed=SEED + int(thr * 1000)`
+2. 需要用确定性 hash 为每个 (topo, K, tag) 组合生成独立种子
+3. Python 内置 `hash()` 跨进程不确定，必须用 `hashlib`
+
+写入修复脚本并执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "87c982d2-175e-4004-a2a9-f64c1cd0865c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2XdeNNHxZ6X44TBbHWcXz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10872,
+      "cache_read_input_tokens": 50151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10872
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GymKx21mFxnCJ8ANoNqL5y`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat > /home/sonny/causal_annot_error_attrib/_rng_fix.py << 'PYEOF'\n\"\"\"Patch both plan_002 files to use deterministic per-(topo, K, tag) seeds.\"\"\"\nimport re\n\nHELPER = '''\nimport hashlib\n\ndef _det_seed(topo_name, K, tag, base_seed=42):\n    h = hashlib.sha256(f\"{topo_name}|{K}|{tag}|{base_seed}\".encode()).hexdigest()\n    return int(h[:8], 16)\n\n'''\n\ndef patch_7topo(path):\n    with open(path) as f:\n        code = f.read()\n\n    # 1. Add hashlib import + _det_seed helper after \"import sys\"\n    code = code.replace(\n        'import sys\\n\\nK_VALUES',\n        'import sys' + HELPER + 'K_VALUES',\n    )\n\n    # 2. worst_case_ols: add topo_name param + use _det_seed\n    code = code.replace(\n        'def worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):',\n        'def worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9), topo_name=\"\"):'\n    )\n    code = code.replace(\n        '''    for thr in thresholds:\n        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\n        pb = plim_fn(ss, Cb)\n        valid = torch.isfinite(pb).all(dim=1)\n        pb_v = pb[valid]\n        if len(pb_v) == 0:\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\n            continue\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\n        results[thr] = dict(\n            max_bias=bias.max().item(),\n            mean_bias=bias.mean().item(),\n            p95_bias=torch.quantile(bias, 0.95).item(),\n        )\n    return results\n\n\ndef worst_case_iv''',\n        '''    for thr in thresholds:\n        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\n        pb = plim_fn(ss, Cb)\n        valid = torch.isfinite(pb).all(dim=1)\n        pb_v = pb[valid]\n        if len(pb_v) == 0:\n            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\n            continue\n        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\n        results[thr] = dict(\n            max_bias=bias.max().item(),\n            mean_bias=bias.mean().item(),\n            p95_bias=torch.quantile(bias, 0.95).item(),\n        )\n    return results\n\n\ndef worst_case_iv''',\n    )\n\n    # 3. worst_case_iv: add topo_name param + use _det_seed\n    code = code.replace(\n        'def worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):',\n        'def worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9), topo_name=\"\"):'\n    )\n    code = code.replace(\n        \"Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)\",\n        \"Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n        pb = plim_iv_batched(ss, Cb)\",\n    )\n\n    # 4. Main loop: update gen_random_C seed and worst-case calls\n    # IV block\n    code = code.replace(\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_iv_batched(ss, C_rand)\",\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n                plim_all = plim_iv_batched(ss, C_rand)\",\n    )\n    code = code.replace(\n        \"wc = worst_case_iv(ss, K, DEVICE)\\n\",\n        \"wc = worst_case_iv(ss, K, DEVICE, topo_name=topo)\\n\",\n    )\n\n    # Exposure block\n    code = code.replace(\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_exposure(ss, C_rand)\",\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n                plim_all = plim_exposure(ss, C_rand)\",\n    )\n    code = code.replace(\n        \"wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\\n\",\n        \"wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1, topo_name=topo)\\n\",\n    )\n\n    # OLS block (else branch) -- there should be one remaining gen_random_C call with seed=SEED\n    code = code.replace(\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n                plim_all = plim_with_T(ss, C_rand)\",\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n                plim_all = plim_with_T(ss, C_rand)\",\n    )\n    code = code.replace(\n        \"wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\\n\",\n        \"wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1, topo_name=topo)\\n\",\n    )\n\n    with open(path, 'w') as f:\n        f.write(code)\n    print(f\"Patched {path}\")\n\n\ndef patch_4topo(path):\n    with open(path) as f:\n        code = f.read()\n\n    # 1. Add hashlib import + _det_seed helper after \"import sys\"\n    code = code.replace(\n        'import sys\\n\\n# =',\n        'import sys' + HELPER + '# =',\n    )\n\n    # 2. worst_case_bounds: add topo_name param + use _det_seed\n    code = code.replace(\n        \"def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9)):\",\n        'def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9), topo_name=\"\"):'\n    )\n    code = code.replace(\n        \"Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb = pb[valid]\",\n        \"Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n        pb = plim_fn(ss, Cb)\\n        valid = torch.isfinite(pb).all(dim=1)\\n        pb = pb[valid]\",\n    )\n\n    # 3. Main loop: update gen_random_C seed\n    # The 4-topo version has a single gen_random_C call pattern in main loop\n    code = code.replace(\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE)\\n\",\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n\",\n    )\n    # Also handle if it uses seed=SEED explicitly\n    code = code.replace(\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\\n\",\n        \"C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n\",\n    )\n\n    # 4. Main loop: pass topo_name to worst_case_bounds\n    code = code.replace(\n        \"wc = worst_case_bounds(ss, plim_fn, K, DEVICE)\\n\",\n        \"wc = worst_case_bounds(ss, plim_fn, K, DEVICE, topo_name=topo)\\n\",\n    )\n\n    with open(path, 'w') as f:\n        f.write(code)\n    print(f\"Patched {path}\")\n\n\nif __name__ == '__main__':\n    base = '/home/sonny/causal_annot_error_attrib'\n    patch_7topo(f'{base}/plan_002_k57_extended_7topo.py')\n    patch_4topo(f'{base}/plan_002_k57_extension.py')\n    print(\"Done.\")\nPYEOF\npython3 /home/sonny/causal_annot_error_attrib/_rng_fix.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "c62835db-18b2-4e73-a2e8-5221003ef48f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2XdeNNHxZ6X44TBbHWcXz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10872,
+      "cache_read_input_tokens": 50151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10872
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T16:08:13.288Z_
+
+<details><summary>↩ Tool result · `toolu_01GymKx21mFxnCJ8ANoNqL5y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Patched /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py\\nPatched /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "ef143d0d-5500-400a-b8b2-b38197e8f196",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Patched /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py\\\\nPatched /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Patched /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py\\nPatched /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the patch script ran successfully. Now let me verify the changes were applied correctly by checking key sections of both files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "4a63b08a-3e82-444b-b3fa-f67893dda502",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuHNhSarbfWY1urdFvrDrN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8561,
+      "cache_read_input_tokens": 61023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+Patch 成功。验证关键修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "42e26d76-6eac-4b25-bbbf-36011cdc374e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuHNhSarbfWY1urdFvrDrN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8561,
+      "cache_read_input_tokens": 61023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NPqMqP3KVCzUAnVX4hayw7`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"_det_seed\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f4ed5016-7583-4258-9665-358a17536a71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuHNhSarbfWY1urdFvrDrN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8561,
+      "cache_read_input_tokens": 61023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014JHMJyZ1fuWMVHasZaLx33`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"_det_seed\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "220100f1-c1c2-42ef-aa66-7273ef7d1bba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuHNhSarbfWY1urdFvrDrN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8561,
+      "cache_read_input_tokens": 61023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8561
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T16:08:18.639Z_
+
+<details><summary>↩ Tool result · `toolu_01NPqMqP3KVCzUAnVX4hayw7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25:def _det_seed(topo_name, K, tag, base_seed=42):\\n326:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n347:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n399:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n419:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n438:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "5ed1cb2a-798a-447a-afe9-e9f404345d7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25:def _det_seed(topo_name, K, tag, base_seed=42):\\\\n326:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\\\n347:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\\\n399:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\\\n419:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\\\n438:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"25:def _det_seed(topo_name, K, tag, base_seed=42):\\n326:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n347:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n399:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n419:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n438:                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T16:08:19.445Z_
+
+<details><summary>↩ Tool result · `toolu_014JHMJyZ1fuWMVHasZaLx33`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"28:def _det_seed(topo_name, K, tag, base_seed=42):\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "8dc8b750-656e-4d66-9227-4f27024dba86",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"28:def _det_seed(topo_name, K, tag, base_seed=42):\\\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"28:def _det_seed(topo_name, K, tag, base_seed=42):\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The 4-topo version only has 2 `_det_seed` calls. Let me check if the main loop calls were properly replaced. The 4-topo main loop might use a different pattern for `gen_random_C` and `worst_case_bounds`.
+
+Let me check the 4-topo main loop.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7863babd-21cc-415d-aef2-a512143f1029",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dpp5cVytQ23FrwAFqx8Gih",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 859,
+      "cache_read_input_tokens": 69584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 859
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+4-topo 版本的主循环 `gen_random_C` 和 `worst_case_bounds` 调用可能没被正确替换。检查一下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "49b18272-d162-4de3-ba20-888fb53c608b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dpp5cVytQ23FrwAFqx8Gih",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 859,
+      "cache_read_input_tokens": 69584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 859
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BXjUjcy58Xz3tDkWXMjyix`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"gen_random_C\\|worst_case_bounds\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "d4338311-3313-4676-9d9d-16dcf39d9a4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dpp5cVytQ23FrwAFqx8Gih",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 859,
+      "cache_read_input_tokens": 69584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 859
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T16:08:24.700Z_
+
+<details><summary>↩ Tool result · `toolu_01BXjUjcy58Xz3tDkWXMjyix`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "e1700b0e-c2a4-42fe-8f51-f173fde39775",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Up3LZhgfL9okutLAJ7vgfB`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n -e \"gen_random_C\" -e \"worst_case_bounds\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "bd6bb54e-56aa-438e-a04b-a02b6f57248d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WCG2q4SxWqv7Dwdkyn5aN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 376,
+      "cache_read_input_tokens": 70443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 376
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T16:08:28.759Z_
+
+<details><summary>↩ Tool result · `toolu_01Up3LZhgfL9okutLAJ7vgfB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"281:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n400:def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9), topo_name=\\\"\\\"):\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n541:            C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\n571:            wc = worst_case_bounds(ss, plim_fn, K, DEVICE, topo_name=topo)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "5def196b-49f9-4b93-8bdf-9e0e1a74c2de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"281:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n400:def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9), topo_name=\\\\\\\"\\\\\\\"):\\\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\\\n541:            C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\\\n571:            wc = worst_case_bounds(ss, plim_fn, K, DEVICE, topo_name=topo)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"281:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n400:def worst_case_bounds(ss, plim_fn, K, device, thresholds=(0.5, 0.7, 0.9), topo_name=\\\"\\\"):\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n541:            C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\n571:            wc = worst_case_bounds(ss, plim_fn, K, DEVICE, topo_name=topo)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The 4-topo version still has `C_batch = gen_random_C(K, N_RANDOM, DEVICE)` (without `seed=` kwarg) at line 541. My patch script tried to replace `gen_random_C(K, N_RANDOM, DEVICE)\n` but the variable is `C_batch` not `C_rand`. Let me fix this.
+
+Also, `worst_case_bounds` at line 571 was correctly updated to pass `topo_name=topo`.
+
+Let me fix the remaining `gen_random_C` call in the 4-topo file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7cbbdc03-a441-441d-997e-0a600b5a18c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MncMba18oK7U4k5PFZkWun",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 70819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+4-topo 的主循环 `gen_random_C` 调用变量名是 `C_batch` 不是 `C_rand`，需要修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "9ee363b0-4ec8-4b2b-961f-38bb473a65b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MncMba18oK7U4k5PFZkWun",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 70819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014CKXF4Ud1JXxSgpXR8ZYxP`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -n 545 /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "ef6043b4-6e37-4150-a4ad-c51a4120a478",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MncMba18oK7U4k5PFZkWun",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 70819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T16:08:35.817Z_
+
+<details><summary>↩ Tool result · `toolu_014CKXF4Ud1JXxSgpXR8ZYxP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# -*- coding: utf-8 -*-\\n\\\"\\\"\\\"\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\n\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\nheatmaps as interpretability tools.\\n\\nInput:  DGP parameters per topology (auto-generated for each K)\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\n\\nDependencies: torch (GPU), numpy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport time\\nimport os\\nimport sys\\nimport hashlib\\n\\ndef _det_seed(topo_name, K, tag, base_seed=42):\\n    h = hashlib.sha256(f\\\"{topo_name}|{K}|{tag}|{base_seed}\\\".encode()).hexdigest()\\n    return int(h[:8], 16)\\n\\n# ================================================================\\n# Configuration\\n# ================================================================\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n\\n# ================================================================\\n# DGP Parameters for general K\\n# ================================================================\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n\\n\\ndef make_p_A(K):\\n    \\\"\\\"\\\"Slightly imbalanced category probabilities.\\\"\\\"\\\"\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_params(K):\\n    \\\"\\\"\\\"DGP parameters for all topologies at given K.\\\"\\\"\\\"\\n    p_A = make_p_A(K)\\n\\n    conf = dict(\\n        p_A=p_A,\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\n        beta_T=2.0,\\n        sigma_T=1.0,\\n    )\\n\\n    med = dict(\\n        tau=0.5,\\n        gamma=np.array(_GAMMA_POOL[:K]),\\n        delta=np.array(_DELTA_POOL[:K]),\\n        beta=np.array(_BETA_POOL[:K]),\\n    )\\n\\n    coll = dict(\\n        tau=1.0,\\n        g=np.zeros(K),\\n        dT=np.array(_DT_POOL[:K]),\\n        dY=np.array(_DY_POOL[:K]),\\n    )\\n\\n    exp = dict(\\n        beta=np.array(_BETA_POOL[:K]),\\n        p_A=p_A,\\n    )\\n\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\n\\n\\n# ================================================================\\n# DGP Generators\\n# ================================================================\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    \\\"\\\"\\\"Sample from row-wise categorical probabilities [N, K].\\\"\\\"\\\"\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    \\\"\\\"\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\"\\\"\\\"\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    \\\"\\\"\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\"\\\"\\\"\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][No\\n\\n... [截断: 输出过长，省略 11166 字符] ...\\n\\nshape[0] > K\\n    tau_idx = 1 if has_T else 1\\n    tau_I = plim_I[tau_idx].item()\\n\\n    sens = np.zeros((K, K))\\n    for i in range(K):\\n        for j in range(K):\\n            if i == j:\\n                continue\\n            C = torch.eye(K, dtype=DTYPE, device=device)\\n            C[i, j] += delta\\n            C[j, j] -= delta\\n            p = plim_fn(ss, C.unsqueeze(0)).squeeze(0)\\n            sens[i, j] = abs(p[tau_idx].item() - tau_I) / delta\\n\\n    fig, ax = plt.subplots(figsize=(max(3.5, K * 0.7), max(3.5, K * 0.7)))\\n    im = ax.imshow(sens, cmap='YlOrRd', aspect='equal')\\n    ax.set_xlabel('True category j')\\n    ax.set_ylabel('Observed category i')\\n    ax.set_title(f'{topo_name} K={K}: |∂bias(τ)/∂C_ij|')\\n    ax.set_xticks(range(K))\\n    ax.set_yticks(range(K))\\n    for i in range(K):\\n        for j in range(K):\\n            color = 'w' if sens[i, j] > sens.max() * 0.6 else 'k'\\n            ax.text(j, i, f'{sens[i,j]:.3f}', ha='center', va='center',\\n                    fontsize=max(5, 8 - K), color=color)\\n    plt.colorbar(im, ax=ax, shrink=0.8)\\n    fig.tight_layout()\\n    fig.savefig(out_path, dpi=150, bbox_inches='tight')\\n    plt.close(fig)\\n    return sens\\n\\n\\n# ================================================================\\n# Main\\n# ================================================================\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 90)\\n    print(\\\"  Plan 002: K={3,5,7} Bias Taxonomy Extension\\\")\\n    print(\\\"=\\\" * 90)\\n    print(f\\\"Device: {DEVICE}\\\")\\n    if torch.cuda.is_available():\\n        gp = torch.cuda.get_device_properties(0)\\n        print(f\\\"GPU: {gp.name}  ({gp.total_memory / 1024**3:.1f} GB)\\\")\\n    print(f\\\"N_RANDOM={N_RANDOM:,}  N_LARGE={N_LARGE:,}\\\")\\n\\n    topologies = ['confounding', 'mediation', 'collider', 'exposure']\\n    all_results = {}\\n\\n    # ------------------------------------------------------------------\\n    # Named C matrices for MC verification (K=3 only, matching plan_001)\\n    # ------------------------------------------------------------------\\n    C_named_3 = {\\n        'sym_high': np.array([[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]]),\\n        'weak_diag': np.array([[.40,.35,.25],[.35,.40,.35],[.25,.25,.40]]),\\n    }\\n\\n    for topo in topologies:\\n        print(f\\\"\\\\n{'=' * 90}\\\")\\n        print(f\\\"  TOPOLOGY: {topo.upper()}\\\")\\n        print(f\\\"{'=' * 90}\\\")\\n\\n        plim_fn = plim_exposure if topo == 'exposure' else plim_with_T\\n        tau_idx = None if topo == 'exposure' else 1\\n\\n        for K in K_VALUES:\\n            print(f\\\"\\\\n  --- K={K} ---\\\")\\n            tk = time.time()\\n\\n            params = make_params(K)\\n            p = params[topo]\\n            rng = np.random.default_rng(SEED)\\n\\n            # 1. Large DGP → sufficient statistics\\n            T, Y, A = _GEN[topo](K, N_LARGE, p, rng)\\n            ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n            print(f\\\"  p_A = {ss.p_A}\\\")\\n            if ss.has_T:\\n                print(f\\\"  E[T]={ss.E_T:.4f}  E[T²]={ss.E_T2:.4f}  E[TY]={ss.E_TY:.4f}\\\")\\n\\n            # 2. plim(I) = τ_true\\n            I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n            plim_true = plim_fn(ss, I_batch).squeeze(0)\\n            print(f\\\"  plim(I) = {plim_true.cpu().numpy()}\\\")\\n\\n            # 3. MC verification for K=3\\n            if K == 3:\\n                print(f\\\"\\\\n  MC Verification (K=3, 500 reps × 10k samples):\\\")\\n                for cn, Cnp in C_named_3.items():\\n                    Ct = torch.tensor(Cnp, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                    th = plim_fn(ss, Ct).squeeze(0).cpu().numpy()\\n                    mc, se = mc_verify(K, topo, p, Cnp)\\n                    match = np.abs(th - mc) < 2.5 * se\\n                    tag = ''.join('✓' if m else '✗' for m in match)\\n                    print(f\\\"    {cn:<10}  theory={th}  MC={mc}  {tag}\\\")\\n\\n            # 4. Random C search\\n            C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\n            plim_all = plim_fn(ss, C_batch)\\n\\n            valid = torch.isfinite(plim_all).all(dim=1)\\n            n_valid = valid.sum().item()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "83331fe0-66e5-457b-bf54-c1306860982b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# -*- coding: utf-8 -*-\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\\\n\\\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\\\nheatmaps as interpretability tools.\\\\n\\\\nInput:  DGP parameters per topology (auto-generated for each K)\\\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\\\n\\\\nDependencies: torch (GPU), numpy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport time\\\\nimport os\\\\nimport sys\\\\nimport hashlib\\\\n\\\\ndef _det_seed(topo_name, K, tag, base_seed=42):\\\\n    h = hashlib.sha256(f\\\\\\\"{topo_name}|{K}|{tag}|{base_seed}\\\\\\\".encode()).hexdigest()\\\\n    return int(h[:8], 16)\\\\n\\\\n# ================================================================\\\\n# Configuration\\\\n# ================================================================\\\\nK_VALUES = [3, 5, 7]\\\\nN_RANDOM = 100_000\\\\nN_LARGE = 5_000_000\\\\nSEED = 42\\\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\\\nDTYPE = torch.float64\\\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\n\\\\n# ================================================================\\\\n# DGP Parameters for general K\\\\n# ================================================================\\\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\\\n\\\\n\\\\ndef make_p_A(K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Slightly imbalanced category probabilities.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if K == 3:\\\\n        return np.array([0.40, 0.35, 0.25])\\\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\\\n    return raw / raw.sum()\\\\n\\\\n\\\\ndef make_params(K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DGP parameters for all topologies at given K.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p_A = make_p_A(K)\\\\n\\\\n    conf = dict(\\\\n        p_A=p_A,\\\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\\\n        beta_T=2.0,\\\\n        sigma_T=1.0,\\\\n    )\\\\n\\\\n    med = dict(\\\\n        tau=0.5,\\\\n        gamma=np.array(_GAMMA_POOL[:K]),\\\\n        delta=np.array(_DELTA_POOL[:K]),\\\\n        beta=np.array(_BETA_POOL[:K]),\\\\n    )\\\\n\\\\n    coll = dict(\\\\n        tau=1.0,\\\\n        g=np.zeros(K),\\\\n        dT=np.array(_DT_POOL[:K]),\\\\n        dY=np.array(_DY_POOL[:K]),\\\\n    )\\\\n\\\\n    exp = dict(\\\\n        beta=np.array(_BETA_POOL[:K]),\\\\n        p_A=p_A,\\\\n    )\\\\n\\\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\\\n\\\\n\\\\n# ================================================================\\\\n# DGP Generators\\\\n# ================================================================\\\\ndef _softmax_rows(logits):\\\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\\\n    return e / e.sum(axis=-1, keepdims=True)\\\\n\\\\n\\\\ndef _sample_cat(probs, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sample from row-wise categorical probabilities [N, K].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\\\n    return (u >= cum).sum(axis=1).astype(int)\\\\n\\\\n\\\\ndef gen_confounding(K, N, p, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    A = rng.choice(K, size=N, p=p['p_A'])\\\\n    D = np.zeros((N, K - 1))\\\\n    for j in range(K - 1):\\\\n        D[:, j] = (A == j + 1).astype(float)\\\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\\\n    return T, Y, A\\\\n\\\\n\\\\ndef gen_mediation(K, N, p, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    T = rng.binomial(1, 0.5, N).astype(float)\\\\n    logits = p['gamma'][None, :] + p['delta'][No\\\\n\\\\n... [截断: 输出过长，省略 11166 字符] ...\\\\n\\\\nshape[0] > K\\\\n    tau_idx = 1 if has_T else 1\\\\n    tau_I = plim_I[tau_idx].item()\\\\n\\\\n    sens = np.zeros((K, K))\\\\n    for i in range(K):\\\\n        for j in range(K):\\\\n            if i == j:\\\\n                continue\\\\n            C = torch.eye(K, dtype=DTYPE, device=device)\\\\n            C[i, j] += delta\\\\n            C[j, j] -= delta\\\\n            p = plim_fn(ss, C.unsqueeze(0)).squeeze(0)\\\\n            sens[i, j] = abs(p[tau_idx].item() - tau_I) / delta\\\\n\\\\n    fig, ax = plt.subplots(figsize=(max(3.5, K * 0.7), max(3.5, K * 0.7)))\\\\n    im = ax.imshow(sens, cmap='YlOrRd', aspect='equal')\\\\n    ax.set_xlabel('True category j')\\\\n    ax.set_ylabel('Observed category i')\\\\n    ax.set_title(f'{topo_name} K={K}: |∂bias(τ)/∂C_ij|')\\\\n    ax.set_xticks(range(K))\\\\n    ax.set_yticks(range(K))\\\\n    for i in range(K):\\\\n        for j in range(K):\\\\n            color = 'w' if sens[i, j] > sens.max() * 0.6 else 'k'\\\\n            ax.text(j, i, f'{sens[i,j]:.3f}', ha='center', va='center',\\\\n                    fontsize=max(5, 8 - K), color=color)\\\\n    plt.colorbar(im, ax=ax, shrink=0.8)\\\\n    fig.tight_layout()\\\\n    fig.savefig(out_path, dpi=150, bbox_inches='tight')\\\\n    plt.close(fig)\\\\n    return sens\\\\n\\\\n\\\\n# ================================================================\\\\n# Main\\\\n# ================================================================\\\\ndef main():\\\\n    t0 = time.time()\\\\n    print(\\\\\\\"=\\\\\\\" * 90)\\\\n    print(\\\\\\\"  Plan 002: K={3,5,7} Bias Taxonomy Extension\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 90)\\\\n    print(f\\\\\\\"Device: {DEVICE}\\\\\\\")\\\\n    if torch.cuda.is_available():\\\\n        gp = torch.cuda.get_device_properties(0)\\\\n        print(f\\\\\\\"GPU: {gp.name}  ({gp.total_memory / 1024**3:.1f} GB)\\\\\\\")\\\\n    print(f\\\\\\\"N_RANDOM={N_RANDOM:,}  N_LARGE={N_LARGE:,}\\\\\\\")\\\\n\\\\n    topologies = ['confounding', 'mediation', 'collider', 'exposure']\\\\n    all_results = {}\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Named C matrices for MC verification (K=3 only, matching plan_001)\\\\n    # ------------------------------------------------------------------\\\\n    C_named_3 = {\\\\n        'sym_high': np.array([[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]]),\\\\n        'weak_diag': np.array([[.40,.35,.25],[.35,.40,.35],[.25,.25,.40]]),\\\\n    }\\\\n\\\\n    for topo in topologies:\\\\n        print(f\\\\\\\"\\\\\\\\n{'=' * 90}\\\\\\\")\\\\n        print(f\\\\\\\"  TOPOLOGY: {topo.upper()}\\\\\\\")\\\\n        print(f\\\\\\\"{'=' * 90}\\\\\\\")\\\\n\\\\n        plim_fn = plim_exposure if topo == 'exposure' else plim_with_T\\\\n        tau_idx = None if topo == 'exposure' else 1\\\\n\\\\n        for K in K_VALUES:\\\\n            print(f\\\\\\\"\\\\\\\\n  --- K={K} ---\\\\\\\")\\\\n            tk = time.time()\\\\n\\\\n            params = make_params(K)\\\\n            p = params[topo]\\\\n            rng = np.random.default_rng(SEED)\\\\n\\\\n            # 1. Large DGP → sufficient statistics\\\\n            T, Y, A = _GEN[topo](K, N_LARGE, p, rng)\\\\n            ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\\\n            print(f\\\\\\\"  p_A = {ss.p_A}\\\\\\\")\\\\n            if ss.has_T:\\\\n                print(f\\\\\\\"  E[T]={ss.E_T:.4f}  E[T²]={ss.E_T2:.4f}  E[TY]={ss.E_TY:.4f}\\\\\\\")\\\\n\\\\n            # 2. plim(I) = τ_true\\\\n            I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n            plim_true = plim_fn(ss, I_batch).squeeze(0)\\\\n            print(f\\\\\\\"  plim(I) = {plim_true.cpu().numpy()}\\\\\\\")\\\\n\\\\n            # 3. MC verification for K=3\\\\n            if K == 3:\\\\n                print(f\\\\\\\"\\\\\\\\n  MC Verification (K=3, 500 reps × 10k samples):\\\\\\\")\\\\n                for cn, Cnp in C_named_3.items():\\\\n                    Ct = torch.tensor(Cnp, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\\\n                    th = plim_fn(ss, Ct).squeeze(0).cpu().numpy()\\\\n                    mc, se = mc_verify(K, topo, p, Cnp)\\\\n                    match = np.abs(th - mc) < 2.5 * se\\\\n                    tag = ''.join('✓' if m else '✗' for m in match)\\\\n                    print(f\\\\\\\"    {cn:<10}  theory={th}  MC={mc}  {tag}\\\\\\\")\\\\n\\\\n            # 4. Random C search\\\\n            C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\\\n            plim_all = plim_fn(ss, C_batch)\\\\n\\\\n            valid = torch.isfinite(plim_all).all(dim=1)\\\\n            n_valid = valid.sum().item()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# -*- coding: utf-8 -*-\\n\\\"\\\"\\\"\\nPlan 002: K={3,5,7} Bias Taxonomy Extension\\n\\nExtends plan_001's K=3 bias analysis to general K across 4 core DAG topologies.\\nFor each topology x K, generates 100k random K×K confusion matrices (Dirichlet),\\ncomputes plim via pre-computed sufficient statistics, and reports violation/sign-flip/\\namplification rates. Includes eigendecomposition, worst-case bounds, and sensitivity\\nheatmaps as interpretability tools.\\n\\nInput:  DGP parameters per topology (auto-generated for each K)\\nOutput: Cross-K comparison tables, sensitivity heatmaps (PNG)\\n\\nDependencies: torch (GPU), numpy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport time\\nimport os\\nimport sys\\nimport hashlib\\n\\ndef _det_seed(topo_name, K, tag, base_seed=42):\\n    h = hashlib.sha256(f\\\"{topo_name}|{K}|{tag}|{base_seed}\\\".encode()).hexdigest()\\n    return int(h[:8], 16)\\n\\n# ================================================================\\n# Configuration\\n# ================================================================\\nK_VALUES = [3, 5, 7]\\nN_RANDOM = 100_000\\nN_LARGE = 5_000_000\\nSEED = 42\\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\\nDTYPE = torch.float64\\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\\n\\n\\n# ================================================================\\n# DGP Parameters for general K\\n# ================================================================\\n# Base coefficient pools — K=3 values match plan_001 exactly,\\n# K=5,7 extend with alternating-sign decreasing magnitudes.\\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\\n\\n\\ndef make_p_A(K):\\n    \\\"\\\"\\\"Slightly imbalanced category probabilities.\\\"\\\"\\\"\\n    if K == 3:\\n        return np.array([0.40, 0.35, 0.25])\\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\\n    return raw / raw.sum()\\n\\n\\ndef make_params(K):\\n    \\\"\\\"\\\"DGP parameters for all topologies at given K.\\\"\\\"\\\"\\n    p_A = make_p_A(K)\\n\\n    conf = dict(\\n        p_A=p_A,\\n        alpha=np.array(_ALPHA_POOL[:K-1]),\\n        beta_A=np.array(_BETA_A_POOL[:K-1]),\\n        beta_T=2.0,\\n        sigma_T=1.0,\\n    )\\n\\n    med = dict(\\n        tau=0.5,\\n        gamma=np.array(_GAMMA_POOL[:K]),\\n        delta=np.array(_DELTA_POOL[:K]),\\n        beta=np.array(_BETA_POOL[:K]),\\n    )\\n\\n    coll = dict(\\n        tau=1.0,\\n        g=np.zeros(K),\\n        dT=np.array(_DT_POOL[:K]),\\n        dY=np.array(_DY_POOL[:K]),\\n    )\\n\\n    exp = dict(\\n        beta=np.array(_BETA_POOL[:K]),\\n        p_A=p_A,\\n    )\\n\\n    return dict(confounding=conf, mediation=med, collider=coll, exposure=exp)\\n\\n\\n# ================================================================\\n# DGP Generators\\n# ================================================================\\ndef _softmax_rows(logits):\\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\\n    return e / e.sum(axis=-1, keepdims=True)\\n\\n\\ndef _sample_cat(probs, rng):\\n    \\\"\\\"\\\"Sample from row-wise categorical probabilities [N, K].\\\"\\\"\\\"\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=probs.shape[0])[:, None]\\n    return (u >= cum).sum(axis=1).astype(int)\\n\\n\\ndef gen_confounding(K, N, p, rng):\\n    \\\"\\\"\\\"A→T, A→Y, T→Y. Researcher omits true A, uses A*.\\\"\\\"\\\"\\n    A = rng.choice(K, size=N, p=p['p_A'])\\n    D = np.zeros((N, K - 1))\\n    for j in range(K - 1):\\n        D[:, j] = (A == j + 1).astype(float)\\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\\n    return T, Y, A\\n\\n\\ndef gen_mediation(K, N, p, rng):\\n    \\\"\\\"\\\"T→A→Y. A mediates T's effect; researcher controls for A*.\\\"\\\"\\\"\\n    T = rng.binomial(1, 0.5, N).astype(float)\\n    logits = p['gamma'][None, :] + p['delta'][No\\n\\n... [截断: 输出过长，省略 11166 字符] ...\\n\\nshape[0] > K\\n    tau_idx = 1 if has_T else 1\\n    tau_I = plim_I[tau_idx].item()\\n\\n    sens = np.zeros((K, K))\\n    for i in range(K):\\n        for j in range(K):\\n            if i == j:\\n                continue\\n            C = torch.eye(K, dtype=DTYPE, device=device)\\n            C[i, j] += delta\\n            C[j, j] -= delta\\n            p = plim_fn(ss, C.unsqueeze(0)).squeeze(0)\\n            sens[i, j] = abs(p[tau_idx].item() - tau_I) / delta\\n\\n    fig, ax = plt.subplots(figsize=(max(3.5, K * 0.7), max(3.5, K * 0.7)))\\n    im = ax.imshow(sens, cmap='YlOrRd', aspect='equal')\\n    ax.set_xlabel('True category j')\\n    ax.set_ylabel('Observed category i')\\n    ax.set_title(f'{topo_name} K={K}: |∂bias(τ)/∂C_ij|')\\n    ax.set_xticks(range(K))\\n    ax.set_yticks(range(K))\\n    for i in range(K):\\n        for j in range(K):\\n            color = 'w' if sens[i, j] > sens.max() * 0.6 else 'k'\\n            ax.text(j, i, f'{sens[i,j]:.3f}', ha='center', va='center',\\n                    fontsize=max(5, 8 - K), color=color)\\n    plt.colorbar(im, ax=ax, shrink=0.8)\\n    fig.tight_layout()\\n    fig.savefig(out_path, dpi=150, bbox_inches='tight')\\n    plt.close(fig)\\n    return sens\\n\\n\\n# ================================================================\\n# Main\\n# ================================================================\\ndef main():\\n    t0 = time.time()\\n    print(\\\"=\\\" * 90)\\n    print(\\\"  Plan 002: K={3,5,7} Bias Taxonomy Extension\\\")\\n    print(\\\"=\\\" * 90)\\n    print(f\\\"Device: {DEVICE}\\\")\\n    if torch.cuda.is_available():\\n        gp = torch.cuda.get_device_properties(0)\\n        print(f\\\"GPU: {gp.name}  ({gp.total_memory / 1024**3:.1f} GB)\\\")\\n    print(f\\\"N_RANDOM={N_RANDOM:,}  N_LARGE={N_LARGE:,}\\\")\\n\\n    topologies = ['confounding', 'mediation', 'collider', 'exposure']\\n    all_results = {}\\n\\n    # ------------------------------------------------------------------\\n    # Named C matrices for MC verification (K=3 only, matching plan_001)\\n    # ------------------------------------------------------------------\\n    C_named_3 = {\\n        'sym_high': np.array([[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]]),\\n        'weak_diag': np.array([[.40,.35,.25],[.35,.40,.35],[.25,.25,.40]]),\\n    }\\n\\n    for topo in topologies:\\n        print(f\\\"\\\\n{'=' * 90}\\\")\\n        print(f\\\"  TOPOLOGY: {topo.upper()}\\\")\\n        print(f\\\"{'=' * 90}\\\")\\n\\n        plim_fn = plim_exposure if topo == 'exposure' else plim_with_T\\n        tau_idx = None if topo == 'exposure' else 1\\n\\n        for K in K_VALUES:\\n            print(f\\\"\\\\n  --- K={K} ---\\\")\\n            tk = time.time()\\n\\n            params = make_params(K)\\n            p = params[topo]\\n            rng = np.random.default_rng(SEED)\\n\\n            # 1. Large DGP → sufficient statistics\\n            T, Y, A = _GEN[topo](K, N_LARGE, p, rng)\\n            ss = SuffStats(T, Y, A, K).to_device(DEVICE)\\n            print(f\\\"  p_A = {ss.p_A}\\\")\\n            if ss.has_T:\\n                print(f\\\"  E[T]={ss.E_T:.4f}  E[T²]={ss.E_T2:.4f}  E[TY]={ss.E_TY:.4f}\\\")\\n\\n            # 2. plim(I) = τ_true\\n            I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n            plim_true = plim_fn(ss, I_batch).squeeze(0)\\n            print(f\\\"  plim(I) = {plim_true.cpu().numpy()}\\\")\\n\\n            # 3. MC verification for K=3\\n            if K == 3:\\n                print(f\\\"\\\\n  MC Verification (K=3, 500 reps × 10k samples):\\\")\\n                for cn, Cnp in C_named_3.items():\\n                    Ct = torch.tensor(Cnp, dtype=DTYPE, device=DEVICE).unsqueeze(0)\\n                    th = plim_fn(ss, Ct).squeeze(0).cpu().numpy()\\n                    mc, se = mc_verify(K, topo, p, Cnp)\\n                    match = np.abs(th - mc) < 2.5 * se\\n                    tag = ''.join('✓' if m else '✗' for m in match)\\n                    print(f\\\"    {cn:<10}  theory={th}  MC={mc}  {tag}\\\")\\n\\n            # 4. Random C search\\n            C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\n            plim_all = plim_fn(ss, C_batch)\\n\\n            valid = torch.isfinite(plim_all).all(dim=1)\\n            n_valid = valid.sum().item()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I see the problem. In the 4-topo version, line 541 has:
+```python
+C_batch = gen_random_C(K, N_RANDOM, DEVICE)
+```
+
+Note: no `seed=` keyword argument at all, just positional args. My patch tried to replace `gen_random_C(K, N_RANDOM, DEVICE)\n` (without seed) and `gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\n` (with seed). 
+
+But the line has `C_batch` instead of `C_rand`, and it's `gen_random_C(K, N_RANDOM, DEVICE)` without any seed parameter.
+
+
+The function definition has seed defaulting to SEED=42, but my replacement patterns were looking for `C_rand` with either no seed or explicit `seed=SEED`, when the actual code uses `C_batch` and relies on the default parameter.
+
+Looking at line 541, I can see the exact call is `C_batch = gen_random_C(K, N_RANDOM, DEVICE)` without any seed argument. I need to update this to pass `seed=_det_seed(topo, K, 'random')` instead of relying on the default.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "d63bb2f0-d46c-44cf-9334-be9ce8fef8bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VijzUkGBoNs846n9dX9rL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3896,
+      "cache_read_input_tokens": 71235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+4-topo 文件中 `C_batch = gen_random_C(K, N_RANDOM, DEVICE)` 没有被替换（变量名是 `C_batch` 不是 `C_rand`，且没有 `seed=` 参数）。修复这行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "9d85e04a-34d7-479d-b7de-af987f29ee9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VijzUkGBoNs846n9dX9rL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3896,
+      "cache_read_input_tokens": 71235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011yAafJxLdGrtznBhncoRdz`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "python3 -c \"\npath = '/home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py'\nwith open(path) as f:\n    code = f.read()\n\nold = \\\"C_batch = gen_random_C(K, N_RANDOM, DEVICE)\\\"\nnew = \\\"C_batch = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\\"\n\nassert old in code, f'Pattern not found'\ncode = code.replace(old, new)\n\nwith open(path, 'w') as f:\n    f.write(code)\nprint('Fixed C_batch gen_random_C call')\n\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "62c54cb9-c41b-4f97-abfb-8439bf95999f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VijzUkGBoNs846n9dX9rL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3896,
+      "cache_read_input_tokens": 71235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T16:08:50.754Z_
+
+<details><summary>↩ Tool result · `toolu_011yAafJxLdGrtznBhncoRdz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed C_batch gen_random_C call\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "dd509a97-5433-4d7d-8c11-acb20a3df1b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed C_batch gen_random_C call\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed C_batch gen_random_C call\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+验证所有 `gen_random_C` 调用和 `worst_case` 调用都已修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "5ec4736a-0d0f-45d1-a1c3-84100676c714",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sEwuCsgCmcixkuknVg776",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 75131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1112
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AdJnatiV2hBzVhwiMdX6mh`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"_det_seed\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "3443d8d2-b951-4159-94c2-1bb6cf57a0ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sEwuCsgCmcixkuknVg776",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 75131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1112
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-20T16:08:55.823Z_
+
+<details><summary>↩ Tool result · `toolu_01AdJnatiV2hBzVhwiMdX6mh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"28:def _det_seed(topo_name, K, tag, base_seed=42):\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n541:            C_batch = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f7e9869f-5455-4e8d-8b4a-97b21fe3afc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"28:def _det_seed(topo_name, K, tag, base_seed=42):\\\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\\\n541:            C_batch = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"28:def _det_seed(topo_name, K, tag, base_seed=42):\\n413:        Cb = gen_random_C(K, 50_000, device, seed=_det_seed(topo_name, K, f'wc_{thr}'), min_diag=thr)\\n541:            C_batch = gen_random_C(K, N_RANDOM, DEVICE, seed=_det_seed(topo, K, 'random'))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FMZtPFaRg8uGar35eaHE23`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"seed=SEED\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "a12b7e47-c79f-49af-a7d8-370c0e2fc1d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sEwuCsgCmcixkuknVg776",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 75131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1112
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013TUjwVHCL6dMoY8ywchfyT`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"seed=SEED\" /home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "21814676-c184-4d80-b20f-6d5257322efc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014sEwuCsgCmcixkuknVg776",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 75131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1112
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T16:08:57.010Z_
+
+<details><summary>↩ Tool result · `toolu_01FMZtPFaRg8uGar35eaHE23`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"281:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "847d9c01-7912-4c85-854c-2fc1d71982f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"281:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"281:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-20T16:08:58.233Z_
+
+<details><summary>↩ Tool result · `toolu_013TUjwVHCL6dMoY8ywchfyT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"258:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7848dca5-4bbd-4741-827c-45218c1a0651",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"258:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"258:def gen_random_C(K, N, device, seed=SEED, min_diag=None):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both files now have:
+- `seed=SEED` only in the function signature defaults (which is fine, it's the fallback)
+- All actual call sites use `_det_seed(topo_name/topo, K, tag)`
+- The 7-topo version has `_det_seed` in 6 places (definition + 5 call sites)
+- The 4-topo version has `_det_seed` in 3 places (definition + 2 call sites: worst_case_bounds + main loop)
+- No more `seed=SEED` at call sites
+
+
+- The 4-topo version's `worst_case_bounds` makes a single `gen_random_C` call with `_det_seed`, and the main loop has one `C_batch` call that passes `topo_name=topo`
+
+Now I'm ready to run the 7-topo version to see the updated results, and I should also clean up the patch script while I'm at it.
+
+I've verified that both files only have `seed=SEED` in the function signatures themselves, which is correct - all the actual function calls are using `_det_seed` instead.
+
+Let me execute the 7-topo version now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "dd1dc720-0f8d-4cf3-aa93-33feb04fcff5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vKTRgPfjxHebwL1AWpcmD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 76243,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 899
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+两个文件的所有 `gen_random_C` 调用点都已修复，`seed=SEED` 只剩函数签名默认值。清理补丁脚本，然后运行 7-topo 版本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "a1019b0c-dc0d-45f4-8066-d4a4f0ce8921",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vKTRgPfjxHebwL1AWpcmD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 76243,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 899
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QoRncLXnNg6CVYyMq8reGK`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "rm /home/sonny/causal_annot_error_attrib/_rng_fix.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7034a9e4-882c-4ac9-a79b-7b2a4f1b3fae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vKTRgPfjxHebwL1AWpcmD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 76243,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 899
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T16:09:09.618Z_
+
+<details><summary>↩ Tool result · `toolu_01QoRncLXnNg6CVYyMq8reGK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "ebaa9f10-84f4-4c09-bbb0-4c7c81a29f37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EWStjFPop4C8SCQtm661eM`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && nohup python3 plan_002_k57_extended_7topo.py > plan002_rng_fix_run.log 2>&1 & echo $!",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "18a3540a-1980-4ef3-ab2e-89457f49a109",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ga4tKUV6xDNg4YL4p9xq6S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 595,
+      "cache_read_input_tokens": 77142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 595
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T16:09:35.377Z_
+
+<details><summary>↩ Tool result · `toolu_01EWStjFPop4C8SCQtm661eM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"467102\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "a7e2378f-f09f-4391-8bf0-45c5b0939885",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"467102\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 22.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"467102\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+PID 467102 启动。轮询进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7cd7d415-46bb-488e-8c6e-5ec05c14c0a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bu7ukufXGuE57sfZ6R1Lf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 77737,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G95gWsEpGP5DczsLqodSSm`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -20 /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "c365994e-8c69-4060-a6d4-96a1e02e2f9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bu7ukufXGuE57sfZ6R1Lf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 77737,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T16:09:39.624Z_
+
+<details><summary>↩ Tool result · `toolu_01G95gWsEpGP5DczsLqodSSm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  mbias            7           0.0%       99.1%      100.0%        0.0%     0.0449     0.0319     0.0133\\n\\n  iv               3          52.4%       52.4%      100.0%      100.0%    14.0463     1.6444     0.2993\\n  iv               5          51.6%       51.6%      100.0%      100.0%     9.6932     2.1036     0.4053\\n  iv               7          52.2%       52.2%      100.0%      100.0%     8.2204     1.8132     0.3605\\n\\n  frontdoor        3           0.0%       83.4%      100.0%      100.0%     0.2966     0.2604     0.1407\\n  frontdoor        5           0.0%       96.7%      100.0%      100.0%     0.2507     0.2066     0.1057\\n  frontdoor        7           0.0%       99.3%      100.0%      100.0%     0.2119     0.1646     0.0785\\n\\n  K-TREND ANALYSIS (tau_specific_sign_flip)\\n  confounding   : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  mediation     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  collider      : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  exposure      : K=3 99.0% -> K=5 100.0% -> K=7 100.0%  [WORSENS]\\n  mbias         : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  iv            : K=3 52.4% -> K=5 51.6% -> K=7 52.2%  [STABLE]\\n  frontdoor     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n\\nTotal: 19s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "68ea3063-7915-404e-87cc-eacf347c1559",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  mbias            7           0.0%       99.1%      100.0%        0.0%     0.0449     0.0319     0.0133\\\\n\\\\n  iv               3          52.4%       52.4%      100.0%      100.0%    14.0463     1.6444     0.2993\\\\n  iv               5          51.6%       51.6%      100.0%      100.0%     9.6932     2.1036     0.4053\\\\n  iv               7          52.2%       52.2%      100.0%      100.0%     8.2204     1.8132     0.3605\\\\n\\\\n  frontdoor        3           0.0%       83.4%      100.0%      100.0%     0.2966     0.2604     0.1407\\\\n  frontdoor        5           0.0%       96.7%      100.0%      100.0%     0.2507     0.2066     0.1057\\\\n  frontdoor        7           0.0%       99.3%      100.0%      100.0%     0.2119     0.1646     0.0785\\\\n\\\\n  K-TREND ANALYSIS (tau_specific_sign_flip)\\\\n  confounding   : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  mediation     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  collider      : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  exposure      : K=3 99.0% -> K=5 100.0% -> K=7 100.0%  [WORSENS]\\\\n  mbias         : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  iv            : K=3 52.4% -> K=5 51.6% -> K=7 52.2%  [STABLE]\\\\n  frontdoor     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n\\\\nTotal: 19s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  mbias            7           0.0%       99.1%      100.0%        0.0%     0.0449     0.0319     0.0133\\n\\n  iv               3          52.4%       52.4%      100.0%      100.0%    14.0463     1.6444     0.2993\\n  iv               5          51.6%       51.6%      100.0%      100.0%     9.6932     2.1036     0.4053\\n  iv               7          52.2%       52.2%      100.0%      100.0%     8.2204     1.8132     0.3605\\n\\n  frontdoor        3           0.0%       83.4%      100.0%      100.0%     0.2966     0.2604     0.1407\\n  frontdoor        5           0.0%       96.7%      100.0%      100.0%     0.2507     0.2066     0.1057\\n  frontdoor        7           0.0%       99.3%      100.0%      100.0%     0.2119     0.1646     0.0785\\n\\n  K-TREND ANALYSIS (tau_specific_sign_flip)\\n  confounding   : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  mediation     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  collider      : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  exposure      : K=3 99.0% -> K=5 100.0% -> K=7 100.0%  [WORSENS]\\n  mbias         : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  iv            : K=3 52.4% -> K=5 51.6% -> K=7 52.2%  [STABLE]\\n  frontdoor     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n\\nTotal: 19s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It completed in 19 seconds. Let me now get the full output, especially the worst-case bounds table and the exposure results.
+
+Let me also do a second run to verify determinism.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "acfeda05-df02-4d46-aa1f-e61f6bac0e22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x69kRyBufbZuRXucgRC6H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 77973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+第一次运行完成（19s）。启动第二次运行验证确定性，同时读取完整日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f5babdd1-db0f-4aa1-99d8-d62ad854628b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x69kRyBufbZuRXucgRC6H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 77973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KGwx5Sw44Agbr5M1hdQXRD`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/causal_annot_error_attrib && python3 plan_002_k57_extended_7topo.py > plan002_rng_fix_run2.log 2>&1",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "a70016c1-58e6-44b0-a4f2-9e8369ea19d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x69kRyBufbZuRXucgRC6H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 77973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P9cRpag1NREpiifu68u2Bj`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "a639d6aa-4614-4d04-8e56-faf50f24f526",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x69kRyBufbZuRXucgRC6H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 77973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-20T16:10:12.701Z_
+
+<details><summary>↩ Tool result · `toolu_01KGwx5Sw44Agbr5M1hdQXRD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "818b2f87-5b7c-4c59-b398-9db7e91a8fdf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 22.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 22.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T16:10:13.893Z_
+
+<details><summary>↩ Tool result · `toolu_01P9cRpag1NREpiifu68u2Bj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"====================================================================================================\\n  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\n====================================================================================================\\n  Device: cuda:0\\n  GPU: NVIDIA GeForce RTX 5090\\n  VRAM: 31 GB\\n  N_random=100,000, N_large=5,000,000, seed=42\\n\\n====================================================================================================\\n  K = 3\\n====================================================================================================\\n\\n  confounding K=3: tau_true=2.000126\\n    all_coef: violation=100.0%  sign_flip=99.3%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.271789  std=0.025696  max=0.299889\\n    worst-case (diag>=0.5): max|dt|=0.299338  mean=0.210731  P95=0.275771\\n    worst-case (diag>=0.7): max|dt|=0.274412  mean=0.162177  P95=0.228745\\n    worst-case (diag>=0.9): max|dt|=0.161382  mean=0.074530  P95=0.117430\\n    [0.7s]\\n\\n  mediation K=3: tau_true=0.499020\\n    all_coef: violation=100.0%  sign_flip=83.5%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.255807  std=0.041236  max=0.306077\\n    worst-case (diag>=0.5): max|dt|=0.303201  mean=0.179038  P95=0.261600\\n    worst-case (diag>=0.7): max|dt|=0.250951  mean=0.127950  P95=0.199915\\n    worst-case (diag>=0.9): max|dt|=0.122293  mean=0.052780  P95=0.091324\\n    [0.8s]\\n\\n  collider K=3: tau_true=0.885989\\n    all_coef: violation=100.0%  sign_flip=66.7%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.096737  std=0.016494  max=0.125642\\n    worst-case (diag>=0.5): max|dt|=0.125573  mean=0.067375  P95=0.103818\\n    worst-case (diag>=0.7): max|dt|=0.106440  mean=0.047126  P95=0.078457\\n    worst-case (diag>=0.9): max|dt|=0.050306  mean=0.018505  P95=0.033050\\n    [0.8s]\\n\\n  exposure K=3: plim_true=[-8.62665976e-04  1.00065075e+00 -4.99682928e-01]\\n    all_coef: violation=100.0%  sign_flip=99.0%  amplif=99.8%\\n    worst-case (diag>=0.5): max|dt|=1.143803  mean=0.339191  P95=0.680163\\n    worst-case (diag>=0.7): max|dt|=0.709237  mean=0.203609  P95=0.408032\\n    worst-case (diag>=0.9): max|dt|=0.272557  mean=0.068909  P95=0.140223\\n    [0.3s]\\n\\n  mbias K=3: tau_true=1.012020\\n    all_coef: violation=100.0%  sign_flip=66.8%  amplif=9.6%\\n    tau_spec: violation=58.4%  sign_flip=0.0%  amplif=8.8%\\n    tau_bias: mean=-0.010286  std=0.007144  max=0.031289\\n    worst-case (diag>=0.5): max|dt|=0.028741  mean=0.009274  P95=0.019797\\n    worst-case (diag>=0.7): max|dt|=0.022628  mean=0.006754  P95=0.015044\\n    worst-case (diag>=0.9): max|dt|=0.010608  mean=0.002714  P95=0.006283\\n    [0.8s]\\n\\n  iv K=3: tau_true(Wald)=1.337287  RF=0.372495  FS=[-0.0925  0.2785 -0.1861]  valid=100000/100000\\n    all_coef: violation=100.0%  sign_flip=52.4%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=52.4%  amplif=100.0%\\n    tau_bias: mean=-3.240900  std=1264.325011  max=256853.073864\\n    worst-case (diag>=0.5): max|dt|=14.046256  mean=0.993738  P95=2.425783\\n    worst-case (diag>=0.7): max|dt|=1.644374  mean=0.418436  P95=0.846376\\n    worst-case (diag>=0.9): max|dt|=0.299340  mean=0.109719  P95=0.197931\\n    [0.8s]\\n\\n  frontdoor K=3: tau_true=0.499729\\n    all_coef: violation=100.0%  sign_flip=83.4%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.259675  std=0.033910  max=0.298114\\n    worst-case (diag>=0.5): max|dt|=0.296613  mean=0.191402  P95=0.267762\\n    worst-case (diag>=0.7): max|dt|=0.260389  mean=0.141517  P95=0.214174\\n    worst-case (diag>=0.9): max|dt|=0.140738  mean=0.061210  P95=0.103110\\n    [0.8s]\\n\\n====================================================================================================\\n  K = 5\\n====================================================================================================\\n\\n  confounding K=5: tau_true=2.000126\\n    all_coef: violation=100.0%  sign_flip=10\\n\\n... [截断: 输出过长，省略 5755 字符] ...\\n\\n100.0%\\n    tau_bias: mean=-6.595472  std=2575.531370  max=350361.104935\\n    worst-case (diag>=0.5): max|dt|=8.220422  mean=0.998825  P95=2.345577\\n    worst-case (diag>=0.7): max|dt|=1.813235  mean=0.464761  P95=0.957584\\n    worst-case (diag>=0.9): max|dt|=0.360519  mean=0.129201  P95=0.243221\\n    [1.4s]\\n\\n  frontdoor K=7: tau_true=0.500031\\n    all_coef: violation=100.0%  sign_flip=99.3%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.214065  std=0.010261  max=0.232854\\n    worst-case (diag>=0.5): max|dt|=0.211935  mean=0.129215  P95=0.172614\\n    worst-case (diag>=0.7): max|dt|=0.164620  mean=0.090716  P95=0.127207\\n    worst-case (diag>=0.9): max|dt|=0.078550  mean=0.036114  P95=0.053654\\n    [1.4s]\\n\\n============================================================================================================================================\\n  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\n============================================================================================================================================\\n  Topology         K   t_spec_sflip   all_sflip   violation      amplif     WC_d50     WC_d70     WC_d90\\n  ---------------------------------------------------------------------------------------------------------\\n  confounding      3           0.0%       99.3%      100.0%      100.0%     0.2993     0.2744     0.1614\\n  confounding      5           0.0%      100.0%      100.0%      100.0%     0.2462     0.2156     0.1107\\n  confounding      7           0.0%      100.0%      100.0%      100.0%     0.2264     0.1859     0.0933\\n\\n  mediation        3           0.0%       83.5%      100.0%      100.0%     0.3032     0.2510     0.1223\\n  mediation        5           0.0%       96.7%      100.0%      100.0%     0.2396     0.1832     0.0867\\n  mediation        7           0.0%      100.0%      100.0%      100.0%     0.1879     0.1421     0.0607\\n\\n  collider         3           0.0%       66.7%      100.0%      100.0%     0.1256     0.1064     0.0503\\n  collider         5           0.0%       95.5%      100.0%      100.0%     0.1306     0.1087     0.0477\\n  collider         7           0.0%       99.2%      100.0%      100.0%     0.1131     0.0826     0.0352\\n\\n  exposure         3          99.0%       99.0%      100.0%       99.8%     1.1438     0.7092     0.2726\\n  exposure         5         100.0%      100.0%      100.0%       99.8%     0.8784     0.5782     0.2097\\n  exposure         7         100.0%      100.0%      100.0%       99.9%     0.7441     0.4913     0.1853\\n\\n  mbias            3           0.0%       66.8%       58.4%        8.8%     0.0287     0.0226     0.0106\\n  mbias            5           0.0%       95.5%      100.0%        0.0%     0.0487     0.0374     0.0154\\n  mbias            7           0.0%       99.1%      100.0%        0.0%     0.0449     0.0319     0.0133\\n\\n  iv               3          52.4%       52.4%      100.0%      100.0%    14.0463     1.6444     0.2993\\n  iv               5          51.6%       51.6%      100.0%      100.0%     9.6932     2.1036     0.4053\\n  iv               7          52.2%       52.2%      100.0%      100.0%     8.2204     1.8132     0.3605\\n\\n  frontdoor        3           0.0%       83.4%      100.0%      100.0%     0.2966     0.2604     0.1407\\n  frontdoor        5           0.0%       96.7%      100.0%      100.0%     0.2507     0.2066     0.1057\\n  frontdoor        7           0.0%       99.3%      100.0%      100.0%     0.2119     0.1646     0.0785\\n\\n  K-TREND ANALYSIS (tau_specific_sign_flip)\\n  confounding   : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  mediation     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  collider      : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  exposure      : K=3 99.0% -> K=5 100.0% -> K=7 100.0%  [WORSENS]\\n  mbias         : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  iv            : K=3 52.4% -> K=5 51.6% -> K=7 52.2%  [STABLE]\\n  frontdoor     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n\\nTotal: 19s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "1f53f7f0-84a9-46b7-8fc7-a84273713eae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"====================================================================================================\\\\n  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\\\n====================================================================================================\\\\n  Device: cuda:0\\\\n  GPU: NVIDIA GeForce RTX 5090\\\\n  VRAM: 31 GB\\\\n  N_random=100,000, N_large=5,000,000, seed=42\\\\n\\\\n====================================================================================================\\\\n  K = 3\\\\n====================================================================================================\\\\n\\\\n  confounding K=3: tau_true=2.000126\\\\n    all_coef: violation=100.0%  sign_flip=99.3%  amplif=100.0%\\\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n    tau_bias: mean=0.271789  std=0.025696  max=0.299889\\\\n    worst-case (diag>=0.5): max|dt|=0.299338  mean=0.210731  P95=0.275771\\\\n    worst-case (diag>=0.7): max|dt|=0.274412  mean=0.162177  P95=0.228745\\\\n    worst-case (diag>=0.9): max|dt|=0.161382  mean=0.074530  P95=0.117430\\\\n    [0.7s]\\\\n\\\\n  mediation K=3: tau_true=0.499020\\\\n    all_coef: violation=100.0%  sign_flip=83.5%  amplif=100.0%\\\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n    tau_bias: mean=0.255807  std=0.041236  max=0.306077\\\\n    worst-case (diag>=0.5): max|dt|=0.303201  mean=0.179038  P95=0.261600\\\\n    worst-case (diag>=0.7): max|dt|=0.250951  mean=0.127950  P95=0.199915\\\\n    worst-case (diag>=0.9): max|dt|=0.122293  mean=0.052780  P95=0.091324\\\\n    [0.8s]\\\\n\\\\n  collider K=3: tau_true=0.885989\\\\n    all_coef: violation=100.0%  sign_flip=66.7%  amplif=100.0%\\\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n    tau_bias: mean=0.096737  std=0.016494  max=0.125642\\\\n    worst-case (diag>=0.5): max|dt|=0.125573  mean=0.067375  P95=0.103818\\\\n    worst-case (diag>=0.7): max|dt|=0.106440  mean=0.047126  P95=0.078457\\\\n    worst-case (diag>=0.9): max|dt|=0.050306  mean=0.018505  P95=0.033050\\\\n    [0.8s]\\\\n\\\\n  exposure K=3: plim_true=[-8.62665976e-04  1.00065075e+00 -4.99682928e-01]\\\\n    all_coef: violation=100.0%  sign_flip=99.0%  amplif=99.8%\\\\n    worst-case (diag>=0.5): max|dt|=1.143803  mean=0.339191  P95=0.680163\\\\n    worst-case (diag>=0.7): max|dt|=0.709237  mean=0.203609  P95=0.408032\\\\n    worst-case (diag>=0.9): max|dt|=0.272557  mean=0.068909  P95=0.140223\\\\n    [0.3s]\\\\n\\\\n  mbias K=3: tau_true=1.012020\\\\n    all_coef: violation=100.0%  sign_flip=66.8%  amplif=9.6%\\\\n    tau_spec: violation=58.4%  sign_flip=0.0%  amplif=8.8%\\\\n    tau_bias: mean=-0.010286  std=0.007144  max=0.031289\\\\n    worst-case (diag>=0.5): max|dt|=0.028741  mean=0.009274  P95=0.019797\\\\n    worst-case (diag>=0.7): max|dt|=0.022628  mean=0.006754  P95=0.015044\\\\n    worst-case (diag>=0.9): max|dt|=0.010608  mean=0.002714  P95=0.006283\\\\n    [0.8s]\\\\n\\\\n  iv K=3: tau_true(Wald)=1.337287  RF=0.372495  FS=[-0.0925  0.2785 -0.1861]  valid=100000/100000\\\\n    all_coef: violation=100.0%  sign_flip=52.4%  amplif=100.0%\\\\n    tau_spec: violation=100.0%  sign_flip=52.4%  amplif=100.0%\\\\n    tau_bias: mean=-3.240900  std=1264.325011  max=256853.073864\\\\n    worst-case (diag>=0.5): max|dt|=14.046256  mean=0.993738  P95=2.425783\\\\n    worst-case (diag>=0.7): max|dt|=1.644374  mean=0.418436  P95=0.846376\\\\n    worst-case (diag>=0.9): max|dt|=0.299340  mean=0.109719  P95=0.197931\\\\n    [0.8s]\\\\n\\\\n  frontdoor K=3: tau_true=0.499729\\\\n    all_coef: violation=100.0%  sign_flip=83.4%  amplif=100.0%\\\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n    tau_bias: mean=0.259675  std=0.033910  max=0.298114\\\\n    worst-case (diag>=0.5): max|dt|=0.296613  mean=0.191402  P95=0.267762\\\\n    worst-case (diag>=0.7): max|dt|=0.260389  mean=0.141517  P95=0.214174\\\\n    worst-case (diag>=0.9): max|dt|=0.140738  mean=0.061210  P95=0.103110\\\\n    [0.8s]\\\\n\\\\n====================================================================================================\\\\n  K = 5\\\\n====================================================================================================\\\\n\\\\n  confounding K=5: tau_true=2.000126\\\\n    all_coef: violation=100.0%  sign_flip=10\\\\n\\\\n... [截断: 输出过长，省略 5755 字符] ...\\\\n\\\\n100.0%\\\\n    tau_bias: mean=-6.595472  std=2575.531370  max=350361.104935\\\\n    worst-case (diag>=0.5): max|dt|=8.220422  mean=0.998825  P95=2.345577\\\\n    worst-case (diag>=0.7): max|dt|=1.813235  mean=0.464761  P95=0.957584\\\\n    worst-case (diag>=0.9): max|dt|=0.360519  mean=0.129201  P95=0.243221\\\\n    [1.4s]\\\\n\\\\n  frontdoor K=7: tau_true=0.500031\\\\n    all_coef: violation=100.0%  sign_flip=99.3%  amplif=100.0%\\\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n    tau_bias: mean=0.214065  std=0.010261  max=0.232854\\\\n    worst-case (diag>=0.5): max|dt|=0.211935  mean=0.129215  P95=0.172614\\\\n    worst-case (diag>=0.7): max|dt|=0.164620  mean=0.090716  P95=0.127207\\\\n    worst-case (diag>=0.9): max|dt|=0.078550  mean=0.036114  P95=0.053654\\\\n    [1.4s]\\\\n\\\\n============================================================================================================================================\\\\n  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\\\n============================================================================================================================================\\\\n  Topology         K   t_spec_sflip   all_sflip   violation      amplif     WC_d50     WC_d70     WC_d90\\\\n  ---------------------------------------------------------------------------------------------------------\\\\n  confounding      3           0.0%       99.3%      100.0%      100.0%     0.2993     0.2744     0.1614\\\\n  confounding      5           0.0%      100.0%      100.0%      100.0%     0.2462     0.2156     0.1107\\\\n  confounding      7           0.0%      100.0%      100.0%      100.0%     0.2264     0.1859     0.0933\\\\n\\\\n  mediation        3           0.0%       83.5%      100.0%      100.0%     0.3032     0.2510     0.1223\\\\n  mediation        5           0.0%       96.7%      100.0%      100.0%     0.2396     0.1832     0.0867\\\\n  mediation        7           0.0%      100.0%      100.0%      100.0%     0.1879     0.1421     0.0607\\\\n\\\\n  collider         3           0.0%       66.7%      100.0%      100.0%     0.1256     0.1064     0.0503\\\\n  collider         5           0.0%       95.5%      100.0%      100.0%     0.1306     0.1087     0.0477\\\\n  collider         7           0.0%       99.2%      100.0%      100.0%     0.1131     0.0826     0.0352\\\\n\\\\n  exposure         3          99.0%       99.0%      100.0%       99.8%     1.1438     0.7092     0.2726\\\\n  exposure         5         100.0%      100.0%      100.0%       99.8%     0.8784     0.5782     0.2097\\\\n  exposure         7         100.0%      100.0%      100.0%       99.9%     0.7441     0.4913     0.1853\\\\n\\\\n  mbias            3           0.0%       66.8%       58.4%        8.8%     0.0287     0.0226     0.0106\\\\n  mbias            5           0.0%       95.5%      100.0%        0.0%     0.0487     0.0374     0.0154\\\\n  mbias            7           0.0%       99.1%      100.0%        0.0%     0.0449     0.0319     0.0133\\\\n\\\\n  iv               3          52.4%       52.4%      100.0%      100.0%    14.0463     1.6444     0.2993\\\\n  iv               5          51.6%       51.6%      100.0%      100.0%     9.6932     2.1036     0.4053\\\\n  iv               7          52.2%       52.2%      100.0%      100.0%     8.2204     1.8132     0.3605\\\\n\\\\n  frontdoor        3           0.0%       83.4%      100.0%      100.0%     0.2966     0.2604     0.1407\\\\n  frontdoor        5           0.0%       96.7%      100.0%      100.0%     0.2507     0.2066     0.1057\\\\n  frontdoor        7           0.0%       99.3%      100.0%      100.0%     0.2119     0.1646     0.0785\\\\n\\\\n  K-TREND ANALYSIS (tau_specific_sign_flip)\\\\n  confounding   : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  mediation     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  collider      : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  exposure      : K=3 99.0% -> K=5 100.0% -> K=7 100.0%  [WORSENS]\\\\n  mbias         : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n  iv            : K=3 52.4% -> K=5 51.6% -> K=7 52.2%  [STABLE]\\\\n  frontdoor     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\\\n\\\\nTotal: 19s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"====================================================================================================\\n  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\\n====================================================================================================\\n  Device: cuda:0\\n  GPU: NVIDIA GeForce RTX 5090\\n  VRAM: 31 GB\\n  N_random=100,000, N_large=5,000,000, seed=42\\n\\n====================================================================================================\\n  K = 3\\n====================================================================================================\\n\\n  confounding K=3: tau_true=2.000126\\n    all_coef: violation=100.0%  sign_flip=99.3%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.271789  std=0.025696  max=0.299889\\n    worst-case (diag>=0.5): max|dt|=0.299338  mean=0.210731  P95=0.275771\\n    worst-case (diag>=0.7): max|dt|=0.274412  mean=0.162177  P95=0.228745\\n    worst-case (diag>=0.9): max|dt|=0.161382  mean=0.074530  P95=0.117430\\n    [0.7s]\\n\\n  mediation K=3: tau_true=0.499020\\n    all_coef: violation=100.0%  sign_flip=83.5%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.255807  std=0.041236  max=0.306077\\n    worst-case (diag>=0.5): max|dt|=0.303201  mean=0.179038  P95=0.261600\\n    worst-case (diag>=0.7): max|dt|=0.250951  mean=0.127950  P95=0.199915\\n    worst-case (diag>=0.9): max|dt|=0.122293  mean=0.052780  P95=0.091324\\n    [0.8s]\\n\\n  collider K=3: tau_true=0.885989\\n    all_coef: violation=100.0%  sign_flip=66.7%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.096737  std=0.016494  max=0.125642\\n    worst-case (diag>=0.5): max|dt|=0.125573  mean=0.067375  P95=0.103818\\n    worst-case (diag>=0.7): max|dt|=0.106440  mean=0.047126  P95=0.078457\\n    worst-case (diag>=0.9): max|dt|=0.050306  mean=0.018505  P95=0.033050\\n    [0.8s]\\n\\n  exposure K=3: plim_true=[-8.62665976e-04  1.00065075e+00 -4.99682928e-01]\\n    all_coef: violation=100.0%  sign_flip=99.0%  amplif=99.8%\\n    worst-case (diag>=0.5): max|dt|=1.143803  mean=0.339191  P95=0.680163\\n    worst-case (diag>=0.7): max|dt|=0.709237  mean=0.203609  P95=0.408032\\n    worst-case (diag>=0.9): max|dt|=0.272557  mean=0.068909  P95=0.140223\\n    [0.3s]\\n\\n  mbias K=3: tau_true=1.012020\\n    all_coef: violation=100.0%  sign_flip=66.8%  amplif=9.6%\\n    tau_spec: violation=58.4%  sign_flip=0.0%  amplif=8.8%\\n    tau_bias: mean=-0.010286  std=0.007144  max=0.031289\\n    worst-case (diag>=0.5): max|dt|=0.028741  mean=0.009274  P95=0.019797\\n    worst-case (diag>=0.7): max|dt|=0.022628  mean=0.006754  P95=0.015044\\n    worst-case (diag>=0.9): max|dt|=0.010608  mean=0.002714  P95=0.006283\\n    [0.8s]\\n\\n  iv K=3: tau_true(Wald)=1.337287  RF=0.372495  FS=[-0.0925  0.2785 -0.1861]  valid=100000/100000\\n    all_coef: violation=100.0%  sign_flip=52.4%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=52.4%  amplif=100.0%\\n    tau_bias: mean=-3.240900  std=1264.325011  max=256853.073864\\n    worst-case (diag>=0.5): max|dt|=14.046256  mean=0.993738  P95=2.425783\\n    worst-case (diag>=0.7): max|dt|=1.644374  mean=0.418436  P95=0.846376\\n    worst-case (diag>=0.9): max|dt|=0.299340  mean=0.109719  P95=0.197931\\n    [0.8s]\\n\\n  frontdoor K=3: tau_true=0.499729\\n    all_coef: violation=100.0%  sign_flip=83.4%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.259675  std=0.033910  max=0.298114\\n    worst-case (diag>=0.5): max|dt|=0.296613  mean=0.191402  P95=0.267762\\n    worst-case (diag>=0.7): max|dt|=0.260389  mean=0.141517  P95=0.214174\\n    worst-case (diag>=0.9): max|dt|=0.140738  mean=0.061210  P95=0.103110\\n    [0.8s]\\n\\n====================================================================================================\\n  K = 5\\n====================================================================================================\\n\\n  confounding K=5: tau_true=2.000126\\n    all_coef: violation=100.0%  sign_flip=10\\n\\n... [截断: 输出过长，省略 5755 字符] ...\\n\\n100.0%\\n    tau_bias: mean=-6.595472  std=2575.531370  max=350361.104935\\n    worst-case (diag>=0.5): max|dt|=8.220422  mean=0.998825  P95=2.345577\\n    worst-case (diag>=0.7): max|dt|=1.813235  mean=0.464761  P95=0.957584\\n    worst-case (diag>=0.9): max|dt|=0.360519  mean=0.129201  P95=0.243221\\n    [1.4s]\\n\\n  frontdoor K=7: tau_true=0.500031\\n    all_coef: violation=100.0%  sign_flip=99.3%  amplif=100.0%\\n    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n    tau_bias: mean=0.214065  std=0.010261  max=0.232854\\n    worst-case (diag>=0.5): max|dt|=0.211935  mean=0.129215  P95=0.172614\\n    worst-case (diag>=0.7): max|dt|=0.164620  mean=0.090716  P95=0.127207\\n    worst-case (diag>=0.9): max|dt|=0.078550  mean=0.036114  P95=0.053654\\n    [1.4s]\\n\\n============================================================================================================================================\\n  COMPLETE 7-TOPOLOGY x K={3,5,7} COMPARISON\\n============================================================================================================================================\\n  Topology         K   t_spec_sflip   all_sflip   violation      amplif     WC_d50     WC_d70     WC_d90\\n  ---------------------------------------------------------------------------------------------------------\\n  confounding      3           0.0%       99.3%      100.0%      100.0%     0.2993     0.2744     0.1614\\n  confounding      5           0.0%      100.0%      100.0%      100.0%     0.2462     0.2156     0.1107\\n  confounding      7           0.0%      100.0%      100.0%      100.0%     0.2264     0.1859     0.0933\\n\\n  mediation        3           0.0%       83.5%      100.0%      100.0%     0.3032     0.2510     0.1223\\n  mediation        5           0.0%       96.7%      100.0%      100.0%     0.2396     0.1832     0.0867\\n  mediation        7           0.0%      100.0%      100.0%      100.0%     0.1879     0.1421     0.0607\\n\\n  collider         3           0.0%       66.7%      100.0%      100.0%     0.1256     0.1064     0.0503\\n  collider         5           0.0%       95.5%      100.0%      100.0%     0.1306     0.1087     0.0477\\n  collider         7           0.0%       99.2%      100.0%      100.0%     0.1131     0.0826     0.0352\\n\\n  exposure         3          99.0%       99.0%      100.0%       99.8%     1.1438     0.7092     0.2726\\n  exposure         5         100.0%      100.0%      100.0%       99.8%     0.8784     0.5782     0.2097\\n  exposure         7         100.0%      100.0%      100.0%       99.9%     0.7441     0.4913     0.1853\\n\\n  mbias            3           0.0%       66.8%       58.4%        8.8%     0.0287     0.0226     0.0106\\n  mbias            5           0.0%       95.5%      100.0%        0.0%     0.0487     0.0374     0.0154\\n  mbias            7           0.0%       99.1%      100.0%        0.0%     0.0449     0.0319     0.0133\\n\\n  iv               3          52.4%       52.4%      100.0%      100.0%    14.0463     1.6444     0.2993\\n  iv               5          51.6%       51.6%      100.0%      100.0%     9.6932     2.1036     0.4053\\n  iv               7          52.2%       52.2%      100.0%      100.0%     8.2204     1.8132     0.3605\\n\\n  frontdoor        3           0.0%       83.4%      100.0%      100.0%     0.2966     0.2604     0.1407\\n  frontdoor        5           0.0%       96.7%      100.0%      100.0%     0.2507     0.2066     0.1057\\n  frontdoor        7           0.0%       99.3%      100.0%      100.0%     0.2119     0.1646     0.0785\\n\\n  K-TREND ANALYSIS (tau_specific_sign_flip)\\n  confounding   : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  mediation     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  collider      : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  exposure      : K=3 99.0% -> K=5 100.0% -> K=7 100.0%  [WORSENS]\\n  mbias         : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n  iv            : K=3 52.4% -> K=5 51.6% -> K=7 52.2%  [STABLE]\\n  frontdoor     : K=3 0.0% -> K=5 0.0% -> K=7 0.0%  [STABLE]\\n\\nTotal: 19s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the full output from run 1. Now let me compare with run 2 for determinism verification. The run 2 should have completed already (the ssh_execute returned).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7ecf352f-6c7a-4cfc-b562-4927c341eebe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3r4KivA6REYr1Lend3wAD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 78791,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+第二次运行也已完成。比较两次运行的 worst-case bounds。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "6a68f51d-cd25-47a0-a9e2-894a72654ea9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3r4KivA6REYr1Lend3wAD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 78791,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MzahMro6tSAvNVVxrKxLBr`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "diff /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run2.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "184ee378-432f-41ac-8aaa-d107bc6dd7ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3r4KivA6REYr1Lend3wAD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 78791,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T16:10:19.692Z_
+
+<details><summary>↩ Tool result · `toolu_01MzahMro6tSAvNVVxrKxLBr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'diff /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run2.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n159c159\\n<     [1.3s]\\n---\\n>     [1.4s]\\n247c247\\n< Total: 19s\\n---\\n> Total: 20s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "b6a40389-afea-4848-922f-8b724393f91d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'diff /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run2.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n159c159\\\\n<     [1.3s]\\\\n---\\\\n>     [1.4s]\\\\n247c247\\\\n< Total: 19s\\\\n---\\\\n> Total: 20s\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'diff /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run2.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n159c159\\n<     [1.3s]\\n---\\n>     [1.4s]\\n247c247\\n< Total: 19s\\n---\\n> Total: 20s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+两次运行仅有时间戳差异（1.3s vs 1.4s, 19s vs 20s），所有数值完全一致。确定性已验证。
+
+读取被截断的 K=5 段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "7fea148d-ca8f-4fc2-94ba-2848f1bb9832",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVi4XigcNWfPPZCAoMc2oM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 82935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019FeiEPar3iCMc4WuEigfHq`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -n \"K = 5\" -A 80 /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "8ee5f2ce-4ae1-4cad-97b8-22a71da0204b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVi4XigcNWfPPZCAoMc2oM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 82935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-20T16:10:26.275Z_
+
+<details><summary>↩ Tool result · `toolu_019FeiEPar3iCMc4WuEigfHq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"75:  K = 5\\n76-====================================================================================================\\n77-\\n78-  confounding K=5: tau_true=2.000126\\n79-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\n80-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n81-    tau_bias: mean=0.236270  std=0.013900  max=0.256863\\n82-    worst-case (diag>=0.5): max|dt|=0.246230  mean=0.160258  P95=0.211422\\n83-    worst-case (diag>=0.7): max|dt|=0.215644  mean=0.117807  P95=0.164862\\n84-    worst-case (diag>=0.9): max|dt|=0.110664  mean=0.050325  P95=0.076636\\n85-    [0.6s]\\n86-\\n87-  mediation K=5: tau_true=0.498993\\n88-    all_coef: violation=100.0%  sign_flip=96.7%  amplif=100.0%\\n89-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n90-    tau_bias: mean=0.225499  std=0.019531  max=0.256658\\n91-    worst-case (diag>=0.5): max|dt|=0.239636  mean=0.136623  P95=0.192410\\n92-    worst-case (diag>=0.7): max|dt|=0.183186  mean=0.094817  P95=0.141252\\n93-    worst-case (diag>=0.9): max|dt|=0.086676  mean=0.037621  P95=0.060198\\n94-    [1.0s]\\n95-\\n96-  collider K=5: tau_true=0.872320\\n97-    all_coef: violation=100.0%  sign_flip=95.5%  amplif=100.0%\\n98-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n99-    tau_bias: mean=0.111325  std=0.012139  max=0.138209\\n100-    worst-case (diag>=0.5): max|dt|=0.130552  mean=0.064831  P95=0.099774\\n101-    worst-case (diag>=0.7): max|dt|=0.108748  mean=0.043635  P95=0.070811\\n102-    worst-case (diag>=0.9): max|dt|=0.047687  mean=0.016419  P95=0.027840\\n103-    [1.0s]\\n104-\\n105-  exposure K=5: plim_true=[-0.00104063  1.00107523 -0.49906502  0.7011994  -0.30020783]\\n106-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=99.8%\\n107-    worst-case (diag>=0.5): max|dt|=0.878414  mean=0.258491  P95=0.504744\\n108-    worst-case (diag>=0.7): max|dt|=0.578162  mean=0.153113  P95=0.309871\\n109-    worst-case (diag>=0.9): max|dt|=0.209725  mean=0.051106  P95=0.108986\\n110-    [0.4s]\\n111-\\n112-  mbias K=5: tau_true=1.038028\\n113-    all_coef: violation=100.0%  sign_flip=95.5%  amplif=21.0%\\n114-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=0.0%\\n115-    tau_bias: mean=-0.033449  std=0.005259  max=0.051600\\n116-    worst-case (diag>=0.5): max|dt|=0.048653  mean=0.019265  P95=0.033306\\n117-    worst-case (diag>=0.7): max|dt|=0.037395  mean=0.012868  P95=0.023328\\n118-    worst-case (diag>=0.9): max|dt|=0.015390  mean=0.004789  P95=0.009067\\n119-    [1.1s]\\n120-\\n121-  iv K=5: tau_true(Wald)=1.913101  RF=0.332287  FS=[-0.062   0.1737 -0.1094  0.1023 -0.1046]  valid=100000/100000\\n122-    all_coef: violation=100.0%  sign_flip=51.6%  amplif=100.0%\\n123-    tau_spec: violation=100.0%  sign_flip=51.6%  amplif=100.0%\\n124-    tau_bias: mean=3.097669  std=3646.766702  max=720651.163874\\n125-    worst-case (diag>=0.5): max|dt|=9.693156  mean=1.047297  P95=2.528082\\n126-    worst-case (diag>=0.7): max|dt|=2.103580  mean=0.479398  P95=1.001626\\n127-    worst-case (diag>=0.9): max|dt|=0.405301  mean=0.130163  P95=0.246019\\n128-    [1.1s]\\n129-\\n130-  frontdoor K=5: tau_true=0.500164\\n131-    all_coef: violation=100.0%  sign_flip=96.7%  amplif=100.0%\\n132-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n133-    tau_bias: mean=0.237680  std=0.016402  max=0.262493\\n134-    worst-case (diag>=0.5): max|dt|=0.250683  mean=0.154089  P95=0.208971\\n135-    worst-case (diag>=0.7): max|dt|=0.206568  mean=0.110796  P95=0.158622\\n136-    worst-case (diag>=0.9): max|dt|=0.105658  mean=0.045293  P95=0.070176\\n137-    [1.1s]\\n138-\\n139-====================================================================================================\\n140-  K = 7\\n141-====================================================================================================\\n142-\\n143-  confounding K=7: tau_true=2.000126\\n144-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\n145-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n146-    tau_bias: mean=0.228060  std=0.009940  max=0.245897\\n147-    worst-case (diag>=0.5): max|dt|=0.226448  mean=0.145322  P95=0.190382\\n148-    worst-case (diag>=0.7): max|dt|=0.185908  mean=0.105361  P95=0.144368\\n149-    worst-case (diag>=0.9): max|dt|=0.093253  mean=0.044504  P95=0.065383\\n150-    [0.8s]\\n151-\\n152-  mediation K=7: tau_true=0.499566\\n153-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\n154-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n155-    tau_bias: mean=0.196645  std=0.011905  max=0.219611\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "f3518705-5ac8-4e7f-9c41-7964b2cb01cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"75:  K = 5\\\\n76-====================================================================================================\\\\n77-\\\\n78-  confounding K=5: tau_true=2.000126\\\\n79-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\\\n80-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n81-    tau_bias: mean=0.236270  std=0.013900  max=0.256863\\\\n82-    worst-case (diag>=0.5): max|dt|=0.246230  mean=0.160258  P95=0.211422\\\\n83-    worst-case (diag>=0.7): max|dt|=0.215644  mean=0.117807  P95=0.164862\\\\n84-    worst-case (diag>=0.9): max|dt|=0.110664  mean=0.050325  P95=0.076636\\\\n85-    [0.6s]\\\\n86-\\\\n87-  mediation K=5: tau_true=0.498993\\\\n88-    all_coef: violation=100.0%  sign_flip=96.7%  amplif=100.0%\\\\n89-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n90-    tau_bias: mean=0.225499  std=0.019531  max=0.256658\\\\n91-    worst-case (diag>=0.5): max|dt|=0.239636  mean=0.136623  P95=0.192410\\\\n92-    worst-case (diag>=0.7): max|dt|=0.183186  mean=0.094817  P95=0.141252\\\\n93-    worst-case (diag>=0.9): max|dt|=0.086676  mean=0.037621  P95=0.060198\\\\n94-    [1.0s]\\\\n95-\\\\n96-  collider K=5: tau_true=0.872320\\\\n97-    all_coef: violation=100.0%  sign_flip=95.5%  amplif=100.0%\\\\n98-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n99-    tau_bias: mean=0.111325  std=0.012139  max=0.138209\\\\n100-    worst-case (diag>=0.5): max|dt|=0.130552  mean=0.064831  P95=0.099774\\\\n101-    worst-case (diag>=0.7): max|dt|=0.108748  mean=0.043635  P95=0.070811\\\\n102-    worst-case (diag>=0.9): max|dt|=0.047687  mean=0.016419  P95=0.027840\\\\n103-    [1.0s]\\\\n104-\\\\n105-  exposure K=5: plim_true=[-0.00104063  1.00107523 -0.49906502  0.7011994  -0.30020783]\\\\n106-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=99.8%\\\\n107-    worst-case (diag>=0.5): max|dt|=0.878414  mean=0.258491  P95=0.504744\\\\n108-    worst-case (diag>=0.7): max|dt|=0.578162  mean=0.153113  P95=0.309871\\\\n109-    worst-case (diag>=0.9): max|dt|=0.209725  mean=0.051106  P95=0.108986\\\\n110-    [0.4s]\\\\n111-\\\\n112-  mbias K=5: tau_true=1.038028\\\\n113-    all_coef: violation=100.0%  sign_flip=95.5%  amplif=21.0%\\\\n114-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=0.0%\\\\n115-    tau_bias: mean=-0.033449  std=0.005259  max=0.051600\\\\n116-    worst-case (diag>=0.5): max|dt|=0.048653  mean=0.019265  P95=0.033306\\\\n117-    worst-case (diag>=0.7): max|dt|=0.037395  mean=0.012868  P95=0.023328\\\\n118-    worst-case (diag>=0.9): max|dt|=0.015390  mean=0.004789  P95=0.009067\\\\n119-    [1.1s]\\\\n120-\\\\n121-  iv K=5: tau_true(Wald)=1.913101  RF=0.332287  FS=[-0.062   0.1737 -0.1094  0.1023 -0.1046]  valid=100000/100000\\\\n122-    all_coef: violation=100.0%  sign_flip=51.6%  amplif=100.0%\\\\n123-    tau_spec: violation=100.0%  sign_flip=51.6%  amplif=100.0%\\\\n124-    tau_bias: mean=3.097669  std=3646.766702  max=720651.163874\\\\n125-    worst-case (diag>=0.5): max|dt|=9.693156  mean=1.047297  P95=2.528082\\\\n126-    worst-case (diag>=0.7): max|dt|=2.103580  mean=0.479398  P95=1.001626\\\\n127-    worst-case (diag>=0.9): max|dt|=0.405301  mean=0.130163  P95=0.246019\\\\n128-    [1.1s]\\\\n129-\\\\n130-  frontdoor K=5: tau_true=0.500164\\\\n131-    all_coef: violation=100.0%  sign_flip=96.7%  amplif=100.0%\\\\n132-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n133-    tau_bias: mean=0.237680  std=0.016402  max=0.262493\\\\n134-    worst-case (diag>=0.5): max|dt|=0.250683  mean=0.154089  P95=0.208971\\\\n135-    worst-case (diag>=0.7): max|dt|=0.206568  mean=0.110796  P95=0.158622\\\\n136-    worst-case (diag>=0.9): max|dt|=0.105658  mean=0.045293  P95=0.070176\\\\n137-    [1.1s]\\\\n138-\\\\n139-====================================================================================================\\\\n140-  K = 7\\\\n141-====================================================================================================\\\\n142-\\\\n143-  confounding K=7: tau_true=2.000126\\\\n144-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\\\n145-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n146-    tau_bias: mean=0.228060  std=0.009940  max=0.245897\\\\n147-    worst-case (diag>=0.5): max|dt|=0.226448  mean=0.145322  P95=0.190382\\\\n148-    worst-case (diag>=0.7): max|dt|=0.185908  mean=0.105361  P95=0.144368\\\\n149-    worst-case (diag>=0.9): max|dt|=0.093253  mean=0.044504  P95=0.065383\\\\n150-    [0.8s]\\\\n151-\\\\n152-  mediation K=7: tau_true=0.499566\\\\n153-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\\\n154-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\\\n155-    tau_bias: mean=0.196645  std=0.011905  max=0.219611\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"75:  K = 5\\n76-====================================================================================================\\n77-\\n78-  confounding K=5: tau_true=2.000126\\n79-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\n80-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n81-    tau_bias: mean=0.236270  std=0.013900  max=0.256863\\n82-    worst-case (diag>=0.5): max|dt|=0.246230  mean=0.160258  P95=0.211422\\n83-    worst-case (diag>=0.7): max|dt|=0.215644  mean=0.117807  P95=0.164862\\n84-    worst-case (diag>=0.9): max|dt|=0.110664  mean=0.050325  P95=0.076636\\n85-    [0.6s]\\n86-\\n87-  mediation K=5: tau_true=0.498993\\n88-    all_coef: violation=100.0%  sign_flip=96.7%  amplif=100.0%\\n89-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n90-    tau_bias: mean=0.225499  std=0.019531  max=0.256658\\n91-    worst-case (diag>=0.5): max|dt|=0.239636  mean=0.136623  P95=0.192410\\n92-    worst-case (diag>=0.7): max|dt|=0.183186  mean=0.094817  P95=0.141252\\n93-    worst-case (diag>=0.9): max|dt|=0.086676  mean=0.037621  P95=0.060198\\n94-    [1.0s]\\n95-\\n96-  collider K=5: tau_true=0.872320\\n97-    all_coef: violation=100.0%  sign_flip=95.5%  amplif=100.0%\\n98-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n99-    tau_bias: mean=0.111325  std=0.012139  max=0.138209\\n100-    worst-case (diag>=0.5): max|dt|=0.130552  mean=0.064831  P95=0.099774\\n101-    worst-case (diag>=0.7): max|dt|=0.108748  mean=0.043635  P95=0.070811\\n102-    worst-case (diag>=0.9): max|dt|=0.047687  mean=0.016419  P95=0.027840\\n103-    [1.0s]\\n104-\\n105-  exposure K=5: plim_true=[-0.00104063  1.00107523 -0.49906502  0.7011994  -0.30020783]\\n106-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=99.8%\\n107-    worst-case (diag>=0.5): max|dt|=0.878414  mean=0.258491  P95=0.504744\\n108-    worst-case (diag>=0.7): max|dt|=0.578162  mean=0.153113  P95=0.309871\\n109-    worst-case (diag>=0.9): max|dt|=0.209725  mean=0.051106  P95=0.108986\\n110-    [0.4s]\\n111-\\n112-  mbias K=5: tau_true=1.038028\\n113-    all_coef: violation=100.0%  sign_flip=95.5%  amplif=21.0%\\n114-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=0.0%\\n115-    tau_bias: mean=-0.033449  std=0.005259  max=0.051600\\n116-    worst-case (diag>=0.5): max|dt|=0.048653  mean=0.019265  P95=0.033306\\n117-    worst-case (diag>=0.7): max|dt|=0.037395  mean=0.012868  P95=0.023328\\n118-    worst-case (diag>=0.9): max|dt|=0.015390  mean=0.004789  P95=0.009067\\n119-    [1.1s]\\n120-\\n121-  iv K=5: tau_true(Wald)=1.913101  RF=0.332287  FS=[-0.062   0.1737 -0.1094  0.1023 -0.1046]  valid=100000/100000\\n122-    all_coef: violation=100.0%  sign_flip=51.6%  amplif=100.0%\\n123-    tau_spec: violation=100.0%  sign_flip=51.6%  amplif=100.0%\\n124-    tau_bias: mean=3.097669  std=3646.766702  max=720651.163874\\n125-    worst-case (diag>=0.5): max|dt|=9.693156  mean=1.047297  P95=2.528082\\n126-    worst-case (diag>=0.7): max|dt|=2.103580  mean=0.479398  P95=1.001626\\n127-    worst-case (diag>=0.9): max|dt|=0.405301  mean=0.130163  P95=0.246019\\n128-    [1.1s]\\n129-\\n130-  frontdoor K=5: tau_true=0.500164\\n131-    all_coef: violation=100.0%  sign_flip=96.7%  amplif=100.0%\\n132-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n133-    tau_bias: mean=0.237680  std=0.016402  max=0.262493\\n134-    worst-case (diag>=0.5): max|dt|=0.250683  mean=0.154089  P95=0.208971\\n135-    worst-case (diag>=0.7): max|dt|=0.206568  mean=0.110796  P95=0.158622\\n136-    worst-case (diag>=0.9): max|dt|=0.105658  mean=0.045293  P95=0.070176\\n137-    [1.1s]\\n138-\\n139-====================================================================================================\\n140-  K = 7\\n141-====================================================================================================\\n142-\\n143-  confounding K=7: tau_true=2.000126\\n144-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\n145-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n146-    tau_bias: mean=0.228060  std=0.009940  max=0.245897\\n147-    worst-case (diag>=0.5): max|dt|=0.226448  mean=0.145322  P95=0.190382\\n148-    worst-case (diag>=0.7): max|dt|=0.185908  mean=0.105361  P95=0.144368\\n149-    worst-case (diag>=0.9): max|dt|=0.093253  mean=0.044504  P95=0.065383\\n150-    [0.8s]\\n151-\\n152-  mediation K=7: tau_true=0.499566\\n153-    all_coef: violation=100.0%  sign_flip=100.0%  amplif=100.0%\\n154-    tau_spec: violation=100.0%  sign_flip=0.0%  amplif=100.0%\\n155-    tau_bias: mean=0.196645  std=0.011905  max=0.219611\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+结果完全确定性。清理第二次运行日志并输出完整的 worst-case bounds 表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "23e48383-39de-43c0-afa7-b14fcbc7fae0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016gTB5bpJr1TcvBQaPXtYA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 83387,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PeRSnhPCukCoFcXBurBGjp`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "rm /home/sonny/causal_annot_error_attrib/plan002_rng_fix_run2.log",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "310583c6-6892-4bd1-b659-4b9863e4c08f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016gTB5bpJr1TcvBQaPXtYA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 83387,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T16:10:31.318Z_
+
+<details><summary>↩ Tool result · `toolu_01PeRSnhPCukCoFcXBurBGjp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "c04953f1-3ffd-496f-8bad-d01c0448ba1b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+修复完成。两次运行数值完全一致，确定性已验证。
+
+**修改内容：**
+- 两个文件都新增了 `_det_seed(topo_name, K, tag, base_seed=42)` 函数，用 SHA-256 从 `(topo|K|tag|seed)` 生成确定性 32-bit 种子
+- 所有 `gen_random_C` 调用点的 seed 从 `seed=SEED` / `seed=SEED + int(thr * 1000)` 改为 `seed=_det_seed(topo, K, 'random')` / `seed=_det_seed(topo_name, K, f'wc_{thr}')`
+- 每个 (topology, K, threshold) 组合现在有独立的确定性种子，不受调用顺序影响
+
+**Worst-case bounds 表（7 topo × K={3,5,7} × threshold={0.5, 0.7, 0.9}）：**
+
+| Topology | K | WC(d≥0.5) | WC(d≥0.7) | WC(d≥0.9) |
+|---|---|---|---|---|
+| confounding | 3 | 0.2993 | 0.2744 | 0.1614 |
+| confounding | 5 | 0.2462 | 0.2156 | 0.1107 |
+| confounding | 7 | 0.2264 | 0.1859 | 0.0933 |
+| mediation | 3 | 0.3032 | 0.2510 | 0.1223 |
+| mediation | 5 | 0.2396 | 0.1832 | 0.0867 |
+| mediation | 7 | 0.1879 | 0.1421 | 0.0607 |
+| collider | 3 | 0.1256 | 0.1064 | 0.0503 |
+| collider | 5 | 0.1306 | 0.1087 | 0.0477 |
+| collider | 7 | 0.1131 | 0.0826 | 0.0352 |
+| exposure | 3 | 1.1438 | 0.7092 | 0.2726 |
+| exposure | 5 | 0.8784 | 0.5782 | 0.2097 |
+| exposure | 7 | 0.7441 | 0.4913 | 0.1853 |
+| mbias | 3 | 0.0287 | 0.0226 | 0.0106 |
+| mbias | 5 | 0.0487 | 0.0374 | 0.0154 |
+| mbias | 7 | 0.0449 | 0.0319 | 0.0133 |
+| iv | 3 | 14.0463 | 1.6444 | 0.2993 |
+| iv | 5 | 9.6932 | 2.1036 | 0.4053 |
+| iv | 7 | 8.2204 | 1.8132 | 0.3605 |
+| frontdoor | 3 | 0.2966 | 0.2604 | 0.1407 |
+| frontdoor | 5 | 0.2507 | 0.2066 | 0.1057 |
+| frontdoor | 7 | 0.2119 | 0.1646 | 0.0785 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "uuid": "6a846bcd-ff14-44c9-b248-f4764311331d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QeEBFwTPEJtXsN9wva6rYN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 85834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 100_
+
+修复完成。两次运行数值完全一致，确定性已验证。
+
+**修改内容：**
+- 两个文件都新增了 `_det_seed(topo_name, K, tag, base_seed=42)` 函数，用 SHA-256 从 `(topo|K|tag|seed)` 生成确定性 32-bit 种子
+- 所有 `gen_random_C` 调用点的 seed 从 `seed=SEED` / `seed=SEED + int(thr * 1000)` 改为 `seed=_det_seed(topo, K, 'random')` / `seed=_det_seed(topo_name, K, f'wc_{thr}')`
+- 每个 (topology, K, threshold) 组合现在有独立的确定性种子，不受调用顺序影响
+
+**Worst-case bounds 表（7 topo × K={3,5,7} × threshold={0.5, 0.7, 0.9}）：**
+
+| Topology | K | WC(d≥0.5) | WC(d≥0.7) | WC(d≥0.9) |
+|---|---|---|---|---|
+| confounding | 3 | 0.2993 | 0.2744 | 0.1614 |
+| confounding | 5 | 0.2462 | 0.2156 | 0.1107 |
+| confounding | 7 | 0.2264 | 0.1859 | 0.0933 |
+| mediation | 3 | 0.3032 | 0.2510 | 0.1223 |
+| mediation | 5 | 0.2396 | 0.1832 | 0.0867 |
+| mediation | 7 | 0.1879 | 0.1421 | 0.0607 |
+| collider | 3 | 0.1256 | 0.1064 | 0.0503 |
+| collider | 5 | 0.1306 | 0.1087 | 0.0477 |
+| collider | 7 | 0.1131 | 0.0826 | 0.0352 |
+| exposure | 3 | 1.1438 | 0.7092 | 0.2726 |
+| exposure | 5 | 0.8784 | 0.5782 | 0.2097 |
+| exposure | 7 | 0.7441 | 0.4913 | 0.1853 |
+| mbias | 3 | 0.0287 | 0.0226 | 0.0106 |
+| mbias | 5 | 0.0487 | 0.0374 | 0.0154 |
+| mbias | 7 | 0.0449 | 0.0319 | 0.0133 |
+| iv | 3 | 14.0463 | 1.6444 | 0.2993 |
+| iv | 5 | 9.6932 | 2.1036 | 0.4053 |
+| iv | 7 | 8.2204 | 1.8132 | 0.3605 |
+| frontdoor | 3 | 0.2966 | 0.2604 | 0.1407 |
+| frontdoor | 5 | 0.2507 | 0.2066 | 0.1057 |
+| frontdoor | 7 | 0.2119 | 0.1646 | 0.0785 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 379332,
+  "duration_api_ms": 314525,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "fe49e6d5-95b4-4bf2-9b63-23c84176d8d4",
+  "total_cost_usd": 1.63442075,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 74229,
+    "cache_read_input_tokens": 1348071,
+    "output_tokens": 19795,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 74229,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 952,
+        "cache_read_input_tokens": 85834,
+        "cache_creation_input_tokens": 236,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 236
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1329,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0014440000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 19795,
+      "cacheReadInputTokens": 1348071,
+      "cacheCreationInputTokens": 74229,
+      "webSearchRequests": 0,
+      "costUSD": 1.63297675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "49ca2dc5-2c5c-4381-bcbf-09108b09d52e"
+}
+```
+
+</details>
+
+---

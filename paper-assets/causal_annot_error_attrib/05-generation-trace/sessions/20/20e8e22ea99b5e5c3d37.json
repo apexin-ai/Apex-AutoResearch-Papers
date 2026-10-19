@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "20e8e22ea99b5e5c3d37",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "exp mf1a rerun n1000",
+  "task_key": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_mf1a_rerun_n1000_20260523T175940.jsonl",
+    "occurrence": 1,
+    "bytes": 11854,
+    "sha256": "08b2eb03e4b9b574c9810dab36dd40e8c77adf5da4dd1928368c422f6a30fc9e"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T18:02:45.102230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T18:02:45.102573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tMF-1a: Adversarial Monotonicity Test for Conjecture 1.\n4\t\n5\tVerifies ε-approximate envelope monotonicity of |B(C(δ))| along\n6\tC(δ)=(1-δ)I+δC₀ for δ∈[0,1] under 4 adversarial confusion matrix structures.\n7\t\n8\tGrid: 4 adversarial C₀ types × ~9 param configs × 3 K × 7 topologies × 3 β × 100 C₀\n9\t\"\"\"\n10\t\n11\timport json\n12\timport os\n13\timport sys\n14\timport time\n15\timport numpy as np\n16\t\n17\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n18\tfrom exp_d_conjecture_verify_v2 import (\n19\t    ALL_TOPOS, NON_DECREASING, NON_INCREASING,\n20\t    _COMPUTE_SS, make_all_params, get_tau_true,\n21\t    compute_bias_curve,\n22\t)\n23\t\n24\tK_VALUES = [3, 5, 7]\n25\tN_DELTA = 101\n26\tDELTA_STEP = 0.01\n27\tN_C0 = 100\n28\tSEED = 2024\n29\tEPS_THRESHOLD = 0.001\n30\t\n31\tBETA_CONFIGS = ['alternating_large', 'same_sign', 'alternating_small']\n32\tADV_TYPES = ['near_perm', 'block_diag', 'sparse', 'near_uniform']\n33\tADV_PARAMS = {\n34\t    'near_perm': [{'eps': 0.05}, {'eps': 0.1}, {'eps': 0.2}],\n35\t    'block_diag': [{}],\n36\t    'sparse': [{'p_diag': 0.3}, {'p_diag': 0.5}, {'p_diag': 0.7}],\n37\t    'near_uniform': [{'eps': 0.01}, {'eps': 0.05}],\n38\t}\n39\t\n40\tOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n41\t\n42\t\n43\tdef make_beta_vec(name, K):\n44\t    pools = {\n45\t        'alternating_large': [0, 1, -0.5, 0.3, -0.2, 0.1, -0.08],\n46\t        'same_sign':         [0, 0.5, 0.3, 0.2, 0.1, 0.08, 0.05],\n47\t        'alternating_small': [0, 0.2, -0.1, 0.05, -0.03, 0.02, -0.01],\n48\t    }\n49\t    return np.array(pools[name][:K])\n50\t\n51\t\n52\tdef make_params_with_beta(K, beta_name):\n53\t    params = make_all_params(K)\n54\t    bv = make_beta_vec(beta_name, K)\n55\t    params['exposure']['beta'] = bv.copy()\n56\t    params['iv']['beta'] = bv.copy()\n57\t    params['mediation']['beta'] = bv.copy()\n58\t    params['frontdoor']['beta'] = bv.copy()\n59\t    params['confounding']['beta_A'] = bv[1:].copy()\n60\t    params['collider']['dY'] = bv.copy()\n61\t    params['mbias']['a1'] = bv.copy()\n62\t    r\n…[truncated 10895 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T18:02:45.102744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T18:02:45.102971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"description\": \"Adversarial envelope monotonicity test for Conjecture 1\",\n3\t  \"config\": {\n4\t    \"K_values\": [\n5\t      3,\n6\t      5,\n7\t      7\n8\t    ],\n9\t    \"adversarial_types\": [\n10\t      \"near_perm\",\n11\t      \"block_diag\",\n12\t      \"sparse\",\n13\t      \"near_uniform\"\n14\t    ],\n15\t    \"adversarial_params\": {\n16\t      \"near_perm\": [\n17\t        {\n18\t          \"eps\": 0.05\n19\t        },\n20\t        {\n21\t          \"eps\": 0.1\n22\t        },\n23\t        {\n24\t          \"eps\": 0.2\n25\t        }\n26\t      ],\n27\t      \"block_diag\": [\n28\t        {}\n29\t      ],\n30\t      \"sparse\": [\n31\t        {\n32\t          \"p_diag\": 0.3\n33\t        },\n34\t        {\n35\t          \"p_diag\": 0.5\n36\t        },\n37\t        {\n38\t          \"p_diag\": 0.7\n39\t        }\n40\t      ],\n41\t      \"near_uniform\": [\n42\t        {\n43\t          \"eps\": 0.01\n44\t        },\n45\t        {\n46\t          \"eps\": 0.05\n47\t        }\n48\t      ]\n49\t    },\n50\t    \"topologies\": [\n51\t      \"confounding\",\n52\t      \"mediation\",\n53\t      \"collider\",\n54\t      \"exposure\",\n55\t      \"mbias\",\n56\t      \"iv\",\n57\t      \"frontdoor\"\n58\t    ],\n59\t    \"beta_configs\": [\n60\t      \"alternating_large\",\n61\t      \"same_sign\",\n62\t      \"alternating_small\"\n63\t    ],\n64\t    \"n_C0_per_cell\": 100,\n65\t    \"n_delta_steps\": 101,\n66\t    \"delta_step\": 0.01,\n67\t    \"eps_threshold\": 0.001,\n68\t    \"seed\": 2024\n69\t  },\n70\t  \"summary\": {\n71\t    \"total_curves\": 54611,\n72\t    \"non_monotone_fraction\": 0.11933493252275183,\n73\t    \"max_eps_abs\": 0.01636529529573094,\n74\t    \"median_eps_abs\": 0.0,\n75\t    \"mean_eps_abs\": 0.00047372456391479953,\n76\t    \"p95_eps_abs\": 0.002532176988620627,\n77\t    \"p99_eps_abs\": 0.008253228263722434,\n78\t    \"safe_topo_max_eps\": 0.01636529529573094,\n79\t    \"fragile_topo_max_eps\": 0.013176775652375183,\n80\t    \"total_weak_iv_filtered\": 2089,\n81\t    \"total_skipped_zero_tau\": 0\n82\t  },\n83\t  \"by_adversarial_type\": {\n84\t    \"near_perm\": {\n85\t      \"total_curves\": 17279,\n86\t      \"non_monotone_count\": 6096,\n87\t      \"non_monotone_fraction\": 0.3527981943399\n…[truncated 9113 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T18:02:45.103144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py",
+              "old_string": "N_C0 = 100",
+              "new_string": "N_C0 = 1000"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T18:02:45.103326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_test.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T18:02:45.103442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 adversarial_monotonicity_test.py",
+              "description": "Run adversarial monotonicity test with N_C0=1000",
+              "timeout": "600000"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T18:02:45.103582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "==============================================================================\nMF-1a: Adversarial Monotonicity Test\n  K=[3, 5, 7]  β=['alternating_large', 'same_sign', 'alternating_small']\n  Adversarial: ['near_perm', 'block_diag', 'sparse', 'near_uniform']\n  N_C0=1000  δ steps=101  ε threshold=0.001\n==============================================================================\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py:682: RuntimeWarning: divide by zero encountered in divide\n  taus = np.where(np.abs(denom) < 1e-15, np.nan, ss.RF / denom)\n  [  63/567] K=3 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (14.3s)\n  [ 126/567] K=3 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (27.0s)\n  [ 189/567] K=3 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (40.0s)\n  [ 252/567] K=5 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (55.0s)\n  [ 315/567] K=5 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (69.2s)\n  [ 378/567] K=5 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (83.1s)\n  [ 441/567] K=7 frontdoor    near_uniform   β=alternating_large  max_ε=0.000000 nm=0/1000  (100.4s)\n  [ 504/567] K=7 frontdoor    near_uniform   β=same_sign          max_ε=0.000000 nm=0/1000  (118.4s)\n  [ 567/567] K=7 frontdoor    near_uniform   β=alternating_small  max_ε=0.000000 nm=0/1000  (135.7s)\n\nJSON -> /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json\n\n============================================================\nTotal curves: 545,945  Non-monotone: 65182 (11.939%)\nMax ε_abs: 0.016365  Median: 0.000000\nSafe max ε: 0.016365  Fragile max ε: 0.013177\nWeak-IV filtered: 21055\n\nBy topology:\n  confounding    [non-dec]  n= 81000  nm=17407  (21.49%)  max_ε=0.016365\n  mediation      [non-dec]  n= 81\n…[truncated 1274 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T18:02:45.103733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T18:02:45.103845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T18:02:45.103952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "adversarial_monotonicity_results_N1000",
+              "type": "data",
+              "description": "MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous). 545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.",
+              "project": "causal_annot_error_attrib",
+              "source_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json",
+              "tags": "['MF-1a', 'monotonicity', 'conjecture1', 'adversarial']"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T18:02:45.104084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_b60bb1\\\", \\\"name\\\": \\\"adversarial_monotonicity_results_N1000\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous). 545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.\\\", \\\"path\\\": \\\"projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results_b60bb1.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"causal_annot_error_attrib\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T18:02:35.685975+00:00\\\", \\\"tags\\\": [\\\"MF-1a\\\", \\\"monotonicity\\\", \\\"conjecture1\\\", \\\"adversarial\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T18:02:45.104245+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "N=1000 重跑完成（135.8s）。核心数字对比：\n\n| 指标 | N=100 | N=1000 | 变化 |\n|------|-------|--------|------|\n| total_curves | 54,611 | 545,945 | ×10 |\n| non_monotone_fraction | 11.93% | 11.94% | 稳定 |\n| max_eps_abs | 0.01637 | 0.01637 | 不变 |\n| median_eps_abs | 0.0 | 0.0 | 不变 |\n| mean_eps_abs | 0.000474 | — | — |\n| p95_eps_abs | 0.00253 | — | — |\n| p99_eps_abs | 0.00825 | — | — |\n| safe_topo_max_eps | 0.01637 | 0.01637 | 不变 |\n| fragile_topo_max_eps | 0.01318 | 0.01318 | 不变 |\n| weak_iv_filtered | 2,089 | 21,055 | ×10 |\n\n结论：10 倍采样量下所有关键指标高度稳定，max ε bound 未被突破，non-monotone fraction 收敛于 ~11.9%，bound 可信度得到增强。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mf1a_rerun_n1000_20260523T175940"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/exp-mf1a-rerun-n1000.md"
+}

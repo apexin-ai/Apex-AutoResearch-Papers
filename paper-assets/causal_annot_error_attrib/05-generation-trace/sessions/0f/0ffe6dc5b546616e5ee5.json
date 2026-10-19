@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ffe6dc5b546616e5ee5",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan003 progress check v3",
+  "task_key": "worker_infra_plan003-progress-check-v3_20260520T160942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan003-progress-check-v3_20260520T160942_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "1416c4d51bfd5bb9363fa788e51ef970a8881c70b2594160338fa9526e2fe8dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan_003 标注进度报告（第 3 次，~09:10）\n\n### 进程状态\n3 路全部存活：llama4 (438497)、qwen3 (438843)、deepseek (439116)。\n\n### 进度明细\n\n目前只有 `humaid/zero-shot` 在产出，其他 dataset/prompt 组合尚未开始写入：\n\n| 模型 | 当前完成 | 总量 | 进度 | 上次 | 近1h速率 | 上次速率 |\n|------|---------|------|------|------|---------|---------|\n| llama4 | **1378** | 13500 | 10.2% | 339 (2.5%) | **17.3/min** | 6.2/min |\n| qwen3 | **697** | 13500 | 5.2% | 189 (1.4%) | **8.5/min** | 3.5/min |\n| deepseek | **1084** | 13500 | 8.0% | 274 (2.0%) | **13.5/min** | 5.2/min |\n\n三路速率均加速至上次的 **2.4\\~2.8x**，初期慢可能是启动开销+API 缓存预热。\n\n### 日志状态\n- **llama4**: 已到 [1350/1500]，humaid/zero-shot 即将完成，偶发 429/503 自动重试\n- **qwen3**: [650/1500]，最慢，偶发 502\n- **deepseek**: [1050/1500]，humaid/zero-shot 也接近完成，偶发 502\n\n### 输出文件\n全部在 `results/humaid/`，仅 `{model}_zero-shot.jsonl`，尚无 vast/civil_comments 目录。\n\n### 预估剩余时间（按近 1h 速率）\n\n| 模型 | 剩余样本 | 预估时间 |\n|------|---------|---------|\n| llama4 | 12122 | **~11.7h**（今晚 ~21:00） |\n| deepseek | 12416 | **~15.3h**（明早 ~00:30） |\n| qwen3 | 12803 | **~25.1h**（明天 ~10:00） |\n\nqwen3 显著慢于其他两路，若 API 速率不提升，总耗时瓶颈在 qwen3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan003-progress-check-v3.md"
+}

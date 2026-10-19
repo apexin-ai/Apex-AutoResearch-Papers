@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "799ccb571418a3f25b99",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ssh check vast annotation",
+  "task_key": "worker_ssh_check_vast_annotation_20260521T175849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_vast_annotation_20260521T175849_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "dc31098e9c06c44a0a423c133d88c3061e7c546722b2f85665a1cba6fc1d1513"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results\n\n**1. Process PID 712156:** Still running. Elapsed **6h 04min**, started May 21 ~04:55. Command:\n```\npython3 annotate.py --dataset civil_comments --model all --prompt all --delay 0.3\n```\n**Important correction:** This process is annotating `civil_comments`, **not VAST**. The VAST annotations are already complete from yesterday.\n\n**2. plan011_frontier_annotations directory: does NOT exist** on the remote server. Annotation outputs actually go to `/home/sonny/causal_annot_error_attrib/results/<dataset>/`.\n\nVAST (`results/vast/`) — **15 jsonl files, all complete** (5 models × 3 prompts, finished May 20):\n- deepseek / llama4 / qwen2.5-7b / qwen3 / + deepseek prior set — all of zero-shot, few-shot-3, few-shot-5\n\nCivil_comments (`results/civil_comments/`) — current target, **11 complete + 1 in progress**:\n| Model | zero-shot | few-shot-3 | few-shot-5 |\n|---|---|---|---|\n| deepseek | ✓ 822KB | ✓ 822KB | **MISSING** |\n| llama4 | ✓ 830KB | ✓ 831KB | ✓ 831KB |\n| qwen2.5-7b | ✓ 723KB | ✓ 723KB | ✓ 724KB |\n| qwen3 | ✓ 754KB | ✓ 731KB | **⏳ 17KB (in progress, mtime 10:59)** |\n\n12 expected (4 models × 3 prompts); 11 done, 1 actively being written, 1 (`deepseek_few-shot-5`) not yet started.\n\n**3. Log file:** `/tmp/annotate_civil_comments.log` (process fd 1+2 both point here). Size = **0 bytes**, empty — stdout is unflushed (Python default block-buffering with no `-u` flag). **No errors visible** because nothing has been written. Progress can only be tracked via jsonl file growth in `results/civil_comments/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-vast-annotation.md"
+}

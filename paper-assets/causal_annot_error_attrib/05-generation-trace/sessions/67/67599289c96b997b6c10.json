@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "67599289c96b997b6c10",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code local inference setup",
+  "task_key": "worker_code_local_inference_setup_20260521T010835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_local_inference_setup_20260521T010835.log",
+    "occurrence": 1,
+    "bytes": 552600,
+    "sha256": "96c939c5443cbc197ec47692082a1a6ffd0518d43b2102b4f2c3b2c043d7f7b5"
+  },
+  "statistics": {
+    "messages": 304,
+    "user_turns": 0,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 120,
+      "tool_result": 120,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 304,
+      "chunks": [
+        {
+          "path": "67599289c96b997b6c10-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "67599289c96b997b6c10-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-local-inference-setup.md"
+}

@@ -1,0 +1,1297 @@
+{
+  "schema_version": "1.0",
+  "id": "5456299a196e361eb6e5",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "infra plan009 diagnose resubmit",
+  "task_key": "worker_infra_plan009-diagnose-resubmit_20260520T184915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan009-diagnose-resubmit_20260520T184915.log",
+    "occurrence": 1,
+    "bytes": 118734,
+    "sha256": "2fda6e790b4d5f734176521c4fa27afd327bd78013d30c02fa61273b3be6cbf9"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "6bf25b69-d0ea-4bc9-bd06-f2a6ca7ba10d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779415200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.9,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "73adba68-ce5c-4cd1-b9ee-1644b693153c",
+                "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to diagnose why plan_009_pathological_matrices.py keeps failing on the remote server and then fix and restart it. Let me start by reading the local script to understand what it does, then diagnose on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "fd8d943b-9427-4937-a5be-629bdc5cdbbe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvrJpTg1n9Q8QztmJ4CXzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12678
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by reading the local script and diagnosing on the server in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "a0516494-8597-49f8-9ecf-9a32d8085a09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvrJpTg1n9Q8QztmJ4CXzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12678
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P9QhHTQYYf5S4V7hwwoSLx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_009_pathological_matrices.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "404b1048-f1bb-49d8-ac48-e4231514ca06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvrJpTg1n9Q8QztmJ4CXzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12678
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T18:49:29.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P9QhHTQYYf5S4V7hwwoSLx",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tPlan 009: Pathological Confusion Matrix Analysis\n4\t\n5\tStudies extreme bias behavior under 3 classes of pathological K*K\n6\tcolumn-stochastic confusion matrices across 7 DAG topologies and K in {3,5,7}.\n7\t\n8\tPathological C types (M=1000 instances each per (K, type, param)):\n9\t  (a) Near-permutation: C = (1-eps)P + eps*U, eps in {0.01, 0.05, 0.1, 0.2}\n10\t  (b) Rank-deficient: SVD truncation to rank r in {1, ..., K-1}\n11\t  (c) Block-diagonal: b blocks, b in {2, max(K//2, 2)}\n12\t\n13\tMatrix features extracted per C:\n14\t  spectral_gap, diag_dominance, effective_rank, condition_number, off_diagonal_max\n15\t\n16\tAnalysis:\n17\t  - Per-(topo, K, C_type, param): bias distribution statistics\n18\t  - OLS regression: |bias| ~ features (per-topology + global)\n19\t  - Catastrophic bias detection: |bias| > 2*|tau_true|\n20\t\n21\tInput:\n22\t  DGP parameters from plan_002 (7 topologies), N_LARGE=5M samples for plim\n23\tOutput -> artifacts/plan009/:\n24\t  pathological_bias_summary.json, regression_results.txt\n25\t\n26\tDependencies: torch (CUDA), numpy, scipy.stats\n27\t\"\"\"\n28\t\n29\timport torch\n30\timport numpy as np\n31\timport json\n32\timport time\n33\timport os\n34\timport sys\n35\timport hashlib\n36\timport argparse\n37\t\n38\t# ================================================================\n39\t# Configuration\n40\t# ================================================================\n41\tK_VALUES = [3, 5, 7]\n42\tM_DEFAULT = 1000\n43\tN_LARGE = 5_000_000\n44\tDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\n45\tDTYPE = torch.float64\n46\t\n47\tALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\n48\t             'mbias', 'iv', 'frontdoor']\n49\tNEAR_PERM_EPSILONS = [0.01, 0.05, 0.1, 0.2]\n50\tFEATURE_NAMES = ['spectral_gap', 'diag_dominance', 'effective_rank',\n51\t                 'condition_number', 'off_diagonal_max']\n52\t\n53\tSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n54\tOUT_DIR = os.path.join(SCRIPT_DIR, 'artifacts', 'plan009')\n55\t\n56\t\n57\tdef _det_seed(topo_name, K, c_type, base_seed=42):\n58\t    h = hashlib.sha256(\n59\t        f\"{topo_name}_{K}_{c_type}_{base_seed}\".encode()\n60\t    ).hexdigest()\n61\t    return int(h[:8], 16) % (2**31)\n62\t\n63\t\n64\t# ================================================================\n65\t# DGP parameter pools (from plan_002_k57_extended_7topo.py)\n66\t# ================================================================\n67\t_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\n68\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n69\t_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n70\t_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n71\t_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\n72\t_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n73\t_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\n74\t_MBIAS_A1    = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\n75\t_MBIAS_A2    = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\n76\t_IV_DZ       = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\n77\t_IV_DU       = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\n78\t_FD_GAMMA    = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n79\t_FD_DELTA    = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\n80\t\n81\t\n82\tdef make_p_A(K):\n83\t    if K == 3:\n84\t        return np.array([0.40, 0.35, 0.25])\n85\t    raw = np.array([1.0 / i for i in range(1, K + 1)])\n86\t    return raw / raw.sum()\n87\t\n88\t\n89\tdef make_all_params(K):\n90\t    p_A = make_p_A(K)\n91\t    return dict(\n92\t        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\n93\t                         beta_A=np.array(_BETA_A_POOL[:K-1]),\n94\t                         beta_T=2.0, sigma_T=1.0),\n95\t        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\n96\t                       delta=np.array(_DELTA_POOL[:K]),\n97\t                       beta=np.array(_BETA_POOL[:K])),\n98\t        collider=dict(tau=1.0, g=np.zeros(K),\n99\t                      dT=np.array(_DT_POOL[:K]),\n100\t                      dY=np.array(_DY_POOL[:K])),\n101\t        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\n102\t        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\n103\t                   a1=np.array(_MBIAS_A1[:K]),\n104\t                   a2=np.array(_MBIAS_A2[:K])),\n105\t        iv=dict(lam=1.0, g=np.zeros(K),\n106\t                dZ=np.array(_IV_DZ[:K]),\n107\t                dU=np.array(_IV_DU[:K]),\n108\t                beta=np.array(_BETA_POOL[:K])),\n109\t        frontdoor=dict(alpha_U=1.0, lam_U=1.0,\n110\t                       gamma=np.array(_FD_GAMMA[:K]),\n111\t                       delta=np.array(_FD_DELTA[:K]),\n112\t                       beta=np.array(_BETA_POOL[:K])),\n113\t    )\n114\t\n115\t\n116\t# ================================================================\n117\t# DGP generators (from plan_002_k57_extended_7topo.py)\n118\t# ================================================================\n119\tdef _softmax_rows(logits):\n120\t    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\n121\t    return e / e.sum(axis=-1, keepdims=True)\n122\t\n123\t\n124\tdef _sample_cat(probs, rng):\n125\t    cum = np.cumsum(probs, axis=1)\n126\t    u = rng.uniform(size=probs.shape[0])[:, None]\n127\t    return (u >= cum).sum(axis=1).astype(int)\n128\t\n129\t\n130\tdef gen_confounding(K, N, p, rng):\n131\t    A = rng.choice(K, size=N, p=p['p_A'])\n132\t    D = np.zeros((N, K - 1))\n133\t    for j in range(K - 1):\n134\t        D[:, j] = (A == j + 1).astype(float)\n135\t    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n136\t    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n137\t    return T, Y, A\n138\t\n139\t\n140\tdef gen_mediation(K, N, p, rng):\n141\t    T = rng.binomial(1, 0.5, N).astype(float)\n142\t    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n143\t    A = _sample_cat(_softmax_rows(logits), rng)\n144\t    D = np.zeros((N, K - 1))\n145\t    for j in range(K - 1):\n146\t        D[:, j] = (A == j + 1)\n147\t    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n148\t    return T, Y, A\n149\t\n150\t\n151\tdef gen_collider(K, N, p, rng):\n152\t    T = rng.normal(0, 1, N)\n153\t    Y = p['tau'] * T + rng.normal(0, 1, N)\n154\t    logits = (p['g'][None, :] + p['dT'][None, :] * T[:, None]\n155\t              + p['dY'][None, :] * Y[:, None])\n156\t    A = _sample_cat(_softmax_rows(logits), rng)\n157\t    return T, Y, A\n158\t\n159\t\n160\tdef gen_exposure(K, N, p, rng):\n161\t    A = rng.choice(K, size=N, p=p['p_A'])\n162\t    D = np.zeros((N, K - 1))\n163\t    for j in range(K - 1):\n164\t        D[:, j] = (A == j + 1).astype(float)\n165\t    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n166\t    return None, Y, A\n167\t\n168\t\n169\tdef gen_mbias(K, N, p, rng):\n170\t    U1 = rng.normal(0, 1, N)\n171\t    U2 = rng.normal(0, 1, N)\n172\t    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n173\t    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n174\t    logits = np.zeros((N, K))\n175\t    for j in range(1, K):\n176\t        logits[:, j] = p['g'][j] + p['a1'][j] * U1 + p['a2'][j] * U2\n177\t    A = _sample_cat(_softmax_rows(logits), rng)\n178\t    return T, Y, A\n179\t\n180\t\n181\tdef gen_iv(K, N, p, rng):\n182\t    Z = rng.binomial(1, 0.5, N).astype(float)\n183\t    U = rng.normal(0, 1, N)\n184\t    eps = rng.normal(0, 1, N)\n185\t    logits = np.zeros((N, K))\n186\t    for j in range(1, K):\n187\t        logits[:, j] = p['g'][j] + p['dZ'][j] * Z + p['dU'][j] * U\n188\t    A = _sample_cat(_softmax_rows(logits), rng)\n189\t    D = np.zeros((N, K - 1))\n190\t    for j in range(K - 1):\n191\t        D[:, j] = (A == j + 1).astype(float)\n192\t    Y = D @ p['beta'][1:] + p['lam'] * U + eps\n193\t    return Z, Y, A\n194\t\n195\t\n196\tdef gen_frontdoor(K, N, p, rng):\n197\t    U = rng.normal(0, 1, N)\n198\t    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n199\t    logits = np.zeros((N, K))\n200\t    for j in range(1, K):\n201\t        logits[:, j] = p['gamma'][j] + p['delta'][j] * T\n202\t    M = _sample_cat(_softmax_rows(logits), rng)\n203\t    D = np.zeros((N, K - 1))\n204\t    for j in range(K - 1):\n205\t        D[:, j] = (M == j + 1).astype(float)\n206\t    Y = D @ p['beta'][1:] + p['lam_U'] * U + rng.normal(0, 1, N)\n207\t    return T, Y, M\n208\t\n209\t\n210\t_GEN = dict(confounding=gen_confounding, mediation=gen_mediation,\n211\t            collider=gen_collider, exposure=gen_exposure,\n212\t            mbias=gen_mbias, iv=gen_iv, frontdoor=gen_frontdoor)\n213\t\n214\t\n215\t# ================================================================\n216\t# Sufficient statistics\n217\t# ================================================================\n218\tclass SuffStats:\n219\t    def __init__(self, T, Y, A, K):\n220\t        self.K = K\n221\t        self.has_T = T is not None\n222\t        N = len(Y)\n223\t        DA = np.zeros((N, K))\n224\t        for k in range(K):\n225\t            DA[:, k] = (A == k).astype(float)\n226\t        self.p_A = DA.mean(0)\n227\t        self.E_Y = Y.mean()\n228\t        self.E_YD = (DA * Y[:, None]).mean(0)\n229\t        if self.has_T:\n230\t            self.E_T = T.mean()\n231\t            self.E_T2 = (T ** 2).mean()\n232\t            self.E_TY = (T * Y).mean()\n233\t            self.E_TD = (DA * T[:, None]).mean(0)\n234\t\n235\t    def to_device(self, dev):\n236\t        self.t_p_A = torch.tensor(self.p_A, dtype=DTYPE, device=dev)\n237\t        self.t_E_Y = torch.tensor(self.E_Y, dtype=DTYPE, device=dev)\n238\t        self.t_E_YD = torch.tensor(self.E_YD, dtype=DTYPE, device=dev)\n239\t        if self.has_T:\n240\t            self.t_E_T = torch.tensor(self.E_T, dtype=DTYPE, device=dev)\n241\t            self.t_E_T2 = torch.tensor(self.E_T2, dtype=DTYPE, device=dev)\n242\t            self.t_E_TY = torch.tensor(self.E_TY, dtype=DTYPE, device=dev)\n243\t            self.t_E_TD = torch.tensor(self.E_TD, dtype=DTYPE, device=dev)\n244\t        return self\n245\t\n246\t\n247\tclass IVSuffStats:\n248\t    def __init__(self, Z, Y, A, K):\n249\t        self.K = K\n250\t        z1 = Z == 1\n251\t        z0 = Z == 0\n252\t        self.RF = Y[z1].mean() - Y[z0].mean()\n253\t        self.FS = np.zeros(K)\n254\t        for k in range(K):\n255\t            self.FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n256\t\n257\t    def to_device(self, dev):\n258\t        self.t_RF = torch.tensor(self.RF, dtype=DTYPE, device=dev)\n259\t        self.t_FS = torch.tensor(self.FS, dtype=DTYPE, device=dev)\n260\t        return self\n261\t\n262\t\n263\t# ================================================================\n264\t# Plim functions (batched GPU)\n265\t# ================================================================\n266\tdef plim_with_T(ss, C):\n267\t    B, K = C.shape[0], ss.K\n268\t    dim = K + 1\n269\t    q = C @ ss.t_p_A\n270\t    ct = C @ ss.t_E_TD\n271\t    cy = C @ ss.t_E_YD\n272\t    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n273\t    EZZ[:, 0, 0] = 1.0\n274\t    EZZ[:, 0, 1] = ss.t_E_T\n275\t    EZZ[:, 1, 0] = ss.t_E_T\n276\t    EZZ[:, 1, 1] = ss.t_E_T2\n277\t    EZZ[:, 0, 2:] = q[:, 1:]\n278\t    EZZ[:, 2:, 0] = q[:, 1:]\n279\t    EZZ[:, 1, 2:] = ct[:, 1:]\n280\t    EZZ[:, 2:, 1] = ct[:, 1:]\n281\t    idx = torch.arange(K - 1, device=C.device)\n282\t    EZZ[:, idx + 2, idx + 2] = q[:, 1:]\n283\t    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n284\t    EZY[:, 0] = ss.t_E_Y\n285\t    EZY[:, 1] = ss.t_E_TY\n286\t    EZY[:, 2:] = cy[:, 1:]\n287\t    return torch.linalg.solve(EZZ, EZY)\n288\t\n289\t\n290\tdef plim_exposure(ss, C):\n291\t    B, K = C.shape[0], ss.K\n292\t    dim = K\n293\t    q = C @ ss.t_p_A\n294\t    cy = C @ ss.t_E_YD\n295\t    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n296\t    EZZ[:, 0, 0] = 1.0\n297\t    EZZ[:, 0, 1:] = q[:, 1:]\n298\t    EZZ[:, 1:, 0] = q[:, 1:]\n299\t    idx = torch.arange(K - 1, device=C.device)\n300\t    EZZ[:, idx + 1, idx + 1] = q[:, 1:]\n301\t    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n302\t    EZY[:, 0] = ss.t_E_Y\n303\t    EZY[:, 1:] = cy[:, 1:]\n304\t    return torch.linalg.solve(EZZ, EZY)\n305\t\n306\t\n307\tdef plim_iv_batched(ss, C):\n308\t    FS_star = C @ ss.t_FS\n309\t    denom = FS_star[:, 1]\n310\t    nan_val = torch.tensor(float('nan'), dtype=DTYPE, device=C.device)\n311\t    result = torch.where(denom.abs() < 1e-8, nan_val, ss.t_RF / denom)\n312\t    return result.unsqueeze(1)\n313\t\n314\t\n315\t# ================================================================\n316\t# Pathological C matrix generators\n317\t# ================================================================\n318\tdef gen_near_permutation(K, M, epsilon, rng):\n319\t    \"\"\"C = (1-eps)*P + eps*U where P=random permutation, U=random col-stochastic.\"\"\"\n320\t    Cs = np.zeros((M, K, K))\n321\t    for i in range(M):\n322\t        perm = rng.permutation(K)\n323\t        P = np.zeros((K, K))\n324\t        P[perm, np.arange(K)] = 1.0\n325\t        U = rng.dirichlet(np.ones(K), size=K).T\n326\t        C = (1 - epsilon) * P + epsilon * U\n327\t        C = np.clip(C, 1e-12, None)\n328\t        C /= C.sum(axis=0, keepdims=True)\n329\t        Cs[i] = C\n330\t    return Cs\n331\t\n332\t\n333\tdef gen_rank_deficient(K, M, rank, rng):\n334\t    \"\"\"Rank-r col-stochastic via SVD truncation + non-negative projection.\"\"\"\n335\t    Cs = np.zeros((M, K, K))\n336\t    for i in range(M):\n337\t        C_full = rng.dirichlet(np.ones(K) * 2.0, size=K).T\n338\t        U, S, Vt = np.linalg.svd(C_full, full_matrices=True)\n339\t        S_trunc = np.zeros_like(S)\n340\t        S_trunc[:rank] = S[:rank]\n341\t        C_approx = U @ np.diag(S_trunc) @ Vt\n342\t        C_approx = np.clip(C_approx, 1e-12, None)\n343\t        C_approx /= C_approx.sum(axis=0, keepdims=True)\n344\t        Cs[i] = C_approx\n345\t    return Cs\n346\t\n347\t\n348\tdef gen_block_diagonal(K, M, n_blocks, rng):\n349\t    \"\"\"Block-diagonal: high intra-block accuracy, low inter-block leakage.\"\"\"\n350\t    block_sizes = []\n351\t    base = K // n_blocks\n352\t    remainder = K % n_blocks\n353\t    for b in range(n_blocks):\n354\t        block_sizes.append(base + (1 if b < remainder else 0))\n355\t\n356\t    Cs = np.zeros((M, K, K))\n357\t    for i in range(M):\n358\t        C = np.zeros((K, K))\n359\t        leak = rng.uniform(0.001, 0.05)\n360\t        start = 0\n361\t        for bs in block_sizes:\n362\t            end = start + bs\n363\t            for col in range(start, end):\n364\t                within = rng.dirichlet(5.0 * np.ones(bs))\n365\t                n_outside = K - bs\n366\t                if n_outside > 0:\n367\t                    between = rng.dirichlet(np.ones(n_outside)) * leak\n368\t                else:\n369\t                    between = np.array([])\n370\t                C[start:end, col] = within * (1 - leak)\n371\t                idx = 0\n372\t                for row in range(K):\n373\t                    if row < start or row >= end:\n374\t                        C[row, col] = between[idx]\n375\t                        idx += 1\n376\t            start = end\n377\t        C = np.clip(C, 1e-12, None)\n378\t        C /= C.sum(axis=0, keepdims=True)\n379\t        Cs[i] = C\n380\t    return Cs\n381\t\n382\t\n383\t# ================================================================\n384\t# Matrix feature extraction\n385\t# ================================================================\n386\tdef extract_features(C_batch):\n387\t    M, K, _ = C_batch.shape\n388\t    feats = {fn: np.zeros(M) for fn in FEATURE_NAMES}\n389\t\n390\t    diags = np.diagonal(C_batch, axis1=1, axis2=2)\n391\t    feats['diag_dominance'] = diags.min(axis=1) * K\n392\t\n393\t    svd_vals = np.linalg.svd(C_batch, compute_uv=False)\n394\t    sv_sum = svd_vals.sum(axis=1)\n395\t    sv_sq_sum = (svd_vals ** 2).sum(axis=1)\n396\t    feats['effective_rank'] = np.where(\n397\t        sv_sum > 0, sv_sum**2 / sv_sq_sum, 0.0)\n398\t    feats['condition_number'] = (\n399\t        svd_vals[:, 0] / np.maximum(svd_vals[:, -1], 1e-15))\n400\t\n401\t    eye_mask = ~np.eye(K, dtype=bool)\n402\t    for i in range(M):\n403\t        eigvals = np.linalg.eigvals(C_batch[i])\n404\t        eig_abs = np.sort(np.abs(eigvals))[::-1]\n405\t        feats['spectral_gap'][i] = (\n406\t            eig_abs[0] - eig_abs[1] if K > 1 else eig_abs[0])\n407\t        feats['off_diagonal_max'][i] = C_batch[i][eye_mask].max()\n408\t\n409\t    return feats\n410\t\n411\t\n412\t# ================================================================\n413\t# OLS regression\n414\t# ================================================================\n415\tdef ols_regression(y, X_raw):\n416\t    n = len(y)\n417\t    p = X_raw.shape[1]\n418\t    if n < p + 5:\n419\t        return None\n420\t\n421\t    X_mean = X_raw.mean(axis=0)\n422\t    X_std = X_raw.std(axis=0)\n423\t    X_std[X_std < 1e-15] = 1.0\n424\t    Xs = (X_raw - X_mean) / X_std\n425\t    X = np.column_stack([np.ones(n), Xs])\n426\t\n427\t    beta = np.linalg.lstsq(X, y, rcond=None)[0]\n428\t    y_hat = X @ beta\n429\t    ss_res = ((y - y_hat) ** 2).sum()\n430\t    ss_tot = ((y - y.mean()) ** 2).sum()\n431\t    r2 = 1 - ss_res / ss_tot if ss_tot > 1e-15 else 0.0\n432\t\n433\t    dof = n - X.shape[1]\n434\t    if dof <= 0:\n435\t        pv = np.full(p, np.nan)\n436\t    else:\n437\t        mse = ss_res / dof\n438\t        try:\n439\t            cov_mat = mse * np.linalg.inv(X.T @ X)\n440\t            se = np.sqrt(np.maximum(np.diag(cov_mat), 0))\n441\t            t_stat = np.where(se > 1e-15, beta / se, 0.0)\n442\t            from scipy.stats import t as t_dist\n443\t            pv = 2 * (1 - t_dist.cdf(np.abs(t_stat[1:]), dof))\n444\t        except np.linalg.LinAlgError:\n445\t            pv = np.full(p, np.nan)\n446\t\n447\t    return dict(\n448\t        r_squared=float(r2),\n449\t        coefs={fn: float(beta[i + 1]) for i, fn in enumerate(FEATURE_NAMES)},\n450\t        p_values={fn: float(pv[i]) for i, fn in enumerate(FEATURE_NAMES)},\n451\t        n_obs=n,\n452\t    )\n453\t\n454\t\n455\t# ================================================================\n456\t# Main\n457\t# ================================================================\n458\tdef main():\n459\t    parser = argparse.ArgumentParser(\n460\t        description='Plan 009: Pathological confusion matrix bias analysis '\n461\t                    'across 7 DAG topologies')\n462\t    parser.add_argument('--M', type=int, default=M_DEFAULT,\n463\t                        help=f'C instances per config [default: {M_DEFAULT}]')\n464\t    parser.add_argument('--N', type=int, default=N_LARGE,\n465\t                        help=f'DGP sample size [default: {N_LARGE}]')\n466\t    parser.add_argument('--K', type=int, nargs='+', default=K_VALUES,\n467\t                        help=f'K values [default: {K_VALUES}]')\n468\t    parser.add_argument('--topos', type=str, nargs='+', default=ALL_TOPOS,\n469\t                        help='Topologies')\n470\t    parser.add_argument('--dry-run', action='store_true',\n471\t                        help='Quick test: M=10, K=[3], 1 topo, N=100k')\n472\t    args = parser.parse_args()\n473\t\n474\t    if args.dry_run:\n475\t        args.M = 10\n476\t        args.K = [3]\n477\t        args.topos = ['confounding']\n478\t        args.N = 100_000\n479\t        print(\"=== DRY RUN ===\\n\")\n480\t\n481\t    os.makedirs(OUT_DIR, exist_ok=True)\n482\t    t0 = time.time()\n483\t    print(f\"Plan 009: Pathological Matrices\")\n484\t    print(f\"  Device={DEVICE}  M={args.M}  N={args.N:,}\")\n485\t    print(f\"  K={args.K}  topos={args.topos}\")\n486\t    print(f\"  Output -> {OUT_DIR}\\n\")\n487\t\n488\t    all_results = {}\n489\t    topo_bias = {t: [] for t in ALL_TOPOS}\n490\t    topo_feats = {t: {fn: [] for fn in FEATURE_NAMES} for t in ALL_TOPOS}\n491\t\n492\t    for K in args.K:\n493\t        params = make_all_params(K)\n494\t        rank_vals = list(range(1, K))\n495\t        block_vals = sorted(set([2, max(K // 2, 2)]))\n496\t\n497\t        c_configs = {\n498\t            'near_permutation': [(f'eps={e}', e) for e in NEAR_PERM_EPSILONS],\n499\t            'rank_deficient': [(f'rank={r}', r) for r in rank_vals],\n500\t            'block_diagonal': [(f'blocks={b}', b) for b in block_vals],\n501\t        }\n502\t\n503\t        for topo in args.topos:\n504\t            tk = time.time()\n505\t            print(f\"{'='*70}\")\n506\t            print(f\"  {topo}  K={K}\")\n507\t            print(f\"{'='*70}\")\n508\t\n509\t            seed_dgp = _det_seed(topo, K, 'dgp')\n510\t            rng = np.random.default_rng(seed_dgp)\n511\t            T_or_Z, Y, A = _GEN[topo](K, args.N, params[topo], rng)\n512\t\n513\t            if topo == 'iv':\n514\t                ss = IVSuffStats(T_or_Z, Y, A, K).to_device(DEVICE)\n515\t                plim_fn = plim_iv_batched\n516\t                tau_idx = 0\n517\t            elif topo == 'exposure':\n518\t                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\n519\t                plim_fn = plim_exposure\n520\t                tau_idx = 1\n521\t            else:\n522\t                ss = SuffStats(T_or_Z, Y, A, K).to_device(DEVICE)\n523\t                plim_fn = plim_with_T\n524\t                tau_idx = 1\n525\t\n526\t            I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n527\t            plim_true = plim_fn(ss, I_batch).squeeze(0)\n528\t            tau_true = plim_true[tau_idx].item()\n529\t            print(f\"  tau_true(C=I) = {tau_true:.6f}  \"\n530\t                  f\"[DGP {time.time()-tk:.1f}s]\")\n531\t\n532\t            for c_type, param_list in c_configs.items():\n533\t                for param_label, param_val in param_list:\n534\t                    seed = _det_seed(topo, K,\n535\t                                     f'{c_type}_{param_label}')\n536\t                    rng_c = np.random.default_rng(seed)\n537\t\n538\t                    if c_type == 'near_permutation':\n539\t                        Cb = gen_near_permutation(\n540\t                            K, args.M, param_val, rng_c)\n541\t                    elif c_type == 'rank_deficient':\n542\t                        Cb = gen_rank_deficient(\n543\t                            K, args.M, param_val, rng_c)\n544\t                    else:\n545\t                        Cb = gen_block_diagonal(\n546\t                            K, args.M, param_val, rng_c)\n547\t\n548\t                    Ct = torch.tensor(Cb, dtype=DTYPE, device=DEVICE)\n549\t                    plim_batch = plim_fn(ss, Ct)\n550\t                    bias = (plim_batch[:, tau_idx]\n551\t                            - tau_true).cpu().numpy()\n552\t\n553\t                    valid = np.isfinite(bias)\n554\t                    bias = bias[valid]\n555\t                    Cb_valid = Cb[valid]\n556\t\n557\t                    key = f\"{topo}_K{K}_{c_type}_{param_label}\"\n558\t                    if len(bias) == 0:\n559\t                        all_results[key] = dict(error='all_nan')\n560\t                        print(f\"    {c_type:20s} {param_label:10s}:\"\n561\t                              f\" ALL NaN\")\n562\t                        continue\n563\t\n564\t                    ab = np.abs(bias)\n565\t                    feats = extract_features(Cb_valid)\n566\t\n567\t                    cat_thr = 2 * abs(tau_true)\n568\t                    if abs(tau_true) > 1e-10:\n569\t                        cat_frac = float((ab > cat_thr).mean())\n570\t                    else:\n571\t                        cat_frac = float('nan')\n572\t\n573\t                    stats = dict(\n574\t                        n_valid=int(len(bias)),\n575\t                        bias_mean=float(bias.mean()),\n576\t                        bias_std=float(bias.std()),\n577\t                        abs_bias_mean=float(ab.mean()),\n578\t                        abs_bias_max=float(ab.max()),\n579\t                        abs_bias_min=float(ab.min()),\n580\t                        abs_bias_p5=float(np.percentile(ab, 5)),\n581\t                        abs_bias_p25=float(np.percentile(ab, 25)),\n582\t                        abs_bias_p50=float(np.percentile(ab, 50)),\n583\t                        abs_bias_p75=float(np.percentile(ab, 75)),\n584\t                        abs_bias_p95=float(np.percentile(ab, 95)),\n585\t                        catastrophic_frac=cat_frac,\n586\t                        catastrophic_threshold=float(cat_thr),\n587\t                        feat_means={fn: float(feats[fn].mean())\n588\t                                    for fn in FEATURE_NAMES},\n589\t                    )\n590\t                    all_results[key] = stats\n591\t\n592\t                    topo_bias[topo].extend(ab.tolist())\n593\t                    for fn in FEATURE_NAMES:\n594\t                        topo_feats[topo][fn].extend(\n595\t                            feats[fn].tolist())\n596\t\n597\t                    cat_s = (f\"  cat={cat_frac:.1%}\"\n598\t                             if cat_frac == cat_frac else \"\")\n599\t                    print(\n600\t                        f\"    {c_type:20s} {param_label:10s}: \"\n601\t                        f\"n={len(bias):4d}  \"\n602\t                        f\"|bias| mean={ab.mean():.4f} \"\n603\t                        f\"max={ab.max():.4f} \"\n604\t                        f\"p95={np.percentile(ab, 95):.4f}\"\n605\t                        f\"{cat_s}\")\n606\t\n607\t            print(f\"  [{time.time()-tk:.1f}s]\\n\")\n608\t            sys.stdout.flush()\n609\t\n610\t    # ================================================================\n611\t    # Regression\n612\t    # ================================================================\n613\t    print(f\"\\n{'='*80}\")\n614\t    print(\"  REGRESSION: |bias| ~ spectral_gap + diag_dominance \"\n615\t          \"+ effective_rank\")\n616\t    print(\"              + condition_number + off_diagonal_max\")\n617\t    print(f\"{'='*80}\")\n618\t\n619\t    reg_lines = [\"Plan 009: OLS Regression Results\",\n620\t                 \"=\" * 80, \"\"]\n621\t    regression_results = {}\n622\t    all_bias_g = []\n623\t    all_feats_g = {fn: [] for fn in FEATURE_NAMES}\n624\t\n625\t    for topo in args.topos:\n626\t        y = np.array(topo_bias[topo])\n627\t        if len(y) < 20:\n628\t            continue\n629\t        X = np.column_stack(\n630\t            [np.array(topo_feats[topo][fn])\n631\t             for fn in FEATURE_NAMES])\n632\t\n633\t        all_bias_g.extend(y.tolist())\n634\t        for fn in FEATURE_NAMES:\n635\t            all_feats_g[fn].extend(topo_feats[topo][fn])\n636\t\n637\t        reg = ols_regression(y, X)\n638\t        if reg is None:\n639\t            continue\n640\t        regression_results[topo] = reg\n641\t\n642\t        hdr = (f\"\\n  {topo} (n={reg['n_obs']}):  \"\n643\t               f\"R2 = {reg['r_squared']:.4f}\")\n644\t        print(hdr)\n645\t        reg_lines.append(hdr)\n646\t        col = f\"    {'Feature':25s} {'Coef':>10s} {'p-value':>12s}\"\n647\t        print(col)\n648\t        reg_lines.append(col)\n649\t        sep = f\"    {'-'*49}\"\n650\t        print(sep)\n651\t        reg_lines.append(sep)\n652\t        for fn in FEATURE_NAMES:\n653\t            c = reg['coefs'][fn]\n654\t            pv = reg['p_values'][fn]\n655\t            sig = ('***' if pv < 0.001\n656\t                   else ('**' if pv < 0.01\n657\t                         else ('*' if pv < 0.05 else '')))\n658\t            ln = (f\"    {fn:25s} {c:10.4f} \"\n659\t                  f\"{pv:12.6f} {sig}\")\n660\t            print(ln)\n661\t            reg_lines.append(ln)\n662\t\n663\t    y_g = np.array(all_bias_g)\n664\t    if len(y_g) >= 20:\n665\t        X_g = np.column_stack(\n666\t            [np.array(all_feats_g[fn]) for fn in FEATURE_NAMES])\n667\t        reg_g = ols_regression(y_g, X_g)\n668\t        if reg_g is not None:\n669\t            regression_results['_global'] = reg_g\n670\t            hdr = (f\"\\n  GLOBAL (n={reg_g['n_obs']}):  \"\n671\t                   f\"R2 = {reg_g['r_squared']:.4f}\")\n672\t            print(hdr)\n673\t            reg_lines.append(hdr)\n674\t            col = (f\"    {'Feature':25s} {'Coef':>10s} \"\n675\t                   f\"{'p-value':>12s}\")\n676\t            print(col)\n677\t            reg_lines.append(col)\n678\t            sep = f\"    {'-'*49}\"\n679\t            print(sep)\n680\t            reg_lines.append(sep)\n681\t            for fn in FEATURE_NAMES:\n682\t                c = reg_g['coefs'][fn]\n683\t                pv = reg_g['p_values'][fn]\n684\t                sig = ('***' if pv < 0.001\n685\t                       else ('**' if pv < 0.01\n686\t                             else ('*' if pv < 0.05 else '')))\n687\t                ln = (f\"    {fn:25s} {c:10.4f} \"\n688\t                      f\"{pv:12.6f} {sig}\")\n689\t                print(ln)\n690\t                reg_lines.append(ln)\n691\t\n692\t    # ================================================================\n693\t    # Save\n694\t    # ================================================================\n695\t    summary = dict(\n696\t        config=dict(\n697\t            M=args.M, N=args.N, K_values=args.K,\n698\t            topologies=args.topos,\n699\t            near_perm_epsilons=NEAR_PERM_EPSILONS,\n700\t            feature_names=FEATURE_NAMES),\n701\t        bias_results=all_results,\n702\t        regression=regression_results,\n703\t    )\n704\t\n705\t    json_path = os.path.join(OUT_DIR,\n706\t                             'pathological_bias_summary.json')\n707\t    with open(json_path, 'w') as f:\n708\t        json.dump(summary, f, indent=2, default=str)\n709\t    print(f\"\\nSaved {json_path}\")\n710\t\n711\t    reg_path = os.path.join(OUT_DIR, 'regression_results.txt')\n712\t    with open(reg_path, 'w') as f:\n713\t        f.write('\\n'.join(reg_lines))\n714\t    print(f\"Saved {reg_path}\")\n715\t\n716\t    print(f\"\\nTotal: {time.time() - t0:.0f}s\")\n717\t\n718\t\n719\tif __name__ == \"__main__\":\n720\t    main()\n721\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "3da7490d-c630-40a3-958b-1e5dd6244eb9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_009_pathological_matrices.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nPlan 009: Pathological Confusion Matrix Analysis\n\nStudies extreme bias behavior under 3 classes of pathological K*K\ncolumn-stochastic confusion matrices across 7 DAG topologies and K in {3,5,7}.\n\nPathological C types (M=1000 instances each per (K, type, param)):\n  (a) Near-permutation: C = (1-eps)P + eps*U, eps in {0.01, 0.05, 0.1, 0.2}\n  (b) Rank-deficient: SVD truncation to rank r in {1, ..., K-1}\n  (c) Block-diagonal: b blocks, b in {2, max(K//2, 2)}\n\nMatrix features extracted per C:\n  spectral_gap, diag_dominance, effective_rank, condition_number, off_diagonal_max\n\nAnalysis:\n  - Per-(topo, K, C_type, param): bias distribution statistics\n  - OLS regression: |bias| ~ features (per-topology + global)\n  - Catastrophic bias detection: |bias| > 2*|tau_true|\n\nInput:\n  DGP parameters from plan_002 (7 topologies), N_LARGE=5M samples for plim\nOutput -> artifacts/plan009/:\n  pathological_bias_summary.json, regression_results.txt\n\nDependencies: torch (CUDA), numpy, scipy.stats\n\"\"\"\n\nimport torch\nimport numpy as np\nimport json\nimport time\nimport os\nimport sys\nimport hashlib\nimport argparse\n\n# ================================================================\n# Configuration\n# ================================================================\nK_VALUES = [3, 5, 7]\nM_DEFAULT = 1000\nN_LARGE = 5_000_000\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\nDTYPE = torch.float64\n\nALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\n             'mbias', 'iv', 'frontdoor']\nNEAR_PERM_EPSILONS = [0.01, 0.05, 0.1, 0.2]\nFEATURE_NAMES = ['spectral_gap', 'diag_dominance', 'effective_rank',\n                 'condition_number', 'off_diagonal_max']\n\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nOUT_DIR = os.path.join(SCRIPT_DIR, 'artifacts', 'plan009')\n\n\ndef _det_seed(topo_name, K, c_type, base_seed=42):\n    h = hashlib.sha256(\n        f\"{topo_name}_{K}_{c_type}_{base_seed}\".encode()\n    ).hexdigest()\n    return int(h[:8], 16) % (2**31)\n\n\n# ================================================================\n# DGP parameter pools (from plan_002_k57_extended_7topo.py)\n# ================================================================\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\n_MBIAS_A1    = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\n_MBIAS_A2    = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\n_IV_DZ       = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\n_IV_DU       = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\n_FD_GAMMA    = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_FD_DELTA    = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\n\n\ndef make_p_A(K):\n    if K == 3:\n        return np.array([0.40, 0.35, 0.25])\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\n    return raw / raw.sum()\n\n\ndef make_all_params(K):\n    p_A = make_p_A(K)\n    return dict(\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\n                         beta_A=np.array(_BETA_A_POOL[:K-1]),\n                         beta_T=2.0, sigma_T=1.0),\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\n                       delta=np.array(_DELTA_POOL[:K]),\n                       beta=np.array(_BETA_POOL[:K])),\n        collider=dict(tau=1.0, g=np.zeros(K),\n                      dT=np.array(_DT_POOL[:K]),\n                      dY=np.array(_DY_POOL[:K])),\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\n                   a1=np.array(_MBIAS_A1[:K]),\n                   a2=np.array(_MBIAS_A2[:K])),\n        iv=dict(lam=1.0, g=np.zeros(K),\n                dZ=np.array(_IV_DZ[:K]),\n                dU=np.array(_IV_DU[:K]),\n                beta=np.array(_BETA_POOL[:K])),\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0,\n                       gamma=np.array(_FD_GAMMA[:K]),\n                       delta=np.array(_FD_DELTA[:K]),\n                       beta=np.array(_BETA_POOL[:K])),\n    )\n\n\n# ================================================================\n# DGP generators (from plan_002_k57_extended_7topo.py)\n# ================================================================\ndef _softmax_rows(logits):\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\n    return e / e.sum(axis=-1, keepdims=True)\n\n\ndef _sample_cat(probs, rng):\n    cum = np.cumsum(probs, axis=1)\n    u = rng.uniform(size=probs.shape[0])[:, None]\n    return (u >= cum).sum(axis=1).astype(int)\n\n\ndef gen_confounding(K, N, p, rng):\n    A = rng.choice(K, size=N, p=p['p_A'])\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1).astype(float)\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n    return T, Y, A\n\n\ndef gen_mediation(K, N, p, rng):\n    T = rng.binomial(1, 0.5, N).astype(float)\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n    A = _sample_cat(_softmax_rows(logits), rng)\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1)\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n    return T, Y, A\n\n\ndef gen_collider(K, N, p, rng):\n    T = rng.normal(0, 1, N)\n    Y = p['tau'] * T + rng.normal(0, 1, N)\n    logits = (p['g'][None, :] + p['dT'][None, :] * T[:, None]\n              + p['dY'][None, :] * Y[:, None])\n    A = _sample_cat(_softmax_rows(logits), rng)\n    return T, Y, A\n\n\ndef gen_exposure(K, N, p, rng):\n    A = rng.choice(K, size=N, p=p['p_A'])\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1).astype(float)\n    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n    return None, Y, A\n\n\ndef gen_mbias(K, N, p, rng):\n    U1 = rng.normal(0, 1, N)\n    U2 = rng.normal(0, 1, N)\n    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n    logits = np.zeros((N, K))\n    for j in range(1, K):\n        logits[:, j] = p['g'][j] + p['a1'][j] * U1 + p['a2'][j] * U2\n    A = _sample_cat(_softmax_rows(logits), rng)\n    return T, Y, A\n\n\ndef gen_iv(K, N, p, rng):\n    Z = rng.binomial(1, 0.5, N).astype(float)\n    U = rng.normal(0, 1, N)\n    eps = rng.normal(0, 1, N)\n    logits = np.zeros((N, K))\n    for j in range(1, K):\n        logits[:, j] = p['g'][j] + p['dZ'][j] * Z + p['dU'][j] * U\n    A = _sample_cat(_softmax_rows(logits), rng)\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1).astype(float)\n    Y = D @ p['beta'][1:] + p['lam'] * U + eps\n    return Z, Y, A\n\n\ndef gen_frontdoor(K, N, p, rng):\n    U = rng.normal(0, 1, N)\n    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n    logits = np.zeros((N, K))\n    for j in range(1, K):\n        logits[:, j] = p['gamma'][j] + p['delta'][j] * T\n    M = _sample_cat(_softmax_rows(logits), rng)\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (M == j + 1).astype(float)\n    Y = D @ p['beta'][1:] + p['lam_U'] * U + rng.normal(0, 1, N)\n    return T, Y, M\n\n\n_GEN = dict(confounding=gen_confounding, mediation=gen_mediation,\n            collider=gen_collider, exposure=gen_exposure,\n            mbias=gen_mbias, iv=gen_iv, frontdoor=gen_frontdoor)\n\n\n# ================================================================\n# Sufficient statistics\n# ================================================================\nclass SuffStats:\n    def __init__(self, T, Y, A, K):\n        self.K = K\n        self.has_T = T is not None\n        N = len(Y)\n        DA = np.zeros((N, K))\n        for k in range(K):\n            DA[:, k] = (A == k).astype(float)\n        self.p_A = DA.mean(0)\n        self.E_Y = Y.mean()\n        self.E_YD = (DA * Y[:, None]).mean(0)\n        if self.has_T:\n            self.E_T = T.mean()\n            self.E_T2 = (T ** 2).mean()\n            self.E_TY = (T * Y).mean()\n            self.E_TD = (DA * T[:, None]).mean(0)\n\n    def to_device(self, dev):\n        self.t_p_A = torch.tensor(self.p_A, dtype=DTYPE, device=dev)\n        self.t_E_Y = torch.tensor(self.E_Y, dtype=DTYPE, device=dev)\n        self.t_E_YD = torch.tensor(self.E_YD, dtype=DTYPE, device=dev)\n        if self.has_T:\n            self.t_E_T = torch.tensor(self.E_T, dtype=DTYPE, device=dev)\n            self.t_E_T2 = torch.tensor(self.E_T2, dtype=DTYPE, device=dev)\n            self.t_E_TY = torch.tensor(self.E_TY, dtype=DTYPE, device=dev)\n            self.t_E_TD = torch.tensor(self.E_TD, dtype=DTYPE, device=dev)\n        return self\n\n\nclass IVSuffStats:\n    def __init__(self, Z, Y, A, K):\n        self.K = K\n        z1 = Z == 1\n        z0 = Z == 0\n        self.RF = Y[z1].mean() - Y[z0].mean()\n        self.FS = np.zeros(K)\n        for k in range(K):\n            self.FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n\n    def to_device(self, dev):\n        self.t_RF = torch.tensor(self.RF, dtype=DTYPE, device=dev)\n        self.t_FS = torch.tensor(self.FS, dtype=DTYPE, device=dev)\n        return self\n\n\n# ================================================================\n# Plim functions (batched GPU)\n# ================================================================\ndef plim_with_T(ss, C):\n    B, K = C.shape[0], ss.K\n    dim = K + 1\n    q = C @ ss.t_p_A\n    ct = C @ ss.t_E_TD\n    cy = C @ ss.t_E_YD\n    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n    EZZ[:, 0, 0] = 1.0\n    EZZ[:, 0, 1] = ss.t_E_T\n    EZZ[:, 1, 0] = ss.t_E_T\n    EZZ[:, 1, 1] = ss.t_E_T2\n    EZZ[:, 0, 2:] = q[:, 1:]\n    EZZ[:, 2:, 0] = q[:, 1:]\n    EZZ[:, 1, 2:] = ct[:, 1:]\n    EZZ[:, 2:, 1] = ct[:, 1:]\n    idx = torch.arange(K - 1, device=C.device)\n    EZZ[:, idx + 2, idx + 2] = q[:, 1:]\n    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n    EZY[:, 0] = ss.t_E_Y\n    EZY[:, 1] = ss.t_E_TY\n    EZY[:, 2:] = cy[:, 1:]\n    return torch.linalg.solve(EZZ, EZY)\n\n\ndef plim_exposure(ss, C):\n    B, K = C.shape[0], ss.K\n    dim = K\n    q = C @ ss.t_p_A\n    cy = C @ ss.t_E_YD\n    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n    EZZ[:, 0, 0] = 1.0\n    EZZ[:, 0, 1:] = q[:, 1:]\n    EZZ[:, 1:, 0] = q[:, 1:]\n    idx = torch.arange(K - 1, device=C.device)\n    EZZ[:, idx + 1, idx + 1] = q[:, 1:]\n    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n    EZY[:, 0] = ss.t_E_Y\n    EZY[:, 1:] = cy[:, 1:]\n    return torch.linalg.solve(EZZ, EZY)\n\n\ndef plim_iv_batched(ss, C):\n    FS_star = C @ ss.t_FS\n    denom = FS_star[:, 1]\n    nan_val = torch.tensor(float('nan'), dtype=DTYPE, device=C.device)\n    result = torch.where(denom.abs() < 1e-8, nan_val, ss.t_RF / denom)\n    return result.unsqueeze(1)\n\n\n# ================================================================\n# Pathological C matrix generators\n# ================================================================\ndef gen_near_permutation(K, M, epsilon, rng):\n    \"\"\"C = (1-eps)*P + eps*U where P=random permutation, U=random col-stochastic.\"\"\"\n    Cs = np.zeros((M, K, K))\n    for i in range(M):\n        perm = rng.permutation(K)\n        P = np.zeros((K, K))\n        P[perm, np.arange(K)] = 1.0\n        U = rng.dirichlet(np.ones(K), size=K).T\n        C = (1 - epsilon) * P + epsilon * U\n        C = np.clip(C, 1e-12, None)\n        C /= C.sum(axis=0, keepdims=True)\n        Cs[i] = C\n    return Cs\n\n\ndef gen_rank_deficient(K, M, rank, rng):\n    \"\"\"Rank-r col-stochastic via SVD truncation + non-negative projection.\"\"\"\n    Cs = np.zeros((M, K, K))\n    for i in range(M):\n        C_full = rng.dirichlet(np.ones(K) * 2.0, size=K).T\n        U, S, Vt = np.linalg.svd(C_full, full_matrices=True)\n        S_trunc = np.zeros_like(S)\n        S_trunc[:rank] = S[:rank]\n        C_approx = U @ np.diag(S_trunc) @ Vt\n        C_approx = np.clip(C_approx, 1e-12, None)\n        C_approx /= C_approx.sum(axis=0, keepdims=True)\n        Cs[i] = C_approx\n    return Cs\n\n\ndef gen_block_diagonal(K, M, n_blocks, rng):\n    \"\"\"Block-diagonal: high intra-block accuracy, low inter-block leakage.\"\"\"\n    block_sizes = []\n    base = K // n_blocks\n    remainder = K % n_blocks\n    for b in range(n_blocks):\n        block_sizes.append(base + (1 if b < remainder else 0))\n\n    Cs = np.zeros((M, K, K))\n    for i in range(M):\n        C = np.zeros((K, K))\n        leak = rng.uniform(0.001, 0.05)\n        start = 0\n        for bs in block_sizes:\n            end = start + bs\n            for col in range(start, end):\n                within = rng.dirichlet(5.0 * np.ones(bs))\n                n_outside = K - bs\n                if n_outside > 0:\n                    between = rng.dirichlet(np.ones(n_outside)) * leak\n                else:\n                    between = np.array([])\n                C[start:end, col] = within * (1 - leak)\n                idx = 0\n                for row in range(K):\n                    if row < start or row >= end:\n                        C[row, col] = between[idx]\n                        idx += 1\n            start = end\n        C = np.clip(C, 1e-12, None)\n        C /= C.sum(axis=0, keepdims=True)\n        Cs[i] = C\n    return Cs\n\n\n# ================================================================\n# Matrix feature extraction\n# ================================================================\ndef extract_features(C_batch):\n    M, K, _ = C_batch.shape\n    feats = {fn: np.zeros(M) for fn in FEATURE_NAMES}\n\n    diags = np.diagonal(C_batch, axis1=1, axis2=2)\n    feats['diag_dominance'] = diags.min(axis=1) * K\n\n    svd_vals = np.linalg.svd(C_batch, compute_uv=False)\n    sv_sum = svd_vals.sum(axis=1)\n    sv_sq_sum = (svd_vals ** 2).sum(axis=1)\n    feats['effective_rank'] = np.where(\n        sv_sum > 0, sv_sum**2 / sv_sq_sum, 0.0)\n    feats['condition_number'] = (\n        svd_vals[:, 0] / np.maximum(svd_vals[:, -1], 1e-15))\n\n    eye_mask = ~np.eye(K, dtype=bool)\n    for i in range(M):\n        eigvals = np.linalg.eigvals(C_batch[i])\n        eig_abs = np.sort(np.abs(eigvals))[::-1]\n        feats['spectral_gap'][i] = (\n            eig_abs[0] - eig_abs[1] if K > 1 else eig_abs[0])\n        feats['off_diagonal_max'][i] = C_batch[i][eye_mask].max()\n\n    return feats\n\n\n# ================================================================\n# OLS regression\n# ================================================================\ndef ols_regression(y, X_raw):\n    n = len(y)\n    p = X_raw.shape[1]\n    if n < p + 5:\n        return None\n\n    X_mean = X_raw.mean(axis=0)\n    X_std = X_raw.std(axis=0)\n    X_std[X_std < 1e-15] = 1.0\n    Xs = (X_raw - X_mean) / X_std\n    X = np.column_stack([np.ones(n), Xs])\n\n    beta = np.linalg.lstsq(X, y, rcond=None)[0]\n    y_hat = X @ beta\n    ss_res = ((y - y_hat) ** 2).sum()\n    ss_tot = ((y - y.mean()) ** 2).sum()\n    r2 = 1 - ss_res / ss_tot if ss_tot > 1e-15 else 0.0\n\n    dof = n - X.shape[1]\n    if dof <= 0:\n        pv = np.full(p, np.nan)\n    else:\n        mse = ss_res / dof\n        try:\n            cov_mat = mse * np.linalg.inv(X.T @ X)\n            se = np.sqrt(np.maximum(np.diag(cov_mat), 0))\n            t_stat = np.where(se > 1e-15, beta / se, 0.0)\n            from scipy.stats import t as t_dist\n            pv = 2 * (1 - t_dist.cdf(np.abs(t_stat[1:]), dof))\n        except np.linalg.LinAlgError:\n            pv = np.full(p, np.nan)\n\n    return dict(\n        r_squared=float(r2),\n        coefs={fn: float(beta[i + 1]) for i, fn in enumerate(FEATURE_NAMES)},\n        p_values={fn: float(pv[i]) for i, fn in enumerate(FEATURE_NAMES)},\n        n_obs=n,\n    )\n\n\n# ================================================================\n# Main\n# ================================================================\ndef main():\n    parser = argparse.ArgumentParser(\n        description='Plan 009: Pathological confusion matrix bias analysis '\n                    'across 7 DAG topologies')\n    parser.add_argument('--M', type=int, default=M_DEFAULT,\n                        help=f'C instances per config [default: {M_DEFAULT}]')\n    parser.add_argument('--N', type=int, default=N_LARGE,\n                        help=f'DGP sample size [default: {N_LARGE}]')\n    parser.add_argument('--K', type=int, nargs='+', default=K_VALUES,\n                        help=f'K values [default: {K_VALUES}]')\n    parser.add_argument('--topos', type=str, nargs='+', default=ALL_TOPOS,\n                        help='Topologies')\n    parser.add_argument('--dry-run', action='store_true',\n                        help='Quick test: M=10, K=[3], 1 topo, N=100k')\n    args = parser.parse_args()\n\n    if args.dry_run:\n        args.M = 10\n        args.K = [3]\n        args.topos = ['confounding']\n        args.N = 100_000\n        print(\"=== DRY RUN ===\\n\")\n\n    os.makedirs(OUT_DIR, exist_ok=True)\n    t0 = time.time()\n    print(f\"Plan 009: Pathological Matrices\")\n    print(f\"  Device={DEVICE}  M={args.M}  N={args.N:,}\")\n    print(f\"  K={args.K}  topos={args.topos}\")\n    print(f\"  Output -> {OUT_DIR}\\n\")\n\n    all_results = {}\n    topo_bias = {t: [] for t in ALL_TOPOS}\n    topo_feats = {t: {fn: [] for fn in FEATURE_NAMES} for t in ALL_TOPOS}\n\n    for K in args.K:\n        params = make_all_params(K)\n        rank_vals = list(range(1, K))\n        block_vals = sorted(set([2, max(K // 2, 2)]))\n\n        c_configs = {\n            'near_permutation': [(f'eps={e}', e) for e in NEAR_PERM_EPSILONS],\n            'rank_deficient': [(f'rank={r}', r) for r in rank_vals],\n            'block_diagonal': [(f'blocks={b}', b) for b in block_vals],\n        }\n\n        for topo in args.topos:\n            tk = time.time()\n            print(f\"{'='*70}\")\n            print(f\"  {topo}  K={K}\")\n            print(f\"{'='*70}\")\n\n            seed_dgp = _det_seed(topo, K, 'dgp')\n            rng = np.random.default_rng(seed_dgp)\n            T_or_Z, Y, A = _GEN[topo](K, args.N, params[topo], rng)\n\n            if topo == 'iv':\n                ss = IVSuffStats(T_or_Z, Y, A, K).to_device(DEVICE)\n                plim_fn = plim_iv_batched\n                tau_idx = 0\n            elif topo == 'exposure':\n                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\n                plim_fn = plim_exposure\n                tau_idx = 1\n            else:\n                ss = SuffStats(T_or_Z, Y, A, K).to_device(DEVICE)\n                plim_fn = plim_with_T\n                tau_idx = 1\n\n            I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n            plim_true = plim_fn(ss, I_batch).squeeze(0)\n            tau_true = plim_true[tau_idx].item()\n            print(f\"  tau_true(C=I) = {tau_true:.6f}  \"\n                  f\"[DGP {time.time()-tk:.1f}s]\")\n\n            for c_type, param_list in c_configs.items():\n                for param_label, param_val in param_list:\n                    seed = _det_seed(topo, K,\n                                     f'{c_type}_{param_label}')\n                    rng_c = np.random.default_rng(seed)\n\n                    if c_type == 'near_permutation':\n                        Cb = gen_near_permutation(\n                            K, args.M, param_val, rng_c)\n                    elif c_type == 'rank_deficient':\n                        Cb = gen_rank_deficient(\n                            K, args.M, param_val, rng_c)\n                    else:\n                        Cb = gen_block_diagonal(\n                            K, args.M, param_val, rng_c)\n\n                    Ct = torch.tensor(Cb, dtype=DTYPE, device=DEVICE)\n                    plim_batch = plim_fn(ss, Ct)\n                    bias = (plim_batch[:, tau_idx]\n                            - tau_true).cpu().numpy()\n\n                    valid = np.isfinite(bias)\n                    bias = bias[valid]\n                    Cb_valid = Cb[valid]\n\n                    key = f\"{topo}_K{K}_{c_type}_{param_label}\"\n                    if len(bias) == 0:\n                        all_results[key] = dict(error='all_nan')\n                        print(f\"    {c_type:20s} {param_label:10s}:\"\n                              f\" ALL NaN\")\n                        continue\n\n                    ab = np.abs(bias)\n                    feats = extract_features(Cb_valid)\n\n                    cat_thr = 2 * abs(tau_true)\n                    if abs(tau_true) > 1e-10:\n                        cat_frac = float((ab > cat_thr).mean())\n                    else:\n                        cat_frac = float('nan')\n\n                    stats = dict(\n                        n_valid=int(len(bias)),\n                        bias_mean=float(bias.mean()),\n                        bias_std=float(bias.std()),\n                        abs_bias_mean=float(ab.mean()),\n                        abs_bias_max=float(ab.max()),\n                        abs_bias_min=float(ab.min()),\n                        abs_bias_p5=float(np.percentile(ab, 5)),\n                        abs_bias_p25=float(np.percentile(ab, 25)),\n                        abs_bias_p50=float(np.percentile(ab, 50)),\n                        abs_bias_p75=float(np.percentile(ab, 75)),\n                        abs_bias_p95=float(np.percentile(ab, 95)),\n                        catastrophic_frac=cat_frac,\n                        catastrophic_threshold=float(cat_thr),\n                        feat_means={fn: float(feats[fn].mean())\n                                    for fn in FEATURE_NAMES},\n                    )\n                    all_results[key] = stats\n\n                    topo_bias[topo].extend(ab.tolist())\n                    for fn in FEATURE_NAMES:\n                        topo_feats[topo][fn].extend(\n                            feats[fn].tolist())\n\n                    cat_s = (f\"  cat={cat_frac:.1%}\"\n                             if cat_frac == cat_frac else \"\")\n                    print(\n                        f\"    {c_type:20s} {param_label:10s}: \"\n                        f\"n={len(bias):4d}  \"\n                        f\"|bias| mean={ab.mean():.4f} \"\n                        f\"max={ab.max():.4f} \"\n                        f\"p95={np.percentile(ab, 95):.4f}\"\n                        f\"{cat_s}\")\n\n            print(f\"  [{time.time()-tk:.1f}s]\\n\")\n            sys.stdout.flush()\n\n    # ================================================================\n    # Regression\n    # ================================================================\n    print(f\"\\n{'='*80}\")\n    print(\"  REGRESSION: |bias| ~ spectral_gap + diag_dominance \"\n          \"+ effective_rank\")\n    print(\"              + condition_number + off_diagonal_max\")\n    print(f\"{'='*80}\")\n\n    reg_lines = [\"Plan 009: OLS Regression Results\",\n                 \"=\" * 80, \"\"]\n    regression_results = {}\n    all_bias_g = []\n    all_feats_g = {fn: [] for fn in FEATURE_NAMES}\n\n    for topo in args.topos:\n        y = np.array(topo_bias[topo])\n        if len(y) < 20:\n            continue\n        X = np.column_stack(\n            [np.array(topo_feats[topo][fn])\n             for fn in FEATURE_NAMES])\n\n        all_bias_g.extend(y.tolist())\n        for fn in FEATURE_NAMES:\n            all_feats_g[fn].extend(topo_feats[topo][fn])\n\n        reg = ols_regression(y, X)\n        if reg is None:\n            continue\n        regression_results[topo] = reg\n\n        hdr = (f\"\\n  {topo} (n={reg['n_obs']}):  \"\n               f\"R2 = {reg['r_squared']:.4f}\")\n        print(hdr)\n        reg_lines.append(hdr)\n        col = f\"    {'Feature':25s} {'Coef':>10s} {'p-value':>12s}\"\n        print(col)\n        reg_lines.append(col)\n        sep = f\"    {'-'*49}\"\n        print(sep)\n        reg_lines.append(sep)\n        for fn in FEATURE_NAMES:\n            c = reg['coefs'][fn]\n            pv = reg['p_values'][fn]\n            sig = ('***' if pv < 0.001\n                   else ('**' if pv < 0.01\n                         else ('*' if pv < 0.05 else '')))\n            ln = (f\"    {fn:25s} {c:10.4f} \"\n                  f\"{pv:12.6f} {sig}\")\n            print(ln)\n            reg_lines.append(ln)\n\n    y_g = np.array(all_bias_g)\n    if len(y_g) >= 20:\n        X_g = np.column_stack(\n            [np.array(all_feats_g[fn]) for fn in FEATURE_NAMES])\n        reg_g = ols_regression(y_g, X_g)\n        if reg_g is not None:\n            regression_results['_global'] = reg_g\n            hdr = (f\"\\n  GLOBAL (n={reg_g['n_obs']}):  \"\n                   f\"R2 = {reg_g['r_squared']:.4f}\")\n            print(hdr)\n            reg_lines.append(hdr)\n            col = (f\"    {'Feature':25s} {'Coef':>10s} \"\n                   f\"{'p-value':>12s}\")\n            print(col)\n            reg_lines.append(col)\n            sep = f\"    {'-'*49}\"\n            print(sep)\n            reg_lines.append(sep)\n            for fn in FEATURE_NAMES:\n                c = reg_g['coefs'][fn]\n                pv = reg_g['p_values'][fn]\n                sig = ('***' if pv < 0.001\n                       else ('**' if pv < 0.01\n                             else ('*' if pv < 0.05 else '')))\n                ln = (f\"    {fn:25s} {c:10.4f} \"\n                      f\"{pv:12.6f} {sig}\")\n                print(ln)\n                reg_lines.append(ln)\n\n    # ================================================================\n    # Save\n    # ================================================================\n    summary = dict(\n        config=dict(\n            M=args.M, N=args.N, K_values=args.K,\n            topologies=args.topos,\n            near_perm_epsilons=NEAR_PERM_EPSILONS,\n            feature_names=FEATURE_NAMES),\n        bias_results=all_results,\n        regression=regression_results,\n    )\n\n    json_path = os.path.join(OUT_DIR,\n                             'pathological_bias_summary.json')\n    with open(json_path, 'w') as f:\n        json.dump(summary, f, indent=2, default=str)\n    print(f\"\\nSaved {json_path}\")\n\n    reg_path = os.path.join(OUT_DIR, 'regression_results.txt')\n    with open(reg_path, 'w') as f:\n        f.write('\\n'.join(reg_lines))\n    print(f\"Saved {reg_path}\")\n\n    print(f\"\\nTotal: {time.time() - t0:.0f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 721,
+                "startLine": 1,
+                "totalLines": 721
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T9iUsTbV7Q5wmy5HvXe9uS",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "774d50c4-f273-4bff-a4a4-9c77f2d3b3ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvrJpTg1n9Q8QztmJ4CXzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12678,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12678
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T18:49:29.395Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01T9iUsTbV7Q5wmy5HvXe9uS",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "67776446-cad2-4a56-8b1b-d7d9f24519fc",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me diagnose the issue on the server. I'll check logs, tmux, processes, and GPU status in parallel.",
+              "signature": "Eq8CCmMIDRgCKkAEqXYt++9poSrZOlAjfyThdM5E1PJEnJzslaA3UktmQRQ6BBEvNhbNTarNuNUUrKwyohMkAodNo8oBBaqn79y7Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPUIScURZSV1leDcaxoMnglRL5Z5li+XCFk2IjAxpvZz53SqynSGp3Sr3QSNWVq/4tII1M8+1gYRWNRIbPYc82zJ5AqiynTt19wKkswqenIIPlPWrK+N2pHprwjimC7aEBaeqz0oVnDKukHl5mG6zlnVx2CFRJaCQMuTlPfXwhURr4ogXSxwIemnoqgmjGIFXTaYPr+3Rex+8omRiguBVMIcGIkc5+72xSoMyeICJzGIY9Iq+Q8JZCPH83yoGSO6xYOJuaIC/ANwGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "e66af5dd-aa4f-4624-a29f-3ddf8d6b9cde",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011S8WMR4sXpjiaRBzUBRknK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12565,
+                "cache_read_input_tokens": 24519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12565
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始诊断服务器上 plan009 的状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "29b5b452-1859-4c4a-aba8-7b3af39a3d5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011S8WMR4sXpjiaRBzUBRknK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12565,
+                "cache_read_input_tokens": 24519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12565
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012NSSEXCNcJYPyMKPdcqTd9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cat /home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_run.log 2>/dev/null || echo \"NO_LOG\"",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "ecfede56-dab7-4c88-9525-f9ad1ea492e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011S8WMR4sXpjiaRBzUBRknK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12565,
+                "cache_read_input_tokens": 24519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12565
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T18:49:35.667Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012NSSEXCNcJYPyMKPdcqTd9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "01ce4468-2f3f-49e1-8677-5f024e582513",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BMAqkCUmH1Urq2FrgZBKAH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "ls -la ~/runs/causal_annot_error_attrib/plan009_pathological_matrices.log 2>/dev/null && tail -50 ~/runs/causal_annot_error_attrib/plan009_pathological_matrices.log || echo \"NO_RUN_LOG\"",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "8a8aed1d-ab80-4387-8048-d00c86b6070e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011S8WMR4sXpjiaRBzUBRknK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12565,
+                "cache_read_input_tokens": 24519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12565
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T18:49:37.629Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BMAqkCUmH1Urq2FrgZBKAH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "8324aa23-d7b8-4696-8388-82ce7ebf8851",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BDjkTQGN7t3jdvKeCJLvx4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "ps aux | grep plan_009 | grep -v grep",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "03e7091d-0fc8-4b30-8285-b3c5f0343272",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011S8WMR4sXpjiaRBzUBRknK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12565,
+                "cache_read_input_tokens": 24519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12565
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T18:49:38.603Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BDjkTQGN7t3jdvKeCJLvx4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "c3841e5d-5899-4b07-afc3-568423a1c9ff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UrhYaaV3UeVLogYd1H4hGC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "nvidia-smi",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "662b24d4-5374-4d87-9880-5189f47fe209",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011S8WMR4sXpjiaRBzUBRknK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12565,
+                "cache_read_input_tokens": 24519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12565
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T18:49:41.097Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UrhYaaV3UeVLogYd1H4hGC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 11:49:40 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8     |\\\\n|-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        Off |   00000000:01:00.0 Off |                  N/A |\\\\n| 42%   36C    P0             58W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n                                                                                         \\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "839e287a-7cba-4178-94cb-cf81e1fa3d80",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 11:49:40 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8     |\\\\n|-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 5090        Off |   00000000:01:00.0 Off |                  N/A |\\\\n| 42%   36C    P0             58W /  575W |       0MiB /  32607MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n                                                                                         \\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Wed May 20 11:49:40 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8     |\\n|-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        Off |   00000000:01:00.0 Off |                  N/A |\\n| 42%   36C    P0             58W /  575W |       0MiB /  32607MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n                                                                                         \\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.33}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The read-only tool doesn't allow shell metacharacters. Let me split into individual commands. GPU is idle (RTX 5090, 0MiB used, 0% utilization). No plan_009 process running. Let me check logs without metacharacters.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "0be0d72f-6bf2-4c5f-8901-5ffb00671a49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLR2uwyeEdzCEL37GZj2zU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1366,
+                "cache_read_input_tokens": 37084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 空闲（RTX 5090, 0% 利用率）。无 plan_009 进程。继续检查日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "50b45a1e-b497-47d2-9a9c-72f025048006",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLR2uwyeEdzCEL37GZj2zU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1366,
+                "cache_read_input_tokens": 37084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018j9Ejwh8dTmEhZ5BReD9o8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cat /home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_run.log",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "f37752fa-5214-45df-8bd1-974ea0d83a92",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLR2uwyeEdzCEL37GZj2zU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1366,
+                "cache_read_input_tokens": 37084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ry5r3S8vwFekaJdjyb6iC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "ls -la /home/sonny/causal_annot_error_attrib/artifacts/plan009/",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "a0cf0e0d-2e85-4b47-ae1c-9ec93c37a51f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLR2uwyeEdzCEL37GZj2zU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1366,
+                "cache_read_input_tokens": 37084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T18:49:48.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018j9Ejwh8dTmEhZ5BReD9o8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Plan 009: Pathological Matrices\\\\n  Device=cuda:0  M=1000  N=5,000,000\\\\n  K=[3, 5, 7]  topos=['confounding', 'mediation', 'collider', 'exposure', 'mbias', 'iv', 'frontdoor']\\\\n  Output -> /home/sonny/causal_annot_error_attrib/artifacts/plan009\\\\n\\\\n======================================================================\\\\n  confounding  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 2.001212  [DGP 0.6s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0120 max=0.0233 p95=0.0178  cat=0.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0529 max=0.0926 p95=0.0771  cat=0.0%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0958 max=0.1540 p95=0.1335  cat=0.0%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.1550 max=0.2302 p95=0.2034  cat=0.0%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.2989 max=0.2989 p95=0.2989  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.2860 max=0.2993 p95=0.2989  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.2076 max=0.2274 p95=0.2242  cat=0.0%\\\\n  [0.8s]\\\\n\\\\n======================================================================\\\\n  mediation  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 0.499863  [DGP 0.8s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0079 max=0.0158 p95=0.0126  cat=0.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0375 max=0.0679 p95=0.0565  cat=0.0%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0683 max=0.1170 p95=0.0997  cat=0.0%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.1213 max=0.1880 p95=0.1650  cat=0.0%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.3052 max=0.3052 p95=0.3052  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.2799 max=0.3052 p95=0.3049  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.1669 max=0.1950 p95=0.1917  cat=0.0%\\\\n  [1.0s]\\\\n\\\\n======================================================================\\\\n  collider  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 0.886449  [DGP 0.8s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0027 max=0.0057 p95=0.0044  cat=0.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0128 max=0.0251 p95=0.0200  cat=0.0%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0242 max=0.0446 p95=0.0375  cat=0.0%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.0442 max=0.0828 p95=0.0650  cat=0.0%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.1138 max=0.1138 p95=0.1138  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.1052 max=0.1194 p95=0.1162  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.1205 max=0.1273 p95=0.1265  cat=0.0%\\\\n  [1.0s]\\\\n\\\\n======================================================================\\\\n  exposure  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 0.999616  [DGP 0.3s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=1.0900 max=2.4945 p95=2.4848  cat=15.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=1.1590 max=2.4823 p95=2.4301  cat=17.7%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=1.1314 max=2.4782 p95=2.3646  cat=16.5%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=1.0310 max=2.4173 p95=2.2333  cat=13.2%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.9996 max=0.9996 p95=0.9996  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.9934 max=1.8672 p95=1.5004  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.9941 max=1.6695 p95=1.3601  cat=0.0%\\\\n  [0.4s]\\\\n\\\\n======================================================================\\\\n  mbias  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 1.012890  [DGP 0.8s]\\\\n    near_permutation     eps=0.01  : n=100\\\\n\\\\n... [截断: 输出过长，省略 19290 字符] ...\\\\n\\\\n       blocks=3  : n=1000  |bias| mean=0.2239 max=0.2309 p95=0.2299  cat=0.0%\\\\n  [1.8s]\\\\n\\\\n\\\\n================================================================================\\\\n  REGRESSION: |bias| ~ spectral_gap + diag_dominance + effective_rank\\\\n              + condition_number + off_diagonal_max\\\\n================================================================================\\\\n\\\\n  confounding (n=28000):  R2 = 0.7029\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0263     0.000000 ***\\\\n    diag_dominance                0.0176     0.000000 ***\\\\n    effective_rank               -0.0225     0.000000 ***\\\\n    condition_number              0.0191     0.000000 ***\\\\n    off_diagonal_max             -0.0147     0.000000 ***\\\\n\\\\n  mediation (n=28000):  R2 = 0.7465\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0322     0.000000 ***\\\\n    diag_dominance                0.0232     0.000000 ***\\\\n    effective_rank               -0.0237     0.000000 ***\\\\n    condition_number              0.0280     0.000000 ***\\\\n    off_diagonal_max              0.0018     0.023798 *\\\\n\\\\n  collider (n=28000):  R2 = 0.7676\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0024     0.000021 ***\\\\n    diag_dominance               -0.0027     0.000000 ***\\\\n    effective_rank               -0.0102     0.000000 ***\\\\n    condition_number              0.0138     0.000000 ***\\\\n    off_diagonal_max             -0.0202     0.000000 ***\\\\n\\\\n  exposure (n=28000):  R2 = 0.1126\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                 -0.0216     0.067199 \\\\n    diag_dominance               -0.1418     0.000000 ***\\\\n    effective_rank               -0.1207     0.000000 ***\\\\n    condition_number             -0.0265     0.018925 *\\\\n    off_diagonal_max              0.0802     0.000000 ***\\\\n\\\\n  mbias (n=28000):  R2 = 0.6074\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                 -0.0064     0.000000 ***\\\\n    diag_dominance               -0.0041     0.000000 ***\\\\n    effective_rank                0.0004     0.000011 ***\\\\n    condition_number              0.0057     0.000000 ***\\\\n    off_diagonal_max             -0.0155     0.000000 ***\\\\n\\\\n  iv (n=25000):  R2 = 0.0003\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap              -1614.3313     0.026782 *\\\\n    diag_dominance              102.1512     0.771360 \\\\n    effective_rank             -137.7242     0.564936 \\\\n    condition_number           1677.1661     0.018311 *\\\\n    off_diagonal_max             13.0868     0.977631 \\\\n\\\\n  frontdoor (n=28000):  R2 = 0.7278\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0307     0.000000 ***\\\\n    diag_dominance                0.0207     0.000000 ***\\\\n    effective_rank               -0.0194     0.000000 ***\\\\n    condition_number              0.0257     0.000000 ***\\\\n    off_diagonal_max             -0.0069     0.000000 ***\\\\n\\\\n  GLOBAL (n=193000):  R2 = 0.0000\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap               -236.1665     0.009614 **\\\\n    diag_dominance               13.9863     0.751018 \\\\n    effective_rank              -23.3073     0.495984 \\\\n    condition_number            231.0117     0.008425 **\\\\n    off_diagonal_max              1.2814     0.983499 \\\\n\\\\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\\\\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\\\\n\\\\nTotal: 25s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "fa4484ba-2e91-4065-b952-59fb3632c3b7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Plan 009: Pathological Matrices\\\\n  Device=cuda:0  M=1000  N=5,000,000\\\\n  K=[3, 5, 7]  topos=['confounding', 'mediation', 'collider', 'exposure', 'mbias', 'iv', 'frontdoor']\\\\n  Output -> /home/sonny/causal_annot_error_attrib/artifacts/plan009\\\\n\\\\n======================================================================\\\\n  confounding  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 2.001212  [DGP 0.6s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0120 max=0.0233 p95=0.0178  cat=0.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0529 max=0.0926 p95=0.0771  cat=0.0%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0958 max=0.1540 p95=0.1335  cat=0.0%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.1550 max=0.2302 p95=0.2034  cat=0.0%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.2989 max=0.2989 p95=0.2989  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.2860 max=0.2993 p95=0.2989  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.2076 max=0.2274 p95=0.2242  cat=0.0%\\\\n  [0.8s]\\\\n\\\\n======================================================================\\\\n  mediation  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 0.499863  [DGP 0.8s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0079 max=0.0158 p95=0.0126  cat=0.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0375 max=0.0679 p95=0.0565  cat=0.0%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0683 max=0.1170 p95=0.0997  cat=0.0%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.1213 max=0.1880 p95=0.1650  cat=0.0%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.3052 max=0.3052 p95=0.3052  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.2799 max=0.3052 p95=0.3049  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.1669 max=0.1950 p95=0.1917  cat=0.0%\\\\n  [1.0s]\\\\n\\\\n======================================================================\\\\n  collider  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 0.886449  [DGP 0.8s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0027 max=0.0057 p95=0.0044  cat=0.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0128 max=0.0251 p95=0.0200  cat=0.0%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0242 max=0.0446 p95=0.0375  cat=0.0%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.0442 max=0.0828 p95=0.0650  cat=0.0%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.1138 max=0.1138 p95=0.1138  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.1052 max=0.1194 p95=0.1162  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.1205 max=0.1273 p95=0.1265  cat=0.0%\\\\n  [1.0s]\\\\n\\\\n======================================================================\\\\n  exposure  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 0.999616  [DGP 0.3s]\\\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=1.0900 max=2.4945 p95=2.4848  cat=15.0%\\\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=1.1590 max=2.4823 p95=2.4301  cat=17.7%\\\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=1.1314 max=2.4782 p95=2.3646  cat=16.5%\\\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=1.0310 max=2.4173 p95=2.2333  cat=13.2%\\\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.9996 max=0.9996 p95=0.9996  cat=0.0%\\\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.9934 max=1.8672 p95=1.5004  cat=0.0%\\\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.9941 max=1.6695 p95=1.3601  cat=0.0%\\\\n  [0.4s]\\\\n\\\\n======================================================================\\\\n  mbias  K=3\\\\n======================================================================\\\\n  tau_true(C=I) = 1.012890  [DGP 0.8s]\\\\n    near_permutation     eps=0.01  : n=100\\\\n\\\\n... [截断: 输出过长，省略 19290 字符] ...\\\\n\\\\n       blocks=3  : n=1000  |bias| mean=0.2239 max=0.2309 p95=0.2299  cat=0.0%\\\\n  [1.8s]\\\\n\\\\n\\\\n================================================================================\\\\n  REGRESSION: |bias| ~ spectral_gap + diag_dominance + effective_rank\\\\n              + condition_number + off_diagonal_max\\\\n================================================================================\\\\n\\\\n  confounding (n=28000):  R2 = 0.7029\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0263     0.000000 ***\\\\n    diag_dominance                0.0176     0.000000 ***\\\\n    effective_rank               -0.0225     0.000000 ***\\\\n    condition_number              0.0191     0.000000 ***\\\\n    off_diagonal_max             -0.0147     0.000000 ***\\\\n\\\\n  mediation (n=28000):  R2 = 0.7465\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0322     0.000000 ***\\\\n    diag_dominance                0.0232     0.000000 ***\\\\n    effective_rank               -0.0237     0.000000 ***\\\\n    condition_number              0.0280     0.000000 ***\\\\n    off_diagonal_max              0.0018     0.023798 *\\\\n\\\\n  collider (n=28000):  R2 = 0.7676\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0024     0.000021 ***\\\\n    diag_dominance               -0.0027     0.000000 ***\\\\n    effective_rank               -0.0102     0.000000 ***\\\\n    condition_number              0.0138     0.000000 ***\\\\n    off_diagonal_max             -0.0202     0.000000 ***\\\\n\\\\n  exposure (n=28000):  R2 = 0.1126\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                 -0.0216     0.067199 \\\\n    diag_dominance               -0.1418     0.000000 ***\\\\n    effective_rank               -0.1207     0.000000 ***\\\\n    condition_number             -0.0265     0.018925 *\\\\n    off_diagonal_max              0.0802     0.000000 ***\\\\n\\\\n  mbias (n=28000):  R2 = 0.6074\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                 -0.0064     0.000000 ***\\\\n    diag_dominance               -0.0041     0.000000 ***\\\\n    effective_rank                0.0004     0.000011 ***\\\\n    condition_number              0.0057     0.000000 ***\\\\n    off_diagonal_max             -0.0155     0.000000 ***\\\\n\\\\n  iv (n=25000):  R2 = 0.0003\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap              -1614.3313     0.026782 *\\\\n    diag_dominance              102.1512     0.771360 \\\\n    effective_rank             -137.7242     0.564936 \\\\n    condition_number           1677.1661     0.018311 *\\\\n    off_diagonal_max             13.0868     0.977631 \\\\n\\\\n  frontdoor (n=28000):  R2 = 0.7278\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap                  0.0307     0.000000 ***\\\\n    diag_dominance                0.0207     0.000000 ***\\\\n    effective_rank               -0.0194     0.000000 ***\\\\n    condition_number              0.0257     0.000000 ***\\\\n    off_diagonal_max             -0.0069     0.000000 ***\\\\n\\\\n  GLOBAL (n=193000):  R2 = 0.0000\\\\n    Feature                         Coef      p-value\\\\n    -------------------------------------------------\\\\n    spectral_gap               -236.1665     0.009614 **\\\\n    diag_dominance               13.9863     0.751018 \\\\n    effective_rank              -23.3073     0.495984 \\\\n    condition_number            231.0117     0.008425 **\\\\n    off_diagonal_max              1.2814     0.983499 \\\\n\\\\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\\\\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\\\\n\\\\nTotal: 25s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Plan 009: Pathological Matrices\\n  Device=cuda:0  M=1000  N=5,000,000\\n  K=[3, 5, 7]  topos=['confounding', 'mediation', 'collider', 'exposure', 'mbias', 'iv', 'frontdoor']\\n  Output -> /home/sonny/causal_annot_error_attrib/artifacts/plan009\\n\\n======================================================================\\n  confounding  K=3\\n======================================================================\\n  tau_true(C=I) = 2.001212  [DGP 0.6s]\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0120 max=0.0233 p95=0.0178  cat=0.0%\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0529 max=0.0926 p95=0.0771  cat=0.0%\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0958 max=0.1540 p95=0.1335  cat=0.0%\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.1550 max=0.2302 p95=0.2034  cat=0.0%\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.2989 max=0.2989 p95=0.2989  cat=0.0%\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.2860 max=0.2993 p95=0.2989  cat=0.0%\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.2076 max=0.2274 p95=0.2242  cat=0.0%\\n  [0.8s]\\n\\n======================================================================\\n  mediation  K=3\\n======================================================================\\n  tau_true(C=I) = 0.499863  [DGP 0.8s]\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0079 max=0.0158 p95=0.0126  cat=0.0%\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0375 max=0.0679 p95=0.0565  cat=0.0%\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0683 max=0.1170 p95=0.0997  cat=0.0%\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.1213 max=0.1880 p95=0.1650  cat=0.0%\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.3052 max=0.3052 p95=0.3052  cat=0.0%\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.2799 max=0.3052 p95=0.3049  cat=0.0%\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.1669 max=0.1950 p95=0.1917  cat=0.0%\\n  [1.0s]\\n\\n======================================================================\\n  collider  K=3\\n======================================================================\\n  tau_true(C=I) = 0.886449  [DGP 0.8s]\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=0.0027 max=0.0057 p95=0.0044  cat=0.0%\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=0.0128 max=0.0251 p95=0.0200  cat=0.0%\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=0.0242 max=0.0446 p95=0.0375  cat=0.0%\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=0.0442 max=0.0828 p95=0.0650  cat=0.0%\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.1138 max=0.1138 p95=0.1138  cat=0.0%\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.1052 max=0.1194 p95=0.1162  cat=0.0%\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.1205 max=0.1273 p95=0.1265  cat=0.0%\\n  [1.0s]\\n\\n======================================================================\\n  exposure  K=3\\n======================================================================\\n  tau_true(C=I) = 0.999616  [DGP 0.3s]\\n    near_permutation     eps=0.01  : n=1000  |bias| mean=1.0900 max=2.4945 p95=2.4848  cat=15.0%\\n    near_permutation     eps=0.05  : n=1000  |bias| mean=1.1590 max=2.4823 p95=2.4301  cat=17.7%\\n    near_permutation     eps=0.1   : n=1000  |bias| mean=1.1314 max=2.4782 p95=2.3646  cat=16.5%\\n    near_permutation     eps=0.2   : n=1000  |bias| mean=1.0310 max=2.4173 p95=2.2333  cat=13.2%\\n    rank_deficient       rank=1    : n=1000  |bias| mean=0.9996 max=0.9996 p95=0.9996  cat=0.0%\\n    rank_deficient       rank=2    : n=1000  |bias| mean=0.9934 max=1.8672 p95=1.5004  cat=0.0%\\n    block_diagonal       blocks=2  : n=1000  |bias| mean=0.9941 max=1.6695 p95=1.3601  cat=0.0%\\n  [0.4s]\\n\\n======================================================================\\n  mbias  K=3\\n======================================================================\\n  tau_true(C=I) = 1.012890  [DGP 0.8s]\\n    near_permutation     eps=0.01  : n=100\\n\\n... [截断: 输出过长，省略 19290 字符] ...\\n\\n       blocks=3  : n=1000  |bias| mean=0.2239 max=0.2309 p95=0.2299  cat=0.0%\\n  [1.8s]\\n\\n\\n================================================================================\\n  REGRESSION: |bias| ~ spectral_gap + diag_dominance + effective_rank\\n              + condition_number + off_diagonal_max\\n================================================================================\\n\\n  confounding (n=28000):  R2 = 0.7029\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap                  0.0263     0.000000 ***\\n    diag_dominance                0.0176     0.000000 ***\\n    effective_rank               -0.0225     0.000000 ***\\n    condition_number              0.0191     0.000000 ***\\n    off_diagonal_max             -0.0147     0.000000 ***\\n\\n  mediation (n=28000):  R2 = 0.7465\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap                  0.0322     0.000000 ***\\n    diag_dominance                0.0232     0.000000 ***\\n    effective_rank               -0.0237     0.000000 ***\\n    condition_number              0.0280     0.000000 ***\\n    off_diagonal_max              0.0018     0.023798 *\\n\\n  collider (n=28000):  R2 = 0.7676\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap                  0.0024     0.000021 ***\\n    diag_dominance               -0.0027     0.000000 ***\\n    effective_rank               -0.0102     0.000000 ***\\n    condition_number              0.0138     0.000000 ***\\n    off_diagonal_max             -0.0202     0.000000 ***\\n\\n  exposure (n=28000):  R2 = 0.1126\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap                 -0.0216     0.067199 \\n    diag_dominance               -0.1418     0.000000 ***\\n    effective_rank               -0.1207     0.000000 ***\\n    condition_number             -0.0265     0.018925 *\\n    off_diagonal_max              0.0802     0.000000 ***\\n\\n  mbias (n=28000):  R2 = 0.6074\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap                 -0.0064     0.000000 ***\\n    diag_dominance               -0.0041     0.000000 ***\\n    effective_rank                0.0004     0.000011 ***\\n    condition_number              0.0057     0.000000 ***\\n    off_diagonal_max             -0.0155     0.000000 ***\\n\\n  iv (n=25000):  R2 = 0.0003\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap              -1614.3313     0.026782 *\\n    diag_dominance              102.1512     0.771360 \\n    effective_rank             -137.7242     0.564936 \\n    condition_number           1677.1661     0.018311 *\\n    off_diagonal_max             13.0868     0.977631 \\n\\n  frontdoor (n=28000):  R2 = 0.7278\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap                  0.0307     0.000000 ***\\n    diag_dominance                0.0207     0.000000 ***\\n    effective_rank               -0.0194     0.000000 ***\\n    condition_number              0.0257     0.000000 ***\\n    off_diagonal_max             -0.0069     0.000000 ***\\n\\n  GLOBAL (n=193000):  R2 = 0.0000\\n    Feature                         Coef      p-value\\n    -------------------------------------------------\\n    spectral_gap               -236.1665     0.009614 **\\n    diag_dominance               13.9863     0.751018 \\n    effective_rank              -23.3073     0.495984 \\n    condition_number            231.0117     0.008425 **\\n    off_diagonal_max              1.2814     0.983499 \\n\\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\\n\\nTotal: 25s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HCHvrhgWDm13uAeYYDNExr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "ls -la /home/sonny/runs/causal_annot_error_attrib/",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "dd9abdbc-ebd4-41dd-9acc-bf3aad2ac8f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLR2uwyeEdzCEL37GZj2zU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1366,
+                "cache_read_input_tokens": 37084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1366
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T18:49:49.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ry5r3S8vwFekaJdjyb6iC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 204\\\\ndrwxrwxr-x 2 sonny sonny   4096 May 20 11:41 .\\\\ndrwxrwxr-x 4 sonny sonny   4096 May 20 11:42 ..\\\\n-rw-rw-r-- 1 sonny sonny 167126 May 20 11:46 pathological_bias_summary.json\\\\n-rw-rw-r-- 1 sonny sonny  27290 May 20 11:46 plan009_run.log\\\\n-rw-rw-r-- 1 sonny sonny   3550 May 20 11:46 regression_results.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "54b6332c-c67f-44c2-92b3-1c1f033d74bb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 204\\\\ndrwxrwxr-x 2 sonny sonny   4096 May 20 11:41 .\\\\ndrwxrwxr-x 4 sonny sonny   4096 May 20 11:42 ..\\\\n-rw-rw-r-- 1 sonny sonny 167126 May 20 11:46 pathological_bias_summary.json\\\\n-rw-rw-r-- 1 sonny sonny  27290 May 20 11:46 plan009_run.log\\\\n-rw-rw-r-- 1 sonny sonny   3550 May 20 11:46 regression_results.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 204\\ndrwxrwxr-x 2 sonny sonny   4096 May 20 11:41 .\\ndrwxrwxr-x 4 sonny sonny   4096 May 20 11:42 ..\\n-rw-rw-r-- 1 sonny sonny 167126 May 20 11:46 pathological_bias_summary.json\\n-rw-rw-r-- 1 sonny sonny  27290 May 20 11:46 plan009_run.log\\n-rw-rw-r-- 1 sonny sonny   3550 May 20 11:46 regression_results.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T18:49:50.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HCHvrhgWDm13uAeYYDNExr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 44\\\\ndrwxrwxr-x 2 sonny sonny  4096 May 20 11:49 .\\\\ndrwxrwxr-x 6 sonny sonny  4096 May 20 11:37 ..\\\\n-rw-rw-r-- 1 sonny sonny   777 May 20 11:49 plan007_correction_guidance.log\\\\n-rw-rw-r-- 1 sonny sonny 27302 May 20 11:46 plan009_pathological_matrices.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "9c79a3bb-c7c6-4796-b09b-4e1f985118b2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 44\\\\ndrwxrwxr-x 2 sonny sonny  4096 May 20 11:49 .\\\\ndrwxrwxr-x 6 sonny sonny  4096 May 20 11:37 ..\\\\n-rw-rw-r-- 1 sonny sonny   777 May 20 11:49 plan007_correction_guidance.log\\\\n-rw-rw-r-- 1 sonny sonny 27302 May 20 11:46 plan009_pathological_matrices.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxrwxr-x 2 sonny sonny  4096 May 20 11:49 .\\ndrwxrwxr-x 6 sonny sonny  4096 May 20 11:37 ..\\n-rw-rw-r-- 1 sonny sonny   777 May 20 11:49 plan007_correction_guidance.log\\n-rw-rw-r-- 1 sonny sonny 27302 May 20 11:46 plan009_pathological_matrices.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The plan009 script has actually already completed successfully! The log shows it ran to completion in 25 seconds, producing all artifacts:\n\n- `pathological_bias_summary.json` (167KB)\n- `regression_results.txt` (3.5KB)\n- `plan009_run.log` (27KB)\n\nThe log ends with:\n```\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json\n\n\nSaved /home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt\n\nTotal: 25s\n```\n\nSo plan009 is not failing — it already completed successfully. Let me report this to the user.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "c09c0ab5-4c60-440a-945f-fa368fd6cc55",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Czs132G4SkYDX5mRyjwZS5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4304,
+                "cache_read_input_tokens": 38450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4304
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan009 已经成功完成，不需要修复。**\n\n日志显示脚本于 2026-05-20 11:41 启动，25 秒内跑完全部 7 拓扑 × 3 个 K 值 × 全部病理矩阵类型（M=1000, N=5M），正常退出。\n\n产出文件（`artifacts/plan009/`）：\n- `pathological_bias_summary.json` — 167 KB\n- `regression_results.txt` — 3.5 KB\n- `plan009_run.log` — 27 KB\n\n关键结果摘要：\n- **confounding/mediation/collider/frontdoor**: R² = 0.61–0.77，spectral_gap 和 condition_number 显著正相关 |bias|\n- **exposure**: R² = 0.11，catastrophic bias 高发（near_perm eps=0.01 时 15% 超阈值）\n- **iv**: R² ≈ 0，回归基本无解释力（IV 估计量对矩阵特征不敏感）\n- **GLOBAL**: R² ≈ 0，跨拓扑聚合后特征解释力消失（符合预期，不同拓扑的 bias 机制不同）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "uuid": "4faba0c6-2479-44b0-b6b5-b90019549a8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Czs132G4SkYDX5mRyjwZS5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4304,
+                "cache_read_input_tokens": 38450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4304
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan009 已经成功完成，不需要修复。**\n\n日志显示脚本于 2026-05-20 11:41 启动，25 秒内跑完全部 7 拓扑 × 3 个 K 值 × 全部病理矩阵类型（M=1000, N=5M），正常退出。\n\n产出文件（`artifacts/plan009/`）：\n- `pathological_bias_summary.json` — 167 KB\n- `regression_results.txt` — 3.5 KB\n- `plan009_run.log` — 27 KB\n\n关键结果摘要：\n- **confounding/mediation/collider/frontdoor**: R² = 0.61–0.77，spectral_gap 和 condition_number 显著正相关 |bias|\n- **exposure**: R² = 0.11，catastrophic bias 高发（near_perm eps=0.01 时 15% 超阈值）\n- **iv**: R² ≈ 0，回归基本无解释力（IV 估计量对矩阵特征不敏感）\n- **GLOBAL**: R² ≈ 0，跨拓扑聚合后特征解释力消失（符合预期，不同拓扑的 bias 机制不同）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 38371,
+            "duration_api_ms": 35031,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "b40a3d1e-d566-4cbe-932c-cc3018c1a0c3",
+            "total_cost_usd": 0.29644125000000004,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 30913,
+              "cache_read_input_tokens": 111894,
+              "output_tokens": 1832,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 30913,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 543,
+                  "cache_read_input_tokens": 38450,
+                  "cache_creation_input_tokens": 4304,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4304
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1353,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001448,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1832,
+                "cacheReadInputTokens": 111894,
+                "cacheCreationInputTokens": 30913,
+                "webSearchRequests": 0,
+                "costUSD": 0.29499325000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c5cafc43-8f6a-4eb0-bf77-937b77b7c3c6"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-plan009-diagnose-resubmit.md"
+}

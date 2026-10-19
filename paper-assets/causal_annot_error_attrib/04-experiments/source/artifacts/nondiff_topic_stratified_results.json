@@ -1,0 +1,6291 @@
+{
+  "experiment": "nondiff_topic_stratified",
+  "dataset": "VAST",
+  "approach": "simulation-based bootstrap (no raw per-sample predictions available)",
+  "description": "Since raw per-sample LLM predictions are not available (only aggregated confusion matrices), we simulate what per-topic confusion matrices would look like under the non-differential null: P(A*|A, topic) = P(A*|A). We draw bootstrap samples using the overall CM and per-topic label distributions from test.jsonl. The resulting distribution of max-deviations characterizes the expected range of topic-to-topic variation due to sampling noise alone.",
+  "parameters": {
+    "min_topic_samples": 10,
+    "n_bootstrap": 10000,
+    "seed": 42,
+    "n_topics_qualified": 19,
+    "n_samples_covered": 387,
+    "n_total_records": 1000
+  },
+  "topic_distribution": {
+    "bike lane": {
+      "n": 12,
+      "labels": {
+        "Con": 3,
+        "Pro": 5,
+        "Neutral": 4
+      }
+    },
+    "christian": {
+      "n": 42,
+      "labels": {
+        "Con": 21,
+        "Pro": 5,
+        "Neutral": 16
+      }
+    },
+    "college": {
+      "n": 41,
+      "labels": {
+        "Con": 5,
+        "Pro": 23,
+        "Neutral": 13
+      }
+    },
+    "doping": {
+      "n": 10,
+      "labels": {
+        "Pro": 1,
+        "Con": 4,
+        "Neutral": 5
+      }
+    },
+    "drug addict": {
+      "n": 10,
+      "labels": {
+        "Con": 6,
+        "Neutral": 4
+      }
+    },
+    "election": {
+      "n": 37,
+      "labels": {
+        "Pro": 22,
+        "Con": 6,
+        "Neutral": 9
+      }
+    },
+    "gun": {
+      "n": 17,
+      "labels": {
+        "Con": 8,
+        "Pro": 3,
+        "Neutral": 6
+      }
+    },
+    "harmful atmosphere gay": {
+      "n": 37,
+      "labels": {
+        "Con": 24,
+        "Neutral": 13
+      }
+    },
+    "high speed rail": {
+      "n": 13,
+      "labels": {
+        "Pro": 6,
+        "Con": 1,
+        "Neutral": 6
+      }
+    },
+    "humanity program": {
+      "n": 31,
+      "labels": {
+        "Pro": 13,
+        "Con": 6,
+        "Neutral": 12
+      }
+    },
+    "legislation": {
+      "n": 11,
+      "labels": {
+        "Con": 4,
+        "Pro": 1,
+        "Neutral": 6
+      }
+    },
+    "medicare": {
+      "n": 16,
+      "labels": {
+        "Con": 2,
+        "Pro": 8,
+        "Neutral": 6
+      }
+    },
+    "new york 's": {
+      "n": 11,
+      "labels": {
+        "Con": 5,
+        "Pro": 5,
+        "Neutral": 1
+      }
+    },
+    "new york 's bike lane": {
+      "n": 28,
+      "labels": {
+        "Pro": 10,
+        "Con": 8,
+        "Neutral": 10
+      }
+    },
+    "olympics": {
+      "n": 14,
+      "labels": {
+        "Pro": 5,
+        "Con": 2,
+        "Neutral": 7
+      }
+    },
+    "stability": {
+      "n": 11,
+      "labels": {
+        "Pro": 9,
+        "Con": 1,
+        "Neutral": 1
+      }
+    },
+    "tenure": {
+      "n": 16,
+      "labels": {
+        "Pro": 4,
+        "Con": 7,
+        "Neutral": 5
+      }
+    },
+    "treatment": {
+      "n": 13,
+      "labels": {
+        "Pro": 6,
+        "Con": 4,
+        "Neutral": 3
+      }
+    },
+    "voting": {
+      "n": 17,
+      "labels": {
+        "Pro": 10,
+        "Con": 3,
+        "Neutral": 4
+      }
+    }
+  },
+  "model_configs": [
+    {
+      "model": "deepseek",
+      "prompt_type": "few-shot-3",
+      "config_key": "deepseek_few-shot-3",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.7985,
+          0.3212,
+          0.5498
+        ],
+        [
+          0.1017,
+          0.5139,
+          0.2888
+        ],
+        [
+          0.0998,
+          0.1649,
+          0.1614
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1500,
+      "accuracy": 0.4967,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8386,
+        "grand_max_deviation_p95": 0.9002,
+        "grand_max_deviation_p99": 0.9002,
+        "grand_max_deviation_mean": 0.8162,
+        "grand_max_deviation_std": 0.097
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3588,
+          "expected_max_dev_p95": 0.5669,
+          "expected_max_dev_p99": 0.7112,
+          "representative_cm": [
+            [
+              0.6667,
+              0.6,
+              0.5
+            ],
+            [
+              0.3333,
+              0.2,
+              0.5
+            ],
+            [
+              0.0,
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2648,
+          "expected_max_dev_p95": 0.4861,
+          "expected_max_dev_p99": 0.5139,
+          "representative_cm": [
+            [
+              0.8571,
+              0.2,
+              0.75
+            ],
+            [
+              0.0476,
+              0.8,
+              0.1875
+            ],
+            [
+              0.0952,
+              0.0,
+              0.0625
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2201,
+          "expected_max_dev_p95": 0.3985,
+          "expected_max_dev_p99": 0.5002,
+          "representative_cm": [
+            [
+              0.8,
+              0.3478,
+              0.4615
+            ],
+            [
+              0.2,
+              0.4783,
+              0.3077
+            ],
+            [
+              0.0,
+              0.1739,
+              0.2308
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.6099,
+          "expected_max_dev_p95": 0.8351,
+          "expected_max_dev_p99": 0.8351,
+          "representative_cm": [
+            [
+              1.0,
+              1.0,
+              0.6
+            ],
+            [
+              0.0,
+              0.0,
+              0.2
+            ],
+            [
+              0.0,
+              0.0,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.293,
+          "expected_max_dev_p95": 0.5498,
+          "expected_max_dev_p99": 0.5886,
+          "representative_cm": [
+            [
+              0.6667,
+              0.0,
+              0.75
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.3333,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2298,
+          "expected_max_dev_p95": 0.3983,
+          "expected_max_dev_p99": 0.4652,
+          "representative_cm": [
+            [
+              1.0,
+              0.2273,
+              0.8889
+            ],
+            [
+              0.0,
+              0.5909,
+              0.1111
+            ],
+            [
+              0.0,
+              0.1818,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3586,
+          "expected_max_dev_p95": 0.5445,
+          "expected_max_dev_p99": 0.6788,
+          "representative_cm": [
+            [
+              0.875,
+              0.3333,
+              0.6667
+            ],
+            [
+              0.0,
+              0.6667,
+              0.0
+            ],
+            [
+              0.125,
+              0.0,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1568,
+          "expected_max_dev_p95": 0.2964,
+          "expected_max_dev_p99": 0.3733,
+          "representative_cm": [
+            [
+              0.7083,
+              0.0,
+              0.3077
+            ],
+            [
+              0.2083,
+              0.0,
+              0.4615
+            ],
+            [
+              0.0833,
+              0.0,
+              0.2308
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4148,
+          "expected_max_dev_p95": 0.9002,
+          "expected_max_dev_p99": 0.9002,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.5
+            ],
+            [
+              0.0,
+              0.3333,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1667,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2287,
+          "expected_max_dev_p95": 0.3831,
+          "expected_max_dev_p99": 0.4652,
+          "representative_cm": [
+            [
+              0.8333,
+              0.3077,
+              0.6667
+            ],
+            [
+              0.1667,
+              0.5385,
+              0.25
+            ],
+            [
+              0.0,
+              0.1538,
+              0.0833
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.6056,
+          "expected_max_dev_p95": 0.8351,
+          "expected_max_dev_p99": 0.8351,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              1.0,
+              0.3333
+            ],
+            [
+              0.25,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3394,
+          "expected_max_dev_p95": 0.5445,
+          "expected_max_dev_p99": 0.8983,
+          "representative_cm": [
+            [
+              0.5,
+              0.375,
+              0.5
+            ],
+            [
+              0.5,
+              0.375,
+              0.3333
+            ],
+            [
+              0.0,
+              0.25,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5897,
+          "expected_max_dev_p95": 0.8386,
+          "expected_max_dev_p99": 0.8386,
+          "representative_cm": [
+            [
+              0.8,
+              0.2,
+              0.0
+            ],
+            [
+              0.0,
+              0.6,
+              0.0
+            ],
+            [
+              0.2,
+              0.2,
+              1.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2357,
+          "expected_max_dev_p95": 0.3861,
+          "expected_max_dev_p99": 0.4502,
+          "representative_cm": [
+            [
+              0.875,
+              0.5,
+              0.6
+            ],
+            [
+              0.125,
+              0.3,
+              0.3
+            ],
+            [
+              0.0,
+              0.2,
+              0.1
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3599,
+          "expected_max_dev_p95": 0.5683,
+          "expected_max_dev_p99": 0.8983,
+          "representative_cm": [
+            [
+              1.0,
+              0.2,
+              0.7143
+            ],
+            [
+              0.0,
+              0.6,
+              0.1429
+            ],
+            [
+              0.0,
+              0.2,
+              0.1429
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.6484,
+          "expected_max_dev_p95": 0.9002,
+          "expected_max_dev_p99": 0.9002,
+          "representative_cm": [
+            [
+              0.0,
+              0.4444,
+              1.0
+            ],
+            [
+              1.0,
+              0.4444,
+              0.0
+            ],
+            [
+              0.0,
+              0.1111,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.3377,
+          "expected_max_dev_p95": 0.5139,
+          "expected_max_dev_p99": 0.6788,
+          "representative_cm": [
+            [
+              0.5714,
+              0.25,
+              0.4
+            ],
+            [
+              0.2857,
+              0.75,
+              0.2
+            ],
+            [
+              0.1429,
+              0.0,
+              0.4
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3705,
+          "expected_max_dev_p95": 0.5498,
+          "expected_max_dev_p99": 0.7112,
+          "representative_cm": [
+            [
+              0.75,
+              0.3333,
+              0.6667
+            ],
+            [
+              0.25,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3323,
+          "expected_max_dev_p95": 0.5669,
+          "expected_max_dev_p99": 0.7112,
+          "representative_cm": [
+            [
+              1.0,
+              0.2,
+              0.75
+            ],
+            [
+              0.0,
+              0.7,
+              0.25
+            ],
+            [
+              0.0,
+              0.1,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "deepseek",
+      "prompt_type": "few-shot-5",
+      "config_key": "deepseek_few-shot-5",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.7853,
+          0.3105,
+          0.5398
+        ],
+        [
+          0.1149,
+          0.5268,
+          0.3068
+        ],
+        [
+          0.0998,
+          0.1627,
+          0.1534
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1500,
+      "accuracy": 0.4933,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8466,
+        "grand_max_deviation_p95": 0.9002,
+        "grand_max_deviation_p99": 0.9002,
+        "grand_max_deviation_mean": 0.8148,
+        "grand_max_deviation_std": 0.0996
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3634,
+          "expected_max_dev_p95": 0.5669,
+          "expected_max_dev_p99": 0.7853,
+          "representative_cm": [
+            [
+              1.0,
+              0.2,
+              0.25
+            ],
+            [
+              0.0,
+              0.4,
+              0.25
+            ],
+            [
+              0.0,
+              0.4,
+              0.5
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2634,
+          "expected_max_dev_p95": 0.4895,
+          "expected_max_dev_p99": 0.5268,
+          "representative_cm": [
+            [
+              0.8095,
+              0.6,
+              0.5625
+            ],
+            [
+              0.0952,
+              0.2,
+              0.375
+            ],
+            [
+              0.0952,
+              0.2,
+              0.0625
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2243,
+          "expected_max_dev_p95": 0.3853,
+          "expected_max_dev_p99": 0.5002,
+          "representative_cm": [
+            [
+              0.8,
+              0.2174,
+              0.6154
+            ],
+            [
+              0.0,
+              0.5217,
+              0.0769
+            ],
+            [
+              0.2,
+              0.2609,
+              0.3077
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.6011,
+          "expected_max_dev_p95": 0.8373,
+          "expected_max_dev_p99": 0.8373,
+          "representative_cm": [
+            [
+              1.0,
+              1.0,
+              0.2
+            ],
+            [
+              0.0,
+              0.0,
+              0.6
+            ],
+            [
+              0.0,
+              0.0,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2971,
+          "expected_max_dev_p95": 0.5398,
+          "expected_max_dev_p99": 0.6186,
+          "representative_cm": [
+            [
+              0.6667,
+              0.0,
+              0.5
+            ],
+            [
+              0.1667,
+              0.0,
+              0.25
+            ],
+            [
+              0.1667,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2316,
+          "expected_max_dev_p95": 0.3851,
+          "expected_max_dev_p99": 0.471,
+          "representative_cm": [
+            [
+              0.8333,
+              0.2273,
+              0.6667
+            ],
+            [
+              0.1667,
+              0.5455,
+              0.2222
+            ],
+            [
+              0.0,
+              0.2273,
+              0.1111
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.359,
+          "expected_max_dev_p95": 0.5268,
+          "expected_max_dev_p99": 0.6895,
+          "representative_cm": [
+            [
+              0.875,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              0.3333,
+              0.5
+            ],
+            [
+              0.125,
+              0.6667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1575,
+          "expected_max_dev_p95": 0.3068,
+          "expected_max_dev_p99": 0.3833,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.4615
+            ],
+            [
+              0.0,
+              0.0,
+              0.4615
+            ],
+            [
+              0.25,
+              0.0,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4234,
+          "expected_max_dev_p95": 0.9002,
+          "expected_max_dev_p99": 0.9002,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              0.5
+            ],
+            [
+              0.0,
+              0.6667,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2292,
+          "expected_max_dev_p95": 0.3818,
+          "expected_max_dev_p99": 0.452,
+          "representative_cm": [
+            [
+              0.8333,
+              0.1538,
+              0.6667
+            ],
+            [
+              0.1667,
+              0.6923,
+              0.1667
+            ],
+            [
+              0.0,
+              0.1538,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.6025,
+          "expected_max_dev_p95": 0.8373,
+          "expected_max_dev_p99": 0.8373,
+          "representative_cm": [
+            [
+              0.5,
+              0.0,
+              0.6667
+            ],
+            [
+              0.25,
+              1.0,
+              0.3333
+            ],
+            [
+              0.25,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3486,
+          "expected_max_dev_p95": 0.7853,
+          "expected_max_dev_p99": 0.8851,
+          "representative_cm": [
+            [
+              1.0,
+              0.25,
+              0.6667
+            ],
+            [
+              0.0,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.25,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5963,
+          "expected_max_dev_p95": 0.8466,
+          "expected_max_dev_p99": 0.8466,
+          "representative_cm": [
+            [
+              0.6,
+              0.6,
+              0.0
+            ],
+            [
+              0.0,
+              0.4,
+              0.0
+            ],
+            [
+              0.4,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2374,
+          "expected_max_dev_p95": 0.3895,
+          "expected_max_dev_p99": 0.4602,
+          "representative_cm": [
+            [
+              0.875,
+              0.1,
+              0.6
+            ],
+            [
+              0.125,
+              0.5,
+              0.3
+            ],
+            [
+              0.0,
+              0.4,
+              0.1
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3628,
+          "expected_max_dev_p95": 0.6373,
+          "expected_max_dev_p99": 0.9002,
+          "representative_cm": [
+            [
+              1.0,
+              0.4,
+              0.8571
+            ],
+            [
+              0.0,
+              0.4,
+              0.1429
+            ],
+            [
+              0.0,
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.6558,
+          "expected_max_dev_p95": 0.9002,
+          "expected_max_dev_p99": 0.9002,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              1.0
+            ],
+            [
+              0.0,
+              0.2222,
+              0.0
+            ],
+            [
+              0.0,
+              0.4444,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.341,
+          "expected_max_dev_p95": 0.5268,
+          "expected_max_dev_p99": 0.6895,
+          "representative_cm": [
+            [
+              0.7143,
+              0.75,
+              0.4
+            ],
+            [
+              0.0,
+              0.25,
+              0.6
+            ],
+            [
+              0.2857,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3706,
+          "expected_max_dev_p95": 0.5398,
+          "expected_max_dev_p99": 0.6932,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.6667
+            ],
+            [
+              0.0,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3366,
+          "expected_max_dev_p95": 0.5669,
+          "expected_max_dev_p99": 0.6932,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              0.8,
+              0.25
+            ],
+            [
+              0.0,
+              0.2,
+              0.25
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "deepseek",
+      "prompt_type": "zero-shot",
+      "config_key": "deepseek_zero-shot",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.811,
+          0.3042,
+          0.7143
+        ],
+        [
+          0.1115,
+          0.5646,
+          0.1429
+        ],
+        [
+          0.0775,
+          0.1313,
+          0.1429
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1000,
+      "accuracy": 0.689,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8687,
+        "grand_max_deviation_p95": 0.9225,
+        "grand_max_deviation_p99": 0.9225,
+        "grand_max_deviation_mean": 0.8224,
+        "grand_max_deviation_std": 0.1197
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3367,
+          "expected_max_dev_p95": 0.5646,
+          "expected_max_dev_p99": 0.7143,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.75
+            ],
+            [
+              0.0,
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.2,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2511,
+          "expected_max_dev_p95": 0.4687,
+          "expected_max_dev_p99": 0.5646,
+          "representative_cm": [
+            [
+              0.7619,
+              0.2,
+              0.625
+            ],
+            [
+              0.1905,
+              0.8,
+              0.1875
+            ],
+            [
+              0.0476,
+              0.0,
+              0.1875
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2075,
+          "expected_max_dev_p95": 0.3956,
+          "expected_max_dev_p99": 0.4885,
+          "representative_cm": [
+            [
+              1.0,
+              0.2609,
+              0.8462
+            ],
+            [
+              0.0,
+              0.6522,
+              0.0769
+            ],
+            [
+              0.0,
+              0.087,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.5768,
+          "expected_max_dev_p95": 0.8687,
+          "expected_max_dev_p99": 0.8687,
+          "representative_cm": [
+            [
+              0.5,
+              0.0,
+              1.0
+            ],
+            [
+              0.5,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2649,
+          "expected_max_dev_p95": 0.4643,
+          "expected_max_dev_p99": 0.6071,
+          "representative_cm": [
+            [
+              0.8333,
+              0.0,
+              0.75
+            ],
+            [
+              0.1667,
+              0.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2129,
+          "expected_max_dev_p95": 0.381,
+          "expected_max_dev_p99": 0.4776,
+          "representative_cm": [
+            [
+              1.0,
+              0.1818,
+              0.6667
+            ],
+            [
+              0.0,
+              0.7273,
+              0.2222
+            ],
+            [
+              0.0,
+              0.0909,
+              0.1111
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3435,
+          "expected_max_dev_p95": 0.5646,
+          "expected_max_dev_p99": 0.6958,
+          "representative_cm": [
+            [
+              0.875,
+              0.3333,
+              0.8333
+            ],
+            [
+              0.125,
+              0.6667,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1408,
+          "expected_max_dev_p95": 0.2527,
+          "expected_max_dev_p99": 0.3297,
+          "representative_cm": [
+            [
+              0.8333,
+              0.0,
+              0.8462
+            ],
+            [
+              0.125,
+              0.0,
+              0.1538
+            ],
+            [
+              0.0417,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3888,
+          "expected_max_dev_p95": 0.9225,
+          "expected_max_dev_p99": 0.9225,
+          "representative_cm": [
+            [
+              0.0,
+              0.3333,
+              0.8333
+            ],
+            [
+              0.0,
+              0.5,
+              0.1667
+            ],
+            [
+              1.0,
+              0.1667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2158,
+          "expected_max_dev_p95": 0.3596,
+          "expected_max_dev_p99": 0.4776,
+          "representative_cm": [
+            [
+              0.6667,
+              0.3077,
+              0.5833
+            ],
+            [
+              0.3333,
+              0.6923,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.5735,
+          "expected_max_dev_p95": 0.8687,
+          "expected_max_dev_p99": 0.8687,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3202,
+          "expected_max_dev_p95": 0.5238,
+          "expected_max_dev_p99": 0.8885,
+          "representative_cm": [
+            [
+              1.0,
+              0.625,
+              0.6667
+            ],
+            [
+              0.0,
+              0.375,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.4797,
+          "expected_max_dev_p95": 0.8571,
+          "expected_max_dev_p99": 0.8571,
+          "representative_cm": [
+            [
+              0.8,
+              0.4,
+              0.0
+            ],
+            [
+              0.2,
+              0.4,
+              0.0
+            ],
+            [
+              0.0,
+              0.2,
+              1.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2201,
+          "expected_max_dev_p95": 0.3646,
+          "expected_max_dev_p99": 0.436,
+          "representative_cm": [
+            [
+              0.75,
+              0.4,
+              0.7
+            ],
+            [
+              0.125,
+              0.5,
+              0.3
+            ],
+            [
+              0.125,
+              0.1,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3386,
+          "expected_max_dev_p95": 0.5646,
+          "expected_max_dev_p99": 0.8885,
+          "representative_cm": [
+            [
+              0.5,
+              0.2,
+              0.2857
+            ],
+            [
+              0.5,
+              0.8,
+              0.1429
+            ],
+            [
+              0.0,
+              0.0,
+              0.5714
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5416,
+          "expected_max_dev_p95": 0.9225,
+          "expected_max_dev_p99": 0.9225,
+          "representative_cm": [
+            [
+              1.0,
+              0.2222,
+              1.0
+            ],
+            [
+              0.0,
+              0.7778,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.3189,
+          "expected_max_dev_p95": 0.5143,
+          "expected_max_dev_p99": 0.6575,
+          "representative_cm": [
+            [
+              0.8571,
+              0.5,
+              0.6
+            ],
+            [
+              0.0,
+              0.25,
+              0.2
+            ],
+            [
+              0.1429,
+              0.25,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3335,
+          "expected_max_dev_p95": 0.561,
+          "expected_max_dev_p99": 0.7143,
+          "representative_cm": [
+            [
+              0.75,
+              0.3333,
+              1.0
+            ],
+            [
+              0.25,
+              0.6667,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3098,
+          "expected_max_dev_p95": 0.5551,
+          "expected_max_dev_p99": 0.7143,
+          "representative_cm": [
+            [
+              1.0,
+              0.3,
+              1.0
+            ],
+            [
+              0.0,
+              0.6,
+              0.0
+            ],
+            [
+              0.0,
+              0.1,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "llama4",
+      "prompt_type": "few-shot-3",
+      "config_key": "llama4_few-shot-3",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.8004,
+          0.3126,
+          0.5598
+        ],
+        [
+          0.1808,
+          0.6595,
+          0.4044
+        ],
+        [
+          0.0188,
+          0.0278,
+          0.0359
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1500,
+      "accuracy": 0.5006666666666667,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8004,
+        "grand_max_deviation_p95": 0.9722,
+        "grand_max_deviation_p99": 0.9812,
+        "grand_max_deviation_mean": 0.7506,
+        "grand_max_deviation_std": 0.1366
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3242,
+          "expected_max_dev_p95": 0.5598,
+          "expected_max_dev_p99": 0.6595,
+          "representative_cm": [
+            [
+              0.6667,
+              0.2,
+              0.75
+            ],
+            [
+              0.3333,
+              0.8,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2205,
+          "expected_max_dev_p95": 0.3723,
+          "expected_max_dev_p99": 0.4874,
+          "representative_cm": [
+            [
+              0.9524,
+              0.8,
+              0.625
+            ],
+            [
+              0.0,
+              0.2,
+              0.375
+            ],
+            [
+              0.0476,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2047,
+          "expected_max_dev_p95": 0.4004,
+          "expected_max_dev_p99": 0.4192,
+          "representative_cm": [
+            [
+              1.0,
+              0.2609,
+              0.6154
+            ],
+            [
+              0.0,
+              0.6957,
+              0.3846
+            ],
+            [
+              0.0,
+              0.0435,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.4815,
+          "expected_max_dev_p95": 0.6874,
+          "expected_max_dev_p99": 0.9722,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.4
+            ],
+            [
+              0.25,
+              1.0,
+              0.4
+            ],
+            [
+              0.0,
+              0.0,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2633,
+          "expected_max_dev_p95": 0.467,
+          "expected_max_dev_p99": 0.5956,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2134,
+          "expected_max_dev_p95": 0.3734,
+          "expected_max_dev_p99": 0.4859,
+          "representative_cm": [
+            [
+              0.8333,
+              0.3636,
+              0.6667
+            ],
+            [
+              0.0,
+              0.6364,
+              0.3333
+            ],
+            [
+              0.1667,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3154,
+          "expected_max_dev_p95": 0.5508,
+          "expected_max_dev_p99": 0.6874,
+          "representative_cm": [
+            [
+              0.875,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              1.0,
+              0.5
+            ],
+            [
+              0.125,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1464,
+          "expected_max_dev_p95": 0.2879,
+          "expected_max_dev_p99": 0.3633,
+          "representative_cm": [
+            [
+              0.9167,
+              0.0,
+              0.5385
+            ],
+            [
+              0.0833,
+              0.0,
+              0.4615
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3878,
+          "expected_max_dev_p95": 0.8192,
+          "expected_max_dev_p99": 0.9812,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.1667
+            ],
+            [
+              0.0,
+              0.5,
+              0.8333
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2094,
+          "expected_max_dev_p95": 0.3456,
+          "expected_max_dev_p99": 0.4859,
+          "representative_cm": [
+            [
+              0.5,
+              0.3846,
+              0.8333
+            ],
+            [
+              0.5,
+              0.6154,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4808,
+          "expected_max_dev_p95": 0.6874,
+          "expected_max_dev_p99": 0.9722,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.5
+            ],
+            [
+              0.25,
+              1.0,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3139,
+          "expected_max_dev_p95": 0.5624,
+          "expected_max_dev_p99": 0.8192,
+          "representative_cm": [
+            [
+              1.0,
+              0.125,
+              0.5
+            ],
+            [
+              0.0,
+              0.875,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5236,
+          "expected_max_dev_p95": 0.5956,
+          "expected_max_dev_p99": 0.9641,
+          "representative_cm": [
+            [
+              0.6,
+              0.0,
+              0.0
+            ],
+            [
+              0.4,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2145,
+          "expected_max_dev_p95": 0.3598,
+          "expected_max_dev_p99": 0.4442,
+          "representative_cm": [
+            [
+              0.625,
+              0.3,
+              0.5
+            ],
+            [
+              0.375,
+              0.7,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3223,
+          "expected_max_dev_p95": 0.4874,
+          "expected_max_dev_p99": 0.8192,
+          "representative_cm": [
+            [
+              0.0,
+              0.4,
+              0.7143
+            ],
+            [
+              1.0,
+              0.6,
+              0.2857
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5882,
+          "expected_max_dev_p95": 0.9641,
+          "expected_max_dev_p99": 0.9812,
+          "representative_cm": [
+            [
+              1.0,
+              0.6667,
+              0.0
+            ],
+            [
+              0.0,
+              0.3333,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.2985,
+          "expected_max_dev_p95": 0.4402,
+          "expected_max_dev_p99": 0.6595,
+          "representative_cm": [
+            [
+              0.4286,
+              0.5,
+              0.6
+            ],
+            [
+              0.5714,
+              0.5,
+              0.4
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3341,
+          "expected_max_dev_p95": 0.5956,
+          "expected_max_dev_p99": 0.5956,
+          "representative_cm": [
+            [
+              0.75,
+              0.5,
+              0.0
+            ],
+            [
+              0.25,
+              0.5,
+              0.6667
+            ],
+            [
+              0.0,
+              0.0,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3033,
+          "expected_max_dev_p95": 0.4874,
+          "expected_max_dev_p99": 0.5956,
+          "representative_cm": [
+            [
+              0.3333,
+              0.3,
+              0.75
+            ],
+            [
+              0.6667,
+              0.7,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "llama4",
+      "prompt_type": "few-shot-5",
+      "config_key": "llama4_few-shot-5",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.858,
+          0.3494,
+          0.5
+        ],
+        [
+          0.125,
+          0.6024,
+          0.25
+        ],
+        [
+          0.017,
+          0.0482,
+          0.25
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 346,
+      "accuracy": 0.7283236994219653,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.75,
+        "grand_max_deviation_p95": 0.9518,
+        "grand_max_deviation_p99": 0.983,
+        "grand_max_deviation_mean": 0.7853,
+        "grand_max_deviation_std": 0.1084
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3327,
+          "expected_max_dev_p95": 0.5417,
+          "expected_max_dev_p99": 0.75,
+          "representative_cm": [
+            [
+              1.0,
+              0.2,
+              0.5
+            ],
+            [
+              0.0,
+              0.8,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2393,
+          "expected_max_dev_p95": 0.4506,
+          "expected_max_dev_p99": 0.6024,
+          "representative_cm": [
+            [
+              0.7619,
+              0.2,
+              0.4375
+            ],
+            [
+              0.2381,
+              0.8,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.3125
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2024,
+          "expected_max_dev_p95": 0.3462,
+          "expected_max_dev_p99": 0.475,
+          "representative_cm": [
+            [
+              1.0,
+              0.1304,
+              0.4615
+            ],
+            [
+              0.0,
+              0.8261,
+              0.2308
+            ],
+            [
+              0.0,
+              0.0435,
+              0.3077
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.5201,
+          "expected_max_dev_p95": 0.9518,
+          "expected_max_dev_p99": 0.9518,
+          "representative_cm": [
+            [
+              0.75,
+              1.0,
+              0.6
+            ],
+            [
+              0.0,
+              0.0,
+              0.4
+            ],
+            [
+              0.25,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2792,
+          "expected_max_dev_p95": 0.5,
+          "expected_max_dev_p99": 0.5002,
+          "representative_cm": [
+            [
+              0.5,
+              0.0,
+              0.75
+            ],
+            [
+              0.5,
+              0.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2166,
+          "expected_max_dev_p95": 0.3889,
+          "expected_max_dev_p99": 0.5,
+          "representative_cm": [
+            [
+              0.8333,
+              0.4091,
+              0.4444
+            ],
+            [
+              0.1667,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0909,
+              0.2222
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3348,
+          "expected_max_dev_p95": 0.6185,
+          "expected_max_dev_p99": 0.6506,
+          "representative_cm": [
+            [
+              1.0,
+              0.6667,
+              0.5
+            ],
+            [
+              0.0,
+              0.3333,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1593,
+          "expected_max_dev_p95": 0.2885,
+          "expected_max_dev_p99": 0.3654,
+          "representative_cm": [
+            [
+              0.875,
+              0.0,
+              0.3846
+            ],
+            [
+              0.125,
+              0.0,
+              0.3846
+            ],
+            [
+              0.0,
+              0.0,
+              0.2308
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3675,
+          "expected_max_dev_p95": 0.875,
+          "expected_max_dev_p99": 0.983,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              0.5
+            ],
+            [
+              0.0,
+              0.6667,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2108,
+          "expected_max_dev_p95": 0.358,
+          "expected_max_dev_p99": 0.4167,
+          "representative_cm": [
+            [
+              0.6667,
+              0.4615,
+              0.6667
+            ],
+            [
+              0.1667,
+              0.4615,
+              0.25
+            ],
+            [
+              0.1667,
+              0.0769,
+              0.0833
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.5179,
+          "expected_max_dev_p95": 0.6506,
+          "expected_max_dev_p99": 0.9518,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.8333
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.312,
+          "expected_max_dev_p95": 0.5,
+          "expected_max_dev_p99": 0.875,
+          "representative_cm": [
+            [
+              1.0,
+              0.375,
+              0.6667
+            ],
+            [
+              0.0,
+              0.25,
+              0.1667
+            ],
+            [
+              0.0,
+              0.375,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.6272,
+          "expected_max_dev_p95": 0.75,
+          "expected_max_dev_p99": 0.75,
+          "representative_cm": [
+            [
+              0.8,
+              0.2,
+              1.0
+            ],
+            [
+              0.2,
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2218,
+          "expected_max_dev_p95": 0.375,
+          "expected_max_dev_p99": 0.4506,
+          "representative_cm": [
+            [
+              0.875,
+              0.1,
+              0.8
+            ],
+            [
+              0.125,
+              0.9,
+              0.1
+            ],
+            [
+              0.0,
+              0.0,
+              0.1
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3212,
+          "expected_max_dev_p95": 0.483,
+          "expected_max_dev_p99": 0.875,
+          "representative_cm": [
+            [
+              1.0,
+              0.4,
+              0.1429
+            ],
+            [
+              0.0,
+              0.6,
+              0.4286
+            ],
+            [
+              0.0,
+              0.0,
+              0.4286
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.6636,
+          "expected_max_dev_p95": 0.875,
+          "expected_max_dev_p99": 0.983,
+          "representative_cm": [
+            [
+              1.0,
+              0.2222,
+              1.0
+            ],
+            [
+              0.0,
+              0.7778,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.3213,
+          "expected_max_dev_p95": 0.55,
+          "expected_max_dev_p99": 0.6506,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.8
+            ],
+            [
+              0.0,
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.25,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3669,
+          "expected_max_dev_p95": 0.5,
+          "expected_max_dev_p99": 0.75,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              0.6667
+            ],
+            [
+              0.0,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3097,
+          "expected_max_dev_p95": 0.5417,
+          "expected_max_dev_p99": 0.75,
+          "representative_cm": [
+            [
+              0.6667,
+              0.4,
+              0.25
+            ],
+            [
+              0.3333,
+              0.5,
+              0.5
+            ],
+            [
+              0.0,
+              0.1,
+              0.25
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "llama4",
+      "prompt_type": "zero-shot",
+      "config_key": "llama4_zero-shot",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.8409,
+          0.2983,
+          0.5578
+        ],
+        [
+          0.1439,
+          0.6781,
+          0.3964
+        ],
+        [
+          0.0152,
+          0.0236,
+          0.0458
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1496,
+      "accuracy": 0.5233957219251337,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.7017,
+        "grand_max_deviation_p95": 0.9764,
+        "grand_max_deviation_p99": 0.9848,
+        "grand_max_deviation_mean": 0.7477,
+        "grand_max_deviation_std": 0.1432
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3181,
+          "expected_max_dev_p95": 0.5227,
+          "expected_max_dev_p99": 0.6036,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.75
+            ],
+            [
+              0.0,
+              1.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2166,
+          "expected_max_dev_p95": 0.3219,
+          "expected_max_dev_p99": 0.5017,
+          "representative_cm": [
+            [
+              0.8571,
+              0.0,
+              0.75
+            ],
+            [
+              0.0476,
+              1.0,
+              0.1875
+            ],
+            [
+              0.0952,
+              0.0,
+              0.0625
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1953,
+          "expected_max_dev_p95": 0.327,
+          "expected_max_dev_p99": 0.4561,
+          "representative_cm": [
+            [
+              0.8,
+              0.2174,
+              0.3846
+            ],
+            [
+              0.2,
+              0.7826,
+              0.6154
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.4668,
+          "expected_max_dev_p95": 0.7017,
+          "expected_max_dev_p99": 0.9764,
+          "representative_cm": [
+            [
+              0.75,
+              1.0,
+              0.6
+            ],
+            [
+              0.25,
+              0.0,
+              0.2
+            ],
+            [
+              0.0,
+              0.0,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2644,
+          "expected_max_dev_p95": 0.4542,
+          "expected_max_dev_p99": 0.6036,
+          "representative_cm": [
+            [
+              0.8333,
+              0.0,
+              0.25
+            ],
+            [
+              0.1667,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2074,
+          "expected_max_dev_p95": 0.3561,
+          "expected_max_dev_p99": 0.4925,
+          "representative_cm": [
+            [
+              1.0,
+              0.1818,
+              0.3333
+            ],
+            [
+              0.0,
+              0.8182,
+              0.6667
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3065,
+          "expected_max_dev_p95": 0.4422,
+          "expected_max_dev_p99": 0.7017,
+          "representative_cm": [
+            [
+              0.75,
+              0.3333,
+              0.6667
+            ],
+            [
+              0.25,
+              0.6667,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1443,
+          "expected_max_dev_p95": 0.2884,
+          "expected_max_dev_p99": 0.3653,
+          "representative_cm": [
+            [
+              0.8333,
+              0.0,
+              0.6154
+            ],
+            [
+              0.1667,
+              0.0,
+              0.3846
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3533,
+          "expected_max_dev_p95": 0.8561,
+          "expected_max_dev_p99": 0.9848,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.8333
+            ],
+            [
+              0.0,
+              0.5,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2022,
+          "expected_max_dev_p95": 0.3561,
+          "expected_max_dev_p99": 0.4369,
+          "representative_cm": [
+            [
+              1.0,
+              0.2308,
+              0.3333
+            ],
+            [
+              0.0,
+              0.7692,
+              0.6667
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4617,
+          "expected_max_dev_p95": 0.7017,
+          "expected_max_dev_p99": 0.9764,
+          "representative_cm": [
+            [
+              0.5,
+              0.0,
+              0.5
+            ],
+            [
+              0.5,
+              1.0,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3013,
+          "expected_max_dev_p95": 0.4848,
+          "expected_max_dev_p99": 0.8561,
+          "representative_cm": [
+            [
+              1.0,
+              0.125,
+              0.3333
+            ],
+            [
+              0.0,
+              0.875,
+              0.6667
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5314,
+          "expected_max_dev_p95": 0.6561,
+          "expected_max_dev_p99": 0.9542,
+          "representative_cm": [
+            [
+              0.8,
+              0.0,
+              0.0
+            ],
+            [
+              0.2,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2113,
+          "expected_max_dev_p95": 0.3578,
+          "expected_max_dev_p99": 0.4579,
+          "representative_cm": [
+            [
+              0.875,
+              0.5,
+              0.8
+            ],
+            [
+              0.125,
+              0.5,
+              0.2
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3024,
+          "expected_max_dev_p95": 0.5017,
+          "expected_max_dev_p99": 0.8561,
+          "representative_cm": [
+            [
+              0.0,
+              0.2,
+              0.5714
+            ],
+            [
+              0.5,
+              0.8,
+              0.4286
+            ],
+            [
+              0.5,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5843,
+          "expected_max_dev_p95": 0.9542,
+          "expected_max_dev_p99": 0.9848,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              0.0
+            ],
+            [
+              0.0,
+              0.6667,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.2961,
+          "expected_max_dev_p95": 0.4517,
+          "expected_max_dev_p99": 0.6781,
+          "representative_cm": [
+            [
+              0.8571,
+              0.0,
+              0.4
+            ],
+            [
+              0.1429,
+              1.0,
+              0.6
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3302,
+          "expected_max_dev_p95": 0.6036,
+          "expected_max_dev_p99": 0.6061,
+          "representative_cm": [
+            [
+              0.75,
+              0.8333,
+              0.6667
+            ],
+            [
+              0.25,
+              0.1667,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.295,
+          "expected_max_dev_p95": 0.5227,
+          "expected_max_dev_p99": 0.6036,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.75
+            ],
+            [
+              0.0,
+              1.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen2.5-7b",
+      "prompt_type": "few-shot-3",
+      "config_key": "qwen2.5-7b_few-shot-3",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.8211,
+          0.4454,
+          0.6514
+        ],
+        [
+          0.0866,
+          0.4133,
+          0.2231
+        ],
+        [
+          0.0923,
+          0.1413,
+          0.1255
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1500,
+      "accuracy": 0.4613333333333333,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8745,
+        "grand_max_deviation_p95": 0.9134,
+        "grand_max_deviation_p99": 0.9134,
+        "grand_max_deviation_mean": 0.8142,
+        "grand_max_deviation_std": 0.1188
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3452,
+          "expected_max_dev_p95": 0.58,
+          "expected_max_dev_p99": 0.6587,
+          "representative_cm": [
+            [
+              0.6667,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.8,
+              0.0
+            ],
+            [
+              0.3333,
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2593,
+          "expected_max_dev_p95": 0.4587,
+          "expected_max_dev_p99": 0.5867,
+          "representative_cm": [
+            [
+              0.9048,
+              0.8,
+              0.5625
+            ],
+            [
+              0.0952,
+              0.2,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.1875
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2097,
+          "expected_max_dev_p95": 0.3437,
+          "expected_max_dev_p99": 0.5077,
+          "representative_cm": [
+            [
+              1.0,
+              0.4348,
+              0.7692
+            ],
+            [
+              0.0,
+              0.4348,
+              0.2308
+            ],
+            [
+              0.0,
+              0.1304,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.6107,
+          "expected_max_dev_p95": 0.8587,
+          "expected_max_dev_p99": 0.8587,
+          "representative_cm": [
+            [
+              0.25,
+              0.0,
+              0.6
+            ],
+            [
+              0.25,
+              1.0,
+              0.2
+            ],
+            [
+              0.5,
+              0.0,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2776,
+          "expected_max_dev_p95": 0.5269,
+          "expected_max_dev_p99": 0.6514,
+          "representative_cm": [
+            [
+              0.6667,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.5
+            ],
+            [
+              0.3333,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2176,
+          "expected_max_dev_p95": 0.3486,
+          "expected_max_dev_p99": 0.4878,
+          "representative_cm": [
+            [
+              0.8333,
+              0.3636,
+              0.7778
+            ],
+            [
+              0.0,
+              0.3182,
+              0.0
+            ],
+            [
+              0.1667,
+              0.3182,
+              0.2222
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3547,
+          "expected_max_dev_p95": 0.5867,
+          "expected_max_dev_p99": 0.5867,
+          "representative_cm": [
+            [
+              0.875,
+              0.6667,
+              0.8333
+            ],
+            [
+              0.125,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.3333,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1475,
+          "expected_max_dev_p95": 0.2717,
+          "expected_max_dev_p99": 0.3437,
+          "representative_cm": [
+            [
+              0.9167,
+              0.0,
+              0.4615
+            ],
+            [
+              0.0,
+              0.0,
+              0.4615
+            ],
+            [
+              0.0833,
+              0.0,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3969,
+          "expected_max_dev_p95": 0.9134,
+          "expected_max_dev_p99": 0.9134,
+          "representative_cm": [
+            [
+              1.0,
+              0.1667,
+              0.3333
+            ],
+            [
+              0.0,
+              0.8333,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.219,
+          "expected_max_dev_p95": 0.356,
+          "expected_max_dev_p99": 0.4878,
+          "representative_cm": [
+            [
+              1.0,
+              0.6154,
+              0.5833
+            ],
+            [
+              0.0,
+              0.2308,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1538,
+              0.0833
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.6106,
+          "expected_max_dev_p95": 0.8587,
+          "expected_max_dev_p99": 0.8587,
+          "representative_cm": [
+            [
+              0.25,
+              1.0,
+              0.6667
+            ],
+            [
+              0.5,
+              0.0,
+              0.1667
+            ],
+            [
+              0.25,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3259,
+          "expected_max_dev_p95": 0.4847,
+          "expected_max_dev_p99": 0.9077,
+          "representative_cm": [
+            [
+              1.0,
+              0.375,
+              0.6667
+            ],
+            [
+              0.0,
+              0.375,
+              0.0
+            ],
+            [
+              0.0,
+              0.25,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5211,
+          "expected_max_dev_p95": 0.8745,
+          "expected_max_dev_p99": 0.8745,
+          "representative_cm": [
+            [
+              0.8,
+              0.2,
+              0.0
+            ],
+            [
+              0.2,
+              0.6,
+              1.0
+            ],
+            [
+              0.0,
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2274,
+          "expected_max_dev_p95": 0.3745,
+          "expected_max_dev_p99": 0.4546,
+          "representative_cm": [
+            [
+              0.875,
+              0.5,
+              0.9
+            ],
+            [
+              0.0,
+              0.5,
+              0.1
+            ],
+            [
+              0.125,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.344,
+          "expected_max_dev_p95": 0.5546,
+          "expected_max_dev_p99": 0.9077,
+          "representative_cm": [
+            [
+              1.0,
+              0.4,
+              0.5714
+            ],
+            [
+              0.0,
+              0.4,
+              0.4286
+            ],
+            [
+              0.0,
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5815,
+          "expected_max_dev_p95": 0.9134,
+          "expected_max_dev_p99": 0.9134,
+          "representative_cm": [
+            [
+              0.0,
+              0.4444,
+              1.0
+            ],
+            [
+              0.0,
+              0.4444,
+              0.0
+            ],
+            [
+              1.0,
+              0.1111,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.3331,
+          "expected_max_dev_p95": 0.5769,
+          "expected_max_dev_p99": 0.6087,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.4
+            ],
+            [
+              0.0,
+              0.25,
+              0.2
+            ],
+            [
+              0.0,
+              0.25,
+              0.4
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3545,
+          "expected_max_dev_p95": 0.5867,
+          "expected_max_dev_p99": 0.7769,
+          "representative_cm": [
+            [
+              0.75,
+              0.3333,
+              1.0
+            ],
+            [
+              0.0,
+              0.5,
+              0.0
+            ],
+            [
+              0.25,
+              0.1667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3189,
+          "expected_max_dev_p95": 0.5744,
+          "expected_max_dev_p99": 0.6514,
+          "representative_cm": [
+            [
+              0.3333,
+              0.7,
+              0.25
+            ],
+            [
+              0.6667,
+              0.2,
+              0.5
+            ],
+            [
+              0.0,
+              0.1,
+              0.25
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen2.5-7b",
+      "prompt_type": "few-shot-5",
+      "config_key": "qwen2.5-7b_few-shot-5",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.7759,
+          0.3919,
+          0.6155
+        ],
+        [
+          0.1111,
+          0.4754,
+          0.259
+        ],
+        [
+          0.113,
+          0.1328,
+          0.1255
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1500,
+      "accuracy": 0.4646666666666667,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8745,
+        "grand_max_deviation_p95": 0.8889,
+        "grand_max_deviation_p99": 0.8889,
+        "grand_max_deviation_mean": 0.8158,
+        "grand_max_deviation_std": 0.106
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3569,
+          "expected_max_dev_p95": 0.5556,
+          "expected_max_dev_p99": 0.741,
+          "representative_cm": [
+            [
+              1.0,
+              0.2,
+              0.25
+            ],
+            [
+              0.0,
+              0.6,
+              0.5
+            ],
+            [
+              0.0,
+              0.2,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2579,
+          "expected_max_dev_p95": 0.4754,
+          "expected_max_dev_p99": 0.6081,
+          "representative_cm": [
+            [
+              0.6667,
+              0.4,
+              0.875
+            ],
+            [
+              0.1429,
+              0.4,
+              0.125
+            ],
+            [
+              0.1905,
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2258,
+          "expected_max_dev_p95": 0.3759,
+          "expected_max_dev_p99": 0.4889,
+          "representative_cm": [
+            [
+              0.8,
+              0.4783,
+              0.7692
+            ],
+            [
+              0.0,
+              0.3913,
+              0.1538
+            ],
+            [
+              0.2,
+              0.1304,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.6055,
+          "expected_max_dev_p95": 0.8672,
+          "expected_max_dev_p99": 0.8672,
+          "representative_cm": [
+            [
+              0.5,
+              1.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.286,
+          "expected_max_dev_p95": 0.491,
+          "expected_max_dev_p99": 0.6155,
+          "representative_cm": [
+            [
+              0.6667,
+              0.0,
+              0.5
+            ],
+            [
+              0.3333,
+              0.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2303,
+          "expected_max_dev_p95": 0.3933,
+          "expected_max_dev_p99": 0.4426,
+          "representative_cm": [
+            [
+              0.5,
+              0.4091,
+              0.4444
+            ],
+            [
+              0.0,
+              0.5,
+              0.4444
+            ],
+            [
+              0.5,
+              0.0909,
+              0.1111
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.355,
+          "expected_max_dev_p95": 0.6081,
+          "expected_max_dev_p99": 0.6081,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.6667
+            ],
+            [
+              0.125,
+              1.0,
+              0.3333
+            ],
+            [
+              0.125,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1526,
+          "expected_max_dev_p95": 0.2795,
+          "expected_max_dev_p99": 0.3362,
+          "representative_cm": [
+            [
+              0.7917,
+              0.0,
+              0.3077
+            ],
+            [
+              0.125,
+              0.0,
+              0.3846
+            ],
+            [
+              0.0833,
+              0.0,
+              0.3077
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4302,
+          "expected_max_dev_p95": 0.8889,
+          "expected_max_dev_p99": 0.8889,
+          "representative_cm": [
+            [
+              0.0,
+              0.0,
+              0.6667
+            ],
+            [
+              1.0,
+              0.8333,
+              0.1667
+            ],
+            [
+              0.0,
+              0.1667,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2302,
+          "expected_max_dev_p95": 0.3889,
+          "expected_max_dev_p99": 0.4426,
+          "representative_cm": [
+            [
+              0.6667,
+              0.3077,
+              0.75
+            ],
+            [
+              0.3333,
+              0.5385,
+              0.1667
+            ],
+            [
+              0.0,
+              0.1538,
+              0.0833
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.6033,
+          "expected_max_dev_p95": 0.8672,
+          "expected_max_dev_p99": 0.8672,
+          "representative_cm": [
+            [
+              1.0,
+              1.0,
+              0.8333
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3471,
+          "expected_max_dev_p95": 0.6155,
+          "expected_max_dev_p99": 0.8889,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.6667
+            ],
+            [
+              0.0,
+              0.5,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5456,
+          "expected_max_dev_p95": 0.8745,
+          "expected_max_dev_p99": 0.8745,
+          "representative_cm": [
+            [
+              0.8,
+              0.4,
+              1.0
+            ],
+            [
+              0.2,
+              0.2,
+              0.0
+            ],
+            [
+              0.0,
+              0.4,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2335,
+          "expected_max_dev_p95": 0.3889,
+          "expected_max_dev_p99": 0.441,
+          "representative_cm": [
+            [
+              0.625,
+              0.2,
+              0.4
+            ],
+            [
+              0.375,
+              0.5,
+              0.4
+            ],
+            [
+              0.0,
+              0.3,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3626,
+          "expected_max_dev_p95": 0.6155,
+          "expected_max_dev_p99": 0.8889,
+          "representative_cm": [
+            [
+              0.5,
+              0.4,
+              0.4286
+            ],
+            [
+              0.5,
+              0.6,
+              0.2857
+            ],
+            [
+              0.0,
+              0.0,
+              0.2857
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.6143,
+          "expected_max_dev_p95": 0.8889,
+          "expected_max_dev_p99": 0.8889,
+          "representative_cm": [
+            [
+              1.0,
+              0.4444,
+              1.0
+            ],
+            [
+              0.0,
+              0.1111,
+              0.0
+            ],
+            [
+              0.0,
+              0.4444,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.3344,
+          "expected_max_dev_p95": 0.541,
+          "expected_max_dev_p99": 0.6172,
+          "representative_cm": [
+            [
+              0.7143,
+              0.25,
+              0.6
+            ],
+            [
+              0.1429,
+              0.5,
+              0.0
+            ],
+            [
+              0.1429,
+              0.25,
+              0.4
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3615,
+          "expected_max_dev_p95": 0.6155,
+          "expected_max_dev_p99": 0.741,
+          "representative_cm": [
+            [
+              0.75,
+              0.1667,
+              1.0
+            ],
+            [
+              0.0,
+              0.6667,
+              0.0
+            ],
+            [
+              0.25,
+              0.1667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3345,
+          "expected_max_dev_p95": 0.5556,
+          "expected_max_dev_p99": 0.7759,
+          "representative_cm": [
+            [
+              0.6667,
+              0.2,
+              0.5
+            ],
+            [
+              0.3333,
+              0.6,
+              0.5
+            ],
+            [
+              0.0,
+              0.2,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen2.5-7b",
+      "prompt_type": "zero-shot",
+      "config_key": "qwen2.5-7b_zero-shot",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.8475,
+          0.4313,
+          0.6494
+        ],
+        [
+          0.0791,
+          0.4614,
+          0.241
+        ],
+        [
+          0.0734,
+          0.1073,
+          0.1096
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1499,
+      "accuracy": 0.48032021347565046,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8904,
+        "grand_max_deviation_p95": 0.9266,
+        "grand_max_deviation_p99": 0.9266,
+        "grand_max_deviation_mean": 0.8011,
+        "grand_max_deviation_std": 0.1373
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3403,
+          "expected_max_dev_p95": 0.5876,
+          "expected_max_dev_p99": 0.6494,
+          "representative_cm": [
+            [
+              0.6667,
+              0.4,
+              0.5
+            ],
+            [
+              0.3333,
+              0.6,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2546,
+          "expected_max_dev_p95": 0.4614,
+          "expected_max_dev_p99": 0.5687,
+          "representative_cm": [
+            [
+              0.8095,
+              0.2,
+              0.75
+            ],
+            [
+              0.1429,
+              0.8,
+              0.0
+            ],
+            [
+              0.0476,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2018,
+          "expected_max_dev_p95": 0.3417,
+          "expected_max_dev_p99": 0.5209,
+          "representative_cm": [
+            [
+              1.0,
+              0.3478,
+              0.6923
+            ],
+            [
+              0.0,
+              0.5217,
+              0.2308
+            ],
+            [
+              0.0,
+              0.1304,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.591,
+          "expected_max_dev_p95": 0.8927,
+          "expected_max_dev_p99": 0.8927,
+          "representative_cm": [
+            [
+              0.75,
+              1.0,
+              0.2
+            ],
+            [
+              0.25,
+              0.0,
+              0.2
+            ],
+            [
+              0.0,
+              0.0,
+              0.6
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2689,
+          "expected_max_dev_p95": 0.509,
+          "expected_max_dev_p99": 0.6494,
+          "representative_cm": [
+            [
+              0.6667,
+              0.0,
+              0.75
+            ],
+            [
+              0.3333,
+              0.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2106,
+          "expected_max_dev_p95": 0.3506,
+          "expected_max_dev_p99": 0.446,
+          "representative_cm": [
+            [
+              0.5,
+              0.3636,
+              0.6667
+            ],
+            [
+              0.0,
+              0.5455,
+              0.0
+            ],
+            [
+              0.5,
+              0.0909,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3458,
+          "expected_max_dev_p95": 0.5687,
+          "expected_max_dev_p99": 0.5687,
+          "representative_cm": [
+            [
+              1.0,
+              0.6667,
+              0.8333
+            ],
+            [
+              0.0,
+              0.3333,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1449,
+          "expected_max_dev_p95": 0.2737,
+          "expected_max_dev_p99": 0.3418,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.5385
+            ],
+            [
+              0.1667,
+              0.0,
+              0.3077
+            ],
+            [
+              0.0833,
+              0.0,
+              0.1538
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3755,
+          "expected_max_dev_p95": 0.9266,
+          "expected_max_dev_p99": 0.9266,
+          "representative_cm": [
+            [
+              1.0,
+              0.8333,
+              0.6667
+            ],
+            [
+              0.0,
+              0.1667,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2116,
+          "expected_max_dev_p95": 0.3475,
+          "expected_max_dev_p99": 0.4266,
+          "representative_cm": [
+            [
+              1.0,
+              0.6923,
+              0.5833
+            ],
+            [
+              0.0,
+              0.1538,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1538,
+              0.0833
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.5911,
+          "expected_max_dev_p95": 0.8927,
+          "expected_max_dev_p99": 0.8927,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.6667
+            ],
+            [
+              0.0,
+              1.0,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3156,
+          "expected_max_dev_p95": 0.4614,
+          "expected_max_dev_p99": 0.9209,
+          "representative_cm": [
+            [
+              1.0,
+              0.375,
+              0.6667
+            ],
+            [
+              0.0,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.125,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5185,
+          "expected_max_dev_p95": 0.8904,
+          "expected_max_dev_p99": 0.8904,
+          "representative_cm": [
+            [
+              1.0,
+              0.4,
+              1.0
+            ],
+            [
+              0.0,
+              0.6,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2217,
+          "expected_max_dev_p95": 0.3614,
+          "expected_max_dev_p99": 0.4614,
+          "representative_cm": [
+            [
+              0.75,
+              0.4,
+              0.8
+            ],
+            [
+              0.125,
+              0.6,
+              0.1
+            ],
+            [
+              0.125,
+              0.0,
+              0.1
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3345,
+          "expected_max_dev_p95": 0.5386,
+          "expected_max_dev_p99": 0.9209,
+          "representative_cm": [
+            [
+              0.5,
+              0.4,
+              0.4286
+            ],
+            [
+              0.5,
+              0.6,
+              0.2857
+            ],
+            [
+              0.0,
+              0.0,
+              0.2857
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5695,
+          "expected_max_dev_p95": 0.9266,
+          "expected_max_dev_p99": 0.9266,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              0.0
+            ],
+            [
+              0.0,
+              0.5556,
+              1.0
+            ],
+            [
+              0.0,
+              0.1111,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.326,
+          "expected_max_dev_p95": 0.559,
+          "expected_max_dev_p99": 0.6353,
+          "representative_cm": [
+            [
+              0.7143,
+              0.75,
+              1.0
+            ],
+            [
+              0.1429,
+              0.25,
+              0.0
+            ],
+            [
+              0.1429,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3468,
+          "expected_max_dev_p95": 0.5975,
+          "expected_max_dev_p99": 0.759,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.6667
+            ],
+            [
+              0.0,
+              0.3333,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1667,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3083,
+          "expected_max_dev_p95": 0.5876,
+          "expected_max_dev_p99": 0.6494,
+          "representative_cm": [
+            [
+              1.0,
+              0.6,
+              0.0
+            ],
+            [
+              0.0,
+              0.4,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen3",
+      "prompt_type": "zero-shot",
+      "config_key": "qwen3_zero-shot",
+      "n_samples_in_qualified_topics": 387,
+      "n_topics": 19,
+      "min_topic_size": 10,
+      "overall_confusion_matrix": [
+        [
+          0.7746,
+          0.235,
+          0.5229
+        ],
+        [
+          0.1667,
+          0.6859,
+          0.4036
+        ],
+        [
+          0.0587,
+          0.0791,
+          0.0736
+        ]
+      ],
+      "labels": [
+        "Con",
+        "Pro",
+        "Neutral"
+      ],
+      "n_valid_from_cm": 1499,
+      "accuracy": 0.5117,
+      "bootstrap_iterations": 10000,
+      "null_distribution": {
+        "description": "Distribution of max|C_topic - C_overall| across topics under the non-differential null",
+        "grand_max_deviation_p50": 0.8333,
+        "grand_max_deviation_p95": 0.9413,
+        "grand_max_deviation_p99": 0.9413,
+        "grand_max_deviation_mean": 0.8019,
+        "grand_max_deviation_std": 0.1313
+      },
+      "per_topic": [
+        {
+          "topic": "bike lane",
+          "n": 12,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 3,
+            "Pro": 5,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3487,
+          "expected_max_dev_p95": 0.5964,
+          "expected_max_dev_p99": 0.7746,
+          "representative_cm": [
+            [
+              0.6667,
+              0.4,
+              0.5
+            ],
+            [
+              0.3333,
+              0.6,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "christian",
+          "n": 42,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 21,
+            "Pro": 5,
+            "Neutral": 16
+          },
+          "expected_max_dev_mean": 0.2347,
+          "expected_max_dev_p95": 0.365,
+          "expected_max_dev_p99": 0.565,
+          "representative_cm": [
+            [
+              0.8571,
+              0.2,
+              0.5625
+            ],
+            [
+              0.0952,
+              0.6,
+              0.375
+            ],
+            [
+              0.0476,
+              0.2,
+              0.0625
+            ]
+          ]
+        },
+        {
+          "topic": "college",
+          "n": 41,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 23,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.2207,
+          "expected_max_dev_p95": 0.3746,
+          "expected_max_dev_p99": 0.5746,
+          "representative_cm": [
+            [
+              1.0,
+              0.1304,
+              0.4615
+            ],
+            [
+              0.0,
+              0.7826,
+              0.4615
+            ],
+            [
+              0.0,
+              0.087,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "topic": "doping",
+          "n": 10,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 1,
+            "Con": 4,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.493,
+          "expected_max_dev_p95": 0.9209,
+          "expected_max_dev_p99": 0.9209,
+          "representative_cm": [
+            [
+              0.75,
+              0.0,
+              0.6
+            ],
+            [
+              0.25,
+              1.0,
+              0.2
+            ],
+            [
+              0.0,
+              0.0,
+              0.2
+            ]
+          ]
+        },
+        {
+          "topic": "drug addict",
+          "n": 10,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 6,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.2846,
+          "expected_max_dev_p95": 0.5229,
+          "expected_max_dev_p99": 0.5964,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.25
+            ],
+            [
+              0.0,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.25
+            ]
+          ]
+        },
+        {
+          "topic": "election",
+          "n": 37,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 22,
+            "Con": 6,
+            "Neutral": 9
+          },
+          "expected_max_dev_mean": 0.2282,
+          "expected_max_dev_p95": 0.4036,
+          "expected_max_dev_p99": 0.5,
+          "representative_cm": [
+            [
+              0.8333,
+              0.3182,
+              0.6667
+            ],
+            [
+              0.1667,
+              0.6364,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0455,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "gun",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 8,
+            "Pro": 3,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3236,
+          "expected_max_dev_p95": 0.5246,
+          "expected_max_dev_p99": 0.765,
+          "representative_cm": [
+            [
+              0.375,
+              0.3333,
+              0.3333
+            ],
+            [
+              0.375,
+              0.6667,
+              0.6667
+            ],
+            [
+              0.25,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "harmful atmosphere gay",
+          "n": 37,
+          "n_active_labels": 2,
+          "label_dist": {
+            "Con": 24,
+            "Neutral": 13
+          },
+          "expected_max_dev_mean": 0.1524,
+          "expected_max_dev_p95": 0.2921,
+          "expected_max_dev_p99": 0.3657,
+          "representative_cm": [
+            [
+              0.7917,
+              0.0,
+              0.6923
+            ],
+            [
+              0.125,
+              0.0,
+              0.3077
+            ],
+            [
+              0.0833,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "high speed rail",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4193,
+          "expected_max_dev_p95": 0.9413,
+          "expected_max_dev_p99": 0.9413,
+          "representative_cm": [
+            [
+              1.0,
+              0.3333,
+              0.5
+            ],
+            [
+              0.0,
+              0.5,
+              0.1667
+            ],
+            [
+              0.0,
+              0.1667,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "humanity program",
+          "n": 31,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 13,
+            "Con": 6,
+            "Neutral": 12
+          },
+          "expected_max_dev_mean": 0.2232,
+          "expected_max_dev_p95": 0.3562,
+          "expected_max_dev_p99": 0.5,
+          "representative_cm": [
+            [
+              0.8333,
+              0.2308,
+              0.5
+            ],
+            [
+              0.1667,
+              0.7692,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "legislation",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 4,
+            "Pro": 1,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.4818,
+          "expected_max_dev_p95": 0.9209,
+          "expected_max_dev_p99": 0.9209,
+          "representative_cm": [
+            [
+              1.0,
+              0.0,
+              0.5
+            ],
+            [
+              0.0,
+              1.0,
+              0.3333
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "medicare",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 2,
+            "Pro": 8,
+            "Neutral": 6
+          },
+          "expected_max_dev_mean": 0.3401,
+          "expected_max_dev_p95": 0.7746,
+          "expected_max_dev_p99": 0.8333,
+          "representative_cm": [
+            [
+              1.0,
+              0.25,
+              0.6667
+            ],
+            [
+              0.0,
+              0.75,
+              0.1667
+            ],
+            [
+              0.0,
+              0.0,
+              0.1667
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Con": 5,
+            "Pro": 5,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.5616,
+          "expected_max_dev_p95": 0.9264,
+          "expected_max_dev_p99": 0.9264,
+          "representative_cm": [
+            [
+              0.8,
+              0.4,
+              1.0
+            ],
+            [
+              0.0,
+              0.6,
+              0.0
+            ],
+            [
+              0.2,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "new york 's bike lane",
+          "n": 28,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 8,
+            "Neutral": 10
+          },
+          "expected_max_dev_mean": 0.2253,
+          "expected_max_dev_p95": 0.3859,
+          "expected_max_dev_p99": 0.465,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.6
+            ],
+            [
+              0.0,
+              0.5,
+              0.4
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "olympics",
+          "n": 14,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 5,
+            "Con": 2,
+            "Neutral": 7
+          },
+          "expected_max_dev_mean": 0.3435,
+          "expected_max_dev_p95": 0.6859,
+          "expected_max_dev_p99": 0.8333,
+          "representative_cm": [
+            [
+              0.5,
+              0.0,
+              0.2857
+            ],
+            [
+              0.5,
+              0.8,
+              0.4286
+            ],
+            [
+              0.0,
+              0.2,
+              0.2857
+            ]
+          ]
+        },
+        {
+          "topic": "stability",
+          "n": 11,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 9,
+            "Con": 1,
+            "Neutral": 1
+          },
+          "expected_max_dev_mean": 0.6277,
+          "expected_max_dev_p95": 0.9413,
+          "expected_max_dev_p99": 0.9413,
+          "representative_cm": [
+            [
+              0.0,
+              0.1111,
+              0.0
+            ],
+            [
+              0.0,
+              0.8889,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "topic": "tenure",
+          "n": 16,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 4,
+            "Con": 7,
+            "Neutral": 5
+          },
+          "expected_max_dev_mean": 0.3149,
+          "expected_max_dev_p95": 0.515,
+          "expected_max_dev_p99": 0.6711,
+          "representative_cm": [
+            [
+              0.4286,
+              0.25,
+              0.8
+            ],
+            [
+              0.5714,
+              0.5,
+              0.2
+            ],
+            [
+              0.0,
+              0.25,
+              0.0
+            ]
+          ]
+        },
+        {
+          "topic": "treatment",
+          "n": 13,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 6,
+            "Con": 4,
+            "Neutral": 3
+          },
+          "expected_max_dev_mean": 0.3527,
+          "expected_max_dev_p95": 0.5964,
+          "expected_max_dev_p99": 0.5964,
+          "representative_cm": [
+            [
+              1.0,
+              0.5,
+              0.3333
+            ],
+            [
+              0.0,
+              0.3333,
+              0.3333
+            ],
+            [
+              0.0,
+              0.1667,
+              0.3333
+            ]
+          ]
+        },
+        {
+          "topic": "voting",
+          "n": 17,
+          "n_active_labels": 3,
+          "label_dist": {
+            "Pro": 10,
+            "Con": 3,
+            "Neutral": 4
+          },
+          "expected_max_dev_mean": 0.3258,
+          "expected_max_dev_p95": 0.5229,
+          "expected_max_dev_p99": 0.7746,
+          "representative_cm": [
+            [
+              0.6667,
+              0.3,
+              0.5
+            ],
+            [
+              0.3333,
+              0.7,
+              0.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "n_model_configs": 10,
+    "grand_max_deviation_p95": 0.9764,
+    "grand_max_deviation_p99": 0.9848,
+    "avg_max_deviation_p95": 0.9294,
+    "avg_max_deviation_p99": 0.9342,
+    "conclusion": "The expected maximum per-topic CM deviation under the null is non-negligible (p95 = 0.9764). Small topic sample sizes contribute to high expected variation, making the test less discriminating."
+  },
+  "limitations": [
+    "No raw per-sample predictions available; analysis uses simulation from aggregated confusion matrices under the non-differential null.",
+    "Topics are a proxy for Y; non-differential w.r.t. topic does not guarantee non-differential w.r.t. the actual causal outcome.",
+    "Small per-topic sample sizes (some topics have only 10-42 samples) make per-topic CMs inherently noisy, reducing test power."
+  ]
+}

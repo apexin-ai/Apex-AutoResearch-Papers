@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "id": "766511c1f5f6b1aed0f8",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "audit tex number consistency 20260521T181547 retry2",
+  "task_key": "worker_audit_tex_number_consistency_20260521T181547_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_tex_number_consistency_20260521T181547_retry2.log",
+    "occurrence": 1,
+    "bytes": 939007,
+    "sha256": "aeca9e79cc19dda2b6347a9ce64658ae50922b926b256e14c227f6d746687d64"
+  },
+  "statistics": {
+    "messages": 351,
+    "user_turns": 4,
+    "tool_calls": 123,
+    "roles": {
+      "system": 70,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 123,
+      "user": 4,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "766511c1f5f6b1aed0f8-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "766511c1f5f6b1aed0f8-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "766511c1f5f6b1aed0f8-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "766511c1f5f6b1aed0f8-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 288,
+      "chunks": [
+        {
+          "path": "766511c1f5f6b1aed0f8-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "766511c1f5f6b1aed0f8-part-0002.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-tex-number-consistency-20260521t181547-retry2.md"
+}

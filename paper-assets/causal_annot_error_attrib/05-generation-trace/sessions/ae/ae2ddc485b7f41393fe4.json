@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae2ddc485b7f41393fe4",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "research case study",
+  "task_key": "worker_research_case_study_20260521T093748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_case_study_20260521T093748_result.json",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "3c66663f08fa142e3a5aa0b901c7128aff1ab04c891eff129f2f294e34d838cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 2am (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-case-study.md"
+}

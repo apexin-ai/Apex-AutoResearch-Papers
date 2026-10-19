@@ -1,0 +1,42 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:17:29.222339+00:00",
+  "completed_at": "2026-05-25T21:21:40.967073+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "前 2 页为连续纯文本（Title/Abstract/Intro/Related Work），无任何 display item。建议考虑在 page 1 或 page 2 加入一个概览 figure（如 pipeline overview 或核心结果 teaser），帮助审稿人在前 2 分钟内形成更强的视觉锚定。当前第一个 display item 在 page 3，刚好在 3 页阈值内。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 为单栏双面板图，面板较小。轴标签（axis labels）和刻度标签（tick labels）字号接近可读下限（估计 ~7pt），打印或低分辨率屏幕阅读时可能吃力。建议适当增大字号或改为全宽图。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5 单栏图，x 轴标签 \"Macro F1\" 和 y 轴标签 \"Relative bias (%)\" 字号偏小，与 Figure 4 有同样的可读性隐患。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 33",
+      "message": "末页仅约 10% 内容（Appendix D 尾部），~90% 空白。属于 AI Assistants 声明段的自然结束，结构上不可避免，不影响评审。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 的 8 个面板密度较高，子图标题（如 \"Confounding (safe)\"）字号较小但尚可辨认。如果能将子图标题加大 1pt 会更舒适。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Algorithm 1 排版清晰，但与左栏 Figure 6 同页，页面视觉密度较高。不构成问题，但审稿人可能感到此页信息量大。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 5
+  }
+}

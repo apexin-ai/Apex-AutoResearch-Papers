@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "fe0478d1f12d0780910d",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan011 frontier completion",
+  "task_key": "worker_code_plan011_frontier_completion_20260522T063202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan011_frontier_completion_20260522T063202.log",
+    "occurrence": 1,
+    "bytes": 733819,
+    "sha256": "6c6050051371ee67502a0444f7ef85d09ae43294bad4ddc9bbdb2d55d2d0e182"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 0,
+    "tool_calls": 219,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 219,
+      "tool_result": 219,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 499,
+      "chunks": [
+        {
+          "path": "fe0478d1f12d0780910d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe0478d1f12d0780910d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe0478d1f12d0780910d-part-0003.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan011-frontier-completion.md"
+}

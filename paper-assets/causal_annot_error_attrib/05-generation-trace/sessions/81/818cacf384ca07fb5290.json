@@ -1,0 +1,495 @@
+{
+  "schema_version": "1.0",
+  "id": "818cacf384ca07fb5290",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "code plan001 final metrics",
+  "task_key": "worker_code_plan001-final-metrics_20260520T114936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_plan001-final-metrics_20260520T114936.jsonl",
+    "occurrence": 1,
+    "bytes": 30416,
+    "sha256": "659df074da353683fb3c47ce280cab82f2725ca3fc96d35b462fe8cdb6d03fe8"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T11:54:05.097607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T11:54:05.097930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T11:54:05.098097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan001_dag_taxonomy'}",
+              "project": "causal_annot_error_attrib",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T11:54:05.098300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0117}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T11:54:05.098436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "cat /home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T11:54:05.098674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# -*- coding: utf-8 -*-\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001: Mediation + Front-door DAG — closed-form bias + MC verification.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport numpy as np\\\\nimport time\\\\nimport warnings\\\\nfrom collections import OrderedDict\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\n# ================================================================\\\\n# Configuration\\\\n# ================================================================\\\\nK = 3\\\\nN_MC = 10_000\\\\nN_REPS = 1_000\\\\nN_LARGE = 50_000_000\\\\nN_RANDOM = 100_000\\\\n\\\\nBETA_MIXED = np.array([0.0, 1.0, -0.5])\\\\nBETA_SAME  = np.array([0.0, 1.0,  0.5])\\\\n\\\\nTAU = 0.5\\\\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\\\\nDELTA_MED = np.array([0.0, 0.8, -0.6])\\\\n\\\\nALPHA_U = 1.0\\\\nLAMBDA_U = 1.0\\\\nGAMMA_FD = np.array([0.0, 0.5, -0.3])\\\\nDELTA_FD = np.array([0.0, 1.0, -0.8])\\\\n\\\\nC_DICT = OrderedDict([\\\\n    (\\\\\\\"1_sym_high\\\\\\\",   np.array([[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]])),\\\\n    (\\\\\\\"2_asymmetric\\\\\\\", np.array([[.65,.05,.10],[.30,.85,.10],[.05,.10,.80]])),\\\\n    (\\\\\\\"3_struct_12\\\\\\\",  np.array([[.96,.01,.01],[.02,.69,.30],[.02,.30,.69]])),\\\\n    (\\\\\\\"4_weak_diag\\\\\\\",  np.array([[.40,.35,.25],[.35,.40,.35],[.25,.25,.40]])),\\\\n    (\\\\\\\"5_near_perm\\\\\\\",  np.array([[.05,.05,.90],[.90,.05,.05],[.05,.90,.05]])),\\\\n    (\\\\\\\"6_diff_base\\\\\\\",  np.array([[.85,.15,.05],[.075,.70,.05],[.075,.15,.90]])),\\\\n])\\\\n\\\\nCOEF_NAMES = ['β₀', 'τ', 'β₁', 'β₂']\\\\n\\\\n\\\\n# ================================================================\\\\n# Helpers\\\\n# ================================================================\\\\ndef softmax(x):\\\\n    e = np.exp(x - x.max())\\\\n    return e / e.sum()\\\\n\\\\n\\\\ndef p_cat(t, g, d):\\\\n    return softmax(g + d * t)\\\\n\\\\n\\\\ndef gen_Astar(A, C, rng):\\\\n    pr = C[:, A]\\\\n    cu = np.cumsum(pr, axis=0)\\\\n    u = rng.uniform(size=len(A))\\\\n    return (u >= cu[0]).astype(int) + (u >= cu[1]).astype(int)\\\\n\\\\n\\\\ndef ols(Z, Y):\\\\n    return np.linalg.lstsq(Z, Y, \n…[truncated 6955 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T11:54:05.098880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "causal_annot_error_attrib",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T11:54:05.099121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan001_dag_taxonomy\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:28:52.009Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:42:55.235Z\\\", \\\"hypothesis\\\": \\\"K=3 非差异性误分类在不同因果拓扑下的偏差模式差异：哪些拓扑（mediation/collider/M-bias/instrument/front-door）出现方向反转或效应放大（如 exposure DAG），哪些保持单调衰减（如 confounding DAG）。Claim 1 支撑：多分类标注错误的偏差方向依赖于因果结构。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 plan_001_mediation_frontdoor.py + plan_001_collider_mbias_iv.py\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"synthetic (in-script DGP)\\\", \\\"data_count\\\": \\\"6 C-structures x 1000 reps x N=10000 per DAG topology\\\", \\\"model_name\\\": \\\"N/A (analytical + MC)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (simulation)\\\", \\\"log_path\\\": \\\"/home/sonny/causal_annot_error_attrib/\\\"}, \\\"metrics\\\": {\\\"collider\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.688, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}}, \\\"mbias\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.651, \\\"amplification\\\": 0.112}, \\\"tau_specific\\\": {\\\"violation\\\": 0.532, \\\"sign_flip\\\": 0, \\\"amplification\\\": 0.104}}, \\\"mediation_mixed\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.835, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}}, \\\"mediation_same\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.666, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}}, \\\"frontdoor_mixed\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.998, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}}, \\\"frontdoor_same\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 1, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 0.999, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}}}}, \\\"plan003_empirical_confusion_matrices\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"crea\n…[truncated 4407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T11:54:05.099302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "wc -l /home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T11:54:05.099433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"399 /home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T11:54:05.099590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "head -260 /home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T11:54:05.099808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# -*- coding: utf-8 -*-\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001: Mediation + Front-door DAG — closed-form bias + MC verification.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport numpy as np\\\\nimport time\\\\nimport warnings\\\\nfrom collections import OrderedDict\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\n# ================================================================\\\\n# Configuration\\\\n# ================================================================\\\\nK = 3\\\\nN_MC = 10_000\\\\nN_REPS = 1_000\\\\nN_LARGE = 50_000_000\\\\nN_RANDOM = 100_000\\\\n\\\\nBETA_MIXED = np.array([0.0, 1.0, -0.5])\\\\nBETA_SAME  = np.array([0.0, 1.0,  0.5])\\\\n\\\\nTAU = 0.5\\\\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\\\\nDELTA_MED = np.array([0.0, 0.8, -0.6])\\\\n\\\\nALPHA_U = 1.0\\\\nLAMBDA_U = 1.0\\\\nGAMMA_FD = np.array([0.0, 0.5, -0.3])\\\\nDELTA_FD = np.array([0.0, 1.0, -0.8])\\\\n\\\\nC_DICT = OrderedDict([\\\\n    (\\\\\\\"1_sym_high\\\\\\\",   np.array([[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]])),\\\\n    (\\\\\\\"2_asymmetric\\\\\\\", np.array([[.65,.05,.10],[.30,.85,.10],[.05,.10,.80]])),\\\\n    (\\\\\\\"3_struct_12\\\\\\\",  np.array([[.96,.01,.01],[.02,.69,.30],[.02,.30,.69]])),\\\\n    (\\\\\\\"4_weak_diag\\\\\\\",  np.array([[.40,.35,.25],[.35,.40,.35],[.25,.25,.40]])),\\\\n    (\\\\\\\"5_near_perm\\\\\\\",  np.array([[.05,.05,.90],[.90,.05,.05],[.05,.90,.05]])),\\\\n    (\\\\\\\"6_diff_base\\\\\\\",  np.array([[.85,.15,.05],[.075,.70,.05],[.075,.15,.90]])),\\\\n])\\\\n\\\\nCOEF_NAMES = ['β₀', 'τ', 'β₁', 'β₂']\\\\n\\\\n\\\\n# ================================================================\\\\n# Helpers\\\\n# ================================================================\\\\ndef softmax(x):\\\\n    e = np.exp(x - x.max())\\\\n    return e / e.sum()\\\\n\\\\n\\\\ndef p_cat(t, g, d):\\\\n    return softmax(g + d * t)\\\\n\\\\n\\\\ndef gen_Astar(A, C, rng):\\\\n    pr = C[:, A]\\\\n    cu = np.cumsum(pr, axis=0)\\\\n    u = rng.uniform(size=len(A))\\\\n    return (u >= cu[0]).astype(int) + (u >= cu[1]).astype(int)\\\\n\\\\n\\\\ndef ols(Z, Y):\\\\n    return np.linalg.lstsq(Z, Y, \n…[truncated 6742 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T11:54:05.099972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "tail -n +120 /home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T11:54:05.100229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    out = np.zeros((nr, 4))\\\\n    for r in range(nr):\\\\n        T = rng.binomial(1, .5, N)\\\\n        pr = np.where(T[:, None] == 0, p0, p1)\\\\n        cu = np.cumsum(pr, axis=1)\\\\n        u = rng.uniform(size=N)\\\\n        A = (u >= cu[:, 0]).astype(int) + (u >= cu[:, 1]).astype(int)\\\\n        D1 = (A == 1).astype(float)\\\\n        D2 = (A == 2).astype(float)\\\\n        Y = beta[0] + beta[1]*D1 + beta[2]*D2 + tau*T + rng.normal(0, 1, N)\\\\n        As = gen_Astar(A, C, rng)\\\\n        Z = np.column_stack([np.ones(N), T.astype(float),\\\\n                             (As == 1).astype(float), (As == 2).astype(float)])\\\\n        out[r] = ols(Z, Y)\\\\n    return out.mean(0), out.std(0) / np.sqrt(nr)\\\\n\\\\n\\\\ndef rsearch_med(beta, tau, g=GAMMA_MED, d=DELTA_MED,\\\\n                ns=N_RANDOM, seed=999):\\\\n    rng = np.random.default_rng(seed)\\\\n    p0, p1 = p_cat(0, g, d), p_cat(1, g, d)\\\\n    pm = .5 * (p0 + p1)\\\\n    b = np.array([beta[0], tau, beta[1], beta[2]])\\\\n    clean = plim_med(np.eye(K), beta, tau, g, d)\\\\n\\\\n    Cs = np.zeros((ns, K, K))\\\\n    for i in range(K):\\\\n        Cs[:, :, i] = rng.dirichlet(np.ones(K), size=ns)\\\\n\\\\n    q0 = Cs @ p0\\\\n    q1 = Cs @ p1\\\\n    qm = .5 * (q0 + q1)\\\\n\\\\n    EZZ = np.zeros((ns, 4, 4))\\\\n    EZZ[:, 0, 0] = 1;       EZZ[:, 0, 1] = EZZ[:, 1, 0] = .5\\\\n    EZZ[:, 0, 2] = EZZ[:, 2, 0] = qm[:, 1]\\\\n    EZZ[:, 0, 3] = EZZ[:, 3, 0] = qm[:, 2]\\\\n    EZZ[:, 1, 1] = .5\\\\n    EZZ[:, 1, 2] = EZZ[:, 2, 1] = .5 * q1[:, 1]\\\\n    EZZ[:, 1, 3] = EZZ[:, 3, 1] = .5 * q1[:, 2]\\\\n    EZZ[:, 2, 2] = qm[:, 1]\\\\n    EZZ[:, 3, 3] = qm[:, 2]\\\\n\\\\n    EZX = np.zeros((ns, 4, 4))\\\\n    EZX[:, 0, 0] = 1;       EZX[:, 0, 1] = .5\\\\n    EZX[:, 0, 2] = pm[1];   EZX[:, 0, 3] = pm[2]\\\\n    EZX[:, 1, 0] = .5;      EZX[:, 1, 1] = .5\\\\n    EZX[:, 1, 2] = .5 * p1[1]; EZX[:, 1, 3] = .5 * p1[2]\\\\n    EZX[:, 2, 0] = qm[:, 1];   EZX[:, 2, 1] = .5 * q1[:, 1]\\\\n    EZX[:, 2, 2] = Cs[:, 1, 1] * pm[1]; EZX[:, 2, 3] = Cs[:, 1, 2\n…[truncated 6851 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T11:54:05.100422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "head -310 /home/sonny/causal_annot_error_attrib/plan_001_mediation_frontdoor.py",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T11:54:05.100652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# -*- coding: utf-8 -*-\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001: Mediation + Front-door DAG — closed-form bias + MC verification.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport numpy as np\\\\nimport time\\\\nimport warnings\\\\nfrom collections import OrderedDict\\\\n\\\\nwarnings.filterwarnings('ignore')\\\\n\\\\n# ================================================================\\\\n# Configuration\\\\n# ================================================================\\\\nK = 3\\\\nN_MC = 10_000\\\\nN_REPS = 1_000\\\\nN_LARGE = 50_000_000\\\\nN_RANDOM = 100_000\\\\n\\\\nBETA_MIXED = np.array([0.0, 1.0, -0.5])\\\\nBETA_SAME  = np.array([0.0, 1.0,  0.5])\\\\n\\\\nTAU = 0.5\\\\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\\\\nDELTA_MED = np.array([0.0, 0.8, -0.6])\\\\n\\\\nALPHA_U = 1.0\\\\nLAMBDA_U = 1.0\\\\nGAMMA_FD = np.array([0.0, 0.5, -0.3])\\\\nDELTA_FD = np.array([0.0, 1.0, -0.8])\\\\n\\\\nC_DICT = OrderedDict([\\\\n    (\\\\\\\"1_sym_high\\\\\\\",   np.array([[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]])),\\\\n    (\\\\\\\"2_asymmetric\\\\\\\", np.array([[.65,.05,.10],[.30,.85,.10],[.05,.10,.80]])),\\\\n    (\\\\\\\"3_struct_12\\\\\\\",  np.array([[.96,.01,.01],[.02,.69,.30],[.02,.30,.69]])),\\\\n    (\\\\\\\"4_weak_diag\\\\\\\",  np.array([[.40,.35,.25],[.35,.40,.35],[.25,.25,.40]])),\\\\n    (\\\\\\\"5_near_perm\\\\\\\",  np.array([[.05,.05,.90],[.90,.05,.05],[.05,.90,.05]])),\\\\n    (\\\\\\\"6_diff_base\\\\\\\",  np.array([[.85,.15,.05],[.075,.70,.05],[.075,.15,.90]])),\\\\n])\\\\n\\\\nCOEF_NAMES = ['β₀', 'τ', 'β₁', 'β₂']\\\\n\\\\n\\\\n# ================================================================\\\\n# Helpers\\\\n# ================================================================\\\\ndef softmax(x):\\\\n    e = np.exp(x - x.max())\\\\n    return e / e.sum()\\\\n\\\\n\\\\ndef p_cat(t, g, d):\\\\n    return softmax(g + d * t)\\\\n\\\\n\\\\ndef gen_Astar(A, C, rng):\\\\n    pr = C[:, A]\\\\n    cu = np.cumsum(pr, axis=0)\\\\n    u = rng.uniform(size=len(A))\\\\n    return (u >= cu[0]).astype(int) + (u >= cu[1]).astype(int)\\\\n\\\\n\\\\ndef ols(Z, Y):\\\\n    return np.linalg.lstsq(Z, Y, \n…[truncated 6759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T11:54:05.100940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "cat > /home/sonny/causal_annot_error_attrib/compute_misclass_amplifies.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute misclass_amplifies_rate for mediation and front-door.\"\"\"\nimport numpy as np\nimport time\n\nK = 3\nN_LARGE = 50_000_000\nN_RANDOM = 100_000\nTAU = 0.5\n\nBETA_MIXED = np.array([0.0, 1.0, -0.5])\nBETA_SAME  = np.array([0.0, 1.0,  0.5])\n\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\nDELTA_MED = np.array([0.0, 0.8, -0.6])\n\nALPHA_U = 1.0\nLAMBDA_U = 1.0\nGAMMA_FD = np.array([0.0, 0.5, -0.3])\nDELTA_FD = np.array([0.0, 1.0, -0.8])\n\ndef softmax(x):\n    e = np.exp(x - x.max())\n    return e / e.sum()\n\ndef p_cat(t, g, d):\n    return softmax(g + d * t)\n\n# ---- Mediation plim ----\ndef plim_med(C, beta, tau, g=GAMMA_MED, d=DELTA_MED):\n    p0, p1 = p_cat(0, g, d), p_cat(1, g, d)\n    q0, q1 = C @ p0, C @ p1\n    pm = .5 * (p0 + p1)\n    qm = .5 * (q0 + q1)\n    EZZ = np.array([\n        [1,      .5,        qm[1],      qm[2]     ],\n        [.5,     .5,        .5*q1[1],   .5*q1[2]  ],\n        [qm[1],  .5*q1[1],  qm[1],      0         ],\n        [qm[2],  .5*q1[2],  0,          qm[2]     ]])\n    EZX = np.array([\n        [1,      .5,        pm[1],            pm[2]           ],\n        [.5,     .5,        .5*p1[1],         .5*p1[2]        ],\n        [qm[1],  .5*q1[1],  C[1,1]*pm[1],    C[1,2]*pm[2]   ],\n        [qm[2],  .5*q1[2],  C[2,1]*pm[1],    C[2,2]*pm[2]   ]])\n    b = np.array([beta[0], tau, beta[1], beta[2]])\n    return np.linalg.solve(EZZ, EZX @ b)\n\n# ---- Front-door precomp + plim ----\ndef _gen_fd(N, beta, rng):\n    U = rng.normal(0, 1, N)\n    T = ALPHA_U * U + rng.normal(0, 1, N)\n    lo = np.column_stack([np.zeros(N), GAMMA_FD[1] + DELTA_FD[1]*T, GAMMA_FD[2] + DELTA_FD[2]*T])\n    lo -= lo.max(1, keepdims=True)\n    e = np.exp(lo)\n    p = e / e.sum(1, keepdims=True)\n    cu = np.cumsum(p, axis=1)\n    u = rng.uniform(size=N)\n    M = (u >= cu[:, 0]).astype(int) + (u >= cu[:, 1]).astype(int)\n    DM1 = (M == 1).astype(float)\n    DM2 = (M == 2).astype(float)\n    Y = beta[1]*DM1 + beta[2]*DM2 + LAMBDA_U*U + rng.normal(0, 1, N)\n    return T, M, Y\n\ndef precomp_fd(beta, N=N_LARGE, seed=123):\n    rng = np.random.default_rng(seed)\n    T, M, Y = _gen_fd(N, beta, rng)\n    DM = np.zeros((N, K))\n    for k in range(K):\n        DM[:, k] = (M == k).astype(float)\n    return dict(\n        E_T=T.mean(), E_T2=(T**2).mean(),\n        E_Y=Y.mean(), E_TY=(T*Y).mean(),\n        E_DM=DM.mean(0),\n        E_DM_T=(DM * T[:, None]).mean(0),\n        E_DM_Y=(DM * Y[:, None]).mean(0))\n\ndef plim_fd(C, st):\n    ds  = C @ st['E_DM']\n    dst = C @ st['E_DM_T']\n    dsy = C @ st['E_DM_Y']\n    ET, ET2 = st['E_T'], st['E_T2']\n    EY, ETY = st['E_Y'], st['E_TY']\n    EZZ = np.array([\n        [1,      ET,      ds[1],    ds[2]   ],\n        [ET,     ET2,     dst[1],   dst[2]  ],\n        [ds[1],  dst[1],  ds[1],    0       ],\n        [ds[2],  dst[2],  0,        ds[2]   ]])\n    EZY = np.array([EY, ETY, dsy[1], dsy[2]])\n    return np.linalg.solve(EZZ, EZY)\n\n# ---- misclass_amplifies for mediation (vectorized rsearch) ----\ndef misclass_amplifies_med(beta, tau, true_tau, ns=N_RANDOM, seed=999):\n    rng = np.random.default_rng(seed)\n    g, d = GAMMA_MED, DELTA_MED\n    p0, p1 = p_cat(0, g, d), p_cat(1, g, d)\n    pm = .5 * (p0 + p1)\n    b = np.array([beta[0], tau, beta[1], beta[2]])\n    clean = plim_med(np.eye(K), beta, tau, g, d)\n    tau_I = clean[1]\n    bias_I = abs(tau_I - true_tau)\n\n    Cs = np.zeros((ns, K, K))\n    for i in range(K):\n        Cs[:, :, i] = rng.dirichlet(np.ones(K), size=ns)\n\n    q0 = Cs @ p0;  q1 = Cs @ p1;  qm = .5 * (q0 + q1)\n    EZZ = np.zeros((ns, 4, 4))\n    EZZ[:, 0, 0] = 1;       EZZ[:, 0, 1] = EZZ[:, 1, 0] = .5\n    EZZ[:, 0, 2] = EZZ[:, 2, 0] = qm[:, 1]\n    EZZ[:, 0, 3] = EZZ[:, 3, 0] = qm[:, 2]\n    EZZ[:, 1, 1] = .5\n    EZZ[:, 1, 2] = EZZ[:, 2, 1] = .5 * q1[:, 1]\n    EZZ[:, 1, 3] = EZZ[:, 3, 1] = .5 * q1[:, 2]\n    EZZ[:, 2, 2] = qm[:, 1];  EZZ[:, 3, 3] = qm[:, 2]\n\n    EZX = np.zeros((ns, 4, 4))\n    EZX[:, 0, 0] = 1;       EZX[:, 0, 1] = .5\n    EZX[:, 0, 2] = pm[1];   EZX[:, 0, 3] = pm[2]\n    EZX[:, 1, 0] = .5;      EZX[:, 1, 1] = .5\n    EZX[:, 1, 2] = .5 * p1[1]; EZX[:, 1, 3] = .5 * p1[2]\n    EZX[:, 2, 0] = qm[:, 1];   EZX[:, 2, 1] = .5 * q1[:, 1]\n    EZX[:, 2, 2] = Cs[:, 1, 1] * pm[1]; EZX[:, 2, 3] = Cs[:, 1, 2] * pm[2]\n    EZX[:, 3, 0] = qm[:, 2];   EZX[:, 3, 1] = .5 * q1[:, 2]\n    EZX[:, 3, 2] = Cs[:, 2, 1] * pm[1]; EZX[:, 3, 3] = Cs[:, 2, 2] * pm[2]\n\n    rhs = np.einsum('nij,j->ni', EZX, b)\n    pl = np.linalg.solve(EZZ, rhs[:, :, None])[:, :, 0]\n    tau_C = pl[:, 1]\n    bias_C = np.abs(tau_C - true_tau)\n    rate = (bias_C > bias_I).mean()\n    return rate, tau_I, bias_I\n\n# ---- misclass_amplifies for front-door (vectorized rsearch) ----\ndef misclass_amplifies_fd(st, true_tau, ns=N_RANDOM, seed=999):\n    rng = np.random.default_rng(seed)\n    clean = plim_fd(np.eye(K), st)\n    tau_I = clean[1]\n    bias_I = abs(tau_I - true_tau)\n\n    Cs = np.zeros((ns, K, K))\n    for i in range(K):\n        Cs[:, :, i] = rng.dirichlet(np.ones(K), size=ns)\n\n    E_DMs   = Cs @ st['E_DM']\n    E_DMs_T = Cs @ st['E_DM_T']\n    E_DMs_Y = Cs @ st['E_DM_Y']\n    ET, ET2 = st['E_T'], st['E_T2']\n    EY, ETY = st['E_Y'], st['E_TY']\n\n    EZZ = np.zeros((ns, 4, 4))\n    EZZ[:, 0, 0] = 1;       EZZ[:, 0, 1] = EZZ[:, 1, 0] = ET\n    EZZ[:, 0, 2] = EZZ[:, 2, 0] = E_DMs[:, 1]\n    EZZ[:, 0, 3] = EZZ[:, 3, 0] = E_DMs[:, 2]\n    EZZ[:, 1, 1] = ET2\n    EZZ[:, 1, 2] = EZZ[:, 2, 1] = E_DMs_T[:, 1]\n    EZZ[:, 1, 3] = EZZ[:, 3, 1] = E_DMs_T[:, 2]\n    EZZ[:, 2, 2] = E_DMs[:, 1];  EZZ[:, 3, 3] = E_DMs[:, 2]\n\n    EZY = np.zeros((ns, 4))\n    EZY[:, 0] = EY;   EZY[:, 1] = ETY\n    EZY[:, 2] = E_DMs_Y[:, 1];  EZY[:, 3] = E_DMs_Y[:, 2]\n\n    pl = np.linalg.solve(EZZ, EZY[:, :, None])[:, :, 0]\n    tau_C = pl[:, 1]\n    bias_C = np.abs(tau_C - true_tau)\n    rate = (bias_C > bias_I).mean()\n    return rate, tau_I, bias_I\n\n\ndef main():\n    t0 = time.time()\n\n    # Mediation: true_tau = TAU = 0.5 (direct effect, model correctly specified with C=I)\n    for bn, beta in [(\"mixed\", BETA_MIXED), (\"same\", BETA_SAME)]:\n        rate, tau_I, bias_I = misclass_amplifies_med(beta, TAU, true_tau=TAU)\n        print(f\"mediation_{bn}: misclass_amplifies={rate:.4f}  tau_I={tau_I:.6f}  bias_I={bias_I:.6f}\")\n\n    # Front-door: true_tau = 0 (no direct T->Y effect in DGP)\n    for bn, beta in [(\"mixed\", BETA_MIXED), (\"same\", BETA_SAME)]:\n        t1 = time.time()\n        st = precomp_fd(beta)\n        t2 = time.time()\n        rate, tau_I, bias_I = misclass_amplifies_fd(st, true_tau=0.0)\n        t3 = time.time()\n        print(f\"frontdoor_{bn}: misclass_amplifies={rate:.4f}  tau_I={tau_I:.6f}  bias_I={bias_I:.6f}  (precomp={t2-t1:.1f}s, search={t3-t2:.1f}s)\")\n\n    print(f\"\\nTotal: {time.time()-t0:.1f}s\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\ncd /home/sonny/causal_annot_error_attrib && python3 compute_misclass_amplifies.py",
+              "account": "sonny",
+              "warn": "True",
+              "timeout": "600000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T11:54:05.101147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mediation_mixed: misclass_amplifies=1.0000  tau_I=0.500000  bias_I=0.000000\\\\nmediation_same: misclass_amplifies=1.0000  tau_I=0.500000  bias_I=0.000000\\\\nfrontdoor_mixed: misclass_amplifies=1.0000  tau_I=0.499809  bias_I=0.499809  (precomp=7.1s, search=0.0s)\\\\nfrontdoor_same: misclass_amplifies=0.9997  tau_I=0.499809  bias_I=0.499809  (precomp=7.0s, search=0.0s)\\\\n\\\\nTotal: 14.3s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T11:54:05.101381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001_dag_taxonomy",
+              "field": "metrics",
+              "value": "{'collider': {'all_coef': {'violation': 1, 'sign_flip': 0.688, 'amplification': 1}, 'tau_specific': {'violation': 1, 'sign_flip': 0, 'amplification': 1}, 'misclass_amplifies_rate': 0}, 'mbias': {'all_coef': {'violation': 1, 'sign_flip': 0.651, 'amplification': 0.112}, 'tau_specific': {'violation': 0.532, 'sign_flip': 0, 'amplification': 0.104}, 'misclass_amplifies_rate': 0.292}, 'mediation_mixed': {'all_coef': {'violation': 1, 'sign_flip': 0.835, 'amplification': 1}, 'tau_specific': {'violation': 1, 'sign_flip': 0, 'amplification': 1}, 'misclass_amplifies_rate': 1}, 'mediation_same': {'all_coef': {'violation': 1, 'sign_flip': 0.666, 'amplification': 1}, 'tau_specific': {'violation': 1, 'sign_flip': 0, 'amplification': 1}, 'misclass_amplifies_rate': 1}, 'frontdoor_mixed': {'all_coef': {'violation': 1, 'sign_flip': 0.998, 'amplification': 1}, 'tau_specific': {'violation': 1, 'sign_flip': 0, 'amplification': 1}, 'misclass_amplifies_rate': 1}, 'frontdoor_same': {'all_coef': {'violation': 1, 'sign_flip': 1, 'amplification': 1}, 'tau_specific': {'violation': 0.999, 'sign_flip': 0, 'amplification': 1}, 'misclass_amplifies_rate': 0.9997}}",
+              "project": "causal_annot_error_attrib"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T11:54:05.101605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001_dag_taxonomy\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:28:52.009Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:53:49.701Z\\\", \\\"hypothesis\\\": \\\"K=3 非差异性误分类在不同因果拓扑下的偏差模式差异：哪些拓扑（mediation/collider/M-bias/instrument/front-door）出现方向反转或效应放大（如 exposure DAG），哪些保持单调衰减（如 confounding DAG）。Claim 1 支撑：多分类标注错误的偏差方向依赖于因果结构。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 plan_001_mediation_frontdoor.py + plan_001_collider_mbias_iv.py\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"synthetic (in-script DGP)\\\", \\\"data_count\\\": \\\"6 C-structures x 1000 reps x N=10000 per DAG topology\\\", \\\"model_name\\\": \\\"N/A (analytical + MC)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (simulation)\\\", \\\"log_path\\\": \\\"/home/sonny/causal_annot_error_attrib/\\\"}, \\\"metrics\\\": {\\\"collider\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.688, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 0}, \\\"mbias\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.651, \\\"amplification\\\": 0.112}, \\\"tau_specific\\\": {\\\"violation\\\": 0.532, \\\"sign_flip\\\": 0, \\\"amplification\\\": 0.104}, \\\"misclass_amplifies_rate\\\": 0.292}, \\\"mediation_mixed\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.835, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 1}, \\\"mediation_same\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.666, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 1}, \\\"frontdoor_mixed\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0.998, \\\"amplification\\\": 1}, \\\"tau_specific\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 0, \\\"amplification\\\": 1}, \\\"misclass_amplifies_rate\\\": 1}, \\\"frontdoor_same\\\": {\\\"all_coef\\\": {\\\"violation\\\": 1, \\\"sign_flip\\\": 1, \\\"amplification\\\": 1}, \\\"tau\n…[truncated 181 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T11:54:05.101776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "rm /home/sonny/causal_annot_error_attrib/compute_misclass_amplifies.py",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T11:54:05.101914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T11:54:05.102067+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`misclass_amplifies_rate` 已补齐并写入 registry：\n\n| 拓扑 | misclass_amplifies_rate | 解释 |\n|------|------------------------|------|\n| collider | 0% | 误分类总是衰减 collider bias（保留已有值） |\n| m_bias | 29.2% | 保留已有值 |\n| mediation_mixed | **100%** | C=I 下 τ 无偏（bias_I=0），任何误分类都引入偏差 |\n| mediation_same | **100%** | 同上 |\n| frontdoor_mixed | **100%** | true τ=0，C=I 下已有 confounding bias≈0.5，误分类几乎总是加剧 |\n| frontdoor_same | **99.97%** | 同上，极少数 C 恰好减小偏差 |\n\nmediation 的 100% 是因为模型在 C=I 下正确指定（baseline bias=0），所以 misclassification 无论方向都放大偏差。front-door 的接近 100% 是因为 U 混淆已经把 τ 推到 ~0.5（true=0），误分类进一步恶化。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_plan001-final-metrics_20260520T114936"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/code-plan001-final-metrics.md"
+}

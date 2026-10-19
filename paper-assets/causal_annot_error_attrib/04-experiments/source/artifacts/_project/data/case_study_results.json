@@ -1,0 +1,106 @@
+{
+  "paper": {
+    "title": "The (Short-Term) Effects of Large Language Models on Unemployment and Earnings",
+    "arxiv": "2509.15510",
+    "year": 2025,
+    "llm_used": "Claude (Anthropic Economic Index; Handa et al. 2025)",
+    "annotation_task": "Classify each O*NET task as automative / augmentative / neither",
+    "K": 3,
+    "estimator": "Synthetic difference-in-differences (SDiD)",
+    "primary_estimand_USD": 89.0,
+    "primary_estimand_se_USD": 20.0,
+    "outcome": "Weekly earnings (2010 USD), occupation-level CPS data",
+    "treatment": "Above-median LLM exposure (binary) x post-Nov-2022",
+    "sample": "188 months Jan 2010-Aug 2025, US occupation-level panel"
+  },
+  "topology_assignment": "exposure (A -> Y, A is Claude-classified task type)",
+  "framework_note": "We apply the K=3 exposure-topology bias/ASV machinery to the task-level primitive that the paper aggregates to occupation level. The structural coefficient of interest is the earnings differential between the automative class and the 'neither' baseline (tau_auto).",
+  "point_estimates": [
+    {
+      "label": "best",
+      "diag": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "min_diag": 0.9,
+      "tau_true_auto": 0.997451365516026,
+      "tau_biased_auto": 0.869780412976102,
+      "bias_pct_auto": -12.799717054262002,
+      "magnitude_ASV": 0.7871914609739826,
+      "signflip_ASV": 6.430953969312875
+    },
+    {
+      "label": "realistic",
+      "diag": [
+        0.8,
+        0.8000000000000002,
+        0.8
+      ],
+      "min_diag": 0.8,
+      "tau_true_auto": 0.997451365516026,
+      "tau_biased_auto": 0.7205119946511889,
+      "bias_pct_auto": -27.764699156190343,
+      "magnitude_ASV": 0.3735823882588393,
+      "signflip_ASV": 3.1787858572381595
+    },
+    {
+      "label": "weak",
+      "diag": [
+        0.7,
+        0.7000000000000001,
+        0.7
+      ],
+      "min_diag": 0.7,
+      "tau_true_auto": 0.997451365516026,
+      "tau_biased_auto": 0.5678048750053879,
+      "bias_pct_auto": -43.07443002881277,
+      "magnitude_ASV": 0.244607516121859,
+      "signflip_ASV": 2.139203913720258
+    }
+  ],
+  "monte_carlo": [
+    {
+      "diag_dominance": 0.9,
+      "n_samples": 500,
+      "bias_pct_mean": -12.806496138370896,
+      "bias_pct_median": -10.64879435284365,
+      "bias_pct_p5": -34.67811543647705,
+      "bias_pct_p95": -0.16656582409392853,
+      "abs_bias_pct_mean": 13.060407885850156,
+      "abs_bias_pct_p95": 34.67811543647705,
+      "magnitude_ASV_p5": 0.2706497263967575,
+      "magnitude_ASV_median": 0.9022556390977443,
+      "fraction_signflip_within_delta1": 0.0,
+      "signflip_ASV_median": null
+    },
+    {
+      "diag_dominance": 0.8,
+      "n_samples": 500,
+      "bias_pct_mean": -26.636692736180777,
+      "bias_pct_median": -24.51397730594632,
+      "bias_pct_p5": -56.20392125533703,
+      "bias_pct_p95": -5.960781505983211,
+      "abs_bias_pct_mean": 26.714596639168427,
+      "abs_bias_pct_p95": 56.20392125533701,
+      "magnitude_ASV_p5": 0.17260265112731019,
+      "magnitude_ASV_median": 0.41075881285421495,
+      "fraction_signflip_within_delta1": 0.0,
+      "signflip_ASV_median": null
+    },
+    {
+      "diag_dominance": 0.7,
+      "n_samples": 500,
+      "bias_pct_mean": -43.203239655443014,
+      "bias_pct_median": -41.07577360679484,
+      "bias_pct_p5": -74.16377210180379,
+      "bias_pct_p95": -16.4368592184655,
+      "abs_bias_pct_mean": 43.203363678126486,
+      "abs_bias_pct_p95": 74.16377210180374,
+      "magnitude_ASV_p5": 0.13182863556361032,
+      "magnitude_ASV_median": 0.2451298833147183,
+      "fraction_signflip_within_delta1": 0.006,
+      "signflip_ASV_median": 0.9262679189657766
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "5e3511da948e5db56122",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan001 small tau test",
+  "task_key": "worker_code_plan001-small-tau-test_20260520T120959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-small-tau-test_20260520T120959.log",
+    "occurrence": 1,
+    "bytes": 974694,
+    "sha256": "aaa3c8e423ceb9c5eead5b936a5050a936b83a6594dd3c9d98976880dee65e51"
+  },
+  "statistics": {
+    "messages": 569,
+    "user_turns": 1,
+    "tool_calls": 239,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 239,
+      "tool_result": 239,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 400,
+      "chunks": [
+        {
+          "path": "5e3511da948e5db56122-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5e3511da948e5db56122-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5e3511da948e5db56122-part-0003.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "5e3511da948e5db56122-part-0003.json",
+          "message_count": 140
+        },
+        {
+          "path": "5e3511da948e5db56122-part-0004.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-small-tau-test.md"
+}

@@ -1,0 +1,515 @@
+# Plan 006 Exact Per-Config Values
+# Extracted from asv_empirical_results.json on 2026-05-21
+
+## Table 1: Per-Config Macro F1
+dataset | model | prompt | macro_f1 | weighted_f1
+--- | --- | --- | --- | ---
+humaid | deepseek | few-shot-3 | 0.686332528254669 | 0.7079850713700734
+humaid | deepseek | few-shot-5 | 0.6854961636228544 | 0.7154159318159469
+humaid | deepseek | zero-shot | 0.6896163310588191 | 0.7379106239347464
+humaid | llama4 | few-shot-3 | 0.6157321052348829 | 0.6423408356103537
+humaid | llama4 | few-shot-5 | 0.6242855183452943 | 0.6453307915826395
+humaid | llama4 | zero-shot | 0.6144302991883744 | 0.6466720766954748
+humaid | qwen3 | few-shot-3 | 0.6749099031385263 | 0.7229864000901446
+humaid | qwen3 | few-shot-5 | 0.0 | 0.0
+humaid | qwen3 | zero-shot | 0.6776464165672691 | 0.7261264737892993
+
+## Table 2: Per-Config × Topology Bias (from f1_vs_bias + biases)
+dataset | model | prompt | topology | macro_f1 | weighted_f1 | tau_hat | bias | abs_bias | bias_pct | sign_flip
+--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+humaid | llama4 | zero-shot | confounding | 0.6144302991883744 | 0.6466720766954748 | 2.120934379053557 | 0.12069570526147011 | 0.12069570526147011 | 0.06034065176464822 | False
+humaid | llama4 | zero-shot | mediation | 0.6144302991883744 | 0.6466720766954748 | 0.5712933797533354 | 0.07307001250379075 | 0.07307001250379075 | 0.14666115101580984 | False
+humaid | llama4 | zero-shot | collider | 0.6144302991883744 | 0.6466720766954748 | 0.9456694721398234 | 0.04595577469197598 | 0.04595577469197598 | 0.05107822057431757 | False
+humaid | llama4 | zero-shot | exposure | 0.6144302991883744 | 0.6466720766954748 | 0.8828876330655444 | -0.11798447072494489 | 0.11798447072494489 | 0.11788166567747838 | False
+humaid | llama4 | zero-shot | mbias | 0.6144302991883744 | 0.6466720766954748 | 0.4691488925499947 | 0.02786998543706848 | 0.02786998543706848 | 0.0631573025309736 | False
+humaid | llama4 | zero-shot | iv | 0.6144302991883744 | 0.6466720766954748 | 1.5683599189072943 | 0.44922058382638075 | 0.44922058382638075 | 0.4013982618115216 | False
+humaid | llama4 | zero-shot | frontdoor | 0.6144302991883744 | 0.6466720766954748 | 0.5715479467164649 | 0.07216071249027495 | 0.07216071249027495 | 0.14449851246616136 | False
+humaid | llama4 | few-shot-3 | confounding | 0.6157321052348829 | 0.6423408356103537 | 2.120784699065214 | 0.12054602527312719 | 0.12054602527312719 | 0.06026582070058367 | False
+humaid | llama4 | few-shot-3 | mediation | 0.6157321052348829 | 0.6423408356103537 | 0.5704612272617933 | 0.07223786001224863 | 0.07223786001224863 | 0.14499091122730687 | False
+humaid | llama4 | few-shot-3 | collider | 0.6157321052348829 | 0.6423408356103537 | 0.9464381179128287 | 0.046724420464981264 | 0.046724420464981264 | 0.051932543205156306 | False
+humaid | llama4 | few-shot-3 | exposure | 0.6157321052348829 | 0.6423408356103537 | 0.8786401807491107 | -0.12223192304137864 | 0.12223192304137864 | 0.12212541700229586 | False
+humaid | llama4 | few-shot-3 | mbias | 0.6157321052348829 | 0.6423408356103537 | 0.46926932404242633 | 0.027990416929500106 | 0.027990416929500106 | 0.06343021721257384 | False
+humaid | llama4 | few-shot-3 | iv | 0.6157321052348829 | 0.6423408356103537 | 1.570316539363992 | 0.4511772042830784 | 0.4511772042830784 | 0.4031465878647348 | False
+humaid | llama4 | few-shot-3 | frontdoor | 0.6157321052348829 | 0.6423408356103537 | 0.5710035404886598 | 0.07161630626246979 | 0.07161630626246979 | 0.1434083639992132 | False
+humaid | llama4 | few-shot-5 | confounding | 0.6242855183452943 | 0.6453307915826395 | 2.12365082586331 | 0.12341215207122325 | 0.12341215207122325 | 0.06169871310270007 | False
+humaid | llama4 | few-shot-5 | mediation | 0.6242855183452943 | 0.6453307915826395 | 0.5719970141219267 | 0.07377364687238208 | 0.07377364687238208 | 0.14807343798355235 | False
+humaid | llama4 | few-shot-5 | collider | 0.6242855183452943 | 0.6453307915826395 | 0.9460905799802515 | 0.04637688253240402 | 0.04637688253240402 | 0.051546267066910234 | False
+humaid | llama4 | few-shot-5 | exposure | 0.6242855183452943 | 0.6453307915826395 | 0.8772737636412716 | -0.12359834014921767 | 0.12359834014921767 | 0.12349064349093926 | False
+humaid | llama4 | few-shot-5 | mbias | 0.6242855183452943 | 0.6453307915826395 | 0.46978562845545446 | 0.02850672134252824 | 0.02850672134252824 | 0.0646002355495165 | False
+humaid | llama4 | few-shot-5 | iv | 0.6242855183452943 | 0.6453307915826395 | 1.5907437428164128 | 0.4716044077354993 | 0.4716044077354993 | 0.4213991886018396 | False
+humaid | llama4 | few-shot-5 | frontdoor | 0.6242855183452943 | 0.6453307915826395 | 0.5727726088866913 | 0.07338537466050138 | 0.07338537466050138 | 0.14695084221408547 | False
+humaid | qwen3 | zero-shot | confounding | 0.6776464165672691 | 0.7261264737892993 | 2.0985054835166235 | 0.0982668097245365 | 0.0982668097245365 | 0.049127542133879744 | False
+humaid | qwen3 | zero-shot | mediation | 0.6776464165672691 | 0.7261264737892993 | 0.5520423668109194 | 0.053818999561374814 | 0.053818999561374814 | 0.10802182936236819 | False
+humaid | qwen3 | zero-shot | collider | 0.6776464165672691 | 0.7261264737892993 | 0.9366988618485531 | 0.03698516440070565 | 0.03698516440070565 | 0.04110770404587457 | False
+humaid | qwen3 | zero-shot | exposure | 0.6776464165672691 | 0.7261264737892993 | 0.9004559503684615 | -0.10041615342202781 | 0.10041615342202781 | 0.10032865642046881 | False
+humaid | qwen3 | zero-shot | mbias | 0.6776464165672691 | 0.7261264737892993 | 0.46536238966656945 | 0.024083482553643232 | 0.024083482553643232 | 0.0545765550209725 | False
+humaid | qwen3 | zero-shot | iv | 0.6776464165672691 | 0.7261264737892993 | 1.2575469314140617 | 0.13840759633314814 | 0.13840759633314814 | 0.12367324782051495 | False
+humaid | qwen3 | zero-shot | frontdoor | 0.6776464165672691 | 0.7261264737892993 | 0.5551445234004692 | 0.05575728917427919 | 0.05575728917427919 | 0.11165141067467647 | False
+humaid | qwen3 | few-shot-3 | confounding | 0.6749099031385263 | 0.7229864000901446 | 2.1135019394277226 | 0.1132632656356356 | 0.1132632656356356 | 0.05662487538095099 | False
+humaid | qwen3 | few-shot-3 | mediation | 0.6749099031385263 | 0.7229864000901446 | 0.562989233682857 | 0.06476586643331239 | 0.06476586643331239 | 0.129993634764371 | False
+humaid | qwen3 | few-shot-3 | collider | 0.6749099031385263 | 0.7229864000901446 | 0.9413703101661668 | 0.04165661271831933 | 0.04165661271831933 | 0.04629985387183014 | False
+humaid | qwen3 | few-shot-3 | exposure | 0.6749099031385263 | 0.7229864000901446 | 0.9109885849626933 | -0.089883518827796 | 0.089883518827796 | 0.08980519937301713 | False
+humaid | qwen3 | few-shot-3 | mbias | 0.6749099031385263 | 0.7229864000901446 | 0.46883882807680594 | 0.027559920963879714 | 0.027559920963879714 | 0.0624546528729209 | False
+humaid | qwen3 | few-shot-3 | iv | 0.6749099031385263 | 0.7229864000901446 | 1.3607364870283247 | 0.24159715194741116 | 0.24159715194741116 | 0.21587763415530714 | False
+humaid | qwen3 | few-shot-3 | frontdoor | 0.6749099031385263 | 0.7229864000901446 | 0.5662046362014267 | 0.06681740197523672 | 0.06681740197523672 | 0.13379877857464972 | False
+humaid | qwen3 | few-shot-5 | confounding | 0.0 | 0.0 | None | None | None | None | False
+humaid | qwen3 | few-shot-5 | mediation | 0.0 | 0.0 | None | None | None | None | False
+humaid | qwen3 | few-shot-5 | collider | 0.0 | 0.0 | None | None | None | None | False
+humaid | qwen3 | few-shot-5 | exposure | 0.0 | 0.0 | None | None | None | None | False
+humaid | qwen3 | few-shot-5 | mbias | 0.0 | 0.0 | None | None | None | None | False
+humaid | qwen3 | few-shot-5 | iv | 0.0 | 0.0 | None | None | None | None | False
+humaid | qwen3 | few-shot-5 | frontdoor | 0.0 | 0.0 | None | None | None | None | False
+humaid | deepseek | zero-shot | confounding | 0.6896163310588191 | 0.7379106239347464 | 2.098037116466373 | 0.09779844267428617 | 0.09779844267428617 | 0.048893386552154895 | False
+humaid | deepseek | zero-shot | mediation | 0.6896163310588191 | 0.7379106239347464 | 0.5525720601157175 | 0.05434869286617283 | 0.05434869286617283 | 0.10908499367704537 | False
+humaid | deepseek | zero-shot | collider | 0.6896163310588191 | 0.7379106239347464 | 0.9381344159354087 | 0.038420718487561234 | 0.038420718487561234 | 0.042703271714709355 | False
+humaid | deepseek | zero-shot | exposure | 0.6896163310588191 | 0.7379106239347464 | 0.8930286199464353 | -0.10784348384405396 | 0.10784348384405396 | 0.10774951508352623 | False
+humaid | deepseek | zero-shot | mbias | 0.6896163310588191 | 0.7379106239347464 | 0.46359439600401514 | 0.02231548889108892 | 0.02231548889108892 | 0.0505700329913531 | False
+humaid | deepseek | zero-shot | iv | 0.6896163310588191 | 0.7379106239347464 | 1.271872631402271 | 0.15273329632135746 | 0.15273329632135746 | 0.13647388804390015 | False
+humaid | deepseek | zero-shot | frontdoor | 0.6896163310588191 | 0.7379106239347464 | 0.5530531479739429 | 0.053665913747752925 | 0.053665913747752925 | 0.10746352743860038 | False
+humaid | deepseek | few-shot-3 | confounding | 0.686332528254669 | 0.7079850713700734 | 2.123607139445277 | 0.12336846565318993 | 0.12336846565318993 | 0.061676872500073136 | False
+humaid | deepseek | few-shot-3 | mediation | 0.686332528254669 | 0.7079850713700734 | 0.5687149487065887 | 0.07049158145704404 | 0.07049158145704404 | 0.14148589988100055 | False
+humaid | deepseek | few-shot-3 | collider | 0.686332528254669 | 0.7079850713700734 | 0.9496495466944775 | 0.04993584924663008 | 0.04993584924663008 | 0.05550193287962547 | False
+humaid | deepseek | few-shot-3 | exposure | 0.686332528254669 | 0.7079850713700734 | 0.8266415174610339 | -0.17423058632945543 | 0.17423058632945543 | 0.17407877157292295 | False
+humaid | deepseek | few-shot-3 | mbias | 0.686332528254669 | 0.7079850713700734 | 0.4682145757221894 | 0.026935668609263164 | 0.026935668609263164 | 0.06104000933443698 | False
+humaid | deepseek | few-shot-3 | iv | 0.686332528254669 | 0.7079850713700734 | 1.5846778546263218 | 0.46553851954540826 | 0.46553851954540826 | 0.4159790518950439 | False
+humaid | deepseek | few-shot-3 | frontdoor | 0.686332528254669 | 0.7079850713700734 | 0.5697887654602263 | 0.07040153123403631 | 0.07040153123403631 | 0.14097583279861933 | False
+humaid | deepseek | few-shot-5 | confounding | 0.6854961636228544 | 0.7154159318159469 | 2.1126646222388654 | 0.11242594844677845 | 0.11242594844677845 | 0.05620626674197804 | False
+humaid | deepseek | few-shot-5 | mediation | 0.6854961636228544 | 0.7154159318159469 | 0.5594037432186939 | 0.06118037596914927 | 0.06118037596914927 | 0.12279708257542629 | False
+humaid | deepseek | few-shot-5 | collider | 0.6854961636228544 | 0.7154159318159469 | 0.941628164464706 | 0.041914467016858525 | 0.041914467016858525 | 0.04658644981815243 | False
+humaid | deepseek | few-shot-5 | exposure | 0.6854961636228544 | 0.7154159318159469 | 0.8403545964483055 | -0.16051750734218384 | 0.16051750734218384 | 0.1603776413932151 | False
+humaid | deepseek | few-shot-5 | mbias | 0.6854961636228544 | 0.7154159318159469 | 0.4664318858106293 | 0.025152978697703055 | 0.025152978697703055 | 0.05700018353985417 | False
+humaid | deepseek | few-shot-5 | iv | 0.6854961636228544 | 0.7154159318159469 | 1.4621030536999786 | 0.34296371861906505 | 0.34296371861906505 | 0.3064531000460893 | False
+humaid | deepseek | few-shot-5 | frontdoor | 0.6854961636228544 | 0.7154159318159469 | 0.5618456528567989 | 0.062458418630608914 | 0.062458418630608914 | 0.12507011463236425 | False
+
+## Table 3: ASV Details
+dataset | model | prompt | topology | asv_type | asv
+--- | --- | --- | --- | --- | ---
+humaid | llama4 | zero-shot | confounding | magnitude | None
+humaid | llama4 | zero-shot | confounding | significance | None
+humaid | llama4 | zero-shot | confounding | sign_flip | None
+humaid | llama4 | zero-shot | mediation | magnitude | 0.6193806623770686
+humaid | llama4 | zero-shot | mediation | significance | None
+humaid | llama4 | zero-shot | mediation | sign_flip | None
+humaid | llama4 | zero-shot | collider | magnitude | None
+humaid | llama4 | zero-shot | collider | significance | None
+humaid | llama4 | zero-shot | collider | sign_flip | None
+humaid | llama4 | zero-shot | exposure | magnitude | 0.9040865953646517
+humaid | llama4 | zero-shot | exposure | significance | None
+humaid | llama4 | zero-shot | exposure | sign_flip | None
+humaid | llama4 | zero-shot | mbias | magnitude | None
+humaid | llama4 | zero-shot | mbias | significance | None
+humaid | llama4 | zero-shot | mbias | sign_flip | None
+humaid | llama4 | zero-shot | iv | magnitude | 0.31840581893305214
+humaid | llama4 | zero-shot | iv | significance | None
+humaid | llama4 | zero-shot | iv | sign_flip | None
+humaid | llama4 | zero-shot | frontdoor | magnitude | 0.6310013127030923
+humaid | llama4 | zero-shot | frontdoor | significance | None
+humaid | llama4 | zero-shot | frontdoor | sign_flip | None
+humaid | llama4 | few-shot-3 | confounding | magnitude | None
+humaid | llama4 | few-shot-3 | confounding | significance | None
+humaid | llama4 | few-shot-3 | confounding | sign_flip | None
+humaid | llama4 | few-shot-3 | mediation | magnitude | 0.6315460306871247
+humaid | llama4 | few-shot-3 | mediation | significance | None
+humaid | llama4 | few-shot-3 | mediation | sign_flip | None
+humaid | llama4 | few-shot-3 | collider | magnitude | None
+humaid | llama4 | few-shot-3 | collider | significance | None
+humaid | llama4 | few-shot-3 | collider | sign_flip | None
+humaid | llama4 | few-shot-3 | exposure | magnitude | 0.889342895263509
+humaid | llama4 | few-shot-3 | exposure | significance | 1.6807454969979985
+humaid | llama4 | few-shot-3 | exposure | sign_flip | None
+humaid | llama4 | few-shot-3 | mbias | magnitude | None
+humaid | llama4 | few-shot-3 | mbias | significance | None
+humaid | llama4 | few-shot-3 | mbias | sign_flip | None
+humaid | llama4 | few-shot-3 | iv | magnitude | 0.31746164109406266
+humaid | llama4 | few-shot-3 | iv | significance | None
+humaid | llama4 | few-shot-3 | iv | sign_flip | None
+humaid | llama4 | few-shot-3 | frontdoor | magnitude | 0.6371747831887925
+humaid | llama4 | few-shot-3 | frontdoor | significance | None
+humaid | llama4 | few-shot-3 | frontdoor | sign_flip | None
+humaid | llama4 | few-shot-5 | confounding | magnitude | None
+humaid | llama4 | few-shot-5 | confounding | significance | None
+humaid | llama4 | few-shot-5 | confounding | sign_flip | None
+humaid | llama4 | few-shot-5 | mediation | magnitude | 0.620456648518367
+humaid | llama4 | few-shot-5 | mediation | significance | None
+humaid | llama4 | few-shot-5 | mediation | sign_flip | None
+humaid | llama4 | few-shot-5 | collider | magnitude | None
+humaid | llama4 | few-shot-5 | collider | significance | None
+humaid | llama4 | few-shot-5 | collider | sign_flip | None
+humaid | llama4 | few-shot-5 | exposure | magnitude | 0.8827820697669413
+humaid | llama4 | few-shot-5 | exposure | significance | 1.7039746928059565
+humaid | llama4 | few-shot-5 | exposure | sign_flip | None
+humaid | llama4 | few-shot-5 | mbias | magnitude | None
+humaid | llama4 | few-shot-5 | mbias | significance | None
+humaid | llama4 | few-shot-5 | mbias | sign_flip | None
+humaid | llama4 | few-shot-5 | iv | magnitude | 0.3068066883298543
+humaid | llama4 | few-shot-5 | iv | significance | None
+humaid | llama4 | few-shot-5 | iv | sign_flip | None
+humaid | llama4 | few-shot-5 | frontdoor | magnitude | 0.6227377391379199
+humaid | llama4 | few-shot-5 | frontdoor | significance | None
+humaid | llama4 | few-shot-5 | frontdoor | sign_flip | None
+humaid | qwen3 | zero-shot | confounding | magnitude | None
+humaid | qwen3 | zero-shot | confounding | significance | None
+humaid | qwen3 | zero-shot | confounding | sign_flip | None
+humaid | qwen3 | zero-shot | mediation | magnitude | 0.901345995369462
+humaid | qwen3 | zero-shot | mediation | significance | None
+humaid | qwen3 | zero-shot | mediation | sign_flip | None
+humaid | qwen3 | zero-shot | collider | magnitude | None
+humaid | qwen3 | zero-shot | collider | significance | None
+humaid | qwen3 | zero-shot | collider | sign_flip | None
+humaid | qwen3 | zero-shot | exposure | magnitude | 0.9973413648314563
+humaid | qwen3 | zero-shot | exposure | significance | None
+humaid | qwen3 | zero-shot | exposure | sign_flip | None
+humaid | qwen3 | zero-shot | mbias | magnitude | None
+humaid | qwen3 | zero-shot | mbias | significance | None
+humaid | qwen3 | zero-shot | mbias | sign_flip | None
+humaid | qwen3 | zero-shot | iv | magnitude | 0.8265706549464349
+humaid | qwen3 | zero-shot | iv | significance | None
+humaid | qwen3 | zero-shot | iv | sign_flip | None
+humaid | qwen3 | zero-shot | frontdoor | magnitude | 0.8649688027312327
+humaid | qwen3 | zero-shot | frontdoor | significance | None
+humaid | qwen3 | zero-shot | frontdoor | sign_flip | None
+humaid | qwen3 | few-shot-3 | confounding | magnitude | None
+humaid | qwen3 | few-shot-3 | confounding | significance | None
+humaid | qwen3 | few-shot-3 | confounding | sign_flip | None
+humaid | qwen3 | few-shot-3 | mediation | magnitude | 0.7057283472000201
+humaid | qwen3 | few-shot-3 | mediation | significance | None
+humaid | qwen3 | few-shot-3 | mediation | sign_flip | None
+humaid | qwen3 | few-shot-3 | collider | magnitude | None
+humaid | qwen3 | few-shot-3 | collider | significance | None
+humaid | qwen3 | few-shot-3 | collider | sign_flip | None
+humaid | qwen3 | few-shot-3 | exposure | magnitude | 1.1135557877159197
+humaid | qwen3 | few-shot-3 | exposure | significance | None
+humaid | qwen3 | few-shot-3 | exposure | sign_flip | None
+humaid | qwen3 | few-shot-3 | mbias | magnitude | None
+humaid | qwen3 | few-shot-3 | mbias | significance | None
+humaid | qwen3 | few-shot-3 | mbias | sign_flip | None
+humaid | qwen3 | few-shot-3 | iv | magnitude | 0.5122576476560894
+humaid | qwen3 | few-shot-3 | iv | significance | None
+humaid | qwen3 | few-shot-3 | iv | sign_flip | None
+humaid | qwen3 | few-shot-3 | frontdoor | magnitude | 0.6826437750953466
+humaid | qwen3 | few-shot-3 | frontdoor | significance | None
+humaid | qwen3 | few-shot-3 | frontdoor | sign_flip | None
+humaid | qwen3 | few-shot-5 | confounding | magnitude | None
+humaid | qwen3 | few-shot-5 | confounding | significance | None
+humaid | qwen3 | few-shot-5 | confounding | sign_flip | None
+humaid | qwen3 | few-shot-5 | mediation | magnitude | None
+humaid | qwen3 | few-shot-5 | mediation | significance | None
+humaid | qwen3 | few-shot-5 | mediation | sign_flip | None
+humaid | qwen3 | few-shot-5 | collider | magnitude | None
+humaid | qwen3 | few-shot-5 | collider | significance | None
+humaid | qwen3 | few-shot-5 | collider | sign_flip | None
+humaid | qwen3 | few-shot-5 | exposure | magnitude | None
+humaid | qwen3 | few-shot-5 | exposure | significance | None
+humaid | qwen3 | few-shot-5 | exposure | sign_flip | None
+humaid | qwen3 | few-shot-5 | mbias | magnitude | None
+humaid | qwen3 | few-shot-5 | mbias | significance | None
+humaid | qwen3 | few-shot-5 | mbias | sign_flip | None
+humaid | qwen3 | few-shot-5 | iv | magnitude | None
+humaid | qwen3 | few-shot-5 | iv | significance | None
+humaid | qwen3 | few-shot-5 | iv | sign_flip | None
+humaid | qwen3 | few-shot-5 | frontdoor | magnitude | None
+humaid | qwen3 | few-shot-5 | frontdoor | significance | None
+humaid | qwen3 | few-shot-5 | frontdoor | sign_flip | None
+humaid | deepseek | zero-shot | confounding | magnitude | None
+humaid | deepseek | zero-shot | confounding | significance | None
+humaid | deepseek | zero-shot | confounding | sign_flip | None
+humaid | deepseek | zero-shot | mediation | magnitude | 0.894985545919502
+humaid | deepseek | zero-shot | mediation | significance | None
+humaid | deepseek | zero-shot | mediation | sign_flip | None
+humaid | deepseek | zero-shot | collider | magnitude | None
+humaid | deepseek | zero-shot | collider | significance | None
+humaid | deepseek | zero-shot | collider | sign_flip | None
+humaid | deepseek | zero-shot | exposure | magnitude | 0.9375138981543252
+humaid | deepseek | zero-shot | exposure | significance | None
+humaid | deepseek | zero-shot | exposure | sign_flip | None
+humaid | deepseek | zero-shot | mbias | magnitude | None
+humaid | deepseek | zero-shot | mbias | significance | None
+humaid | deepseek | zero-shot | mbias | sign_flip | None
+humaid | deepseek | zero-shot | iv | magnitude | 0.7579497442739604
+humaid | deepseek | zero-shot | iv | significance | None
+humaid | deepseek | zero-shot | iv | sign_flip | None
+humaid | deepseek | zero-shot | frontdoor | magnitude | 0.9119968868134313
+humaid | deepseek | zero-shot | frontdoor | significance | None
+humaid | deepseek | zero-shot | frontdoor | sign_flip | None
+humaid | deepseek | few-shot-3 | confounding | magnitude | None
+humaid | deepseek | few-shot-3 | confounding | significance | None
+humaid | deepseek | few-shot-3 | confounding | sign_flip | None
+humaid | deepseek | few-shot-3 | mediation | magnitude | 0.6496893620690438
+humaid | deepseek | few-shot-3 | mediation | significance | None
+humaid | deepseek | few-shot-3 | mediation | sign_flip | None
+humaid | deepseek | few-shot-3 | collider | magnitude | None
+humaid | deepseek | few-shot-3 | collider | significance | None
+humaid | deepseek | few-shot-3 | collider | sign_flip | None
+humaid | deepseek | few-shot-3 | exposure | magnitude | 0.6496893620690438
+humaid | deepseek | few-shot-3 | exposure | significance | None
+humaid | deepseek | few-shot-3 | exposure | sign_flip | None
+humaid | deepseek | few-shot-3 | mbias | magnitude | None
+humaid | deepseek | few-shot-3 | mbias | significance | None
+humaid | deepseek | few-shot-3 | mbias | sign_flip | None
+humaid | deepseek | few-shot-3 | iv | magnitude | 0.3102022663635167
+humaid | deepseek | few-shot-3 | iv | significance | None
+humaid | deepseek | few-shot-3 | iv | sign_flip | None
+humaid | deepseek | few-shot-3 | frontdoor | magnitude | 0.6496893620690438
+humaid | deepseek | few-shot-3 | frontdoor | significance | None
+humaid | deepseek | few-shot-3 | frontdoor | sign_flip | None
+humaid | deepseek | few-shot-5 | confounding | magnitude | None
+humaid | deepseek | few-shot-5 | confounding | significance | None
+humaid | deepseek | few-shot-5 | confounding | sign_flip | None
+humaid | deepseek | few-shot-5 | mediation | magnitude | 0.7752759747374162
+humaid | deepseek | few-shot-5 | mediation | significance | None
+humaid | deepseek | few-shot-5 | mediation | sign_flip | None
+humaid | deepseek | few-shot-5 | collider | magnitude | None
+humaid | deepseek | few-shot-5 | collider | significance | None
+humaid | deepseek | few-shot-5 | collider | sign_flip | None
+humaid | deepseek | few-shot-5 | exposure | magnitude | 0.693162838485998
+humaid | deepseek | few-shot-5 | exposure | significance | None
+humaid | deepseek | few-shot-5 | exposure | sign_flip | None
+humaid | deepseek | few-shot-5 | mbias | magnitude | None
+humaid | deepseek | few-shot-5 | mbias | significance | None
+humaid | deepseek | few-shot-5 | mbias | sign_flip | None
+humaid | deepseek | few-shot-5 | iv | magnitude | 0.3881711895521589
+humaid | deepseek | few-shot-5 | iv | significance | None
+humaid | deepseek | few-shot-5 | iv | sign_flip | None
+humaid | deepseek | few-shot-5 | frontdoor | magnitude | 0.7560806961331886
+humaid | deepseek | few-shot-5 | frontdoor | significance | None
+humaid | deepseek | few-shot-5 | frontdoor | sign_flip | None
+
+## Table 4: Type I/II Error and ASV Safety
+dataset | model | prompt | topology | type1_before | type1_after | power_before | power_after | asv_safe | magnitude_asv | valid_h0 | valid_h1
+--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+humaid | llama4 | zero-shot | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | zero-shot | mediation | 0.67 | 0.0 | 1.0 | 0.0 | False | 0.6193806623770686 | 1000 | 1000
+humaid | llama4 | zero-shot | collider | 0.139 | 0.139 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | zero-shot | exposure | 0.055 | 0.0 | 1.0 | 0.0 | False | 0.9040865953646517 | 1000 | 1000
+humaid | llama4 | zero-shot | mbias | 0.629 | 0.629 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | zero-shot | iv | 0.035 | 0.0 | 0.774 | 0.0 | False | 0.31840581893305214 | 1000 | 1000
+humaid | llama4 | zero-shot | frontdoor | 0.056 | 0.0 | 1.0 | 0.0 | False | 0.6310013127030923 | 1000 | 1000
+humaid | llama4 | few-shot-3 | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | few-shot-3 | mediation | 0.661 | 0.0 | 1.0 | 0.0 | False | 0.6315460306871247 | 1000 | 1000
+humaid | llama4 | few-shot-3 | collider | 0.122 | 0.122 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | few-shot-3 | exposure | 0.05 | 0.0 | 1.0 | 0.0 | False | 0.889342895263509 | 1000 | 1000
+humaid | llama4 | few-shot-3 | mbias | 0.637 | 0.637 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | few-shot-3 | iv | 0.038 | 0.0 | 0.774 | 0.0 | False | 0.31746164109406266 | 1000 | 1000
+humaid | llama4 | few-shot-3 | frontdoor | 0.041 | 0.0 | 1.0 | 0.0 | False | 0.6371747831887925 | 1000 | 1000
+humaid | llama4 | few-shot-5 | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | few-shot-5 | mediation | 0.716 | 0.0 | 1.0 | 0.0 | False | 0.620456648518367 | 1000 | 1000
+humaid | llama4 | few-shot-5 | collider | 0.155 | 0.155 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | few-shot-5 | exposure | 0.045 | 0.0 | 1.0 | 0.0 | False | 0.8827820697669413 | 1000 | 1000
+humaid | llama4 | few-shot-5 | mbias | 0.617 | 0.617 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | llama4 | few-shot-5 | iv | 0.044 | 0.0 | 0.767 | 0.0 | False | 0.3068066883298543 | 1000 | 1000
+humaid | llama4 | few-shot-5 | frontdoor | 0.044 | 0.0 | 1.0 | 0.0 | False | 0.6227377391379199 | 1000 | 1000
+humaid | qwen3 | zero-shot | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | qwen3 | zero-shot | mediation | 0.433 | 0.0 | 1.0 | 0.0 | False | 0.901345995369462 | 1000 | 1000
+humaid | qwen3 | zero-shot | collider | 0.111 | 0.111 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | qwen3 | zero-shot | exposure | 0.061 | 0.0 | 1.0 | 0.0 | False | 0.9973413648314563 | 1000 | 1000
+humaid | qwen3 | zero-shot | mbias | 0.687 | 0.687 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | qwen3 | zero-shot | iv | 0.05 | 0.0 | 0.764 | 0.0 | False | 0.8265706549464349 | 1000 | 1000
+humaid | qwen3 | zero-shot | frontdoor | 0.059 | 0.0 | 1.0 | 0.0 | False | 0.8649688027312327 | 1000 | 1000
+humaid | qwen3 | few-shot-3 | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | qwen3 | few-shot-3 | mediation | 0.57 | 0.0 | 1.0 | 0.0 | False | 0.7057283472000201 | 1000 | 1000
+humaid | qwen3 | few-shot-3 | collider | 0.117 | 0.117 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | qwen3 | few-shot-3 | exposure | 0.053 | 0.053 | 1.0 | 1.0 | True | 1.1135557877159197 | 1000 | 1000
+humaid | qwen3 | few-shot-3 | mbias | 0.621 | 0.621 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | qwen3 | few-shot-3 | iv | 0.041 | 0.0 | 0.754 | 0.0 | False | 0.5122576476560894 | 1000 | 1000
+humaid | qwen3 | few-shot-3 | frontdoor | 0.049 | 0.0 | 1.0 | 0.0 | False | 0.6826437750953466 | 1000 | 1000
+humaid | qwen3 | few-shot-5 | confounding | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | qwen3 | few-shot-5 | mediation | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | qwen3 | few-shot-5 | collider | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | qwen3 | few-shot-5 | exposure | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | qwen3 | few-shot-5 | mbias | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | qwen3 | few-shot-5 | iv | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | qwen3 | few-shot-5 | frontdoor | 0.0 | 0.0 | 0.0 | 0.0 | True | None | 0 | 0
+humaid | deepseek | zero-shot | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | zero-shot | mediation | 0.429 | 0.0 | 1.0 | 0.0 | False | 0.894985545919502 | 1000 | 1000
+humaid | deepseek | zero-shot | collider | 0.143 | 0.143 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | zero-shot | exposure | 0.046 | 0.0 | 1.0 | 0.0 | False | 0.9375138981543252 | 1000 | 1000
+humaid | deepseek | zero-shot | mbias | 0.746 | 0.746 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | zero-shot | iv | 0.037 | 0.0 | 0.785 | 0.0 | False | 0.7579497442739604 | 1000 | 1000
+humaid | deepseek | zero-shot | frontdoor | 0.049 | 0.0 | 1.0 | 0.0 | False | 0.9119968868134313 | 1000 | 1000
+humaid | deepseek | few-shot-3 | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | few-shot-3 | mediation | 0.642 | 0.0 | 1.0 | 0.0 | False | 0.6496893620690438 | 1000 | 1000
+humaid | deepseek | few-shot-3 | collider | 0.217 | 0.217 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | few-shot-3 | exposure | 0.04 | 0.0 | 1.0 | 0.0 | False | 0.6496893620690438 | 1000 | 1000
+humaid | deepseek | few-shot-3 | mbias | 0.611 | 0.611 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | few-shot-3 | iv | 0.037 | 0.0 | 0.776 | 0.0 | False | 0.3102022663635167 | 1000 | 1000
+humaid | deepseek | few-shot-3 | frontdoor | 0.05 | 0.0 | 1.0 | 0.0 | False | 0.6496893620690438 | 1000 | 1000
+humaid | deepseek | few-shot-5 | confounding | 1.0 | 1.0 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | few-shot-5 | mediation | 0.531 | 0.0 | 1.0 | 0.0 | False | 0.7752759747374162 | 1000 | 1000
+humaid | deepseek | few-shot-5 | collider | 0.139 | 0.139 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | few-shot-5 | exposure | 0.053 | 0.0 | 1.0 | 0.0 | False | 0.693162838485998 | 1000 | 1000
+humaid | deepseek | few-shot-5 | mbias | 0.682 | 0.682 | 1.0 | 1.0 | True | None | 1000 | 1000
+humaid | deepseek | few-shot-5 | iv | 0.044 | 0.0 | 0.761 | 0.0 | False | 0.3881711895521589 | 1000 | 1000
+humaid | deepseek | few-shot-5 | frontdoor | 0.05 | 0.0 | 1.0 | 0.0 | False | 0.7560806961331886 | 1000 | 1000
+
+## Table 5: Summary Statistics
+f1_gt_093_total: 0
+f1_gt_093_with_high_bias_pct: 0.0
+ppi_recommended_scenarios: 31
+total_scenarios: 63
+ppi_recommended_pct: 49.2063492063492
+
+## Table 6: Per-Topology ASV-Unsafe Count
+topology | n_unsafe | n_total | pct_unsafe
+--- | --- | --- | ---
+collider | 0 | 9 | 0.0
+confounding | 0 | 9 | 0.0
+exposure | 7 | 9 | 77.77777777777779
+frontdoor | 8 | 9 | 88.88888888888889
+iv | 8 | 9 | 88.88888888888889
+mbias | 0 | 9 | 0.0
+mediation | 8 | 9 | 88.88888888888889
+
+## Table 7: Inter-Model Correlation
+scenario | pair | agreement | kappa | error_correlation
+--- | --- | --- | --- | ---
+civil_comments_zero-shot | llama4-qwen3 | 1.0 | 1.0 | 0.0
+civil_comments_zero-shot | llama4-deepseek | 1.0 | 1.0 | 0.0
+civil_comments_zero-shot | qwen3-deepseek | 1.0 | 1.0 | 0.0
+civil_comments_few-shot-3 | llama4-qwen3 | 1.0 | 1.0 | 0.0
+civil_comments_few-shot-3 | llama4-deepseek | 1.0 | 1.0 | 0.0
+civil_comments_few-shot-3 | qwen3-deepseek | 1.0 | 1.0 | 0.0
+civil_comments_few-shot-5 | llama4-qwen3 | 1.0 | 1.0 | 0.0
+civil_comments_few-shot-5 | llama4-deepseek | 1.0 | 1.0 | 0.0
+civil_comments_few-shot-5 | qwen3-deepseek | 1.0 | 1.0 | 0.0
+vast_zero-shot | llama4-qwen3 | 1.0 | 1.0 | 0.0
+vast_zero-shot | llama4-deepseek | 1.0 | 1.0 | 0.0
+vast_zero-shot | qwen3-deepseek | 1.0 | 1.0 | 0.0
+vast_few-shot-3 | llama4-qwen3 | 1.0 | 1.0 | 0.0
+vast_few-shot-3 | llama4-deepseek | 1.0 | 1.0 | 0.0
+vast_few-shot-3 | qwen3-deepseek | 1.0 | 1.0 | 0.0
+vast_few-shot-5 | llama4-qwen3 | 1.0 | 1.0 | 0.0
+vast_few-shot-5 | llama4-deepseek | 1.0 | 1.0 | 0.0
+vast_few-shot-5 | qwen3-deepseek | 1.0 | 1.0 | 0.0
+humaid_zero-shot | llama4-qwen3 | 0.485 | 0.4167114987116686 | 0.12098407875327466
+humaid_zero-shot | llama4-deepseek | 0.485 | 0.4186368105625225 | 0.07373028718567304
+humaid_zero-shot | qwen3-deepseek | 0.559 | 0.4908691245027027 | 0.0846329327487544
+humaid_few-shot-3 | llama4-qwen3 | 0.49 | 0.4198341635771887 | 0.15698798664647698
+humaid_few-shot-3 | llama4-deepseek | 0.465 | 0.39244588793749574 | 0.056343776031514164
+humaid_few-shot-3 | qwen3-deepseek | 0.507 | 0.43272171605708226 | 0.0505073995012017
+humaid_few-shot-5 | llama4-qwen3 | 0.08 | 0.0 | 0.05719859338218029
+humaid_few-shot-5 | llama4-deepseek | 0.495 | 0.42885126721504485 | 0.10671907241319777
+humaid_few-shot-5 | qwen3-deepseek | 0.04 | 0.0 | -0.0018170903900012014
+
+## Table 8: Confusion Matrices
+
+### humaid_llama4_zero-shot
+Shape: 10x10
+  row_0: [0.42592592592592593, 0.05555555555555555, 0.011904761904761904, 0.0, 0.0, 0.009708737864077669, 0.04044117647058824, 0.0, 0.002577319587628866, 0.010810810810810811]
+  row_1: [0.0, 0.7222222222222222, 0.017857142857142856, 0.02962962962962963, 0.0, 0.02912621359223301, 0.04411764705882353, 0.017543859649122806, 0.01288659793814433, 0.005405405405405406]
+  row_2: [0.12037037037037036, 0.0, 0.5892857142857143, 0.007407407407407408, 0.0, 0.02912621359223301, 0.12867647058823528, 0.0, 0.002577319587628866, 0.0]
+  row_3: [0.0, 0.0, 0.017857142857142856, 0.8592592592592593, 0.0, 0.019417475728155338, 0.011029411764705883, 0.0, 0.002577319587628866, 0.010810810810810811]
+  row_4: [0.0, 0.0, 0.005952380952380952, 0.007407407407407408, 1.0, 0.0, 0.011029411764705883, 0.0, 0.002577319587628866, 0.0]
+  row_5: [0.018518518518518517, 0.013888888888888888, 0.0, 0.0, 0.0, 0.42718446601941745, 0.07720588235294118, 0.0, 0.002577319587628866, 0.0]
+  row_6: [0.37037037037037035, 0.06944444444444445, 0.21428571428571427, 0.0, 0.0, 0.13592233009708737, 0.44485294117647056, 0.017543859649122806, 0.06701030927835051, 0.06486486486486487]
+  row_7: [0.009259259259259259, 0.06944444444444445, 0.023809523809523808, 0.0, 0.0, 0.04854368932038835, 0.05514705882352941, 0.6491228070175439, 0.03350515463917526, 0.016216216216216217]
+  row_8: [0.027777777777777776, 0.06944444444444445, 0.011904761904761904, 0.02962962962962963, 0.0, 0.019417475728155338, 0.05514705882352941, 0.24561403508771928, 0.8170103092783505, 0.11891891891891893]
+  row_9: [0.027777777777777776, 0.0, 0.10714285714285714, 0.06666666666666667, 0.0, 0.2815533980582524, 0.1323529411764706, 0.07017543859649122, 0.05670103092783505, 0.772972972972973]
+
+### humaid_llama4_few-shot-3
+Shape: 10x10
+  row_0: [0.4074074074074074, 0.05555555555555555, 0.0, 0.0, 0.0, 0.0, 0.025735294117647058, 0.0, 0.0, 0.010810810810810811]
+  row_1: [0.0, 0.7222222222222222, 0.017964071856287425, 0.022222222222222223, 0.0, 0.02912621359223301, 0.04779411764705882, 0.017543859649122806, 0.00516795865633075, 0.0]
+  row_2: [0.10185185185185185, 0.0, 0.5568862275449101, 0.0, 0.0, 0.019417475728155338, 0.09926470588235294, 0.0, 0.0, 0.0]
+  row_3: [0.0, 0.013888888888888888, 0.023952095808383235, 0.8592592592592593, 0.0, 0.019417475728155338, 0.011029411764705883, 0.0, 0.00516795865633075, 0.021621621621621623]
+  row_4: [0.0, 0.0, 0.005988023952095809, 0.014814814814814815, 1.0, 0.0, 0.011029411764705883, 0.0, 0.002583979328165375, 0.0]
+  row_5: [0.018518518518518517, 0.013888888888888888, 0.011976047904191617, 0.007407407407407408, 0.0, 0.5048543689320388, 0.13602941176470587, 0.017543859649122806, 0.002583979328165375, 0.010810810810810811]
+  row_6: [0.4074074074074074, 0.041666666666666664, 0.23952095808383234, 0.007407407407407408, 0.0, 0.13592233009708737, 0.4522058823529412, 0.017543859649122806, 0.05426356589147287, 0.043243243243243246]
+  row_7: [0.009259259259259259, 0.05555555555555555, 0.029940119760479042, 0.0, 0.0, 0.02912621359223301, 0.051470588235294115, 0.631578947368421, 0.03875968992248062, 0.010810810810810811]
+  row_8: [0.037037037037037035, 0.09722222222222222, 0.017964071856287425, 0.02962962962962963, 0.0, 0.019417475728155338, 0.0661764705882353, 0.24561403508771928, 0.8397932816537468, 0.11891891891891893]
+  row_9: [0.018518518518518517, 0.0, 0.09580838323353294, 0.05925925925925926, 0.0, 0.24271844660194175, 0.09926470588235294, 0.07017543859649122, 0.05167958656330749, 0.7837837837837838]
+
+### humaid_llama4_few-shot-5
+Shape: 10x10
+  row_0: [0.41509433962264153, 0.05714285714285714, 0.0, 0.0, 0.0, 0.0, 0.0299625468164794, 0.0, 0.0, 0.01092896174863388]
+  row_1: [0.0, 0.7142857142857143, 0.018072289156626505, 0.015037593984962405, 0.0, 0.029411764705882353, 0.04868913857677903, 0.01818181818181818, 0.005305039787798408, 0.00546448087431694]
+  row_2: [0.09433962264150944, 0.0, 0.4879518072289157, 0.0, 0.0, 0.00980392156862745, 0.07865168539325842, 0.0, 0.0, 0.0]
+  row_3: [0.0, 0.014285714285714285, 0.024096385542168676, 0.8721804511278195, 0.0, 0.0196078431372549, 0.00749063670411985, 0.0, 0.002652519893899204, 0.01639344262295082]
+  row_4: [0.0, 0.0, 0.012048192771084338, 0.015037593984962405, 1.0, 0.0, 0.00749063670411985, 0.0, 0.0, 0.0]
+  row_5: [0.018867924528301886, 0.014285714285714285, 0.012048192771084338, 0.007518796992481203, 0.0, 0.5784313725490197, 0.16853932584269662, 0.0, 0.002652519893899204, 0.01639344262295082]
+  row_6: [0.39622641509433965, 0.04285714285714286, 0.28313253012048195, 0.015037593984962405, 0.0, 0.14705882352941177, 0.46441947565543074, 0.01818181818181818, 0.04774535809018567, 0.03825136612021858]
+  row_7: [0.009433962264150943, 0.05714285714285714, 0.03614457831325301, 0.0, 0.0, 0.0196078431372549, 0.06367041198501873, 0.7090909090909091, 0.03713527851458886, 0.01092896174863388]
+  row_8: [0.04716981132075472, 0.1, 0.024096385542168676, 0.022556390977443608, 0.0, 0.00980392156862745, 0.07116104868913857, 0.2, 0.8594164456233422, 0.12568306010928962]
+  row_9: [0.018867924528301886, 0.0, 0.10240963855421686, 0.05263157894736842, 0.0, 0.18627450980392157, 0.0599250936329588, 0.05454545454545454, 0.04509283819628647, 0.7759562841530054]
+
+### humaid_qwen3_zero-shot
+Shape: 10x10
+  row_0: [0.5833333333333334, 0.041666666666666664, 0.023809523809523808, 0.0, 0.0, 0.04854368932038835, 0.14338235294117646, 0.0, 0.007731958762886598, 0.06486486486486487]
+  row_1: [0.009259259259259259, 0.8888888888888888, 0.011904761904761904, 0.014814814814814815, 0.0, 0.05825242718446602, 0.051470588235294115, 0.017543859649122806, 0.020618556701030927, 0.010810810810810811]
+  row_2: [0.1388888888888889, 0.0, 0.7857142857142857, 0.0, 0.0, 0.0970873786407767, 0.1801470588235294, 0.0, 0.007731958762886598, 0.005405405405405406]
+  row_3: [0.009259259259259259, 0.027777777777777776, 0.05357142857142857, 0.9703703703703703, 0.0, 0.07766990291262135, 0.03308823529411765, 0.0, 0.005154639175257732, 0.03783783783783784]
+  row_4: [0.0, 0.0, 0.005952380952380952, 0.0, 1.0, 0.0, 0.003676470588235294, 0.0, 0.002577319587628866, 0.005405405405405406]
+  row_5: [0.0, 0.0, 0.005952380952380952, 0.0, 0.0, 0.33980582524271846, 0.07352941176470588, 0.017543859649122806, 0.002577319587628866, 0.021621621621621623]
+  row_6: [0.2037037037037037, 0.0, 0.06547619047619048, 0.0, 0.0, 0.2524271844660194, 0.3492647058823529, 0.0, 0.023195876288659795, 0.02702702702702703]
+  row_7: [0.027777777777777776, 0.013888888888888888, 0.011904761904761904, 0.007407407407407408, 0.0, 0.06796116504854369, 0.051470588235294115, 0.7368421052631579, 0.08247422680412371, 0.032432432432432434]
+  row_8: [0.018518518518518517, 0.027777777777777776, 0.023809523809523808, 0.0, 0.0, 0.038834951456310676, 0.09926470588235294, 0.21052631578947367, 0.8402061855670103, 0.14054054054054055]
+  row_9: [0.009259259259259259, 0.0, 0.011904761904761904, 0.007407407407407408, 0.0, 0.019417475728155338, 0.014705882352941176, 0.017543859649122806, 0.007731958762886598, 0.654054054054054]
+
+### humaid_qwen3_few-shot-3
+Shape: 10x10
+  row_0: [0.5876288659793815, 0.0, 0.03636363636363636, 0.0, 0.0, 0.031914893617021274, 0.12595419847328243, 0.0, 0.010416666666666666, 0.03164556962025317]
+  row_1: [0.010309278350515464, 0.8307692307692308, 0.024242424242424242, 0.030534351145038167, 0.0, 0.05319148936170213, 0.0648854961832061, 0.03636363636363636, 0.0234375, 0.012658227848101266]
+  row_2: [0.10309278350515463, 0.015384615384615385, 0.6727272727272727, 0.0, 0.0, 0.05319148936170213, 0.10687022900763359, 0.0, 0.0078125, 0.012658227848101266]
+  row_3: [0.010309278350515464, 0.015384615384615385, 0.04242424242424243, 0.9618320610687023, 0.0, 0.0425531914893617, 0.03435114503816794, 0.0, 0.0078125, 0.03164556962025317]
+  row_4: [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.003816793893129771, 0.0, 0.0, 0.006329113924050633]
+  row_5: [0.020618556701030927, 0.0, 0.006060606060606061, 0.0, 0.0, 0.425531914893617, 0.08778625954198473, 0.0, 0.0026041666666666665, 0.02531645569620253]
+  row_6: [0.23711340206185566, 0.046153846153846156, 0.14545454545454545, 0.0, 0.0, 0.2978723404255319, 0.3931297709923664, 0.01818181818181818, 0.036458333333333336, 0.0189873417721519]
+  row_7: [0.0, 0.046153846153846156, 0.01818181818181818, 0.0, 0.0, 0.05319148936170213, 0.04198473282442748, 0.6909090909090909, 0.06770833333333333, 0.04430379746835443]
+  row_8: [0.030927835051546393, 0.046153846153846156, 0.024242424242424242, 0.0, 0.0, 0.031914893617021274, 0.11450381679389313, 0.2545454545454545, 0.8359375, 0.1518987341772152]
+  row_9: [0.0, 0.0, 0.030303030303030304, 0.007633587786259542, 0.0, 0.010638297872340425, 0.026717557251908396, 0.0, 0.0078125, 0.6645569620253164]
+
+### humaid_qwen3_few-shot-5
+Shape: 10x10
+  row_0: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_2: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_3: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_4: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_5: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_6: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_7: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_8: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_9: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+### humaid_deepseek_zero-shot
+Shape: 10x10
+  row_0: [0.6111111111111112, 0.041666666666666664, 0.023809523809523808, 0.007407407407407408, 0.0, 0.019417475728155338, 0.1323529411764706, 0.017543859649122806, 0.010309278350515464, 0.07567567567567568]
+  row_1: [0.018518518518518517, 0.8611111111111112, 0.0, 0.022222222222222223, 0.0, 0.04854368932038835, 0.04044117647058824, 0.05263157894736842, 0.020618556701030927, 0.005405405405405406]
+  row_2: [0.14814814814814814, 0.0, 0.7857142857142857, 0.0, 0.0, 0.05825242718446602, 0.20588235294117646, 0.0, 0.010309278350515464, 0.005405405405405406]
+  row_3: [0.009259259259259259, 0.013888888888888888, 0.011904761904761904, 0.9333333333333333, 0.0, 0.02912621359223301, 0.01838235294117647, 0.0, 0.010309278350515464, 0.016216216216216217]
+  row_4: [0.0, 0.0, 0.005952380952380952, 0.0, 1.0, 0.0, 0.003676470588235294, 0.017543859649122806, 0.002577319587628866, 0.005405405405405406]
+  row_5: [0.05555555555555555, 0.013888888888888888, 0.017857142857142856, 0.007407407407407408, 0.0, 0.6990291262135923, 0.20220588235294118, 0.03508771929824561, 0.02577319587628866, 0.043243243243243246]
+  row_6: [0.1388888888888889, 0.013888888888888888, 0.09523809523809523, 0.007407407407407408, 0.0, 0.06796116504854369, 0.29411764705882354, 0.017543859649122806, 0.059278350515463915, 0.03783783783783784]
+  row_7: [0.0, 0.013888888888888888, 0.005952380952380952, 0.0, 0.0, 0.019417475728155338, 0.03308823529411765, 0.5789473684210527, 0.020618556701030927, 0.021621621621621623]
+  row_8: [0.018518518518518517, 0.041666666666666664, 0.011904761904761904, 0.0, 0.0, 0.019417475728155338, 0.04411764705882353, 0.22807017543859648, 0.7809278350515464, 0.0972972972972973]
+  row_9: [0.0, 0.0, 0.041666666666666664, 0.022222222222222223, 0.0, 0.038834951456310676, 0.025735294117647058, 0.05263157894736842, 0.059278350515463915, 0.6918918918918919]
+
+### humaid_deepseek_few-shot-3
+Shape: 10x10
+  row_0: [0.5795454545454546, 0.15, 0.050955414012738856, 0.0, 0.0, 0.011363636363636364, 0.1297071129707113, 0.0, 0.008287292817679558, 0.043478260869565216]
+  row_1: [0.0, 0.7, 0.03184713375796178, 0.024, 0.0, 0.056818181818181816, 0.03347280334728033, 0.018867924528301886, 0.008287292817679558, 0.006211180124223602]
+  row_2: [0.07954545454545454, 0.0, 0.6178343949044586, 0.0, 0.0, 0.03409090909090909, 0.12552301255230125, 0.0, 0.0027624309392265192, 0.0]
+  row_3: [0.011363636363636364, 0.016666666666666666, 0.025477707006369428, 0.936, 0.0, 0.045454545454545456, 0.012552301255230125, 0.0, 0.008287292817679558, 0.012422360248447204]
+  row_4: [0.0, 0.0, 0.006369426751592357, 0.008, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  row_5: [0.056818181818181816, 0.03333333333333333, 0.03821656050955414, 0.016, 0.0, 0.7159090909090909, 0.20502092050209206, 0.018867924528301886, 0.016574585635359115, 0.043478260869565216]
+  row_6: [0.25, 0.016666666666666666, 0.15286624203821655, 0.0, 0.0, 0.06818181818181818, 0.38493723849372385, 0.018867924528301886, 0.06077348066298342, 0.031055900621118012]
+  row_7: [0.0, 0.0, 0.012738853503184714, 0.0, 0.0, 0.045454545454545456, 0.016736401673640166, 0.7547169811320755, 0.022099447513812154, 0.012422360248447204]
+  row_8: [0.022727272727272728, 0.08333333333333333, 0.01910828025477707, 0.0, 0.0, 0.0, 0.058577405857740586, 0.16981132075471697, 0.8314917127071824, 0.12422360248447205]
+  row_9: [0.0, 0.0, 0.044585987261146494, 0.016, 0.0, 0.022727272727272728, 0.03347280334728033, 0.018867924528301886, 0.04143646408839779, 0.7267080745341615]
+
+### humaid_deepseek_few-shot-5
+Shape: 10x10
+  row_0: [0.5757575757575758, 0.15254237288135594, 0.03875968992248062, 0.0, 0.0, 0.0, 0.1324200913242009, 0.0, 0.006269592476489028, 0.05063291139240506]
+  row_1: [0.0, 0.7627118644067796, 0.023255813953488372, 0.01818181818181818, 0.0, 0.04395604395604396, 0.0319634703196347, 0.024390243902439025, 0.012539184952978056, 0.0]
+  row_2: [0.0707070707070707, 0.0, 0.6201550387596899, 0.0, 0.0, 0.02197802197802198, 0.1095890410958904, 0.0, 0.006269592476489028, 0.0]
+  row_3: [0.010101010101010102, 0.01694915254237288, 0.031007751937984496, 0.9363636363636364, 0.0, 0.03296703296703297, 0.0273972602739726, 0.0, 0.009404388714733543, 0.0189873417721519]
+  row_4: [0.0, 0.0, 0.0, 0.00909090909090909, 1.0, 0.0, 0.0, 0.0, 0.003134796238244514, 0.006329113924050633]
+  row_5: [0.050505050505050504, 0.01694915254237288, 0.046511627906976744, 0.00909090909090909, 0.0, 0.8021978021978022, 0.2146118721461187, 0.0, 0.01567398119122257, 0.04430379746835443]
+  row_6: [0.25252525252525254, 0.0, 0.17829457364341086, 0.0, 0.0, 0.054945054945054944, 0.3744292237442922, 0.024390243902439025, 0.06269592476489028, 0.05063291139240506]
+  row_7: [0.0, 0.01694915254237288, 0.007751937984496124, 0.00909090909090909, 0.0, 0.01098901098901099, 0.0273972602739726, 0.6341463414634146, 0.034482758620689655, 0.012658227848101266]
+  row_8: [0.030303030303030304, 0.03389830508474576, 0.023255813953488372, 0.0, 0.0, 0.01098901098901099, 0.0593607305936073, 0.2682926829268293, 0.8119122257053292, 0.0949367088607595]
+  row_9: [0.010101010101010102, 0.0, 0.031007751937984496, 0.01818181818181818, 0.0, 0.02197802197802198, 0.0228310502283105, 0.04878048780487805, 0.03761755485893417, 0.7215189873417721]
+
+## Table 9: Overall ASV-Unsafe Summary
+Total valid scenarios: 63
+Total ASV-unsafe: 31
+ASV-unsafe percentage: 49.2063492063492

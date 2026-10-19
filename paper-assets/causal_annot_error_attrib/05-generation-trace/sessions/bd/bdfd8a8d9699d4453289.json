@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "bdfd8a8d9699d4453289",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code empirical humaid analysis",
+  "task_key": "worker_code_empirical_humaid_analysis_20260524T054711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_empirical_humaid_analysis_20260524T054711.log",
+    "occurrence": 1,
+    "bytes": 746082,
+    "sha256": "5c7c942bf15942430663878810a59455a7bf71b6aab1c6d8406673b80870670c"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 1,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 28,
+      "record": 2,
+      "assistant": 37,
+      "tool_call": 75,
+      "tool_result": 75,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "bdfd8a8d9699d4453289-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "bdfd8a8d9699d4453289-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "bdfd8a8d9699d4453289-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-empirical-humaid-analysis.md"
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "mvp-A-001",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-10T12:54:39.321Z",
+    "updated_at": "2026-05-10T13:21:20.126Z",
+    "spec": {
+      "hypothesis": "用跨模型稀疏 crosscoder 识别 donor-exclusive features，通过 rank-1 权重手术在 target 模型中重现特征激活模式，使 target 在 donor-advantage tokens 上行为改善",
+      "model_name": "EleutherAI/pythia-70m",
+      "server": "home-1x5090",
+      "data_path": "monology/pile-uncopyrighted",
+      "data_count": 2000,
+      "seed": 42,
+      "description": "MVP-A: Donor=step143000(强) → Target=step1000(弱), layer4 crosscoder + rank-1 surgery + Gate5 行为验证",
+      "donor_checkpoint": "step143000",
+      "target_checkpoint": "step1000",
+      "command": "bash -c \"export HF_HOME=/home/sonny/ssd2/sonny.fu/.hf_cache && source /home/sonny/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/crosscoder-bct && python3 mvp_experiment.py\"",
+      "checkpoint_path": "/home/sonny/crosscoder-bct/results.json",
+      "log_path": "/home/sonny/crosscoder-bct/run.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "gate1_pass": true,
+      "gate2_pass": true,
+      "gate3_pass": false,
+      "gate4_pass": true,
+      "gate5_pass": false,
+      "overall_pass": false,
+      "crosscoder_recon_loss": "0.403->0.114",
+      "crosscoder_l0": 457.6,
+      "n_exclusive_features": 22,
+      "top_feature": {
+        "idx": 1353,
+        "ratio": 6.93
+      },
+      "surgery_feature_k": 1353,
+      "s_t": 0.026,
+      "s_d_norm": 0.178,
+      "movement_ratio": 0.0062,
+      "ppl_ratio": 1.0196,
+      "da_improvement": -0.0028
+    },
+    "completed_at": "2026-05-10T13:21:20.126Z"
+  },
+  "timestamp": "2026-05-10T13:21:20.133313+00:00",
+  "trigger": "update_registry"
+}

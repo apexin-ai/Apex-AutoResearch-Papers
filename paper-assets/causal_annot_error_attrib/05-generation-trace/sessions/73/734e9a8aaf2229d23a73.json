@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "734e9a8aaf2229d23a73",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp mf1a rerun n1000",
+  "task_key": "worker_exp_mf1a_rerun_n1000_20260523T175940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mf1a_rerun_n1000_20260523T175940_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "150bf3ae53a26b6f694118e7d868ca6b765f9ee7109f692c5b94097101163f00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "N=1000 重跑完成（135.8s）。核心数字对比：\n\n| 指标 | N=100 | N=1000 | 变化 |\n|------|-------|--------|------|\n| total_curves | 54,611 | 545,945 | ×10 |\n| non_monotone_fraction | 11.93% | 11.94% | 稳定 |\n| max_eps_abs | 0.01637 | 0.01637 | 不变 |\n| median_eps_abs | 0.0 | 0.0 | 不变 |\n| mean_eps_abs | 0.000474 | — | — |\n| p95_eps_abs | 0.00253 | — | — |\n| p99_eps_abs | 0.00825 | — | — |\n| safe_topo_max_eps | 0.01637 | 0.01637 | 不变 |\n| fragile_topo_max_eps | 0.01318 | 0.01318 | 不变 |\n| weak_iv_filtered | 2,089 | 21,055 | ×10 |\n\n结论：10 倍采样量下所有关键指标高度稳定，max ε bound 未被突破，non-monotone fraction 收敛于 ~11.9%，bound 可信度得到增强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mf1a-rerun-n1000.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49b414271f7bfc683e60",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "annot frontier vast cc",
+  "task_key": "worker_annot_frontier_vast_cc_20260521T095547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_annot_frontier_vast_cc_20260521T095547_result.json",
+    "occurrence": 1,
+    "bytes": 2896,
+    "sha256": "511b8c683abd0e6175ce40c810b1a55c8e9644385a001c1acaae6c70ca76181d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've prepared everything except the live API calls — the provided API key fails auth on every endpoint I can reach. Reporting status:\n\n## Status: BLOCKED on auth (HTTP 401)\n\nThe provided key `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8` is rejected by every endpoint I tried:\n\n| Endpoint | Result |\n|---|---|\n| `https://openrouter.ai/api/v1/chat/completions` | 401 \"Missing Authentication header\" |\n| `https://gpu.aet.cit.tum.de/api/v1/chat/completions` (Open WebUI, TUM-AET) | 401 Unauthorized |\n| `https://gpu.aet.cit.tum.de/openai/v1/...`, `/ollama/v1/...` | 401 Unauthorized |\n| `http://47.94.22.126/v1/...` (previous project endpoint) | timeout/unreachable |\n\nOpenRouter requires `sk-or-v1-*` keys (not `tum_*`). The TUM gateway recognises the request format but rejects this bearer token — likely expired or revoked. I stopped before running 6000 API calls that would all 401.\n\n## What's ready (so this can resume once auth is fixed)\n\n```\nartifacts/plan011_frontier_annotations/\n├── STATUS.md                              # this report, with resume instructions\n├── data/\n│   ├── vast/test.jsonl                    # 1000 dedup VAST test (HF blocked, used GitHub CSV)\n│   └── civil_comments/test.jsonl          # 1000 balanced 500/500 from HF google/civil_comments\n└── scripts/\n    ├── prepare_data.py                    # reproducible data prep (already run)\n    ├── annotate_frontier.py               # zero-shot pipeline, streaming JSONL + resume\n    │                                      # supports OPENROUTER_API_BASE/KEY env override\n    │                                      # 30s × 5 retries on 402/429/5xx\n    │                                      # `--smoke` for 1-call auth check\n    │                                      # aborts after 20 consecutive failures\n    └── compute_results.py                 # CMs + macro F1 + bias + magnitude-ASV across\n                                           # 7 topologies, imports plan_006 K-general pipeline\n```\n\nVAST data: HF `QCRI/VAST` is gone — fell back to `emilyallaway/zero-shot-stance` raw CSV (3006 rows, 2928 after dedup, sampled 1000 with seed 42). Labels mapped to canonical `[\"Con\", \"Pro\", \"Neutral\"]` matching plan_006 conventions.\n\n## What I need from you\n\nEither a working key against `gpu.aet.cit.tum.de/api/v1` (or whichever Open WebUI URL is current), **or** a real OpenRouter `sk-or-v1-*` key. Once auth works:\n\n```bash\ncd artifacts/plan011_frontier_annotations\nOPENROUTER_API_BASE=<URL> OPENROUTER_API_KEY=[REDACTED] /tmp/hf_venv/bin/python scripts/annotate_frontier.py --smoke\nOPENROUTER_API_BASE=<URL> OPENROUTER_API_KEY=[REDACTED] /tmp/hf_venv/bin/python scripts/annotate_frontier.py\n/tmp/hf_venv/bin/python scripts/compute_results.py\n```\n\nThen I'll register the artifact."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/annot-frontier-vast-cc.md"
+}

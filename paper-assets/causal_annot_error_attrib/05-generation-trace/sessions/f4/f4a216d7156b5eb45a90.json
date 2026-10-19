@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f4a216d7156b5eb45a90",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan005 reviewer critical fix",
+  "task_key": "worker_code_plan005-reviewer-critical-fix_20260520T145906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan005-reviewer-critical-fix_20260520T145906.log",
+    "occurrence": 1,
+    "bytes": 727882,
+    "sha256": "263112a0b0e9345e11900a7ba58f0cc88b6da9c6945fcaf1eadc8362bdb08c6c"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 45,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "f4a216d7156b5eb45a90-part-0001.json",
+          "message_count": 126
+        },
+        {
+          "path": "f4a216d7156b5eb45a90-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan005-reviewer-critical-fix.md"
+}

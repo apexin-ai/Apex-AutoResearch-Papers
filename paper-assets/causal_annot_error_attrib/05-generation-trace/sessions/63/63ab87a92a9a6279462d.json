@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63ab87a92a9a6279462d",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "audit sf2 proportional 973",
+  "task_key": "worker_audit_sf2_proportional_973_20260523T175725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_sf2_proportional_973_20260523T175725_result.json",
+    "occurrence": 1,
+    "bytes": 1797,
+    "sha256": "4615e92a5ed7454db966e801ab74371e985971439fa06fa4be54e0b59b965b21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full picture is clear. Here's the report:\n\n---\n\n## 汇报\n\n### 精确来源\n\n- **文件**: `artifacts/exp_proportional_real_matrices_results.json`\n- **JSON path**: `non_proportional.sign_preservation_rate` = `0.9730434782608696` → 97.3%\n- **生成脚本**: `artifacts/exp_proportional_real_matrices.py`\n\n### 含义\n\n97.3% 是 **sign preservation rate**（`sign(tau_direct) == sign(tau_total)`），**不是** proportional effects 条件满足率。\n\n实验设置：\n- **混凝土矩阵**: 23 个真实 LLM confusion matrices（empirical）\n- **DGP 参数**: `f ~ N(0,1)` independent of `g` — **synthetic，非 empirical**\n- **组**: `non_proportional`（故意违反 proportional effects 的最差情况组）\n- n = 1150（23 matrices × 50 seeds）\n\n### 措辞问题\n\nmethod.tex L97 当前写法：\n\n> \"97.3% of empirical LLM configurations **satisfy the condition**\"\n\n这里 \"the condition\" 上文指的是 proportional effects ($f = \\lambda g$)，但 97.3% 衡量的是 **sign preservation**，不是 proportional effects 是否成立。实际上这行数据来自故意违反 proportional effects 的 non-proportional 组。\n\nappendix_proofs.tex L1267 的写法更准确：\n\n> \"Even under non-proportional effects ($f$ independent of $g$), **sign preservation** remains at 97.3%\"\n\n### 建议修正\n\nmethod.tex L97 应改为类似：\n\n> \"topic classification is more tenuous, but even under non-proportional effects, sign preservation holds for 97.3% of empirical LLM configurations (Table~\\ref{tab:proportional_empirical}), and Proposition~\\ref{prop:conf_gen} provides a fallback bound\"\n\n这样准确反映：(1) 97.3% 是 sign preservation 而非条件满足率；(2) 这是 worst-case（non-proportional）下的结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-sf2-proportional-973.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "8177697be9e0e25e3a55",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "audit tex number consistency",
+  "task_key": "worker_audit_tex_number_consistency_20260521T181547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_tex_number_consistency_20260521T181547.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "03080e38ed55b3a3d20c453812ffbe20b794c2bd4adeeec168408e4d7b1ffb68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:15:54.071148+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 2am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_tex_number_consistency_20260521T181547"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/audit-tex-number-consistency.md"
+}

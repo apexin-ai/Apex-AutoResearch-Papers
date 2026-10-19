@@ -1,0 +1,557 @@
+{
+  "description": "Y-stratified non-differential misclassification test for VAST (K=3)",
+  "n_configs": 12,
+  "n_proxies": 3,
+  "total_tests": 36,
+  "permutations": 10000,
+  "summary": {
+    "rejections_at_005": 22,
+    "rejections_at_010": 23,
+    "max_deviation_across_all": 1.0,
+    "median_p_value": 0.023148,
+    "min_p_value": 0.0002,
+    "conclusion": "Differential detected: 22/36 tests reject at alpha=0.05"
+  },
+  "per_config": {
+    "deepseek_few-shot-3": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.4967,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.060875,
+        "frobenius_deviation": 0.12052,
+        "p_value": 0.538246,
+        "null_95pct": 0.108491,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0007,
+        "null_95pct": 0.049065,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.25891,
+        "frobenius_deviation": 0.411458,
+        "p_value": 0.017198,
+        "null_95pct": 0.222699,
+        "reject_005": true
+      }
+    },
+    "deepseek_few-shot-5": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.4933,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.066476,
+        "frobenius_deviation": 0.119124,
+        "p_value": 0.434857,
+        "null_95pct": 0.10755,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 0.875,
+        "p_value": 0.0023,
+        "null_95pct": 0.049264,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.239761,
+        "frobenius_deviation": 0.416619,
+        "p_value": 0.028597,
+        "null_95pct": 0.221357,
+        "reject_005": true
+      }
+    },
+    "deepseek_zero-shot": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.504,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.065841,
+        "frobenius_deviation": 0.097073,
+        "p_value": 0.415958,
+        "null_95pct": 0.108346,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0016,
+        "null_95pct": 0.048898,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.260372,
+        "frobenius_deviation": 0.403542,
+        "p_value": 0.012099,
+        "null_95pct": 0.216696,
+        "reject_005": true
+      }
+    },
+    "llama4_few-shot-3": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.5007,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.113662,
+        "frobenius_deviation": 0.180252,
+        "p_value": 0.027297,
+        "null_95pct": 0.104549,
+        "reject_005": true
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0005,
+        "null_95pct": 0.046552,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.235638,
+        "frobenius_deviation": 0.405604,
+        "p_value": 0.023698,
+        "null_95pct": 0.210233,
+        "reject_005": true
+      }
+    },
+    "llama4_few-shot-5": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.5047,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.097722,
+        "frobenius_deviation": 0.169142,
+        "p_value": 0.075692,
+        "null_95pct": 0.104639,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0002,
+        "null_95pct": 0.04686,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.271144,
+        "frobenius_deviation": 0.457577,
+        "p_value": 0.006499,
+        "null_95pct": 0.209049,
+        "reject_005": true
+      }
+    },
+    "llama4_zero-shot": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.5247,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.08583,
+        "frobenius_deviation": 0.144021,
+        "p_value": 0.136086,
+        "null_95pct": 0.103561,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0003,
+        "null_95pct": 0.045593,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.244149,
+        "frobenius_deviation": 0.385119,
+        "p_value": 0.016798,
+        "null_95pct": 0.208793,
+        "reject_005": true
+      }
+    },
+    "qwen2.5-7b_few-shot-3": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.4613,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.039009,
+        "frobenius_deviation": 0.066457,
+        "p_value": 0.873613,
+        "null_95pct": 0.107557,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 0.8125,
+        "p_value": 0.009699,
+        "null_95pct": 0.048449,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.329122,
+        "frobenius_deviation": 0.585485,
+        "p_value": 0.0009,
+        "null_95pct": 0.217014,
+        "reject_005": true
+      }
+    },
+    "qwen2.5-7b_few-shot-5": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.4647,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.030336,
+        "frobenius_deviation": 0.054495,
+        "p_value": 0.965003,
+        "null_95pct": 0.108283,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 0.875,
+        "p_value": 0.022598,
+        "null_95pct": 0.048232,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.324202,
+        "frobenius_deviation": 0.590553,
+        "p_value": 0.0014,
+        "null_95pct": 0.21936,
+        "reject_005": true
+      }
+    },
+    "qwen2.5-7b_zero-shot": {
+      "n_samples": 1499,
+      "n_valid": 1499,
+      "overall_accuracy": 0.4803,
+      "text_length": {
+        "n_y0": 750,
+        "n_y1": 749,
+        "max_deviation": 0.05152,
+        "frobenius_deviation": 0.084051,
+        "p_value": 0.637436,
+        "null_95pct": 0.108483,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1077,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0029,
+        "null_95pct": 0.0486,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1399,
+        "n_y1": 100,
+        "max_deviation": 0.309973,
+        "frobenius_deviation": 0.532171,
+        "p_value": 0.002,
+        "null_95pct": 0.218326,
+        "reject_005": true
+      }
+    },
+    "qwen3_few-shot-3": {
+      "n_samples": 1500,
+      "n_valid": 1500,
+      "overall_accuracy": 0.5173,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 749,
+        "max_deviation": 0.055728,
+        "frobenius_deviation": 0.093325,
+        "p_value": 0.564244,
+        "null_95pct": 0.104745,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1078,
+          "treatment": 22,
+          "voting": 28
+        },
+        "max_pairwise_deviation": 0.692308,
+        "p_value": 0.122488,
+        "null_95pct": 0.046679,
+        "reject_005": false
+      },
+      "sentiment": {
+        "n_y0": 1400,
+        "n_y1": 100,
+        "max_deviation": 0.225,
+        "frobenius_deviation": 0.298421,
+        "p_value": 0.037496,
+        "null_95pct": 0.216582,
+        "reject_005": true
+      }
+    },
+    "qwen3_few-shot-5": {
+      "n_samples": 1487,
+      "n_valid": 1487,
+      "overall_accuracy": 0.505,
+      "text_length": {
+        "n_y0": 744,
+        "n_y1": 743,
+        "max_deviation": 0.061241,
+        "frobenius_deviation": 0.080025,
+        "p_value": 0.471353,
+        "null_95pct": 0.105943,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 29,
+          "colleges": 34,
+          "elections": 53,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1067,
+          "treatment": 22,
+          "voting": 27
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0043,
+        "null_95pct": 0.046657,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1387,
+        "n_y1": 100,
+        "max_deviation": 0.100858,
+        "frobenius_deviation": 0.171492,
+        "p_value": 0.664534,
+        "null_95pct": 0.21468,
+        "reject_005": false
+      }
+    },
+    "qwen3_zero-shot": {
+      "n_samples": 1499,
+      "n_valid": 1499,
+      "overall_accuracy": 0.5117,
+      "text_length": {
+        "n_y0": 751,
+        "n_y1": 748,
+        "max_deviation": 0.058198,
+        "frobenius_deviation": 0.085009,
+        "p_value": 0.508149,
+        "null_95pct": 0.105432,
+        "reject_005": false
+      },
+      "topic": {
+        "n_groups": 13,
+        "groups": {
+          "a harmful atmosphere for gays": 54,
+          "christians": 52,
+          "college": 28,
+          "colleges": 34,
+          "elections": 54,
+          "guns": 23,
+          "humanities programs": 42,
+          "medicare": 25,
+          "nato": 25,
+          "new york 's bike lanes": 34,
+          "other": 1077,
+          "treatment": 22,
+          "voting": 29
+        },
+        "max_pairwise_deviation": 1.0,
+        "p_value": 0.0009,
+        "null_95pct": 0.045579,
+        "reject_005": true
+      },
+      "sentiment": {
+        "n_y0": 1399,
+        "n_y1": 100,
+        "max_deviation": 0.169719,
+        "frobenius_deviation": 0.223364,
+        "p_value": 0.174783,
+        "null_95pct": 0.213308,
+        "reject_005": false
+      }
+    }
+  }
+}

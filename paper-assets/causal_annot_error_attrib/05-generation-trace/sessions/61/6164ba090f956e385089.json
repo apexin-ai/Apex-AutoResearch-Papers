@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "6164ba090f956e385089",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper template switch emnlp",
+  "task_key": "worker_paper_template_switch_emnlp_20260522T024218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_template_switch_emnlp_20260522T024218_result.json",
+    "occurrence": 1,
+    "bytes": 2119400,
+    "sha256": "5fcc9a820707275027dec1cbb317fed2a2acbf50351de56a4c7af60ce5aa721d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "6164ba090f956e385089-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-template-switch-emnlp.md"
+}

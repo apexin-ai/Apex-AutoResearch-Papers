@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4af6344e90344dae8533",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "math lambda bound w3",
+  "task_key": "worker_math_lambda_bound_w3_20260522T152106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_math_lambda_bound_w3_20260522T152106_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "4efab0e020e4e6c4d0d73ccc915e3c8ed7e77de29a8bf1c48b9fe9c440b09320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部已就绪，无需修改：\n\n- **Proposition `prop:lambda_bound`** + 完整 law-of-total-variance 证明已在 `appendix_proofs.tex:382–402`\n- **验证脚本** `artifacts/verify_lambda_bound.py` 运行通过：30,000 次采样全部满足 λ(C)∈[0,1]，零违规；λ(I)=1 和 λ(1/K)=0 精确到 machine precision\n- **结果文件** `artifacts/verify_lambda_bound_results.json` 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/math-lambda-bound-w3.md"
+}

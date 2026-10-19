@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3e8f9b56918001a481d",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper prop1 collider frontdoor proof",
+  "task_key": "worker_paper_prop1-collider-frontdoor-proof_20260520T223911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prop1-collider-frontdoor-proof_20260520T223911_result.json",
+    "occurrence": 1,
+    "bytes": 1880,
+    "sha256": "7836ca09ddbe05e535d65c5d8fd801987d07a730f136ca4c2d39ff2dc330aae2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File structure is clean: Notation → FWL → Confounding → Mediation → **Collider** → **Front-door** → Exposure → Summary.\n\n## 汇报\n\n### Collider (完整代数证明)\n\n**证明状态：完整**\n\n关键论证步骤：\n1. 从 FWL 直接推导（Lemma 不适用，因 ε_Y 与 A 非独立）\n2. 利用 T ⊥ ε_Y（无条件）+ 全协方差公式得到 B(C) = −Cov(E[g(A)|A*], E[h(A)|A*]) / E[Var(T|A*)]\n3. **端点分析**：B(I) = B_Berkson（满 Berkson bias），B(uniform) = 0（无偏）——与 confounding 方向完全相反\n4. **比例情形 (Prop col_prop)**：当 h = λg 时，证明 |B(C)| ≤ |B(I)|，利用 x/(a−x) 单调递增\n5. **一般情形 (Prop col_gen)**：Cauchy-Schwarz 界 B̄_col = √(V_g·V_h) / E[Var(T|A)]，若 |τ| > B̄_col 则 sign preservation 对所有 C 成立\n6. **数值验证**：|τ|=1.0 >> B̄_col=0.147，100k random C 中 sign_flip=0%\n\n### Front-door (半形式化证明 + 数值验证)\n\n**证明状态：半形式化（与 mediation 同级）**\n\n关键论证步骤：\n1. FWL 分解将 numerator 分为 indirect-effect leakage + confounding residual 两项\n2. **核心发现：confounding 项与 C 无关**。利用 Gaussian 回归残差 ξ = U − [α_U/Var(T)]T ⊥ (T, A, A*)，证明 Cov(T,U|A*=j) = [α_U/Var(T)]·Var(T|A*=j)，从而 confounding 项在除以 D(C) 后简化为常数 λα_U/Var(T)\n3. 剩余 B_med(C) 与 mediation 拓扑结构完全相同，从 0（C=I）插值到 Cov(T,f(A))/Var(T)（C=uniform）\n4. Sign preservation 条件：sign(λα_U) = sign(λα_U + Cov(T,f(A)))\n5. **数值验证**：两端点 0.500 和 0.797 均为正，100k random C 中 sign_flip=0%\n\n### Boundary cases 验证\n- **C=I**：Collider 给出 τ+B_Berkson=0.886>0 ✓；Front-door 给出 0.500>0 ✓\n- **C=uniform**：Collider 给出 τ=1.0>0 ✓；Front-door 给出 0.797>0 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-prop1-collider-frontdoor-proof.md"
+}

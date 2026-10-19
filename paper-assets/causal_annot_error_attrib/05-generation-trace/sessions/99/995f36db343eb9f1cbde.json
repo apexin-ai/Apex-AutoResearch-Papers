@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "995f36db343eb9f1cbde",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 final metrics",
+  "task_key": "worker_code_plan001-final-metrics_20260520T114936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-final-metrics_20260520T114936_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "245a7383e785459ec7c3ad48db02991f12c1415fa9261a185c31ec0993982e96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`misclass_amplifies_rate` 已补齐并写入 registry：\n\n| 拓扑 | misclass_amplifies_rate | 解释 |\n|------|------------------------|------|\n| collider | 0% | 误分类总是衰减 collider bias（保留已有值） |\n| m_bias | 29.2% | 保留已有值 |\n| mediation_mixed | **100%** | C=I 下 τ 无偏（bias_I=0），任何误分类都引入偏差 |\n| mediation_same | **100%** | 同上 |\n| frontdoor_mixed | **100%** | true τ=0，C=I 下已有 confounding bias≈0.5，误分类几乎总是加剧 |\n| frontdoor_same | **99.97%** | 同上，极少数 C 恰好减小偏差 |\n\nmediation 的 100% 是因为模型在 C=I 下正确指定（baseline bias=0），所以 misclassification 无论方向都放大偏差。front-door 的接近 100% 是因为 U 混淆已经把 τ 推到 ~0.5（true=0），误分类进一步恶化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-final-metrics.md"
+}

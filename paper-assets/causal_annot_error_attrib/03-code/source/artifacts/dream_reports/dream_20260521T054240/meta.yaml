@@ -1,0 +1,42 @@
+dream_id: dream_20260521T054240
+project: causal_annot_error_attrib
+venue: emnlp-2026
+focus: 'Post-fix re-dream: all 5 cross-tier structural issues resolved (related work,
+  ASV vs PBA, Brenner, IV subspace, nondiff stress test). Evaluate overall paper quality
+  improvement.'
+review_mode: simple
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions: {}
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+- tier: worst
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+errors:
+  best:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+  median:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+  worst:
+    phase2: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-21T05:42:52+00:00'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02f2d1fe21fb93c1c266",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan009 diagnose resubmit",
+  "task_key": "worker_infra_plan009-diagnose-resubmit_20260520T184915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan009-diagnose-resubmit_20260520T184915_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "9769284cf09de91700d0e7dc4ca1743e7f6a13760ca706c96d6665ad8c631435"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan009 已经成功完成，不需要修复。**\n\n日志显示脚本于 2026-05-20 11:41 启动，25 秒内跑完全部 7 拓扑 × 3 个 K 值 × 全部病理矩阵类型（M=1000, N=5M），正常退出。\n\n产出文件（`artifacts/plan009/`）：\n- `pathological_bias_summary.json` — 167 KB\n- `regression_results.txt` — 3.5 KB\n- `plan009_run.log` — 27 KB\n\n关键结果摘要：\n- **confounding/mediation/collider/frontdoor**: R² = 0.61–0.77，spectral_gap 和 condition_number 显著正相关 |bias|\n- **exposure**: R² = 0.11，catastrophic bias 高发（near_perm eps=0.01 时 15% 超阈值）\n- **iv**: R² ≈ 0，回归基本无解释力（IV 估计量对矩阵特征不敏感）\n- **GLOBAL**: R² ≈ 0，跨拓扑聚合后特征解释力消失（符合预期，不同拓扑的 bias 机制不同）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan009-diagnose-resubmit.md"
+}

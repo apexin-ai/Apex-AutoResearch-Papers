@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae3c221bbdaa0344e5de",
+  "project": "causal_annot_error_attrib",
+  "kind": "history",
+  "title": "agent / loop_1_1779386093.md",
+  "task_key": "loop_1_1779386093",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779386093.md",
+    "occurrence": 1,
+    "bytes": 3953,
+    "sha256": "4e389319c0570181a8079ba471fe7b40d16c857a2e777ccbbd5a5392caff8bf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T10:58:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：home-1x5090 的 cuda:0（RTX 5090），账户 sonny。不要用 root conda（`/root/miniconda3` 对 sonny 无权限，plan009 因此失败过一次）\n- plan003 三路 LLM 标注进程（llama4/qwen3/deepseek）正在后台 nohup 运行，**严禁 kill 或干扰这些 PID**——它们不走 submit_training_job，是手动 nohup 启动的长任务\n- sonny 账户用系统 python3 直接执行，不走 conda activate（已验证可用）\n- plan_003 完成前 plan_006（ASV 实证）和 plan_007（correction 实证部分）被阻塞——不要提前用合成数据替代实证数据\n\n### 2. 🖥️ 基础设施快照\n- 服务器：home-1x5090，工作目录 `/home/sonny/causal_annot_error_attrib/`\n- Python：`/usr/bin/python3`（系统 python3，sonny 账户可用）\n- 产出目录：`/home/sonny/causal_annot_error_attrib/artifacts/plan00X/`\n- 磁盘：`/` 318G/1.1T 可用（69%），`/home/sonny/ssd2` 481G/2.0T（75%）\n- 活跃进程：plan003 三路标注（PID llama4=438497, qwen3=438843, deepseek=439116），预计 2026-05-21 ~17:00 UTC qwen3 最后完成\n- 无 W&B 配置（本项目为 MC 模拟 + 分析脚本，不用 W&B tracking）\n\n### 3. 📊 当前状态\n我刚收到 plan007_correction_guidance 的 CRON 完成回调（进程正常退出，~36秒），已派出两个分析 Worker：\n- **worker_analysis_plan007_correction_guidance_20260520T185109** — 分析 plan007 校正方法对比结果\n- **worker_analysis_plan009_pathological_matrices_20260520T185124** — 分析 plan009 病态矩阵结果（也处于 ANALYZING）\n\n另有 1 个 Worker 仍在运行：\n- **worker_paper_prop1-algebraic-proof_20260520T183523** — 论文 Prop1 代数证明\n\nRegistry 状态：\n- RUNNING: plan003_empirical_confusion_matrices（三路 LLM 标注，预计 5/21 17:00 UTC）\n- ANALYZING: plan007_correction_guidance, plan009_pathological_matrices（Worker 正在分析）\n- DONE(success): plan001, plan002, plan004, plan004_v3_fixed, plan005, plan008, mvp_confounding, mvp_exposure, mvp_exposure_dirichlet（共 9 个）\n\n**等待中**：两个分析 Worker 回调 → 需要 update_registry + 汇报 Director\n\n### 4. 📋 待办\n- plan007 Worker 回调到达 → 提取 metrics → update_registry(conclusion=success/negative) → 汇报 Director（重点：naive plug-in/MLA 对 T 系数是否无效的 Frisch-Waugh 验证）\n- plan009 Worker 回调到达 → 提取 metrics → update_registry → 汇报 Director（重点：病态矩阵 threshold 是否清晰）\n- plan003 完成（~5/21 17:00 UTC）→ 立即并行启动 plan006（ASV 实证验证）+ plan007 实证部分\n- plan003 进度异常（PID 死亡/速率骤降）→ 派 Worker SSH 诊断，必要时 resume\n- paper:prop1-algebraic-proof Worker 回调 → 整合证明到论文\n\n### 5. 🎯 战略上下文\n- **目标**：AAAI 2027（abstract DDL 2026-07-21，paper DDL 2026-07-28，~69 天）\n- **核心 story**：K≥3 非差异性误分类打破二分类 bias-toward-null 保证，偏差方向依赖因果拓扑结构\n- **关键发现链**：5/7 拓扑 τ_sign_flip=0%（结构性保证），exposure ~83% sign flip，IV ~52% sign flip（D010）；ASV 多维排序（D009）；K-scaling 稳定（plan002）\n- **关键路径瓶颈**：plan003 是实证线唯一阻塞点，plan006+plan007 实证验证全部依赖它。理论线已完成\n- **Claim 覆盖率**：Claim 1 (50%), Claim 2 (67%), Claim 3 (0%) — Claim 3 完全依赖 plan007+plan003\n- **易错点**：\n  - plan009 之前失败两次（conda 权限 + 无效参数），第三次可能仍有问题——分析 Worker 需确认是否真正成功完成\n  - plan007 运行极快（36秒），可能只跑了合成 C 部分（不含实证），需确认实验范围\n  - 不要混淆 plan_007（correction guidance MC 框架）和 plan_007 实证部分（需 plan003 数据）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779386093.md"
+}

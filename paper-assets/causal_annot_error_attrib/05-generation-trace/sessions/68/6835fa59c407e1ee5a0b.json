@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6835fa59c407e1ee5a0b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan004 n sensitivity",
+  "task_key": "worker_code_plan004-n-sensitivity_20260520T140512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-n-sensitivity_20260520T140512_result.json",
+    "occurrence": 1,
+    "bytes": 1328,
+    "sha256": "5e1ce37b27f056fe8f356beb49106456114caf74d43c4089bf6d4e24e06a8393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n```\n=== N-Sensitivity Analysis: Mediation τ=0.05, C0=sym_mild ===\n\n| N      | naive_power | asv_power | median_SE | median_signif_ASV |\n|--------|-------------|-----------|-----------|-------------------|\n|   1000 |       0.890 |     0.000 |    0.0700 |            0.0000 |\n|   2000 |       0.998 |     0.000 |    0.0496 |            0.0000 |\n|   5000 |       1.000 |     0.000 |    0.0313 |            0.0000 |\n|  10000 |       1.000 |     1.000 |    0.0222 |              None |\n|  20000 |       1.000 |     1.000 |    0.0157 |              None |\n|  50000 |       1.000 |     1.000 |    0.0099 |              None |\n\nASV power recovers (>=80%) at N=10000\n```\n\n**关键发现**：存在尖锐的相变（N≈5000→10000），机制是 `1.96 × SE` 与 `τ=0.05` 的交叉：\n- N≤5000 时，`1.96×SE ≈ 0.061 > τ=0.05`，plim 在 δ=0 就低于显著性阈值 → signif_ASV=0 → ASV 滤掉所有拒绝 → power=0%\n- N≥10000 时，`1.96×SE ≈ 0.044 < τ=0.05`，plim 在整个 δ 范围内都高于阈值 → signif_ASV=None（无穷大保护）→ ASV 放行所有拒绝 → power=100%\n\n这是一个二元开关行为，不是渐进恢复。临界 N 可解析求解：`N* ≈ (1.96×σ/τ)² × 4 ≈ 6147`（binary T 的方差校正）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-n-sensitivity.md"
+}

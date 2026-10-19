@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7062cf8f6ca5c37641c0",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan005 asv extended",
+  "task_key": "worker_code_plan005-asv-extended_20260520T135157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan005-asv-extended_20260520T135157_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "95e53f9f9ac7b313a495f21e884a24f3b4f063db076f800bc0c1f3f512b0d7c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`plan005_asv_extended` 已注册完成，状态 DONE (success)。\n\n关键结果：\n- **M-bias**: ASV = None（误分类 collider A 不影响 T→Y 估计，反而减少了虚假 M-bias）\n- **IV**: ASV_magnitude = 0（Wald 估计量对误分类立即敏感，C 直接缩放 first-stage）\n- **Front-door**: ASV_magnitude = 0.064–0.387（中等敏感度，依赖 C₀ 结构）\n- Envelope 单调性 0 violations，MC coverage 100%，Type I 接近 nominal"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan005-asv-extended.md"
+}

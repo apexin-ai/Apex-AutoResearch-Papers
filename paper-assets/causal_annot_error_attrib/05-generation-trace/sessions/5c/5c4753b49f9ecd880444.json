@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "5c4753b49f9ecd880444",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "paper figure fig2 bias distribution",
+  "task_key": "worker_paper_figure_fig2_bias_distribution_20260520T152611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_bias_distribution_20260520T152611.log",
+    "occurrence": 1,
+    "bytes": 807111,
+    "sha256": "b72379bf554ec158c741cfcfa410161eeb6a9da453f1aa6b79e32f7fdc0a3492"
+  },
+  "statistics": {
+    "messages": 119,
+    "user_turns": 2,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 36,
+      "tool_result": 36,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "5c4753b49f9ecd880444-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "5c4753b49f9ecd880444-part-0001.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "5c4753b49f9ecd880444-part-0001.json",
+          "message_count": 6
+        },
+        {
+          "path": "5c4753b49f9ecd880444-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig2-bias-distribution.md"
+}

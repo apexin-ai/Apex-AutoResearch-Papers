@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27e8e55fb201170c0a92",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "diagnose plan009 pathological matrices",
+  "task_key": "worker_diagnose_plan009_pathological_matrices_20260520T184113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan009_pathological_matrices_20260520T184113_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "df2c1aed4b4d69489ace3ddc35ae5d121fe58e6a4ad61fbcabab2ab5b250ee2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "作业已提交成功。\n\n- **exp_id**: plan009_pathological_matrices\n- **PID**: 496807\n- **GPU**: cuda:0\n- **日志**: `~/runs/causal_annot_error_attrib/plan009_pathological_matrices.log`\n- **修复**: 绕过 conda activation，直接用系统 `python3`（torch 2.10.0+cu128 已在系统 Python 中可用）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan009-pathological-matrices.md"
+}

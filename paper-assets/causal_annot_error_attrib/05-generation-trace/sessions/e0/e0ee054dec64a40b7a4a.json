@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0ee054dec64a40b7a4a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper terminology fixes w4w5w8w10w12",
+  "task_key": "worker_paper_terminology_fixes_w4w5w8w10w12_20260522T152203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_terminology_fixes_w4w5w8w10w12_20260522T152203_result.json",
+    "occurrence": 1,
+    "bytes": 157,
+    "sha256": "c806f07e087f8e93d524c07f7f724bcec99db2bce6b99c7dfbe27a7f6b17126d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，24 页 PDF 生成，无 citation/reference warning。所有 5 项修改已在先前的 commit 中完成，无需额外变更。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-terminology-fixes-w4w5w8w10w12.md"
+}

@@ -1,0 +1,160 @@
+=====================================================================================
+Exposure Misclassification DAG — K=3 Bias-Toward-Null Test
+=====================================================================================
+
+DAG: A -> Y, A -> A*  (no confounders, exposure misclassification only)
+DGP: P(A)=[0.4, 0.35, 0.25], beta=[0.0, 1.0, -0.5], sigma_Y=1.0
+MC:  N=10,000, M=1,000, seed=42
+Random search: 100,000 matrices
+
+Binary guarantee: non-diff misclassification => |gamma| <= |beta| (attenuation)
+K=3 question: does this hold for all C? Or can we get sign reversal / amplification?
+
+=====================================================================================
+PART A: K=3 Exposure — Theory vs Monte Carlo  (6 structures)
+=====================================================================================
+
+#  Config         | beta_1    g1_th    g1_mc          type_1 | beta_2    g2_th    g2_mc          type_2 | Match
+-------------------------------------------------------------------------------------------------------------------
+1  1_sym_high     |   1.00   0.7162   0.7150     toward_null |  -0.50  -0.2956  -0.2962     toward_null |   YES  (1.7s)
+2  2_asymmetric   |   1.00   0.6275   0.6276     toward_null |  -0.50  -0.2714  -0.2712     toward_null |   YES  (1.6s)
+3  3_struct_12    |   1.00   0.6229   0.6218     toward_null |  -0.50   0.0599   0.0597   SIGN_REVERSAL |   YES  (1.6s)
+4  4_weak_diag    |   1.00  -0.0026  -0.0027   SIGN_REVERSAL |  -0.50  -0.1341  -0.1344     toward_null |   YES  (1.8s)
+5  5_near_perm    |   1.00   0.3908   0.3915     toward_null |  -0.50   1.2504   1.2495   SIGN_REVERSAL |   YES  (2.0s)
+6  6_diff_base    |   1.00   0.7162   0.5896     toward_null |  -0.50  -0.2956  -0.1582     toward_null |   N/A  (2.3s)
+
+=====================================================================================
+PART B: Random Search — 100,000 column-stochastic C matrices
+=====================================================================================
+
+Searched: 100,000 matrices (4.9s)
+Sign reversal (any component):  83,364 (83.4%)
+Amplification (any component):  14,095 (14.1%)
+Either violation:               84,973 (85.0%)
+
+Top-5 most extreme violations (by max |gamma_k/beta_k|):
+  Severity       g1          type_1       g2          type_2
+  ----------------------------------------------------------
+      2.83  -0.8380   SIGN_REVERSAL  -1.4138   AMPLIFICATION
+    [0.016  0.622  0.002]
+    [0.968  0.368  0.393]
+    [0.016  0.011  0.605]
+
+      2.71  -0.9785   SIGN_REVERSAL  -1.3542   AMPLIFICATION
+    [0.010  0.885  0.018]
+    [0.936  0.094  0.315]
+    [0.053  0.021  0.667]
+
+      2.65  -0.8892   SIGN_REVERSAL  -1.3237   AMPLIFICATION
+    [0.050  0.825  0.035]
+    [0.899  0.174  0.458]
+    [0.051  0.001  0.508]
+
+      2.64   0.4447     toward_null   1.3211   SIGN_REVERSAL
+    [0.046  0.019  0.777]
+    [0.893  0.116  0.208]
+    [0.061  0.864  0.015]
+
+      2.61   0.5149     toward_null   1.3060   SIGN_REVERSAL
+    [0.107  0.016  0.839]
+    [0.893  0.207  0.102]
+    [0.001  0.777  0.059]
+
+=====================================================================================
+PART C: MC Validation of Worst-Case C from Random Search
+=====================================================================================
+
+Worst-case C (severity=2.83):
+  [0.016  0.622  0.002]
+  [0.968  0.368  0.393]
+  [0.016  0.011  0.605]
+
+Component      beta   Theory  MC Mean    MC SE            Type
+------------------------------------------------------------
+beta_1       1.0000  -0.8380  -0.8380   0.0266   SIGN_REVERSAL
+beta_2      -0.5000  -1.4138  -1.4127   0.0343   AMPLIFICATION
+
+=====================================================================================
+PART D: Binary (K=2) Comparison — Attenuation Guarantee
+=====================================================================================
+
+Collapse: B=1[A in {1,2}]. Binary beta_B = E[beta_1*p1 + beta_2*p2]/(p1+p2) = 0.3750
+
+#  Config         C_bin diag   beta_B  gamma_B    ratio  Toward null?
+------------------------------------------------------------------------
+1  1_sym_high     [0.80,0.90]   0.3750   0.2674   0.7131  YES (|r|<=1)
+2  2_asymmetric   [0.65,0.93]   0.3750   0.2470   0.6588  YES (|r|<=1)
+3  3_struct_12    [0.96,0.99]   0.3750   0.3594   0.9584  YES (|r|<=1)
+4  4_weak_diag    [0.40,0.69]   0.3750   0.0365   0.0974  YES (|r|<=1)
+5  5_near_perm    [0.05,0.60]   0.3750  -0.1646  -0.4391  YES (|r|<=1)
+6  6_diff_base    [0.80,0.90]   0.3750   0.2674   0.7131  YES (|r|<=1)
+
+=====================================================================================
+PART E: K=3 vs K=2 — Does Binary Guarantee Extend to Multiclass?
+=====================================================================================
+
+#  Config         |   K3: g1          type_1       g2          type_2 | K2: toward_null
+-----------------------------------------------------------------------------------------------
+1  1_sym_high     |   0.7162     toward_null  -0.2956     toward_null |             YES
+2  2_asymmetric   |   0.6275     toward_null  -0.2714     toward_null |             YES
+3  3_struct_12    |   0.6229     toward_null   0.0599   SIGN_REVERSAL |             YES
+4  4_weak_diag    |  -0.0026   SIGN_REVERSAL  -0.1341     toward_null |             YES
+5  5_near_perm    |   0.3908     toward_null   1.2504   SIGN_REVERSAL |             YES
+6  6_diff_base    |   0.7162     toward_null  -0.2956     toward_null |             YES
+
+=====================================================================================
+PASS / FAIL SUMMARY
+=====================================================================================
+
+1. Theory vs MC match (non-diff): 5/5  PASS
+   1_sym_high: th_bias=[-0.283848, 0.204426], CI_1=[-0.286599, -0.283443], CI_2=[0.202150, 0.205516] -> OK
+   2_asymmetric: th_bias=[-0.372461, 0.228569], CI_1=[-0.373987, -0.370880], CI_2=[0.226987, 0.230618] -> OK
+   3_struct_12: th_bias=[-0.377110, 0.559905], CI_1=[-0.379797, -0.376517], CI_2=[0.557903, 0.561452] -> OK
+   4_weak_diag: th_bias=[-1.002588, 0.365942], CI_1=[-1.004362, -1.000967], CI_2=[0.363822, 0.367476] -> OK
+   5_near_perm: th_bias=[-0.609249, 1.750394], CI_1=[-0.610146, -0.606883], CI_2=[1.747825, 1.751188] -> OK
+
+2. Bias-toward-null violation found: PASS
+   Named structures with violation: 3/6
+   Random search violations: 84,973/100,000
+
+3. K=2 always toward null AND K=3 sometimes not: PASS
+   K=2 all toward null: YES
+   K=3 has violations: YES
+
+OVERALL: PASS
+
+=====================================================================================
+APPENDIX: Confusion Matrix Definitions
+=====================================================================================
+
+1_sym_high: Symmetric high-accuracy: diag=0.8, uniform off-diagonal=0.1
+  [0.80  0.10  0.10]
+  [0.10  0.80  0.10]
+  [0.10  0.10  0.80]
+
+2_asymmetric: Asymmetric: P(A*=1|A=0)=0.30 >> P(A*=0|A=1)=0.05
+  [0.65  0.05  0.10]
+  [0.30  0.85  0.10]
+  [0.05  0.10  0.80]
+
+3_struct_12: Structural: classes 1<->2 heavily confused (0.30), class 0 clean
+  [0.96  0.01  0.01]
+  [0.02  0.69  0.30]
+  [0.02  0.30  0.69]
+
+4_weak_diag: Weak diagonal dominance: diag~0.4, non-uniform off-diagonal
+  [0.40  0.35  0.25]
+  [0.35  0.40  0.35]
+  [0.25  0.25  0.40]
+
+5_near_perm: Near-permutation: cyclic 0->1, 1->2, 2->0 (p=0.90)
+  [0.05  0.05  0.90]
+  [0.90  0.05  0.05]
+  [0.05  0.90  0.05]
+
+6_diff_base: Differential base (=C1 in non-diff exposure setting; Y-dependent in MC)
+  [0.80  0.10  0.10]
+  [0.10  0.80  0.10]
+  [0.10  0.10  0.80]
+
+Total runtime: 17.5s

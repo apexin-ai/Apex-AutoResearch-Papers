@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9eb3b3528e04c60b7b4a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "writing empirical section draft",
+  "task_key": "worker_writing_empirical_section_draft_20260524T055523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_empirical_section_draft_20260524T055523_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "1e983ed09bea3154222a8a6f9b182b6326150089cf2bab820b5cb175c8583eb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已保存到 `artifacts/empirical_section_draft.tex`。\n\n4段结构：\n1. **Setup** — 8 configs (3 models × 2-3 prompting), HumAID K=10, analytical limits\n2. **Topology ranking** — IV 最高 (30.3%), collider 最低 (4.9%), 与 Dirichlet simulation 一致\n3. **F1 vs bias** — 整体 ρ=-0.156; per-topology 分解显示 IV (ρ=-0.700) 和 M-bias (ρ=+0.867) 方向相反，聚合后相消\n4. **Sign flips** — 7/8 exposure sign flip, 0 sign flips across non-exposure topologies, IV 0% (vs Dirichlet 52.6%) 因 diagonal dominance\n\n所有数字均可追溯到 `empirical_humaid_k10_results.json` (topology ranking, sign flips, F1 range) 和 `within_topo_f1_bias_results.json` (per-topology ρ 分解)。引用了 `Proposition~\\ref{prop:signflip}` 和 `Appendix~\\ref{app:empirical_details}`（后者需确认 label 是否存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-empirical-section-draft.md"
+}

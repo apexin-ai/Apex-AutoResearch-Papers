@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7516e81cc871969b8e77",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "research protest dataset search",
+  "task_key": "worker_research_protest-dataset-search_20260520T092905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_protest-dataset-search_20260520T092905_result.json",
+    "occurrence": 1,
+    "bytes": 4371,
+    "sha256": "1d98bbf0f2714dc7233060b24d0184ed37eeefb12b458c8ab63e5fdb534bc062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 搜索结果汇总\n\n**关键前提**：ACLED ToS 禁止 ML 用途，因此 ACLED 本身和依赖 ACLED 训练数据的 CASE 2021 Task 2 均排除。\n\n---\n\n### 符合条件的候选\n\n#### 1. PolDem Protest Dataset 30\n```\n数据集名称: PolDem-Protest Dataset 30 (poldem-protest_30)\n类别数 K: action_form = 6 (单标签); issue = 9 (多标签)\n类别列表 (action_form): [demonstrations, violent protest, strikes, confrontations, \n  petitions/symbolic actions, other protest]\n样本量: 30,852 events (30 European countries, 2000-2015)\nLicense: 未明确标注，页脚 \"© EUI & WZB. All rights reserved.\"\n下载方式: 直接下载，无需注册\n  CSV: https://poldem.eui.eu/downloads/pea/poldem-protest_30.csv\nGold-standard human labels: 半自动流程 + 35名编码员人工标注\n  intercoder: 事件识别 F1=0.60, 议题 κ=0.53\n引用论文: Lorenzini et al. (2022) American Behavioral Scientist\n备注: \n  ⚠️ 结构化事件数据，不含原始新闻全文（来源为通讯社 newswire，但 CSV 中可能只有编码字段）\n  ⚠️ License 模糊，\"All rights reserved\" 有风险\n  ✅ action_form K=6 单标签分类，标注质量中等，适合研究标注噪声\n```\n\n#### 2. Mass Mobilization Project (MMD)\n```\n数据集名称: Mass Mobilization Data Project\n类别数 K: protester demand = 7 (多标签); government response = 7 (多标签)\n类别列表 (demand): [labor/wages, land, police brutality, political process, \n  prices/taxes, removal of politician, social restrictions]\n样本量: ~17,000 events (162 countries, 1990-2020)\nLicense: Harvard Dataverse (CC0 Public Domain)\n下载方式: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HTTWYL\nGold-standard human labels: 是，人工编码员从 Lexis-Nexis 新闻编码\n引用论文: Clark & Regan (2016), Harvard Dataverse\n备注:\n  ⚠️ 结构化事件数据，不含原始新闻文本\n  ⚠️ Demand/response 为多标签 (0/1 binary columns)，非单标签多分类\n  ✅ License 好 (CC0)，完全公开\n```\n\n#### 3. SPEED (Social Political Economic Event Database)\n```\n数据集名称: SPEED\n类别数 K: 4 Tier-1 categories\n类别列表: [Political Expression Events, Politically Motivated Attacks, \n  Disruptive State Acts, Political Power Reconfigurations]\n样本量: 覆盖 3 国 (1979-2008)，具体数量待确认\nLicense: 公开\n下载方式: https://databank.illinois.edu/datasets/IDB-7407320\nGold-standard human labels: 是 (Cline Center 编码员)\n引用论文: Cline Center for Advanced Social Research, UIUC\n备注: ⚠️ 同样是结构化事件数据，非 NLP 文本分类格式\n```\n\n---\n\n### 不满足条件的排除项\n\n| 数据集 | 排除原因 |\n|--------|---------|\n| ACLED / CASE 2021 Task 2 | ToS 禁止 ML 用途（训练数据来自 ACLED） |\n| GLOCON Gold | 需邮件申请 |\n| CEHA | 样本量仅 500 |\n| CCC | 494 多标签 tags，无原始文本 |\n| CASE Task 1 | K=2 二分类 |\n| MPEDS | 工具/系统，非固定数据集 |\n\n---\n\n### 核心问题\n\n**protest/political event 领域没有理想的公开 NLP 文本分类数据集。** 上述候选全部是结构化编码数据（tabular），不含可直接用于文本分类的原始新闻文本。要做 NLP 实验需要自行匹配/爬取新闻，这引入额外复杂度和版权问题。\n\n---\n\n### 建议\n\n如果坚持 protest 领域确实困难，建议考虑换到有成熟公开 NLP 数据集的任务类型：\n\n| 替代方向 | 数据集 | K | 样本量 | 特点 |\n|---------|--------|---|--------|------|\n| **危机事件分类** | HumAID | 11 | ~77K tweets | CC-BY-NC, HuggingFace 直接下载，gold labels |\n| **情感分类** | GoEmotions | 27/28 | 58K | Reddit 文本，多标签，Google 标注 |\n| **意图分类** | CLINC150 / BANKING77 | 150/77 | 23K/13K | 对话意图，完全公开 |\n| **新闻主题** | AG News | 4 | 120K | 经典 benchmark |\n\n其中 **HumAID** 最接近 protest 领域（crisis/disaster events），K=11，标注质量好，且项目本身研究标注错误归因，crisis event 分类的标注难度和噪声模式与 protest 类似。\n\n是否要：(1) 用 PolDem action_form 做实验（接受 license 风险 + 无原始文本限制），(2) 转向 HumAID 等 crisis 数据集，还是 (3) 申请 GLOCON？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-protest-dataset-search.md"
+}

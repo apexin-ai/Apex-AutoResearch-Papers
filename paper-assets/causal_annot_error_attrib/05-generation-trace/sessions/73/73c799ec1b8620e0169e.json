@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73c799ec1b8620e0169e",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp mf2 y stratified nondiff",
+  "task_key": "worker_exp_mf2_y_stratified_nondiff_20260523T162148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mf2_y_stratified_nondiff_20260523T162148_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "170db2d8028ee340be07dd37df6a5836bae922c7dccf45560ab3e968554a128f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF-2 完成。结果总结：\n\n**12 configs × 3 Y-proxies = 36 tests (10,000 permutations each)**\n\n| Y proxy | Rejections@0.05 | Median p | 解读 |\n|---|---|---|---|\n| **text_length** | **1/12** | 0.508 | 非差异性成立（仅 llama4_few-shot-3 边际拒绝 p=0.027）|\n| topic | 11/12 | 0.002 | 差异性——预期结果：LLM 直接观测 topic 内容 |\n| sentiment | 10/12 | 0.014 | 差异性——预期结果：sentiment 从文本词汇提取，与 stance 相关 |\n\n**核心发现**：当 Y proxy 与文本内容独立（text_length）时，非差异性假设 P(A*|A,Y) = P(A*|A) 成立；当 Y proxy 可从文本内容推断（topic, sentiment）时，假设被拒绝。这与理论预期一致——LLM 不观测真实结果 Y，仅观测文本 X，所以误分类率不依赖于与内容无关的 Y 变量。\n\n**产出文件**：\n- `artifacts/nondiff_y_stratified_results.json` — 完整结果（已注册 `art_20260523_bcf3f9`）\n- `artifacts/nondiff_y_stratified.py` — 本地脚本（已修复 None pred_label 问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mf2-y-stratified-nondiff.md"
+}

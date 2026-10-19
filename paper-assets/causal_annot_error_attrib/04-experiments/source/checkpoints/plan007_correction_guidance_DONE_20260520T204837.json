@@ -1,0 +1,71 @@
+{
+  "exp_id": "plan007_correction_guidance",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:48:04.784Z",
+    "updated_at": "2026-05-20T20:48:37.062Z",
+    "hypothesis": "不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。",
+    "parent": "plan001_dag_taxonomy",
+    "server": "home-1x5090",
+    "gpu": "cuda:0",
+    "account": "sonny",
+    "reproduce": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T18:49:37.530Z",
+      "command": "bash -c \"cd /home/sonny/causal_annot_error_attrib && mkdir -p artifacts/plan007 && python3 -u plan_007_correction_guidance.py --N_sim 1000 2>&1 | tee artifacts/plan007/plan007_run.log\"",
+      "finished_at": "2026-05-20T18:50:00.965Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "server": "home-1x5090",
+      "gpu": "N/A (CPU only)",
+      "command": "python3 -u plan_007_correction_guidance.py --n-sim 1000",
+      "data_path": "/home/sonny/causal_annot_error_attrib/ (synthetic DGP, reuses plim functions from plan_001/002)",
+      "data_count": "7 topos × 6 C structures × 5 methods × 1000 sims = 210k combinations",
+      "model_name": "N/A (MC simulation)",
+      "seed": "SHA-256 deterministic per (topo, C_type, method, sim_idx)",
+      "pid": 500789,
+      "log_path": "/home/sonny/causal_annot_error_attrib/artifacts/plan007/plan007_full_run.log",
+      "checkpoint_source": "plan001_dag_taxonomy (plim functions reused)",
+      "eval_data": "synthetic: 7 DAG topologies × 6 confusion matrix structures",
+      "note": "retry: first submission used --N_sim (wrong format), corrected to --n-sim",
+      "checkpoint_path": "/home/sonny/causal_annot_error_attrib/artifacts/plan007/correction_guidance_results.json"
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/causal_annot_error_attrib/plan007_correction_guidance.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T18:50:03.194187+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_combos": 210,
+      "runtime_sec": 2792,
+      "ppi_grand_mean_bias_red": "93.8%",
+      "ppi_grand_mean_coverage": "96.8%",
+      "ppi_win_rate": "95.2% (40/42)",
+      "mcsimex_grand_mean_bias_red": "20.9%",
+      "dsl_grand_mean_bias_red": "-144.8%",
+      "naive_plugin_grand_mean_bias_red": "-20.0%",
+      "mla_grand_mean_bias_red": "-37.4%",
+      "fwl_invariance_verified": true,
+      "fwl_invariance_topologies": "confounding, mediation, collider, mbias (0.0% bias_red for naive/mla)",
+      "dsl_effective_topologies": "confounding (49.8%), mediation (70.3%)",
+      "dsl_failure_topologies": "mbias (-768%), iv (-187%), collider (-89%), exposure (-60%), frontdoor (-29%)",
+      "ppi_weakness": "mbias+realistic_llm: -25.1% bias_red (but 99% coverage)"
+    },
+    "completed_at": "2026-05-20T20:48:37.062Z"
+  },
+  "timestamp": "2026-05-20T20:48:37.109653+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe6cc2a16d428ab28d1",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "math theorem1 direct proof w1",
+  "task_key": "worker_math_theorem1_direct_proof_w1_20260522T152129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_math_theorem1_direct_proof_w1_20260522T152129_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "624f865844f50622c0ea2b88c107a440b2ba22913cc189f1024a4d3f9902c49a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Yet another duplicate background task from before compaction. All verification work is complete — nothing further to do here."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/math-theorem1-direct-proof-w1.md"
+}

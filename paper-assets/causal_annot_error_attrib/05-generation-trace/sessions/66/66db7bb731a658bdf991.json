@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "66db7bb731a658bdf991",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "ops table overflow fix",
+  "task_key": "worker_ops_table_overflow_fix_20260524T072959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_table_overflow_fix_20260524T072959.log",
+    "occurrence": 1,
+    "bytes": 3352521,
+    "sha256": "da2665156add3dbb7f1613e0426866fa4b9df95ecdc8d260efe6813d24ea3290"
+  },
+  "statistics": {
+    "messages": 166,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 68,
+      "user": 1,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "66db7bb731a658bdf991-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "66db7bb731a658bdf991-part-0001.json",
+          "message_count": 79
+        },
+        {
+          "path": "66db7bb731a658bdf991-part-0002.json",
+          "message_count": 12
+        },
+        {
+          "path": "66db7bb731a658bdf991-part-0003.json",
+          "message_count": 11
+        },
+        {
+          "path": "66db7bb731a658bdf991-part-0004.json",
+          "message_count": 11
+        },
+        {
+          "path": "66db7bb731a658bdf991-part-0005.json",
+          "message_count": 10
+        },
+        {
+          "path": "66db7bb731a658bdf991-part-0006.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-table-overflow-fix.md"
+}

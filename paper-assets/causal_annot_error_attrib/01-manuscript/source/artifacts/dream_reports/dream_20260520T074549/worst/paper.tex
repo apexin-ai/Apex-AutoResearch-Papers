@@ -1,0 +1,631 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{bm}
+\usepackage{enumitem}
+
+\geometry{margin=1in}
+
+\newcommand{\Cmat}{\mathbf{C}}
+\newcommand{\bvec}{\mathbf{b}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Multi-Class Annotation Errors Are Not Created Equal:\\
+Bias Taxonomy, Sensitivity Analysis, and Correction Guidance\\for LLM-Annotated Causal Studies}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Large Language Models (LLMs) are rapidly replacing human annotators in computational social science (CSS), yet recent evidence shows that 31\% of downstream causal conclusions may already be incorrect due to annotation errors.
+Existing measurement error frameworks assume binary variables, leaving researchers without diagnostic tools for multi-class ($K \geq 3$) annotation.
+We present the first systematic characterization of how $K \times K$ confusion matrix structures interact with causal DAG topologies to produce downstream bias.
+Our bias taxonomy covers six canonical DAG topologies (confounding, mediation, collider, M-bias, instrument, front-door) with closed-form expressions for $K=3$ and matrix-form expressions with eigendecomposition-based interpretability tools for general $K$.
+A key finding is a sharp topology-dependent dichotomy: exposure misclassification is the only topology where non-differential multi-class error produces direction-unpredictable bias (85\% reversal rate in 100K random confusion matrices), while the remaining five topologies preserve bias direction but exhibit magnitude variation that requires the full $K \times K$ matrix to quantify.
+We introduce Annotation Sensitivity Values (ASVs), analogous to E-values for unmeasured confounding, that quantify the minimum annotation error amplification needed to overturn a conclusion.
+We validate our framework on three CSS tasks annotated by three LLMs ($\sim$270K annotations), and provide an open-source Python toolkit and a correction guidance decision framework.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Annotation by Large Language Models has become the de facto approach for large-scale coding in computational social science.
+Protest event classification, stance detection, and toxicity labeling are routinely performed by LLMs at a fraction of the cost of human annotation.
+Yet a growing body of evidence reveals that LLM annotation errors propagate into downstream causal analyses in ways that researchers cannot currently anticipate or diagnose \citep{baumann2025}.
+
+The core problem is structural.
+Classical measurement error theory provides reassuring guarantees for binary variables: non-differential misclassification of a binary exposure biases effect estimates toward the null \citep{bross1954}.
+Researchers routinely invoke this guarantee to argue that their LLM-annotated results are ``conservative.''
+However, CSS variables are frequently multi-class: protest event types ($K=5$), stance categories ($K=3$), and emotion labels ($K=7$) are standard.
+\citet{brenner1993} showed decades ago that polytomous misclassification can bias in either direction, but no systematic framework exists that characterizes when, why, and by how much this occurs across different causal designs.
+
+The gap matters because different causal designs interact differently with annotation error.
+A confounder mislabeled as category B instead of category A produces residual confounding; an exposure mislabeled the same way produces a fundamentally different distortion by swapping treatment assignments.
+Without a framework that accounts for both the confusion matrix structure and the DAG topology, researchers cannot determine whether their specific combination is safe or hazardous.
+Recent work by \citet{kim2025} compounds the urgency: cross-model annotation errors are highly correlated (60\% agreement when both LLMs err), meaning multi-annotator ensembles cannot escape systematic bias.
+
+We address this gap with three contributions:
+
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+\item \textbf{Multi-class bias taxonomy.}
+Closed-form bias expressions for $K=3$ and matrix-form expressions with eigendecomposition-based interpretability tools for general $K$, across six canonical DAG topologies.
+Our taxonomy reveals a topology-dependent dichotomy: exposure misclassification is uniquely dangerous (85\% direction reversal rate), while the remaining five topologies are directionally predictable but magnitude-variable.
+Theory matches Monte Carlo (MC) simulation in 32/42 topology-structure combinations (76\%), with mismatches concentrated in complex topologies (collider, M-bias, front-door) where closed-form approximations require higher-order terms (Section~\ref{sec:taxonomy}, Tables~\ref{tab:taxonomy-summary} and~\ref{tab:theory-mc}).
+
+\item \textbf{Annotation Sensitivity Values (ASVs).}
+A sensitivity analysis framework, analogous to E-values for unmeasured confounding, that quantifies the minimum annotation error amplification $\delta$ needed to overturn a downstream conclusion.
+We prove monotonicity and sharpness for the confounding topology, monotonicity for mediation and instrument topologies, and identify specific failure conditions for collider (7\% non-monotone scenarios) and front-door (3\%) topologies.
+Aggregate MC coverage at 95\% nominal level is 85\% across all six topologies (Section~\ref{sec:asv}, Tables~\ref{tab:asv-proof} and~\ref{tab:asv-remaining}).
+
+\item \textbf{Correction guidance framework and toolkit.}
+A decision framework mapping \{topology $\times$ error structure $\times$ ASV\} to appropriate correction methods, with 78\% accuracy validated by MC simulation.
+The framework identifies 12\% of scenarios where no existing correction method is adequate, including correlated multi-LLM error as an open problem.
+We release \texttt{annot-sensitivity}, a pip-installable Python toolkit supporting $K=2$--$15$ across all six topologies (Section~\ref{sec:correction}, Table~\ref{tab:correction-framework}).
+\end{enumerate}
+
+We validate the full framework on three CSS tasks (protest event coding $K=5$, stance detection $K=3$, toxicity $K=2$) annotated by Llama 4 Maverick, Qwen 3.5 Plus, and DeepSeek V4, totaling $\sim$270K annotations.
+ASVs correctly classify all four non-trivial robustness cases (Section~\ref{sec:empirical}).
+
+%% ============================================================
+%% 2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+
+\paragraph{Measurement error in causal inference.}
+The study of misclassification bias dates to \citet{bross1954}, who established that non-differential binary exposure error biases toward the null.
+\citet{brenner1993} extended this to polytomous variables, proving that multi-class misclassification can bias in either direction.
+\citet{vanderweele2019} developed sensitivity bounds (E-values) for unmeasured confounding with binary risk ratios, providing a conceptual template for our ASV framework.
+However, none of these works provide a systematic taxonomy across DAG topologies or tools for general $K$.
+
+\paragraph{Annotation error in NLP and CSS.}
+\citet{wood-doughty2018} applied DAG reasoning to text classifier errors but restricted analysis to binary variables without formal bias theorems.
+\citet{teblunthuis2024} provided the most complete binary treatment with Measurement-error Likelihood Adjustment (MLA) correction, but their framework is limited to $K=2$ and single classifiers.
+\citet{lee2024} extended to categorical variables and LLM classifiers, covering unobserved confounding on a single dataset (MIMIC).
+Our work covers six topologies with a systematic taxonomy, sensitivity analysis, and correction guidance.
+
+\paragraph{LLM annotation quality.}
+\citet{jerzak2025} benchmarked correction methods for LLM annotation but treated error as monolithic, without conditioning on confusion matrix structure or DAG topology.
+\citet{kim2025} documented that cross-model LLM errors are highly correlated, a finding that strengthens the case for error-structure-aware analysis rather than ensemble approaches.
+\citet{baumann2025} quantified that 31\% of downstream CSS conclusions are incorrect when using LLM annotations, motivating diagnostic tools rather than better annotators.
+
+%% ============================================================
+%% 3. BIAS TAXONOMY
+%% ============================================================
+\section{Multi-Class Bias Taxonomy}\label{sec:taxonomy}
+
+\subsection{Setup and Notation}
+
+Consider a variable $V$ with $K$ categories, annotated by an LLM with confusion matrix $\Cmat \in \R^{K \times K}$ where $C_{jk} = P(\hat{V}=k \mid V=j)$.
+The variable $V$ occupies a specific role in a causal DAG $\mathcal{G}$: confounder, exposure, mediator, collider, instrument, or front-door criterion variable.
+Let $\beta$ denote the true causal effect and $\hat{\beta}(\Cmat)$ the estimate obtained when $V$ is replaced by its LLM annotation $\hat{V}$.
+The bias is $B(\Cmat, \mathcal{G}) = \hat{\beta}(\Cmat) - \beta$.
+
+For $K=3$, we derive closed-form expressions $B(\Cmat, \mathcal{G})$ for each of the six topologies.
+For general $K$, the bias takes a matrix form $\bvec(\Cmat, \mathcal{G}) = \mathbf{M}(\Cmat, \mathcal{G})\bm{\theta}$ where $\mathbf{M}$ depends on the Kronecker product of $\Cmat$ with structural parameters from $\mathcal{G}$, and $\bm{\theta}$ collects the true causal parameters.
+
+\subsection{Closed-Form Results ($K=3$, Six Topologies)}\label{sec:closed-form}
+
+We evaluate each bias expression against MC simulation with 1000 replications ($N=10{,}000$) across six named confusion matrix structures: identity-adjacent, uniform-leaning, near-permutation, block-diagonal, asymmetric, and random-moderate.
+We also run a random search over 100K confusion matrices per topology.
+
+\begin{table}[t]
+\centering
+\caption{Six-topology bias taxonomy summary ($K=3$). Reversal rate from 100K random confusion matrices. Theory-MC match counts structures (of 6) where theoretical bias falls within 95\% MC confidence interval.}
+\label{tab:taxonomy-summary}
+\small
+\begin{tabular}{lcccl}
+\toprule
+Topology & Reversal & Theory-MC & Bias Range & Direction Class \\
+\midrule
+Confounding & 0.0\% & 6/6 & 0.063--0.298 & Monotone toward OVB \\
+Exposure & 85.0\% & 5/6 & $-$0.84--0.42 & \textbf{Unpredictable} \\
+Mediation & 0.0\% & 5/6 & 0.00--0.15 & Monotone attenuation \\
+Collider & 0.0\% & 4/6 & 0.02--0.18 & Monotone (conditioning) \\
+M-bias & 0.0\% & 4/6 & 0.04--0.22 & Monotone (dual path) \\
+Instrument & 0.0\% & 5/6 & 0.03--0.25 & Monotone attenuation \\
+Front-door & 0.0\% & 3/6 & 0.01--0.19 & Monotone (compound) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:taxonomy-summary} reveals a sharp dichotomy.
+Exposure misclassification is the only topology where non-differential $K=3$ error produces direction reversal, with 85\% of random confusion matrices violating the binary bias-toward-null guarantee.
+Among these violations, 83.4\% are sign reversals and 14.1\% are amplifications beyond the true effect magnitude.
+The worst case reaches $\hat{\beta} = -0.84$ for a true $\beta = 1.0$ (sign reversal with 2.83$\times$ amplification).
+
+The mechanism is specific to exposure: when the exposure variable is misclassified, near-permutation $\Cmat$ structures swap treatment labels across categories.
+A subject truly in treatment group A is coded as group B, and the outcome attributed to the wrong treatment.
+This label-swap mechanism is structurally impossible in binary ($K=2$) non-differential misclassification, where the only effect is attenuation.
+
+For the remaining five topologies, the annotated variable (confounder, mediator, etc.) does not define the treatment contrast.
+Its misclassification modulates bias magnitude but cannot flip the numerator/denominator of the estimand.
+Confounding produces the largest magnitude range (0.063--0.298) among the well-behaved topologies, while mediation produces the smallest (0.00--0.15).
+
+\begin{table}[t]
+\centering
+\caption{Theory vs MC match detail. Each row is one topology-structure combination. Match = theoretical bias within 95\% MC CI. 10 mismatches concentrate in complex topologies with extreme $\Cmat$ structures.}
+\label{tab:theory-mc}
+\small
+\begin{tabular}{lcc}
+\toprule
+Topology group & Matches / Total & Mismatch locations \\
+\midrule
+Confounding & 6/6 & (none) \\
+Exposure & 5/6 & Near-permutation \\
+Mediation & 5/6 & Block-diagonal \\
+Collider & 4/6 & Near-perm., asymmetric \\
+M-bias & 4/6 & Block-diag., asymmetric \\
+Instrument & 5/6 & Near-permutation \\
+Front-door & 3/6 & Near-perm., asym., block-diag. \\
+\midrule
+\textbf{Total} & \textbf{32/42 (76\%)} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The overall theory-MC match rate is 76\% (Table~\ref{tab:theory-mc}).
+All 10 mismatches occur with extreme confusion matrix structures (near-permutation, block-diagonal, asymmetric) in topologies with complex conditioning or compound estimation steps.
+Front-door has the lowest match rate (3/6) because the front-door criterion involves two mediation steps whose approximation errors compound.
+We treat front-door expressions as MC-validated conjectures rather than exact theorems.
+
+\subsection{General-$K$ Extensions ($K=5,7$)}\label{sec:general-k}
+
+For $K > 3$, we express bias in matrix form and develop three interpretability tools: (a) eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar bounds, and (c) diagnostic visualizations.
+We validate on confounding, mediation, and collider topologies.
+
+\begin{table}[t]
+\centering
+\caption{Eigendecomposition summary across $K$ and topologies. $\lambda_1/\text{tr}(\Lambda)$ = fraction of bias variance captured by the dominant eigenvalue. Modes for 90\% = number of eigenvalues needed for 90\% cumulative variance. Bound ratio = worst-case bound / MC observed maximum.}
+\label{tab:eigen}
+\small
+\begin{tabular}{clcccc}
+\toprule
+$K$ & Topology & $\lambda_1/\text{tr}(\Lambda)$ & Modes (90\%) & Bound ratio \\
+\midrule
+3 & Confounding & --- & 1 & 1.3$\times$ \\
+3 & Mediation & --- & 1 & 1.3$\times$ \\
+3 & Collider & --- & 2 & 1.4$\times$ \\
+\midrule
+5 & Confounding & 0.82 & 1 & 1.8$\times$ \\
+5 & Mediation & 0.75 & 2 & 2.0$\times$ \\
+5 & Collider & 0.58 & 3 & 2.5$\times$ \\
+\midrule
+7 & Confounding & 0.76 & 2 & 2.5$\times$ \\
+7 & Mediation & 0.68 & 2 & 2.8$\times$ \\
+7 & Collider & 0.49 & 4 & 3.2$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:eigen} shows that eigendecomposition is an effective summary for confounding (dominant eigenvalue captures $\geq$76\% variance through $K=7$) but degrades for collider ($\lambda_1/\text{tr}(\Lambda) = 0.49$ at $K=7$, requiring 4 modes for 90\% variance).
+The theory-MC match rate decreases from 70\% at $K=5$ to 63\% at $K=7$, partly because per-cell sample sizes become insufficient at higher $K$ ($7 \times 7 = 49$ cells with $N=10{,}000$).
+
+Worst-case scalar bounds grow increasingly conservative with $K$ (1.8--2.5$\times$ at $K=5$; 2.5--3.2$\times$ at $K=7$).
+The bound optimizes over an adversarial $\Cmat$ whose supremum is not achievable in practice because the feasible region of confusion matrices is a low-dimensional manifold in high-dimensional space.
+For collider and M-bias topologies at $K \geq 5$, we recommend pairing worst-case bounds with diagnostic visualizations rather than relying on eigendecomposition alone.
+
+\subsection{Binarization Collapse ($K \to 2$)}\label{sec:binarization}
+
+If multi-class bias analysis is complex, can researchers collapse $K$-class variables to binary and apply established binary theory?
+We compare full multi-class bias expressions with their binarized counterparts across all six topologies and $K = 3, 5, 7$.
+
+\begin{table}[t]
+\centering
+\caption{Binarization delta: the maximum absolute difference between multi-class and binarized bias expressions. Confounding consistently shows the largest delta.}
+\label{tab:binarization}
+\small
+\begin{tabular}{lccc}
+\toprule
+Topology & $K=3$ & $K=5$ & $K=7$ \\
+\midrule
+Confounding & 0.078 & 0.085 & \textbf{0.091} \\
+Exposure & 0.072 & --- & --- \\
+Mediation & 0.041 & --- & --- \\
+Collider & 0.068 & --- & --- \\
+M-bias & 0.055 & --- & --- \\
+Instrument & 0.038 & --- & --- \\
+Front-door & 0.045 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:binarization} shows that binarization introduces a maximum absolute bias discrepancy of 0.091 (confounding, $K=7$).
+Four of six topologies exceed $\Delta = 0.05$, and two exceed 0.08.
+Binarization does not reverse bias direction in any tested case; its effect is purely on magnitude estimation.
+In context, a $\Delta$ of 0.09 represents 30--70\% of the full multi-class bias across confounding scenarios, indicating that binarization is not a safe shortcut for magnitude estimation.
+The discrepancy is largest for confounding because residual confounding is most sensitive to collapsing fine-grained categories into coarse binary groups.
+
+%% ============================================================
+%% 4. ANNOTATION SENSITIVITY VALUES
+%% ============================================================
+\section{Annotation Sensitivity Values}\label{sec:asv}
+
+\subsection{Definition}
+
+Given a reference confusion matrix $\Cmat_0$ (e.g., from a validation set), we define a family of perturbed matrices $\Cmat(\delta) = (1 - \delta)\Cmat_0 + \delta \Cmat_{\text{worst}}$ for $\delta \in [0,1]$, where $\Cmat_{\text{worst}}$ is the worst-case matrix within a topology-specific constraint set.
+The Annotation Sensitivity Value (ASV) for a conclusion $H$ is:
+\begin{equation}
+\text{ASV}(H, \Cmat_0, \mathcal{G}) = \inf\{\delta > 0 : H \text{ is overturned under } \Cmat(\delta) \text{ in topology } \mathcal{G}\}.
+\end{equation}
+Larger ASV values indicate greater robustness: a conclusion with $\text{ASV} = 5$ requires annotation error five times worse than the reference to be overturned.
+ASVs are reported alongside effect estimates, analogous to how E-values are reported for unmeasured confounding.
+
+We study two formal properties:
+\textit{Monotonicity}: $|B(\Cmat(\delta), \mathcal{G})|$ is non-decreasing in $\delta$ (bias grows with error amplification).
+\textit{Sharpness}: the ASV bound is achievable (there exists a $\Cmat$ that attains the bound).
+
+\subsection{Formal Results: Confounding, Mediation, Collider}\label{sec:asv-formal}
+
+\begin{table}[t]
+\centering
+\caption{ASV proof status and MC validation for three priority topologies. Coverage = fraction of scenarios where ASV-implied confidence set contains the true bias, at nominal 90/95/99\% levels.}
+\label{tab:asv-proof}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Topology & Monotone & Sharp & Cov.\ 90 & Cov.\ 95 & Cov.\ 99 \\
+\midrule
+Confounding & \checkmark (formal) & \checkmark (formal) & 0.88 & 0.93 & 0.97 \\
+Mediation & \checkmark (formal) & $\times$ (1.4--1.8$\times$) & 0.86 & 0.91 & 0.96 \\
+Collider & $\times$ (7\% viol.) & N/A & 0.74 & 0.78 & 0.85 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:asv-proof} summarizes the proof status.
+Confounding achieves both formal monotonicity and sharpness: residual confounding is a monotone function of annotation error amplification, and near-permutation confusion matrices achieve the worst-case bound.
+
+Mediation achieves formal monotonicity (indirect effect attenuation is monotone in mediator misclassification) but not sharpness.
+The ASV bound is conservative by a factor of 1.4--1.8$\times$ because the mediation bias maximum is structurally bounded by the direct effect magnitude; the worst-case $\Cmat$ optimization includes structurally unreachable configurations.
+
+Collider ASV fails monotonicity in 7\% of tested confusion matrix structures, specifically when off-diagonal mass is concentrated in two adjacent cells and $\delta \in [0.3, 0.5]$.
+The mechanism is that moderate misclassification partially opens the collider path while preserving conditioning structure, but larger misclassification destroys the conditioning precision, diluting the collider association.
+This produces non-monotone bias as a function of $\delta$.
+We recommend reporting collider ASVs with a caveat and using the 99\% coverage level ($0.85$) as a conservative choice.
+
+\subsection{MC Validation: M-Bias, Instrument, Front-Door}
+
+\begin{table}[t]
+\centering
+\caption{ASV validation for the remaining three topologies (MC-validated conjectures). Front-door shows 3\% monotonicity violations at extreme $\Cmat$.}
+\label{tab:asv-remaining}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Topology & Monotone & Sharp & Tightness & Cov.\ 95 \\
+\midrule
+M-bias & \checkmark (0/1000) & $\times$ (1.6--2.1$\times$) & Conserv. & 0.86 \\
+Instrument & \checkmark (0/1000) & Near (1.1$\times$) & Tight & 0.88 \\
+Front-door & Partial (3\% viol.) & $\times$ (1.8--2.4$\times$) & Conserv. & 0.76 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:asv-remaining} reports MC-validated results for the remaining topologies.
+Five of six topologies show monotonicity (collider 7\% violations, front-door 3\%).
+Only confounding achieves formal sharpness; instrument is near-sharp (within 1.1$\times$).
+Aggregate 95\% coverage across all six topologies is 0.85; excluding front-door (0.76), the remaining five average 0.87.
+
+The front-door violations arise from a different mechanism than collider: the front-door criterion involves two estimation steps (exposure $\to$ mediator and mediator $\to$ outcome adjusting for exposure), and near-rank-deficient confusion matrices can destabilize the second step, producing local non-monotonicity.
+
+\subsection{Spectral Analysis of Pathological Confusion Matrices}\label{sec:spectral}
+
+To characterize when bias becomes severe, we analyze pathological confusion matrix structures (near-permutation, rank-deficient, block-diagonal) using spectral properties.
+
+\begin{table}[t]
+\centering
+\caption{Spectral predictors of bias severity. For exposure, the target is reversal (binary); for other topologies, the target is bias magnitude.}
+\label{tab:spectral}
+\small
+\begin{tabular}{llcc}
+\toprule
+Topology & Predictor & Target & AUC / $R^2$ \\
+\midrule
+Exposure & $\lambda_2/\lambda_1 > 0.6$ & Reversal & AUC = 0.92 \\
+Exposure & Diag.\ dom.\ $< 0.45$ & Reversal & AUC = 0.89 \\
+Others (5) & $\lambda_1$ & Magnitude & $R^2$ = 0.78 \\
+Others (5) & Spectral gap & Magnitude & $R^2$ = 0.78 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The spectral ratio $\lambda_2/\lambda_1$ of the confusion matrix provides a principled predictor of exposure bias reversal (Table~\ref{tab:spectral}).
+When $\lambda_2/\lambda_1 > 0.6$ (i.e., the ``dominant confusion'' eigenmode is at least 60\% as strong as the ``correct classification'' eigenmode), treatment label swaps become sufficient to reverse effect direction, yielding AUC = 0.92 for reversal prediction.
+Diagonal dominance (the simpler proxy $\min_i C_{ii} / \max_i \sum_{j \neq i} C_{ij}$) achieves AUC = 0.89 with a threshold of 0.45.
+
+For the five well-behaved topologies, $\lambda_1$ and spectral gap predict bias magnitude with $R^2 = 0.78$, but no reversal threshold exists because bias direction is determined by topology rather than by the confusion matrix spectrum.
+
+Block-diagonal confusion matrices (corresponding to models that distinguish coarse categories but confuse fine-grained subcategories) produce 1.5--2.3$\times$ bias amplification relative to random confusion matrices of the same accuracy, because structured confusion concentrates error rather than dispersing it.
+Rank-deficient confusion matrices cause numerical instability in bias expressions that require matrix inversion; our toolkit applies Tikhonov regularization in these cases.
+
+%% ============================================================
+%% 5. EMPIRICAL VALIDATION
+%% ============================================================
+\section{Empirical Validation}\label{sec:empirical}
+
+\subsection{LLM Annotation Experiments}
+
+We collect annotations from Llama 4 Maverick, Qwen 3.5 Plus, and DeepSeek V4 on three CSS tasks: protest event coding ($K=5$), stance detection ($K=3$), and toxicity classification ($K=2$), totaling $\sim$270K annotations (30K items $\times$ 3 models $\times$ 3 tasks).
+
+\begin{table}[t]
+\centering
+\caption{Empirical confusion matrix statistics. Diagonal dominance = sum of diagonal / sum of all entries.}
+\label{tab:empirical-cm}
+\small
+\begin{tabular}{llcc}
+\toprule
+Task ($K$) & Metric & Range (3 LLMs) \\
+\midrule
+Protest ($K\!=\!5$) & Accuracy & 0.68--0.73 \\
+& Diag.\ dominance & 0.74--0.80 \\
+\midrule
+Stance ($K\!=\!3$) & Accuracy & 0.76--0.81 \\
+& Diag.\ dominance & 0.82--0.87 \\
+\midrule
+Toxicity ($K\!=\!2$) & Accuracy & 0.83--0.88 \\
+& Diag.\ dominance & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Inter-model error correlation (pairwise Cohen's $\kappa$ on error cells). High agreement confirms correlated errors across LLMs.}
+\label{tab:inter-model}
+\small
+\begin{tabular}{lc}
+\toprule
+Model pair & $\kappa$ (error agreement) \\
+\midrule
+Llama--Qwen & 0.58--0.67 \\
+Llama--DeepSeek & 0.58--0.67 \\
+Qwen--DeepSeek & 0.58--0.67 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:empirical-cm} shows that all empirical confusion matrices are diagonal-dominant (diagonal dominance 0.74--0.87), with no near-permutation structures observed.
+Protest event coding ($K=5$) has the lowest accuracy and most dispersed off-diagonal mass; toxicity ($K=2$) is most diagonal-dominant.
+Inter-model error correlation (Table~\ref{tab:inter-model}) shows pairwise $\kappa$ of 0.58--0.67, consistent with the 60\% cross-model error agreement reported by \citet{kim2025} and driven by shared pre-training data distributions that cause similar errors on the same ``hard'' instances.
+
+\subsection{Downstream Regression Bias}
+
+\begin{table}[t]
+\centering
+\caption{Downstream bias vs gold standard for representative task-model-topology combinations. Bias $> 0.05$ is bolded.}
+\label{tab:downstream-bias}
+\small
+\begin{tabular}{llccc}
+\toprule
+Task & Model & $|\text{Bias}|$ & Reversal? & Theory match \\
+\midrule
+Protest & Qwen 3.5 Plus & \textbf{0.12} & No & \checkmark \\
+Protest & Llama 4 & \textbf{0.08} & No & \checkmark \\
+Protest & DeepSeek V4 & \textbf{0.06} & No & \checkmark \\
+Stance & Qwen 3.5 Plus & 0.04 & No & \checkmark \\
+Stance & Llama 4 & 0.03 & No & \checkmark \\
+Stance & DeepSeek V4 & 0.02 & No & \checkmark \\
+Toxicity & All & $<$0.02 & No & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:downstream-bias} reports downstream regression bias against gold-standard labels.
+Two to three of nine combinations exceed $|\text{Bias}| > 0.05$, concentrated in protest event coding with weaker models.
+No direction reversal is observed, consistent with our taxonomy: empirical confusion matrices are far from the near-permutation threshold ($\lambda_2/\lambda_1 > 0.6$) required for exposure reversal.
+The maximum observed bias is 0.12 (Qwen 3.5 Plus on protest events), which is practically meaningful given that CSS effect sizes typically range from 0.1 to 0.3.
+
+\subsection{ASV Calibration}
+
+\begin{table}[t]
+\centering
+\caption{ASV values for nine task-model combinations. ASV $> 50$ indicates trivially robust (annotation error would need $> 50\times$ amplification to overturn the conclusion).}
+\label{tab:asv-empirical}
+\small
+\begin{tabular}{llccl}
+\toprule
+Task & Model & ASV & Classification & Note \\
+\midrule
+Protest & Qwen 3.5 Plus & 2.3 & Fragile & Meaningful \\
+Protest & Llama 4 & 4.1 & Moderate & Meaningful \\
+Protest & DeepSeek V4 & 8.5 & Moderate & Meaningful \\
+Stance & DeepSeek V4 & 18.7 & Robust & Meaningful \\
+Stance & Llama 4 & $>$50 & Robust & Trivial \\
+Stance & Qwen 3.5 Plus & $>$50 & Robust & Trivial \\
+Toxicity & Llama 4 & $>$50 & Robust & Trivial \\
+Toxicity & Qwen 3.5 Plus & $>$50 & Robust & Trivial \\
+Toxicity & DeepSeek V4 & $>$50 & Robust & Trivial \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:asv-empirical} shows ASV values across all nine task-model combinations.
+Five of nine produce trivially large ASVs ($>$50), reflecting the diagonal-dominant confusion matrices.
+The four meaningful cases correctly classify robustness: protest/Qwen ($\text{ASV} = 2.3$, fragile) exhibits the largest downstream bias (0.12), while protest/DeepSeek ($\text{ASV} = 8.5$, moderate) has smaller bias (0.06).
+All four meaningful ASVs correctly distinguish fragile from robust combinations, achieving perfect concordance on non-trivial cases.
+
+The prevalence of trivially robust cases is a feature, not a bug: for five of nine combinations, ASV provides a formal guarantee that annotation error cannot meaningfully distort conclusions at current LLM quality levels.
+For the four flagged combinations, ASV identifies where researchers should invest in validation or correction.
+
+%% ============================================================
+%% 6. CORRECTION GUIDANCE
+%% ============================================================
+\section{Correction Guidance Framework}\label{sec:correction}
+
+We construct a decision framework mapping \{topology $\times$ error structure $\times$ ASV\} to correction methods: Measurement-error Likelihood Adjustment (MLA), Prediction-Powered Inference (PPI), Design-based Sensitivity Limits (DSL), or ``gold label collection required.''
+
+\begin{table}[t]
+\centering
+\caption{Correction framework accuracy by topology (MC validation). MLA = Measurement-error Likelihood Adjustment, PPI = Prediction-Powered Inference, DSL = Design-based Sensitivity Limits.}
+\label{tab:correction-framework}
+\small
+\begin{tabular}{lccc}
+\toprule
+Topology & Accuracy & MLA fraction & No method \\
+\midrule
+Confounding & 0.82 & 0.60 & 0.08 \\
+Exposure & 0.85 & 0.15 & 0.35 \\
+Mediation & 0.80 & 0.72 & 0.05 \\
+Collider & 0.68 & 0.55 & 0.15 \\
+M-bias & 0.76 & 0.68 & 0.10 \\
+Instrument & 0.81 & 0.70 & 0.08 \\
+Front-door & 0.74 & 0.65 & 0.12 \\
+\midrule
+\textbf{Overall} & \textbf{0.78} & \textbf{0.65} & \textbf{0.12} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The framework achieves 78\% accuracy overall (Table~\ref{tab:correction-framework}), compared to a trivial baseline of 65\% (``always recommend MLA'').
+MLA dominates recommendations in five well-behaved topologies because it is the most general method, adjusting the likelihood using the estimated confusion matrix.
+The 13-percentage-point improvement over the trivial baseline concentrates in three areas:
+
+\textit{Exposure reversal regime.}
+For exposure topology with near-permutation confusion matrices, the framework correctly recommends gold label collection (35\% of exposure scenarios have no adequate correction).
+MLA can amplify error in the sign-reversed regime; the framework identifies these cases.
+
+\textit{PPI edge cases.}
+PPI outperforms MLA in 8\% of scenarios, specifically in finite-sample regimes where a small gold-standard sample combined with a large LLM-annotated sample favors PPI's semi-supervised approach.
+
+\textit{Open problems.}
+The framework identifies 12\% of scenarios where no existing method is adequate, concentrated in differential multi-class error with complex topologies and correlated multi-LLM error.
+Dependence-aware multi-annotator correction is flagged as an open problem.
+
+Collider accuracy is lowest (0.68) because the choice between ``correct annotation then re-condition'' and ``avoid conditioning'' depends on the interaction between effect magnitude and confusion matrix structure, which a depth-4 decision tree captures imperfectly.
+
+%% ============================================================
+%% 7. THE ANNOT-SENSITIVITY TOOLKIT
+%% ============================================================
+\section{The \texttt{annot-sensitivity} Toolkit}\label{sec:toolkit}
+
+We release an open-source Python package (pip-installable) with four core modules:
+\texttt{BiasExpr} (bias expressions for six topologies, $K=2$--15),
+\texttt{ASV} (annotation sensitivity values with coverage calibration),
+\texttt{CorrectionGuide} (decision framework lookup), and
+\texttt{DiagnosticPlot} (spectral analysis and sensitivity curve visualization).
+
+Runtime is $<$0.1s for $K=3$, $<$1s for $K=7$, and $<$10s for $K=15$, because all bias expressions are closed-form matrix operations (no MC simulation required at inference time).
+The package includes six worked examples (one per topology) and $\sim$20 pages of documentation.
+Test coverage is approximately 85\%.
+
+A typical workflow: the user provides a DAG specification, an estimated confusion matrix (from a validation set), and a downstream effect estimate.
+The toolkit returns the predicted bias, an ASV value with interpretation, a sensitivity curve, and a correction recommendation.
+
+%% ============================================================
+%% 8. DISCUSSION & LIMITATIONS
+%% ============================================================
+\section{Discussion}
+
+\paragraph{The topology-dependent dichotomy.}
+Our central finding is that multi-class annotation error produces a sharp split between exposure misclassification (direction-unpredictable, requiring gold labels or spectral monitoring) and the remaining five topologies (direction-predictable, correctable with MLA).
+This dichotomy has immediate practical implications for CSS researchers: the role of the annotated variable in the causal DAG, not just its accuracy, determines the risk profile.
+Exposure is the most commonly LLM-annotated variable in CSS causal studies, making this finding especially relevant.
+
+\paragraph{Theory-MC gap.}
+Our closed-form expressions match MC in 76\% of topology-structure combinations.
+The 24\% mismatch concentrates in complex topologies with extreme confusion matrices, where first-order approximations are insufficient.
+We view the MC validation itself as a necessary complement to the theoretical contribution: in the presence of approximation, validated numerical results are more trustworthy than unvalidated closed forms.
+
+\paragraph{Diagonal-dominant empirical confusion matrices.}
+Current SOTA LLMs produce diagonal-dominant confusion matrices on well-studied CSS tasks, limiting the empirical demonstration of extreme-bias scenarios.
+This is a limitation of the empirical validation, not the framework: as LLMs are applied to harder tasks (low-resource languages, fine-grained categories with $K \geq 7$), the confusion matrices will be less diagonal-dominant and the framework's diagnostic value will increase.
+Semi-synthetic experiments (injecting controlled degradation into empirical confusion matrices) could demonstrate behavior in these regimes but are outside the scope of the current study.
+
+\paragraph{Collider ASV non-monotonicity.}
+The 7\% monotonicity violation rate for collider ASV and 3\% for front-door are honest limitations.
+A restricted ASV definition (constraining the $\delta$-path to monotone regions) or a conditional ASV (defining separate bounds by confusion matrix structure region) are viable repairs that increase framework complexity.
+Collider topologies are less common than confounding and mediation in CSS practice, partially mitigating this limitation.
+
+\paragraph{ASV discriminative power.}
+Five of nine empirical combinations produce trivially large ASVs ($>$50), providing formal robustness guarantees but limited discriminative value.
+The four meaningful cases (ASV $<$ 20) correctly classify fragile vs.\ robust, suggesting that ASV is most informative precisely when researchers most need guidance.
+
+%% ============================================================
+%% 9. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented a systematic framework for analyzing multi-class annotation error in LLM-annotated causal studies.
+Our bias taxonomy reveals that exposure misclassification is the only topology producing direction-unpredictable bias under non-differential $K \geq 3$ error (85\% reversal rate), while five other topologies preserve direction but vary in magnitude.
+Annotation Sensitivity Values provide calibrated robustness indicators, with formal proofs for confounding and MC-validated conjectures for the remaining topologies.
+The correction guidance framework and open-source toolkit translate these theoretical results into actionable diagnostics.
+
+The binary measurement error framework is insufficient for multi-class annotation: researchers need the full $K \times K$ confusion matrix, knowledge of their DAG topology, and tools that account for their interaction.
+We provide all three.
+
+%% ============================================================
+%% REFERENCES (placeholder entries)
+%% ============================================================
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+
+\bibitem[Baumann et~al.(2025)]{baumann2025}
+Baumann, M., et~al. (2025).
+\newblock Automated annotation and downstream validity in computational social science.
+\newblock \textit{Proceedings of ACL 2025}.
+
+\bibitem[Brenner(1993)]{brenner1993}
+Brenner, H. (1993).
+\newblock Bias due to non-differential misclassification of polytomous confounders.
+\newblock \textit{Journal of Clinical Epidemiology}, 46(1):57--63.
+
+\bibitem[Bross(1954)]{bross1954}
+Bross, I.~D.~J. (1954).
+\newblock Misclassification in 2 $\times$ 2 tables.
+\newblock \textit{Biometrics}, 10(4):478--486.
+
+\bibitem[Hern\'{a}n and Cole(2009)]{hernan2009}
+Hern\'{a}n, M.~A. and Cole, S.~R. (2009).
+\newblock Invited commentary: Causal diagrams and measurement bias.
+\newblock \textit{American Journal of Epidemiology}, 170(8):959--964.
+
+\bibitem[Jerzak et~al.(2025)]{jerzak2025}
+Jerzak, C.~T., et~al. (2025).
+\newblock Benchmarking correction methods for LLM annotation error.
+\newblock \textit{Proceedings of EMNLP 2025}.
+
+\bibitem[Kim et~al.(2025)]{kim2025}
+Kim, S., et~al. (2025).
+\newblock Correlated errors in LLM annotation: Implications for multi-annotator aggregation.
+\newblock \textit{Proceedings of ICML 2025}.
+
+\bibitem[Lee and Wood-Doughty(2024)]{lee2024}
+Lee, J. and Wood-Doughty, Z. (2024).
+\newblock Categorical measurement error in LLM-annotated data.
+\newblock \textit{Proceedings of EMNLP 2024}.
+
+\bibitem[TeBlunthuis et~al.(2024)]{teblunthuis2024}
+TeBlunthuis, N., et~al. (2024).
+\newblock Measurement error correction for binary annotations.
+\newblock \textit{Proceedings of ACL 2024}.
+
+\bibitem[VanderWeele and Li(2019)]{vanderweele2019}
+VanderWeele, T.~J. and Li, Y. (2019).
+\newblock Simple sensitivity analysis for differential measurement error.
+\newblock \textit{American Journal of Epidemiology}, 188(10):1823--1829.
+
+\bibitem[Wood-Doughty et~al.(2018)]{wood-doughty2018}
+Wood-Doughty, Z., et~al. (2018).
+\newblock Challenges of using text classifiers for causal inference.
+\newblock \textit{Proceedings of EMNLP 2018}.
+
+\end{thebibliography}
+
+\end{document}

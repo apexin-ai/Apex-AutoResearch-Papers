@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b00e1a9fe49655f48c6b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan009 pathological matrices v2",
+  "task_key": "worker_code_plan009-pathological-matrices-v2_20260520T181421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-pathological-matrices-v2_20260520T181421_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "961d441c83dc68c4cafa3dbafdbe4e87d53564f75d5ffca879cee163e65db57a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，所有组件正常：\n\n- `--help` 输出正确的参数文档\n- GPU (`cuda:0`) 正常使用\n- 3 类病态 C 矩阵（near-permutation × 4 ε、rank-deficient × 2 ranks、block-diagonal × 1 block config）均生成成功\n- plim 计算、bias 统计、feature 提取、OLS 回归全部无 bug\n- `tau_true(C=I) = 1.997155`（接近理论值 `beta_T=2.0`，N=100k 下的有限样本误差）\n- R² = 0.806（effective_rank 是最强预测因子，p < 1e-5）\n- 输出 JSON 和回归结果 txt 已写入 `artifacts/plan009/`\n\n脚本已就绪，等审批后可用全量参数（M=1000, K={3,5,7}, 7 topos）正式运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan009-pathological-matrices-v2.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d066b901ac541e4af6f8",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan008 binarization",
+  "task_key": "worker_code_plan008-binarization_20260520T121548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan008-binarization_20260520T121548.log",
+    "occurrence": 1,
+    "bytes": 787053,
+    "sha256": "0f9d14bd57cf22fa70d7d9f096959cb776b374f97996d6d9f320b56eae452254"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 1,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 2,
+      "assistant": 38,
+      "tool_call": 46,
+      "tool_result": 46,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "d066b901ac541e4af6f8-part-0001.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 87,
+      "chunks": [
+        {
+          "path": "d066b901ac541e4af6f8-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "d066b901ac541e4af6f8-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan008-binarization.md"
+}

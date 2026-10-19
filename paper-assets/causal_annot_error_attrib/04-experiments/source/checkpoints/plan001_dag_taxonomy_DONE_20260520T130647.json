@@ -1,0 +1,179 @@
+{
+  "exp_id": "plan001_dag_taxonomy",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:28:52.009Z",
+    "updated_at": "2026-05-20T13:06:47.535Z",
+    "hypothesis": "K=3 非差异性误分类在不同因果拓扑下的偏差模式差异：哪些拓扑（mediation/collider/M-bias/instrument/front-door）出现方向反转或效应放大（如 exposure DAG），哪些保持单调衰减（如 confounding DAG）。Claim 1 支撑：多分类标注错误的偏差方向依赖于因果结构。",
+    "spec": {
+      "command": "python3 plan_001_mediation_frontdoor.py + plan_001_collider_mbias_iv.py",
+      "server": "home-1x5090",
+      "data_path": "synthetic (in-script DGP)",
+      "data_count": "6 C-structures x 1000 reps x N=10000 per DAG topology",
+      "model_name": "N/A (analytical + MC)",
+      "seed": 42,
+      "checkpoint_path": "N/A (simulation)",
+      "log_path": "/home/sonny/causal_annot_error_attrib/"
+    },
+    "metrics": {
+      "collider": {
+        "all_coef": {
+          "violation": 1,
+          "sign_flip": 0.688,
+          "amplification": 1
+        },
+        "tau_specific": {
+          "violation": 1,
+          "sign_flip": 0,
+          "amplification": 1
+        },
+        "misclass_amplifies_rate": 0,
+        "small_tau_0.05": {
+          "tau_I": 0.015733,
+          "tau_violation": 0.96,
+          "tau_sign_flip": 0,
+          "tau_amplification": 0.992
+        },
+        "small_tau_0.1": {
+          "tau_I": 0.06118,
+          "tau_violation": 0.974,
+          "tau_sign_flip": 0,
+          "tau_amplification": 0.995
+        }
+      },
+      "mbias": {
+        "all_coef": {
+          "violation": 1,
+          "sign_flip": 0.651,
+          "amplification": 0.112
+        },
+        "tau_specific": {
+          "violation": 0.532,
+          "sign_flip": 0,
+          "amplification": 0.104
+        },
+        "misclass_amplifies_rate": 0.292,
+        "small_tau_0.05": {
+          "tau_I": 0.057669,
+          "tau_violation": 0.532,
+          "tau_sign_flip": 0,
+          "tau_amplification": 0.104
+        },
+        "small_tau_0.1": {
+          "tau_I": 0.107669,
+          "tau_violation": 0.532,
+          "tau_sign_flip": 0,
+          "tau_amplification": 0.104
+        }
+      },
+      "mediation_mixed": {
+        "all_coef": {
+          "violation": 1,
+          "sign_flip": 0.835,
+          "amplification": 1
+        },
+        "tau_specific": {
+          "violation": 1,
+          "sign_flip": 0,
+          "amplification": 1
+        },
+        "misclass_amplifies_rate": 1,
+        "small_tau_0.05": {
+          "tau_violation": 1,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        },
+        "small_tau_0.1": {
+          "tau_violation": 1,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        }
+      },
+      "mediation_same": {
+        "all_coef": {
+          "violation": 1,
+          "sign_flip": 0.666,
+          "amplification": 1
+        },
+        "tau_specific": {
+          "violation": 1,
+          "sign_flip": 0,
+          "amplification": 1
+        },
+        "misclass_amplifies_rate": 1,
+        "small_tau_0.05": {
+          "tau_violation": 1,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        },
+        "small_tau_0.1": {
+          "tau_violation": 1,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        }
+      },
+      "frontdoor_mixed": {
+        "all_coef": {
+          "violation": 1,
+          "sign_flip": 0.998,
+          "amplification": 1
+        },
+        "tau_specific": {
+          "violation": 1,
+          "sign_flip": 0,
+          "amplification": 1
+        },
+        "misclass_amplifies_rate": 1,
+        "small_tau_0.05": {
+          "tau_I": 0.050177,
+          "lambda_U": 0.1,
+          "tau_violation": 1,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        },
+        "small_tau_0.1": {
+          "tau_I": 0.100169,
+          "lambda_U": 0.2,
+          "tau_violation": 1,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        }
+      },
+      "frontdoor_same": {
+        "all_coef": {
+          "violation": 1,
+          "sign_flip": 1,
+          "amplification": 1
+        },
+        "tau_specific": {
+          "violation": 0.999,
+          "sign_flip": 0,
+          "amplification": 1
+        },
+        "misclass_amplifies_rate": 0.9997,
+        "small_tau_0.05": {
+          "tau_I": 0.050177,
+          "lambda_U": 0.1,
+          "tau_violation": 0.999,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        },
+        "small_tau_0.1": {
+          "tau_I": 0.100169,
+          "lambda_U": 0.2,
+          "tau_violation": 0.999,
+          "tau_sign_flip": 0,
+          "tau_amplification": 1
+        }
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T13:06:47.535Z"
+  },
+  "timestamp": "2026-05-20T13:06:47.554275+00:00",
+  "trigger": "update_registry"
+}

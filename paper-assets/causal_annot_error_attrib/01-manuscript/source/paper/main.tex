@@ -1,0 +1,76 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage{multirow}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\graphicspath{{../../figures/paper/}}
+
+\title{Multi-Class Annotation Errors in Causal Inference:\\Topology-Dependent Bias, Sensitivity, and Correction}
+
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{abstract}
+
+\input{introduction}
+
+\input{related_work}
+
+\input{method}
+
+% ── Figures (placed before experiments for float positioning) ──
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig1_dag_taxonomy.pdf}
+\caption{Seven canonical DAG topologies with starred-node annotation. In each panel, $A$ (latent true label) connects to $A^*$ (observed LLM annotation) via a dashed measurement edge. The causal role of $A$ varies across topologies, producing structurally distinct bias patterns under misclassification.}
+\label{fig:dag_taxonomy}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig2_bias_distribution.pdf}
+\caption{Bias distributions under 10{,}000 random $K{=}3$ confusion matrices for seven topologies. Red shading indicates sign reversal ($\hat{\tau}$ opposite to $\tau$). Exposure exhibits 83.4\% $\beta_1$ sign reversal; the IV Wald estimator shows 52.6\% sign reversal. The five safe topologies show attenuation without sign flip.}
+\label{fig:bias_distribution}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig3_asv_ranking.pdf}
+\caption{ASV sensitivity ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent vulnerability spectrum from IV (maximally fragile, magnitude ASV $= 0.101$--$0.607$) to M-bias (immune, ASV $= \infty$).}
+\label{fig:asv_ranking}
+\end{figure*}
+
+\input{experiments}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig4_binarization.pdf}
+\caption{Binarization collapse $\Delta$ across topologies. Collapsing $K{=}3$ annotations to binary introduces additional bias varying 147$\times$ from M-bias (0.006) to IV (0.926).}
+\label{fig:binarization}
+\end{figure}
+
+\input{conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{appendix_proofs}
+
+\end{document}

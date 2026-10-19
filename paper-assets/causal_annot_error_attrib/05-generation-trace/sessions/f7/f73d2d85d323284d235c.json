@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f73d2d85d323284d235c",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper prop1 algebraic proof",
+  "task_key": "worker_paper_prop1-algebraic-proof_20260520T183523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prop1-algebraic-proof_20260520T183523_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "064ac1458a5c6abaf6f80c6d62bd7f936b1b6ea670d8a91cf2182a60ace46bec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The appendix proof is complete at `docs/paper/appendix_proofs.tex`. Here's a summary of what it contains:\n\n**Structure:**\n\n1. **Notation & Key Identities** — Misclassified moments factor linearly through C: q=Cp, ct=C·E[TD], cy=C·E[YD].\n\n2. **FWL Decomposition** — Lemma 1: plim τ̂ = τ + R(C)/D(C), where R(C) = E[Cov(T, f(A)|A*)] (residual within-A*-group covariance) and D(C) = E[Var(T|A*)] > 0.\n\n3. **Confounding Proof** — Two results:\n   - *Proportional case* (f=λg): B(C) = (1−η)·B_OV with η∈[0,1], giving exact interpolation between 0 and the OV bias.\n   - *General case*: Rigorous Cauchy-Schwarz bound |B(C)| ≤ √(Var(g)·Var(f))/σ²_T. For the paper's parameters, this gives 0.590 < τ=2.0, guaranteeing sign preservation for ALL C.\n\n4. **Mediation Proof** — Bias = weighted average of conditional indirect effects δ_j. Endpoints: B=0 at C=I, B=τ_ind at C=uniform. Sign preserved when sign(τ_dir)=sign(τ_total). Verified for paper parameters (0.5 vs 0.851).\n\n5. **Exposure Counterexample** — Explicit K=3 construction with β=(0,1,−10), uniform prior, diagonal-dominant C (diag 0.60, 0.60, 0.51). plim β̂₁ = −1.903 while true β₁ = +1: clear sign flip. Mechanism: off-diagonal C₁₂=0.39 routes category-2 contamination into the A*=1 bin.\n\n6. **Summary Table** — Sufficient conditions per topology with verification for the paper's DGP."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-prop1-algebraic-proof.md"
+}

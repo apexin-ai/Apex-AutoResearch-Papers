@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4014022bdc899fa1476a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra api diagnosis v3",
+  "task_key": "worker_infra_api-diagnosis-v3_20260520T092822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_api-diagnosis-v3_20260520T092822_result.json",
+    "occurrence": 1,
+    "bytes": 1620,
+    "sha256": "09686eddcb2133b1e028de3d01a58a2cdf0974c4bf6c253059d6f8200a27b367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部测试完成。\n\n---\n\n## 完整结果表\n\n| Model ID | Status | Actual Model | Notes |\n|----------|--------|-------------|-------|\n| `meta-llama/llama-4-maverick` | ✅ OK | (已知可用) | 之前已确认 |\n| `qwen/qwen3-235b-a22b` | ✅ OK | qwen3-235b-a22b-04-28 | 验证通过 |\n| `deepseek/deepseek-chat` | ✅ OK | deepseek-chat-v3 | 路由到 V3 |\n| `deepseek/deepseek-r1` | ✅ OK | deepseek-r1 | 可用 |\n| `deepseek/deepseek-r1-0528` | ✅ OK | deepseek-r1-0528 | 可用 |\n| `deepseek/deepseek-chat-v3-0324` | ✅ OK | deepseek-chat-v3-0324 | 可用 |\n| `deepseek/deepseek-v4` | ❌ ERR | — | not a valid model ID |\n| `deepseek/deepseek-v3` | ❌ ERR | — | not a valid model ID |\n| `deepseek/deepseek-v4-0324` | ❌ ERR | — | not a valid model ID |\n| `qwen/qwen3.5-72b` | ❌ ERR | — | not a valid model ID |\n| `qwen/qwen3.5-plus` | ❌ ERR | — | not a valid model ID |\n| `qwen/qwen-3.5-plus` | ❌ ERR | — | not a valid model ID |\n| `qwen/qwen-3.5-72b` | ❌ ERR | — | not a valid model ID |\n| `qwen/qwen3.5-32b` | ❌ ERR | — | not a valid model ID |\n\n## 结论\n\n- **Llama 4 Maverick** → `meta-llama/llama-4-maverick` ✅\n- **Qwen 3.5 Plus** → **该 endpoint 不支持任何 Qwen 3.5 变体**。推荐替代：`qwen/qwen3-235b-a22b`（实际路由到 04-28 版本，Qwen3 旗舰 MoE）\n- **DeepSeek V4** → **该 endpoint 不支持 DeepSeek V4**。推荐替代：`deepseek/deepseek-chat`（路由到 V3）或 `deepseek/deepseek-chat-v3-0324`（指定版本）；如需推理模型用 `deepseek/deepseek-r1` 或 `deepseek/deepseek-r1-0528`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-api-diagnosis-v3.md"
+}

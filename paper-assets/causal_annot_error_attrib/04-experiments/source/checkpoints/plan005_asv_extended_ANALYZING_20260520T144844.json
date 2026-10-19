@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan005_asv_extended",
+  "project": "causal_annot_error_attrib",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:50:28.045Z",
+    "updated_at": "2026-05-20T14:48:44.413Z",
+    "hypothesis": "The ASV (Annotation Sensitivity Value) framework generalizes from simple confounding to M-bias, IV, and front-door topologies: annotation misclassification sensitivity varies by DAG structure because each estimator's probability limit depends differently on the confusion matrix C. M-bias adjustment for misclassified A should show near-zero sensitivity (misclassification reduces spurious bias), IV Wald estimator should be immediately sensitive (C directly scales the first-stage), and front-door should show moderate sensitivity.",
+    "parent": "plan004_asv_framework",
+    "spec": {
+      "server": "home-1x5090",
+      "command": "python3 -u plan_005_asv_extended.py > plan005_run.log 2>&1",
+      "data_path": "synthetic (in-script DGP)",
+      "data_count": "500 scenarios x 100 reps x N=10000",
+      "model_name": "N/A (analytical + MC simulation)",
+      "seed": 42,
+      "checkpoint_source": "plan004_asv_framework",
+      "eval_data": "synthetic DGP: M-bias/IV/front-door topologies"
+    }
+  },
+  "timestamp": "2026-05-20T14:48:44.440706+00:00",
+  "trigger": "update_registry"
+}

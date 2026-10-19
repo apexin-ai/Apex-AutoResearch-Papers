@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff96a7d48ebf5560a711",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp fwl logistic w4",
+  "task_key": "worker_exp_fwl_logistic_w4_20260522T172212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_fwl_logistic_w4_20260522T172212_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "6ba6d207aeb94007d98d1a214fb52c9436595f3ffb05a8f7674f0dc8f4e3f839"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both the experiment script and paper content already exist and are complete. Let me verify the results are consistent between the JSON and the paper table.\n\nThe paper already contains:\n\n1. **`experiments.tex` (line 96)**: The FWL paragraph includes the logistic regression sentence: \"This invariance is specific to OLS; under logistic regression the column-space argument no longer applies, but the empirical breakdown is small (mean bias reduction |·| < 0.1% across six VAST confusion matrices), so matrix-based corrections remain effectively useless (Appendix~\\ref{sec:fwl_logistic}).\"\n\n2. **`appendix_proofs.tex` (lines 898-925)**: Full `\\paragraph{FWL breakdown under logistic regression.}` with:\n   - Explanation of why FWL fails under logistic (implicit σ' weighting depends on actual column values, not just span)\n   - Table with all 6 VAST CMs showing OLS |Δ|_max ≈ 10⁻¹⁵ vs logistic |Δ|_max ≈ 10⁻³\n   - Mean bias reduction: OLS = 0.0%, Logistic = -0.04%\n   - Two-finding summary paragraph\n\n3. **`artifacts/exp_fwl_logistic_breakdown.py`**: The experiment script (312 lines) with results in `exp_fwl_logistic_results.json`.\n\nEverything matches the task requirements and the JSON results. The experiment, paper edits, and appendix are all already done. No changes needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-fwl-logistic-w4.md"
+}

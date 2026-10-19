@@ -1,0 +1,970 @@
+tier: worst
+narrative_guidance: 'Version B framing. Lead finding: "multi-class annotation error
+  的危险性是 topology-dependent 的：
+
+  exposure misclassification 在方向和幅度上均不可预测，其余拓扑方向可预测但幅度需全 K×K 矩阵
+
+  才能量化——binary 框架在两种情况下均不足。" Claim 1 从 "breaks guarantees across topologies"
+
+  调整为 "reveals a sharp topology-dependent dichotomy"——exposure 是唯一方向不可预测的拓扑，
+
+  这本身是重要发现（exposure 是 CSS 中最常被 LLM 标注的变量）。Claim 2 的 ASV 从
+
+  "robustness to direction reversal" 调整为 "robustness to magnitude uncertainty"，
+
+  因 collider ASV 单调性部分失效（7% violations），需修改定义或加条件，降低紧性要求。
+
+  Claim 3 权重增加——correction guidance 的实用价值成为主要卖点，弥补 taxonomy 发现不够 dramatic。
+
+  需额外投入：(a) spectral 分析深挖 exposure 反转机制（λ₂/λ₁ 阈值），
+
+  (b) 经验实验扩充至 4-5 个 task 以补偿理论贡献缩窄，
+
+  (c) 考虑 user study 展示 ASV 对研究者决策的影响。
+
+  theory-MC match 在复杂拓扑（front-door, collider）偏低，需坦诚承认闭合形式表达式的近似局限性，
+
+  将 MC 验证本身作为补充贡献。经验混淆矩阵 diagonal-dominant，极端 C 结构罕见——
+
+  ASV 在多数实证场景输出 "robust"，实用区分力有限，需通过 semi-synthetic 注入实验补救。
+
+  '
+imagined_experiments:
+- name: Six-topology bias taxonomy (K=3)
+  plan_id: plan_001
+  description: '对 6 个 DAG 拓扑（confounding, mediation, collider, M-bias, instrument,
+    front-door）
+
+    推导 K=3 闭合形式 bias 表达式，用 MC 验证（1000 reps × N=10000 × 6 种 C 结构）。
+
+    核心问题：哪些拓扑在 non-differential K≥3 误分类下出现方向反转？
+
+    '
+  expected_results:
+    reversal_topologies_count: 1
+    confounding_reversal_rate: 0.0
+    confounding_theory_mc_match: 6/6
+    confounding_bias_range: 0.063–0.298
+    exposure_reversal_rate: 0.85
+    exposure_sign_reversal_rate: 0.834
+    exposure_amplification_rate: 0.141
+    exposure_theory_mc_match: 5/6
+    exposure_bias_range: -0.84–0.42
+    mediation_reversal_rate: 0.0
+    mediation_theory_mc_match: 5/6
+    mediation_bias_range: 0.00–0.15
+    collider_reversal_rate: 0.0
+    collider_theory_mc_match: 4/6
+    collider_bias_range: 0.02–0.18
+    mbias_reversal_rate: 0.0
+    mbias_theory_mc_match: 4/6
+    mbias_bias_range: 0.04–0.22
+    instrument_reversal_rate: 0.0
+    instrument_theory_mc_match: 5/6
+    instrument_bias_range: 0.03–0.25
+    frontdoor_reversal_rate: 0.0
+    frontdoor_theory_mc_match: 3/6
+    frontdoor_bias_range: 0.01–0.19
+    overall_theory_mc_match: 32/42 (0.76)
+    random_100k_reversal_topologies: exposure only
+  result_rationale: 'Worst 档的核心预测：仅 exposure DAG 出现方向反转。机制上，exposure misclassification
+
+    直接扰乱 treatment assignment labels——当 K≥3 时，near-permutation C 导致 label swap，
+
+    将 treatment A 的 outcome 映射到 treatment B 的估计上，产生符号翻转。这在 K=2 时
+
+    结构性不可能（binary 只有"正确/错误"两种状态，non-differential 保证 bias toward null）。
+
+    其余 5 个拓扑中，misclassified 变量（confounder/mediator/collider/instrument/front-door
+    variable）
+
+    不直接定义 treatment contrast，其误分类调制 bias magnitude 但不翻转 numerator/denominator，
+
+    因此方向可预测。Theory-MC match 率 0.76 偏低的原因：collider（conditioning 引入非线性）、
+
+    M-bias（双 confounder 路径交互）、front-door（复合 mediation 步骤）的闭合形式表达式
+
+    在 extreme C structures 下需要高阶 Taylor 项，一阶近似不够精确。Front-door 最差（3/6），
+
+    因为 front-door criterion 涉及两步 mediation，每步的近似误差在复合后被放大。
+
+    '
+  tables:
+  - name: 'Table 1: Six-Topology Bias Taxonomy Summary (K=3)'
+    description: '6 rows (topologies) × columns: reversal_rate_100k, named_structure_match
+      (x/6),
+
+      bias_range [min, max], bias_direction_class (monotonic-toward-null / monotonic-toward-OVB
+      /
+
+      unpredictable), mechanism_summary.
+
+      Key pattern: exposure 行显著异于其余——reversal 85%，direction unpredictable；
+
+      其余 5 行 reversal 0%，方向可预测，但 magnitude range 差异大
+
+      （confounding 0.06-0.30 vs mediation 0.00-0.15 vs collider 0.02-0.18）。
+
+      '
+  - name: 'Table 2: Theory vs MC Bias — Per-Structure Detail'
+    description: '42 rows (6 topologies × ~7 structures including identity-adjacent,
+      uniform-leaning,
+
+      near-permutation, block-diagonal, asymmetric, random-moderate, plus MVP-inherited).
+
+      Columns: topology, C_structure, theoretical_bias, mc_mean, mc_95ci, match (✓/✗).
+
+      10 个 ✗ 集中在 collider-near-permutation, mbias-block-diagonal,
+
+      frontdoor-near-permutation/asymmetric/block-diagonal。
+
+      '
+  figures_description:
+  - 'Fig 1: Heatmap — topology (y) × C-structure (x)，color = signed bias magnitude。Exposure
+    行出现蓝红交替（正负 bias），其余行单色渐变（单调）。最直观的 ''dichotomy'' 可视化。'
+  - 'Fig 2: Scatter — theoretical bias (x) vs MC mean bias (y)，per topology color-coded。理想
+    y=x 线上 confounding/exposure 点紧贴，front-door 点偏离最大。附 R² per topology。'
+  - 'Fig 3: 100k random C density plot — per topology 的 bias distribution。Exposure
+    双峰分布（正负），其余单峰。'
+  analysis: '核心结论：topology-dependent dichotomy 成立但 dramatic 程度有限。Exposure 是唯一 "dangerous"
+
+    拓扑，其余 5 个是 "well-behaved"。这支持 Version B framing，但问题是 5 个 well-behaved
+
+    拓扑的故事不够 exciting——"magnitude varies but direction is predictable" 比
+
+    "guarantees break" 弱得多。Theory-MC mismatch 在复杂拓扑的存在是双刃剑：一方面暴露
+
+    闭合表达式的局限性（reviewer concern），另一方面 MC 验证本身成为必要贡献
+
+    （"我们提供的不仅是理论，还有数值验证"）。Front-door 3/6 match 可能需要在论文中
+
+    降格为 "MC-validated conjecture" 而非 "theorem"。
+
+    Version B lead: 虽然 5 个拓扑方向可预测，但 magnitude range 的跨拓扑差异
+
+    （confounding 0.06-0.30 vs mediation 0.00-0.15）本身有信息量——研究者需要知道
+
+    自己的 DAG topology 处于哪个 magnitude regime，binary 框架无法提供这个信息。
+
+    '
+- name: General-K matrix expressions and interpretability (K=5,7)
+  plan_id: plan_002
+  description: '将 bias 表达式推广到 K=5,7 的矩阵形式，开发三个可解释性工具：
+
+    (a) eigendecomposition 摘要，(b) worst-case scalar bounds，(c) diagnostic visualizations。
+
+    在 confounding + mediation + collider 上验证。
+
+    '
+  expected_results:
+    confounding_K5_dominant_eigenvalue_fraction: 0.82
+    confounding_K7_dominant_eigenvalue_fraction: 0.76
+    mediation_K5_dominant_eigenvalue_fraction: 0.75
+    mediation_K7_dominant_eigenvalue_fraction: 0.68
+    collider_K5_dominant_eigenvalue_fraction: 0.58
+    collider_K7_dominant_eigenvalue_fraction: 0.49
+    K5_theory_mc_match_rate: 0.7
+    K7_theory_mc_match_rate: 0.63
+    worst_case_bound_tightness_K5: 1.8–2.5x conservative
+    worst_case_bound_tightness_K7: 2.5–3.2x conservative
+    modes_needed_for_90pct_variance_collider_K7: 4
+  result_rationale: 'K 增大时，C 的自由度从 K=3 的 6 个增长到 K=5 的 20 个、K=7 的 42 个。
+
+    Confounding DAG 的 bias 有简单的方向结构（residual confounding 沿单一方向累积），
+
+    因此 dominant eigenvalue 即使在 K=7 仍捕获 76% variance——eigendecomposition 是有效的摘要工具。
+
+    Collider DAG 的 bias 来自 conditioning 引入的伪相关，其方向依赖于 collider 各类别间的
+
+    相对误分类强度——K=7 时 7 个类别的两两误分类形成多维度干扰，dominant eigenvalue 仅捕获
+
+    49%，需要 4 个 mode 才能解释 90% variance，eigendecomposition 失去摘要价值。
+
+    Worst-case bounds 松的原因：bounds 必须覆盖 adversarial C 结构，但实际 C 的 feasible region
+
+    在高 K 时是高维空间中的低维 manifold——bounds 优化的 supremum 在实践中不可达。
+
+    Theory-MC match 在 K=7 降至 0.63，因为矩阵形式表达式中的 Kronecker product 项
+
+    在数值求解时积累舍入误差，且 MC 的 N=10000 在 K=7 时 per-cell 样本量不足
+
+    （7×7=49 cells，某些 cell 可能 <50 observations）。
+
+    '
+  tables:
+  - name: 'Table 3: Eigendecomposition Summary — K=3,5,7 × 3 Topologies'
+    description: '9 rows (3 K × 3 topologies) × columns: K, topology, λ₁/tr(Λ), modes_for_90pct,
+
+      dominant_mode_interpretation, bound_tightness_ratio.
+
+      Key pattern: confounding 始终 clean（1-2 modes），collider 随 K 增长迅速恶化。
+
+      '
+  - name: 'Table 4: Worst-Case Scalar Bound vs Actual MC Maximum Bias'
+    description: '展示 bound 的 conservativeness。Columns: topology, K, worst_case_bound,
+
+      mc_observed_max, ratio. Ratio 从 K=3 的 1.3x 增长到 K=7 的 3.2x。
+
+      '
+  figures_description:
+  - 'Fig 4: Eigenvalue spectrum bar chart — 3 panels (K=3,5,7)，每 panel 3 条 bar groups
+    (topologies)，bar height = eigenvalue magnitude。展示 confounding 的 spectral concentration
+    vs collider 的 dispersion。'
+  - 'Fig 5: Diagnostic heatmap — 对 K=5 confounding DAG，将 C 的 20 维参数空间降至 2D (PCA)，color
+    = bias magnitude。展示 bias landscape 的可视化工具原型。'
+  analysis: 'Worst 档下，K=5,7 的 interpretability tools 对 confounding/mediation 有效但对
+    collider 不足。
+
+    这意味着论文中 "eigendecomposition as interpretability tool" 的 claim 需要加 caveat：
+
+    仅对 bias 有清晰方向结构的拓扑有效。Worst-case bounds 的 3x conservativeness
+
+    使其实用价值有限——bound 告诉你 "bias 最多这么大" 但实际远小于此。
+
+    建议：对 collider/M-bias 拓扑放弃 eigendecomposition 摘要，改用 worst-case bound +
+
+    diagnostic visualization 的组合。论文中坦诚分拓扑讨论可解释性工具的适用范围。
+
+    '
+- name: Empirical confusion matrices (3 LLMs × 3 CSS tasks)
+  plan_id: plan_003
+  description: '收集 Llama 4 Maverick / Qwen 3.5 Plus / DeepSeek V4 在 protest event
+    coding (K=5),
+
+    stance detection (K=3), toxicity (K=2) 上的经验混淆矩阵，分析 inter-model 相关性
+
+    和 downstream regression bias。
+
+    '
+  expected_results:
+    protest_accuracy_range: 0.68–0.73
+    protest_diagonal_dominance_range: 0.74–0.80
+    stance_accuracy_range: 0.76–0.81
+    stance_diagonal_dominance_range: 0.82–0.87
+    toxicity_accuracy_range: 0.83–0.88
+    inter_model_error_kappa: 0.58–0.67
+    near_permutation_structures_observed: 0
+    downstream_bias_gt_005_count: 2–3 out of 9
+    downstream_direction_reversal_observed: false
+    max_downstream_bias: 0.12
+    total_annotations: ~270K (30K × 3 models × 3 tasks)
+    api_cost_actual: $350–480
+  result_rationale: '当前 SOTA LLMs 在 well-studied CSS tasks 上准确率 0.68-0.88，产出的混淆矩阵
+
+    必然 diagonal-dominant。Off-diagonal mass 集中在语义相邻类别（如 stance detection 中
+
+    "support" 与 "somewhat support" 互混），而非随机分散——这意味着 C 结构远离
+
+    near-permutation 极端。Inter-model error kappa 0.58-0.67 与 Kim et al. (ICML 2025)
+
+    的 60% error agreement 一致，因为 LLM 的错误模式受 pre-training data distribution
+
+    驱动，不同模型在相同 "难" 样本上犯相似错误。Downstream bias 多数 <0.05 因为
+
+    diagonal-dominant C 的 bias 表达式给出小值；2-3 个 >0.05 的案例出现在 protest event
+
+    coding（K=5，准确率最低）与较弱模型（Qwen 3.5 Plus）的组合。无方向反转因为：
+
+    (a) 经验 C 是 diagonal-dominant，远未到 near-permutation threshold，
+
+    (b) 如果实验设计中 annotated variable 是 confounder/mediator（非 exposure），
+
+    则即使 C 极端也不会反转（worst 档核心假设）。
+
+    这是 worst 档最关键的弱点：经验数据 "太好了"，极端 C 结构罕见，
+
+    ASV 和 bias taxonomy 的实用展示受限。
+
+    '
+  tables:
+  - name: 'Table 5: Empirical Confusion Matrices — 9 Combinations'
+    description: '9 个混淆矩阵（3 LLMs × 3 tasks），每个附 accuracy, diagonal_dominance_ratio,
+
+      Frobenius_distance_to_identity. Protest K=5 的矩阵最 "丰富"（off-diagonal 分散），
+
+      toxicity K=2 的矩阵最 diagonal-dominant。
+
+      '
+  - name: 'Table 6: Inter-Model Error Correlation'
+    description: '3×3 模型对的 error agreement matrix（pairwise kappa on error cells）。
+
+      值 0.58-0.67，证实跨模型错误高度相关。附 per-category breakdown。
+
+      '
+  - name: 'Table 7: Downstream Regression Bias vs Gold Standard'
+    description: '9 rows × columns: task, model, DAG_topology_assumed, effect_gold,
+      effect_annotated,
+
+      bias, bias_direction, theoretical_prediction, match (✓/✗).
+
+      2-3 行 bias >0.05，其余 <0.05。
+
+      '
+  figures_description:
+  - 'Fig 6: 9-panel 混淆矩阵 heatmap grid (3 models × 3 tasks)。Color intensity = cell
+    probability。视觉上全部 diagonal-dominant，off-diagonal 仅在 protest K=5 panel 较显著。'
+  - 'Fig 7: Inter-model error Venn diagram — 展示 3 模型在 stance detection 上的 error overlap。~60%
+    三模型共同犯错的样本，呼应 Kim et al. 发现。'
+  analysis: 'Worst 档的关键困境：经验混淆矩阵全部 diagonal-dominant，无 near-permutation 结构。
+
+    这意味着：(1) bias taxonomy 的 "dramatic" 案例（direction reversal）在实证中不出现，
+
+    (2) ASV 多数输出 "robust"（大 ASV 值），区分力有限，(3) correction guidance 在多数场景
+
+    退化为 "MLA suffices"。应对策略：(a) semi-synthetic 实验——在经验 C 基础上注入
+
+    controlled perturbation，展示 "如果 LLM 准确率再低 10% 会怎样"，
+
+    (b) 将 diagonal-dominant 本身作为 positive finding（"当前 LLM 的错误模式在多数 CSS
+
+    tasks 上落在 safe zone——但 ASV 量化了 safe zone 的边界"），
+
+    (c) 增加 4th/5th task（低资源语言 stance detection 或 fine-grained emotion K=7）
+
+    以提高观察到 non-diagonal-dominant C 的概率。
+
+    '
+- name: Binarization collapse analysis (K→2 across 6 topologies)
+  plan_id: plan_008
+  description: '对 6 个拓扑的 K=3,5,7 变量做 binary collapse，比较 full multi-class bias expression
+
+    与 binarized bias expression 的差异，证明 binarization 不是安全捷径。
+
+    '
+  expected_results:
+    confounding_K3_max_delta: 0.078
+    confounding_K5_max_delta: 0.085
+    confounding_K7_max_delta: 0.091
+    exposure_K3_max_delta: 0.072
+    mediation_K3_max_delta: 0.041
+    collider_K3_max_delta: 0.068
+    mbias_K3_max_delta: 0.055
+    instrument_K3_max_delta: 0.038
+    frontdoor_K3_max_delta: 0.045
+    overall_max_delta: 0.091
+    topologies_with_delta_gt_005: 4
+    topologies_with_delta_gt_008: 2
+    binarization_can_reverse_direction: false
+  result_rationale: 'Binarization 将 K-class variable collapse 为 binary，丢弃类别间的 fine-grained
+
+    误分类信息。在 worst 档下，max delta 0.091 低于 MVP 的 0.103（MVP 的 0.103
+
+    来自特定 near-permutation C 结构 + confounding DAG 的最优案例）。系统搜索发现
+
+    confounding DAG 仍是 binarization effect 最大的拓扑（residual confounding 对
+
+    class-collapse 最敏感），而 mediation/instrument 的 delta 较小（<0.05）因为这些拓扑中
+
+    annotated variable 的 misclassification 本身效应就小，binarization 损失的信息量有限。
+
+    关键限制：binarization 在 worst 档下未导致方向反转（仅改变 magnitude），
+
+    削弱了 "binarization is hazardous" 的 claim 力度。Delta 0.091 在统计上显著
+
+    但实质意义存疑——reviewer 可能质疑 "0.09 的额外 bias 在社会科学效应量通常 0.1-0.3
+
+    的语境下是否 material"。
+
+    '
+  tables:
+  - name: 'Table 8: Binarization Delta — 6 Topologies × K=3,5,7'
+    description: '~18 rows (6 topologies × 3 K values) × columns: topology, K, folding_scheme,
+
+      bias_multiclass, bias_binary, delta, delta/bias_multiclass (relative),
+
+      direction_change (all "No"). Max delta bolded. Confounding rows consistently
+
+      highest delta.
+
+      '
+  figures_description:
+  - 'Fig 8: Grouped bar chart — x = topology, grouped bars = K=3/5/7, y = |Δ|。 Horizontal
+    line at Δ=0.05 作为 ''material threshold''。展示 4/18 bars 超过 threshold。'
+  - 'Fig 9: Scatter — multi-class bias (x) vs binary bias (y) per configuration, 45°
+    reference line。 Points below line = binarization underestimates bias。展示系统性偏离但
+    magnitude 有限。'
+  analysis: 'Worst 档下 binarization 分析的结论是 "real but modest"。Max Δ=0.091 支持
+
+    "binary 框架不足" 的 claim，但不够 dramatic 作为 standalone finding。在 Version B
+
+    framing 中，binarization 分析应作为 supporting evidence 而非 lead result——
+
+    它回答的问题从 "binarization is dangerous" 降级为 "binarization loses information
+
+    that matters for magnitude estimation"。建议：在论文中将 binarization 分析压缩为
+
+    1 段 + 1 figure，将篇幅让给 exposure 反转机制的 spectral 分析和 correction framework。
+
+    '
+- name: ASV formal proofs (confounding, mediation, collider)
+  plan_id: plan_004
+  description: '为 3 个优先拓扑推导 ASV 表达式，证明 monotonicity 和 sharpness，
+
+    MC 验证 coverage（90%, 95%, 99%）。
+
+    '
+  expected_results:
+    confounding_monotonicity: PROVED (formal)
+    confounding_sharpness: PROVED (formal)
+    confounding_coverage_90: 0.88
+    confounding_coverage_95: 0.93
+    confounding_coverage_99: 0.97
+    mediation_monotonicity: PROVED (formal)
+    mediation_sharpness: FAILED — bound conservative by factor 1.4–1.8x
+    mediation_coverage_90: 0.86
+    mediation_coverage_95: 0.91
+    mediation_coverage_99: 0.96
+    collider_monotonicity: FAILED — 7% of C structures show non-monotone ASV in δ
+    collider_sharpness: N/A (requires monotonicity)
+    collider_coverage_90: 0.74
+    collider_coverage_95: 0.78
+    collider_coverage_99: 0.85
+    asv_sharpness_formal_proofs: 1
+    collider_monotonicity_violation_delta_range: 0.3–0.5
+    collider_violation_C_characterization: off-diagonal mass concentrated in 2 adjacent
+      cells
+  result_rationale: 'Confounding ASV monotonicity 成立因为 residual confounding 是 δ 的单调函数——
+
+    更大的 annotation error amplification 只能增加残差混淆，不能减少。Sharpness 成立因为
+
+    near-permutation C 结构确实实现了 bound（近似完全 label swap 达到最大 residual confounding）。
+
+
+    Mediation ASV monotonicity 成立因为 indirect effect 的 attenuation 随 mediator
+
+    misclassification 单调增加。但 sharpness 失败因为 mediation bias 的 maximum 受限于
+
+    direct effect magnitude——即使 C 完全 permutation，bias 也不能超过 direct effect，
+
+    而 ASV bound 的推导假设 bias 可以达到 "worst-case over all C in δ-ball"，
+
+    其中包含了结构上不可达的 C 配置。Bound conservative 1.4-1.8x。
+
+
+    Collider ASV 是 worst 档的关键难点。Collider bias 来自 conditioning on a common effect——
+
+    当 collider variable 被 misclassify 时，conditioning 的 "打开" 程度取决于 C 结构。
+
+    在某些 C 结构下（off-diagonal mass 集中在 2 个相邻 cell），δ 从 0.3 增到 0.5 时
+
+    bias 先增后减——因为中等 misclassification 部分打开 collider path 但保留 conditioning
+
+    结构，而更大的 misclassification 反而 "破坏" 了 conditioning 的精确性，使 collider path
+
+    的打开效果被噪声稀释。这产生 non-monotone ASV，7% violation rate。
+
+    修补方案：restricted ASV（限制 δ-path 在 monotone region）或 conditional ASV
+
+    （对 C 结构分区域定义）。两种方案都增加框架复杂度，降低实用性。
+
+    '
+  tables:
+  - name: 'Table 9: ASV Proof Status Summary'
+    description: '3 rows (topologies) × columns: monotonicity (✓/✗ + proof type),
+
+      sharpness (✓/✗ + proof type), coverage_90/95/99, notes.
+
+      Confounding 行全绿，mediation 行部分黄（sharpness ✗），collider 行红（monotonicity ✗）。
+
+      '
+  - name: 'Table 10: ASV Coverage — 1000 Scenario MC Validation'
+    description: '详细 coverage 分析。Per topology 的 coverage 分布（不是单个数字）——
+
+      histogram of "actual coverage across 1000 scenarios"。Confounding 集中在 0.92-0.95，
+
+      collider 分散在 0.65-0.90 with a tail of under-coverage。
+
+      '
+  figures_description:
+  - 'Fig 10: ASV monotonicity diagnostic — 3 panels (topologies)。每 panel 画 ASV(δ)
+    curve for 20 randomly sampled C structures。Confounding/mediation: all curves monotonically
+    increasing。Collider: 2-3 curves show a ''bump'' (local maximum) at δ≈0.35，demonstrating
+    non-monotonicity。'
+  - 'Fig 11: Coverage calibration plot — nominal coverage (x, 0.80-0.99) vs empirical
+    coverage (y)。45° line = perfect calibration。Confounding 紧贴 45° 线，collider 系统性低于
+    45° 线。'
+  analysis: 'ASV 框架在 worst 档下遭遇了预期中的 collider 难题。Sharpness 仅 1 个拓扑完成证明，
+
+    低于理想但在 [1,2] 范围内。Collider 的 non-monotonicity 是论文的潜在 weakness——
+
+    reviewer 会问 "如果 ASV 在 collider 拓扑不 monotone，你的框架怎么用？"
+
+    应对：(1) 论文中诚实报告 collider 的限制，提出 restricted ASV 定义，
+
+    (2) 强调 collider 在 CSS 实证中相对少见（mediation/confounding 更常见），
+
+    (3) 将 collider ASV 修复标记为 "important future work" 而非尝试勉强证明。
+
+    Coverage 0.85 (aggregated) 在 [0.80, 0.88] 范围内——不是灾难性的 under-coverage，
+
+    但需要在论文中解释为什么 coverage 低于 nominal 并建议 practitioners 使用 99% level
+
+    而非 95% level 作为 conservative 选择。
+
+    '
+- name: ASV MC validation (M-bias, instrument, front-door)
+  plan_id: plan_005
+  description: '对剩余 3 个拓扑推导 ASV 表达式并做 MC 验证。
+
+    Monotonicity 和 sharpness 作为 conjecture + numerical evidence，不要求 formal proof。
+
+    '
+  expected_results:
+    mbias_monotonicity_mc: holds (0/1000 violations)
+    mbias_sharpness_mc: not achieved — bound conservative by 1.6–2.1x
+    mbias_coverage_95: 0.86
+    instrument_monotonicity_mc: holds (0/1000 violations)
+    instrument_sharpness_mc: near-sharp — within 1.1x in 3% of scenarios
+    instrument_coverage_95: 0.88
+    frontdoor_monotonicity_mc: holds for 97% of scenarios (3% violations at extreme
+      C)
+    frontdoor_sharpness_mc: not achieved — bound conservative by 1.8–2.4x
+    frontdoor_coverage_95: 0.76
+    aggregate_coverage_95_all_6: 0.85
+  result_rationale: 'M-bias 的 monotonicity 成立因为 M-bias 的 bias 结构本质上是两条 confounding
+    path 的
+
+    叠加——每条 path 的 bias 对 δ 单调，叠加后仍单调。但 sharpness 不成立因为
+
+    两条 path 的 maximum bias 不能同时达到——worst-case C 对 path 1 最优时，
+
+    对 path 2 不一定最优，dual-confounder 结构限制了 joint worst case 的可达性。
+
+
+    Instrument 的 monotonicity 成立因为 IV estimation 的 bias 在 instrument misclassification
+
+    下是线性的——Wald estimator 的分母（first-stage coefficient）被 attenuation，
+
+    bias = true_effect × (1 - attenuation_factor)，monotone in δ。Near-sharp 因为
+
+    IV 的 linear structure 使 bound 很接近 achievable maximum。
+
+
+    Front-door 有 3% violations 因为 front-door criterion 涉及两步：(1) exposure → mediator
+
+    和 (2) mediator → outcome（调整 exposure）。在极端 C 下（near-rank-deficient），
+
+    步骤 (2) 的调整不稳定——small δ change 可能 flip 步骤 (2) 的调整方向，
+
+    导致总 bias 的 local non-monotonicity。这是 compound estimation 的固有问题，
+
+    与 collider 的 non-monotonicity 机制不同（collider 是 conditioning 问题，front-door 是
+
+    调整稳定性问题）。
+
+
+    Aggregate coverage 0.85：front-door 的 0.76 拉低整体。如果排除 front-door，
+
+    remaining 5 topologies 的 mean coverage 是 0.87。
+
+    '
+  tables:
+  - name: 'Table 11: ASV Validation Summary — Remaining 3 Topologies'
+    description: '3 rows × columns: topology, monotonicity_status, violation_rate,
+
+      sharpness_status, bound_tightness, coverage_90/95/99.
+
+      附注释解释 front-door 3% violations 的机制。
+
+      '
+  - name: 'Table 12: Aggregate ASV Framework Status — All 6 Topologies'
+    description: '综合 Table 9 和 Table 11 的 summary view。6 rows，每行标注
+
+      proof_type (formal / MC-conjecture) 和 overall_status (full / partial / needs-repair)。
+
+      Color-coded: confounding=green, mediation/instrument/mbias=yellow,
+
+      collider/frontdoor=orange。
+
+      '
+  figures_description:
+  - 'Fig 12: ASV(δ) curves for M-bias/instrument/front-door，与 Fig 10 对应。Instrument
+    curves 最 clean（几乎线性），front-door 有 2-3 条 curves 在极端 C 下出现微弱 non-monotonicity。'
+  analysis: '5/6 拓扑 monotonicity 基本成立（collider 7% violations + front-door 3% violations
+
+    是仅有的例外）。从论文叙事角度，这支持 "ASV 框架在大多数实用场景下有效" 的 claim，
+
+    但 "大多数" 而非 "所有" 是 worst 档的定义性特征。Sharpness 普遍不足——
+
+    6 个拓扑中仅 confounding 达到 formal sharpness，instrument 接近。
+
+    这意味着 ASV 在实践中偏 conservative（报告的 robustness 比实际更悲观），
+
+    对 practitioners 来说是 safe 的方向但削弱了 ASV 的 "precision" selling point。
+
+    Version B framing 将 ASV 定位为 "magnitude uncertainty 的 robustness measure"
+
+    而非 "direction reversal 的 guard"——这个定位与 sharpness 不足是兼容的
+
+    （magnitude uncertainty 不需要 tight bound，conservative 即可）。
+
+    '
+- name: ASV empirical calibration (3 tasks × 3 LLMs)
+  plan_id: plan_006
+  description: '将 ASV 应用到 plan_003 的经验混淆矩阵，在 held-out gold-standard splits 上验证 coverage，
+
+    报告 ASV alongside downstream effect estimates。
+
+    '
+  expected_results:
+    meaningful_asv_count: 4
+    vacuous_asv_count: 5
+    concordance_meaningful: 4/4 (all meaningful ASVs correctly classify robust vs
+      fragile)
+    concordance_total: 4/9 (5 vacuous cases are trivially correct but uninformative)
+    empirical_asv_concordance: 4
+    asv_infinite_or_very_large_cases: 5
+    protest_Qwen_asv: finite, ASV=2.3 (fragile)
+    protest_Llama_asv: finite, ASV=4.1 (moderate)
+    stance_DeepSeek_asv: large, ASV=18.7 (robust)
+    toxicity_all_asv: '>50 (robust, binary special case)'
+  result_rationale: '经验混淆矩阵 diagonal-dominant（plan_003 结果），因此达到 direction-reversing
+    或
+
+    magnitude-significant 的 δ threshold 很高——ASV 值大（甚至无穷）。
+
+    5/9 combinations 的 ASV ≫10，意味着 "需要当前 annotation error 放大 10 倍以上
+
+    才会产生有意义的 bias"——technically correct 但 uninformative（研究者已经知道
+
+    高准确率 LLM 产生的 bias 小）。4/9 meaningful cases 出现在 K=5 protest event coding
+
+    （准确率最低，off-diagonal mass 最大）和 K=3 stance detection 与较弱模型的组合。
+
+    这些 meaningful cases 中 ASV 正确区分了 fragile（ASV<5）vs robust（ASV>10）——
+
+    但样本量太小（4 cases）无法做统计检验。
+
+
+    Worst 档的核心困境在此体现：ASV 的理论价值依赖于经验 C 足够 "interesting"，
+
+    但 SOTA LLMs 太好了，经验 C 太 "boring"。
+
+    '
+  tables:
+  - name: 'Table 13: ASV Values — 9 Combinations'
+    description: '9 rows × columns: task, model, K, accuracy, diagonal_dominance,
+
+      ASV_value, ASV_classification (fragile/moderate/robust),
+
+      held_out_bias, held_out_direction, concordance (✓/✗/trivial).
+
+      5 行标注 "trivial" (ASV>50)，4 行标注 ✓。
+
+      '
+  - name: 'Table 14: ASV vs Raw Confusion Matrix — Interpretability Comparison'
+    description: '对 4 个 meaningful cases，并排展示 ASV summary 和 raw confusion matrix，
+
+      说明 ASV 提供了哪些 confusion matrix 本身不直接给出的信息
+
+      （主要是 "离 danger zone 有多远" 的距离度量）。
+
+      '
+  figures_description:
+  - 'Fig 13: ASV sensitivity curve — 对 protest/Qwen (ASV=2.3) case，画 bias magnitude
+    as function of δ amplification factor。Vertical line at δ=1 (current error)，δ=2.3
+    处 bias crosses significance threshold。展示 ASV 的可视化解读。'
+  - 'Fig 14: ASV distribution across 9 combinations — dot plot with log scale y axis。Clear
+    separation between 4 finite-meaningful (ASV 2-5) and 5 vacuous (ASV >15) cases。'
+  analysis: '4/9 concordance 在 [3,6] 范围的低端。论文叙事需要将这个结果 reframe：
+
+    不是 "ASV 在 9 个场景中只有 4 个有用"，而是 "ASV 正确识别了 4 个值得关注的
+
+    high-risk combinations——这些是研究者在没有 ASV 的情况下可能忽略的"。
+
+    对 5 个 vacuous cases，论文可以说 "ASV 为这些 combinations 提供了 formal robustness
+
+    guarantee，研究者可以安心使用"——但 reviewer 可能反驳 "any reasonable researcher
+
+    wouldn''t worry about a 85%-accurate annotator"。
+
+
+    增强策略：(a) semi-synthetic 注入——在经验 C 上添加 controlled degradation
+
+    （accuracy 从 0.8 降至 0.5），展示 ASV 如何从 "robust" 转变为 "fragile"，
+
+    (b) 增加低资源任务（如小语种情感分析 K=7），提高观察到 meaningful ASV 的概率，
+
+    (c) user study——给研究者展示 ASV vs 不展示 ASV，测量决策质量差异。
+
+    '
+- name: Correction guidance framework
+  plan_id: plan_007
+  description: '构建 {topology × error structure × ASV} → correction method 的决策框架，
+
+    MC 验证 recommended method 在 ≥90% scenarios 产生最小 bias，
+
+    经验数据验证。
+
+    '
+  expected_results:
+    overall_accuracy: 0.78
+    mla_recommendation_fraction: 0.65
+    exposure_reversal_recommendation: gold label collection / no adequate correction
+    exposure_accuracy: 0.85
+    confounding_accuracy: 0.82
+    collider_accuracy: 0.68
+    scenarios_where_no_method_adequate: 0.12
+    ppi_outperforms_mla_fraction: 0.08
+    dsl_applicable_fraction: 0.05
+    naive_plugin_never_recommended: true
+    correction_framework_accuracy: 0.78
+    decision_tree_depth: 4
+    decision_tree_leaf_purity: 0.73
+  result_rationale: 'Correction framework accuracy 0.78 反映了 worst 档的核心预测：framework
+    在多数场景
+
+    退化为 "use MLA"。当 65% 的 scenarios 的最优推荐是 MLA 时，一个 trivial baseline
+
+    "always recommend MLA" 就有 65% accuracy——framework 的 0.78 仅比 trivial baseline
+
+    高 13 个百分点，discriminative value 有限。
+
+
+    MLA 主导的原因：MLA (Measurement-error Likelihood Adjustment) 是最 general 的方法，
+
+    它利用 C 矩阵估计对 likelihood 做调整，适用于任何 topology + 任何 error structure。
+
+    在 5 个 "well-behaved" topology（方向可预测）中，MLA 几乎总是最优选择因为它直接
+
+    纠正 bias magnitude。PPI 仅在 finite-sample regime（small gold sample + large LLM sample）
+
+    优于 MLA（8% scenarios）。DSL 仅在 very specific conditions（已知 C + linear model）下
+
+    优于 MLA（5% scenarios）。
+
+
+    Exposure topology 是 framework 最有价值的部分——对 reversal-risk scenarios，framework
+
+    正确推荐 "no correction adequate without gold labels"，这是 non-trivial guidance
+
+    （naive researcher 可能尝试 MLA 但 MLA 在 sign-reversed regime 可能 amplify error）。
+
+
+    Collider accuracy 最低（0.68）因为 collider bias correction 依赖于 conditioning strategy——
+
+    "correct the annotation then re-condition" vs "don''t condition at all" 的选择
+
+    取决于 effect magnitude 和 C structure 的交互，decision tree 难以准确捕获。
+
+    '
+  tables:
+  - name: 'Table 15: Correction Guidance Decision Framework'
+    description: 'Matrix format: rows = topologies (6), columns = error structure
+      categories
+
+      (diagonal-dominant / moderate / near-permutation × differential / non-differential),
+
+      cells = recommended method + ASV threshold. 大量 cells 填入 "MLA"。
+
+      Exposure 行的 near-permutation cells 标红 "gold labels required"。
+
+      '
+  - name: 'Table 16: Framework Accuracy — MC Validation'
+    description: 'Per topology accuracy, per error-structure accuracy, confusion matrix
+      of
+
+      {recommended method × actually-best method}. 最大 off-diagonal cluster:
+
+      MLA recommended but PPI actually marginally better (差异 <0.01 bias)。
+
+      '
+  - name: 'Table 17: Open Problem Identification'
+    description: '12% of scenarios 标记为 "no existing method adequate"。
+
+      Columns: scenario_description, why_inadequate, required_capability.
+
+      主要集中在 differential multi-class error + complex topology (M-bias, front-door)
+
+      和 correlated multi-LLM error。
+
+      '
+  figures_description:
+  - 'Fig 15: Decision tree visualization — depth 4, 12 leaves。Color = recommended
+    method。大量绿色叶节点（MLA），少量红色（gold labels）和蓝色（PPI）。视觉上展示 ''MLA 主导'' 的现实。'
+  - 'Fig 16: Framework accuracy vs ASV — scatter plot，x = ASV magnitude，y = framework
+    recommendation correct (1/0)。低 ASV（fragile）区域 accuracy 更高（framework 更有价值），高 ASV（robust）区域
+    accuracy 无意义（任何推荐都 work）。'
+  analysis: 'Correction framework 在 worst 档下的 selling point 不是 accuracy 而是 completeness——
+
+    "first systematic mapping of when each correction method applies, with identified
+    open problems"。
+
+    0.78 accuracy 加上 MLA 65% dominance 意味着 framework 的 practical value 集中在
+
+    ~35% non-MLA scenarios（exposure reversal + PPI edge cases + no-method-adequate
+    regimes）。
+
+    Version B narrative 中 Claim 3 权重增加，需要将 framework 包装为 "practitioner''s guide"
+
+    而非 "automated decision system"——降低 accuracy 期望，强调 "the framework identifies
+
+    what you should worry about, not just what to do"。
+
+    Open problems 部分（12% no-method-adequate）可能是最有 citation value 的贡献——
+
+    明确指出 correlated multi-LLM error correction 是 unsolved problem，引导后续研究。
+
+    '
+- name: Pathological confusion matrix analysis (spectral)
+  plan_id: plan_009
+  description: '分析极端 C 结构（near-permutation, rank-deficient, block-diagonal）在 6 个拓扑下的
+
+    bias 行为，用 spectral 分析（eigenvalue spectrum of C）识别 bias severity 的
+
+    structural predictors。
+
+    '
+  expected_results:
+    exposure_reversal_spectral_threshold: λ₂/λ₁ > 0.6 for K=3
+    exposure_reversal_prediction_auc: 0.92
+    diagonal_dominance_as_simple_predictor: reversal when diag_dom < 0.45
+    diagonal_dominance_prediction_auc: 0.89
+    other_topologies_spectral_finding: monotone relationship between λ₁ and bias magnitude;
+      no reversal threshold exists
+    spectral_gap_predicts_magnitude_R2: 0.78
+    block_diagonal_C_magnitude_effect: 1.5–2.3x bias amplification vs random C of
+      same accuracy
+    rank_deficient_C_behavior: bias expressions numerically unstable, need regularization
+  result_rationale: 'Exposure DAG 的反转机制有清晰的 spectral interpretation：C 矩阵的 eigendecomposition
+
+    中，λ₁ 对应 "correct classification" mode（沿 identity 方向），λ₂ 对应 "dominant confusion"
+
+    mode（label swap 方向）。当 λ₂/λ₁ > 0.6 时，confusion mode 足够强以翻转 treatment
+
+    assignment 的有效方向，产生 sign reversal。这个阈值在 K=3 下给出 AUC 0.92 的
+
+    reversal 预测——spectral gap 是一个 principled predictor。
+
+    Diagonal dominance（diag_dom = min_i C_ii / max_i Σ_{j≠i} C_ij）是更简单的 proxy，
+
+    AUC 0.89 略低但更直观。
+
+
+    对其余 5 个拓扑，spectral 分析揭示 λ₁ 与 bias magnitude 的 monotone relationship
+
+    （R²=0.78），但没有 "reversal threshold"——bias 方向由 topology 的结构性质决定
+
+    （confounding → toward OVB, mediation → toward attenuation, etc.），C 的 spectrum
+
+    只调制 magnitude。这在理论上不意外（worst 档假设），但提供了一个
+
+    compact characterization。
+
+
+    Block-diagonal C（如 K=6 分成两个 K=3 block，block 间无混淆）产生 1.5-2.3x
+
+    bias amplification 因为 block 结构创造了 "structured confusion"——模型在 block 内
+
+    混淆但 block 间清晰，这比同等 accuracy 的 random C 产生更大 bias
+
+    因为 confusion 集中而非分散。
+
+
+    Rank-deficient C 导致某些 bias 表达式的矩阵求逆不稳定——这是实际计算中的
+
+    nuisance，不是理论 insight，但需要在 toolkit 中处理（regularization）。
+
+    '
+  tables:
+  - name: 'Table 18: Spectral Predictors of Bias Severity'
+    description: 'Columns: predictor (λ₂/λ₁, diag_dom, spectral_gap, Frobenius_norm),
+
+      target (reversal_binary, bias_magnitude), topology, AUC_or_R².
+
+      Exposure rows 有 reversal prediction AUC，其余行仅有 magnitude R²。
+
+      '
+  - name: 'Table 19: Pathological C Structure Catalog'
+    description: 'Catalog of 4 pathological C types × 6 topologies × {bias_magnitude,
+
+      direction_preserved, numerical_stability}。27 行 summary。
+
+      '
+  figures_description:
+  - 'Fig 17: Spectral gap vs bias — 2 panels。Left: exposure DAG，scatter with reversal
+    colored red/blue，clear threshold at λ₂/λ₁=0.6。Right: confounding DAG，smooth monotone
+    curve，no threshold。最直观的 ''dichotomy'' spectral evidence。'
+  - 'Fig 18: Block-diagonal C amplification — bar chart comparing bias from block-diagonal
+    vs random C at matched accuracy, across 6 topologies。展示 structured confusion 的
+    amplification effect。'
+  analysis: 'Spectral 分析在 worst 档下提供了 exposure 反转的 mechanistic explanation——
+
+    这是 narrative 需要的 "deep dive"。λ₂/λ₁ > 0.6 threshold 是一个 actionable
+
+    practitioner guideline（"检查你的 confusion matrix 的 spectral gap，如果 < 0.4
+
+    则 exposure 标注安全"）。对其余拓扑，spectral 分析的贡献更 modest——
+
+    确认了 "方向可预测，magnitude 依赖 C" 的结论但没有 surprising insight。
+
+    Block-diagonal 发现是 bonus 内容——在 CSS 中，block-diagonal C 对应
+
+    "模型区分粗粒度类别但混淆细粒度类别" 的常见模式，有实际意义。
+
+    建议在论文中将 spectral 分析作为 Section 4 的 highlight（exposure deep dive），
+
+    其余拓扑的 spectral 结果放 appendix。
+
+    '
+- name: annot-sensitivity Python toolkit
+  plan_id: plan_010
+  description: 'Open-source Python 包：用户输入 DAG + confusion matrix + downstream estimate
+    →
+
+    输出 bias expressions + ASV bounds + sensitivity curves + correction recommendation
+
+    + diagnostic plots。pip-installable，每个 topology 一个 worked example。
+
+    '
+  expected_results:
+    pip_installable: true
+    supported_topologies: 6
+    K_range_supported: 2–15
+    runtime_K3: <0.1s
+    runtime_K7: <1s
+    runtime_K15: <10s
+    worked_examples: 6
+    api_surface: BiasExpr, ASV, CorrectionGuide, DiagnosticPlot
+    test_coverage: ~85%
+    documentation_pages: ~20
+    demo_value_assessment: limited by diagonal-dominant empirical C
+  result_rationale: 'Toolkit 是 engineering deliverable 而非实验。在 worst 档下，toolkit 本身功能完整
+
+    但 demonstration value 受限：经验混淆矩阵太 diagonal-dominant，toolkit 在 demo 中
+
+    主要输出 "your annotation is fine"——不够 compelling 作为 conference demo。
+
+    Worked examples 需要用 semi-synthetic C 而非 pure empirical C 来展示
+
+    toolkit 的 full capability（包括 reversal detection, ASV fragility warning, etc.）。
+
+    Runtime 快（K≤7 < 1s）因为 bias expressions 是 closed-form matrix operations，
+
+    不需要 MC simulation。K=15 需要 ~10s 因为 15×15 矩阵的 eigendecomposition
+
+    和 worst-case optimization 增加计算量。
+
+    作为 Claim 3 ("correction guidance") 的 tangible artifact，toolkit 增加论文的
+
+    practical impact——即使理论贡献在 worst 档下被削弱，一个 pip-installable tool
+
+    是 reviewer 认可的 concrete contribution。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig 19: Toolkit workflow diagram — input (DAG graph + C matrix + β̂) → 4 outputs
+    (bias expression + ASV + sensitivity curve + correction recommendation)。展示 API
+    的 end-to-end flow。'
+  - 'Fig 20: Toolkit screenshot — 对 protest/Qwen case (ASV=2.3) 的实际输出截图，包括 sensitivity
+    curve plot 和 correction recommendation。'
+  analysis: 'Toolkit 在 worst 档下是 "保底贡献"——即使 taxonomy 不够 dramatic、ASV 有 coverage 问题、
+
+    correction framework 主要推荐 MLA，一个 well-documented open-source tool 仍有独立价值。
+
+    建议在论文中给 toolkit 一个 dedicated subsection（不只是 "code available at github"），
+
+    展示 API 设计和 worked examples。在 supplementary material 中包含
+
+    comprehensive tutorial notebook。'

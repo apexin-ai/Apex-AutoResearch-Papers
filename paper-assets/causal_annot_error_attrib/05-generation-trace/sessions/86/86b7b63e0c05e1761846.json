@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "86b7b63e0c05e1761846",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan009 iv filtered supplement",
+  "task_key": "worker_infra_plan009-iv-filtered-supplement_20260520T185334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan009-iv-filtered-supplement_20260520T185334_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "f709e796158fd95027227ee0694ddbaf60512119b54ec3b1fffc074d1259e4da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`iv_filtering` 字段已写入，值正确：\n\n```json\n\"iv_filtering\": {\n  \"n_filtered\": 3000,\n  \"n_total\": 28000,\n  \"pct_infinite\": 10.7,\n  \"note\": \"Non-finite Wald estimates (division by near-zero first-stage) silently excluded from regression analysis. Paper citations must note this exclusion.\"\n}\n```\n\n与 IV 回归 `n_obs=25000`（其余 topology 均为 28000）一致，差值 3000 = 10.7%。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "n_filtered": 3000,
+              "n_total": 28000,
+              "pct_infinite": 10.7,
+              "note": "Non-finite Wald estimates (division by near-zero first-stage) silently excluded from regression analysis. Paper citations must note this exclusion."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan009-iv-filtered-supplement.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9648ffcb3cc3e10378c4",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan001 collider mbias iv fix",
+  "task_key": "worker_code_plan001-collider-mbias-iv-fix_20260520T102055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-collider-mbias-iv-fix_20260520T102055.log",
+    "occurrence": 1,
+    "bytes": 695660,
+    "sha256": "fae0bd991493f835d81734b8aefd27263100d2a3bd73dcd7a2950cf8b13d6dfc"
+  },
+  "statistics": {
+    "messages": 357,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 357,
+      "chunks": [
+        {
+          "path": "9648ffcb3cc3e10378c4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9648ffcb3cc3e10378c4-part-0002.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-collider-mbias-iv-fix.md"
+}

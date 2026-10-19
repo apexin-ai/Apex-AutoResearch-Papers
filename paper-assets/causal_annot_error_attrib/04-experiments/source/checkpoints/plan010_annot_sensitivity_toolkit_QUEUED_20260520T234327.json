@@ -1,0 +1,39 @@
+{
+  "exp_id": "plan010_annot_sensitivity_toolkit",
+  "project": "causal_annot_error_attrib",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:42:54.354Z",
+    "updated_at": "2026-05-20T23:43:27.119Z",
+    "hypothesis": "封装 7-topology bias computation、ASV sensitivity framework 和 5 种 correction 方法为可复用 Python 包，使 practitioners 能用 3 行代码评估 LLM 标注误差对因果推断的影响。验证：(1) API 输出与 plan_001/004/005/007 原始脚本一致，(2) worked example 展示完整工作流，(3) 35 个 pytest 全通过。",
+    "conclusion": "success",
+    "metrics": {
+      "tests_passed": "35/35",
+      "modules": 7,
+      "topologies": 7,
+      "correction_methods": 5,
+      "lines_of_code": {
+        "__init__.py": 53,
+        "bias.py": 174,
+        "asv.py": 119,
+        "correction.py": 422,
+        "confusion.py": 129,
+        "dgp.py": 213,
+        "utils.py": 95,
+        "test_core.py": "35 tests"
+      },
+      "example_output": {
+        "confounding_k3_bias_pct": "+10.20%",
+        "magnitude_asv": 0.967,
+        "sign_flip_asv": null,
+        "recommended_with_gold": "ppi",
+        "recommended_without_gold": "dsl"
+      }
+    }
+  },
+  "timestamp": "2026-05-20T23:43:27.311657+00:00",
+  "trigger": "update_registry"
+}

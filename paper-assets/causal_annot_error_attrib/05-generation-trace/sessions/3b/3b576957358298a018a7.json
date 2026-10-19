@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b576957358298a018a7",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan 006 full run",
+  "task_key": "worker_code_plan_006_full_run_20260521T012758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_006_full_run_20260521T012758_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "d918aef3b01a4a6b4e694fcacc8cf6a79b7a33d4dc599b37cc67ef4de60695b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Here's the summary for the Director's 5 focus areas:\n\n---\n\n## plan_006 全量分析结果 (30 configs × 7 topologies = 210 scenarios)\n\n### 1. K 值对比\n\n| K | Dataset | Mean Bias% | IV Bias% | ASV-unsafe |\n|---|---------|-----------|---------|-----------|\n| 2 | civil_comments | 36.9% | **116.5%** | 30.2% |\n| 3 | vast | 65.3% | **252.3%** | 50.0% |\n| 10 | humaid | 12.2% | **30.3%** | 49.2% |\n\n**K=3 bias 最高**（不是 K=2 或 K=10），IV 在 K=3 下 bias 252%。Collider 在所有 K 下最稳健（4.9%-15.7%）。\n\n### 2. F1 vs Bias Disconnect\n\n- civil_comments (qwen2.5-7b): F1 = 0.717–0.746，**但 IV bias 101–131%、exposure bias 51–57%**\n- humaid (llama4): F1 = 0.614–0.624，IV bias 40%\n- 这验证了 \"F1 高不代表因果估计安全\" 的核心论点\n\n### 3. 7B vs 235B\n\n- vast: qwen2.5-7b (7B) mean bias **73.5%** vs 235B+ models **59.3%**（7B 更差）\n- 7B diag_mean 0.453–0.473 vs 235B diag_mean 0.499–0.570（7B 准确率更低）\n- civil_comments 只有 7B 有效数据（diag 0.717–0.749）\n\n### 4. K=2 Sign Flip 验证\n\n**0 sign flips across all K values (K=2, K=3, K=10)**。理论预测确认——column-stochastic C 在这些 DGP 下不产生符号翻转。\n\n### 5. ASV 跨 K Unsafe 率\n\n| K | Unsafe | 最安全 topology | 最危险 topology |\n|---|--------|----------------|----------------|\n| 2 | 30.2% | confounding/mbias (2/9) | 其余均 3/9 |\n| 3 | 50.0% | **mbias (0/12)** | 其余均 7/12 |\n| 10 | 49.2% | confounding/collider/mbias (0/9) | mediation/iv/frontdoor (8/9) |\n\n**Overall ASV-unsafe: 92/210 (43.8%)**。mbias 在 K≥3 时始终安全，IV 在所有 K 下始终危险。\n\n---\n\n输出位置: `home-1x5090:/home/sonny/causal_annot_error_attrib/artifacts/plan006_full/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-006-full-run.md"
+}

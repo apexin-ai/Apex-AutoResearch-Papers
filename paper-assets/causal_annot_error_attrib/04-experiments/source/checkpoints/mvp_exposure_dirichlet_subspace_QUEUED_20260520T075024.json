@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_exposure_dirichlet_subspace",
+  "project": "causal_annot_error_attrib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:50:20.630Z",
+    "updated_at": "2026-05-20T07:50:24.073Z",
+    "hypothesis": "Dirichlet(1,1,1) 均匀先验下 85% 违反率在高对角占优子空间（min(diag(C))≥0.7，接近真实 LLM 精度）是否骤降：若 >10% 则论文 claim 对实际 LLM 有现实意义，若 <1% 需标注适用范围"
+  },
+  "timestamp": "2026-05-20T07:50:24.108054+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,646 @@
+{
+  "description": "\u0108 estimation robustness under multinomial bootstrap from finite gold set",
+  "config": {
+    "K": 3,
+    "n_gold_grid": [
+      50,
+      100,
+      200,
+      500
+    ],
+    "B_bootstrap": 200,
+    "seed": 20260523,
+    "asv_threshold": 0.05,
+    "n_delta": 201,
+    "topologies": [
+      "confounding",
+      "mediation",
+      "collider",
+      "exposure",
+      "mbias",
+      "iv",
+      "frontdoor"
+    ],
+    "canonical_safe": [
+      "collider",
+      "confounding",
+      "frontdoor",
+      "mbias",
+      "mediation"
+    ],
+    "canonical_fragile": [
+      "exposure",
+      "iv"
+    ],
+    "empirical_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json"
+  },
+  "source_matrices": {
+    "vast_deepseek_few-shot-3": {
+      "C": [
+        [
+          0.5139,
+          0.1017,
+          0.2888
+        ],
+        [
+          0.3212,
+          0.7985,
+          0.5498
+        ],
+        [
+          0.1649,
+          0.0998,
+          0.1614
+        ]
+      ],
+      "diag": [
+        0.5139,
+        0.7985,
+        0.1614
+      ],
+      "truth_asv": {
+        "confounding": 0.06,
+        "mediation": 0.12,
+        "collider": null,
+        "exposure": 0.055,
+        "mbias": null,
+        "iv": 0.055,
+        "frontdoor": 0.08
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_deepseek_few-shot-5": {
+      "C": [
+        [
+          0.5268,
+          0.1149,
+          0.3068
+        ],
+        [
+          0.3105,
+          0.7853,
+          0.5398
+        ],
+        [
+          0.1627,
+          0.0998,
+          0.1534
+        ]
+      ],
+      "diag": [
+        0.5268,
+        0.7853,
+        0.1534
+      ],
+      "truth_asv": {
+        "confounding": 0.06,
+        "mediation": 0.12,
+        "collider": null,
+        "exposure": 0.055,
+        "mbias": null,
+        "iv": 0.055,
+        "frontdoor": 0.08
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_llama4_few-shot-3": {
+      "C": [
+        [
+          0.6595289079229122,
+          0.1807909604519774,
+          0.40438247011952194
+        ],
+        [
+          0.31263383297644537,
+          0.800376647834275,
+          0.5597609561752989
+        ],
+        [
+          0.027837259100642397,
+          0.018832391713747645,
+          0.03585657370517929
+        ]
+      ],
+      "diag": [
+        0.6595289079229122,
+        0.800376647834275,
+        0.03585657370517929
+      ],
+      "truth_asv": {
+        "confounding": 0.065,
+        "mediation": 0.14,
+        "collider": null,
+        "exposure": 0.055,
+        "mbias": null,
+        "iv": 0.055,
+        "frontdoor": 0.09
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_llama4_zero-shot": {
+      "C": [
+        [
+          0.6781115879828327,
+          0.14393939393939395,
+          0.3964143426294821
+        ],
+        [
+          0.2982832618025751,
+          0.8409090909090909,
+          0.5577689243027889
+        ],
+        [
+          0.023605150214592276,
+          0.015151515151515152,
+          0.04581673306772909
+        ]
+      ],
+      "diag": [
+        0.6781115879828327,
+        0.8409090909090909,
+        0.04581673306772909
+      ],
+      "truth_asv": {
+        "confounding": 0.07,
+        "mediation": 0.15,
+        "collider": null,
+        "exposure": 0.055,
+        "mbias": null,
+        "iv": 0.06,
+        "frontdoor": 0.09
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_qwen2.5-7b_few-shot-3": {
+      "C": [
+        [
+          0.4132762312633833,
+          0.08662900188323917,
+          0.22310756972111553
+        ],
+        [
+          0.44539614561027835,
+          0.8210922787193974,
+          0.651394422310757
+        ],
+        [
+          0.14132762312633834,
+          0.09227871939736347,
+          0.1254980079681275
+        ]
+      ],
+      "diag": [
+        0.4132762312633833,
+        0.8210922787193974,
+        0.1254980079681275
+      ],
+      "truth_asv": {
+        "confounding": 0.055,
+        "mediation": 0.11,
+        "collider": null,
+        "exposure": 0.045,
+        "mbias": null,
+        "iv": 0.05,
+        "frontdoor": 0.075
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_qwen2.5-7b_few-shot-5": {
+      "C": [
+        [
+          0.4753747323340471,
+          0.11111111111111112,
+          0.2589641434262948
+        ],
+        [
+          0.39186295503211993,
+          0.7758945386064031,
+          0.6155378486055777
+        ],
+        [
+          0.13276231263383298,
+          0.11299435028248589,
+          0.1254980079681275
+        ]
+      ],
+      "diag": [
+        0.4753747323340471,
+        0.7758945386064031,
+        0.1254980079681275
+      ],
+      "truth_asv": {
+        "confounding": 0.055,
+        "mediation": 0.11,
+        "collider": null,
+        "exposure": 0.05,
+        "mbias": null,
+        "iv": 0.05,
+        "frontdoor": 0.075
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_qwen2.5-7b_zero-shot": {
+      "C": [
+        [
+          0.4613733905579399,
+          0.07909604519774012,
+          0.2410358565737052
+        ],
+        [
+          0.4313304721030043,
+          0.847457627118644,
+          0.649402390438247
+        ],
+        [
+          0.1072961373390558,
+          0.07344632768361582,
+          0.10956175298804781
+        ]
+      ],
+      "diag": [
+        0.4613733905579399,
+        0.847457627118644,
+        0.10956175298804781
+      ],
+      "truth_asv": {
+        "confounding": 0.055,
+        "mediation": 0.12,
+        "collider": null,
+        "exposure": 0.045,
+        "mbias": null,
+        "iv": 0.05,
+        "frontdoor": 0.075
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    },
+    "vast_qwen3_zero-shot": {
+      "C": [
+        [
+          0.6858974358974359,
+          0.16666666666666666,
+          0.40357852882703776
+        ],
+        [
+          0.23504273504273504,
+          0.7746212121212122,
+          0.5228628230616302
+        ],
+        [
+          0.07905982905982906,
+          0.058712121212121215,
+          0.073558648111332
+        ]
+      ],
+      "diag": [
+        0.6858974358974359,
+        0.7746212121212122,
+        0.073558648111332
+      ],
+      "truth_asv": {
+        "confounding": 0.07,
+        "mediation": 0.135,
+        "collider": null,
+        "exposure": 0.065,
+        "mbias": null,
+        "iv": 0.06,
+        "frontdoor": 0.085
+      },
+      "truth_fragile_set": [
+        "exposure",
+        "iv"
+      ],
+      "truth_matches_canonical": true
+    }
+  },
+  "results_per_n_gold": {
+    "50": {
+      "n_bootstraps_total": 1600,
+      "partition_stability_rate_vs_canonical": 0.504375,
+      "partition_stability_rate_vs_truth_C": 0.504375,
+      "spearman_rho_mean": 0.8572827199901789,
+      "spearman_rho_median": 0.9908673886137246,
+      "spearman_rho_q25": 0.7888259403211363,
+      "spearman_rho_q75": 1.0,
+      "per_source_C": {
+        "vast_deepseek_few-shot-3": {
+          "partition_match_canonical": 0.595,
+          "partition_match_truth_C": 0.595,
+          "spearman_rho_mean_vs_truth": 0.9819596831408367,
+          "spearman_rho_median_vs_truth": 0.9908673886137246,
+          "spearman_rho_q25_vs_truth": 0.9722222222222223,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_deepseek_few-shot-5": {
+          "partition_match_canonical": 0.575,
+          "partition_match_truth_C": 0.575,
+          "spearman_rho_mean_vs_truth": 0.9787887597148264,
+          "spearman_rho_median_vs_truth": 0.9908673886137246,
+          "spearman_rho_q25_vs_truth": 0.9722222222222223,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_few-shot-3": {
+          "partition_match_canonical": 0.0,
+          "partition_match_truth_C": 0.0,
+          "spearman_rho_mean_vs_truth": 0.5196746370519365,
+          "spearman_rho_median_vs_truth": 0.5196746370519364,
+          "spearman_rho_q25_vs_truth": 0.5196746370519364,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_zero-shot": {
+          "partition_match_canonical": 0.0,
+          "partition_match_truth_C": 0.0,
+          "spearman_rho_mean_vs_truth": 0.41194292043554975,
+          "spearman_rho_median_vs_truth": 0.41194292043554975,
+          "spearman_rho_q25_vs_truth": 0.41194292043554975,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-3": {
+          "partition_match_canonical": 0.69,
+          "partition_match_truth_C": 0.69,
+          "spearman_rho_mean_vs_truth": 0.9929838599193943,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-5": {
+          "partition_match_canonical": 0.75,
+          "partition_match_truth_C": 0.75,
+          "spearman_rho_mean_vs_truth": 0.9882814040526984,
+          "spearman_rho_median_vs_truth": 0.9908673886137246,
+          "spearman_rho_q25_vs_truth": 0.986206097015849,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_zero-shot": {
+          "partition_match_canonical": 0.74,
+          "partition_match_truth_C": 0.74,
+          "spearman_rho_mean_vs_truth": 0.9952898185666692,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen3_zero-shot": {
+          "partition_match_canonical": 0.685,
+          "partition_match_truth_C": 0.685,
+          "spearman_rho_mean_vs_truth": 0.9893406770395201,
+          "spearman_rho_median_vs_truth": 0.9908673886137247,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        }
+      }
+    },
+    "100": {
+      "n_bootstraps_total": 1600,
+      "partition_stability_rate_vs_canonical": 0.82,
+      "partition_stability_rate_vs_truth_C": 0.82,
+      "spearman_rho_mean": 0.9931707831917691,
+      "spearman_rho_median": 1.0,
+      "spearman_rho_q25": 0.9908673886137247,
+      "spearman_rho_q75": 1.0,
+      "per_source_C": {
+        "vast_deepseek_few-shot-3": {
+          "partition_match_canonical": 0.745,
+          "partition_match_truth_C": 0.745,
+          "spearman_rho_mean_vs_truth": 0.9890941383494765,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9722222222222223,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_deepseek_few-shot-5": {
+          "partition_match_canonical": 0.665,
+          "partition_match_truth_C": 0.665,
+          "spearman_rho_mean_vs_truth": 0.9870726538292578,
+          "spearman_rho_median_vs_truth": 0.9908673886137246,
+          "spearman_rho_q25_vs_truth": 0.9722222222222223,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_few-shot-3": {
+          "partition_match_canonical": 1.0,
+          "partition_match_truth_C": 1.0,
+          "spearman_rho_mean_vs_truth": 0.9963469554454898,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_zero-shot": {
+          "partition_match_canonical": 0.995,
+          "partition_match_truth_C": 0.995,
+          "spearman_rho_mean_vs_truth": 0.9935245918669391,
+          "spearman_rho_median_vs_truth": 0.9954336943068623,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-3": {
+          "partition_match_canonical": 0.79,
+          "partition_match_truth_C": 0.79,
+          "spearman_rho_mean_vs_truth": 0.9957456150900756,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-5": {
+          "partition_match_canonical": 0.835,
+          "partition_match_truth_C": 0.835,
+          "spearman_rho_mean_vs_truth": 0.9924372978920885,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_zero-shot": {
+          "partition_match_canonical": 0.795,
+          "partition_match_truth_C": 0.795,
+          "spearman_rho_mean_vs_truth": 0.9969367148779447,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen3_zero-shot": {
+          "partition_match_canonical": 0.735,
+          "partition_match_truth_C": 0.735,
+          "spearman_rho_mean_vs_truth": 0.994208298182881,
+          "spearman_rho_median_vs_truth": 0.9954336943068623,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        }
+      }
+    },
+    "200": {
+      "n_bootstraps_total": 1600,
+      "partition_stability_rate_vs_canonical": 0.855625,
+      "partition_stability_rate_vs_truth_C": 0.855625,
+      "spearman_rho_mean": 0.9949540950273014,
+      "spearman_rho_median": 1.0,
+      "spearman_rho_q25": 0.9908673886137247,
+      "spearman_rho_q75": 1.0,
+      "per_source_C": {
+        "vast_deepseek_few-shot-3": {
+          "partition_match_canonical": 0.79,
+          "partition_match_truth_C": 0.79,
+          "spearman_rho_mean_vs_truth": 0.9926500327555217,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_deepseek_few-shot-5": {
+          "partition_match_canonical": 0.715,
+          "partition_match_truth_C": 0.715,
+          "spearman_rho_mean_vs_truth": 0.9900204844662588,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9722222222222223,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_few-shot-3": {
+          "partition_match_canonical": 1.0,
+          "partition_match_truth_C": 1.0,
+          "spearman_rho_mean_vs_truth": 0.9964382815593525,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_zero-shot": {
+          "partition_match_canonical": 1.0,
+          "partition_match_truth_C": 1.0,
+          "spearman_rho_mean_vs_truth": 0.9953448703307215,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-3": {
+          "partition_match_canonical": 0.78,
+          "partition_match_truth_C": 0.78,
+          "spearman_rho_mean_vs_truth": 0.9965752707301467,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-5": {
+          "partition_match_canonical": 0.93,
+          "partition_match_truth_C": 0.93,
+          "spearman_rho_mean_vs_truth": 0.9950398092660113,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_zero-shot": {
+          "partition_match_canonical": 0.845,
+          "partition_match_truth_C": 0.845,
+          "spearman_rho_mean_vs_truth": 0.9978538363242254,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 1.0,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen3_zero-shot": {
+          "partition_match_canonical": 0.785,
+          "partition_match_truth_C": 0.785,
+          "spearman_rho_mean_vs_truth": 0.9957101747861725,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        }
+      }
+    },
+    "500": {
+      "n_bootstraps_total": 1600,
+      "partition_stability_rate_vs_canonical": 0.885,
+      "partition_stability_rate_vs_truth_C": 0.885,
+      "spearman_rho_mean": 0.996150999681536,
+      "spearman_rho_median": 1.0,
+      "spearman_rho_q25": 0.9908673886137247,
+      "spearman_rho_q75": 1.0,
+      "per_source_C": {
+        "vast_deepseek_few-shot-3": {
+          "partition_match_canonical": 0.81,
+          "partition_match_truth_C": 0.81,
+          "spearman_rho_mean_vs_truth": 0.9938804418767238,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_deepseek_few-shot-5": {
+          "partition_match_canonical": 0.76,
+          "partition_match_truth_C": 0.76,
+          "spearman_rho_mean_vs_truth": 0.9923704400736278,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_few-shot-3": {
+          "partition_match_canonical": 1.0,
+          "partition_match_truth_C": 1.0,
+          "spearman_rho_mean_vs_truth": 0.9972602165841176,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_llama4_zero-shot": {
+          "partition_match_canonical": 1.0,
+          "partition_match_truth_C": 1.0,
+          "spearman_rho_mean_vs_truth": 0.9952062130681127,
+          "spearman_rho_median_vs_truth": 0.9908673886137247,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-3": {
+          "partition_match_canonical": 0.91,
+          "partition_match_truth_C": 0.91,
+          "spearman_rho_mean_vs_truth": 0.9989040866336469,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 1.0,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_few-shot-5": {
+          "partition_match_canonical": 0.97,
+          "partition_match_truth_C": 0.97,
+          "spearman_rho_mean_vs_truth": 0.996426883250784,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137246,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen2.5-7b_zero-shot": {
+          "partition_match_canonical": 0.775,
+          "partition_match_truth_C": 0.775,
+          "spearman_rho_mean_vs_truth": 0.9978081732672939,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 1.0,
+          "truth_partition_matches_canonical": true
+        },
+        "vast_qwen3_zero-shot": {
+          "partition_match_canonical": 0.855,
+          "partition_match_truth_C": 0.855,
+          "spearman_rho_mean_vs_truth": 0.9973515426979802,
+          "spearman_rho_median_vs_truth": 1.0,
+          "spearman_rho_q25_vs_truth": 0.9908673886137247,
+          "truth_partition_matches_canonical": true
+        }
+      }
+    }
+  },
+  "total_time_seconds": 8.407106637954712
+}

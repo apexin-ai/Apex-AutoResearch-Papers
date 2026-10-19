@@ -1,0 +1,115 @@
+paper_key: "messing2026"
+title: "Hidden Measurement Error in LLM Pipelines"
+venue: "arXiv 2026 (preprint, 2604.11581v6)"
+full_text_available: true
+
+research:
+  baselines:
+    - "Naive CI (single-config, item-sampling SE only)"
+    - "Standard allocation (V=1, R=1, items only)"
+    - "Single-judge Likert"
+    - "Single-judge pairwise"
+    - "Human leaderboard (Chatbot Arena)"
+  metrics:
+    - {name: "95% CI coverage", direction: "closer_to_nominal_better"}
+    - {name: "RMSE vs oracle accuracy", direction: "lower_better"}
+    - {name: "Per-match agreement with human votes", direction: "higher_better"}
+    - {name: "Best-of-K gaming surface (Elo)", direction: "lower_better"}
+    - {name: "Standard error (SE)", direction: "lower_better"}
+  datasets:
+    - {name: "AILuminate v1.0 (safety)", size: "141 items x 12 hazard categories, ~50,760 API calls"}
+    - {name: "MMLU", size: "200-item pool with ground-truth labels"}
+    - {name: "Chatbot Arena (lmarena-ai/arena-human-preference-100k)", size: "4,676 matches stratified by model x category"}
+  ablation_dimensions:
+    - "Number of judges (M)"
+    - "Number of prompt variants (V)"
+    - "Number of replications (R)"
+    - "Number of items (N)"
+    - "Temperature settings (H)"
+    - "Scoring mode (Likert vs pairwise)"
+  training_recipe:
+    optimizer: "N/A (no model training)"
+    lr: "N/A"
+    hardware: "API calls only (~54,000 for full factorial)"
+  method_family: "Variance decomposition via linear mixed models / Generalizability theory (G-theory)"
+
+positioning:
+  core_claim: "Standard confidence intervals in LLM evaluation pipelines systematically underestimate uncertainty because they ignore variance from judge choice, prompt phrasing, and temperature—TEE decomposes these sources and provides D-study projections to optimally allocate evaluation budget."
+  key_results: "Item-judge interaction dominates variance at 43.8% on AILuminate; TEE halves MMLU RMSE at same cost; naive CI coverage drops to 79% at 2000 Arena matches while TEE maintains 95%; TEE-LLM averaging reduces gaming surface from 56 to 32 Elo"
+  limitations:
+    - "Reasoning traces inflate residual error rather than being attributed to specific variance components"
+    - "When LLM judges score SUT responses, judge and SUT variance may compound in ways the within-layer decomposition does not capture"
+    - "Linear probability model assumption—preserves qualitative rankings but magnitudes may not match logistic link"
+    - "Cannot verify construct validity—a toxicity benchmark omitting coded hate speech yields precise but domain-incomplete estimates"
+    - "All demonstrations use English and frontier models only; high-ambiguity tasks untested"
+    - "Full factorial requires ~54,000 API calls, though pilot subsets can deploy much of the framework"
+  relation_to_us: "complementary"
+  # Rationale: TEE decomposes variance sources in LLM annotation pipelines (measurement side)
+  # but explicitly does NOT address causal identification, confounding, or how measurement error
+  # propagates into causal estimates. Our work addresses exactly that causal piece—how annotation
+  # errors affect downstream causal inference and how to correct for them. TEE's variance
+  # decomposition could feed directly into our error model as upstream characterization.
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Opens with high-stakes framing: LLM evaluations drive deployment decisions, safety standards, published research conclusions, and labor-market impact projections—immediately establishes that getting measurement wrong has real-world consequences beyond academic benchmarking."
+  tension: "Current practice reports CIs reflecting only item-sampling variation under identical settings, ignoring prompt sensitivity, judge disagreement, temperature, and interactions. The killer insight: under-coverage WORSENS as sample size increases (Figure 1), because omitted variance components do not shrink with more items. This is counterintuitive and alarming—more data makes you more confidently wrong."
+  key_insight: "Revealed in Figure 1 (panel a) and the framework section: the paper reframes evaluation uncertainty as structural rather than statistical. The problem is not insufficient data but unmodeled variance sources. The D-study projection then converts diagnosis into actionable design optimization."
+  argument_chain: "Stakes established (deployment/safety/research depend on eval) -> Current CIs ignore pipeline variance -> Demonstrate coverage worsens with N (Figure 1) -> Introduce TEE framework with LMM variance decomposition -> Three empirical demonstrations (safety/MMLU/Arena) -> Show gaming vulnerability -> D-study projections as practical solution"
+  contribution_framing: "No explicit bulleted contribution list. Contributions are woven into abstract and intro prose: (1) decompose pipeline uncertainty into sources, (2) distinguish aggregation-reducible noise from design-choice sensitivity, (3) D-study projections to minimize total error. The framing is unusually integrated—presented as a unified framework rather than separate contributions."
+  intro_structure: "4 paragraphs: P1 establishes the problem (pipeline variance ignored by standard CIs); P2 demonstrates the coverage failure mechanism (CIs worsen with more data); P3 establishes urgency in benchmarking context (gaming, rank instability); P4 extends to scientific literature harm (31% hypothesis reversals, 68% effect reversals by adversaries)"
+  notable_technique: "The counterintuitive Figure 1 revelation—that more data makes naive CIs WORSE—is the paper's strongest rhetorical move. Most readers assume more items always help, and the paper immediately shatters that assumption with a clean simulation. This creates urgency that sustains through the entire paper. Also notable: the paper ends with a direct appeal to policy/regulatory stakes ('safety certifications, regulatory standards, labor-market projections'), expanding scope beyond academic evaluation."
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "Two-panel figure. Panel (a): 95% CI coverage vs number of items (N, log scale) for 6 scenarios (A through F), showing naive coverage drops from ~45% to ~12% as N increases, while full-model coverage stays at ~100%. Panel (b): stacked component diagram showing which variance components each scenario accounts for, from A (no design-side, alpha+rho only) through F (all 9 components)."
+    narrative_role: "The paper's central 'aha moment'—demonstrates the counterintuitive failure that more data worsens coverage when pipeline variance is ignored. Establishes the entire motivation for the TEE framework."
+    design_elements: ["Color-coded lines for 6 scenarios", "Log-scale x-axis", "Dashed 95% reference line", "Paired panels linking coverage to variance components", "Greek letter labels in component diagram"]
+    visual_style: "Clean ggplot2 style with white background. Left panel is a line chart with distinct colors (black/orange/red/gray/purple/green). Right panel uses colored blocks to show cumulative variance components per scenario. Minimal annotations, relies on legend. Professional academic style."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "dot_plot + scatter_frontier"
+      what_compared: "Panel (a): Variance decomposition for AILuminate safety—horizontal dot plot showing contribution of each variance component to Var(theta_hat), with judge model dominating at ~44%. Panel (b): Cost-efficiency frontier showing projected SE vs API calls (log scale), with status quo, TEE-guided, and full factorial designs marked."
+      how_gain_highlighted: "TEE-guided design shown as optimal point on the Pareto frontier between status quo (high SE, low cost) and full factorial (low SE, high cost). Red dots mark key designs."
+      design_note: "The cost-efficiency frontier is an unusually practical visualization for evaluation papers—it directly maps to budget decisions. The Pareto frontier with candidate designs as blue dots is immediately actionable."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Two-panel comparison of Naive vs Standard vs TEE allocation on MMLU. Panel (a): RMSE vs oracle accuracy by budget. Panel (b): 95% CI coverage by budget."
+      how_gain_highlighted: "TEE (blue triangles) clearly dominates both Naive (red circles) and Standard (gray squares) across all budget levels. Dashed 95% reference line in coverage panel makes TEE's superiority visually immediate."
+      design_note: "Classic dual-panel showing both accuracy and calibration. The 95% dashed reference line is effective—TEE is the only method consistently above it. Color scheme (red=bad, blue=good) subtly guides interpretation."
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Two-panel: Naive vs TEE on Chatbot Arena. Left: empirical 95% CI coverage vs matches sampled. Right: mean 95% CI half-width vs matches. Coverage of p*=0.389 across 300 Monte Carlo samples."
+      how_gain_highlighted: "Naive coverage (orange) drops from 0.97 to 0.79 as sample grows; TEE (blue) stays at/above 0.95 throughout. Annotated data points with exact coverage/width values. Ribbon shows Monte Carlo uncertainty."
+      design_note: "Annotating each data point with its exact value is unusual but effective for a methodological paper—readers can cite specific numbers. The diverging trajectories tell a compelling story about systematic vs sampling error."
+    - figure_id: "Figure 6"
+      viz_type: "dot_plot"
+      what_compared: "Best-of-K=27 gaming surface (Elo) across 5 configurations: Arena human leaderboard (45), Single LLM judge V=1 M=1 (56), Multi-prompt V=5 M=1 (46), Multi-judge V=1 M=3 (46), TEE V=5 M=3 (32)."
+      how_gain_highlighted: "Horizontal dot plot with green TEE dot clearly separated left of all others. Single LLM judge shown in red as worst. Clean left-to-right ordering makes gaming reduction visually obvious."
+      design_note: "Extremely effective minimal visualization—one dot per condition, Elo values annotated. The horizontal layout makes comparison instant. Green for TEE vs red for single-judge creates an implicit good/bad framing."
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation: naive CIs fail) -> Figure 2 (framework: TEE pipeline diagram, not embedded as image) -> Figure 3 (demo 1: AILuminate variance + cost frontier) -> Figure 4 (demo 2: MMLU accuracy + coverage) -> Figure 5 (demo 3: Arena coverage divergence) -> Figure 6 (gaming: TEE reduces exploit surface). The flow is problem -> framework -> three escalating demonstrations -> practical implication."
+
+tables:
+  table_count: 3+  # 3 explicitly referenced in main text, 17+ total including appendices
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "benchmarks"
+    col_axis: "uncertainty reporting practices (item-sampling CI, variance decomposition, prompt sensitivity)"
+    row_organization: "flat"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "survey-style checkmarks/indicators rather than numerical comparison"
+    statistical_reporting: "N/A (survey table, not results)"
+    num_baselines: 13  # 13 benchmarks surveyed
+    design_note: "Unusual choice for Table 1—instead of a main results table, the paper opens with a survey showing no existing benchmark decomposes prompt/temperature/interaction variance. This serves a rhetorical function: establishing the gap before presenting results. The finding that 0/13 benchmarks do full decomposition is itself a key result."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["factor classification (fixed vs random)", "variance component definitions"]
+      variation_style: "full_numbers"
+      design_note: "Technical reference table in appendix mapping model terms to factor classifications. Serves as methodological documentation rather than ablation in the traditional sense."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 17 (Chatbot Arena scoring comparison: Likert vs pairwise agreement metrics), plus extensive appendix tables covering G-theory connections, Monte Carlo simulation details, pilot design recommendations, GLMM robustness checks, and reporting checklists"
+    reason: "Main text uses figures for all empirical results; tables relegated to appendix for methodological details and robustness. This is a deliberate choice—the paper's argument is visual (coverage curves, cost frontiers, gaming dots) rather than tabular."

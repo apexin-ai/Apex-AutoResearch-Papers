@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7f800146198e24a19245",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "paper phase2 text changes",
+  "task_key": "worker_paper_phase2_text_changes_20260522T113012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phase2_text_changes_20260522T113012.log",
+    "occurrence": 1,
+    "bytes": 879888,
+    "sha256": "72706340d57258d0b6847935313fbaddef9c92e24a4e8bffc0f053068ede1c88"
+  },
+  "statistics": {
+    "messages": 263,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "7f800146198e24a19245-part-0001.json",
+          "message_count": 107
+        },
+        {
+          "path": "7f800146198e24a19245-part-0002.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-phase2-text-changes.md"
+}

@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Sensitivity of 7 DAG topologies to structured Y-dependent misclassification ($K{=}3$, $\mathrm{diag}(C_0){=}0.70$, $N{=}50{,}000$, $500$ reps). Bias is relative to oracle (no misclassification). Dev.\ $= |\bar{b}_{\mathrm{diff}} - \bar{b}_{\mathrm{nd}}|/|\bar{b}_{\mathrm{nd}}|$.}
+\label{tab:structured_nondiff}
+\begin{tabular}{lrrrrrrrrrrrr}
+\toprule
+Topology & \multicolumn{3}{c}{$\varepsilon=0.01$} & \multicolumn{3}{c}{$\varepsilon=0.02$} & \multicolumn{3}{c}{$\varepsilon=0.05$} & \multicolumn{3}{c}{$\varepsilon=0.1$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10} \cmidrule(lr){11-13}
+ & {\scriptsize $\bar{b}_{\mathrm{d}}$} & {\scriptsize Dev\%} & {\scriptsize SF\%} & {\scriptsize $\bar{b}_{\mathrm{d}}$} & {\scriptsize Dev\%} & {\scriptsize SF\%} & {\scriptsize $\bar{b}_{\mathrm{d}}$} & {\scriptsize Dev\%} & {\scriptsize SF\%} & {\scriptsize $\bar{b}_{\mathrm{d}}$} & {\scriptsize Dev\%} & {\scriptsize SF\%} \\
+\midrule
+Confounding & 0.2476 & 0.0 & 0.0 & 0.2477 & 0.0 & 0.0 & 0.2471 & 0.2 & 0.0 & 0.2445 & 1.3 & 0.0 \\
+Mediation & 0.2256 & 0.0 & 0.0 & 0.2250 & 0.3 & 0.0 & 0.2235 & 1.0 & 0.0 & 0.2163 & 4.2 & 0.0 \\
+Collider & 0.0829 & 0.0 & 0.0 & 0.0829 & 0.1 & 0.0 & 0.0821 & 1.0 & 0.0 & 0.0787 & 5.1 & 0.0 \\
+Exposure & -0.4306 & 0.1 & 0.0 & -0.4319 & 0.2 & 0.0 & -0.4339 & 0.7 & 0.0 & -0.4377 & 1.6 & 0.0 \\
+M-bias & -0.0088 & 0.8 & 0.0 & -0.0088 & 0.6 & 0.0 & -0.0095 & 8.9 & 0.0 & -0.0124 & 42.1 & 0.0 \\
+IV & 1.1544 & 0.1 & 0.0 & 1.1538 & 0.2 & 0.0 & 1.1476 & 0.7 & 0.0 & 1.1423 & 1.2 & 0.0 \\
+Front-door & 0.2327 & 0.0 & 0.0 & 0.2325 & 0.1 & 0.0 & 0.2313 & 0.6 & 0.0 & 0.2265 & 2.7 & 0.0 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\noindent\textit{Sensitivity ranking (top 3): M-bias, Collider, Mediation.}
+\end{table*}

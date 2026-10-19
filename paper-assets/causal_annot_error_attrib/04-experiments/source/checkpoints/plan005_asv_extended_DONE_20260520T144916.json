@@ -1,0 +1,84 @@
+{
+  "exp_id": "plan005_asv_extended",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:50:28.045Z",
+    "updated_at": "2026-05-20T14:49:16.555Z",
+    "hypothesis": "The ASV (Annotation Sensitivity Value) framework generalizes from simple confounding to M-bias, IV, and front-door topologies: annotation misclassification sensitivity varies by DAG structure because each estimator's probability limit depends differently on the confusion matrix C. M-bias adjustment for misclassified A should show near-zero sensitivity (misclassification reduces spurious bias), IV Wald estimator should be immediately sensitive (C directly scales the first-stage), and front-door should show moderate sensitivity.",
+    "parent": "plan004_asv_framework",
+    "spec": {
+      "server": "home-1x5090",
+      "command": "python3 -u plan_005_asv_extended.py > plan005_run.log 2>&1",
+      "data_path": "synthetic (in-script DGP)",
+      "data_count": "500 scenarios x 100 reps x N=10000",
+      "model_name": "N/A (analytical + MC simulation)",
+      "seed": 42,
+      "checkpoint_source": "plan004_asv_framework",
+      "eval_data": "synthetic DGP: M-bias/IV/front-door topologies"
+    },
+    "log_path": "/home/sonny/causal_annot_error_attrib/plan005_run.log",
+    "checkpoint_path": "/home/sonny/causal_annot_error_attrib/plan005_run.log",
+    "conclusion": "success",
+    "metrics": {
+      "envelope_violations": {
+        "mbias": 0,
+        "iv": 0,
+        "frontdoor": 0
+      },
+      "plim_at_identity": {
+        "mbias": 0.5128,
+        "iv": 0.6598,
+        "frontdoor": 0.4998
+      },
+      "asv_tau05": {
+        "mbias": {
+          "sign_flip": null,
+          "magnitude_10pct": null
+        },
+        "iv": {
+          "sign_flip_range": "1.1-6.7",
+          "magnitude_10pct": 0
+        },
+        "frontdoor": {
+          "sign_flip": null,
+          "magnitude_10pct_range": "0.064-0.387"
+        }
+      },
+      "mc_coverage": {
+        "mbias_tau005": {
+          "plim_acc": 1,
+          "bias_bounded": 1
+        },
+        "mbias_tau01": {
+          "plim_acc": 1,
+          "bias_bounded": 1
+        },
+        "iv_tau005": {
+          "plim_acc": 1,
+          "bias_bounded": 1
+        },
+        "iv_tau01": {
+          "plim_acc": 1,
+          "bias_bounded": 1
+        },
+        "frontdoor_tau005": {
+          "plim_acc": 1,
+          "bias_bounded": 1
+        },
+        "frontdoor_tau01": {
+          "plim_acc": 1,
+          "bias_bounded": 1
+        }
+      },
+      "type_errors_summary": "Type I near nominal under H0; magnitude-ASV filter (threshold=1.0) blocks all H1 rejections (mag_rej=0.0), conservative for small tau",
+      "runtime_seconds": 407
+    },
+    "completed_at": "2026-05-20T14:49:16.555Z"
+  },
+  "timestamp": "2026-05-20T14:49:16.581317+00:00",
+  "trigger": "update_registry"
+}

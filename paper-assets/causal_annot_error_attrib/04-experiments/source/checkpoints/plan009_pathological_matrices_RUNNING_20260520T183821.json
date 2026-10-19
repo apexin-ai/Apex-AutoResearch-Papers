@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan009_pathological_matrices",
+  "project": "causal_annot_error_attrib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:10:16.587Z",
+    "updated_at": "2026-05-20T18:38:21.415Z",
+    "hypothesis": "病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\"安全区\"和\"灾难区\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。",
+    "parent": "plan001_dag_taxonomy",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/causal_annot_error_attrib && mkdir -p artifacts/plan009 && python plan_009_pathological_matrices.py --M 1000 --K 3 5 7 --device cuda:0 2>&1 | tee artifacts/plan009/plan009_run.log\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/causal_annot_error_attrib/plan009_pathological_matrices.log",
+      "submitted_at": "2026-05-20T18:37:51.987Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "server": "home-1x5090",
+    "gpu": "cuda:0",
+    "account": "sonny",
+    "reproduce": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T18:37:49.350Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/causal_annot_error_attrib && mkdir -p artifacts/plan009 && python plan_009_pathological_matrices.py --M 1000 --K 3 5 7 --device cuda:0 2>&1 | tee artifacts/plan009/plan009_run.log\"",
+      "finished_at": "2026-05-20T18:38:19.933Z",
+      "training_hours": 0.01
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/causal_annot_error_attrib/plan009_pathological_matrices.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T18:38:21.484510+00:00",
+  "trigger": "update_registry"
+}

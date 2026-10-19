@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42092ec5654b48f068e9",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code e2e demo",
+  "task_key": "worker_code_e2e_demo_20260523T143128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e2e_demo_20260523T143128_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "221ecf5ffcd2e0e816611b9d1bf943525b9d2e7149ecf56e40bce09ed576cee1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功，结果符合预期：\n\n- **Confounding**: naive bias = +22.71%, naive_plugin 和 MLA 的 improvement = 0.0%（FWL 不变性，校正无法改善 treatment coefficient），ASV magnitude δ* = 0.352\n- **Exposure**: naive bias = -42.87%, PPI++ corrected bias = -0.22%, improvement = +90.9%，ASV magnitude δ* = 0.239\n\nJSON 结果已写入 `artifacts/e2e_demo_results.json`，LaTeX 表格已写入 `artifacts/e2e_demo_table.tex`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e2e-demo.md"
+}

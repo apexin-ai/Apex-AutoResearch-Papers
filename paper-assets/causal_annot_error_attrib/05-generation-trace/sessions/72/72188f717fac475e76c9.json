@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72188f717fac475e76c9",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan009 kill duplicate",
+  "task_key": "worker_infra_plan009-kill-duplicate_20260520T184735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan009-kill-duplicate_20260520T184735_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "ad0336372ab2a8ab35128ddaaaa287f8df8e811d0aae81f44b5efb930114b638"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**PID 497866 和 497949 都已终止**，tmux session `plan009_pathological_matrices` 也不存在，artifacts 目录下无 plan_009 产出。两个进程均已自行结束，无需手动 kill。如果需要重新运行 plan_009，需要重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan009-kill-duplicate.md"
+}

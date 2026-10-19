@@ -1,0 +1,239 @@
+dreams:
+  dream_20260520T072911:
+    dream_id: dream_20260520T072911
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key uncertainty: will mediator/collider DAGs show direction reversal under
+      non-differential multi-class error? Confounding DAG was monotonic in MVP. Also:
+      is ASV framework practically useful enough vs just reporting confusion matrices?'
+    what_if: []
+    pid: null
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fe2624c0c94b277835fb4d896f
+    started_at: '2026-05-20T07:29:11+00:00'
+    updated_at: '2026-05-20T07:45:27+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 3e4941df957edde61a765e8ccbeba0379dbcbff6282808554ac3ca2560eb709b
+  dream_20260520T074549:
+    dream_id: dream_20260520T074549
+    project: causal_annot_error_attrib
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key uncertainty: will mediator/collider DAGs show direction reversal under
+      non-differential multi-class error? Confounding DAG was monotonic in MVP. Also:
+      is ASV framework practically useful enough vs just reporting confusion matrices?'
+    what_if: []
+    pid: 646590
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fe2241450d4b2ed0d009abfd91
+    started_at: '2026-05-20T07:45:49+00:00'
+    updated_at: '2026-05-20T09:03:47+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f706b400cd2e702bb7a7bd9cf956b496ff8c1e833cfe19f5c82566f873ecc8b0
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260521T052211:
+    dream_id: dream_20260521T052211
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'This re-dream follows targeted fixes to all 5 cross-tier structural issues
+      from the previous Dream (best 4/6, median 4/6, worst 3.5/6). Key improvements
+      since last Dream: (1) Related work expanded from ~11 to 31 references, including
+      Carroll 2006, Dosemeci 1990, Jurek 2005, Lash 2009, Grimmer 2022; (2) ASV vs
+      probabilistic bias analysis (Lash et al.) explicitly delineated; (3) Brenner
+      (1993) reconciliation footnote added; (4) IV Dirichlet subspace analysis added
+      to appendix (sign flip→0% at diag≥0.5, but 100% amplification persists); (5)
+      Non-differential stress test in progress (may complete during Dream). Paper
+      now has 6 figures, formal proofs in appendix, 16 pages total (8 main + 8 appendix),
+      31 citations.'
+    what_if: []
+    pid: 778517
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fdd26faec80b219939d4cbe277
+    started_at: '2026-05-21T05:22:11+00:00'
+    updated_at: '2026-05-21T05:22:21+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"a56ec38d-5c84-4087-8fed-ed53f2811656","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 07b942bcab3d8dbc667fbf3fbe3221edee77bab4622267c807216c7969b6a430
+  dream_20260521T052307:
+    dream_id: dream_20260521T052307
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Re-dream after targeted fixes to all 5 cross-tier structural issues from
+      previous Dream (best 4/6, median 4/6, worst 3.5/6). Key improvements: (1) Related
+      work 31 refs (from ~11), (2) ASV vs PBA delineation, (3) Brenner reconciliation,
+      (4) IV Dirichlet subspace appendix, (5) Non-differential stress test in progress.
+      Paper: 6 figures, formal proofs, 16 pages (8+8), 31 citations.'
+    what_if: []
+    pid: 778665
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fdd250c6538b11130f3ca46432
+    started_at: '2026-05-21T05:23:07+00:00'
+    updated_at: '2026-05-21T05:23:18+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"e83f2a18-fc10-43c1-bfe5-5119dabe10fd","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T052449:
+    dream_id: dream_20260521T052449
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: Re-dream after fixing related work, ASV positioning, Brenner reconciliation,
+      IV subspace analysis.
+    what_if: []
+    pid: 778918
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fdd3c849cb4b486c8a122c5522
+    started_at: '2026-05-21T05:24:49+00:00'
+    updated_at: '2026-05-21T05:25:03+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"2d2168f2-f01d-4645-8fc5-529549a6a23f","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T052547:
+    dream_id: dream_20260521T052547
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: Re-dream after fixing related work, ASV positioning, Brenner reconciliation,
+      IV subspace.
+    what_if: []
+    pid: 779020
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fdd3b7654b4b26811839789432
+    started_at: '2026-05-21T05:25:47+00:00'
+    updated_at: '2026-05-21T05:25:57+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"b570b454-2cee-4b30-b53f-235acfc26555","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T052836:
+    dream_id: dream_20260521T052836
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Re-dream after fixing: related work expanded +5 refs with epi/NLP/sensitivity
+      analysis engagement, ASV vs PBA delineation, Brenner reconciliation footnote,
+      IV Dirichlet subspace appendix. Check if structural review issues are resolved.'
+    what_if: []
+    pid: 779445
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fddce9fccb8b395322e953ee44
+    started_at: '2026-05-21T05:28:36+00:00'
+    updated_at: '2026-05-21T05:28:48+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"a102f1da-2135-4792-ab4c-f84dd64a548e","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T054240:
+    dream_id: dream_20260521T054240
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Post-fix re-dream: all 5 cross-tier structural issues resolved (related
+      work, ASV vs PBA, Brenner, IV subspace, nondiff stress test). Evaluate overall
+      paper quality improvement.'
+    what_if: []
+    pid: 780999
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fddfbdca0a8b224f0eb442fff0
+    started_at: '2026-05-21T05:42:40+00:00'
+    updated_at: '2026-05-21T05:42:51+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"d3e1101a-a520-46c4-b3af-6685a83af490","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T054441:
+    dream_id: dream_20260521T054441
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Post-fix re-dream: all 5 structural issues resolved. Related work +5 refs,
+      ASV vs PBA, Brenner footnote, IV subspace appendix, nondiff stress test appendix+limitations.'
+    what_if: []
+    pid: 781275
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fddf2557480b2c2b623f5ccbf2
+    started_at: '2026-05-21T05:44:41+00:00'
+    updated_at: '2026-05-21T05:44:52+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"57194e5a-5590-4833-b912-d5ac9d41aff4","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T054528:
+    dream_id: dream_20260521T054528
+    project: causal_annot_error_attrib
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Post-fix re-dream: all 5 structural issues resolved. Related work +5 refs,
+      ASV vs PBA, Brenner footnote, IV subspace appendix, nondiff stress test appendix+limitations.'
+    what_if: []
+    pid: 781609
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fddf17b1504b14fa7e87b0eea4
+    started_at: '2026-05-21T05:45:28+00:00'
+    updated_at: '2026-05-21T05:55:01+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: all tiers failed
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2
+  dream_20260521T083151:
+    dream_id: dream_20260521T083151
+    project: causal_annot_error_attrib
+    status: imagining
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Paper now includes 3 new supplementary results: (1) Theory-MC MAPE 2.0%
+      across 126 scenarios, (2) Empirical PPI++ validation 96.2% bias reduction with
+      real LLM confusion matrices, (3) Dirichlet overlay figure connecting theoretical
+      landscape to empirical LLM positions. Non-differential stress test also added
+      to appendix. Evaluate whether these additions close the gaps identified in previous
+      dream reviews.'
+    what_if: []
+    pid: 793594
+    chat_id: oc_ca838cd3ed4c7e2d9c8e3459edd98b90
+    card_message_id: om_x100b6fd8614b0d78b200d3f721da66d
+    started_at: '2026-05-21T08:31:51+00:00'
+    updated_at: '2026-05-21T08:31:57+00:00'
+    stages_completed: []
+    error: null
+    context_hash: 3b49775a9cc8579f02bcc8f9c24b30e0471b5c517c13ab9edf109e597b82b3d2

@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp-A-005",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-10T15:55:11.134Z",
+    "updated_at": "2026-05-10T15:55:19.928Z",
+    "spec": {
+      "hypothesis": "TopK crosscoder (K=50, 硬约束 L0=50) 产生 monosemantic donor-exclusive features，rank-1 手术 + bias injection 通过 Gate 5 行为验证。MVP 最后公平测试。",
+      "model_name": "EleutherAI/pythia-70m",
+      "server": "home-1x5090",
+      "data_path": "monology/pile-uncopyrighted",
+      "data_count": 2000,
+      "seed": 42,
+      "description": "mvp-A-005: TopK crosscoder (K=50), 无 L1, 纯 MSE 损失, rank-1 + bias injection 评估 Gates 1-5",
+      "parent": "mvp-A-002",
+      "donor_checkpoint": "step143000",
+      "target_checkpoint": "step1000"
+    }
+  },
+  "timestamp": "2026-05-10T15:55:19.941471+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14cdd28af2667da9aec6",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "math conjecture1 proof v2",
+  "task_key": "worker_math_conjecture1_proof_v2_20260524T032119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_math_conjecture1_proof_v2_20260524T032119_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "88c420dd693e6c1a3236908d032bb354c227c2ce57ac88fc14348d1950a3b305"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 交付物总结\n\n### Phase 1: 数值验证 — PASSED\n\n**`artifacts/conjecture1_formula_verify.py`** — 三路交叉验证:\n- **方法 B↔C**（原始公式 vs Director公式）：最大相对误差 **3.78e-09** → 代数恒等式确认\n- **Key identity** $e_j = \\frac{1}{q_j}\\sum_{k\\neq j}(C_0)_{jk}p_k(g_j - g_k)$：误差 < 2.2e-15\n- **矩阵形式** $V_B'(1) = g^T M g$：误差 < 3.3e-08\n- **DD condition** 充分性：110/110 cases V'(1)≤0 → 100% sufficient\n- **DS symmetric + uniform p**：10000/10000 all V'(1)≤0\n\n### Phase 2: 证明结果\n\n**`artifacts/conjecture1_diagonal_dominant_proof.tex`**（6 pages, compiled PDF）:\n\n| 条件 | 结果 | 方法 |\n|------|------|------|\n| K=2, α_j≥1/2 | V'(1)≤0 精确 | 已有 |\n| K=3 symmetric | V'(1)≤0 精确 | 已有 |\n| **DS + α_j≥1/2 + uniform p** | **V'(1)≤0 精确** | **特征值分析（新Thm 1）** |\n| **α_j ≥ q_j/(p_j+q_j)** | **V'(1)≤0 精确** | **逐分量CS（新Thm 2）** |\n| **α_j ≥ c > 1/K** | **V'(1) ≤ (1-c)²R_g²** | **定量界（新Thm 3）** |\n| α_j≥1/2, 任意 p | ε < 0.001 (数值) | 10⁵ configs |\n| 一般 column-stochastic | ε < 0.017 (数值) | 545,945 curves |\n\n### 关键发现\n\n1. **未能证明完全一般情况**。α_j ≥ 1/2 对一般 column-stochastic + 非均匀 p **不足以保证** V'(1)≤0（0.69% 反例），但反例全部来自极端类别不平衡（p_max/p_min > 300），且最大 step deviation < 0.001。\n\n2. **瓶颈在于 spillover 比率 q_j/p_j**。逐分量 Cauchy-Schwarz 证明需要 α_j ≥ q_j/(p_j+q_j)，这是关于 C₀ 和 p 的联合条件。当某类别 p_j 极小时条件失败。\n\n3. **一般情况证明可能需要利用 column-stochastic 矩阵的全局结构**（如 Birkhoff 分解、M 矩阵谱性质），而非逐行分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/math-conjecture1-proof-v2.md"
+}

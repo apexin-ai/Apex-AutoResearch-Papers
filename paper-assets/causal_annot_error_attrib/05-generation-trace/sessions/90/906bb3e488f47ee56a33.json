@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "906bb3e488f47ee56a33",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan001 collider mbias iv",
+  "task_key": "worker_code_plan001-collider-mbias-iv_20260520T092800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-collider-mbias-iv_20260520T092800.log",
+    "occurrence": 1,
+    "bytes": 1093549,
+    "sha256": "ffac6db74ad4bf4a0b9824e345e64d6cee93a18675aec49f5fe8e848afca6d3f"
+  },
+  "statistics": {
+    "messages": 483,
+    "user_turns": 1,
+    "tool_calls": 189,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 97,
+      "tool_call": 189,
+      "tool_result": 189,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "906bb3e488f47ee56a33-part-0001.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 341,
+      "chunks": [
+        {
+          "path": "906bb3e488f47ee56a33-part-0001.json",
+          "message_count": 38
+        },
+        {
+          "path": "906bb3e488f47ee56a33-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "906bb3e488f47ee56a33-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-collider-mbias-iv.md"
+}

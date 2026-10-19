@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0fe869ac1318889fb60",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan005 reviewer critical fix",
+  "task_key": "worker_code_plan005-reviewer-critical-fix_20260520T145906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan005-reviewer-critical-fix_20260520T145906_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "1103c9aa6b79990f8ca126c1cd95ae2800f4f02977b9100b05689b07e9a08414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修复版脚本已创建并运行成功。\n\n**修复内容：**\n- **C1**: 添加 `compute_signif_asv_fast`（line 423）\n- **C2**: `compute_magnitude_asv_fast` 在 τ≈0 时返回 `0.0`（line 409）\n- **W1**: IV τ_true 改用 `plim_iv(I)=0.6598`（原为 DGP β=0.5）\n- **W2**: M-bias τ_true 改用 `plim_mbias(I)[1]=0.5128`（原为 DGP τ=0.5）\n- **Part 5**: 完全重写为 significance-based ASV rejection rule\n\n**关键结果：**\n\n| 拓扑 | Type I (ASV filter) | Power (τ=0.05) | Power (τ=0.1) |\n|------|-------------------|----------------|----------------|\n| M-bias | **0%** | 95.8–99.2% | 100% |\n| IV | **0%** | 0% | 0% |\n| Front-door | **0%** | 100% | 100% |\n\n- Type I = 0% 对所有拓扑成立\n- IV power=0% 是正确行为：Wald 估计量极度脆弱（signif_ASV≈0），ASV filter 保守地阻止所有拒绝\n- 运行耗时 46.2s\n\n**输出文件：**\n- `/home/sonny/causal_annot_error_attrib/plan_005_asv_extended_fixed.py`\n- `/home/sonny/causal_annot_error_attrib/plan005_fixed_run.log`\n- `/home/sonny/causal_annot_error_attrib/plan005_fixed_summary.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan005-reviewer-critical-fix.md"
+}

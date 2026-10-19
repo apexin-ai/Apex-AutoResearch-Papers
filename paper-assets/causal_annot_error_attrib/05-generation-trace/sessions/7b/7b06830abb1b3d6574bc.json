@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b06830abb1b3d6574bc",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan003 api curl test",
+  "task_key": "worker_infra_plan003-api-curl-test_20260520T112603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan003-api-curl-test_20260520T112603_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "51dc98661b61952f383069e62209d3e7554bc692848bb6d2933f7bab4abac617"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### API 端点测试\n\n| 模型 | HTTP Status | 响应时间 | 超时 | 响应摘要 |\n|------|------------|---------|------|---------|\n| deepseek/deepseek-chat | **200** | 14.87s | 否 | `\"Hello! 😊 How\"` (provider: Novita) |\n| meta-llama/llama-4-maverick | **200** | 6.83s | 否 | `\"hello! How can I\"` (provider: DeepInfra) |\n| qwen/qwen3-235b-a22b | **200** | 6.33s | 否 | `\"Hello! How can I assist\"` (provider: Alibaba) |\n| /v1/models (无 Auth) | **422** | 1.43s | 否 | 缺 Authorization header（预期） |\n\n**三个模型端点全部正常可达，无超时。**\n\n### 进程状态\n\n- PID 401208：**仍在运行**，状态 S (sleeping)，已运行 20:32\n- 日志最新进度：**[150/1500]**，已经从之前卡住的 100 条推进到了 150 条\n\n**结论：API 端点无问题，进程已恢复推进（100 → 150）。之前的卡顿可能是临时网络延迟或 API 限流，现在已自行恢复。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan003-api-curl-test.md"
+}

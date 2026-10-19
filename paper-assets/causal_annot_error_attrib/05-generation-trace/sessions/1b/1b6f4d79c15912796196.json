@@ -1,0 +1,614 @@
+{
+  "schema_version": "1.0",
+  "id": "1b6f4d79c15912796196",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "audit page fitting",
+  "task_key": "worker_audit_page_fitting_20260522T021756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_page_fitting_20260522T021756.jsonl",
+    "occurrence": 1,
+    "bytes": 25925,
+    "sha256": "3a555feb58d018c3110322d01e7c0bd1a03c06e1ef09ab29f50ac10282c27953"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T02:21:02.687493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T02:21:02.687859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[letterpaper]{article}\n2\t\\usepackage[submission]{aaai2026}\n3\t\\usepackage{times}\n4\t\\usepackage{helvet}\n5\t\\usepackage{courier}\n6\t\\usepackage[hyphens]{url}\n7\t\\usepackage{graphicx}\n8\t\\urlstyle{rm}\n9\t\\def\\UrlFont{\\rm}\n10\t\\usepackage{natbib}\n11\t\\usepackage{caption}\n12\t\\frenchspacing\n13\t\\setlength{\\pdfpagewidth}{8.5in}\n14\t\\setlength{\\pdfpageheight}{11in}\n15\t\n16\t\\usepackage{algorithm}\n17\t\\usepackage{algorithmic}\n18\t\n19\t\\usepackage{amsmath,amssymb,amsthm}\n20\t\\usepackage{booktabs}\n21\t\\usepackage{xcolor}\n22\t\\usepackage{pifont}\n23\t\\usepackage{multirow}\n24\t\n25\t\\newtheorem{definition}{Definition}\n26\t\\newtheorem{proposition}{Proposition}\n27\t\\newtheorem{theorem}{Theorem}\n28\t\\newtheorem{lemma}{Lemma}\n29\t\n30\t\\pdfinfo{\n31\t/TemplateVersion (2026.1)\n32\t}\n33\t\n34\t\\setcounter{secnumdepth}{0}\n35\t\n36\t\\graphicspath{{../../figures/paper/}}\n37\t\n38\t\\title{Multi-Class Annotation Errors in Causal Inference:\\\\Topology-Dependent Bias, Sensitivity, and Correction}\n39\t\n40\t\\author{\n41\t    Anonymous Author(s)\n42\t}\n43\t\\affiliations{\n44\t    Anonymous Institution(s)\n45\t}\n46\t\n47\t\\begin{document}\n48\t\\maketitle\n49\t\n50\t\\input{abstract}\n51\t\n52\t\\input{introduction}\n53\t\n54\t\\input{related_work}\n55\t\n56\t\\input{method}\n57\t\n58\t% ── Figures (placed before experiments for float positioning) ──\n59\t\n60\t\\begin{figure*}[t]\n61\t\\centering\n62\t\\includegraphics[width=\\textwidth]{fig1_dag_taxonomy.pdf}\n63\t\\caption{Seven canonical DAG topologies with starred-node annotation. In each panel, $A$ (latent true label) connects to $A^*$ (observed LLM annotation) via a dashed measurement edge. The causal role of $A$ varies across topologies, producing structurally distinct bias patterns under misclassification.}\n64\t\\label{fig:dag_taxonomy}\n65\t\\end{figure*}\n66\t\n67\t\\begin{figure*}[t]\n68\t\\centering\n69\t\\includegraphics[width=\\textwidth]{fig2_bias_distribution.pdf}\n70\t\\caption{Bias distributions under 100{,}000 random $K{=}3$ confusion matrices for seven topologies. Red shading indicates sign reversal ($\\hat{\\tau}$ opposite to\n…[truncated 797 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T02:21:02.688047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/{Makefile,latexmkrc,.latexmkrc,makefile}",
+              "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T02:21:02.688204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T02:21:02.688336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T02:21:02.688454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/method.tex\ndocs/paper/abstract.tex\ndocs/paper/experiments.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/appendix_proofs.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T02:21:02.688587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T02:21:02.688721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLarge language models (LLMs) are increasingly used as annotators in computational social science, yet annotation errors propagate into downstream causal estimates in ways that binary measurement error theory cannot predict. We present the first systematic framework characterizing how $K$-class confusion matrix structure interacts with DAG topology to determine bias direction and magnitude. We derive bias expressions for seven canonical DAG topologies under multi-class non-differential misclassification (closed-form for confounding, exposure, and mediation; numerically validated for all seven) and establish a structural sign-flip guarantee (with formal proofs for three topologies and Monte Carlo validation for all seven): five topologies (confounding, mediation, collider, M-bias, front-door) never produce sign reversal regardless of the confusion matrix, while exposure and instrumental variable topologies can. In the exposure DAG, 83.4\\% of $K{=}3$ confusion matrices cause sign reversal, a failure that persists at 13.7\\% violation rate (2.1\\% sign reversal, 11.7\\% amplification) even with classifier accuracy above 70\\%. We introduce Annotation Sensitivity Values (ASVs), a sensitivity analysis framework with three complementary measures that reveal a topology-dependent vulnerability spectrum: IV estimates are maximally vulnerable (52.6\\% sign reversal; sign-flip ASV $= 1.1$--$6.7$) while M-bias adjustment is immune (ASV $= \\infty$). We evaluate five correction methods across all topologies and prove a Frisch--Waugh--Lovell invariance result: matrix-based corrections achieve 0\\% bias reduction on the target coefficient for four topologies, while PPI++ achieves 47.0\\% RMSE reduction but requires gold labels and is harmful for M-bias ($-$88\\%). Empirical validation on three CSS tasks ($K{=}2,3,10$) with four LLMs confirms the theoretical predictions: IV bias ranges from 30\\% at $K{=}10$ to 252\\% at $K{=}3$ across annotation settings, and zero sign fl\n…[truncated 244 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T02:21:02.688869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T02:21:02.689008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tLarge language models are rapidly replacing human annotators in computational social science, with researchers using LLM-generated labels for tasks ranging from sentiment classification to political stance detection~\\cite{egami_hinck_stewart_wei2023, baumann2025}. Crucially, most of these tasks are inherently multi-class: stance detection uses 3--4 categories, sentiment analysis 5, and disaster response taxonomies 10 or more. This shift promises dramatic cost reduction, but introduces a critical validity gap: annotation errors from imperfect classifiers propagate into downstream causal estimates in ways that depend on both the error structure and the causal design. \\citet{baumann2025} demonstrate that across 37 annotation tasks, 31\\% of hypotheses yield incorrect conclusions with state-of-the-art LLMs, rising to 50\\% for smaller models; these errors are highly correlated across models (60\\% agreement when both err)~\\cite{kim_garg2025}, undermining ensemble-based mitigation. Analyzing the \\emph{structure} of annotation error, rather than simply reducing its magnitude, is essential for valid downstream inference.\n5\t\n6\tThe consequences can be catastrophic. Under $K{=}3$ non-differential exposure misclassification, 83.4\\% of confusion matrices cause \\emph{sign reversal} of the estimated treatment effect, where the estimated direction of the causal relationship is opposite to the truth. This failure breaks the classical binary guarantee that non-differential misclassification biases estimates ``toward the null''~\\cite{brenner1993}, a guarantee that many applied researchers implicitly rely upon. The breakdown is not an edge case: it persists even when classifier accuracy exceeds 70\\% (13.7\\% violation rate at diagonal $\\geq 0.7$). Moreover, standard classification metrics do not predict downstream causal risk: within a narrow $F_1$ range of 0.614--0.690 across three frontier LLMs, relative bias varies by an order of\n…[truncated 3212 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T02:21:02.689144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T02:21:02.689302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Measurement error in causal inference.}\n5\tThe statistical foundations of measurement error are established in \\citet{carroll2006} and \\citet{gustafson2004}, with the starred-node DAG framework for reasoning about measurement bias formalized by \\citet{hernan_cole2009}. For binary variables, non-differential misclassification biases estimates toward the null~\\cite{brenner1993, ogburn_vanderweele2012}. \\citet{dosemeci1990} first demonstrated that this guarantee fails for polytomous exposures, and \\citet{jurek2005} clarified that the toward-null intuition is frequently misapplied when $K \\geq 3$. \\citet{veirod_laake2001} derived bias expressions for multi-category exposure misclassification in Poisson regression, and \\citet{edwards_lessler_naimi2021} showed that dependent misclassification can bias in either direction. However, all of these works analyze bias within a single DAG topology. Our taxonomy is the first to systematically characterize how the \\emph{same} $K$-class confusion matrix produces qualitatively different bias across seven canonical topologies.\n6\t\n7\t\\paragraph{Text classifiers and LLM annotation in causal studies.}\n8\t\\citet{grimmer2022} provide the methodological foundation for using text as data in social science, while \\citet{wood_doughty2018} first applied DAG reasoning to text classifier measurement error. \\citet{teblunthuis2024} provided the most complete binary treatment: four DAG scenarios with testable conditions and a Maximum Likelihood Adjustment method, but restricted to $K{=}2$. \\citet{lee_wood_doughty2024} extended to categorical LLM classifiers but covered only unobserved confounding. On the annotation quality side, \\citet{baumann2025} demonstrated that 31\\% of hypotheses yield incorrect conclusions with LLM annotations, \\citet{kim_garg2025} showed 60\\% error correlation across models, and \\citet{messing2026} decomposed LLM pipeline variance but excluded causal identifica\n…[truncated 2274 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T02:21:02.689434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T02:21:02.689615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Setup and Notation}\n5\t\\label{sec:notation}\n6\t\n7\tLet $A$ denote a true $K$-class categorical variable (e.g., sentiment with $K{=}3$ levels) and $A^*$ its observed, potentially misclassified version produced by an LLM annotator. The misclassification process is characterized by a $K{\\times}K$ confusion matrix $C$ with entries $C_{jk} = P(A^*{=}j \\mid A{=}k)$, where each column sums to one. Following \\citet{hernan_cole2009}, we represent this measurement process using \\emph{starred-node} DAGs: the true variable $A$ is latent, and the observed $A^*$ is connected to $A$ via a dashed measurement edge.\n8\t\n9\t\\begin{definition}[Non-differential misclassification]\n10\t\\label{def:nondiff}\n11\tMisclassification of $A$ is non-differential with respect to outcome $Y$ and covariates $\\mathbf{Z}$ if $P(A^*{=}j \\mid A{=}k, Y, \\mathbf{Z}) = P(A^*{=}j \\mid A{=}k) = C_{jk}$ for all $j,k$.\n12\t\\end{definition}\n13\t\n14\tWe study seven canonical DAG topologies (Figure~\\ref{fig:dag_taxonomy})~\\cite{pearl2009} in which $A$ occupies structurally distinct causal roles: confounder, exposure, mediator, collider, M-bias variable, front-door mediator, and instrument. Each role induces a different functional relationship between $C$ and the probability limit of the standard causal estimator, yielding topology-dependent bias.\n15\t\n16\t\\subsection{Multi-Class Bias Expressions}\n17\t\\label{sec:bias_expressions}\n18\t\n19\tFor each topology, we derive the probability limit of the naive estimator that substitutes $A^*$ for $A$. Let $\\tau$ denote the target causal parameter and $\\hat{\\tau}(A^*)$ the estimator using misclassified annotations.\n20\t\n21\t\\paragraph{Confounding ($A$ = confounder).}\n22\tWhen $A$ confounds the $X{\\to}Y$ relationship, the OLS estimator controlling for $A^*$ has probability limit\n23\t\\begin{equation}\n24\t\\label{eq:confounding}\n25\t\\text{plim}\\;\\hat{\\tau}(A^*) = \\bigl(\\mathbb{E}[Z^{\\prime}Z]\\bigr)^{-1}\\mathbb{E}[Z^{\\prime}X]\\,\\boldsymbol{\\bet\n…[truncated 10189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T02:21:02.689757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T02:21:02.689968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate the multi-class bias taxonomy and ASV framework through analytical derivations validated by Monte Carlo simulation, covering seven canonical DAG topologies under $K{=}3$ non-differential misclassification.\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\tWe study seven DAG topologies where annotation variable $A$ enters at structurally distinct positions: confounding, exposure, mediation, collider, M-bias, front-door, and instrumental variable (IV). For each topology, we sample $K{\\times}K$ confusion matrices from a Dirichlet$(1,1,1)$ prior (each column independently), generating 100{,}000 random matrices per configuration. Each matrix defines a non-differential misclassification mechanism $C_{jk} = P(A^*{=}j \\mid A{=}k)$.\n10\t\n11\tFor every sampled $C$, we compute the analytical probability limit of the causal estimator and validate it against Monte Carlo simulation with $N{=}10{,}000$ samples per replication. ASV experiments use the parameterization $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $\\delta{=}0$ recovers perfect classification and $\\delta{=}1$ yields the reference matrix $C_0$.\n12\t\n13\t\\subsection{Bias Taxonomy}\n14\t\\label{sec:taxonomy_results}\n15\t\n16\t\\paragraph{Theory-MC agreement.}\n17\tAnalytical probability limits match Monte Carlo estimates with grand mean absolute percentage error (MAPE) of 2.0\\% across 126 scenarios (18 empirical LLM configurations $\\times$ 7 topologies, $N_{\\text{MC}}{=}200$ replicates, $N{=}10{,}000$). Per-topology MAPE ranges from 0.5\\% (confounding) to 5.5\\% (IV); the IV maximum reflects finite-sample variance amplification in the Wald estimator's small denominator, consistent with known properties of the Wald ratio.\n18\t\n19\t\\paragraph{Exposure DAG: catastrophic sign reversal.}\n20\tUnder the full Dirichlet$(1,1,1)$ prior, 85\\% of $K{=}3$ confusion matrices produce bias that violates the binary ``toward-null'' guarantee. More critically, 83.4\\% of matrices cause \\em\n…[truncated 18466 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T02:21:02.690110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T02:21:02.690261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe presented the first systematic characterization of how multi-class annotation errors interact with causal DAG topology. Our bias taxonomy across seven topologies reveals that the classical binary guarantee of bias toward the null breaks for $K \\geq 3$: exposure and IV topologies can produce sign reversal (83.4\\% and 52.6\\% respectively), while five topologies maintain a structural guarantee of no sign flip. The ASV framework provides topology-aware sensitivity diagnostics, revealing a vulnerability spectrum from IV (maximally fragile) to M-bias (immune). Our correction guidance analysis reveals that correction method effectiveness is itself topology-dependent: a Frisch--Waugh--Lovell invariance result proves matrix-based corrections are ineffective for four topologies, while PPI++ achieves the highest grand-mean RMSE reduction (47.0\\%) at the cost of gold-standard labels, yet is catastrophically harmful for M-bias ($-$88\\%). Binarization collapse analysis further demonstrates that simplifying multi-class annotations to binary introduces additional bias varying 154$\\times$ across topologies.\n5\t\n6\t\\paragraph{Limitations.}\n7\tOur framework assumes non-differential misclassification: $P(A^*|A, Y, \\mathbf{Z}) = P(A^*|A)$. This holds when the LLM annotator has no access to the outcome $Y$, but may be violated when few-shot examples are selected conditional on $Y$ or when annotation difficulty varies with the outcome. A stress test on the exposure topology (Appendix~\\ref{sec:nondiff_stress}) shows moderate robustness: at $\\varepsilon{=}0.05$ differential perturbation, violation rates increase by fewer than 3 percentage points. Under larger departures, the bias expressions provide an upper bound rather than an exact characterization. Closed-form bias expressions are derived for $K{=}3$ and verified numerically at $K{=}5,7$; expressions for arbitrary $K$ remain open. The framework assumes a single annotator; extending to\n…[truncated 724 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T02:21:02.690394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/appendix_proofs.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T02:21:02.690932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Proof of Proposition~\\ref{prop:signflip}}\n2\t\\label{app:proof}\n3\t\n4\tWe provide algebraic proofs of sign preservation for the confounding, collider, mediation, and front-door topologies, and an explicit counterexample for the exposure topology.\n5\tThroughout, $A\\in\\{0,1,\\dots,K{-}1\\}$ with prior $p_k=P(A{=}k)$, and $C$ is a $K{\\times}K$ column-stochastic confusion matrix with $C_{jk}=P(A^*{=}j\\mid A{=}k)$.\n6\tWe use category~0 as the reference and let $D_j=\\mathbf{1}(A{=}j)$, $D_j^*=\\mathbf{1}(A^*{=}j)$ for $j=1,\\dots,K{-}1$.\n7\t\n8\t\\subsection{Notation and Key Identities}\n9\t\\label{app:notation}\n10\t\n11\tUnder non-differential misclassification, the misclassified moments factor linearly through $C$.\n12\tDefine the population vectors:\n13\t\\begin{align}\n14\t  q_j &= P(A^*{=}j) = \\textstyle\\sum_k C_{jk}\\,p_k, \\label{eq:q}\\\\\n15\t  \\mathrm{ct}_j &= \\mathbb{E}[T\\cdot D_j^*] = \\textstyle\\sum_k C_{jk}\\,\\mathbb{E}[T\\cdot D_k], \\label{eq:ct}\\\\\n16\t  \\mathrm{cy}_j &= \\mathbb{E}[Y\\cdot D_j^*] = \\textstyle\\sum_k C_{jk}\\,\\mathbb{E}[Y\\cdot D_k]. \\label{eq:cy}\n17\t\\end{align}\n18\tWrite $q = Cp$, $\\mathrm{ct} = C\\,\\mathbb{E}[T\\cdot D]$, and $\\mathrm{cy} = C\\,\\mathbb{E}[Y\\cdot D]$, where $D=(D_0,\\dots,D_{K-1})^\\top$.\n19\t\n20\t\\subsection{Frisch--Waugh--Lovell Decomposition}\n21\t\\label{app:fwl}\n22\t\n23\tFor topologies where $T$ is directly observed (confounding, mediation, collider, M-bias, front-door), the estimator regresses $Y$ on $Z^*=(1,T,D_1^*,\\dots,D_{K-1}^*)$.\n24\tBy the Frisch--Waugh--Lovell (FWL) theorem, the coefficient on $T$ satisfies:\n25\t\\begin{equation}\n26\t  \\operatorname{plim}\\hat{\\tau}(C)\n27\t  = \\frac{\\mathbb{E}[\\tilde{T}\\,\\tilde{Y}]}{\\mathbb{E}[\\tilde{T}^2]},\n28\t  \\label{eq:fwl}\n29\t\\end{equation}\n30\twhere $\\tilde{T}=T-\\mathbb{E}[T\\mid A^*]$ and $\\tilde{Y}=Y-\\mathbb{E}[Y\\mid A^*]$ are residuals from projecting onto $(1,D_1^*,\\dots,D_{K-1}^*)$.\n31\t\n32\t\\begin{lemma}[Bias decomposition]\n33\t\\label{lem:bias_decomp}\n34\tSuppose $Y = \\tau T + f(A) + \\varepsilon_Y$ with $\\varepsilon_Y \\\n…[truncated 40788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T02:21:02.691098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper && latexmk -pdf main.tex 2>&1 | tail -30",
+              "description": "Compile LaTeX paper with latexmk",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T02:21:02.691240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Rc files read:\n  /etc/LatexMk\nLatexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.\nLatexmk: Nothing to do for 'main.tex'.\nLatexmk: All targets (main.pdf) are up-to-date"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T02:21:02.691378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdfinfo main.pdf 2>/dev/null | grep -i \"pages\\|page size\" || pdftotext main.pdf - 2>/dev/null | grep -c '' | head -1",
+              "description": "Get PDF page count and size info"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T02:21:02.691491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pages:           17\nPage size:       612 x 792 pts (letter)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T02:21:02.691601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport subprocess\n# Count lines per file for size estimation\nimport os\nfiles = ['abstract.tex', 'introduction.tex', 'related_work.tex', 'method.tex', 'experiments.tex', 'conclusion.tex', 'appendix_proofs.tex']\nfor f in files:\n    with open(f) as fh:\n        lines = fh.readlines()\n        chars = sum(len(l) for l in lines)\n        print(f'{f}: {len(lines)} lines, {chars} chars')\n\"",
+              "description": "Count lines and chars per tex file"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T02:21:02.691714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex: 3 lines, 2236 chars\nintroduction.tex: 18 lines, 5164 chars\nrelated_work.tex: 14 lines, 4238 chars\nmethod.tex: 98 lines, 11901 chars\nexperiments.tex: 160 lines, 19930 chars\nconclusion.tex: 10 lines, 2700 chars\nappendix_proofs.tex: 717 lines, 40024 chars"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T02:21:02.691822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/*.pdf 2>/dev/null",
+              "description": "List figure PDF files"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T02:21:02.691933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  40312 May 20 16:25 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig1_dag_taxonomy.pdf\n-rw-r--r-- 1 ubuntu ubuntu 112779 May 20 22:00 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig2_bias_distribution.pdf\n-rw-r--r-- 1 ubuntu ubuntu  45932 May 20 21:25 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig3_asv_ranking.pdf\n-rw-r--r-- 1 ubuntu ubuntu  37444 May 20 15:58 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig4_binarization.pdf\n-rw-r--r-- 1 ubuntu ubuntu  21244 May 21 08:06 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig5_f1_vs_bias.pdf\n-rw-r--r-- 1 ubuntu ubuntu  26830 May 21 08:06 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig6_asv_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu  57090 May 21 08:24 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig7_dirichlet_overlay.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T02:21:02.692072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.pdf",
+              "pages": "1-17"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T02:21:02.692199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF pages extracted: 17 page(s) from /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/main.pdf (644.6KB)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_page_fitting_20260522T021756",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/audit-page-fitting.md"
+}

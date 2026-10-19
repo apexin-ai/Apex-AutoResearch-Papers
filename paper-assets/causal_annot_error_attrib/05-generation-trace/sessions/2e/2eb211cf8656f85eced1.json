@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eb211cf8656f85eced1",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan011 frontier annotations",
+  "task_key": "worker_code_plan011_frontier_annotations_20260522T054930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan011_frontier_annotations_20260522T054930_result.json",
+    "occurrence": 1,
+    "bytes": 1904,
+    "sha256": "d398cfbc5b0b02e8aae52f5cfcc2f96e895a0948ef947e0dd133d2778fbc1b69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 3 个模型都返回 402 — API key 额度已用尽。**\n\n无法继续执行标注任务。当前状态汇总：\n\n### 已完成（OK, coverage ≥ 95%）\n\n| Dataset | Model | Prompt | n_valid | Accuracy |\n|---------|-------|--------|---------|----------|\n| humaid | deepseek | zero-shot | 1500 | 0.676 |\n| humaid | llama4 | zero-shot | 1500 | 0.658 |\n| humaid | llama4 | few-shot-3 | 1498 | 0.666 |\n| humaid | llama4 | few-shot-5 | 1471 | 0.674 |\n| humaid | qwen3 | zero-shot | 1500 | 0.681 |\n| civil_comments | deepseek | few-shot-5 | 1500 | 0.741 |\n| civil_comments | qwen3 | few-shot-3 | 1496 | 0.811 |\n| civil_comments | qwen3 | few-shot-5 | 1492 | 0.821 |\n| vast | llama4 | zero-shot | 1496 | 0.523 |\n| vast | llama4 | few-shot-3 | 1500 | 0.501 |\n\n### 需要重跑（已清理错误条目，等待有效 API key）\n\n| Dataset | Model | Prompt | 缺失条目 | 原因 |\n|---------|-------|--------|----------|------|\n| humaid | deepseek | few-shot-3 | 155 | 403 |\n| humaid | deepseek | few-shot-5 | 263 | 403 |\n| humaid | qwen3 | few-shot-3 | 77 | 402 |\n| **humaid** | **qwen3** | **few-shot-5** | **1500** | 402 |\n| civil_comments | deepseek | zero-shot | 1500 | 402 |\n| civil_comments | deepseek | few-shot-3 | 1498 | 402 |\n| civil_comments | llama4 | all 3 | 4500 | 402 |\n| civil_comments | qwen3 | zero-shot | 421 | 402 |\n| vast | deepseek | zero-shot | 500 | 402 |\n| vast | deepseek | few-shot-3 | 1500 | 402 |\n| vast | deepseek | few-shot-5 | 1500 | 402 |\n| vast | llama4 | few-shot-5 | 1154 | 402 |\n| vast | qwen3 | all 3 | 4500 | 402 |\n\n**总计约 ~19,000 条需要重跑。** JSONL 文件已清理（保留有效条目、删除错误条目），resume 机制可正常工作。充值后只需运行：\n\n```bash\ncd /home/sonny/causal_annot_error_attrib\nexport OPENROUTER_API_KEY=[REDACTED] annotate.py --all --sample 1500\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan011-frontier-annotations.md"
+}

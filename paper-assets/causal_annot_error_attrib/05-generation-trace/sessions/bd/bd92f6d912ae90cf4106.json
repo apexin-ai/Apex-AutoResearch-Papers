@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bd92f6d912ae90cf4106",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "code plan004 asv v3 envelope magnitude",
+  "task_key": "worker_code_plan004-asv-v3-envelope-magnitude_20260520T132338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-asv-v3-envelope-magnitude_20260520T132338.log",
+    "occurrence": 1,
+    "bytes": 672847,
+    "sha256": "d6b56c6b02a09621defbd35735d596963d15a9da567b0f239d4818612434af90"
+  },
+  "statistics": {
+    "messages": 249,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "bd92f6d912ae90cf4106-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd92f6d912ae90cf4106-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan004-asv-v3-envelope-magnitude.md"
+}

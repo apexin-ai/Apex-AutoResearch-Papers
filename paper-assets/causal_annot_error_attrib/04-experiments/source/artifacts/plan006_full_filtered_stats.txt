@@ -1,0 +1,85 @@
+============================================================
+plan006_full — Zero-Matrix Filter & Recomputed Statistics
+Source: /home/sonny/causal_annot_error_attrib/artifacts/plan006_full/asv_empirical_results.json
+Filter rule: trace(C) < 0.01 → drop config (API-402 artifacts)
+============================================================
+
+--- ZERO CONFIGS DROPPED (12) ---
+[civil_comments]  llama4_zero-shot, llama4_few-shot-3, llama4_few-shot-5,
+                  qwen3_zero-shot, deepseek_zero-shot, deepseek_few-shot-3
+[vast]            qwen3_zero-shot, qwen3_few-shot-3, qwen3_few-shot-5,
+                  deepseek_few-shot-3, deepseek_few-shot-5
+[humaid]          qwen3_few-shot-5
+
+--- VALID CONFIGS (18 / 30) ---
+civil_comments (K=2): 3   (only qwen2.5-7b survived; all other API-402)
+vast           (K=3): 7   (llama4 ×3, deepseek ×1, qwen2.5-7b ×3)
+humaid         (K=10): 8  (llama4 ×3, qwen3 ×2, deepseek ×3)
+
+Total filtered scenarios: 18 × 7 topologies = 126   (was 210)
+Filtered bias rows:  210 → 126
+Filtered ASV rows:   630 → 378
+Filtered F1 rows:    210 → 126
+
+--- PER-K BIAS STATISTICS ---
+K=2 (civil_comments, n_configs=3, 21 scenarios):
+    mean |bias%|     = 0.370
+    IV mean |bias%|  = 1.165  (n=3 IV scenarios)
+    ASV-unsafe (magnitude)    = 21/21  (100.0%)
+    ASV-unsafe (significance) = 3/21
+    ASV-unsafe (sign_flip)    = 6/21
+    sign_flips                = 0
+
+K=3 (vast, n_configs=7, 49 scenarios):
+    mean |bias%|     = 0.654
+    IV mean |bias%|  = 2.526  (n=7 IV scenarios)
+    ASV-unsafe (magnitude)    = 42/49  (85.7%)
+    ASV-unsafe (significance) = 0/49
+    ASV-unsafe (sign_flip)    = 0/49
+    sign_flips                = 0
+
+K=10 (humaid, n_configs=8, 56 scenarios):
+    mean |bias%|     = 0.122
+    IV mean |bias%|  = 0.303  (n=8 IV scenarios)
+    ASV-unsafe (magnitude)    = 32/56  (57.1%)
+    ASV-unsafe (significance) = 2/56
+    ASV-unsafe (sign_flip)    = 0/56
+    sign_flips                = 0
+
+--- OVERALL ---
+ASV-unsafe (magnitude): 95 / 126 = 75.4%
+sign_flips:             0 / 126
+
+--- VAST: qwen2.5-7b vs OTHER MODELS (mean |bias%|) ---
+qwen2.5-7b       : 0.735  (n=21 scenarios)
+others (llama4 + deepseek): 0.593  (n=28 scenarios)
+ratio  7B / others : 1.24
+(Note: VAST qwen3-235B all zero-matrix — cannot test 7B-vs-235B on VAST.
+ The "7B is worst" pattern from old report cannot be supported on VAST
+ in the filtered set; instead 7B is ~24% higher than {llama4, deepseek}.)
+
+--- VAST PER-CLASS RECALL (diag of confusion matrix) ---
+key                            class0   class1   class2
+vast_llama4_zero-shot          0.678    0.841    0.046
+vast_llama4_few-shot-3         0.660    0.800    0.036
+vast_llama4_few-shot-5         0.602    0.858    0.250
+vast_deepseek_zero-shot        0.565    0.811    0.143
+vast_qwen2.5-7b_zero-shot      0.461    0.847    0.110
+vast_qwen2.5-7b_few-shot-3     0.413    0.821    0.125
+vast_qwen2.5-7b_few-shot-5     0.475    0.776    0.125
+
+→ Class 2 recall is universally collapsed (0.04 – 0.25 across all
+  valid VAST configs). The "third-class collapse" pattern is real
+  and consistent — every valid LLM × prompt combination exhibits it.
+
+--- OLD vs NEW (zero-matrix filter impact) ---
+metric                          old              new
+total_configs                   30               18
+total_scenarios                 210              126
+ASV-unsafe (magnitude)          92/210 (43.8%)   95/126 (75.4%)
+sign_flips                      (unknown)        0
+
+KEY DIFFERENCE: The old 43.8% denominator included 84 zero-matrix
+scenarios where ASV was None (counted as safe). After filtering,
+the *true* ASV-unsafe rate among valid scenarios is 75.4% —
+nearly 2× the previously reported rate.

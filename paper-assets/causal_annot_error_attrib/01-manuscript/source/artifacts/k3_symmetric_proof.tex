@@ -1,0 +1,157 @@
+% K=3 Symmetric Confusion Matrix: Monotonicity Proof
+% Can be \input{} into appendix_proofs.tex
+%
+% Proves: for K=3 symmetric C_0 and proportional effects,
+% |B(C(delta))| is strictly monotone along the interpolation path
+% for confounding (non-decreasing), mediation (non-decreasing),
+% and collider (non-increasing).
+
+\begin{theorem}[Monotonicity for $K{=}3$ symmetric confusion matrices]
+\label{thm:k3_symmetric}
+Let $K{=}3$ and let $C_0$ be the symmetric confusion matrix
+$C_0 = (1{-}3c)\,I + c\,\mathbf{1}\mathbf{1}^\top$ with
+$(C_0)_{jj}=1{-}2c$, $(C_0)_{j\ell}=c$ for $j\neq\ell$, and $c\in(0,\tfrac{1}{3})$.
+Along the interpolation $C(\delta)=(1{-}\delta)\,I+\delta\,C_0$, $\delta\in[0,1]$:
+\begin{enumerate}
+  \item[\textup{(a)}] \textbf{Confounding} (proportional, $f{=}\lambda g$):
+    $|B(C(\delta))|$ is strictly non-decreasing, from $0$ to $|B_{\mathrm{OV}}|$.
+  \item[\textup{(b)}] \textbf{Mediation} (proportional, $f{=}\lambda g$):
+    $|B(C(\delta))|$ is strictly non-decreasing, from $0$ to $|\tau_{\mathrm{ind}}|$.
+  \item[\textup{(c)}] \textbf{Collider} (proportional, $h{=}\lambda g$):
+    $|B(C(\delta))|$ is strictly non-increasing, from $|B_{\mathrm{Berkson}}|$ to $0$.
+\end{enumerate}
+All three hold for arbitrary prior $p$ and effect vector $g$ with $\operatorname{Var}(g(A)){>}0$.
+\end{theorem}
+
+\begin{proof}
+All three parts reduce to a single lemma about the between-group variance
+$V_B(\delta)=\operatorname{Var}\bigl(\mathbb{E}[g(A)\mid A^*_\delta]\bigr)$.
+
+\paragraph{Step 1: Structural reduction.}
+The symmetric $C_0$ decomposes as $C_0=(1{-}3c)\,I+c\,\mathbf{1}\mathbf{1}^\top$, so
+\[
+  C(\delta) = (1{-}\delta)I + \delta\bigl[(1{-}3c)\,I+c\,\mathbf{1}\mathbf{1}^\top\bigr]
+  = (1{-}3c\delta)\,I + c\delta\,\mathbf{1}\mathbf{1}^\top.
+\]
+Setting $s=c\delta\in[0,c]$, each entry is
+$C(\delta)_{j\ell}=(1{-}3s)\,\mathbf{1}_{j=\ell}+s$,
+so $C(\delta)$ stays in the one-parameter symmetric family.
+In particular:
+\begin{align}
+  q_j(s) &= \textstyle\sum_k C(\delta)_{jk}\,p_k = (1{-}3s)\,p_j + s, \label{eq:k3q} \\
+  \mu_j(s) &\equiv \mathbb{E}[g(A)\mid A^*{=}j]
+  = \bar{g} + \frac{(1{-}3s)\,p_j\,h_j}{q_j(s)}, \label{eq:k3mu}
+\end{align}
+where $h_j=g_j-\bar{g}$, $\bar{g}=\sum_k p_k g_k$.
+
+\paragraph{Step 2: Closed-form $V_B(s)$.}
+The between-group variance admits a clean factorization:
+\begin{equation}
+  V_B(s) = \sum_j q_j\,(\mu_j-\bar{g})^2
+  = (1{-}3s)^2\sum_{j=0}^{2}\frac{p_j^2\,h_j^2}{q_j(s)}.
+  \label{eq:k3VB}
+\end{equation}
+\emph{Verification.}
+At $s{=}0$: $q_j{=}p_j$, so $V_B(0)=\sum_j p_j h_j^2=\operatorname{Var}(g)$.
+At $s{=}\tfrac{1}{3}$: $V_B(\tfrac{1}{3})=0$.
+
+\paragraph{Step 3: $V_B$ is strictly decreasing on $[0,\tfrac{1}{3})$ (pointwise, not just at endpoints).}
+Differentiating~\eqref{eq:k3VB} via the product rule:
+\begin{equation}
+  \frac{dV_B}{ds}
+  = (1{-}3s)\sum_{j=0}^{2}\frac{p_j^2\,h_j^2}{q_j^2}\;\bigl[\underbrace{-3(1{-}3s)\,p_j - 1 - 3s}_{\displaystyle\Lambda_j(s)}\bigr].
+  \label{eq:k3dVB}
+\end{equation}
+
+\emph{Derivation.}
+Write $V_B=(1{-}3s)^2 F(s)$ with $F(s)=\sum_j p_j^2 h_j^2/q_j(s)$.
+The product rule gives $V_B'=-6(1{-}3s)F+(1{-}3s)^2 F'$.
+Since $q_j'(s)=1{-}3p_j$, we have $F'(s)=\sum_j p_j^2 h_j^2(3p_j{-}1)/q_j^2$.
+Combining:
+\begin{align*}
+  V_B'
+  &= (1{-}3s)\Bigl[-6\sum_j \frac{p_j^2 h_j^2}{q_j}+(1{-}3s)\sum_j \frac{p_j^2 h_j^2(3p_j{-}1)}{q_j^2}\Bigr] \\
+  &= (1{-}3s)\sum_j \frac{p_j^2 h_j^2}{q_j^2}\bigl[-6q_j+(1{-}3s)(3p_j{-}1)\bigr].
+\end{align*}
+Expanding the bracket:
+\[
+  -6q_j+(1{-}3s)(3p_j{-}1)
+  = -6(1{-}3s)p_j-6s+3(1{-}3s)p_j-(1{-}3s)
+  = -3(1{-}3s)p_j-1-3s
+  = \Lambda_j(s).
+\]
+
+\emph{Sign analysis.}
+For $s\in[0,\tfrac{1}{3})$: $(1{-}3s)>0$, $p_j\geq 0$, so
+\[
+  \Lambda_j(s) = -3(1{-}3s)\,p_j - (1+3s) < 0
+  \quad\text{for all } j,
+\]
+since $1+3s>0$ alone forces $\Lambda_j<0$.
+Every term $p_j^2 h_j^2/q_j^2\geq 0$, and the prefactor $(1{-}3s)>0$.
+Hence $dV_B/ds\leq 0$ for all $s\in[0,\tfrac{1}{3})$.
+
+\emph{Strict inequality.}
+If $\operatorname{Var}(g){>}0$, at least two categories $j$ satisfy $p_j>0$ and $h_j\neq 0$, contributing strictly positive terms.
+Since $\Lambda_j<0$, the sum is strictly negative:
+$dV_B/ds<0$ for all $s\in(0,\tfrac{1}{3})$.
+
+\paragraph{Step 4: From $V_B$ to $|B|$ --- confounding (a).}
+Under proportional effects $f=\lambda g$ (Proposition~\ref{prop:conf_prop}):
+\[
+  B(C(\delta)) = \frac{\lambda\,V_W(\delta)}{V_W(\delta)+\sigma_T^2},
+  \quad V_W(\delta)=\operatorname{Var}(g)-V_B(c\delta).
+\]
+Step~3 shows $V_B(s)$ is strictly decreasing in $s=c\delta$, so $V_W(\delta)$ is strictly increasing from $0$ to $\operatorname{Var}(g)$.
+Since $x\mapsto |\lambda|\,x/(x+\sigma_T^2)$ is strictly increasing for $x\geq 0$:
+\[
+  |B(C(\delta))| = |\lambda|\,\frac{V_W(\delta)}{V_W(\delta)+\sigma_T^2}
+\]
+is strictly non-decreasing.
+
+\paragraph{Step 5: Mediation (b).}
+Under proportional effects $f=\lambda g$ with $g(k)=\mathbb{E}[T\mid A{=}k]$, the mediation bias
+(§\ref{par:med_monotone}) has the identical form
+$B=\lambda\,V_W/(V_W+\sigma_\varepsilon^2)$
+with $\sigma_\varepsilon^2=\mathbb{E}[\operatorname{Var}(T\mid A)]$ replacing $\sigma_T^2$.
+The same argument yields $|B|$ strictly non-decreasing.
+
+\paragraph{Step 6: Collider (c).}
+Under proportional effects $h=\lambda g$ (Proposition~\ref{prop:col_prop}):
+\[
+  B_{\mathrm{col}}(C(\delta)) = -\frac{\lambda\,V_B(c\delta)}{\operatorname{Var}(T)-V_B(c\delta)},
+  \qquad
+  |B_{\mathrm{col}}| = |\lambda|\,\frac{V_B(c\delta)}{\operatorname{Var}(T)-V_B(c\delta)}.
+\]
+Since $x\mapsto x/(a{-}x)$ is strictly increasing for $x\in[0,a)$
+and $V_B(s)$ is strictly decreasing (Step~3),
+$|B_{\mathrm{col}}(C(\delta))|$ is strictly non-increasing:
+from $|B_{\mathrm{Berkson}}|=|\lambda|\,V_g/(\operatorname{Var}(T){-}V_g)$ at $\delta{=}0$
+to $0$ at $\delta$ such that $V_B\to 0$.
+\end{proof}
+
+\begin{remark}[Comparison with the general-$K$ proof]
+\label{rem:k3_vs_general}
+The general-$K$ monotonicity proof (§\ref{app:monotonicity_proof}) relies on
+convexity of $V_B(\delta)$ plus the endpoint condition $V_B'(1)\leq 0$,
+the latter verified only for $K{=}2$ analytically and $K\geq 3$ numerically.
+The $K{=}3$ symmetric proof is \emph{stronger}:
+it establishes $dV_B/ds<0$ at every interior point via the signed decomposition~\eqref{eq:k3dVB},
+bypassing both the convexity argument and the endpoint condition entirely.
+The key enabler is that the symmetric $C_0$ keeps $C(\delta)$ within the one-parameter family
+$(1{-}3s)I+s\,\mathbf{1}\mathbf{1}^\top$, yielding the factored form~\eqref{eq:k3VB}
+in which the $(1{-}3s)^2$ prefactor and the $q_j^{-1}$ terms interact to produce
+a uniformly signed derivative.
+\end{remark}
+
+\begin{remark}[General (non-proportional) effects]
+\label{rem:k3_general}
+For non-proportional effects ($f\neq\lambda g$), the confounding bias
+$B(C)=\mathbb{E}[\operatorname{Cov}(g,f\mid A^*)]/D(C)$
+does not factor through $V_W$ alone,
+and exact monotonicity of $|B(C(\delta))|$ can fail even for $K{=}3$ symmetric $C_0$.
+Numerical verification ($50{,}000$ random configurations) finds violations in ${\sim}10\%$ of cases,
+with maximum step deviation ${\sim}0.004$,
+confirming $\varepsilon$-approximate monotonicity consistent with the general-$K$ results
+(Table~\ref{tab:conjecture_verify}).
+\end{remark}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31e168e8cd16d7459f73",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan007 correction framework",
+  "task_key": "worker_code_plan007-correction-framework_20260520T181451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan007-correction-framework_20260520T181451_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "5f5226466d0074b557e675e592d12e3afa165901fdc20bb5d9cde8bb307553a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`plan_007_correction_guidance.py` 已完成全部验证，三阶段测试均通过：\n\n**验证结果汇总：**\n- `--help` — CLI 正常\n- `--dry-run` — 单组合 × 10 sims 通过\n- 多方法测试（5 methods × 2 topos × 2 C structures × 10 sims）— 全部 0% failure\n\n**关键理论发现：** naive_plugin 和 MLA 对 T 系数（confounding/mediation/collider/mbias 拓扑）的 bias reduction 为 0%。这不是 bug，而是 Frisch-Waugh 定理的直接推论：C⁻¹ 对 dummy 矩阵的线性变换不改变 [intercept, D*] 的列空间，因此 T 系数的 OLS 估计不变。只有当 `tau_idx` 指向 dummy 系数时（exposure/iv/frontdoor），correction 才有效。这是论文的一个重要发现点。\n\n**各方法表现概览（10-sim 预览）：**\n| Method | Bias Reduction Range | 备注 |\n|--------|---------------------|------|\n| PPI++ | 95–99% | 最优，利用 gold labels 直接校正 |\n| DSL (EM) | 60–72% | 中等，联合估计 β 和 C |\n| MC-SIMEX | 30–91% | 波动大，依赖外推质量 |\n| naive_plugin | 0% (T系数) / 负值 (dummy系数) | 列空间不变性；dummy 系数 overcorrect |\n| MLA | 0% (T系数) / 变化 (dummy系数) | 同上；仅对称 C 无偏 |\n\n全量运行（1000 sims × 7 topos × 6 C × 5 methods = 210,000 组合）等你审批后启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan007-correction-framework.md"
+}

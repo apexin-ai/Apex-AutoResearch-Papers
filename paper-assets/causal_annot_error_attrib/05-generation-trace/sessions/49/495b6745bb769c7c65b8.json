@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "495b6745bb769c7c65b8",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "data extract plan006 plots",
+  "task_key": "worker_data_extract_plan006_plots_20260520T234129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_extract_plan006_plots_20260520T234129_result.json",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "2ed4c15617e2a0b2934db1901f0c0969cf0ea7c77857b9b651efce1541fe7d44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图下载完成，大小与远程一致：\n\n- `fig5_f1_vs_bias.png` — 174,444 bytes (170K)\n- `fig6_asv_heatmap.png` — 73,701 bytes (72K)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-extract-plan006-plots.md"
+}

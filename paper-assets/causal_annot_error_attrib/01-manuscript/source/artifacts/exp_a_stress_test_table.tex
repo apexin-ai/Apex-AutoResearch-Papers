@@ -1,0 +1,47 @@
+\begin{table*}[t]
+\centering
+\caption{Non-differential misclassification stress test: sign flip rate (SF) and mean bias ratio (BR\,$=\overline{|\hat\tau/\tau|}$) under increasing differential departure $\varepsilon$.}
+\label{tab:stress-test}
+\small\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llcrrrrrrrr}
+\toprule
+Topology & $K$ & Q & \multicolumn{2}{c}{$\varepsilon\!=\!0.0$} & \multicolumn{2}{c}{$\varepsilon\!=\!0.01$} & \multicolumn{2}{c}{$\varepsilon\!=\!0.05$} & \multicolumn{2}{c}{$\varepsilon\!=\!0.1$} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+ & & & {\scriptsize SF} & {\scriptsize BR} & {\scriptsize SF} & {\scriptsize BR} & {\scriptsize SF} & {\scriptsize BR} & {\scriptsize SF} & {\scriptsize BR} \\
+\midrule
+Confounding & 3 & H & 0.00 & 1.10 & 0.00 & 1.10 & 0.00 & 1.11 & 0.00 & 1.12 \\
+ &  & M & 0.00 & 1.14 & 0.00 & 1.14 & 0.00 & 1.14 & 0.00 & 1.14 \\
+ &  & L & 0.00 & 1.15 & 0.00 & 1.15 & 0.00 & 1.15 & 0.00 & 1.15 \\
+\cmidrule{2-11}
+ & 10 & H & 0.00 & 1.06 & 0.00 & 1.06 & 0.00 & 1.08 & 0.00 & 1.09 \\
+ &  & M & 0.00 & 1.09 & 0.00 & 1.09 & 0.00 & 1.10 & 0.00 & 1.10 \\
+ &  & L & 0.00 & 1.11 & 0.00 & 1.11 & 0.00 & 1.11 & 0.00 & 1.11 \\
+\midrule
+Mediation & 3 & H & 0.00 & 1.35 & 0.00 & 1.36 & 0.00 & 1.42 & 0.00 & 1.47 \\
+ &  & M & 0.00 & 1.52 & 0.00 & 1.53 & 0.00 & 1.56 & 0.00 & 1.58 \\
+ &  & L & 0.00 & 1.61 & 0.00 & 1.61 & 0.00 & 1.62 & 0.00 & 1.61 \\
+\cmidrule{2-11}
+ & 10 & H & 0.00 & 1.14 & 0.00 & 1.17 & 0.00 & 1.25 & 0.00 & 1.28 \\
+ &  & M & 0.00 & 1.24 & 0.00 & 1.26 & 0.00 & 1.30 & 0.00 & 1.32 \\
+ &  & L & 0.00 & 1.30 & 0.00 & 1.32 & 0.00 & 1.33 & 0.00 & 1.34 \\
+\midrule
+Exposure & 3 & H & 0.00 & 0.72 & 0.00 & 0.71 & 0.00 & 0.67 & 0.00 & 0.64 \\
+ &  & M & 0.00 & 0.42 & 0.00 & 0.41 & 0.00 & 0.38 & 0.00 & 0.35 \\
+ &  & L & 0.00 & 0.11 & 0.00 & 0.10 & 0.01 & 0.08 & 0.05 & 0.06 \\
+\cmidrule{2-11}
+ & 10 & H & 0.00 & 0.87 & 0.00 & 0.86 & 0.00 & 0.84 & 0.00 & 0.80 \\
+ &  & M & 0.00 & 0.71 & 0.00 & 0.70 & 0.00 & 0.67 & 0.00 & 0.64 \\
+ &  & L & 0.00 & 0.49 & 0.00 & 0.47 & 0.00 & 0.46 & 0.00 & 0.43 \\
+\midrule
+IV & 3 & H & 0.00 & 1.42 & 0.00 & 1.45 & 0.00 & 1.58 & 0.00 & 1.69 \\
+ &  & M & 0.00 & 2.56 & 0.00 & 2.52 & 0.00 & 2.87 & 0.00 & 3.12 \\
+ &  & L & 0.00 & 12.79 & 0.00 & 12.21 & 0.02 & 19.97 & 0.07 & 43.44 \\
+\cmidrule{2-11}
+ & 10 & H & 0.00 & 1.30 & 0.00 & 1.44 & 0.00 & 1.71 & 0.00 & 2.03 \\
+ &  & M & 0.00 & 1.83 & 0.00 & 1.96 & 0.00 & 2.43 & 0.00 & 2.84 \\
+ &  & L & 0.00 & 3.15 & 0.00 & 3.54 & 0.00 & 4.39 & 0.00 & 9.69 \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\parbox{\textwidth}{\footnotesize SF\,=\,sign flip rate; BR\,=\,mean $|\hat\tau/\tau|$ (1.00 = unbiased). $\varepsilon\!=\!0$: non-differential; $\varepsilon\!>\!0$: outcome-dependent misclassification. Q: H/M/L\,=\,CM diagonal 0.8/0.6/0.4 with uniform off-diagonal. Each cell: $N\!=\!10{,}000\!\times\!100$ MC replications.}
+\end{table*}

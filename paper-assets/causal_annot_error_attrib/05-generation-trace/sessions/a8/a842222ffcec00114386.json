@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a842222ffcec00114386",
+  "project": "causal_annot_error_attrib",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3998,
+    "sha256": "25155cee88b9405ab60d9f0e9e8ba2846cba01c467ef8181ed8f0d5263a867ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-22T18:15:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目是纯计算/论文项目，无 GPU 训练——所有实验是本地 Python 脚本（Monte Carlo simulation），不涉及 GPU 白名单问题\n- 服务器 `home-1x5090(sonny)` 代码根目录 `/home/sonny/causal_annot_error_attrib`，但论文源文件在**本地** workspace `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/`——审查论文内容必须读本地，不要只读远程（上轮出过误判）\n- W-SF3 中 Director 曾提议 \"general case deviation < 0.01\"，但 appendix L304 实际数据是 **0.011**——我已 CRITICAL 打回，下一轮如果看到 worker 写了 \"< 0.01\" 必须再次拦截\n- 4 篇新引用（neuhaus1999, shu_yi2019a/b, cadei2025）已加但**未做 WebSearch 最终确认 DOI**——结构性验证通过但不是 100% 保证\n\n### 2. 🖥️ 基础设施快照\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/`\n- 论文源: `docs/paper/` (LaTeX, TeX Live 2025, BibTeX acl_natbib.bst, 47 bib entries)\n- 实验产出: `artifacts/` (JSON + Python scripts, 本地运行)\n- 远程服务器: `home-1x5090(sonny)`，路径 `/home/sonny/causal_annot_error_attrib`\n- 无 GPU 进程、无 tmux、无 cron、无 wandb——纯分析项目\n- Registry: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/registry.yaml`\n\n### 3. 📊 当前状态\n**刚完成**：Round 6 Action Matrix 全项可行性审查 + R6 缺失引用 worker 审查 + FWL logistic experiment worker 审查。三份报告均已通过 `reviewer_post_to_director` 发送。\n\n**R6 Action Matrix 审查要点**（Director 需要执行的）：\n- W-SF3 数字错误 CRITICAL 已打回（\"< 0.01\" → 应为 \"< 0.02\" 或 \"≈ 0.011\"）\n- W-SF5 ASV vs E-value 段与 method.tex L78 冗余 + FWL bundling 风险\n- W-M2 extended stress test 已覆盖 4 topologies（审稿人可能遗漏了）\n- W-M3/M4 已解决无需修改\n\n**等待中**：Round 6 其余 worker 完成通知（W-SF1 Theorem 拆分、W-SF2 structural→empirical、W-SF4 linear scope、W-SF6 汇总句、editorial workers 等）\n\n### 4. 📋 待办\n- W-SF1 Theorem 拆分 worker 完成 → 重点检查 4 处交叉引用（L68 三层级、L78 ASV、Conjecture 1 L100、proof sketch L91-96）\n- W-SF3 worker 完成 → 验证数字已从 \"< 0.01\" 修正为准确值\n- 任何修改 Conjecture 1 的 worker → 对照 artifacts/exp_d_epsilon_tau_sensitivity.json 核实 ε bounds（exposure max=0.152, front-door max=0.139, collider max=0.022, M-bias max=0.015, mediation max=0.130）\n- 全文编译后 → 检查 Limitations 长度是否符合 EMNLP 规则（~3 points，当前 4 points 基本合规）\n- 如有 PDF 重编译 → 确认 Abstract 显示 2.1%（不是 1.4%）以 close W-MF1\n\n### 5. 🎯 战略上下文\n**项目核心**：LLM 标注误差在 7 种因果 DAG 拓扑下的传播规律。三大贡献：bias taxonomy（sign-flip guarantee）、ASV framework（vulnerability spectrum）、FWL invariance（correction futility）。目标 EMNLP 2026 via ARR，当前 R6 评分 3.5 (Borderline Conference)，DDL 2026-05-25。\n\n**关键数字锚点**（审查时用）：exposure sign-flip 83.4% (Dirichlet) / 2.1% (diag≥0.7)；IV sign-flip 52.6%；FWL logistic mean bias reduction -0.04%；PPI++ grand mean 47.0% RMSE reduction。\n\n**最容易判断错的事**：\n1. \"general case deviation\" 0.005 vs 0.011 vs 0.01 三个数字容易混——0.005 是 proportional K≥3 V_B increase，0.011 是 non-proportional confounding worst-case step deviation，\"< 0.01\" 是 Director 曾提的错误值\n2. Theorem 1 覆盖 confounding + mediation（不只 confounding），拆分时两个拓扑都要保留\n3. W-SF5 中 method.tex L78 **已有** ASV vs E-value 三点对比，不要重复添加\n4. Non-differential stress test 不只覆盖 exposure——extended test (L992) 覆盖 4 topologies × 2 K\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

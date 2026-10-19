@@ -1,0 +1,396 @@
+{
+  "description": "Adversarial envelope monotonicity test for Conjecture 1",
+  "config": {
+    "K_values": [
+      3,
+      5,
+      7
+    ],
+    "adversarial_types": [
+      "near_perm",
+      "block_diag",
+      "sparse",
+      "near_uniform"
+    ],
+    "adversarial_params": {
+      "near_perm": [
+        {
+          "eps": 0.05
+        },
+        {
+          "eps": 0.1
+        },
+        {
+          "eps": 0.2
+        }
+      ],
+      "block_diag": [
+        {}
+      ],
+      "sparse": [
+        {
+          "p_diag": 0.3
+        },
+        {
+          "p_diag": 0.5
+        },
+        {
+          "p_diag": 0.7
+        }
+      ],
+      "near_uniform": [
+        {
+          "eps": 0.01
+        },
+        {
+          "eps": 0.05
+        }
+      ]
+    },
+    "topologies": [
+      "confounding",
+      "mediation",
+      "collider",
+      "exposure",
+      "mbias",
+      "iv",
+      "frontdoor"
+    ],
+    "beta_configs": [
+      "alternating_large",
+      "same_sign",
+      "alternating_small"
+    ],
+    "n_C0_per_cell": 1000,
+    "n_delta_steps": 101,
+    "delta_step": 0.01,
+    "eps_threshold": 0.001,
+    "seed": 2024
+  },
+  "summary": {
+    "total_curves": 545945,
+    "non_monotone_fraction": 0.119392979146251,
+    "max_eps_abs": 0.01636529529573094,
+    "median_eps_abs": 0.0,
+    "mean_eps_abs": 0.00047588204649284187,
+    "p95_eps_abs": 0.00255148755548662,
+    "p99_eps_abs": 0.008253228263722434,
+    "safe_topo_max_eps": 0.01636529529573094,
+    "fragile_topo_max_eps": 0.013176775652375183,
+    "total_weak_iv_filtered": 21055,
+    "total_skipped_zero_tau": 0
+  },
+  "by_adversarial_type": {
+    "near_perm": {
+      "total_curves": 172403,
+      "non_monotone_count": 61004,
+      "non_monotone_fraction": 0.353845350718955,
+      "max_eps_abs": 0.01636529529573094
+    },
+    "block_diag": {
+      "total_curves": 63000,
+      "non_monotone_count": 0,
+      "non_monotone_fraction": 0.0,
+      "max_eps_abs": 0.0003959986339877597
+    },
+    "sparse": {
+      "total_curves": 184542,
+      "non_monotone_count": 4178,
+      "non_monotone_fraction": 0.022639832666818394,
+      "max_eps_abs": 0.0026147855238671802
+    },
+    "near_uniform": {
+      "total_curves": 126000,
+      "non_monotone_count": 0,
+      "non_monotone_fraction": 0.0,
+      "max_eps_abs": 0.0
+    }
+  },
+  "by_topology": {
+    "confounding": {
+      "total_curves": 81000,
+      "non_monotone_count": 17407,
+      "non_monotone_fraction": 0.21490123456790122,
+      "max_eps_abs": 0.01636529529573094
+    },
+    "mediation": {
+      "total_curves": 81000,
+      "non_monotone_count": 15990,
+      "non_monotone_fraction": 0.19740740740740742,
+      "max_eps_abs": 0.013039414209438105
+    },
+    "collider": {
+      "total_curves": 81000,
+      "non_monotone_count": 14031,
+      "non_monotone_fraction": 0.17322222222222222,
+      "max_eps_abs": 0.013176775652375183
+    },
+    "exposure": {
+      "total_curves": 81000,
+      "non_monotone_count": 594,
+      "non_monotone_fraction": 0.007333333333333333,
+      "max_eps_abs": 0.008412534039272668
+    },
+    "mbias": {
+      "total_curves": 81000,
+      "non_monotone_count": 1163,
+      "non_monotone_fraction": 0.014358024691358025,
+      "max_eps_abs": 0.001532019782881644
+    },
+    "iv": {
+      "total_curves": 59945,
+      "non_monotone_count": 0,
+      "non_monotone_fraction": 0.0,
+      "max_eps_abs": 0.0
+    },
+    "frontdoor": {
+      "total_curves": 81000,
+      "non_monotone_count": 15997,
+      "non_monotone_fraction": 0.19749382716049382,
+      "max_eps_abs": 0.01582784663255976
+    }
+  },
+  "by_K": {
+    "3": {
+      "total_curves": 180683,
+      "non_monotone_count": 26007,
+      "non_monotone_fraction": 0.14393717173170692,
+      "max_eps_abs": 0.01636529529573094
+    },
+    "5": {
+      "total_curves": 182402,
+      "non_monotone_count": 21721,
+      "non_monotone_fraction": 0.11908312408855166,
+      "max_eps_abs": 0.013448880884805892
+    },
+    "7": {
+      "total_curves": 182860,
+      "non_monotone_count": 17454,
+      "non_monotone_fraction": 0.09545007109263917,
+      "max_eps_abs": 0.012378423243947445
+    }
+  },
+  "worst_cases": [
+    {
+      "topology": "confounding",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.01636529529573094,
+      "non_mono_frac": 0.812,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "frontdoor",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.01582784663255976,
+      "non_mono_frac": 0.838,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "confounding",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.013448880884805892,
+      "non_mono_frac": 0.914,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "collider",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.013176775652375183,
+      "non_mono_frac": 0.827,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "frontdoor",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.013119570146454929,
+      "non_mono_frac": 0.664,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "mediation",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.013039414209438105,
+      "non_mono_frac": 0.643,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "confounding",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.012757437777432656,
+      "non_mono_frac": 0.67,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "confounding",
+      "K": 7,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.012378423243947445,
+      "non_mono_frac": 0.946,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "frontdoor",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.012015795320587164,
+      "non_mono_frac": 0.907,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "collider",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.011415854138354109,
+      "non_mono_frac": 0.635,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "collider",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.011211164249701366,
+      "non_mono_frac": 0.915,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "mediation",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.011106313189383377,
+      "non_mono_frac": 0.682,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "confounding",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.01085926805028814,
+      "non_mono_frac": 0.89,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "frontdoor",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.010074228393916806,
+      "non_mono_frac": 0.896,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "confounding",
+      "K": 7,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.009905378807955945,
+      "non_mono_frac": 0.892,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "collider",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.1}",
+      "beta": "alternating_large",
+      "eps_abs": 0.009822338162834399,
+      "non_mono_frac": 0.863,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "frontdoor",
+      "K": 7,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.009736569531234363,
+      "non_mono_frac": 0.939,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "collider",
+      "K": 7,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.009616219166313389,
+      "non_mono_frac": 0.929,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "mediation",
+      "K": 5,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.05}",
+      "beta": "alternating_large",
+      "eps_abs": 0.009526241091829313,
+      "non_mono_frac": 0.907,
+      "n_valid": 1000,
+      "weak_iv": 0
+    },
+    {
+      "topology": "frontdoor",
+      "K": 3,
+      "adversarial": "near_perm",
+      "adv_config": "{\"eps\": 0.2}",
+      "beta": "alternating_large",
+      "eps_abs": 0.009193851154494781,
+      "non_mono_frac": 0.644,
+      "n_valid": 1000,
+      "weak_iv": 0
+    }
+  ],
+  "elapsed_seconds": 135.75384545326233
+}

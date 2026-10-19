@@ -1,0 +1,118 @@
+# Plan 006 Full Run: Zero-Matrix Filtered Summary
+# Generated: 2026-05-21 (CRITICAL Reviewer fix)
+# Source: plan006_full on home-1x5090, filtered against plan003 completion data
+
+## Zero Matrix Identification
+
+### Method
+Zero matrix = confusion matrix with diagonal sum < 0.01 (API 402 failure artifacts).
+Cross-referenced with plan003 checkpoint (task completion status).
+
+### Zero Matrix Configs (EXCLUDED)
+
+| Config Key                    | Dataset         | K  | Reason                     |
+|-------------------------------|----------------|----|----------------------------|
+| humaid_qwen3_few-shot-5       | humaid         | 10 | API 402, zero annotations  |
+| civil_comments_llama4_*       | civil_comments | 2  | API 402, all 3 prompts     |
+| civil_comments_qwen3_*        | civil_comments | 2  | API 402, all 3 prompts     |
+| civil_comments_deepseek_*     | civil_comments | 2  | API 402, all 3 prompts     |
+| vast_qwen3_*                  | vast           | 3  | API 402, all 3 prompts     |
+| vast_deepseek_few-shot-3      | vast           | 3  | API 402                    |
+| vast_deepseek_few-shot-5      | vast           | 3  | API 402                    |
+| vast_llama4_few-shot-5        | vast           | 3  | API 402                    |
+
+Total zero configs: ~16 out of 30 (53%)
+Note: Exact VAST zero config list requires server verification. Known valid VAST API
+configs: llama4_zero-shot (1496/1500), llama4_few-shot-3 (1500/1500),
+deepseek_zero-shot (1000/1500, partial but usable).
+
+### Valid Config Count
+
+| Dataset         | K  | Valid Configs | Models                              |
+|-----------------|----|--------------:|-------------------------------------|
+| humaid          | 10 |             8 | deepseek(3), llama4(3), qwen3(2)    |
+| vast            | 3  |           5-6 | qwen2.5-7b(3), llama4(2), deepseek(1?) |
+| civil_comments  | 2  |             3 | qwen2.5-7b(3)                       |
+| **Total**       |    |       **16-17** | Paper uses 14 (excl. VAST API)     |
+
+## Table 1: Per-K Bias Statistics (bias means unchanged — None already excluded)
+
+| K  | Dataset         | Valid Configs | Mean |Bias%| | IV Bias%  | Sign Flips |
+|----|-----------------|--------------|---------------|-----------|------------|
+| 2  | civil_comments  | 3            | 36.9%         | 116.5%    | 0          |
+| 3  | vast            | 5-6          | 65.3%*        | 252.3%*   | 0          |
+| 10 | humaid          | 8            | 12.2%         | 30.3%     | 0          |
+
+*VAST means may include valid API configs (llama4, partial deepseek) in addition
+to local qwen2.5-7b. Bias numbers are CORRECT because None values from zero
+configs were already excluded from averages.
+
+## Table 2: Per-Model Bias (K=10, humaid, 8 valid configs)
+
+| Model    | Prompts | Mean |Bias%| | Max |Bias%| | F1 Range      |
+|----------|---------|---------------|---------------|---------------|
+| deepseek | 3       | 12.0%         | 41.6%         | 0.685-0.690   |
+| llama4   | 3       | 14.2%         | 42.1%         | 0.614-0.624   |
+| qwen3    | 2       | 9.5%          | 21.6%         | 0.675-0.678   |
+
+## Table 3: Per-Topology Bias (K=10, 8 valid configs)
+
+| Topology     | Mean Bias% | Range          | ASV-unsafe |
+|--------------|-----------|----------------|------------|
+| confounding  | 5.7%      | [4.9%, 6.2%]  | 0/8 (0%)   |
+| mediation    | 13.1%     | [10.8%, 14.8%] | 8/8 (100%) |
+| collider     | 4.8%      | [4.1%, 5.6%]  | 0/8 (0%)   |
+| exposure     | 12.4%     | [9.0%, 17.4%] | 8/8 (100%) |
+| mbias        | 6.0%      | [5.1%, 6.5%]  | 0/8 (0%)   |
+| iv           | 30.3%     | [12.4%, 42.1%] | 8/8 (100%) |
+| frontdoor    | 13.2%     | [10.7%, 14.7%] | 8/8 (100%) |
+
+## Table 4: ASV-Unsafe Rate (FILTERED)
+
+### K=10 (humaid) — precisely computed from local JSON
+- Magnitude: 32/56 (57.1%) [was 32/63 (50.8%) unfiltered]
+- Significance: 2/56 (3.6%)
+- Sign-flip: 0/56 (0%)
+- Per-topology: mediation, exposure, iv, frontdoor = 8/8; confounding, collider, mbias = 0/8
+
+### Cross-K (estimated, server verification needed)
+| K  | Valid Scenarios | Unsafe (est.) | Rate (est.)  |
+|----|----------------|---------------|--------------|
+| 2  | 21             | ~19           | ~90%         |
+| 3  | 35-42          | TBD           | TBD          |
+| 10 | 56             | 32            | 57.1%        |
+
+Overall (paper's 14 configs x 7 topo = 98 scenarios): needs full recomputation.
+The 92/210 (43.8%) is INVALID — denominator inflated by 16 zero-matrix configs.
+
+## Table 5: F1 Disconnect (unchanged by filtering)
+
+| Dataset         | Model       | F1 Range    | IV Bias%    | Verdict  |
+|-----------------|-------------|-------------|-------------|----------|
+| civil_comments  | qwen2.5-7b | 0.717-0.746 | 101-131%    | UNSAFE   |
+| humaid          | deepseek    | 0.685-0.690 | 13.6-41.6%  | MODERATE |
+| humaid          | llama4      | 0.614-0.624 | 40.1%       | MARGINAL |
+| humaid          | qwen3       | 0.675-0.678 | 12.4%       | MODERATE |
+
+## Table 6: VAST Per-Class Recall
+
+REQUIRES SERVER ACCESS for exact per-class values. From worker analysis:
+VAST diagonal means range 0.453-0.570, suggesting low per-class recall.
+Verification of third-class ~4.6% recall pending.
+
+## Paper Edit Numbers
+
+### experiments.tex section 4.6
+- Config count: 14 (already correct in paper)
+- Bias scenarios: 98 (14 x 7) [FIX from 210]
+- Sign flips: 0/98 [FIX denominator]
+- K=10 ASV-unsafe: 32/56 (57.1%) [FIX from 31/63 (49.2%)]
+- HumAID ASV ranges: IV (0.31-0.83), mediation (0.62-0.90),
+  frontdoor (0.62-0.91), exposure (0.65-1.11) [UNCHANGED]
+- 7B-to-235B ratio: 1.24 [UNCHANGED]
+- Overall ASV-unsafe: PENDING server recomputation
+
+### abstract.tex
+- Remove: "K determines bias severity"
+- Add: "bias varies from 30% (K=10) to over 250% (K=3) IV bias across
+  real annotation settings"

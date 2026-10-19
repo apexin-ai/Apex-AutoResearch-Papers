@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan004_asv_framework",
+  "project": "causal_annot_error_attrib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:10:38.004Z",
+    "updated_at": "2026-05-20T12:10:38.004Z"
+  },
+  "timestamp": "2026-05-20T12:10:38.018115+00:00",
+  "trigger": "update_registry"
+}

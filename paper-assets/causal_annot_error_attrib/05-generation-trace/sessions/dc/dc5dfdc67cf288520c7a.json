@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc5dfdc67cf288520c7a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "math mf1b k3 symmetric proof",
+  "task_key": "worker_math_mf1b_k3_symmetric_proof_20260523T173653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_math_mf1b_k3_symmetric_proof_20260523T173653_result.json",
+    "occurrence": 1,
+    "bytes": 1415,
+    "sha256": "e2bcd54651e31de86115f287e678f667140afaa2091073c83083f2ec09a844ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Proof is complete and verified. Here's a summary of the results:\n\n---\n\n**Proof completed successfully.** Theorem covers all three topologies under proportional effects.\n\n### Core result\n\nFor K=3 symmetric C₀ with C₀[i,i] = 1-2c, C₀[i,j] = c (i≠j), c ∈ (0,1/3):\n\n| Topology | Direction | Proven |\n|----------|-----------|--------|\n| Confounding (f=λg) | \\|B\\| non-decreasing | exact ✓ |\n| Mediation (f=λg) | \\|B\\| non-decreasing | exact ✓ |\n| Collider (h=λg) | \\|B\\| non-increasing | exact ✓ |\n| Confounding (general f) | \\|B\\| non-decreasing | ε-approximate only (~10% violations, max deviation 0.004) |\n\n### Key insight\n\nC(δ) = (1-3cδ)I + cδ𝟏𝟏ᵀ stays in the one-parameter symmetric family. This yields:\n\n$$V_B(s) = (1-3s)^2 \\sum_j \\frac{p_j^2 h_j^2}{(1-3s)p_j + s}$$\n\nwith derivative decomposing as a sum of terms, each containing the factor Λ_j(s) = -3(1-3s)p_j - 1 - 3s < 0. So dV_B/ds < 0 at **every** point, not just endpoints — stronger than the general-K proof which needs convexity + endpoint conditions.\n\n### Outputs\n\n- **Proof**: `artifacts/k3_symmetric_proof.tex` (ready to `\\input{}` into appendix)\n- **Verification**: `artifacts/k3_symmetric_verify.py` + `artifacts/k3_symmetric_verify_results.json`\n- All 6 numerical tests pass (100k derivative sign checks, 10k configs per topology, derivative accuracy < 5e-10)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/math-mf1b-k3-symmetric-proof.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f656a7d648a0f81b88b8",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan011 frontier annotation ssh",
+  "task_key": "worker_code_plan011_frontier_annotation_ssh_20260521T115114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan011_frontier_annotation_ssh_20260521T115114_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "fc233abfba95389d97a2c2d0765245c3b3d713316c4e39c9216ac2d911da78f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The annotation is actively running. `qwen3_zero-shot.jsonl` went from 420→429 lines and the file timestamp updated to now (04:56). The script processed llama4 configs (already complete, refreshed confusion matrices) and is now working on qwen3_zero-shot.\n\n**Current run order (9 configs, resume skips done ones):**\n\n| # | Config | Status |\n|---|--------|--------|\n| 1-3 | llama4 × {zero, 3, 5} | Done (refreshed matrices) |\n| 4 | qwen3 × zero-shot | **Running** (429/1500) |\n| 5 | qwen3 × few-shot-3 | Pending (1500 new) |\n| 6 | qwen3 × few-shot-5 | Pending (1500 new) |\n| 7 | deepseek × zero-shot | Will refresh |\n| 8 | deepseek × few-shot-3 | 2 remaining |\n| 9 | deepseek × few-shot-5 | Pending (1500 new) |\n\n**~5500 new API calls at ~2-3s each → estimated 3-5 hours total.**\n\nProcess is running as nohup (PID 712156). I can check progress periodically. Want me to check back in ~30 minutes, or do you want a progress update sooner?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan011-frontier-annotation-ssh.md"
+}

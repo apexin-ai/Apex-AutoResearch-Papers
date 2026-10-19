@@ -18,6 +18,22 @@
       }
     },
     {
+      "project": "causal_annot_error_attrib",
+      "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction",
+      "catalog": "../paper-assets/causal_annot_error_attrib/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 475,
+        "messages": 66314,
+        "user_turns": 2035,
+        "tool_calls": 27964,
+        "unparsed_lines": 211,
+        "worker": 225,
+        "result": 163,
+        "conversation": 78,
+        "history": 9
+      }
+    },
+    {
       "project": "causal_style_decomp_judge",
       "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
       "catalog": "../paper-assets/causal_style_decomp_judge/05-generation-trace/catalog.json",
@@ -47,6 +63,36 @@
         "result": 358,
         "conversation": 137,
         "history": 4
+      }
+    },
+    {
+      "project": "crosscoder-behavioral-circuit-transplant",
+      "title": "crosscoder behavioral circuit transplant",
+      "catalog": "../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 20,
+        "messages": 1393,
+        "user_turns": 64,
+        "tool_calls": 541,
+        "unparsed_lines": 9,
+        "result": 6,
+        "worker": 9,
+        "conversation": 5
+      }
+    },
+    {
+      "project": "diagprm-stage-reasoning",
+      "title": "diagprm stage reasoning",
+      "catalog": "../paper-assets/diagprm-stage-reasoning/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 18,
+        "messages": 851,
+        "user_turns": 52,
+        "tool_calls": 317,
+        "unparsed_lines": 6,
+        "result": 8,
+        "worker": 6,
+        "conversation": 4
       }
     },
     {
@@ -96,6 +142,12 @@
         "conversation": 1235,
         "history": 189
       }
+    },
+    {
+      "project": "prod_0510",
+      "title": "prod 0510",
+      "catalog": "../paper-assets/prod_0510/05-generation-trace/catalog.json",
+      "statistics": {}
     },
     {
       "project": "ratekv",

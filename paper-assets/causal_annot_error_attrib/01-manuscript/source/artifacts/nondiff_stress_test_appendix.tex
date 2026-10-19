@@ -1,0 +1,30 @@
+\paragraph{Non-Differential Assumption Stress Test.}
+Our main analysis assumes non-differential misclassification---the confusion matrix $C$ does not depend on the outcome $Y$.
+To assess sensitivity to violations of this assumption, we conduct a stress test on the exposure topology ($K{=}3$).
+For each base confusion matrix $C_0$ sampled from the truncated Dirichlet prior ($\min(\mathrm{diag}(C)) \geq 0.7$, $n=10,000$),
+we introduce controlled differential error: observations with $Y > \mathrm{median}(Y)$ are misclassified
+using a perturbed matrix $\tilde{C} = \mathrm{renormalize}(C_0 + \varepsilon \cdot \Delta)$ where
+$\Delta_{ji} \sim \mathrm{Uniform}(-1,1)$ for off-diagonal entries, while observations with
+$Y \leq \mathrm{median}(Y)$ retain the original $C_0$.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{cccc}
+\toprule
+$\varepsilon$ & Sign-Flip (\%) & Amplification (\%) & Any Violation (\%) \\
+\midrule
+0.00 & 2.0 & 11.5 & 13.3 \\
+0.01 & 2.4 & 12.4 & 14.7 \\
+0.05 & 2.8 & 13.0 & 15.7 \\
+0.10 & 4.5 & 16.7 & 20.9 \\
+0.20 & 9.7 & 23.7 & 32.6 \\
+0.30 & 15.5 & 28.7 & 42.8 \\
+0.50 & 22.9 & 34.9 & 54.6 \\
+\bottomrule
+\end{tabular}
+\caption{Effect of differential misclassification on bias violation rates (exposure DAG, $K{=}3$, $\min(\mathrm{diag}(C)) \geq 0.7$).
+At $\varepsilon = 0.5$, the violation rate changes by +41.2 percentage points relative to the non-differential baseline ($\varepsilon = 0$), indicating substantial sensitivity to differential error, suggesting the non-differential assumption is important for the main conclusions.}
+\label{tab:nondiff_stress}
+\end{table}
+

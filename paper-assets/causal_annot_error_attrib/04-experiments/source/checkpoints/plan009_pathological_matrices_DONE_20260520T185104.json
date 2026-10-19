@@ -1,0 +1,127 @@
+{
+  "exp_id": "plan009_pathological_matrices",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-20T16:10:16.587Z",
+    "updated_at": "2026-05-20T18:51:03.995Z",
+    "hypothesis": "病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\"安全区\"和\"灾难区\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。",
+    "parent": "plan001_dag_taxonomy",
+    "server": "home-1x5090",
+    "gpu": "cuda:0",
+    "account": "sonny",
+    "reproduce": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T18:37:49.350Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/causal_annot_error_attrib && mkdir -p artifacts/plan009 && python plan_009_pathological_matrices.py --M 1000 --K 3 5 7 --device cuda:0 2>&1 | tee artifacts/plan009/plan009_run.log\"",
+      "finished_at": "2026-05-20T18:43:55.283Z",
+      "training_hours": 0.1
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-20T18:38:21.593Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T18:38:23.926022+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T18:43:57.338655+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: /root/miniconda3/etc/profile.d/conda.sh Permission denied — sonny 账户无权访问 root conda | error_type: infrastructure | 修复: 使用 sonny 可用的 python3 直接执行，不走 /root/miniconda3 conda activation"
+      }
+    },
+    "notes": "retry#1 conda fix OK, but --device cuda:0 not a valid arg (script uses --M/--N/--K/--topos/--dry-run). tee masked exit code → cron误判clean exit. retry#2: remove --device, add pipefail",
+    "spec": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "command": "python3 plan_009_pathological_matrices.py --M 1000 --K 3 5 7 --device cuda:0",
+      "data_path": "/home/sonny/causal_annot_error_attrib/",
+      "data_count": "M=1000 random C per (topo, K, C_type), 7 topos x 3 K x 7 C-type configs",
+      "model_name": "N/A (MC simulation)",
+      "seed": "SHA-256 deterministic per (topo, K, C_type)",
+      "pid": 497866,
+      "log_path": "/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_run.log",
+      "fix_note": "retry #2: added --device argparse param, using system python3",
+      "checkpoint_source": "plan001_dag_taxonomy (plim functions reused)",
+      "eval_data": "synthetic pathological C matrices (near-permutation, rank-deficient, block-diagonal)"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/home/sonny/causal_annot_error_attrib/artifacts/plan009/",
+    "log_path": "/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_run.log",
+    "metrics": {
+      "per_topology_regression": {
+        "confounding": {
+          "R2": "0.61-0.77",
+          "significant_predictors": [
+            "spectral_gap",
+            "condition_number"
+          ]
+        },
+        "mediation": {
+          "R2": "0.61-0.77",
+          "significant_predictors": [
+            "spectral_gap",
+            "condition_number"
+          ]
+        },
+        "collider": {
+          "R2": "0.61-0.77",
+          "significant_predictors": [
+            "spectral_gap",
+            "condition_number"
+          ]
+        },
+        "frontdoor": {
+          "R2": "0.61-0.77",
+          "significant_predictors": [
+            "spectral_gap",
+            "condition_number"
+          ]
+        },
+        "exposure": {
+          "R2": 0.11,
+          "note": "catastrophic bias high for near_perm eps=0.01 (15% above threshold)"
+        },
+        "iv": {
+          "R2": "~0",
+          "note": "regression has no explanatory power — IV bias driven by Wald denominator sign, not gradual matrix features"
+        },
+        "global": {
+          "R2": "~0",
+          "note": "cross-topology aggregation destroys predictive power (different bias mechanisms)"
+        }
+      },
+      "pathological_C_types": [
+        "near_permutation (eps=0.01,0.05,0.1,0.2)",
+        "rank_deficient",
+        "block_diagonal"
+      ],
+      "K_values": [
+        3,
+        5,
+        7
+      ],
+      "M_per_config": 1000,
+      "N_per_sim": 5000000,
+      "runtime_seconds": 25,
+      "output_files": {
+        "summary_json": "/home/sonny/causal_annot_error_attrib/artifacts/plan009/pathological_bias_summary.json (167KB)",
+        "regression_txt": "/home/sonny/causal_annot_error_attrib/artifacts/plan009/regression_results.txt (3.5KB)",
+        "run_log": "/home/sonny/causal_annot_error_attrib/artifacts/plan009/plan009_run.log (27KB)"
+      }
+    }
+  },
+  "timestamp": "2026-05-20T18:51:04.039892+00:00",
+  "trigger": "update_registry"
+}

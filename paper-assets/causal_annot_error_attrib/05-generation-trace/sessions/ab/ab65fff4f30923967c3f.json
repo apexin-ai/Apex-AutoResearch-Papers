@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab65fff4f30923967c3f",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code extract vast qwen3 zs",
+  "task_key": "worker_code_extract_vast_qwen3_zs_20260522T113310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_extract_vast_qwen3_zs_20260522T113310_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "bcc4a9758d77d6bb1ebe3aa446f4e7fc8e8182ecf8af0588bbe4ead2cb8051d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**vast/qwen3_zero-shot CM**（已保存到 `artifacts/plan011_new_cms_vast_qwen3_zs.json`）：\n- n_valid = 1499（1500 行中 1 条 skipped）\n- Accuracy = 0.5117\n- NPZ 实际已存在于 `/home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot_confusion_matrix.npz`，与 JSONL 计算结果完全一致\n\n**其他 JSONL 缺失 NPZ 的情况**（均不完整，非 1500 行）：\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| vast/llama4_zero-shot | 1496 | 近完成 |\n| vast/qwen2.5-7b_zero-shot | 1499 | 近完成 |\n| vast/llama4_few-shot-5 | 346 | 未完成 |\n| vast/qwen3_few-shot-3 | 77 | 未完成 |\n| civil_comments/qwen3_zero-shot | 1079 | 未完成 |\n| civil_comments/qwen3_few-shot-3 | 1496 | 近完成 |\n| civil_comments/qwen3_few-shot-5 | 1492 | 近完成 |\n| humaid/llama4_few-shot-3 | 1498 | 近完成 |\n| humaid/llama4_few-shot-5 | 1471 | 部分完成 |\n| humaid/deepseek_few-shot-3 | 1345 | 部分完成 |\n| humaid/deepseek_few-shot-5 | 1237 | 部分完成 |\n| humaid/qwen3_few-shot-3 | 1423 | 部分完成 |\n\n没有其他 1500 行完整的 JSONL 缺 NPZ。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-extract-vast-qwen3-zs.md"
+}

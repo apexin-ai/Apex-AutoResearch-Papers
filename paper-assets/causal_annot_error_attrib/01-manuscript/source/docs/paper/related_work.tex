@@ -1,0 +1,11 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Measurement error in causal inference.}
+Non-differential misclassification of a binary variable biases estimates toward the null~\cite{bross1954misclassification, brenner1993, ogburn_vanderweele2012}, formalized in the DAG framework by \citet{hernan_cole2009} and \citet{kuroki_pearl2014}. This guarantee breaks for polytomous variables~\cite{dosemeci1990, jurek2005, veirod_laake2001}, yet extensions to differential error, mismeasured covariates, and nonclassical structures~\cite{brennan_getz_brooks_fox2021, shu_yi2019a, valeri_vanderweele2013, schennach2020mismeasured} treat topologies in isolation. No prior work compares how the \emph{same} confusion matrix produces qualitatively different bias depending on the mismeasured variable's causal role.
+
+\paragraph{LLM annotation and downstream causal validity.}
+LLMs are rapidly replacing human annotators~\cite{gilardi2023chatgpt, ziems2024can, tan2024llm}, yet consequences for causal inference remain underexplored. \citet{baumann2025} and \citet{kim_garg2025} show that 31\% of hypotheses yield incorrect conclusions and error correlations reach 60\% across models, but neither connects error patterns to DAG structure. \citet{teblunthuis2024} provides the most complete binary analysis (four topologies, $K{=}2$) and \citet{lee_wood_doughty2024} extends to categorical classifiers, but only for confounding. The multi-class ($K{\geq}3$) regime, where sign reversal becomes structurally possible, remains unaddressed.
+
+\paragraph{Sensitivity analysis and correction methods.}
+Sensitivity frameworks for unmeasured confounding~\cite{vanderweele_ding2017, cinelli2020making, oster2019} do not address annotation error, while matrix-adjustment~\cite{blackwell_honaker_king2017, lash2009} and prediction-powered methods~\cite{angelopoulos2023, egami_hinck_stewart_wei2023, zrnic_candes2024, gligoric2025} target misclassification but remain topology-agnostic. We show this agnosticism is costly: FWL invariance renders matrix-based corrections provably ineffective for four topologies, and topology-blind application can amplify bias ($-$139\% for IV).

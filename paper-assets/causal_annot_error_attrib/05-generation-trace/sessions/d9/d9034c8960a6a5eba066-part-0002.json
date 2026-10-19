@@ -1,0 +1,641 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d9034c8960a6a5eba066",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KTDJ9vy3Tm9rZdKsbaifA7",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "account": "sonny",
+                "command": "cat << 'PLAN009EOF' > /home/sonny/causal_annot_error_attrib/plan_009_pathological_matrices.py\n#!/usr/bin/env python3\n\"\"\"\nPlan 009: Pathological Confusion Matrix Analysis\n\nIdentifies structural conditions under which pathological confusion matrices\nproduce catastrophic estimation bias across 7 DAG topologies.\n\nThree types of pathological C matrices (K×K column-stochastic):\n\n  (a) Near-permutation: C = (1-ε)P + ε·(1/K)·𝟏𝟏ᵀ\n      P = random permutation matrix, ε ~ U(0.01, 0.99).\n      Models systematic label swaps with varying noise levels.\n\n  (b) Rank-deficient: Dirichlet-generated C with row j ≈ row i + 𝒩(0, σ²),\n      σ ~ U(1e-6, 0.05), then column-renormalized.\n      Models annotators who cannot distinguish certain categories.\n\n  (c) Block-diagonal: K partitioned into 2 blocks; high within-block confusion\n      (Dirichlet α=5), low between-block leakage ~ U(0.001, 0.1).\n      Models structured confusion (e.g., fine-grained subcategory mix-ups).\n\nFeatures computed per matrix:\n  - spectral_gap:     λ₁ - λ₂ (top two eigenvalue magnitudes of C)\n  - diag_dominance:   min(diag(C)) / (1/K)\n  - effective_rank:   (Σσᵢ)² / Σσᵢ² (from SVD)\n  - condition_number: σ_max / σ_min\n\nOutput:\n  - Per-topology OLS regression: bias ~ features (standardized coefficients, R²)\n  - Feature importance ranking across topologies\n  - Catastrophic bias thresholds per feature\n  - Scatter plot: spectral_gap vs |bias| by topology (PNG)\n\"\"\"\n\nimport torch\nimport numpy as np\nimport time\nimport os\nimport sys\nfrom itertools import permutations\n\n# ================================================================\n# Configuration\n# ================================================================\nK_VALUES = [3]  # primary K; append 5 for extended analysis\nN_SAMPLES = 100_000\nN_LARGE = 5_000_000\nBASE_SEED = 42\nDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\nDTYPE = torch.float64\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\nCATASTROPHIC_BIAS = 0.5\n\nC_TYPES = ['near_permutation', 'rank_deficient', 'block_diagonal']\nALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\n             'mbias', 'iv', 'frontdoor']\nFEATURE_NAMES = ['spectral_gap', 'diag_dominance', 'effective_rank', 'condition_number']\n\n\ndef get_seed(topo_name, K, c_type, base_seed=BASE_SEED):\n    \"\"\"Deterministic seed per (topo, K, C_type) combination.\"\"\"\n    return hash((topo_name, K, c_type, base_seed)) % (2**32)\n\n\n# ================================================================\n# Parameter Pools (from plan_002, K=3 values match plan_001)\n# ================================================================\n_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\n_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\n_IV_DZ_POOL  = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\n_IV_DU_POOL  = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\n\n\ndef make_p_A(K):\n    if K == 3:\n        return np.array([0.40, 0.35, 0.25])\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\n    return raw / raw.sum()\n\n\ndef make_all_params(K):\n    p_A = make_p_A(K)\n    return dict(\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\n                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\n                      dY=np.array(_DY_POOL[:K])),\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n    )\n\n\n# ================================================================\n# DGP Generators (from plan_002)\n# ================================================================\ndef _softmax_rows(logits):\n    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\n    return e / e.sum(axis=-1, keepdims=True)\n\n\ndef _sample_cat(probs, rng):\n    cum = np.cumsum(probs, axis=1)\n    u = rng.uniform(size=probs.shape[0])[:, None]\n    return (u >= cum).sum(axis=1).astype(int)\n\n\ndef gen_confounding(K, N, p, rng):\n    A = rng.choice(K, size=N, p=p['p_A'])\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1).astype(float)\n    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n    return T, Y, A\n\n\ndef gen_mediation(K, N, p, rng):\n    T = rng.binomial(1, 0.5, N).astype(float)\n    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n    A = _sample_cat(_softmax_rows(logits), rng)\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1)\n    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n    return T, Y, A\n\n\ndef gen_collider(K, N, p, rng):\n    T = rng.normal(0, 1, N)\n    Y = p['tau'] * T + rng.normal(0, 1, N)\n    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\n    A = _sample_cat(_softmax_rows(logits), rng)\n    return T, Y, A\n\n\ndef gen_exposure(K, N, p, rng):\n    A = rng.choice(K, size=N, p=p['p_A'])\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1).astype(float)\n    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n    return None, Y, A\n\n\ndef gen_mbias(K, N, p, rng):\n    U1 = rng.normal(0, 1, N)\n    U2 = rng.normal(0, 1, N)\n    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n    logits = np.zeros((N, K))\n    for j in range(1, K):\n        logits[:, j] = p['g'][j] + p['a1'][j] * U1 + p['a2'][j] * U2\n    A = _sample_cat(_softmax_rows(logits), rng)\n    return T, Y, A\n\n\ndef gen_iv(K, N, p, rng):\n    Z = rng.binomial(1, 0.5, N).astype(float)\n    U = rng.normal(0, 1, N)\n    eps = rng.normal(0, 1, N)\n    logits = np.zeros((N, K))\n    for j in range(1, K):\n        logits[:, j] = p['g'][j] + p['dZ'][j] * Z + p['dU'][j] * U\n    A = _sample_cat(_softmax_rows(logits), rng)\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (A == j + 1).astype(float)\n    Y = D @ p['beta'][1:] + p['lam'] * U + eps\n    return Z, Y, A\n\n\ndef gen_frontdoor(K, N, p, rng):\n    U = rng.normal(0, 1, N)\n    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n    logits = np.zeros((N, K))\n    for j in range(1, K):\n        logits[:, j] = p['gamma'][j] + p['delta'][j] * T\n    M = _sample_cat(_softmax_rows(logits), rng)\n    D = np.zeros((N, K - 1))\n    for j in range(K - 1):\n        D[:, j] = (M == j + 1).astype(float)\n    Y = D @ p['beta'][1:] + p['lam_U'] * U + rng.normal(0, 1, N)\n    return T, Y, M\n\n\n_GEN_OLS = dict(confounding=gen_confounding, mediation=gen_mediation,\n                collider=gen_collider, mbias=gen_mbias, frontdoor=gen_frontdoor)\n\n\n# ================================================================\n# Sufficient Statistics (from plan_002)\n# ================================================================\nclass SuffStats:\n    def __init__(self, T, Y, A, K):\n        self.K = K\n        self.has_T = T is not None\n        N = len(Y)\n        DA = np.zeros((N, K))\n        for k in range(K):\n            DA[:, k] = (A == k).astype(float)\n        self.p_A = DA.mean(0)\n        self.E_Y = Y.mean()\n        self.E_YD = (DA * Y[:, None]).mean(0)\n        if self.has_T:\n            self.E_T = T.mean()\n            self.E_T2 = (T ** 2).mean()\n            self.E_TY = (T * Y).mean()\n            self.E_TD = (DA * T[:, None]).mean(0)\n\n    def to_device(self, dev):\n        self.t_p_A = torch.tensor(self.p_A, dtype=DTYPE, device=dev)\n        self.t_E_Y = torch.tensor(self.E_Y, dtype=DTYPE, device=dev)\n        self.t_E_YD = torch.tensor(self.E_YD, dtype=DTYPE, device=dev)\n        if self.has_T:\n            self.t_E_T = torch.tensor(self.E_T, dtype=DTYPE, device=dev)\n            self.t_E_T2 = torch.tensor(self.E_T2, dtype=DTYPE, device=dev)\n            self.t_E_TY = torch.tensor(self.E_TY, dtype=DTYPE, device=dev)\n            self.t_E_TD = torch.tensor(self.E_TD, dtype=DTYPE, device=dev)\n        return self\n\n\nclass IVSuffStats:\n    def __init__(self, Z, Y, A, K):\n        self.K = K\n        z1 = Z == 1; z0 = Z == 0\n        self.RF = Y[z1].mean() - Y[z0].mean()\n        self.FS = np.zeros(K)\n        for k in range(K):\n            self.FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n\n    def to_device(self, dev):\n        self.t_RF = torch.tensor(self.RF, dtype=DTYPE, device=dev)\n        self.t_FS = torch.tensor(self.FS, dtype=DTYPE, device=dev)\n        return self\nPLAN009EOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "e27d160d-4537-4424-967e-216c637833b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D8HHZDUtVA9DQH6BXUVpbn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13599,
+                "cache_read_input_tokens": 26219,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13599
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-20T16:43:24.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KTDJ9vy3Tm9rZdKsbaifA7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "943d47f5-68a4-4315-996f-6c68667de2e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+              }
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Part 1 written. Now appending the rest."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "20e5e202-7c0e-4feb-9901-1fde591b9274",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gh7Zec1bWiXeoAMVYaKfAT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5556,
+                "cache_read_input_tokens": 39818,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5556
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eqhun2i8vjL1q5GD7mq3o6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "account": "sonny",
+                "command": "cat << 'PLAN009EOF' >> /home/sonny/causal_annot_error_attrib/plan_009_pathological_matrices.py\n\n\n# ================================================================\n# GPU-Batched Plim Functions (from plan_002)\n# ================================================================\ndef plim_with_T(ss, C):\n    \"\"\"Plim of OLS Y ~ 1 + T + D_A* for topologies with treatment T.\"\"\"\n    B, K = C.shape[0], ss.K\n    dim = K + 1\n    q = C @ ss.t_p_A\n    ct = C @ ss.t_E_TD\n    cy = C @ ss.t_E_YD\n    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n    EZZ[:, 0, 0] = 1.0\n    EZZ[:, 0, 1] = ss.t_E_T; EZZ[:, 1, 0] = ss.t_E_T\n    EZZ[:, 1, 1] = ss.t_E_T2\n    EZZ[:, 0, 2:] = q[:, 1:]; EZZ[:, 2:, 0] = q[:, 1:]\n    EZZ[:, 1, 2:] = ct[:, 1:]; EZZ[:, 2:, 1] = ct[:, 1:]\n    idx = torch.arange(K - 1, device=C.device)\n    EZZ[:, idx + 2, idx + 2] = q[:, 1:]\n    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n    EZY[:, 0] = ss.t_E_Y; EZY[:, 1] = ss.t_E_TY; EZY[:, 2:] = cy[:, 1:]\n    return torch.linalg.solve(EZZ, EZY)\n\n\ndef plim_exposure(ss, C):\n    \"\"\"Plim of OLS Y ~ 1 + D_A* for exposure topology (no treatment).\"\"\"\n    B, K = C.shape[0], ss.K\n    dim = K\n    q = C @ ss.t_p_A\n    cy = C @ ss.t_E_YD\n    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n    EZZ[:, 0, 0] = 1.0\n    EZZ[:, 0, 1:] = q[:, 1:]; EZZ[:, 1:, 0] = q[:, 1:]\n    idx = torch.arange(K - 1, device=C.device)\n    EZZ[:, idx + 1, idx + 1] = q[:, 1:]\n    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n    EZY[:, 0] = ss.t_E_Y; EZY[:, 1:] = cy[:, 1:]\n    return torch.linalg.solve(EZZ, EZY)\n\n\ndef plim_iv_batched(ss, C):\n    \"\"\"Plim of Wald IV estimator for IV topology.\"\"\"\n    FS_star = C @ ss.t_FS\n    denom = FS_star[:, 1]\n    nan_val = torch.tensor(float('nan'), dtype=DTYPE, device=C.device)\n    result = torch.where(denom.abs() < 1e-8, nan_val, ss.t_RF / denom)\n    return result.unsqueeze(1)\n\n\n# ================================================================\n# Pathological C Matrix Generators\n# ================================================================\ndef gen_near_permutation(K, N, device, seed):\n    \"\"\"Near-permutation matrices: C = (1-ε)P + ε·(1/K)·𝟏𝟏ᵀ.\n\n    P is a uniformly random K×K permutation matrix. ε ~ U(0.01, 0.99).\n    When ε→0, C is a pure label permutation (worst case for some topologies).\n    When ε→1, C approaches uniform confusion (1/K everywhere).\n    Column-stochastic by construction (convex combination of stochastic matrices).\n    \"\"\"\n    rng = np.random.default_rng(seed)\n\n    all_perms = np.array(list(permutations(range(K))))\n    n_perms = len(all_perms)\n\n    perm_indices = rng.integers(0, n_perms, size=N)\n    epsilons = rng.uniform(0.01, 0.99, size=N)\n\n    P = np.zeros((N, K, K))\n    selected = all_perms[perm_indices]\n    batch_idx = np.arange(N)[:, None].repeat(K, axis=1)\n    col_idx = np.arange(K)[None, :].repeat(N, axis=0)\n    P[batch_idx, selected, col_idx] = 1.0\n\n    uniform = np.ones((K, K)) / K\n    eps = epsilons[:, None, None]\n    C = (1 - eps) * P + eps * uniform[None, :, :]\n\n    return torch.tensor(C, dtype=DTYPE, device=device)\n\n\ndef gen_rank_deficient(K, N, device, seed):\n    \"\"\"Rank-deficient matrices: row j set to row i plus small noise, then renormalized.\n\n    Starts from Dirichlet-generated column-stochastic C (full rank).\n    Picks random rows i≠j and sets C[j,:] = C[i,:] + 𝒩(0, σ²), σ ~ U(1e-6, 0.05).\n    Clipped to positive and column-renormalized.\n    Models annotators who conflate two categories (near-singular label mapping).\n    \"\"\"\n    rng = np.random.default_rng(seed)\n\n    C = np.zeros((N, K, K))\n    for j in range(K):\n        C[:, :, j] = rng.dirichlet(np.ones(K), N)\n\n    row_i = rng.integers(0, K, size=N)\n    row_j = (row_i + rng.integers(1, K, size=N)) % K\n    noise_scale = rng.uniform(1e-6, 0.05, size=(N, 1))\n    noise = rng.normal(0, 1, size=(N, K)) * noise_scale\n\n    batch_idx = np.arange(N)\n    C[batch_idx, row_j, :] = C[batch_idx, row_i, :] + noise\n\n    C = np.maximum(C, 1e-10)\n    C /= C.sum(axis=1, keepdims=True)\n\n    return torch.tensor(C, dtype=DTYPE, device=device)\n\n\ndef gen_block_diagonal(K, N, device, seed):\n    \"\"\"Block-diagonal matrices: high within-block confusion, low between-block leakage.\n\n    K classes partitioned into 2 blocks. Within-block columns drawn from\n    Dirichlet(α=5) (concentrated). Between-block leakage ~ U(0.001, 0.1) per matrix.\n    Models structured confusion where annotators confuse fine-grained subcategories\n    within semantic groups but rarely across groups.\n    \"\"\"\n    rng = np.random.default_rng(seed)\n\n    if K == 3:\n        blocks = [[0, 1], [2]]\n    elif K == 5:\n        blocks = [[0, 1], [2, 3, 4]]\n    else:\n        mid = K // 2\n        blocks = [list(range(mid)), list(range(mid, K))]\n\n    class_to_block = np.zeros(K, dtype=int)\n    for b_idx, block in enumerate(blocks):\n        for k in block:\n            class_to_block[k] = b_idx\n\n    C = np.zeros((N, K, K))\n    leakage = rng.uniform(0.001, 0.1, size=N)\n\n    for j in range(K):\n        b_idx = class_to_block[j]\n        own_block = blocks[b_idx]\n        other_rows = [r for r in range(K) if r not in own_block]\n        block_size = len(own_block)\n        other_size = len(other_rows)\n\n        within_mass = np.maximum(1.0 - leakage * other_size, 0.1)\n        within_probs = rng.dirichlet(np.ones(block_size) * 5, size=N)\n        for idx, row in enumerate(own_block):\n            C[:, row, j] = within_mass * within_probs[:, idx]\n\n        if other_size > 0:\n            between_total = 1.0 - within_mass\n            between_probs = rng.dirichlet(np.ones(other_size), size=N)\n            for idx, row in enumerate(other_rows):\n                C[:, row, j] = between_total * between_probs[:, idx]\n\n    C = np.maximum(C, 1e-10)\n    C /= C.sum(axis=1, keepdims=True)\n\n    return torch.tensor(C, dtype=DTYPE, device=device)\n\n\n_C_GENERATORS = {\n    'near_permutation': gen_near_permutation,\n    'rank_deficient': gen_rank_deficient,\n    'block_diagonal': gen_block_diagonal,\n}\nPLAN009EOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "ecf6638e-679a-489b-a88b-c0c49bb75348",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gh7Zec1bWiXeoAMVYaKfAT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5556,
+                "cache_read_input_tokens": 39818,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5556
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779302400,
+                  "rateLimitType": "five_hour",
+                  "utilization": 0.97,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.9
+                },
+                "uuid": "8dffb098-a9ab-4549-a01e-170e1b69cae2",
+                "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e"
+              }
+            }
+          ],
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-20T16:44:03.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eqhun2i8vjL1q5GD7mq3o6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "a494a72e-3974-4e18-baa1-d05077821168",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+              }
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Part 2 done. Appending the final part (features, regression, visualization, main)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "8e7c8d9c-d590-4a69-8ee3-5a2681592182",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oCZ36P8hyo9qP8433SEDF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2638,
+                "cache_read_input_tokens": 45374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2638
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QQ6Xxm1b9Y35XbCzWzJFRZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "account": "sonny",
+                "command": "cat << 'PLAN009EOF' >> /home/sonny/causal_annot_error_attrib/plan_009_pathological_matrices.py\n\n\n# ================================================================\n# Matrix Feature Computation (GPU-batched)\n# ================================================================\ndef compute_matrix_features(C_batch):\n    \"\"\"Compute spectral and structural features for a batch of C matrices.\n\n    Returns dict of (B,) real tensors on same device as C_batch:\n      spectral_gap:     |λ₁| - |λ₂|  (eigenvalue magnitude gap)\n      diag_dominance:   min(diag(C)) * K  (ratio to uniform baseline 1/K)\n      effective_rank:   (Σσ)² / Σσ²  (SVD-based effective dimensionality)\n      condition_number: σ_max / σ_min  (numerical conditioning)\n    \"\"\"\n    B, K, _ = C_batch.shape\n\n    eigvals = torch.linalg.eigvals(C_batch)\n    eigvals_abs = eigvals.abs()\n    eigvals_sorted, _ = eigvals_abs.sort(dim=1, descending=True)\n    spectral_gap = eigvals_sorted[:, 0] - eigvals_sorted[:, 1]\n\n    diag_vals = torch.diagonal(C_batch, dim1=1, dim2=2)\n    diag_dominance = diag_vals.min(dim=1).values * K\n\n    sv = torch.linalg.svdvals(C_batch)\n    sv_sum = sv.sum(dim=1)\n    sv_sq_sum = (sv ** 2).sum(dim=1)\n    effective_rank = (sv_sum ** 2) / sv_sq_sum.clamp(min=1e-30)\n    condition_number = sv[:, 0] / sv[:, -1].clamp(min=1e-15)\n\n    return {\n        'spectral_gap': spectral_gap,\n        'diag_dominance': diag_dominance,\n        'effective_rank': effective_rank,\n        'condition_number': condition_number,\n    }\n\n\n# ================================================================\n# Regression Analysis\n# ================================================================\ndef run_regression(bias_np, features_np, feature_names):\n    \"\"\"Standardized OLS: bias ~ spectral_gap + diag_dominance + effective_rank + condition_number.\n\n    Returns standardized coefficients (unit-free, comparable across features) and R².\n    Uses z-scored features so |β*| directly indicates relative predictive strength.\n    \"\"\"\n    y = bias_np.copy()\n    X = np.column_stack([features_np[name] for name in feature_names])\n\n    valid = np.isfinite(y) & np.all(np.isfinite(X), axis=1)\n    y, X = y[valid], X[valid]\n    if len(y) < 10:\n        return None\n\n    X_mean, X_std = X.mean(0), X.std(0)\n    X_std[X_std < 1e-10] = 1.0\n    X_z = (X - X_mean) / X_std\n    y_mean, y_std = y.mean(), y.std()\n    if y_std < 1e-10:\n        return None\n    y_z = (y - y_mean) / y_std\n\n    X_aug = np.column_stack([np.ones(len(y_z)), X_z])\n    beta, _, _, _ = np.linalg.lstsq(X_aug, y_z, rcond=None)\n\n    y_pred = X_aug @ beta\n    ss_res = ((y_z - y_pred) ** 2).sum()\n    ss_tot = (y_z ** 2).sum()\n    r2 = 1 - ss_res / ss_tot if ss_tot > 0 else 0.0\n\n    return {\n        'coefs': dict(zip(feature_names, beta[1:])),\n        'r_squared': r2,\n        'n_valid': len(y),\n    }\n\n\ndef find_catastrophic_thresholds(bias_np, features_np, feature_names,\n                                  bias_thr=CATASTROPHIC_BIAS, prob_thr=0.9):\n    \"\"\"Find feature thresholds where P(|bias| > bias_thr | condition) > prob_thr.\n\n    For spectral_gap, diag_dominance, effective_rank: search feature < threshold (low = bad).\n    For condition_number: search feature > threshold (high = bad).\n    Scans percentile grid; returns first threshold crossing prob_thr or None.\n    \"\"\"\n    is_catastrophic = bias_np > bias_thr\n    if is_catastrophic.sum() == 0:\n        return {name: None for name in feature_names}\n\n    thresholds = {}\n    for name in feature_names:\n        x = features_np[name]\n        valid = np.isfinite(x) & np.isfinite(bias_np)\n        x_v, cat_v = x[valid], is_catastrophic[valid]\n\n        if name == 'condition_number':\n            percentiles = np.percentile(x_v, np.arange(95, 0, -5))\n            best = None\n            for p_val in percentiles:\n                mask = x_v > p_val\n                if mask.sum() < 10:\n                    continue\n                if cat_v[mask].mean() >= prob_thr:\n                    best = p_val\n                    break\n            thresholds[name] = best\n        else:\n            percentiles = np.percentile(x_v, np.arange(5, 100, 5))\n            best = None\n            for p_val in percentiles:\n                mask = x_v < p_val\n                if mask.sum() < 10:\n                    continue\n                if cat_v[mask].mean() >= prob_thr:\n                    best = p_val\n                    break\n            thresholds[name] = best\n\n    return thresholds\n\n\n# ================================================================\n# Visualization\n# ================================================================\ndef save_scatter_plot(plot_data, K, out_path):\n    \"\"\"Scatter: spectral_gap vs |bias|, colored by topology, faceted by C type.\"\"\"\n    import matplotlib\n    matplotlib.use('Agg')\n    import matplotlib.pyplot as plt\n\n    fig, axes = plt.subplots(1, len(C_TYPES), figsize=(6 * len(C_TYPES), 5))\n    if len(C_TYPES) == 1:\n        axes = [axes]\n\n    colors = plt.cm.tab10(np.linspace(0, 1, len(ALL_TOPOS)))\n    topo_colors = dict(zip(ALL_TOPOS, colors))\n\n    for ax, c_type in zip(axes, C_TYPES):\n        for topo in ALL_TOPOS:\n            key = (topo, c_type)\n            if key not in plot_data:\n                continue\n            sg = plot_data[key]['spectral_gap']\n            bias = plot_data[key]['bias']\n            n = len(bias)\n            idx = np.random.default_rng(0).choice(n, min(2000, n), replace=False)\n            ax.scatter(sg[idx], bias[idx], alpha=0.3, s=5,\n                       color=topo_colors[topo], label=topo)\n        ax.set_xlabel('Spectral Gap')\n        ax.set_ylabel('|Bias|')\n        ax.set_title(f'K={K}, {c_type}')\n        ax.legend(fontsize=7, markerscale=3)\n\n    plt.tight_layout()\n    plt.savefig(out_path, dpi=150, bbox_inches='tight')\n    plt.close()\n    print(f\"  Saved: {out_path}\")\nPLAN009EOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "2ec5c0c2-006a-484f-adab-371d1c155bdc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oCZ36P8hyo9qP8433SEDF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2638,
+                "cache_read_input_tokens": 45374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2638
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-20T16:44:37.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QQ6Xxm1b9Y35XbCzWzJFRZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "daa48d95-c93a-4cdd-8b1a-ce4ef1f04f14",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+              }
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now the main function."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "269ebf3a-f849-4117-a667-55ab917e575b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVBg6f42mgCBfiugbeDq3q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2183,
+                "cache_read_input_tokens": 48012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2183
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PFkUobuGfoEMzpRwsHpYHz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "account": "sonny",
+                "command": "cat << 'PLAN009EOF' >> /home/sonny/causal_annot_error_attrib/plan_009_pathological_matrices.py\n\n\n# ================================================================\n# Main\n# ================================================================\ndef main():\n    t0 = time.time()\n    print(\"=\" * 100)\n    print(\"  PLAN 009: PATHOLOGICAL CONFUSION MATRIX ANALYSIS\")\n    print(\"=\" * 100)\n    print(f\"  Device: {DEVICE}\")\n    if DEVICE.type == 'cuda':\n        print(f\"  GPU: {torch.cuda.get_device_name(0)}\")\n        print(f\"  VRAM: {torch.cuda.get_device_properties(0).total_mem // 1024**3} GB\")\n    print(f\"  K_values={K_VALUES}, N_samples={N_SAMPLES:,}, N_large={N_LARGE:,}\")\n    print(f\"  C_types: {C_TYPES}\")\n    print(f\"  Catastrophic bias threshold: {CATASTROPHIC_BIAS}\")\n    sys.stdout.flush()\n\n    all_regressions = {}\n    all_thresholds = {}\n    plot_data = {}\n\n    for K in K_VALUES:\n        params = make_all_params(K)\n        print(f\"\\n{'='*100}\")\n        print(f\"  K = {K}\")\n        print(f\"{'='*100}\")\n        sys.stdout.flush()\n\n        # ---- Phase 1: Precompute sufficient statistics ----\n        suff_stats = {}\n        plim_true_vals = {}\n\n        for topo in ALL_TOPOS:\n            p = params[topo]\n            rng = np.random.default_rng(BASE_SEED)\n\n            if topo == 'iv':\n                Z, Y, A = gen_iv(K, N_LARGE, p, rng)\n                ss = IVSuffStats(Z, Y, A, K).to_device(DEVICE)\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n                tau_I = plim_iv_batched(ss, I_batch)[0, 0].item()\n                suff_stats[topo] = ss\n                plim_true_vals[topo] = tau_I\n                print(f\"  {topo}: tau_true(Wald) = {tau_I:.6f}\")\n            elif topo == 'exposure':\n                _, Y, A = gen_exposure(K, N_LARGE, p, rng)\n                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n                plim_I = plim_exposure(ss, I_batch).squeeze(0)\n                tau_I = plim_I[1].item()\n                suff_stats[topo] = ss\n                plim_true_vals[topo] = tau_I\n                print(f\"  {topo}: beta1_true = {tau_I:.6f}\")\n            else:\n                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\n                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\n                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n                plim_I = plim_with_T(ss, I_batch).squeeze(0)\n                tau_I = plim_I[1].item()\n                suff_stats[topo] = ss\n                plim_true_vals[topo] = tau_I\n                print(f\"  {topo}: tau_true = {tau_I:.6f}\")\n            sys.stdout.flush()\n\n        # ---- Phase 2: Compute bias & features per (topo, C_type) ----\n        print(f\"\\n  --- Computing bias & features ---\")\n\n        for c_type in C_TYPES:\n            print(f\"\\n  C_type: {c_type}\")\n\n            for topo in ALL_TOPOS:\n                tk = time.time()\n                seed = get_seed(topo, K, c_type)\n                ss = suff_stats[topo]\n                tau_I = plim_true_vals[topo]\n\n                C_batch = _C_GENERATORS[c_type](K, N_SAMPLES, DEVICE, seed)\n\n                if topo == 'iv':\n                    plim_all = plim_iv_batched(ss, C_batch)[:, 0]\n                elif topo == 'exposure':\n                    plim_all = plim_exposure(ss, C_batch)[:, 1]\n                else:\n                    plim_all = plim_with_T(ss, C_batch)[:, 1]\n\n                bias = (plim_all - tau_I).abs()\n\n                feats = compute_matrix_features(C_batch)\n\n                valid = torch.isfinite(bias)\n                for fname in FEATURE_NAMES:\n                    valid &= torch.isfinite(feats[fname])\n                n_valid = valid.sum().item()\n\n                bias_np = bias[valid].cpu().double().numpy()\n                feats_np = {name: feats[name][valid].cpu().double().numpy()\n                            for name in FEATURE_NAMES}\n\n                plot_data[(topo, c_type)] = {\n                    'bias': bias_np,\n                    'spectral_gap': feats_np['spectral_gap'],\n                }\n\n                reg = run_regression(bias_np, feats_np, FEATURE_NAMES)\n                key = (topo, K, c_type)\n                all_regressions[key] = reg\n\n                thr = find_catastrophic_thresholds(bias_np, feats_np, FEATURE_NAMES)\n                all_thresholds[key] = thr\n\n                cat_frac = (bias_np > CATASTROPHIC_BIAS).mean() if len(bias_np) > 0 else 0\n                print(f\"    {topo:14s}: valid={n_valid:,}/{N_SAMPLES:,}  \"\n                      f\"bias_mean={bias_np.mean():.4f}  bias_max={bias_np.max():.4f}  \"\n                      f\"catastrophic={cat_frac:.1%}  [{time.time()-tk:.1f}s]\")\n                sys.stdout.flush()\n\n        # ---- Phase 3: Regression results ----\n        print(f\"\\n{'='*100}\")\n        print(f\"  REGRESSION RESULTS: bias ~ features (standardized coefficients), K={K}\")\n        print(f\"{'='*100}\")\n\n        for c_type in C_TYPES:\n            print(f\"\\n  C_type: {c_type}\")\n            print(f\"  {'Topology':14s} {'R2':>6s}  {'spectral_gap':>14s} {'diag_domin':>12s} \"\n                  f\"{'eff_rank':>10s} {'cond_num':>10s}\")\n            print(f\"  {'-'*72}\")\n\n            for topo in ALL_TOPOS:\n                reg = all_regressions.get((topo, K, c_type))\n                if reg is None:\n                    print(f\"  {topo:14s}  (insufficient data)\")\n                    continue\n                coefs = reg['coefs']\n                print(f\"  {topo:14s} {reg['r_squared']:6.3f}  \"\n                      f\"{coefs['spectral_gap']:>14.4f} {coefs['diag_dominance']:>12.4f} \"\n                      f\"{coefs['effective_rank']:>10.4f} {coefs['condition_number']:>10.4f}\")\n\n        # ---- Phase 4: Feature importance ranking ----\n        print(f\"\\n  TOP PREDICTIVE FEATURES (avg |standardized beta| across topologies)\")\n        for c_type in C_TYPES:\n            avg_imp = {fname: 0.0 for fname in FEATURE_NAMES}\n            count = 0\n            for topo in ALL_TOPOS:\n                reg = all_regressions.get((topo, K, c_type))\n                if reg is None:\n                    continue\n                count += 1\n                for fname in FEATURE_NAMES:\n                    avg_imp[fname] += abs(reg['coefs'][fname])\n            if count > 0:\n                for fname in FEATURE_NAMES:\n                    avg_imp[fname] /= count\n\n            ranked = sorted(avg_imp.items(), key=lambda x: -x[1])\n            print(f\"\\n  {c_type}:\")\n            for rank, (fname, imp) in enumerate(ranked, 1):\n                print(f\"    #{rank}: {fname:20s}  avg|beta*| = {imp:.4f}\")\n\n        # ---- Phase 5: Catastrophic bias thresholds ----\n        print(f\"\\n  CATASTROPHIC BIAS THRESHOLDS: P(|bias|>{CATASTROPHIC_BIAS}) > 90%\")\n        for c_type in C_TYPES:\n            print(f\"\\n  {c_type}:\")\n            print(f\"  {'Topology':14s} {'spectral_gap':>14s} {'diag_domin':>14s} \"\n                  f\"{'eff_rank':>14s} {'cond_num':>14s}\")\n            print(f\"  {'-'*72}\")\n            for topo in ALL_TOPOS:\n                thr = all_thresholds.get((topo, K, c_type), {})\n                parts = [f\"  {topo:14s}\"]\n                for fname in FEATURE_NAMES:\n                    val = thr.get(fname)\n                    if val is None:\n                        s = \"N/A\"\n                    elif fname == 'condition_number':\n                        s = f\">{val:.1f}\"\n                    else:\n                        s = f\"<{val:.4f}\"\n                    parts.append(f\"{s:>14s}\")\n                print(\"\".join(parts))\n\n        # ---- Phase 6: Scatter plot ----\n        png_path = os.path.join(OUT_DIR, f\"plan_009_scatter_K{K}.png\")\n        try:\n            save_scatter_plot(plot_data, K, png_path)\n        except Exception as e:\n            print(f\"  Warning: plot failed: {e}\")\n\n    print(f\"\\n{'='*100}\")\n    print(f\"  Total runtime: {time.time() - t0:.0f}s\")\n    print(f\"{'='*100}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPLAN009EOF",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "a4b5413d-4962-46db-90b3-c278d6b3d553",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NVBg6f42mgCBfiugbeDq3q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2183,
+                "cache_read_input_tokens": 48012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2183
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779302400,
+                  "rateLimitType": "five_hour",
+                  "utilization": 0.98,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.9
+                },
+                "uuid": "a97203a3-4874-4824-ae55-b0fc94a64776",
+                "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e"
+              }
+            }
+          ],
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-20T16:45:15.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PFkUobuGfoEMzpRwsHpYHz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "dda0e1f5-7d49-4873-9b10-1ff3ea569f18",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+              }
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "rejected",
+                  "resetsAt": 1779302400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b107e06e-d497-44e6-a028-bee44d9f1107",
+                "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e"
+              }
+            }
+          ],
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6:40pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "uuid": "aa7b107d-fb02-48fb-9c13-425bb31825f9",
+            "error": "rate_limit",
+            "message": {
+              "id": "c9f547ec-7287-45a3-b0b7-0000c1e29d6d",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6:40pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": true,
+            "api_error_status": 429,
+            "duration_ms": 2106463,
+            "duration_api_ms": 2111479,
+            "num_turns": 36,
+            "stop_reason": "stop_sequence",
+            "session_id": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "total_cost_usd": 5.2791781,
+            "usage": {
+              "input_tokens": 39,
+              "cache_creation_input_tokens": 199724,
+              "cache_read_input_tokens": 2741811,
+              "output_tokens": 94499,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 199724,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2843,
+                  "cache_read_input_tokens": 48012,
+                  "cache_creation_input_tokens": 2183,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2183
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1981,
+                "outputTokens": 3786,
+                "cacheReadInputTokens": 46436,
+                "cacheCreationInputTokens": 43260,
+                "webSearchRequests": 0,
+                "costUSD": 0.0796296,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1410,
+                "outputTokens": 99241,
+                "cacheReadInputTokens": 2915022,
+                "cacheCreationInputTokens": 200634,
+                "webSearchRequests": 0,
+                "costUSD": 5.199548500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f3de5b4e-facd-48f2-82bd-d5cd3f8dea9c"
+          },
+          "id": "event-000130"
+        }
+      ]
+    }
+  ]
+}

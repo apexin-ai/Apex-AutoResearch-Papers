@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e593e03e7dc5c17398c",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan007 fix resubmit",
+  "task_key": "worker_code_plan007-fix-resubmit_20260520T185650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan007-fix-resubmit_20260520T185650_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "67f063b05b1d6d04d93f425600c77754b3e1c264da6405822f167bd50a36501e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行已启动，确认存活。\n\n- **PID**: 500789\n- **参数**: `--n-sim 1000`（已修正）\n- **规模**: 7 topos × 6 C × 5 methods × 1000 sims = 210k 组合（42 个 topo×C 分组）\n- **日志**: `/home/sonny/causal_annot_error_attrib/artifacts/plan007/plan007_full_run.log`\n- **当前进度**: [1/42] confounding × mild_uniform 运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan007-fix-resubmit.md"
+}

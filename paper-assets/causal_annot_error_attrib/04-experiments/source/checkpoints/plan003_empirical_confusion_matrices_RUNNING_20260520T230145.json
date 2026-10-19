@@ -1,0 +1,71 @@
+{
+  "exp_id": "plan003_empirical_confusion_matrices",
+  "project": "causal_annot_error_attrib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:12.825Z",
+    "updated_at": "2026-05-20T23:01:45.865Z",
+    "hypothesis": "Different LLMs (Llama-4-Maverick, Qwen3-235B, DeepSeek-Chat) produce systematically different confusion matrices on the same classification tasks, and these empirical confusion matrices can be used to quantify annotation error propagation in downstream causal inference.",
+    "spec": {
+      "command": "3x parallel nohup: annotate.py --model {llama4,qwen3,deepseek}",
+      "server": "home-1x5090",
+      "data_path": "/home/sonny/causal_annot_error_attrib/data/ (humaid.jsonl, vast.jsonl, civil_comments.jsonl)",
+      "data_count": "HumAID 1500, VAST+CivilComments default, 9 combinations per model",
+      "model_name": "Llama 4 Maverick, Qwen 3 235B, DeepSeek Chat V3",
+      "seed": "N/A",
+      "log_path": "/home/sonny/causal_annot_error_attrib/plan003_{llama4,qwen3,deepseek}.log",
+      "api_base": "http://47.94.22.126/v1",
+      "combinations": "3 datasets x 3 models x 3 prompts = 27 runs (3-way parallel by model)",
+      "pids": {
+        "llama4": 438497,
+        "qwen3": 438843,
+        "deepseek": 439116
+      },
+      "launch_method": "3x nohup parallel (streaming write + resume)",
+      "fix_applied": "streaming write per sample + --model filter + resume from existing JSONL",
+      "previous_attempt": "PID 401208 died, 1000 samples lost (no streaming write)"
+    },
+    "metrics": {
+      "status_detail": "PAUSED - API 402 Payment Required (OPENROUTER_API_KEY)",
+      "api_endpoint": "http://47.94.22.126/v1/chat/completions",
+      "data_dir": "results/ (not data/)",
+      "tasks_complete": 6,
+      "tasks_partial": 5,
+      "tasks_failed": 16,
+      "tasks_total": 27,
+      "complete_tasks": [
+        "humaid/llama4_zero-shot (1500)",
+        "humaid/llama4_few-shot-3 (1498)",
+        "humaid/qwen3_zero-shot (1500)",
+        "humaid/deepseek_zero-shot (1500)",
+        "vast/llama4_zero-shot (1496)",
+        "vast/llama4_few-shot-3 (1500)"
+      ],
+      "partial_tasks": [
+        "humaid/llama4_few-shot-5 (1471/1500)",
+        "humaid/qwen3_few-shot-3 (1423/1500)",
+        "humaid/deepseek_few-shot-3 (1345/1500)",
+        "humaid/deepseek_few-shot-5 (1237/1500)",
+        "vast/deepseek_zero-shot (1000/1500)"
+      ],
+      "failed_tasks_count": "humaid: 1, vast: 6, civil_comments: 9",
+      "civil_comments_status": "zero valid data across all 9 combinations",
+      "data_fields": {
+        "true_label": "gold_label",
+        "pred_label": "pred_label"
+      },
+      "pids_killed": "438843 (qwen3), 439116 (deepseek) at 22:55 UTC",
+      "pid_438497_llama4": "exited naturally"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T23:01:45.649Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T23:01:45.912323+00:00",
+  "trigger": "update_registry"
+}

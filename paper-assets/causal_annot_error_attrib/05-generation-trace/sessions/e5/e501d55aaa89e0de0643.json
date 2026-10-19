@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e501d55aaa89e0de0643",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan008 binarization",
+  "task_key": "worker_code_plan008-binarization_20260520T121548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan008-binarization_20260520T121548_result.json",
+    "occurrence": 1,
+    "bytes": 109,
+    "sha256": "632a93d0c690d0b3e750330c0af4af26ecfaa235c726f5662645442dcb639980"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Sleep timer completed — already handled; results were captured and registry updated above.)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan008-binarization.md"
+}

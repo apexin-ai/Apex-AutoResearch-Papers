@@ -1,0 +1,99 @@
+TABLE 3 DATA: Mean Bias Reduction (%) by Topology × Method
+============================================================
+Source: correction_guidance_results.json (plan007, 210 records)
+Run: 7 topologies × 5 methods × 6 C structures × 1000 sims
+Extracted from: worker_infra_plan007-status-check (2026-05-20T20:45)
+Values: already in percentage (no ×100 needed)
+
+=== BIAS REDUCTION (%) — mean over 6 C structures ===
+
+Topology        | Naive      | MLA        | DSL        | MC-SIMEX   | PPI++
+----------------|------------|------------|------------|------------|----------
+confounding     |    -0.0    |     0.0    |     49.8   |     35.9   |     99.3
+mediation       |    -0.0    |     0.0    |     70.3   |     42.4   |     98.8
+collider        |     0.0    |    -0.0    |    -89.2   |     37.1   |     97.0
+mbias           |     0.0    |     0.0    |   -768.0   |     25.7   |     63.7
+----------------|------------|------------|------------|------------|----------
+frontdoor       |   -53.5    |  -112.5    |    -29.2   |    -55.7   |     99.3
+exposure        |   -45.6    |   -89.9    |    -59.6   |     -3.8   |     98.8
+iv              |   -40.9    |   -59.2    |   -187.4   |     64.7   |     99.5
+----------------|------------|------------|------------|------------|----------
+Grand Mean      |   -20.0    |   -37.4    |   -144.8   |     20.9   |     93.8
+
+=== COVERAGE 95% — mean over 6 C structures ===
+
+Topology        | Naive      | MLA        | DSL        | MC-SIMEX   | PPI++
+----------------|------------|------------|------------|------------|----------
+confounding     |     0.0    |     0.0    |      6.1   |      0.8   |     98.6
+mediation       |     2.0    |     2.0    |     27.6   |     22.2   |     96.8
+collider        |     8.3    |     8.3    |      1.3   |     32.1   |     99.2
+mbias           |    92.1    |    92.1    |     10.8   |     92.6   |     98.5
+frontdoor       |     0.0    |     0.0    |      0.0   |     41.1   |     94.8
+exposure        |     0.0    |     0.0    |      0.0   |     37.4   |     95.0
+iv              |     0.0    |     0.0    |      0.0   |     36.8   |     94.7
+----------------|------------|------------|------------|------------|----------
+Grand Mean      |    14.6    |    14.6    |      6.5   |     37.6   |     96.8
+
+=== DISCREPANCIES vs. PAPER (experiments.tex tab:correction) ===
+
+Paper values that DIFFER from JSON source data:
+
+  Topology      | Method   | Paper  | JSON   | Delta
+  --------------|----------|--------|--------|--------
+  confounding   | SIMEX    |  30.1  |  35.9  |  +5.8
+  confounding   | PPI++    |  97.8  |  99.3  |  +1.5
+  mediation     | SIMEX    |  24.6  |  42.4  | +17.8
+  collider      | PPI++    |  98.6  |  97.0  |  -1.6
+  collider      | SIMEX    |  12.4  |  37.1  | +24.7
+  mbias         | SIMEX    |   5.1  |  25.7  | +20.6
+  frontdoor     | Naive    |   <0   | -53.5  |  (paper imprecise)
+  frontdoor     | MLA      |   <0   | -112.5 |  (paper imprecise)
+  frontdoor     | SIMEX    |   8.7  | -55.7  | -64.4  *** SIGN FLIP ***
+  frontdoor     | PPI++    |  99.9  |  99.3  |  -0.6
+  exposure      | Naive    |   <0   | -45.6  |  (paper imprecise)
+  exposure      | MLA      |   <0   | -89.9  |  (paper imprecise)
+  exposure      | SIMEX    |   1.0  |  -3.8  |  -4.8  *** SIGN FLIP ***
+  exposure      | PPI++    |  98.9  |  98.8  |  -0.1
+  iv            | Naive    |   <0   | -40.9  |  (paper imprecise)
+  iv            | MLA      |   <0   | -59.2  |  (paper imprecise)
+  iv            | PPI++    |  98.4  |  99.5  |  +1.1
+
+Values that MATCH:
+  mediation     | DSL      |  70.3  |  70.3  ✓
+  mediation     | PPI++    |  99.3  |  (JSON 98.8, paper 99.3 — MISMATCH)
+  mbias         | PPI++    |  63.7  |  63.7  ✓
+  iv            | SIMEX    |  64.7  |  64.7  ✓
+  DSL approx matches: confounding 49.8✓, collider -89≈-89.2, mbias -768≈-768.0,
+                       frontdoor -29≈-29.2, exposure -60≈-59.6, iv -187≈-187.4
+
+Grand means ALL match (both paper and JSON):
+  Naive: -20.0  MLA: -37.4  DSL: -144.8  MC-SIMEX: 20.9  PPI++: 93.8
+
+=== CRITICAL DISCREPANCIES ===
+
+MC-SIMEX has the most discrepancies — several cells differ by >20 percentage points
+and two have sign flips (frontdoor: paper +8.7 vs JSON -55.7; exposure: paper +1.0
+vs JSON -3.8). Despite this, the grand mean matches exactly (20.9%), suggesting
+the paper may have used a different aggregation or an earlier partial run for
+individual values but computed grand means from the full data.
+
+=== RAW FIELD NAMES ===
+
+Topologies in JSON: confounding, mediation, collider, exposure, mbias, iv, frontdoor
+Methods in JSON: naive_plugin, dsl, ppi, mcsimex, mla
+C structures (6): mild_uniform, moderate_uniform, severe_uniform, asymmetric,
+                   near_permutation, realistic_llm
+Records: 210 total (7 × 5 × 6)
+Metric field: bias_reduction (already in %, not 0-1)
+
+=== PPI MBIAS DETAIL (per C structure) ===
+
+mbias + realistic_llm:    -25.1% bias_red, 99.0% coverage
+mbias + mild_uniform:      62.5% bias_red, 98.3% coverage
+mbias + near_permutation:  69.9% bias_red, 98.6% coverage
+mbias + asymmetric:        82.9% bias_red, 98.7% coverage
+mbias + severe_uniform:    93.3% bias_red, 98.1% coverage
+
+=== WIN RATE ===
+
+PPI++ wins 40/42 topology×C-structure configurations (95.2%)

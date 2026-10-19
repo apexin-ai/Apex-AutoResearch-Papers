@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6fb8b5b5a72201629a86",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "sim ppi empirical validation",
+  "task_key": "worker_sim_ppi_empirical_validation_20260521T080324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_sim_ppi_empirical_validation_20260521T080324.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "4f70be70a16a2e2a2db0953bade823a92c075e07a36a3dad358db7c952fc8b74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T08:03:34.139370+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 2am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_sim_ppi_empirical_validation_20260521T080324"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/sim-ppi-empirical-validation.md"
+}

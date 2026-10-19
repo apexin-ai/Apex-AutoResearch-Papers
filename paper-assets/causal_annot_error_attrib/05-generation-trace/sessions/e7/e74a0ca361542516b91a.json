@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e74a0ca361542516b91a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "viz dirichlet overlay",
+  "task_key": "worker_viz_dirichlet_overlay_20260521T080413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_dirichlet_overlay_20260521T080413_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "cfbdeb1f4fe954f0afa931a85f68d1c226b2fe12f586b8f7e5b7f57398262ce0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Figure saved to `figures/paper/fig7_dirichlet_overlay.{pdf,png}`.\n\n**Layout**:\n- Left (Exposure): gray violation-rate fill drops from 85% (min_diag=0) to 12% (min_diag=0.9); dashed sign-flip rate falls to 0 above 0.7\n- Right (IV): violation rate ≡ 1; dashed sign-flip drops from 52% to 0 above 0.5\n- 14 empirical points overlaid at min_diag positions\n\n**Empirical landing zones**:\n- VAST/qwen2.5-7b (K=3, orange squares): min_diag ≈ 0.11–0.13 → **deep danger zone**\n- HumAID (K=10, blue circles): min_diag ≈ 0.29–0.43 → mid-range (~50–65% theoretical violation)\n- CivilComments/qwen2.5-7b (K=2, green triangles): min_diag ≈ 0.68–0.74 → near safe zone for exposure, but IV sign-flip risk persists"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-dirichlet-overlay.md"
+}

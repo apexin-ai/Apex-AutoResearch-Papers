@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c584a2cea8ddfab4cc91",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "fetch plan006 data",
+  "task_key": "worker_fetch_plan006_data_20260520T232516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fetch_plan006_data_20260520T232516_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "160959984a751f7d16d5571542025dd01ee35ee73a36e577cd14ac050674f892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's a summary of what was extracted:\n\n**Files on remote server** (`/home/sonny/causal_annot_error_attrib/artifacts/plan006/`):\n- `asv_empirical_results.json` — 121,851 bytes (complete, fetched via `ssh_fetch_file`)\n- `f1_vs_bias.png` — 174,444 bytes\n- `asv_heatmap.png` — 73,701 bytes  \n- `plan006_humaid_run.log` — 2,905 bytes\n\n**Data extracted** (saved to `artifacts/plan006_empirical_data.txt`, 178KB, 6026 lines):\n- 9 confusion matrices (llama4/qwen3/deepseek × zero-shot/few-shot-3/few-shot-5, K=10 HumAID)\n- 63 bias records across 7 topologies\n- 189 ASV values (32 magnitude non-null, 2 significance non-null, 0 sign-flip)\n- 63 F1-vs-bias records\n- 63 Type I/II error records (31/63 ASV-unsafe)\n- Inter-model error correlation (9 prompt×dataset pairs)\n- Complete raw JSON embedded\n\n**Artifact registered**: `art_20260520_505323`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fetch-plan006-data.md"
+}

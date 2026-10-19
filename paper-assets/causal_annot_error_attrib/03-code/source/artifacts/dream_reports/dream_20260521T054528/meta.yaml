@@ -1,0 +1,1065 @@
+dream_id: dream_20260521T054528
+project: causal_annot_error_attrib
+venue: emnlp-2026
+focus: 'Post-fix re-dream: all 5 structural issues resolved. Related work +5 refs,
+  ASV vs PBA, Brenner footnote, IV subspace appendix, nondiff stress test appendix+limitations.'
+review_mode: simple
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 理论-实证桥梁完全闭合：3 claims 均以完整强度呈现，实证数据覆盖充分且 theory-empirical match 紧凑
+      key_assumptions:
+      - API 402 解决，VAST/Civil Comments 获得 frontier 模型(≥235B)标注，消除 model-tier asymmetry
+      - PPI++ 在真实 LLM 标注上 bias reduction 与 MC 一致(≥80%)，nondiff assumption 近似成立
+      - theory-empirical bias magnitude match 紧凑(MAPE ≤ 15%)，topology ranking 在 K=2,3,10
+        全部复现
+      - Dirichlet subspace 可视化成功说服 reviewer：empirical 0 sign flip 是因 LLM accuracy
+        落在 diag≥0.7 安全区，理论预测的 sign flip 区域与实际 LLM 数据点无交集
+      - ASV 的 sample-dependent N* 和三类型设计(magnitude/significance/sign-flip)被接受为对 E-value
+        的实质性扩展
+      number_ranges:
+        usable_dataset_model_configs:
+        - 12
+        - 14
+        theory_empirical_direction_match_pct:
+        - 95
+        - 100
+        theory_empirical_magnitude_MAPE_pct:
+        - 5
+        - 15
+        ppi_empirical_bias_reduction_pct:
+        - 80
+        - 95
+        asv_unsafe_empirical_pct:
+        - 45
+        - 60
+        f1_bias_pearson_r:
+        - 0.05
+        - 0.2
+        correction_recommendation_accuracy_pct:
+        - 85
+        - 95
+        iv_empirical_bias_pct_k3:
+        - 200
+        - 300
+      narrative_direction: '原始 framing 完全成立，三条 claim 均以 full strength 呈现： (1) taxonomy
+        捕获 K≥3 方向反转(exposure 83%/IV 52% sign flip)和结构保证(5/7 topologies sign_flip=0%)的完整图景；
+        (2) ASV 三类型覆盖不同 DAG，significance_ASV 的 N* phase transition 是核心 actionable
+        贡献； (3) PPI++ universally reliable(93.8% MC + ≥80% empirical)，DSL topology-limited，naive/MLA
+        Frisch-Waugh 失效。 Headline 无需修改："F1>0.9 的 LLM 在 IV 下仍 >200% bias，12% 场景效应放大无安全阈值。"
+
+        '
+    median:
+      tier: median
+      meaning: 理论框架坚实，实证桥梁有缺口：Claims 1-2 完整但 claims 强度需微调，Claim 3 降级为 preliminary
+        guidance
+      key_assumptions:
+      - API 402 部分解决：HumAID 完整 + 1 额外 dataset 有 frontier 模型，第 3 dataset 仅 7B 模型，model-tier
+        asymmetry 存在但已控制
+      - PPI++ 真实数据 bias reduction 低于 MC(60-80%)——empirical C 含轻微 differential 成分
+      - theory-empirical match 在 benign topologies 良好但 IV/exposure MAPE 偏高(Wald 不稳定
+        + 有限样本方差)
+      - 0 empirical sign flip 与 Dirichlet diag≥0.7 预测一致，但部分 reviewer 仍要求直接 sign flip
+        实证
+      - ASV 被部分 reviewer 视为 E-value 自然扩展——需在 rebuttal 中强调 sample-dependent 和 topology-specific
+        ASV type selection 两个维度的差异化
+      number_ranges:
+        usable_dataset_model_configs:
+        - 8
+        - 11
+        theory_empirical_direction_match_pct:
+        - 85
+        - 95
+        theory_empirical_magnitude_MAPE_pct:
+        - 15
+        - 35
+        ppi_empirical_bias_reduction_pct:
+        - 60
+        - 80
+        asv_unsafe_empirical_pct:
+        - 35
+        - 50
+        f1_bias_pearson_r:
+        - 0.2
+        - 0.4
+        correction_recommendation_accuracy_pct:
+        - 65
+        - 85
+        iv_empirical_bias_pct_k3:
+        - 150
+        - 250
+      narrative_direction: 'Claims 调整措辞但不砍 claim 条数： (1) taxonomy "characterizes"
+        而非 "predicts"——强调 structural guarantee(5/7 sign_flip=0)和 risk tier 三分(low/medium/high)，弱化对
+        exact magnitude 的承诺； (2) ASV 定位为 "practical diagnostic framework"，强调 significance_ASV
+        的 N* phase transition 和 Type I=0% 的干净属性，magnitude_ASV 降级为 "reporting tool"；
+        (3) correction guidance 从 core claim 降为 "practical recommendation section"——
+        PPI++ dominance 呈现为 empirical finding + known limitation(gold labels required)，
+        明确 multi-LLM dependence-aware correction 为 open problem。 补充：Dirichlet subspace
+        可视化叠加 empirical LLM confusion matrices 位置， 证明 sign flip 不在现实操作区域但 amplification
+        持续存在(12% at diag≥0.9)。 Model-tier asymmetry 在 limitations 显著讨论。仍可接受于 AAAI/ARR。
+
+        '
+    worst:
+      tier: worst
+      meaning: 实证验证无法支撑三 claim 框架：需 reframe 为 cautionary/diagnostic paper，scope 收窄至
+        danger finding + 单一 ASV 类型
+      key_assumptions:
+      - API 402 持续未解决 + parsing errors 累积，仅 HumAID(K=10)可用且部分 prompt variant 缺失；VAST/CC
+        仅 7B 单模型
+      - theory-empirical magnitude match 弱：IV/exposure MAPE >35%，reviewer 质疑 closed-form
+        在有限 N 下的实用性
+      - PPI++ 真实数据效果显著下降(<60%)：empirical confusion matrix 含 differential + label-dependent
+        成分，violated nondiff assumption
+      - Reviewer 将 7 topologies × 6 C 的 taxonomy 视为 mechanical enumeration，要求 higher-level
+        insight
+      - ASV 被归为 E-value 的 multi-class 推广，novelty 判定不足
+      - correction guidance 完全依赖 MC 无真实验证——被视为 methodology paper 的致命伤
+      number_ranges:
+        usable_dataset_model_configs:
+        - 4
+        - 8
+        theory_empirical_direction_match_pct:
+        - 70
+        - 85
+        theory_empirical_magnitude_MAPE_pct:
+        - 35
+        - 55
+        ppi_empirical_bias_reduction_pct:
+        - 35
+        - 60
+        asv_unsafe_empirical_pct:
+        - 25
+        - 40
+        f1_bias_pearson_r:
+        - 0.35
+        - 0.55
+        correction_recommendation_accuracy_pct:
+        - 40
+        - 65
+        iv_empirical_bias_pct_k3:
+        - 100
+        - 200
+      narrative_direction: 放弃三 claim 结构，reframe 为 "danger analysis + diagnostic tool"：
+        核心 angle 转向 plan_009 的 regression dichotomy 发现—— (a) exposure/IV 构成 high-risk
+        tier：bias 不可用连续 matrix features 预测(R²≈0)， condition_number 在 5/7 topologies
+        是最一致预测因子但对 exposure/IV 无效； (b) 没有安全精度阈值——diag≥0.9 仍有 12% amplification(exposure)和
+        100% amplification(IV)。 ASV 仅保留 significance_ASV(Type I=0%，最干净)，砍掉 magnitude
+        和 sign-flip 两类型以减少攻击面。 Correction guidance 完全移至 future work，仅保留 "PPI++ promising
+        but gold-dependent" 讨论段。 用 risk tier(low/medium/high) 叙事替代 taxonomy 枚举， headline
+        改为："exposure 和 IV DAG 对标注误差 fundamentally fragile 且不可诊断—— 5/7 topologies 的
+        bias 可通过 condition_number 预测(R²=0.61-0.77)， 但 exposure/IV 的 catastrophic bias
+        是离散的、不可预测的。" 仍冲 AAAI 2027 / ARR October，scope 从 comprehensive framework 收窄为
+        focused danger analysis。
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments:
+  - name: K=3 七拓扑 MC 偏差验证
+    plan_id: plan_001
+    description: '对 7 个 DAG 拓扑(confounding, exposure, mediation, collider, M-bias,
+      IV, front-door) 推导 K=3 闭合偏差表达式，100k random C + 6 named structures MC 验证。
+
+      '
+    expected_results:
+      theory_mc_match_rate: 1.0
+      tau_sign_flip_exposure_pct: 83.4
+      tau_sign_flip_iv_pct: 52.6
+      tau_sign_flip_5safe_topologies_pct: 0.0
+      confounding_violation_rate: 1.0
+      confounding_amplification_rate: 1.0
+      mediation_tau_amplification: 1.0
+      collider_tau_sign_flip: 0.0
+      mbias_tau_sign_flip: 0.0
+      mbias_tau_amplification: 0.104
+      frontdoor_tau_sign_flip: 0.0
+      frontdoor_tau_amplification: 1.0
+      iv_violation_rate: 1.0
+      iv_amplification_rate: 1.0
+      exposure_worst_severity: 2.83
+    result_rationale: 'plan_001 已完成且全部通过。在 best 档下无需改动——7 拓扑的理论-MC 匹配已经完美(100k random
+      C 100% within 95% CI)。关键结构性发现已锁定：5/7 拓扑 τ_sign_flip=0% 是代数结构保证（confounding/mediation/collider/frontdoor
+      的偏差表达式中 τ 系数 符号由 C 的对角优势决定，不可翻转；mbias 偏差量级太小），而 exposure(83.4%) 和 IV(52.6%)
+      的 sign flip 源于根本不同的机制——前者是 near-permutation C 导致 label swap，后者是 Wald 分母符号反转。这个
+      5+2 分裂是 Claim 1 的核心支撑。
+
+      '
+    tables:
+    - name: 'Table 1: K=3 七拓扑偏差特征总结'
+      columns:
+      - Topology
+      - τ_violation%
+      - τ_sign_flip%
+      - τ_amplification%
+      - Mechanism
+      rows:
+      - - Confounding
+        - '100'
+        - '0'
+        - '100'
+        - Residual OVB (monotonic toward null)
+      - - Exposure
+        - '100'
+        - '83.4'
+        - '14.1'
+        - Label swap under near-permutation C
+      - - Mediation
+        - '100'
+        - '0'
+        - '100'
+        - Attenuated indirect effect
+      - - Collider
+        - '100'
+        - '0'
+        - '100'
+        - Induced collider bias
+      - - M-bias
+        - '53.2'
+        - '0'
+        - '10.4'
+        - Spurious path attenuation
+      - - IV
+        - '100'
+        - '52.6'
+        - '100'
+        - Wald denominator sign reversal
+      - - Front-door
+        - '100'
+        - '0'
+        - '100'
+        - Two-stage attenuation product
+    figures_description:
+    - 'Fig 1: 7-panel heatmap — 每个拓扑的 τ_sign_flip rate 随 C 对角优势变化，红色区域标记 dangerous
+      zone'
+    analysis: '5/7 结构保证 + 2/7 危险拓扑构成论文的核心对比叙事。exposure 和 IV 的危险性 源于完全不同的代数机制（label
+      permutation vs. ratio estimator instability）， 这意味着不存在统一的"安全阈值"——必须分拓扑诊断。
+
+      '
+  - name: K=5,7 矩阵扩展与可解释性工具
+    plan_id: plan_002
+    description: '将偏差表达式推广到 K=5,7 矩阵形式，开发三类可解释性工具 (eigendecomposition/worst-case bounds/diagnostic
+      viz)， 验证 K-invariance 性质。
+
+      '
+    expected_results:
+      structural_guarantee_preserved: true
+      tau_sign_flip_0_across_K_for_5topo: true
+      iv_sign_flip_K3: 0.526
+      iv_sign_flip_K5: 0.514
+      iv_sign_flip_K7: 0.523
+      iv_sign_flip_K_invariance: ~52% ± 1.2pp, K-invariant
+      worst_case_decreasing_with_K: true
+      confounding_wc_diag90_K3: 0.1614
+      confounding_wc_diag90_K5: 0.1107
+      confounding_wc_diag90_K7: 0.0933
+      exposure_wc_diag70_K3: 0.7092
+      exposure_wc_diag70_K5: 0.5782
+      exposure_wc_diag70_K7: 0.4913
+      iv_wc_diag50_K3: 14.05
+      iv_wc_diag50_K5: 9.69
+      iv_wc_diag50_K7: 8.22
+      mbias_amplification_K5_K7: 0.0
+      eigendecomposition_dominant_mode_captures_pct: '>85%'
+    result_rationale: 'plan_002 已完成。K-invariance 是 best 档的重要支撑：τ_sign_flip 的 拓扑分裂不依赖于
+      K（IV ~52% 在 K=3/5/7 间仅 1.2pp 波动），这意味着 K=3 的理论分析可以安全推广到任意 K。worst-case bias 随
+      K 递减是因为 更大的 K 在随机 C 下有更强的"稀释效应"——off-diagonal mass 分散到更多 cell。但 IV 在 diag50
+      下仍然灾难性（8-14×），且 K 越大 denominator instability 的几何更复杂。mbias amplification 在 K≥5
+      降为 0% 是因为 更多 off-diagonal path 相互抵消。eigendecomposition 的 dominant mode 捕获 >85%
+      bias variance 是因为 confounding/mediation/collider 的偏差 结构本质上是 rank-1 或 rank-2
+      扰动。
+
+      '
+    tables:
+    - name: 'Table 2: Cross-K worst-case bias at diag≥0.7 (typical LLM accuracy)'
+      columns:
+      - Topology
+      - K=3
+      - K=5
+      - K=7
+      - Trend
+      rows:
+      - - Confounding
+        - '0.274'
+        - '0.216'
+        - '0.186'
+        - ↓ monotonic
+      - - Exposure
+        - '0.709'
+        - '0.578'
+        - '0.491'
+        - ↓ monotonic
+      - - Mediation
+        - '0.251'
+        - '0.183'
+        - '0.142'
+        - ↓ monotonic
+      - - Collider
+        - '0.106'
+        - '0.109'
+        - '0.083'
+        - ↓ (non-monotonic K=5)
+      - - M-bias
+        - '0.023'
+        - '0.037'
+        - '0.032'
+        - Low, bounded
+      - - IV
+        - '1.644'
+        - '2.104'
+        - '1.813'
+        - Non-monotonic, catastrophic
+      - - Front-door
+        - '0.260'
+        - '0.207'
+        - '0.165'
+        - ↓ monotonic
+    figures_description:
+    - 'Fig 2: 3-panel eigendecomposition visualization — dominant bias mode vs. secondary
+      modes for confounding/mediation/IV at K=5'
+    - 'Fig 3: worst-case bias heatmap across (topology × K × diag_threshold)'
+    analysis: 'K=3 is the most conservative (largest worst-case) for 5/7 topologies，
+      论文可安全使用 K=3 作为 upper bound。IV 的非单调性（K=5 worst-case > K=3） 是 Wald estimator 的
+      denominator 几何在更高维的特殊行为。 这个 K-invariance 结果意味着 K=3 的理论 section 可以推广， K=5/7 作为
+      validation appendix。
+
+      '
+  - name: 三数据集 × 四模型经验混淆矩阵
+    plan_id: plan_003
+    description: 'HumAID(K=10) + VAST(K=3) + Civil Comments(K=2) × Llama-4-Maverick
+      + Qwen3-235B + DeepSeek-Chat + Qwen2.5-7B，全量标注获取经验混淆矩阵。
+
+      '
+    expected_results:
+      usable_configs: 14
+      total_annotations: ~126K (3 datasets × 4 models × ~10.5K avg)
+      humaid_configs_valid: 8
+      vast_configs_valid: 3
+      civil_comments_configs_valid: 3
+      humaid_deepseek_f1: 0.68
+      humaid_llama4_f1: 0.71
+      humaid_qwen3_235b_f1: 0.74
+      humaid_qwen2.5_7b_f1: 0.62
+      vast_qwen3_235b_f1: 0.78
+      vast_deepseek_f1: 0.75
+      vast_qwen2.5_7b_f1: 0.65
+      civil_comments_qwen3_235b_f1: 0.82
+      civil_comments_deepseek_f1: 0.79
+      civil_comments_qwen2.5_7b_f1: 0.72
+      inter_model_error_agreement_rate: 0.55-0.65
+      conditional_error_correlation: 0.40-0.60
+      confusion_matrix_diagonal_dominance_range: 0.55-0.85
+      model_tier_7b_vs_235b_f1_gap: 0.08-0.12
+      parsing_error_rate: <5%
+    result_rationale: 'best 档核心假设 #1：API 402 解决，VAST 和 Civil Comments 获得 frontier
+      模型(Qwen3-235B, Llama-4-Maverick)标注。当前 HumAID 已有 8/9 valid configs，追加 VAST(K=3)
+      和 Civil Comments(K=2) 各 3 configs (deepseek + qwen3 + qwen2.5-7b，或用 llama4 替换
+      402 失败的 qwen3) 达到 14 configs。 F1 预测基于：HumAID K=10 是最难任务（10 类灾害事件分类），F1 在 0.62-0.74
+      区间；VAST K=3（stance detection）相对更容易，F1 0.65-0.78；Civil Comments K=2（toxicity
+      binary）最容易，F1 0.72-0.82。7B vs 235B 的 F1 gap 约 0.08-0.12 是基于 HumAID 已有数据的外推（qwen2.5-7b
+      系统性低于 frontier 但不是灾难性的）。inter-model error correlation 0.55-0.65 与 Kim et al.
+      (ICML 2025) 报告的 60% agreement 一致，强化 "ensembles cannot escape systematic bias"
+      的论证。
+
+      '
+    tables:
+    - name: 'Table 3: 经验混淆矩阵 F1 与对角优势'
+      columns:
+      - Dataset
+      - K
+      - Model
+      - F1
+      - diag_dominance
+      - off_diag_max
+      rows:
+      - - HumAID
+        - '10'
+        - Llama-4-Maverick
+        - '0.71'
+        - '0.68'
+        - '0.09'
+      - - HumAID
+        - '10'
+        - Qwen3-235B
+        - '0.74'
+        - '0.72'
+        - '0.08'
+      - - HumAID
+        - '10'
+        - DeepSeek-Chat
+        - '0.68'
+        - '0.65'
+        - '0.11'
+      - - HumAID
+        - '10'
+        - Qwen2.5-7B
+        - '0.62'
+        - '0.58'
+        - '0.13'
+      - - VAST
+        - '3'
+        - Qwen3-235B
+        - '0.78'
+        - '0.76'
+        - '0.14'
+      - - VAST
+        - '3'
+        - DeepSeek-Chat
+        - '0.75'
+        - '0.72'
+        - '0.16'
+      - - VAST
+        - '3'
+        - Qwen2.5-7B
+        - '0.65'
+        - '0.61'
+        - '0.22'
+      - - Civil Cmt
+        - '2'
+        - Qwen3-235B
+        - '0.82'
+        - '0.81'
+        - '0.19'
+      - - Civil Cmt
+        - '2'
+        - DeepSeek-Chat
+        - '0.79'
+        - '0.78'
+        - '0.22'
+      - - Civil Cmt
+        - '2'
+        - Qwen2.5-7B
+        - '0.72'
+        - '0.70'
+        - '0.30'
+    figures_description:
+    - 'Fig 4: 14 个经验混淆矩阵 heatmap grid (datasets as rows, models as columns)'
+    - 'Fig 5: Inter-model error correlation matrix (pairwise conditional error agreement)'
+    analysis: '14 configs 消除了 model-tier asymmetry：VAST 和 Civil Comments 都有 frontier
+      模型数据，使得跨 K 比较不再被 model quality confound。frontier 模型 (Qwen3-235B) 的 diagonal
+      dominance 在 0.72-0.81 区间，落在 Dirichlet subspace 分析的 diag≥0.7 区域——正好是 exposure
+      sign flip 降至 2.1% 但 amplification 仍 11.7% 的临界区。这为 "no safe accuracy threshold"
+      的论证提供直接经验支撑。
+
+      '
+  - name: ASV 框架：三优先拓扑形式化证明
+    plan_id: plan_004
+    description: 'Confounding/mediation/collider 三拓扑 ASV 表达式推导， envelope monotonicity
+      + sharpness 形式化证明，MC 验证覆盖率。
+
+      '
+    expected_results:
+      envelope_monotonicity_violations: 0
+      sharpness_proved: 3
+      mc_coverage_tau005: 1.0
+      mc_coverage_tau010: 1.0
+      signif_filter_type_i_all: 0.0
+      signif_filter_power_confounding_tau005: 1.0
+      signif_filter_power_confounding_tau010: 1.0
+      signif_filter_power_mediation_tau005: 0.0
+      signif_filter_power_mediation_tau010: 1.0
+      signif_filter_power_collider_tau005: 0.0
+      signif_filter_power_collider_tau010: 1.0
+      magnitude_asv_tau01_range: 0.014-0.093
+      magnitude_asv_tau05_range: 0.008-0.047
+      n_star_phase_transition_mediation: N~6000-10000
+      sign_flip_filter_type_i: 0.0
+      sign_flip_filter_power: 1.0
+    result_rationale: 'plan_004 已完成且所有指标达标。在 best 档下，三个形式化证明（envelope monotonicity、sharpness、signif_filter
+      Type I=0%）是 Claim 2 的代数 骨架。mediation/collider 在 τ=0.05 时 power=0% 不是缺陷而是正确行为——
+      attenuating topologies 在小效应下本身就 fragile，signif_ASV 正确地 拒绝了不可靠的 rejection。N*
+      phase transition（mediation τ=0.05, recovery at N~10000）是 best 档的核心 actionable
+      contribution： 研究者可以计算出"需要多少样本才能在给定标注误差下仍然可靠地拒绝零假设"。 这直接回应了 E-value 的局限性——E-value
+      不含 sample size，ASV 含。
+
+      '
+    tables:
+    - name: 'Table 4: Significance ASV filter 性能'
+      columns:
+      - Topology
+      - τ
+      - Type I
+      - Power
+      - Interpretation
+      rows:
+      - - Confounding
+        - '0.05'
+        - 0%
+        - 100%
+        - Always safe to reject
+      - - Confounding
+        - '0.10'
+        - 0%
+        - 100%
+        - Always safe to reject
+      - - Mediation
+        - '0.05'
+        - 0%
+        - 0%
+        - ASV blocks — effect too small for reliability
+      - - Mediation
+        - '0.10'
+        - 0%
+        - 100%
+        - Safe above N*
+      - - Collider
+        - '0.05'
+        - 0%
+        - 0%
+        - ASV blocks — attenuating topology fragile
+      - - Collider
+        - '0.10'
+        - 0%
+        - 100%
+        - Safe above N*
+    figures_description:
+    - 'Fig 6: N* phase transition curve for mediation (τ=0.05) — naive power vs ASV-filtered
+      power across N'
+    - 'Fig 7: Envelope monotonicity visualization — magnitude ASV as function of δ
+      for 3 topologies'
+    analysis: 'signif_ASV 的 N* phase transition 是 ASV 区别于 E-value 的核心创新。 E-value 报告"需要多大的
+      unmeasured confounding 才能解释掉效应"， ASV 报告"在给定标注精度和样本量下，效应是否仍然可靠"——后者对 LLM 标注场景更
+      actionable，因为研究者可以直接增加样本量。
+
+      '
+  - name: ASV 扩展至 M-bias/IV/Front-door
+    plan_id: plan_005
+    description: 'ASV 表达式 + MC 验证 monotonicity 和 coverage 扩展到剩余 3 拓扑。 Sharpness 以
+      conjecture + numerical evidence 呈现。
+
+      '
+    expected_results:
+      envelope_violations_mbias: 0
+      envelope_violations_iv: 0
+      envelope_violations_frontdoor: 0
+      mc_coverage_all: 1.0
+      mbias_sign_flip_asv: null
+      mbias_magnitude_asv: null
+      iv_sign_flip_asv_range: 1.1-6.7
+      iv_magnitude_asv_range: 0.101-0.607
+      frontdoor_sign_flip_asv: null
+      frontdoor_magnitude_asv_range: 0.064-0.387
+      signif_filter_iv_power: 0.0
+      signif_filter_mbias_power_tau005: 95.8-99.2%
+      signif_filter_frontdoor_power: 1.0
+      plim_identity_mbias: 0.5128
+      plim_identity_iv: 0.6598
+      plim_identity_frontdoor: 0.4998
+    result_rationale: 'plan_005 已完成。best 档关键：IV 的 signif_ASV power=0% 是理论预测的 正确行为——Wald
+      estimator 对任何标注误差立即 fragile（sign_flip_ASV 最低 1.1，meaning 仅需 10% 误差放大即可翻转），所以
+      signif_ASV≈0 阻止了所有 rejection。这强化了 Claim 1 的"IV 是最危险拓扑"论述。 mbias 的 sign_flip_ASV=null
+      和 magnitude_ASV=null 表示 M-bias 下 misclassification 实际减弱偏差——这是 ASV 框架的"安全拓扑"诊断能力。
+      frontdoor 表现良好（power=100%）。三个拓扑的 plim at identity 给出了 zero-misclassification
+      baseline：mbias 0.5128（有未观测 confounding）， IV 0.6598（Wald estimator 的 true value），frontdoor
+      0.4998（接近 τ=0.5）。
+
+      '
+    tables:
+    - name: 'Table 5: 全 7 拓扑 ASV 灵敏度排序'
+      columns:
+      - Topology
+      - sign_flip_ASV
+      - magnitude_ASV(10%)
+      - signif_power(τ=0.05)
+      - Risk Tier
+      rows:
+      - - IV
+        - 1.1-6.7
+        - 0.10-0.61
+        - 0%
+        - Maximal fragility
+      - - Front-door
+        - 'null'
+        - 0.06-0.39
+        - 100%
+        - Moderate
+      - - Confounding
+        - 'null'
+        - 0.01-0.05
+        - 100%
+        - Low
+      - - Mediation
+        - 'null'
+        - 0.01-0.05
+        - 0% (τ=0.05)
+        - N*-dependent
+      - - Collider
+        - 'null'
+        - 0.01-0.04
+        - 0% (τ=0.05)
+        - N*-dependent
+      - - Exposure
+        - structure-dep.
+        - structure-dep.
+        - N/A (sign flip dominant)
+        - Direction reversal
+      - - M-bias
+        - null (immune)
+        - null (immune)
+        - 95-99%
+        - Safe (error reduces bias)
+    figures_description:
+    - 'Fig 8: ASV sensitivity spectrum — 7 拓扑 magnitude ASV at τ=0.1 的 box plot'
+    analysis: 'ASV 排序形成清晰的 4-tier 结构：(1) IV 极脆弱，(2) exposure 方向不可预测， (3) frontdoor/confounding/mediation/collider
+      量级可控但需 N* 诊断， (4) mbias 安全。这个排序本身就是 topology-dependent 的，强化 Claim 1。
+
+      '
+  - name: ASV 经验校准（三数据集 × 四模型 × 七拓扑）
+    plan_id: plan_006
+    description: '将 ASV 应用于 plan_003 的 14 个经验混淆矩阵，覆盖 7 拓扑 = 98 scenarios。 F1 vs downstream
+      bias disconnect 分析。
+
+      '
+    expected_results:
+      total_scenarios: 98
+      usable_configs: 14
+      sign_flips_observed: 0
+      overall_asv_unsafe_pct: 55.4
+      k2_mean_bias_pct: 28.5
+      k3_mean_bias_pct: 72.4
+      k10_mean_bias_pct: 12.2
+      k2_iv_bias_pct: 108.7
+      k3_iv_bias_pct: 252.3
+      k10_iv_bias_pct: 30.3
+      f1_bias_pearson_r: 0.12
+      f1_disconnect_example: Civil Comments F1=0.75 but IV bias 131%
+      theory_empirical_direction_match_pct: 98.0
+      theory_empirical_magnitude_MAPE_pct: 11.2
+      topology_ranking_replicated_all_K: true
+      seven_b_vs_235b_bias_ratio: 1.18
+      asv_unsafe_by_topology:
+        iv: 100.0
+        exposure: 78.6
+        frontdoor: 57.1
+        mediation: 42.9
+        confounding: 35.7
+        collider: 28.6
+        mbias: 0.0
+    result_rationale: 'best 档核心假设 #2-4 在此实验交汇。API 402 解决后 14 configs 覆盖 K=2,3,10，消除
+      model-tier asymmetry。direction_match 98%（而非 100%） 因为少数 mediation scenarios 在小
+      τ 下 MC noise 可能导致 1-2 个 方向 mismatch（不是理论错误，是 finite-sample noise）。MAPE 11.2%
+      在 best 档范围 [5,15] 内，反映理论闭合式假设 linearity 和 finite N 的合理近似误差。0 sign flips across
+      98 scenarios 是因为所有经验 C 的 diagonal dominance ≥0.58（落在 Dirichlet diag≥0.5 安全区内，
+      exposure sign flip 在 diag≥0.5 仅 21.6%，且经验 C 不是 near-permutation 极端结构）。f1_bias_pearson_r=0.12
+      极低但 >0，表明 F1 有微弱预测力 但完全不足以作为 downstream safety 的 proxy。55.4% ASV-unsafe 意味着
+      超过一半的 {config × topology} 组合需要校正或灵敏度报告。 跨 K 的 IV bias 梯度（K=3: 252%, K=10: 30%）confounded
+      with dataset/model differences，但 topology ranking 在每个 K 内部 完全一致（IV > exposure
+      > frontdoor > confounding > mediation > collider > mbias）， 这是 Claim 1 的实证闭合。7B/235B
+      ratio 1.18 表明模型规模不是 bias 的 主导因素——拓扑才是，进一步强化 topology-first 的诊断范式。
+
+      '
+    tables:
+    - name: 'Table 6: 跨 K 经验偏差与 ASV-unsafe 比例'
+      columns:
+      - Dataset
+      - K
+      - N_configs
+      - Mean |bias%|
+      - IV bias%
+      - ASV-unsafe%
+      - sign_flips
+      rows:
+      - - Civil Cmt
+        - '2'
+        - '3'
+        - '28.5'
+        - '108.7'
+        - '47.6'
+        - '0'
+      - - VAST
+        - '3'
+        - '3'
+        - '72.4'
+        - '252.3'
+        - '61.9'
+        - '0'
+      - - HumAID
+        - '10'
+        - '8'
+        - '12.2'
+        - '30.3'
+        - '55.4'
+        - '0'
+    - name: 'Table 7: F1 vs downstream IV bias disconnect'
+      columns:
+      - Model
+      - Dataset
+      - F1
+      - IV_bias%
+      - ASV_unsafe
+      rows:
+      - - Qwen3-235B
+        - Civil Cmt
+        - '0.82'
+        - '101.2'
+        - 'Yes'
+      - - Qwen2.5-7B
+        - Civil Cmt
+        - '0.72'
+        - '131.4'
+        - 'Yes'
+      - - Qwen3-235B
+        - VAST
+        - '0.78'
+        - '234.8'
+        - 'Yes'
+      - - Qwen2.5-7B
+        - VAST
+        - '0.65'
+        - '271.6'
+        - 'Yes'
+      - - Qwen3-235B
+        - HumAID
+        - '0.74'
+        - '24.1'
+        - 'Yes'
+      - - Qwen2.5-7B
+        - HumAID
+        - '0.62'
+        - '42.1'
+        - 'Yes'
+    figures_description:
+    - 'Fig 9: F1 vs |IV bias%| scatter plot — 14 points, no correlation visible, annotation
+      marks Baumann threshold'
+    - 'Fig 10: Topology ranking preservation across K — 3 parallel bar charts showing
+      consistent ordering'
+    - 'Fig 11: Dirichlet subspace overlay — 14 empirical C points plotted on theoretical
+      violation/sign-flip contour'
+    analysis: 'theory-empirical bridge 完全闭合：(1) direction match 98% 确认理论偏差表达式 在真实
+      LLM 混淆矩阵上的预测力；(2) MAPE 11.2% 表明量级匹配紧凑； (3) topology ranking 在 K=2,3,10 全部复现。F1-bias
+      disconnect 是论文的 killer figure——F1=0.82 的 frontier 模型在 IV topology 下仍产生 101%
+      bias， 直接证伪"高 F1 → 安全"的 conventional wisdom。Dirichlet subspace overlay 图（Fig
+      11）说服 reviewer：0 sign flip 不是运气，是因为经验 C 全部落在 理论预测的安全区（diag≥0.58）。
+
+      '
+  - name: 校正指导框架：决策映射与 MC 验证
+    plan_id: plan_007
+    description: '{topology × error structure × ASV} → correction method 决策框架， 210
+      configuration MC 验证 + 经验数据验证。
+
+      '
+    expected_results:
+      total_mc_configs: 210
+      ppi_grand_mean_bias_reduction: 93.8
+      ppi_grand_mean_coverage: 96.8
+      ppi_win_rate: 95.2% (40/42)
+      ppi_empirical_bias_reduction: 85.3
+      mcsimex_grand_mean_bias_reduction: 20.9
+      dsl_grand_mean_bias_reduction: -144.8
+      dsl_effective_topologies: confounding (49.8%), mediation (70.3%)
+      dsl_catastrophic_topologies: mbias (-768%), iv (-187%)
+      naive_plugin_bias_reduction: -20.0
+      mla_bias_reduction: -37.4
+      fwl_invariance_verified: true
+      fwl_zero_topologies: confounding, mediation, collider, mbias
+      correction_recommendation_accuracy_pct: 91.4
+      ppi_nondiff_assumption_empirical_hold: true
+      nondiff_violation_epsilon: 0.023
+    result_rationale: 'plan_007 MC 部分已完成（93.8% PPI++ grand mean）。best 档核心假设 #2： PPI++
+      在真实 LLM 标注上 bias reduction ≥80%。预测 85.3% 经验 bias reduction（低于 MC 的 93.8%）因为真实
+      LLM 混淆矩阵可能有轻微 differential error 成分（nondiff assumption 近似而非精确成立）， 但 ≥80% 仍在
+      best 档范围内。recommendation accuracy 91.4% 意味着 在 14 × 7 = 98 个经验 scenarios 中，决策框架在
+      ~90 个场景推荐了 最优校正方法。Frisch-Waugh 不变性（4/7 拓扑 naive/MLA bias_red=0.0% 精确）是 Claim
+      3 最强的负面发现——它证明 plug-in 方法在结构上 无法修正 T-coefficient bias（不管混淆矩阵估计得多准确，OLS 的 Frisch-Waugh
+      分解保证多余回归量的残差化步骤不被 plug-in 触及）。 DSL 的灾难性失败（mbias -768%）强化了 topology-dependent
+      correction 的必要性。nondiff stress test ε≤0.05 → +2.3pp violation 确认假设 robustness。
+
+      '
+    tables:
+    - name: 'Table 8: 校正方法 grand mean 性能'
+      columns:
+      - Method
+      - MC bias_red%
+      - MC coverage%
+      - Empirical bias_red%
+      - Effective topologies
+      rows:
+      - - PPI++
+        - '93.8'
+        - '96.8'
+        - '85.3'
+        - 7/7 (universal)
+      - - MC-SIMEX
+        - '20.9'
+        - —
+        - '18.4'
+        - 5/7 (not exposure/IV)
+      - - DSL
+        - '-144.8'
+        - —
+        - '-130.2'
+        - 2/7 (conf/med only)
+      - - Naive plug-in
+        - '-20.0'
+        - —
+        - '-18.7'
+        - 0/7 (FWL blocks T-coef)
+      - - MLA
+        - '-37.4'
+        - —
+        - '-34.1'
+        - 0/7 (FWL blocks T-coef)
+    - name: 'Table 9: 校正决策矩阵（简化版）'
+      columns:
+      - Topology
+      - Has gold?
+      - Recommended
+      - Bias_red%
+      - Fallback
+      rows:
+      - - Confounding
+        - 'Yes'
+        - PPI++
+        - '95.2'
+        - DSL (49.8%)
+      - - Confounding
+        - 'No'
+        - DSL
+        - '49.8'
+        - MC-SIMEX (23.1%)
+      - - Mediation
+        - 'Yes'
+        - PPI++
+        - '94.1'
+        - DSL (70.3%)
+      - - Exposure
+        - 'Yes'
+        - PPI++
+        - '92.8'
+        - No reliable alternative
+      - - IV
+        - 'Yes'
+        - PPI++
+        - '91.4'
+        - No reliable alternative
+      - - M-bias
+        - Any
+        - None needed
+        - —
+        - Bias negligible
+    figures_description:
+    - 'Fig 12: 校正方法 × 拓扑 bias reduction heatmap (5 methods × 7 topologies)'
+    - 'Fig 13: FWL invariance illustration — naive/MLA bias_red = 0.0% exact for 4
+      topologies'
+    analysis: 'PPI++ 的 universal reliability 是 Claim 3 的 positive anchor， 但它需要 gold-standard
+      labels——这个实际限制使得 DSL（不需要 gold） 在 confounding/mediation 下仍有价值。决策框架的核心贡献不是新方法，
+      而是"which method for which topology"——错误选择校正方法比不校正更糟 （DSL on mbias: -768%）。empirical
+      bias_red 85.3% 落在 best 档范围 [80,95]，确认 PPI++ 的 nondiff assumption 在真实 LLM 标注下近似成立。
+
+      '
+  - name: 二值化坍缩分析：K→2 折叠偏差
+    plan_id: plan_008
+    description: '7 拓扑 K=3,5,7 → binary collapse，比较多分类 vs 二值化偏差表达式差异。
+
+      '
+    expected_results:
+      exposure_D_mean: 0.5164
+      exposure_D_max: 1.3876
+      exposure_sign_flip_from_collapse: 0.14
+      iv_D_mean: 0.926
+      iv_D_max: 2.0809
+      iv_sign_flip_from_collapse: 0.175
+      confounding_D_max: 0.2213
+      mediation_D_max: 0.252
+      collider_D_max: 0.1069
+      mbias_D_max: 0.0328
+      benign_topo_max_D: 0.252
+      dangerous_topo_min_D_mean: 0.5164
+    result_rationale: 'plan_008 已完成。在 best 档下，二值化坍缩分析提供了"为什么不能用 binary theory"的决定性证据。exposure
+      和 IV 的坍缩 Δ 远超 benign topologies（0.52/0.93 vs <0.05），且引入额外 sign flip（14%/17.5%）。
+      这意味着研究者如果把 K=3 的标注变量强制二值化以使用 binary measurement error theory，不仅损失了 bias 量级的预测精度（Δ_max
+      1.39/2.08）， 还可能错误判断偏差方向。即使在"安全"拓扑（confounding/mediation）， Δ_max 也达到 0.22/0.25——在小效应研究中这足以改变结论。
+      这个实验直接回应 Reviewer Concern #1 ("trivial extension of binary")： 不是 trivial 扩展，因为
+      binarization 本身引入不可预测的新偏差。
+
+      '
+    tables:
+    - name: 'Table 10: K→2 坍缩偏差（Δ 统计量）'
+      columns:
+      - Topology
+      - D_mean
+      - D_max
+      - frac>0.05
+      - collapse_sign_flip%
+      rows:
+      - - Confounding
+        - '0.025'
+        - '0.221'
+        - 13.8%
+        - 0%
+      - - Mediation
+        - '0.045'
+        - '0.252'
+        - 36.0%
+        - 0%
+      - - Collider
+        - '0.017'
+        - '0.107'
+        - 3.9%
+        - 0%
+      - - M-bias
+        - '0.006'
+        - '0.033'
+        - 0%
+        - 0%
+      - - Exposure
+        - '0.516'
+        - '1.388'
+        - 99.9%
+        - 14.0%
+      - - IV
+        - '0.926'
+        - '2.081'
+        - 100%
+        - 17.5%
+      - - Front-door
+        - '0.038'
+        - '0.220'
+        - 28.4%
+        - 0%
+    figures_description:
+    - 'Fig 14: 坍缩 Δ 分布 violin plot — 7 拓扑并排，exposure/IV 与其他形成鲜明对比'
+    analysis: 'benign/dangerous 二分法再次浮现：5 个 benign 拓扑的坍缩 Δ 有界且 无 sign flip，2 个 dangerous
+      拓扑的坍缩引入灾难性误差。这与 plan_001/plan_002 的分裂完全一致——同样的 5+2 结构。
+
+      '
+  - name: 病态混淆矩阵分析
+    plan_id: plan_009
+    description: 'Near-permutation/rank-deficient/block-diagonal 极端 C 结构下的偏差特征， spectral
+      gap/condition number 等矩阵特征的预测能力。
+
+      '
+    expected_results:
+      benign_topo_R2_range: 0.61-0.77
+      dangerous_topo_exposure_R2: 0.11
+      dangerous_topo_iv_R2: ~0
+      most_consistent_predictor: condition_number
+      risk_tier_low_topologies:
+      - mbias
+      risk_tier_low_max_bias: <0.04
+      risk_tier_medium_topologies:
+      - confounding
+      - mediation
+      - collider
+      - frontdoor
+      risk_tier_medium_bias_range: 0.1-0.31
+      risk_tier_high_topologies:
+      - exposure
+      - iv
+      near_perm_eps001_iv_catastrophic_pct: 61-73%
+      iv_infinite_values_pct: 10.7
+    result_rationale: 'plan_009 已完成。best 档的关键洞察是 regression dichotomy： 矩阵特征（condition_number,
+      effective_rank, spectral_gap） 对 5 个 benign 拓扑有强预测力（R²=0.61-0.77），但对 exposure/IV
+      几乎无效（R²≤0.11/~0）。这不是分析失败——它揭示了根本不同的 偏差机制。benign 拓扑的偏差是 C 对角优势的"平滑函数"，可以 用连续矩阵特征预测；exposure
+      的偏差由 label permutation 的 离散结构决定；IV 的 Wald denominator sign reversal 是 discrete
+      event（要么 cross zero 要么不 cross），无法用连续特征捕捉。 这个 dichotomy 直接服务于 practitioner toolkit：对于
+      benign 拓扑可以给出 condition_number-based 预警；对于 dangerous 拓扑 必须进行全 ASV 分析。10.7% IV
+      infinite values 需要在论文中 注明（filtered from regression）。
+
+      '
+    tables:
+    - name: 'Table 11: 矩阵特征预测偏差的 R² 对比'
+      columns:
+      - Topology
+      - R²
+      - Best predictor
+      - Risk tier
+      rows:
+      - - Confounding
+        - '0.72'
+        - effective_rank
+        - Medium
+      - - Mediation
+        - '0.77'
+        - effective_rank
+        - Medium
+      - - Collider
+        - '0.70'
+        - condition_number
+        - Medium
+      - - Front-door
+        - '0.74'
+        - effective_rank
+        - Medium
+      - - M-bias
+        - '0.61'
+        - spectral_gap
+        - Low
+      - - Exposure
+        - '0.11'
+        - none effective
+        - High
+      - - IV
+        - ~0
+        - none (discrete mechanism)
+        - High
+    figures_description:
+    - 'Fig 15: condition_number vs |bias| scatter for 5 benign topologies (R²~0.7)
+      vs exposure/IV (no relationship)'
+    analysis: '3-tier risk structure (low/medium/high) 是 practitioner-facing 的 simplified
+      guidance。condition_number 作为跨拓扑最一致的预测指标 可以集成到 toolkit 中，但必须附带 topology-specific
+      的 caveat。
+
+      '
+  - name: annot-sensitivity Python Toolkit 开源发布
+    plan_id: plan_010
+    description: 'pip-installable 包：user-specified DAG + C → bias expressions + ASV
+      + sensitivity curves + correction recommendation + diagnostic plots。
+
+      '
+    expected_results:
+      tests_passed: 35/35
+      modules: 7
+      topologies_supported: 7
+      correction_methods: 5
+      total_loc: ~1200
+      api_example_confounding_bias_pct: +10.20%
+      api_example_magnitude_asv: 0.967
+      api_example_recommended_with_gold: ppi
+      api_example_recommended_without_gold: dsl
+      installation: pip install annot-sensitivity
+      documentation_examples: 7
+    result_rationale: 'plan_010 已完成（35/35 tests pass）。在 best 档下，toolkit 的价值在于 将论文的全部理论框架打包为可复现的
+      API，直接服务于 reviewer 对 "reproducibility and impact" 的要求。7 个 topology × 5 个 correction
+      method = 35 个 test cases 的全覆盖确保代码与论文中的每个定理一致。 confounding K=3 的 example output（+10.20%
+      bias, magnitude_ASV=0.967, recommended=PPI++/DSL）直接对应论文 Table 9 的决策矩阵。toolkit
+      作为 supplementary material 是 AAAI 2027 reviewer 的加分项—— 将 "theoretical framework"
+      变为 "immediately usable tool"。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 16: Toolkit workflow diagram — input (DAG, C, estimate) → output (bias,
+      ASV, correction recommendation)'
+    analysis: toolkit 既是论文的 supplementary material（确保 reproducibility）， 也是独立贡献（practitioner
+      tool）。7 个 worked examples 覆盖 全部拓扑，每个 example 展示完整的诊断流程。
+  review_report: '# [Dream Review — best]
+
+
+    Status: skipped (paper PDF not produced)
+
+    '
+  error: ''
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase2: Phase 2 (median) failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"93a61da4-05b0-4a78-873d-5a1f9ef04e33","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+- tier: worst
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase2: Phase 2 (worst) failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"0b3789fb-817b-4f9f-a7b6-77710efecf2b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+errors:
+  median:
+    phase2: 'Phase 2 (median) failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"93a61da4-05b0-4a78-873d-5a1f9ef04e33","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+  worst:
+    phase2: 'Phase 2 (worst) failed: LLM subprocess exited with code 1: {"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-prod_0510","session_id":"0b3789fb-817b-4f9f-a7b6-77710efecf2b","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","Monitor","NotebookEdit","PushNotification","Read","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write"],"mcp_servers":[],"model":"clau'
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-21T05:55:01+00:00'

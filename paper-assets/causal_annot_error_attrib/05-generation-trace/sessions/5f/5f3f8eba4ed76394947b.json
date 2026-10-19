@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f3f8eba4ed76394947b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "data plan006 json download",
+  "task_key": "worker_data_plan006_json_download_20260521T000859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan006_json_download_20260521T000859_result.json",
+    "occurrence": 1,
+    "bytes": 159,
+    "sha256": "d7a007fc99482595d15b04d98ef7c2ba6aa0c58df3e25258c59a46ed9a0a4514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已启动 (`worker_download_plan006_asv_20260521T001021`)，正在通过 SSH 读取远程文件并写入本地。完成后会有通知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-plan006-json-download.md"
+}

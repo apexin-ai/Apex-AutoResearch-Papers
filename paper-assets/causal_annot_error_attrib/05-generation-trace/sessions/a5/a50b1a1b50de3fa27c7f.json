@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "a50b1a1b50de3fa27c7f",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "math theorem1 direct proof w1 20260522T152129 retry2",
+  "task_key": "worker_math_theorem1_direct_proof_w1_20260522T152129_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_math_theorem1_direct_proof_w1_20260522T152129_retry2.log",
+    "occurrence": 1,
+    "bytes": 1132629,
+    "sha256": "aba4114ddd4829f8b05805ac23489601e3661dca3e6d80a5a60ebe2020a70fb5"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "system": 58,
+      "record": 2,
+      "assistant": 56,
+      "tool_call": 70,
+      "tool_result": 70,
+      "user": 1,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "a50b1a1b50de3fa27c7f-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "a50b1a1b50de3fa27c7f-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "a50b1a1b50de3fa27c7f-part-0002.json",
+          "message_count": 63
+        },
+        {
+          "path": "a50b1a1b50de3fa27c7f-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/math-theorem1-direct-proof-w1-20260522t152129-retry2.md"
+}

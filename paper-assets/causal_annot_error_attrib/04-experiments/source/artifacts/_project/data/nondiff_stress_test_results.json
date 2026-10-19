@@ -1,0 +1,67 @@
+{
+  "experiment": "nondiff_stress_test",
+  "topology": "exposure",
+  "K": 3,
+  "n_mc_per_trial": 10000,
+  "n_confusion_matrices": 10000,
+  "noise_std": 1.0,
+  "P_A": [
+    0.4,
+    0.35,
+    0.25
+  ],
+  "beta": [
+    0.0,
+    1.0,
+    -0.5
+  ],
+  "mechanism": "Y-dependent: C_treated for Y>median, C_control for Y<=median",
+  "perturbation": "Delta ~ N(0,1), C_treated = normalize(C+eps*Delta), C_control = normalize(C-eps*Delta)",
+  "seed": 42,
+  "results": {
+    "0.0": {
+      "epsilon": 0.0,
+      "n_valid": 10000,
+      "n_sign_flip": 8300,
+      "sign_flip_rate": 0.83,
+      "n_amplification": 1386,
+      "amplification_rate": 0.1386,
+      "n_violation": 8467,
+      "violation_rate": 0.8467,
+      "elapsed_s": 24.1
+    },
+    "0.01": {
+      "epsilon": 0.01,
+      "n_valid": 10000,
+      "n_sign_flip": 8336,
+      "sign_flip_rate": 0.8336,
+      "n_amplification": 1401,
+      "amplification_rate": 0.1401,
+      "n_violation": 8500,
+      "violation_rate": 0.85,
+      "elapsed_s": 23.9
+    },
+    "0.05": {
+      "epsilon": 0.05,
+      "n_valid": 10000,
+      "n_sign_flip": 8373,
+      "sign_flip_rate": 0.8373,
+      "n_amplification": 1526,
+      "amplification_rate": 0.1526,
+      "n_violation": 8583,
+      "violation_rate": 0.8583,
+      "elapsed_s": 25.4
+    },
+    "0.1": {
+      "epsilon": 0.1,
+      "n_valid": 10000,
+      "n_sign_flip": 8321,
+      "sign_flip_rate": 0.8321,
+      "n_amplification": 1860,
+      "amplification_rate": 0.186,
+      "n_violation": 8644,
+      "violation_rate": 0.8644,
+      "elapsed_s": 23.1
+    }
+  }
+}

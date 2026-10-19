@@ -1,0 +1,883 @@
+- id: art_20260520_f08c30
+  name: mvp_confounding_dag
+  type: data
+  description: MVP验证脚本：Confounding DAG K=3 多分类标注误差偏差。包含理论推导(plim公式)、Monte Carlo验证(5种混淆矩阵×1000reps×N=10000)、二分类折叠对照。三项Pass标准全部通过。
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/mvp_confounding_dag.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:23:21.303828+00:00'
+  tags:
+  - mvp
+  - confounding-dag
+  - theory-validation
+  - monte-carlo
+- id: art_20260520_207c62
+  name: mvp_exposure_dag
+  type: data
+  description: MVP验证脚本：Exposure Misclassification DAG K=3 偏差。验证二分类 bias-toward-null
+    保证在多分类下失效。包含理论推导、6种C结构MC验证、100k随机搜索（85%违反）、K=2对照。三项Pass全过。
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/mvp_exposure_dag.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:36:59.122228+00:00'
+  tags:
+  - mvp
+  - exposure-dag
+  - bias-toward-null
+  - sign-reversal
+  - monte-carlo
+- id: art_20260520_0ca9fb
+  name: mvp_exposure_dag_output
+  type: report
+  description: Exposure DAG MVP 完整输出日志：6种C结构理论+MC结果、100k随机搜索统计、K=2对照、Pass/Fail判定。
+  path: projects/causal_annot_error_attrib/artifacts/_project/report/mvp_exposure_dag_output.log
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:37:01.552977+00:00'
+  tags:
+  - mvp
+  - exposure-dag
+  - output-log
+- id: art_20260520_10993d
+  name: mvp_confounding_dag_output
+  type: report
+  description: Confounding DAG MVP 完整输出日志：6种C结构理论+MC结果、二分类折叠对照、Pass/Fail判定。
+  path: projects/causal_annot_error_attrib/artifacts/_project/report/mvp_confounding_dag_output.log
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:37:45.043919+00:00'
+  tags:
+  - mvp
+  - confounding-dag
+  - output-log
+- id: art_20260520_24d95b
+  name: mvp_exposure_dirichlet_subspace
+  type: report
+  description: 'Dirichlet prior subspace analysis: stratifies exposure DAG violation
+    rate by min(diag(C)) thresholds [0.0, 0.5, 0.7, 0.9]. Direct sampling via truncated
+    Beta(1,2). Results: diag>=0.7 still 13.7% violation, diag>=0.9 still 11.9% (all
+    amplification).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/report/mvp_exposure_dirichlet_subspace.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:50:12.007555+00:00'
+  tags:
+  - mvp
+  - exposure-dag
+  - dirichlet
+  - subspace-analysis
+- id: art_20260520_1226b3
+  name: mvp_exposure_dirichlet_subspace_output
+  type: report
+  description: 'Output log of Dirichlet subspace analysis: per-subspace violation
+    rates, worst-case C matrices, paper framing guidance.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/report/mvp_exposure_dirichlet_subspace_output.log
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:50:13.915064+00:00'
+  tags:
+  - mvp
+  - exposure-dag
+  - dirichlet
+  - output-log
+- id: art_20260520_5243ff
+  name: plan004_asv_framework_results
+  type: report
+  description: 'ASV Framework v2 results summary: delta_range fix, 3-topology ASV
+    table, monotonicity (75% violation), MC coverage (100%), Type I/II (ASV eliminates
+    all false positives while preserving power)'
+  path: projects/causal_annot_error_attrib/artifacts/plan004_asv_framework/report/plan004_results.md
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan004_asv_framework
+  skill: ''
+  created_at: '2026-05-20T13:01:02.337524+00:00'
+  tags:
+  - asv
+  - sensitivity-analysis
+  - type-error
+  - mc-coverage
+- id: art_20260520_3ba4fd
+  name: plan008_binarization_collapse_results
+  type: report
+  description: 'Plan 008 binarization collapse bias analysis: K=3 vs K=2 annotation
+    folding across 6 DAG topologies (100k Dirichlet random search). Key finding: DAGs
+    with separate T (confounding/mediation/collider/M-bias) show small-to-moderate
+    Δ (mean 0.006-0.045), while exposure/IV DAGs show catastrophic collapse (Δ mean
+    0.52-0.93, sign flip 14-18%).'
+  path: projects/causal_annot_error_attrib/artifacts/plan008_binarization_collapse/report/plan_008_binarization_collapse.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan008_binarization_collapse
+  skill: ''
+  created_at: '2026-05-20T13:12:33.217642+00:00'
+  tags:
+  - binarization
+  - bias
+  - plim
+  - DAG
+  - confusion_matrix
+  - plan008
+- id: art_20260520_313fec
+  name: plan_004_asv_v3_output
+  type: report
+  description: 'ASV Framework v3 full results: envelope monotonicity (0 violations
+    all 18 combos), 3 ASV types, small-tau coverage 100%, type I/II errors'
+  path: projects/causal_annot_error_attrib/artifacts/plan004_asv_framework/report/plan_004_asv_v3_summary.txt
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan004_asv_framework
+  skill: ''
+  created_at: '2026-05-20T13:35:47.897661+00:00'
+  tags:
+  - asv
+  - v3
+  - envelope
+  - magnitude
+  - small-tau
+- id: art_20260520_2c82a8
+  name: plan_004_asv_v3_fixed_output
+  type: report
+  description: 'ASV v3-fixed Part 5/6 output: significance-based ASV filter fixes
+    Type I from 100% to 0%, preserves power for tau>=0.1'
+  path: projects/causal_annot_error_attrib/artifacts/plan_004_asv_v3_fixed/report/plan_004_asv_v3_fixed_results.txt
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan_004_asv_v3_fixed
+  skill: ''
+  created_at: '2026-05-20T13:59:04.701433+00:00'
+  tags:
+  - asv
+  - type_error
+  - significance_filter
+  - v3_fixed
+- id: art_20260520_f00f2b
+  name: fig1_dag_taxonomy
+  type: chart
+  description: 'Figure 1: DAG Taxonomy — 2×3 grid showing annotation error positions
+    across 6 causal topologies (Confounding, Exposure, Mediation, Collider, M-bias,
+    IV). Starred-node notation, academic B&W style, exposure panel highlighted in
+    red.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig1_dag_taxonomy.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:23:41.486605+00:00'
+  tags:
+  - figure
+  - paper
+  - introduction
+  - dag
+  - taxonomy
+- id: art_20260520_141019
+  name: plan002_k57_extension_results
+  type: report
+  description: 'Plan 002 K={3,5,7} bias taxonomy extension: cross-K comparison table,
+    eigendecomposition, worst-case bounds, sensitivity heatmaps, MC verification.
+    4 topologies × 3 K values, 100k random C matrices each, GPU-accelerated.'
+  path: projects/causal_annot_error_attrib/artifacts/plan002_k57_extension/report/plan002_results_summary.txt
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan002_k57_extension
+  skill: ''
+  created_at: '2026-05-20T15:29:43.053932+00:00'
+  tags:
+  - plan002
+  - bias-taxonomy
+  - general-K
+  - cross-K
+- id: art_20260520_087348
+  name: fig2_bias_distribution
+  type: chart
+  description: '2×3 multi-panel KDE/histogram showing bias distribution under K=3
+    non-differential misclassification across 6 DAG topologies (10,000 Dirichlet(1,1,1)
+    random confusion matrices). Key findings: Exposure 83.2% sign reversal, IV heavy-tailed
+    amplification, M-bias immune, Collider attenuating. Data from plan_001 simulation
+    framework.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig2_bias_distribution.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T15:46:42.752330+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - plan_001
+- id: art_20260520_73a255
+  name: fig3_asv_ranking
+  type: chart
+  description: 'Two-panel ASV sensitivity ranking: (a) Magnitude ASV range bars showing
+    IV most fragile (0.10-0.61) to M-bias immune (∞), (b) Significance power showing
+    ranking inversion (Mediation/Collider 0% power vs Confounding/Front-door 100%).
+    Core message: different ASV types give different fragility orderings. Data from
+    plan004_asv_framework + plan005_asv_extended.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig3_asv_ranking.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T15:57:19.066869+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - plan_004
+  - plan_005
+- id: art_20260520_f8af55
+  name: fig4_binarization
+  type: chart
+  description: 'Binarization collapse Δ=|bias_K3-bias_K2| across 6 DAG topologies.
+    Range bar plot sorted by severity: M-bias (Δ=0.006, negligible) to IV (Δ=0.926,
+    catastrophic), 150x variation. Sign flip warnings: Exposure 14%, IV 17.5%. Color-coded
+    by severity tier. Data from plan008_binarization_collapse (100k Dirichlet samples).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig4_binarization.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T15:58:29.678891+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - plan_008
+- id: art_20260520_d3fbb2
+  name: fig3_asv_ranking
+  type: chart
+  description: 'Three-panel ASV sensitivity ranking (Worker v2): (a) Magnitude ASV
+    range bars (7 topologies incl. Exposure as N/A), (b) Significance power lollipop,
+    (c) Inline stats table with sign-flip column. IV most fragile, M-bias immune (∞).
+    Exposure row shows 83.4% sign-flip as unique risk. Core message: different ASV
+    types yield different vulnerability rankings. Data from plan004+plan005.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig3_asv_ranking_d3fbb2.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T16:00:20.650690+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - plan_004
+  - plan_005
+- id: art_20260520_8051a6
+  name: fig3_asv_ranking
+  type: chart
+  description: 'Forest-plot-style ASV sensitivity ranking comparison across 7 causal
+    topologies. Three-panel layout: Magnitude ASV (range bars), Significance Power
+    (lollipop), and inline stats table with sign-flip info. Shows that different ASV
+    types yield different vulnerability rankings.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig3_asv_ranking_8051a6.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T16:00:58.411650+00:00'
+  tags:
+  - paper
+  - figure
+  - asv
+  - forest-plot
+  - sensitivity
+- id: art_20260520_4ceda6
+  name: fig2_bias_distribution
+  type: chart
+  description: 'Figure 2: 2x3 multi-panel bias distribution across 6 DAG topologies
+    (Confounding, Exposure, Mediation, Collider, M-bias, IV) under K=3 non-differential
+    misclassification. 10k Dirichlet(1,1,1) random C per topology. IV uses naive OLS
+    (Wald unstable under uniform Dirichlet).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig2_bias_distribution_4ceda6.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:05:17.338026+00:00'
+  tags:
+  - paper
+  - experiments
+  - bias_distribution
+  - taxonomy
+- id: art_20260520_d4202e
+  name: fig1_dag_taxonomy
+  type: chart
+  description: 'Fig1 v3: 7-panel DAG taxonomy (4+3 layout). Added front-door panel,
+    fixed collider label to ''Attenuation (no sign flip)'', added conditioned-node
+    legend. Data: manual DAG structures from Hernán & Cole 2009 starred-node convention.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/chart/fig1_dag_taxonomy_d4202e.pdf
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T16:26:15.090249+00:00'
+  tags:
+  - paper
+  - introduction
+  - conceptual
+  - v3
+- id: art_20260520_46f13d
+  name: plan009_analysis
+  type: report
+  description: 'Plan 009 pathological confusion matrix analysis: bias metrics across
+    3 C types × 7 topologies × K∈{3,5,7}, OLS regression results, hypothesis verification'
+  path: projects/causal_annot_error_attrib/artifacts/plan009/report/plan009_analysis.md
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan009
+  skill: ''
+  created_at: '2026-05-20T18:55:37.622946+00:00'
+  tags:
+  - plan009
+  - pathological
+  - confusion-matrix
+  - bias-analysis
+- id: art_20260520_ec4339
+  name: plan007_analysis
+  type: report
+  description: 'Plan 007 correction guidance experiment analysis: 5 correction methods
+    × 2 topologies × 2 C structures (partial run, N_sim=10). Key findings: PPI++ dominates
+    (97.4% bias reduction), naive_plugin/MLA harmful for dummy coefficients (rejects
+    H4), Frisch-Waugh confirmed for T coefficients.'
+  path: projects/causal_annot_error_attrib/artifacts/plan007/report/plan007_analysis.md
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan007
+  skill: ''
+  created_at: '2026-05-20T18:55:47.174776+00:00'
+  tags:
+  - correction
+  - ppi
+  - mcsimex
+  - dsl
+  - frisch-waugh
+  - partial-run
+- id: art_20260520_6de246
+  name: plan006_empirical_data
+  type: data
+  description: §4.6 Empirical Validation 所需数据：real HumAID (K=10) + mock 3-dataset
+    calibration (K=2,3,10)。包含 per-topology bias、ASV unsafe 统计、Type I/II、inter-model
+    error correlation、F1 vs bias disconnect。
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/plan006_empirical_data.txt
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T23:41:05.343825+00:00'
+  tags:
+  - plan006
+  - empirical
+  - asv
+  - section4.6
+- id: art_20260520_505323
+  name: plan006_empirical_data
+  type: data
+  description: 'Plan 006 ASV empirical validation data extracted from remote server
+    (home-1x5090). Contains: 9 confusion matrices (3 LLMs × 3 prompts, K=10 HumAID),
+    63 bias records, 189 ASV values, 63 F1-vs-bias records, 63 Type I/II error records,
+    inter-model correlation, and complete raw JSON (121KB).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/plan006_empirical_data_505323.txt
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T23:50:47.198136+00:00'
+  tags:
+  - plan006
+  - asv
+  - empirical
+  - humaid
+  - confusion-matrix
+  - type-error
+- id: art_20260521_8fe95c
+  name: plan006_full_analysis
+  type: data
+  description: 'Full plan_006 ASV empirical analysis: 3 datasets (K=2,3,10), 4 models,
+    7 topologies. 30 matrices, 210 bias, 630 ASV records.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/plan006_full_meta.txt
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:37:55.248502+00:00'
+  tags:
+  - plan006
+  - asv
+  - empirical
+  - multi-dataset
+- id: art_20260521_285dd1
+  name: plan006_full_filtered_stats
+  type: data
+  description: 'Zero-matrix filtered statistics for plan006_full: 18 valid configs
+    (was 30), 12 zero configs dropped, per-K bias/ASV/sign-flip stats, VAST per-class
+    recall'
+  path: projects/causal_annot_error_attrib/artifacts/plan006_asv_empirical/data/plan006_full_filtered_stats.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan006_asv_empirical
+  skill: ''
+  created_at: '2026-05-21T02:35:10.609625+00:00'
+  tags:
+  - zero-matrix
+  - filtering
+  - critical-fix
+- id: art_20260521_eee80e
+  name: nondiff_stress_test_results
+  type: data
+  description: 'Non-differential misclassification stress test: sign-flip rate stable
+    at 83% under differential error (ε=0..0.10), amplification increases 14%→19%'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/nondiff_stress_test_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:32:44.067865+00:00'
+  tags:
+  - stress-test
+  - differential
+  - dream-feedback
+- id: art_20260521_62e12b
+  name: nondiff_stress_test_appendix
+  type: paper
+  description: 'Appendix section: robustness to differential misclassification (Table
+    + interpretation paragraph)'
+  path: projects/causal_annot_error_attrib/artifacts/_project/paper/nondiff_stress_test_appendix.tex
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:32:46.077680+00:00'
+  tags:
+  - appendix
+  - differential
+  - dream-feedback
+- id: art_20260521_09688a
+  name: plan012_case_study_analysis
+  type: intermediate
+  description: 'Reproducible analysis script: applies K=3 exposure-topology ASV machinery
+    to the Sushkov et al. (2025) LLM-earnings paper using Claude task classifications.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/intermediate/case_study_analysis.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:11:40.124706+00:00'
+  tags:
+  - case_study
+  - asv
+  - exposure
+  - llm_annotation
+  - labor_economics
+- id: art_20260521_722f2a
+  name: plan012_case_study_results
+  type: data
+  description: 'Quantitative ASV / bias results for Sushkov et al. (2025) case study:
+    point estimates at diag={0.7,0.8,0.9} and 500-sample Dirichlet Monte-Carlo per
+    diagonal level.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/case_study_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:11:42.402910+00:00'
+  tags:
+  - case_study
+  - asv
+  - exposure
+  - results
+- id: art_20260521_af6abd
+  name: plan012_case_study_paragraph
+  type: paper
+  description: '~200-word LaTeX paragraph for experiments.tex: diagnoses the Sushkov
+    et al. (2025) +$89 earnings effect with magnitude ASV = 0.37 (fragile magnitude)
+    but sign-flip ASV = 3.2 (robust sign).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/paper/case_study_paragraph.tex
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:11:45.957071+00:00'
+  tags:
+  - case_study
+  - latex
+  - experiments
+- id: art_20260521_f6314b
+  name: plan012_case_study_summary
+  type: report
+  description: 'Markdown summary of the end-to-end case study: paper selection rationale,
+    DAG analysis, point + MC results, substantive verdict, caveats.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/report/case_study_summary.md
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:11:48.047689+00:00'
+  tags:
+  - case_study
+  - summary
+  - report
+- id: art_20260521_8a9f25
+  name: ppi_empirical_validation
+  type: data
+  description: 'PPI++ empirical correction validation on HumAID K=10: 8 valid configs
+    × 7 topologies × 30 MC reps × 5 methods. PPI++ 85.9% on confounding, 75.1% on
+    frontdoor, but -79.2% on IV (catastrophic). MC-SIMEX is only viable gold-free
+    method for IV (36.4%). Naive plugin/MLA achieve 0% (confirms FWL theorem).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/ppi_empirical_validation.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:17:08.745923+00:00'
+  tags:
+  - correction
+  - ppi++
+  - empirical
+  - humaid
+  - K=10
+- id: art_20260521_34fc56
+  name: case_study_lee_wood_doughty
+  type: paper
+  description: '~200-word applied illustration paragraph in experiments.tex: retrospective
+    application of bias taxonomy + ASV + correction guidance to Lee & Wood-Doughty
+    (2024) ClinicalBERT smoking status classification (K=4) as confounder in MIMIC-III
+    causal study'
+  path: projects/causal_annot_error_attrib/artifacts/_project/paper/experiments.tex
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:28:11.925446+00:00'
+  tags:
+  - case_study
+  - experiments
+  - paper_writing
+- id: art_20260521_c4c5f5
+  name: plan007_rmse_correction_results_nsim1000
+  type: data
+  description: 'n_sim=1000 RMSE vs bias reduction comparison for 5 correction methods
+    across 7 topologies × 6 C structures. Key: PPI++ bias_red=93.8% vs rmse_red=47.0%
+    (2x inflation).'
+  path: projects/causal_annot_error_attrib/artifacts/plan007_correction_guidance/data/plan007_rmse_correction_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: plan007_correction_guidance
+  skill: ''
+  created_at: '2026-05-21T17:57:45.987573+00:00'
+  tags:
+  - rmse
+  - correction
+  - ppi
+  - n_sim_1000
+  - data_integrity
+- id: art_20260522_ae6bea
+  name: updated_empirical_results
+  type: data
+  description: Updated empirical validation results with 21 configs (8 HumAID + 7
+    CivilComments + 6 VAST) × 7 topologies = 147 scenarios. Includes frontier model
+    confusion matrices for VAST and CivilComments. 1 sign flip found (vast_deepseek_zero-shot,
+    exposure).
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/updated_empirical_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T06:24:36.293454+00:00'
+  tags:
+  - empirical
+  - plan011
+  - frontier
+  - bias
+- id: art_20260522_b738d1
+  name: plan011_frontier_cms
+  type: data
+  description: '22 confusion matrices extracted from home-1x5090 server: HumAID (8),
+    CivilComments (7), VAST (8, 1 excluded for low n). Full normalized matrices with
+    labels and sample counts.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/plan011_frontier_cms.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T06:24:39.423491+00:00'
+  tags:
+  - confusion_matrix
+  - plan011
+  - frontier
+- id: art_20260522_250174
+  name: rebuttal_draft
+  type: report
+  description: Rebuttal 论点草稿：针对 R1 审稿 5 大降分风险的 Q/A 论证 + 已修复 issue 状态汇总
+  path: projects/causal_annot_error_attrib/artifacts/_project/report/rebuttal_draft.md
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:36:03.813040+00:00'
+  tags:
+  - rebuttal
+  - paper
+  - emnlp2026
+- id: art_20260522_81fd9c
+  name: verify_lambda_bound
+  type: intermediate
+  description: Numerical verification that the mediation leakage coefficient lambda(C)=V_B/V
+    lies in [0,1] across 30,000 random (C, pi, g) triples for K in {3,5,7}. Observed
+    range [8e-6, 0.894], zero OOB. Analytic endpoints lambda(I)=1 and lambda(uniform)=0
+    recovered to machine precision. Supports Proposition prop:lambda_bound in appendix_proofs.tex.
+  path: projects/causal_annot_error_attrib/artifacts/_project/intermediate/verify_lambda_bound.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:25:27.708220+00:00'
+  tags:
+  - mediation
+  - proof
+  - appendix
+  - lambda_bound
+- id: art_20260522_a133ac
+  name: exp_d_epsilon_tau_sensitivity
+  type: data
+  description: 'ε-approximate monotonicity sensitivity to true effect size τ. For
+    each non-IV topology and τ ∈ {0.1, 0.5, 1.0, 2.0, 5.0}, sampled 10,000 Dirichlet
+    C0 per K ∈ {3,5,7}. ε ≡ (max wrong-direction step) / |tau_true|, normalised per
+    task spec. Finding: bound ε<0.06 from Conjecture 1 holds for τ ≥ 0.5 across confounding/mediation/collider/mbias,
+    but fails at τ=0.1 (mediation 1950/30k violations, confounding 200/30k). Frontdoor
+    inverts: ε grows with τ because tau_true (=plim(I)[T]) stays at 0.5 (driven by
+    U-confounding) while bias scales with β. Exposure: tail outliers from extreme
+    C0 but mean_eps ≈ 0 (linear scaling).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/exp_d_epsilon_tau_sensitivity.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:35:49.697210+00:00'
+  tags:
+  - conjecture-1
+  - epsilon-monotonicity
+  - tau-sensitivity
+  - appendix
+- id: art_20260522_76b411
+  name: verify_lambda_bound
+  type: data
+  description: 'Numerical verification of mediation leakage coefficient λ(C) := 1
+    - B(C)/τ_ind ∈ [0,1]: zero violations under proportional effects (30000 trials);
+    ~15-17% violations under non-proportional f, decoupled from DGP-level sign preservation.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/verify_lambda_bound_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:41:13.119272+00:00'
+  tags:
+  - theory
+  - mediation
+  - lambda-bound
+  - verification
+- id: art_20260522_5dbd5b
+  name: exp_fwl_logistic_breakdown
+  type: data
+  description: 'FWL invariance breakdown experiment under logistic regression. Confounding
+    DAG K=3, N=10K × 500 MC reps × 6 VAST CMs. Demonstrates: (i) OLS Naive plug-in
+    correction = 0% bias reduction at machine precision (|Δ|_max < 1e-14); (ii) logistic
+    regression breaks the column-space argument (|Δ|_max ~ 6-8e-4 per rep) but mean
+    bias reduction stays at -0.04% (range [-0.09%, +0.05%]). Script + JSON results
+    + log.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/exp_fwl_logistic_breakdown.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T17:40:46.709282+00:00'
+  tags:
+  - fwl
+  - logistic-regression
+  - correction
+  - confounding
+  - ablation
+  - reviewer-response
+- id: art_20260523_d4cf4b
+  name: nondiff_structured_stress_test
+  type: data
+  description: 'Structured violation stress test: 3 models (uniform/outcome-conditional/label-specific)
+    × 7 topologies × 5 ε levels, K=3, 1000 matrices each'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/nondiff_structured_stress_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T04:43:06.644925+00:00'
+  tags:
+  - W5
+  - nondiff
+  - stress-test
+  - structured-violation
+- id: art_20260523_75b4a8
+  name: bootstrap_ci_convergence
+  type: data
+  description: 'Bootstrap CI convergence vs N: exposure+IV, K=3, B=1000, N∈{500,1000,2000,5000,10000,50000},
+    confirms O(1/√n) scaling'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/bootstrap_ci_convergence_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:02:51.277144+00:00'
+  tags:
+  - Q5
+  - bootstrap
+  - convergence
+  - ASV
+- id: art_20260523_c24d0f
+  name: e2e_demo_results
+  type: data
+  description: 'End-to-end demo: confounding (FWL blocks correction, +22.7% bias)
+    vs exposure (PPI++ corrects -42.9% to -0.2%). 100 reps, N=10K, K=3, 20% gold.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/e2e_demo_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:47:30.903306+00:00'
+  tags:
+  - e2e
+  - demo
+  - fwl
+  - ppi
+  - correction
+- id: art_20260523_9da4ad
+  name: e2e_demo_table
+  type: paper
+  description: LaTeX table for E2E demo comparing confounding (FWL invariance) vs
+    exposure (PPI++ correction). Ready for appendix inclusion.
+  path: projects/causal_annot_error_attrib/artifacts/_project/paper/e2e_demo_table.tex
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:47:33.577870+00:00'
+  tags:
+  - e2e
+  - demo
+  - table
+  - latex
+- id: art_20260523_c9b14d
+  name: e2e_demo_results_v2
+  type: data
+  description: 'E2E demo v2 with 3 topologies: confounding (+22.7%, FWL), exposure
+    (-42.9%→PPI++ -0.2%), IV (+82.4%, PPI++ harmful -139%). 100 reps, N=10K, K=3.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/e2e_demo_results_c9b14d.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:02:25.925687+00:00'
+  tags:
+  - e2e
+  - demo
+  - iv
+  - fwl
+  - ppi
+  - wald
+- id: art_20260523_101598
+  name: nondiff_y_stratified
+  type: intermediate
+  description: 'MF-2: Y-Stratified Non-Differential Misclassification Test script.
+    Phase 1 annotates VAST test data via OpenRouter LLM, Phase 2 runs permutation
+    tests on column-stochastic confusion matrices stratified by 3 Y proxies (text_length,
+    topic, sentiment).'
+  path: projects/causal_annot_error_attrib/artifacts/_project/intermediate/nondiff_y_stratified.py
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:08:34.343983+00:00'
+  tags:
+  - MF-2
+  - nondiff
+  - y-stratified
+  - permutation-test
+  - VAST
+- id: art_20260523_bcf3f9
+  name: nondiff_y_stratified_results
+  type: data
+  description: 'Y-stratified non-differential misclassification test results: 12 VAST
+    configs (4 models × 3 prompt types) × 3 Y-proxies (text_length, topic, sentiment).
+    Key finding: text_length 1/12 rejections (median p=0.508), topic 11/12, sentiment
+    10/12. Non-differential holds for content-independent proxies.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/nondiff_y_stratified_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:38:19.611373+00:00'
+  tags:
+  - MF-2
+  - non-differential
+  - permutation-test
+  - VAST
+  - EMNLP2026
+- id: art_20260523_877baa
+  name: MF-1a Adversarial Monotonicity Test Results
+  type: data
+  description: 'Conjecture 1 adversarial monotonicity test: 54,611 curves across 4
+    adversarial C₀ structures × 3 K × 7 topologies × 3 β configs × 100 C₀. Max ε_abs=0.016,
+    confirming ε-approximate envelope monotonicity under adversarial conditions.'
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:46:56.702531+00:00'
+  tags:
+  - conjecture1
+  - monotonicity
+  - adversarial
+  - MF-1a
+- id: art_20260523_b60bb1
+  name: adversarial_monotonicity_results_N1000
+  type: data
+  description: MF-1a Adversarial Monotonicity Test results with N_C0=1000 (10x previous).
+    545,945 curves tested, max ε=0.0164, non-monotone fraction 11.94%.
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results_b60bb1.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T18:02:35.685975+00:00'
+  tags:
+  - MF-1a
+  - monotonicity
+  - conjecture1
+  - adversarial
+- id: art_20260523_b30f56
+  name: symmetry_deviation_results
+  type: data
+  description: Frobenius distance to symmetry for 25 empirical LLM confusion matrices
+    (Theorem 2 applicability analysis)
+  path: projects/causal_annot_error_attrib/artifacts/_project/data/symmetry_deviation_results.json
+  url: null
+  project: causal_annot_error_attrib
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:01:16.429769+00:00'
+  tags:
+  - symmetry
+  - theorem2
+  - confusion_matrix
+  - W4

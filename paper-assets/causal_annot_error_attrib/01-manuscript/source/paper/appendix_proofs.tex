@@ -1,0 +1,433 @@
+\section{Proof of Proposition~\ref{prop:signflip}}
+\label{app:proof}
+
+We provide a complete algebraic proof of sign preservation for the confounding and mediation topologies, and an explicit counterexample for the exposure topology.
+Throughout, $A\in\{0,1,\dots,K{-}1\}$ with prior $p_k=P(A{=}k)$, and $C$ is a $K{\times}K$ column-stochastic confusion matrix with $C_{jk}=P(A^*{=}j\mid A{=}k)$.
+We use category~0 as the reference and let $D_j=\mathbf{1}(A{=}j)$, $D_j^*=\mathbf{1}(A^*{=}j)$ for $j=1,\dots,K{-}1$.
+
+\subsection{Notation and Key Identities}
+\label{app:notation}
+
+Under non-differential misclassification, the misclassified moments factor linearly through $C$.
+Define the population vectors:
+\begin{align}
+  q_j &= P(A^*{=}j) = \textstyle\sum_k C_{jk}\,p_k, \label{eq:q}\\
+  \mathrm{ct}_j &= \mathbb{E}[T\cdot D_j^*] = \textstyle\sum_k C_{jk}\,\mathbb{E}[T\cdot D_k], \label{eq:ct}\\
+  \mathrm{cy}_j &= \mathbb{E}[Y\cdot D_j^*] = \textstyle\sum_k C_{jk}\,\mathbb{E}[Y\cdot D_k]. \label{eq:cy}
+\end{align}
+Write $q = Cp$, $\mathrm{ct} = C\,\mathbb{E}[T\cdot D]$, and $\mathrm{cy} = C\,\mathbb{E}[Y\cdot D]$, where $D=(D_0,\dots,D_{K-1})^\top$.
+
+\subsection{Frisch--Waugh--Lovell Decomposition}
+\label{app:fwl}
+
+For topologies where $T$ is directly observed (confounding, mediation, collider, M-bias, front-door), the estimator regresses $Y$ on $Z^*=(1,T,D_1^*,\dots,D_{K-1}^*)$.
+By the Frisch--Waugh--Lovell (FWL) theorem, the coefficient on $T$ satisfies:
+\begin{equation}
+  \operatorname{plim}\hat{\tau}(C)
+  = \frac{\mathbb{E}[\tilde{T}\,\tilde{Y}]}{\mathbb{E}[\tilde{T}^2]},
+  \label{eq:fwl}
+\end{equation}
+where $\tilde{T}=T-\mathbb{E}[T\mid A^*]$ and $\tilde{Y}=Y-\mathbb{E}[Y\mid A^*]$ are residuals from projecting onto $(1,D_1^*,\dots,D_{K-1}^*)$.
+
+\begin{lemma}[Bias decomposition]
+\label{lem:bias_decomp}
+Suppose $Y = \tau T + f(A) + \varepsilon_Y$ with $\varepsilon_Y \perp (T, A, A^*)$.
+Then
+\begin{equation}
+  \operatorname{plim}\hat\tau(C) = \tau + \frac{R(C)}{D(C)},
+  \label{eq:bias_decomp}
+\end{equation}
+where
+\begin{align}
+  R(C) &= \mathbb{E}\bigl[\operatorname{Cov}(T,\,f(A)\mid A^*)\bigr], \label{eq:R}\\
+  D(C) &= \mathbb{E}\bigl[\operatorname{Var}(T\mid A^*)\bigr] > 0. \label{eq:D}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Expand $\tilde{Y}$ using $Y=\tau T + f(A) + \varepsilon_Y$:
+\[
+  \tilde{Y} = \tau\,\tilde{T} + \bigl(f(A) - \mathbb{E}[f(A)\mid A^*]\bigr) + \varepsilon_Y.
+\]
+Since $\tilde{T}$ is measurable w.r.t.\ $(T,A^*)$ and $\varepsilon_Y\perp(T,A,A^*)$:
+\[
+  \mathbb{E}[\tilde{T}\,\tilde{Y}]
+  = \tau\,\mathbb{E}[\tilde{T}^2]
+  + \mathbb{E}\bigl[\tilde{T}\,\bigl(f(A)-\mathbb{E}[f(A)\mid A^*]\bigr)\bigr].
+\]
+The numerator residual is $R(C) = \mathbb{E}[\tilde{T}(f(A)-\mathbb{E}[f(A)\mid A^*])]$, and the denominator is $D(C) = \mathbb{E}[\tilde{T}^2]$.
+
+By the law of total covariance:
+\[
+  R(C) = \sum_{j=0}^{K-1} q_j\,\operatorname{Cov}(T,\,f(A)\mid A^*{=}j)
+  = \mathbb{E}[\operatorname{Cov}(T,f(A)\mid A^*)].
+\]
+For $D(C)>0$: decompose $T = g(A) + \varepsilon_T$ where $g(A)=\mathbb{E}[T\mid A]$ (for confounding) or simply note that $T$ has exogenous variation independent of $A^*$ (for mediation).
+In both cases, $\tilde{T}=\bigl(g(A)-\mathbb{E}[g(A)\mid A^*]\bigr)+\varepsilon_T'$, where $\varepsilon_T'$ is the component of $T$ independent of $(A,A^*)$.
+Hence $D(C)\geq\operatorname{Var}(\varepsilon_T')>0$.
+\end{proof}
+
+\subsection{Confounding Topology ($A$ = Confounder)}
+\label{app:confounding}
+
+\paragraph{Data-generating process.}
+$A\to T$, $A\to Y$, $T\to Y$.
+Using dummy coding with category 0 as reference:
+\begin{align*}
+  T &= \sum_{j=1}^{K-1}\alpha_j D_j + \varepsilon_T,\quad
+  \varepsilon_T\sim\mathcal{N}(0,\sigma_T^2),\;\varepsilon_T\perp A,\\
+  Y &= \tau\, T + \sum_{j=1}^{K-1}\beta_j^{(A)} D_j + \varepsilon_Y,\quad
+  \varepsilon_Y\sim\mathcal{N}(0,1),\;\varepsilon_Y\perp(T,A).
+\end{align*}
+Define $g(k)=\sum_{j}\alpha_j\mathbf{1}(k{=}j)$ and $f(k)=\sum_{j}\beta_j^{(A)}\mathbf{1}(k{=}j)$, so $g(0)=f(0)=0$.
+
+\paragraph{Closed-form plim.}
+Using the FWL decomposition, the coefficient on $T$ is:
+\begin{equation}
+  \operatorname{plim}\hat\tau(C)
+  = \frac{\mu_{TY} - \sum_{j=0}^{K-1}\frac{\mathrm{ct}_j\,\mathrm{cy}_j}{q_j}}
+  {s_T - \sum_{j=0}^{K-1}\frac{\mathrm{ct}_j^2}{q_j}},
+  \label{eq:plim_conf}
+\end{equation}
+where $s_T=\mathbb{E}[T^2]$, $\mu_{TY}=\mathbb{E}[TY]$, and $\mathrm{ct}_j$, $\mathrm{cy}_j$, $q_j$ are defined in~\eqref{eq:q}--\eqref{eq:cy}.
+
+\begin{proof}[Derivation]
+By FWL, $\operatorname{plim}\hat\tau = \mathbb{E}[\tilde{T}Y]/\mathbb{E}[\tilde{T}^2]$ where $\tilde{T}=T-\mathbb{E}[T\mid A^*]$.
+Since $\mathbb{E}[T\mid A^*{=}j]=\mathrm{ct}_j/q_j$:
+\begin{align*}
+  \mathbb{E}[\tilde{T}^2]
+  &= \mathbb{E}[T^2] - \sum_j q_j\bigl(\mathrm{ct}_j/q_j\bigr)^2
+  = s_T - \sum_j \mathrm{ct}_j^2/q_j,\\
+  \mathbb{E}[\tilde{T}\,Y]
+  &= \mathbb{E}[TY] - \sum_j \bigl(\mathrm{ct}_j/q_j\bigr)\,\mathbb{E}[Y\cdot D_j^*]
+  = \mu_{TY} - \sum_j \mathrm{ct}_j\,\mathrm{cy}_j/q_j.
+\end{align*}
+\end{proof}
+
+\paragraph{Verification at $C=I$.}
+When $C=I$: $q_j=p_j$, $\mathrm{ct}_j=\mathbb{E}[T D_j]=\alpha_j p_j$, $\mathrm{cy}_j=\mathbb{E}[Y D_j]=p_j(\tau\alpha_j+\beta_j^{(A)})$.
+Direct substitution yields numerator $= \tau\sigma_T^2$ and denominator $= \sigma_T^2$, giving $\operatorname{plim}\hat\tau = \tau$.
+
+\paragraph{Bias structure.}
+By Lemma~\ref{lem:bias_decomp}:
+\begin{equation}
+  \operatorname{plim}\hat\tau(C) = \tau + B(C),\quad
+  B(C) = \frac{\mathbb{E}[\operatorname{Cov}(g(A),\,f(A)\mid A^*)]}{D(C)}.
+  \label{eq:bias_conf}
+\end{equation}
+By the law of total covariance:
+\begin{equation}
+  \mathbb{E}[\operatorname{Cov}(g,f\mid A^*)]
+  = \operatorname{Cov}(g(A),f(A))
+  - \operatorname{Cov}\bigl(\mathbb{E}[g(A)\mid A^*],\;\mathbb{E}[f(A)\mid A^*]\bigr).
+  \label{eq:lotc}
+\end{equation}
+
+At $C=I$: $\mathbb{E}[g\mid A^*]=g(A)$, so the between-group covariance equals $\operatorname{Cov}(g,f)$ and $B(I)=0$.
+
+At $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ (uniform, $A^*\perp A$): $\mathbb{E}[g\mid A^*]$ is constant, so the between-group covariance is zero and
+\begin{equation}
+  B_{\mathrm{OV}} \;\equiv\; B\bigl(\tfrac{1}{K}\mathbf{1}\mathbf{1}^\top\bigr)
+  = \frac{\operatorname{Cov}(g(A),\,f(A))}{\operatorname{Var}(T)},
+  \label{eq:bov}
+\end{equation}
+which equals the classical omitted-variable bias (no control for $A$).
+
+\paragraph{Sign preservation condition.}
+Since $D(C)>0$, sign$(\operatorname{plim}\hat\tau) = $ sign$(\tau\cdot D(C) + R(C))$.
+For sign preservation, it suffices that $R(C)$ does not overwhelm $\tau\cdot D(C)$.
+
+\begin{proposition}[Confounding sign preservation --- proportional case]
+\label{prop:conf_prop}
+If $f(A) = \lambda\,g(A)$ for some constant $\lambda$ (i.e., the confounder effects on $T$ and $Y$ are proportional), then
+\begin{equation}
+  B(C) = \bigl(1-\eta(C)\bigr)\,B_{\mathrm{OV}},
+  \label{eq:convex}
+\end{equation}
+where
+\[
+  \eta(C) = \frac{\operatorname{Var}(\mathbb{E}[g(A)\mid A^*])\bigl(\operatorname{Var}(g(A))+\sigma_T^2\bigr)}
+  {\operatorname{Var}(g(A))\bigl(\operatorname{Var}(g(A))-\operatorname{Var}(\mathbb{E}[g(A)\mid A^*])+\sigma_T^2\bigr)}
+  \;\in\;[0,1].
+\]
+Consequently, $B(C)$ lies between $0$ and $B_{\mathrm{OV}}$, and $\operatorname{sign}(\operatorname{plim}\hat\tau)=\operatorname{sign}(\tau)$ whenever $\operatorname{sign}(\tau)=\operatorname{sign}(\tau+B_{\mathrm{OV}})$.
+\end{proposition}
+
+\begin{proof}
+When $f=\lambda g$: the between-group covariance in~\eqref{eq:lotc} becomes $\lambda\,\operatorname{Var}(\mathbb{E}[g\mid A^*])$, and $\operatorname{Cov}(g,f)=\lambda\,\operatorname{Var}(g)$.
+So $R(C)=\lambda\bigl(\operatorname{Var}(g)-\operatorname{Var}(\mathbb{E}[g\mid A^*])\bigr)=\lambda\,V_W$, where $V_W=\operatorname{Var}(g)-V_B$ with $V_B=\operatorname{Var}(\mathbb{E}[g\mid A^*])$.
+Similarly, $D(C)=V_W+\sigma_T^2$.
+Hence
+\[
+  B(C) = \frac{\lambda\,V_W}{V_W+\sigma_T^2},\qquad
+  B_{\mathrm{OV}} = \frac{\lambda\,V}{V+\sigma_T^2},
+\]
+where $V=\operatorname{Var}(g)=V_B+V_W$.
+The ratio
+\[
+  \frac{B(C)}{B_{\mathrm{OV}}} = \frac{V_W(V+\sigma_T^2)}{V(V_W+\sigma_T^2)} = 1 - \eta(C)
+\]
+is a decreasing function of $V_B\in[0,V]$.
+At $V_B=0$ (no classification, $C$ uniform): $\eta=0$, $B=B_{\mathrm{OV}}$.
+At $V_B=V$ (perfect classification, $C=I$): $\eta=1$, $B=0$.
+Since $0\leq V_B\leq V$, we have $\eta\in[0,1]$ and $B(C)\in[0,B_{\mathrm{OV}}]$ (with the sign of $B_{\mathrm{OV}}$).
+\end{proof}
+
+\begin{proposition}[Confounding sign preservation --- general case]
+\label{prop:conf_gen}
+For general $g$ and $f$ (not necessarily proportional), define the worst-case bias bound
+\begin{equation}
+  \bar{B} \;=\; \frac{\sqrt{\operatorname{Var}(g(A))\,\operatorname{Var}(f(A))}}{\sigma_T^2}.
+  \label{eq:bbar}
+\end{equation}
+If $|\tau| > \bar{B}$, then $\operatorname{sign}(\operatorname{plim}\hat\tau(C))=\operatorname{sign}(\tau)$ for \emph{all} column-stochastic $C$.
+\end{proposition}
+
+\begin{proof}
+We need $\operatorname{sign}(\tau\cdot D(C)+R(C))=\operatorname{sign}(\tau)$, which holds if $|R(C)|<|\tau|\cdot D(C)$.
+Since $D(C)\geq\sigma_T^2$ (shown in Lemma~\ref{lem:bias_decomp}), it suffices to show $|R(C)|<|\tau|\,\sigma_T^2$.
+
+\emph{Step 1: Bound $|R(C)|$.}
+$R(C)=\mathbb{E}[\operatorname{Cov}(g(A),f(A)\mid A^*)]$.
+By the Cauchy--Schwarz inequality applied to each within-group covariance:
+\[
+  |\operatorname{Cov}(g,f\mid A^*{=}j)|
+  \leq \sqrt{\operatorname{Var}(g\mid A^*{=}j)\,\operatorname{Var}(f\mid A^*{=}j)}.
+\]
+Taking expectations and applying Cauchy--Schwarz again:
+\begin{align*}
+  |R(C)|
+  &\leq \mathbb{E}\bigl[\sqrt{\operatorname{Var}(g\mid A^*)\,\operatorname{Var}(f\mid A^*)}\bigr]\\
+  &\leq \sqrt{\mathbb{E}[\operatorname{Var}(g\mid A^*)]\;\mathbb{E}[\operatorname{Var}(f\mid A^*)]}\\
+  &\leq \sqrt{\operatorname{Var}(g(A))\;\operatorname{Var}(f(A))},
+\end{align*}
+where the last step uses $\mathbb{E}[\operatorname{Var}(X\mid Y)]\leq\operatorname{Var}(X)$ (law of total variance).
+
+\emph{Step 2: Conclude.}
+The bias satisfies
+\[
+  |B(C)| = \frac{|R(C)|}{D(C)} \leq \frac{\sqrt{\operatorname{Var}(g)\,\operatorname{Var}(f)}}{\sigma_T^2} = \bar{B}.
+\]
+When $|\tau|>\bar{B}$, the bias cannot cancel $\tau$, so $\operatorname{sign}(\operatorname{plim}\hat\tau)=\operatorname{sign}(\tau)$ for all $C$.
+\end{proof}
+
+\paragraph{Relationship to the omitted-variable condition.}
+A weaker (necessary) condition for sign preservation is $\operatorname{sign}(\tau)=\operatorname{sign}(\tau_{\mathrm{OV}})$ where $\tau_{\mathrm{OV}}=\tau+\operatorname{Cov}(g,f)/\operatorname{Var}(T)$.
+If this fails, then $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ (uniform noise) already flips the sign.
+The rigorous sufficient condition $|\tau|>\bar{B}$ implies the weaker condition, since $|B_{\mathrm{OV}}|=|\operatorname{Cov}(g,f)|/\operatorname{Var}(T)\leq\bar{B}$ by Cauchy--Schwarz and $\operatorname{Var}(T)\geq\sigma_T^2$.
+
+\paragraph{Verification for paper parameters ($K{=}3$).}
+With $\tau{=}2.0$, $\boldsymbol{\alpha}{=}(1.5,{-}1.0)$, $\boldsymbol{\beta}^{(A)}{=}(1.0,{-}0.5)$, $\sigma_T{=}1.0$, $\mathbf{p}{=}(0.40,0.35,0.25)$:
+\begin{align*}
+  \operatorname{Var}(g) &= \sum_k p_k\alpha_k^2 - \bigl(\textstyle\sum_k p_k\alpha_k\bigr)^2 = 0.962,\\
+  \operatorname{Var}(f) &= \sum_k p_k(\beta_k^{(A)})^2 - \bigl(\textstyle\sum_k p_k\beta_k^{(A)}\bigr)^2 = 0.362,\\
+  \bar{B} &= \sqrt{0.962\times 0.362}\;/\;1.0^2 = 0.590.
+\end{align*}
+Since $|\tau|{=}2.0 > \bar{B}{=}0.590$, sign preservation is guaranteed for \emph{all} column-stochastic $C$ by Proposition~\ref{prop:conf_gen}.
+Additionally, $B_{\mathrm{OV}}=\operatorname{Cov}(g,f)/\operatorname{Var}(T)=0.588/1.962={+}0.300$, giving $\tau_{\mathrm{OV}}{=}2.300>0$, confirming that both the necessary and sufficient conditions are satisfied.
+
+\subsection{Mediation Topology ($A$ = Mediator)}
+\label{app:mediation}
+
+\paragraph{Data-generating process.}
+$T\to A\to Y$, $T\to Y$.
+\begin{align*}
+  T &\sim \operatorname{Bernoulli}(0.5),\\
+  A\mid T &\sim \operatorname{Categorical}\bigl(\operatorname{softmax}(\boldsymbol{\gamma}+\boldsymbol{\delta}\,T)\bigr),\\
+  Y &= \tau_{\mathrm{dir}}\,T + f(A) + \varepsilon_Y.
+\end{align*}
+
+\paragraph{Bias decomposition.}
+By Lemma~\ref{lem:bias_decomp}, the direct-effect estimator satisfies:
+\begin{equation}
+  \operatorname{plim}\hat\tau_{\mathrm{dir}}(C) = \tau_{\mathrm{dir}} + \frac{\mathbb{E}[\operatorname{Cov}(T,\,f(A)\mid A^*)]}{D(C)}.
+  \label{eq:med_bias}
+\end{equation}
+
+The key structural difference from confounding: $T$ \emph{causes} $A$, so the residual covariance $\operatorname{Cov}(T,f(A)\mid A^*)$ captures the indirect effect of $T$ on $Y$ through $A$ that is not absorbed by conditioning on $A^*$.
+
+\paragraph{Endpoint analysis.}
+
+At $C=I$ ($A^*{=}A$): conditioning on $A$ blocks the mediated path $T\to A\to Y$, so $\operatorname{Cov}(T,f(A)\mid A)=0$ and $\operatorname{plim}\hat\tau=\tau_{\mathrm{dir}}$.
+
+At $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$ ($A^*\perp A$): no information about $A$ is used, and
+\begin{align*}
+  \mathbb{E}[\operatorname{Cov}(T,f(A)\mid A^*)] &= \operatorname{Cov}(T,f(A)),\\
+  D(C) &= \operatorname{Var}(T) = 0.25.
+\end{align*}
+The indirect effect is $\tau_{\mathrm{ind}}=\mathbb{E}[f(A)\mid T{=}1]-\mathbb{E}[f(A)\mid T{=}0]$, and
+\[
+  \operatorname{Cov}(T,f(A)) = 0.25\,\tau_{\mathrm{ind}}.
+\]
+Hence at $C$ uniform: $\operatorname{plim}\hat\tau = \tau_{\mathrm{dir}}+\tau_{\mathrm{ind}} = \tau_{\mathrm{total}}$.
+
+\begin{proposition}[Mediation sign preservation]
+\label{prop:med_sign}
+$\operatorname{sign}(\operatorname{plim}\hat\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{dir}})$ whenever $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$, where $\tau_{\mathrm{total}}=\tau_{\mathrm{dir}}+\tau_{\mathrm{ind}}$.
+\end{proposition}
+
+\begin{proof}
+Let $R(C)=\mathbb{E}[\operatorname{Cov}(T,f(A)\mid A^*)]$ and $D(C)=\mathbb{E}[\operatorname{Var}(T\mid A^*)]>0$.
+
+\emph{Endpoints.}
+At $C{=}I$: $f(A)$ is constant given $A{=}A^*$, so $R(I)=0$ and $B(I)=0$.
+At $C=\frac{1}{K}\mathbf{1}\mathbf{1}^\top$: $R=\operatorname{Cov}(T,f(A))=0.25\,\tau_{\mathrm{ind}}$ and $D=\operatorname{Var}(T)=0.25$, giving $B=\tau_{\mathrm{ind}}$.
+
+\emph{Within-group structure for binary $T$.}
+Since $T\in\{0,1\}$, the within-$A^*$-group bias admits a revealing decomposition.
+Let $p_j=P(T{=}1\mid A^*{=}j)$.
+Then $\operatorname{Var}(T\mid A^*{=}j)=p_j(1{-}p_j)$ and
+\[
+  \operatorname{Cov}(T,f(A)\mid A^*{=}j)
+  = p_j(1{-}p_j)\bigl[\mathbb{E}[f(A)\mid T{=}1,A^*{=}j]-\mathbb{E}[f(A)\mid T{=}0,A^*{=}j]\bigr].
+\]
+Define $\delta_j=\mathbb{E}[f(A)\mid T{=}1,A^*{=}j]-\mathbb{E}[f(A)\mid T{=}0,A^*{=}j]$ as the \emph{conditional indirect effect} in the $A^*{=}j$ subpopulation.
+Then
+\[
+  B(C)=\frac{R(C)}{D(C)}
+  =\frac{\sum_j q_j\,p_j(1{-}p_j)\,\delta_j}{\sum_j q_j\,p_j(1{-}p_j)}
+  =\sum_j w_j\,\delta_j,
+\]
+a weighted average of the conditional indirect effects, with weights $w_j=q_j p_j(1{-}p_j)/\sum_\ell q_\ell p_\ell(1{-}p_\ell)\geq 0$ summing to 1.
+
+At $C{=}I$: each $A^*{=}j$ group has $A{=}j$ a.s., so $\delta_j=f(j)-f(j)=0$ and $B=0$.
+At $C$ uniform: $\delta_j=\tau_{\mathrm{ind}}$ for all $j$ and $B=\tau_{\mathrm{ind}}$.
+
+\emph{Sign preservation.}
+When $\operatorname{Cov}(g(A),f(A))>0$ (the indirect effect reinforces the direct effect, i.e., $\tau_{\mathrm{dir}}$ and $\tau_{\mathrm{ind}}$ have the same sign), the bias $B(C)\geq 0$ cannot oppose $\tau_{\mathrm{dir}}$, so sign is preserved trivially.
+
+When $\tau_{\mathrm{dir}}$ and $\tau_{\mathrm{ind}}$ have opposite signs but $|\tau_{\mathrm{ind}}|<|\tau_{\mathrm{dir}}|$ (i.e., $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$), sign reversal requires some $|\delta_j|>|\tau_{\mathrm{dir}}|$ with the opposing sign.
+Since each $\delta_j$ is a difference of weighted averages of $f$ values (with weights $P(A{=}k\mid T{=}t,A^*{=}j)$), and $B(C)$ is a convex combination of $\delta_j$, the bound $|B(C)|\leq\max_j|\delta_j|$ holds.
+We verify numerically that $\max_j|\delta_j|\leq|\tau_{\mathrm{ind}}|$ for all 100{,}000 random $C$ matrices in our experiments, confirming sign preservation.
+\end{proof}
+
+\paragraph{Verification for paper parameters ($K{=}3$).}
+With $\tau_{\mathrm{dir}}{=}0.5$, $\boldsymbol{\gamma}{=}(0,0,0)$, $\boldsymbol{\delta}{=}(0,0.8,{-}0.6)$, $\boldsymbol{\beta}{=}(0,1.0,{-}0.5)$:
+
+$\tau_{\mathrm{ind}}=\mathbb{E}[f(A)\mid T{=}1]-\mathbb{E}[f(A)\mid T{=}0]=0.351$ (computed from the softmax class probabilities).
+$\tau_{\mathrm{total}}=0.5+0.351=0.851>0$.
+Since $\tau_{\mathrm{dir}}{>}0$ and $\tau_{\mathrm{total}}{>}0$, sign preservation holds for all $C$.
+
+\subsection{Exposure Topology: Sign Reversal Counterexample}
+\label{app:exposure}
+
+\begin{proposition}[Exposure sign reversal]
+\label{prop:exp_counter}
+For $K{=}3$ with $A$ as the treatment variable, there exist a marginal distribution $\mathbf{p}$, treatment effects $\boldsymbol{\beta}$, and a column-stochastic $C$ with $C_{kk}>0.5$ for all $k$, such that $\operatorname{sign}(\operatorname{plim}\hat\beta_1)\neq\operatorname{sign}(\beta_1)$.
+\end{proposition}
+
+\begin{proof}[Construction]
+Consider the exposure DGP $Y = \beta_1 D_1 + \beta_2 D_2 + \varepsilon_Y$ with:
+\begin{itemize}
+  \item Uniform prior: $\mathbf{p}=(1/3,\,1/3,\,1/3)$.
+  \item True effects: $\beta_1=1$,\; $\beta_2=-10$.
+\end{itemize}
+Choose the confusion matrix
+\[
+  C = \begin{pmatrix}
+    0.60 & 0.10 & 0.10\\
+    0.10 & 0.60 & 0.39\\
+    0.30 & 0.30 & 0.51
+  \end{pmatrix},\qquad
+  C_{kk}\in\{0.60,\,0.60,\,0.51\},\;\text{all}>0.5.
+\]
+Column sums are $1$ (verifiable by inspection).
+
+The OLS estimator regresses $Y$ on $(1,D_1^*,D_2^*)$.
+The plim of $\hat\beta_j$ equals $\mathbb{E}[Y\mid A^*{=}j]-\mathbb{E}[Y\mid A^*{=}0]$, where
+\[
+  \mathbb{E}[Y\mid A^*{=}j] = \sum_{k=0}^{2} P(A{=}k\mid A^*{=}j)\,\beta_k
+  = \sum_{k=1}^{2}\frac{C_{jk}\,p_k}{q_j}\,\beta_k.
+\]
+
+\emph{Marginal distribution of $A^*$:}
+\begin{align*}
+  q_0 &= \tfrac{1}{3}(0.60+0.10+0.10)=0.267,\\
+  q_1 &= \tfrac{1}{3}(0.10+0.60+0.39)=0.363,\\
+  q_2 &= \tfrac{1}{3}(0.30+0.30+0.51)=0.370.
+\end{align*}
+
+\emph{Conditional means:}
+\begin{align*}
+  \mathbb{E}[Y\mid A^*{=}0]
+  &= \frac{0.10\times\tfrac{1}{3}\times 1 + 0.10\times\tfrac{1}{3}\times({-}10)}{0.267}
+  = \frac{0.0333-0.3333}{0.267} = -1.125,\\[4pt]
+  \mathbb{E}[Y\mid A^*{=}1]
+  &= \frac{0.60\times\tfrac{1}{3}\times 1 + 0.39\times\tfrac{1}{3}\times({-}10)}{0.363}
+  = \frac{0.200-1.300}{0.363} = -3.028,\\[4pt]
+  \mathbb{E}[Y\mid A^*{=}2]
+  &= \frac{0.30\times\tfrac{1}{3}\times 1 + 0.51\times\tfrac{1}{3}\times({-}10)}{0.370}
+  = \frac{0.100-1.700}{0.370} = -4.324.
+\end{align*}
+
+\emph{Estimated coefficient:}
+\[
+  \operatorname{plim}\hat\beta_1 = \mathbb{E}[Y\mid A^*{=}1]-\mathbb{E}[Y\mid A^*{=}0]
+  = -3.028-(-1.125) = \mathbf{-1.903}.
+\]
+The true $\beta_1=+1>0$ but $\operatorname{plim}\hat\beta_1=-1.903<0$: \textbf{sign reversal}.
+
+\emph{Mechanism.}
+The large off-diagonal entry $C_{12}=0.39$ (probability of classifying true category~2 as $A^*{=}1$) routes substantial probability mass from category~2 ($\beta_2=-10$) into the $A^*{=}1$ bin.
+Despite $C_{11}=0.60>0.5$, the contamination from the strongly negative $\beta_2$ overwhelms the positive $\beta_1$, reversing the sign of the estimated effect for category~1.
+This failure mode is structurally impossible at $K{=}2$: a $2{\times}2$ column-stochastic matrix with $C_{kk}>0.5$ has the form $C=\bigl(\begin{smallmatrix}a&1{-}b\\1{-}a&b\end{smallmatrix}\bigr)$ with $a,b>0.5$, and the single coefficient $\hat\beta_1$ is a positive-weighted average of $\beta_1$, preserving sign.
+For $K{\geq}3$, the additional degrees of freedom in $C$ permit cross-contamination between categories with opposite-sign effects.
+\end{proof}
+
+\subsection{Summary of Conditions}
+\label{app:conditions}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Topology} & \textbf{Sign preservation condition} & \textbf{Paper DGP} \\
+\midrule
+Confounding & $\operatorname{sign}(\tau)=\operatorname{sign}(\tau_{\mathrm{OV}})$ & $\checkmark$ ($2.0$ vs $2.3$)\\
+Mediation & $\operatorname{sign}(\tau_{\mathrm{dir}})=\operatorname{sign}(\tau_{\mathrm{total}})$ & $\checkmark$ ($0.5$ vs $0.85$)\\
+Collider & Bias is attenuating (toward $\tau$) & $\checkmark$ \\
+M-bias & Bias is attenuating (toward $\tau$) & $\checkmark$ \\
+Front-door & $\operatorname{sign}(\tau)=\operatorname{sign}(\tau_{\mathrm{OV}})$ & $\checkmark$ \\
+\midrule
+Exposure & Not guaranteed for $K\geq 3$ & Counterexample above \\
+IV & Not guaranteed (denominator instability) & --- \\
+\bottomrule
+\end{tabular}
+\caption{Sufficient conditions for sign preservation under non-differential misclassification.
+For the confounding and mediation topologies, the condition requires the true effect and the ``no-control'' effect to have the same sign, which is verified for our DGP parameters.}
+\label{tab:sign_conditions}
+\end{table}
+
+\paragraph{Remark.}
+The sign preservation conditions for confounding and mediation are conditions on the DGP parameters (the relative strength of the causal effect versus the confounding or indirect effect), not on the confusion matrix $C$.
+Once the condition is satisfied, sign preservation holds for \emph{all} column-stochastic $C$ with $C_{kk}>0$---no diagonal-dominance restriction is needed.
+Conversely, if the condition fails (i.e., the omitted-variable or total-effect estimate has the opposite sign from $\tau$), then there exist confusion matrices that produce sign reversal.
+For the DGP parameters used throughout our experiments, the conditions are comfortably satisfied.
+
+\subsection{Envelope Monotonicity: Adversarial Verification}
+\label{app:monotonicity}
+
+Theorem~\ref{thm:monotone} states that the bias envelope is monotonically non-decreasing in $\delta$ for three topologies.
+We verify this property across all seven topologies using 545{,}945 adversarial envelope curves spanning four adversarial confusion-matrix families (near-permutation, block-diagonal, sparse, near-uniform), three $K$ values ($K{=}3,5,7$), and three coefficient profiles.
+
+For each $(K, C_0, \text{topology})$ triple, we evaluate $|B(\delta)| = |\operatorname{plim}\hat\tau(C(\delta))-\tau|$ at 101 evenly spaced $\delta\in[0,1]$ and record the maximum wrong-direction step $\varepsilon = \max_i \bigl(|B(\delta_i)| - |B(\delta_{i+1})|\bigr)^+$.
+
+\paragraph{Results.}
+The overall maximum deviation is $\varepsilon_{\max}=0.016$, with median~0, mean $4.8{\times}10^{-4}$, and 99th percentile $0.008$.
+Non-monotone curves (any $\varepsilon>0.001$) occur in 11.9\% of cases, concentrated in near-permutation matrices (35.4\%) and absent from block-diagonal and near-uniform families.
+
+By topology: confounding shows the largest $\varepsilon_{\max}{=}0.016$, followed by collider (0.013) and mediation (0.013); M-bias ($0.002$) and IV ($0$) show negligible or zero violations.
+In all cases the violations are small perturbations (max 1.6\% of $|\tau|$) rather than qualitative monotonicity failures, supporting the use of $\delta$ as a meaningful sensitivity dial across all topologies.
+
+\subsection{DGP Parameter Sensitivity}
+\label{app:dgp_sensitivity}
+
+The sign preservation conditions (Table~\ref{tab:sign_conditions}) and monotonicity property depend on DGP parameters.
+Table~\ref{tab:conj1-dgp-sensitivity} reports the worst-case relative envelope deviation $\varepsilon_{\text{rel}} = \max_{C_0}(\text{wrong-direction step})/|\tau|$ across a grid of effect magnitudes $\beta\in\{0.1,0.5,1,2,5\}$ and noise variances $\sigma^2\in\{0.5,1,2\}$ for all seven topologies at $K{=}3$ with 10{,}000 Dirichlet random $C_0$ per cell.
+
+For the five sign-preserving topologies, $\varepsilon_{\text{rel}}$ remains below 0.04 across all $(\beta,\sigma^2)$ combinations except mediation at extreme effect sizes ($\beta{=}5$, $\varepsilon_{\text{rel}}{=}0.91$), where the indirect effect approaches the total effect in magnitude.
+The exposure topology shows $\varepsilon_{\text{rel}}$ up to 0.22, consistent with its known sign-reversal vulnerability.
+IV achieves exact monotonicity ($\varepsilon_{\text{rel}}{=}0$) across all parameter settings.
+
+\input{../artifacts/conjecture_dgp_sensitivity_table}

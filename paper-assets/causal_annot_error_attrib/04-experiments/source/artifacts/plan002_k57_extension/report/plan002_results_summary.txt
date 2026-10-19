@@ -1,0 +1,27 @@
+Plan 002 completed in 13s on RTX 5090.
+
+Script: /home/sonny/causal_annot_error_attrib/plan_002_k57_extension.py
+Log: /home/sonny/causal_annot_error_attrib/plan002_run.log
+Heatmaps: /home/sonny/causal_annot_error_attrib/plan002_sensitivity_*.png (13 files)
+
+CROSS-K COMPARISON TABLE:
+Topology       K  violat  sflip  amplif  τ_viol  τ_sflip  τ_amp
+confounding    3  100.0%  99.3%  100.0%  100.0%    0.0%  100.0%
+confounding    5  100.0% 100.0%  100.0%  100.0%    0.0%  100.0%
+confounding    7  100.0% 100.0%  100.0%  100.0%    0.0%  100.0%
+mediation      3  100.0%  83.8%  100.0%  100.0%    0.0%  100.0%
+mediation      5  100.0%  96.6%  100.0%  100.0%    0.0%  100.0%
+mediation      7  100.0% 100.0%  100.0%  100.0%    0.0%  100.0%
+collider       3  100.0%  66.6%  100.0%  100.0%    0.0%  100.0%
+collider       5  100.0%  95.5%  100.0%  100.0%    0.0%  100.0%
+collider       7  100.0%  99.2%  100.0%  100.0%    0.0%  100.0%
+exposure       3  100.0%  99.0%   99.9%     —       —       —
+exposure       5  100.0% 100.0%   99.8%     —       —       —
+exposure       7  100.0% 100.0%   99.9%     —       —       —
+
+KEY FINDINGS:
+1. Sign-flip rate increases with K (mediation: 83.8%→100%, collider: 66.6%→99.2%)
+2. τ bias mean DECREASES with K (confounding: 0.272→0.228, mediation: 0.256→0.197)
+3. Worst-case bounds (diag≥0.9) decrease with K for confounding/mediation/collider
+4. Top-1 eigenvalue explains less variance as K grows (78%→66%→61%)
+5. MC verification passes for all K=3 topologies

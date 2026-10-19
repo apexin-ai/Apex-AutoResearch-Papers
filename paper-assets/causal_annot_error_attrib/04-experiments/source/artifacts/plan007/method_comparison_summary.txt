@@ -1,0 +1,87 @@
+Cross-Topology Method Comparison Summary
+==========================================================================================
+
+--- naive_plugin ---
+  Scenarios: 42
+  Bias reduction: mean=-20.0%  median=-0.0%  [-117.5%, 73.1%]
+  RMSE: mean=0.4180  median=0.2395
+  Coverage 95%: mean=14.6%  min=0.0%
+  Failure rate: mean=0.0%  max=0.0%
+  By topology (mean bias reduction):
+    confounding   : 0.0%
+    mediation     : -0.0%
+    collider      : 0.0%
+    exposure      : -45.6%
+    mbias         : 0.0%
+    iv            : -40.9%
+    frontdoor     : -53.5%
+
+--- dsl ---
+  Scenarios: 42
+  Bias reduction: mean=-144.8%  median=-20.9%  [-2537.4%, 99.2%]
+  RMSE: mean=0.4994  median=0.1346
+  Coverage 95%: mean=6.5%  min=0.0%
+  Failure rate: mean=0.0%  max=0.0%
+  By topology (mean bias reduction):
+    confounding   : 49.8%
+    mediation     : 70.3%
+    collider      : -89.2%
+    exposure      : -59.6%
+    mbias         : -768.0%
+    iv            : -187.4%
+    frontdoor     : -29.2%
+
+--- ppi ---
+  Scenarios: 42
+  Bias reduction: mean=93.8%  median=98.9%  [-25.1%, 100.0%]
+  RMSE: mean=0.0797  median=0.0789
+  Coverage 95%: mean=96.8%  min=85.7%
+  Failure rate: mean=0.0%  max=0.0%
+  By topology (mean bias reduction):
+    confounding   : 99.3%
+    mediation     : 98.8%
+    collider      : 97.0%
+    exposure      : 98.8%
+    mbias         : 63.7%
+    iv            : 99.5%
+    frontdoor     : 99.3%
+
+--- mcsimex ---
+  Scenarios: 42
+  Bias reduction: mean=20.9%  median=54.0%  [-750.6%, 97.2%]
+  RMSE: mean=0.3803  median=0.0882
+  Coverage 95%: mean=37.6%  min=0.0%
+  Failure rate: mean=0.0%  max=0.0%
+  By topology (mean bias reduction):
+    confounding   : 35.9%
+    mediation     : 42.4%
+    collider      : 37.1%
+    exposure      : -3.8%
+    mbias         : 25.7%
+    iv            : 64.7%
+    frontdoor     : -55.7%
+
+--- mla ---
+  Scenarios: 42
+  Bias reduction: mean=-37.4%  median=-0.0%  [-348.3%, 0.0%]
+  RMSE: mean=0.5794  median=0.2395
+  Coverage 95%: mean=14.6%  min=0.0%
+  Failure rate: mean=0.0%  max=0.0%
+  By topology (mean bias reduction):
+    confounding   : -0.0%
+    mediation     : 0.0%
+    collider      : 0.0%
+    exposure      : -89.9%
+    mbias         : 0.0%
+    iv            : -59.2%
+    frontdoor     : -112.5%
+
+
+--- Method Win Counts ---
+Method             Wins     Rate
+------------------------------
+naive_plugin          1    2.4%
+dsl                   0    0.0%
+ppi                  40   95.2%
+mcsimex               1    2.4%
+mla                   0    0.0%

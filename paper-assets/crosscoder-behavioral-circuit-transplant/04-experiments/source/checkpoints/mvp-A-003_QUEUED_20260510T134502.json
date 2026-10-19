@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp-A-003",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-10T13:24:25.832Z",
+    "updated_at": "2026-05-10T13:45:02.139Z",
+    "spec": {
+      "hypothesis": "H2: 手术位点错误——rank-1 修改 MLP W_out 无效，改为残差流 bias 注入可使特征激活向 donor 方向移动",
+      "model_name": "EleutherAI/pythia-70m",
+      "server": "home-1x5090",
+      "data_path": "monology/pile-uncopyrighted",
+      "data_count": 2000,
+      "seed": 42,
+      "description": "MVP-A-003: 复用 mvp-A-001 crosscoder，手术改为 resid bias 注入，扫描 α=[0.1,0.5,1.0,2.0,5.0]，评估 Gates 3-5",
+      "parent": "mvp-A-001",
+      "donor_checkpoint": "step143000",
+      "target_checkpoint": "step1000"
+    }
+  },
+  "timestamp": "2026-05-10T13:45:02.169117+00:00",
+  "trigger": "update_registry"
+}

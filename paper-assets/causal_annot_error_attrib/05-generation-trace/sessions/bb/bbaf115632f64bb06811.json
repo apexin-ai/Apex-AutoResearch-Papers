@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbaf115632f64bb06811",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code exp a stress test",
+  "task_key": "worker_code_exp_a_stress_test_20260522T110940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_a_stress_test_20260522T110940_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "1fe5c9eb3ab8a37cee3a2cdc33d41da51810bcf535e10c090210ca520ea2d2af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 outputs generated successfully. Here's the results summary:\n\n**96 configs** (4 topologies × 2 K × 3 CM qualities × 4 ε), each with 100 MC reps at N=10,000. Completed in 58s.\n\n**Key findings:**\n\n| | ε=0 (non-diff) | ε=0.01 | ε=0.05 | ε=0.10 |\n|---|---|---|---|---|\n| Mean SF rate | 0.000 | 0.000 | 0.001 | 0.005 |\n| Max SF rate | 0.000 | 0.000 | 0.020 | 0.070 |\n| Mean BR | 1.72 | 1.72 | 2.13 | 3.38 |\n\n**By topology:**\n- **Confounding**: No sign flips at any ε. BR ≈ 1.10–1.15 (mild amplification due to residual confounding from misclassified confounder). Stable across ε.\n- **Mediation**: No sign flips. BR ≈ 1.15–1.61 (indirect effect leakage). Increases moderately with ε.\n- **Exposure**: Sign flips appear at ε≥0.05 for K=3 low-quality CM (SF=5% at ε=0.10). BR < 1 (attenuation toward null), decreasing with ε.\n- **IV**: Most sensitive. Sign flips at ε=0.10 for K=3 low-quality (SF=7%). Extreme BR for low-quality CMs (up to 44× for K=3) due to weak first-stage amplification in the Wald estimator.\n\n**Verification:**\n- ε=0: zero sign flips across all configs (consistent with non-differential theory for symmetric CMs)\n- Sign flips monotonically increase with ε\n- All CMs validated as column-stochastic\n\n**Output files:**\n- `artifacts/exp_a_stress_test_results.json` — full results with per-config metrics\n- `artifacts/exp_a_stress_test_table.tex` — LaTeX table for Appendix B.3\n- `artifacts/exp_a_stress_test.py` — reproducible script"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-a-stress-test.md"
+}

@@ -1,0 +1,923 @@
+# code plan004 asv derivation
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_code_plan004-asv-derivation_20260520T122029.log`
+- **Structured JSON:** [`69df27d499f85813b52a.json`](../../sessions/69/69df27d499f85813b52a.json)
+
+## Before a recorded user message
+
+19 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a116aecd-d1ce-41aa-aaf8-b1a0c380d16d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779415200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.79,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "1214ff85-6b32-4032-a5ae-a7ae8616826c",
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the task. I need to:
+
+1. Read the current scaffold code on the remote server
+2. Implement Parts 1-5 of the ASV framework
+3. Run the script and collect results
+4. Update the registry
+
+Let me first read the scaffold code and understand what's already there, then check the registry for the current status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "c89001e9-96b0-437c-b925-49262473c0e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPP36H86kKfqHit55baKcR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13271,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13271
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取当前 scaffold 代码和 registry 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "0eded663-7402-4815-926d-023627945f9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPP36H86kKfqHit55baKcR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13271,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13271
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BjBh6tkfM1PC81Fd1hrGmV`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "90c47fd7-3844-419c-9640-53b73747a37e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPP36H86kKfqHit55baKcR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13271,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13271
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T12:20:43.361Z_
+
+<details><summary>↩ Tool result · `toolu_01BjBh6tkfM1PC81Fd1hrGmV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "99b96942-6a62-4d1d-bcf3-dec9d10ef133",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QXspUs7tBh7WuVr9jBd14p`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "7908547e-f2df-4c22-8a1c-a160e1552993",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yYraMi7VFRnxgJdPRArBu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2435,
+      "cache_read_input_tokens": 25112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2435
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01BjW4KhU5RoajNTQ2NcBSkY`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "filters": {
+    "exp_id": "plan004_asv_framework"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "8584c951-42ba-4fc2-8401-e018d17202da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yYraMi7VFRnxgJdPRArBu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2435,
+      "cache_read_input_tokens": 25112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2435
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T12:20:52.945Z_
+
+<details><summary>↩ Tool result · `toolu_01QXspUs7tBh7WuVr9jBd14p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nplan_004: Annotation Sensitivity Values (ASV) framework\\nClaim 2 核心实验：ASV 表达式推导 + 形式证明验证 + MC coverage\\n\\n输入：DAG topology + reference confusion matrix C₀ + downstream estimate\\n输出：ASV value + sensitivity curve + coverage validation\\n\\n三个拓扑：\\n  - Confounding: A -> T, A -> Y, T -> Y  (closed-form plim)\\n  - Mediation:   T -> A -> Y             (closed-form plim, from plan_001)\\n  - Collider:    T -> A <- Y             (precomputed moments, from plan_001)\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom abc import ABC, abstractmethod\\n\\n\\n# ============================================================================\\n# Utilities (from plan_001)\\n# ============================================================================\\n\\ndef softmax(x):\\n    e = np.exp(x - x.max())\\n    return e / e.sum()\\n\\n\\ndef p_cat(t, g, d):\\n    \\\"\\\"\\\"P(A|T=t) via softmax(g + d*t).\\\"\\\"\\\"\\n    return softmax(g + d * t)\\n\\n\\ndef generate_Astar(A, C, rng):\\n    \\\"\\\"\\\"Sample A* from confusion matrix C given true labels A.\\\"\\\"\\\"\\n    probs = C[:, A]\\n    cum = np.cumsum(probs, axis=0)\\n    u = rng.uniform(size=len(A))\\n    return (u >= cum[0]).astype(int) + (u >= cum[1]).astype(int)\\n\\n\\ndef softmax_sample(logits, rng):\\n    \\\"\\\"\\\"Vectorized K=3 categorical sampling from logit matrix.\\\"\\\"\\\"\\n    exp_l = np.exp(logits - logits.max(axis=1, keepdims=True))\\n    probs = exp_l / exp_l.sum(axis=1, keepdims=True)\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=logits.shape[0])\\n    return (u >= cum[:, 0]).astype(int) + (u >= cum[:, 1]).astype(int)\\n\\n\\ndef check_column_stochastic(C, tol=1e-6):\\n    \\\"\\\"\\\"Verify C is column-stochastic: non-negative, each column sums to 1.\\\"\\\"\\\"\\n    assert np.all(C >= -tol), f\\\"Negative entries in C: min={C.min()}\\\"\\n    col_sums = C.sum(axis=0)\\n    assert np.allclose(col_sums, 1.0, atol=tol), f\\\"Column sums != 1: {col_sums}\\\"\\n\\n\\n# ============================================================================\\n# C(δ) Parameterization Interface (pluggable)\\n# ============================================================================\\n\\nclass ConfusionParameterization(ABC):\\n    \\\"\\\"\\\"Abstract base for C(δ) parameterization.\\\"\\\"\\\"\\n\\n    @abstractmethod\\n    def __call__(self, C0: np.ndarray, delta: float) -> np.ndarray:\\n        \\\"\\\"\\\"Given reference C₀ and scalar δ, return C(δ).\\\"\\\"\\\"\\n        pass\\n\\n    @abstractmethod\\n    def delta_range(self) -> tuple[float, float]:\\n        \\\"\\\"\\\"Valid range for δ.\\\"\\\"\\\"\\n        pass\\n\\n\\nclass LinearInterpolation(ConfusionParameterization):\\n    \\\"\\\"\\\"C(δ) = (1-δ)I + δC₀.  Placeholder — will be replaced after Director 选定.\\\"\\\"\\\"\\n\\n    def __call__(self, C0, delta):\\n        K = C0.shape[0]\\n        C_d = (1 - delta) * np.eye(K) + delta * C0\\n        return C_d\\n\\n    def delta_range(self):\\n        return (0.0, 1.0)\\n\\n\\n# ============================================================================\\n# DAG 1: CONFOUNDING — A -> T, A -> Y, T -> Y  (closed-form)\\n#\\n# DGP:\\n#   A ~ Cat(p_A),  K=3\\n#   T | A=k ~ N(sigma_T[k], 1)\\n#   Y = alpha + beta_T * T + beta_A[0]*I(A=1) + beta_A[1]*I(A=2) + eps_Y\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + I(A*=1) + I(A*=2)\\n#\\n# plim = E[Z'Z]^{-1} E[Z'X] b\\n#   where Z = (1, T, D*_1, D*_2),  X = (1, T, D_1, D_2)\\n#   b = (alpha, beta_T, beta_A[0], beta_A[1])\\n# ============================================================================\\n\\ndef plim_confounding(C, p_A, alpha, beta_T, beta_A, sigma_T):\\n    \\\"\\\"\\\"\\n    Confounding DAG closed-form plim.\\n\\n    Args:\\n        C: K×K confusion matrix (column-stochastic)\\n        p_A: K-vector, marginal P(A=k)\\n        alpha: intercept in Y equation\\n        beta_T: causal effect of T on Y (= tau)\\n        beta_A: 2-vector [beta_{A=1}, beta_{A=2}], effect of A dummies on Y\\n        sigma_T: K-vector, E[T|A=k] for k=0,1,...,K-1\\n\\n    Returns: 4-vector [alpha_hat, tau_hat, beta_A1_hat, beta_A2_hat]\\n    \\\"\\\"\\\"\\n    mu = sigma_T\\n    ET = np.sum(p_A * mu)\\n    ET2 = np.sum(p_A * (mu**2 + 1))  # E[T^2] = sum_k p_k*(mu_k^2 + Var(eps_T))\\n\\n    q = C @ p_A                # E[D*_j] = P(A*=j)\\n    qt = C @ (p_A * mu)        # E[D*_j * T]\\n\\n    EZZ = np.array([\\n  \\n\\n... [截断: 输出过长，省略 8981 字符] ...\\n\\n0, 0.5)\\n    C_1 = param(C0, 1.0)\\n    assert np.allclose(C_0, np.eye(K)), \\\"C(0) should be I\\\"\\n    assert np.allclose(C_1, C0), \\\"C(1) should be C0\\\"\\n    check_column_stochastic(C_half)\\n    print(f\\\"  C(0) = I  ✓\\\")\\n    print(f\\\"  C(0.5) col-stochastic  ✓\\\")\\n    print(f\\\"  C(1) = C0  ✓\\\")\\n    print(f\\\"  δ range: {param.delta_range()}\\\")\\n\\n    # --- Test confounding plim ---\\n    print(\\\"\\\\n[2] Confounding DAG plim\\\")\\n    p_A = np.array([0.4, 0.35, 0.25])\\n    alpha_cf = 0.5\\n    beta_T = 1.0\\n    beta_A = np.array([0.8, -0.3])\\n    sigma_T = np.array([0.0, 1.0, -0.5])\\n\\n    plim_I = plim_confounding(np.eye(K), p_A, alpha_cf, beta_T, beta_A, sigma_T)\\n    true_b = np.array([alpha_cf, beta_T, beta_A[0], beta_A[1]])\\n    print(f\\\"  C=I plim:  {plim_I}\\\")\\n    print(f\\\"  True b:    {true_b}\\\")\\n    assert np.allclose(plim_I, true_b, atol=1e-10), \\\"C=I should recover true params\\\"\\n    print(f\\\"  C=I recovers true params  ✓\\\")\\n\\n    plim_C0 = plim_confounding(C0, p_A, alpha_cf, beta_T, beta_A, sigma_T)\\n    print(f\\\"  C=C0 plim: {plim_C0}\\\")\\n    print(f\\\"  τ bias: {plim_C0[1] - beta_T:+.6f}\\\")\\n\\n    # --- Test mediation plim ---\\n    print(\\\"\\\\n[3] Mediation DAG plim\\\")\\n    beta_med = np.array([0.0, 1.0, -0.5])\\n    tau_med = 0.5\\n\\n    plim_I_med = plim_mediation(np.eye(K), beta_med, tau_med)\\n    true_b_med = np.array([beta_med[0], tau_med, beta_med[1], beta_med[2]])\\n    print(f\\\"  C=I plim:  {plim_I_med}\\\")\\n    print(f\\\"  True b:    {true_b_med}\\\")\\n    assert np.allclose(plim_I_med, true_b_med, atol=1e-10), \\\"C=I should recover true params\\\"\\n    print(f\\\"  C=I recovers true params  ✓\\\")\\n\\n    plim_C0_med = plim_mediation(C0, beta_med, tau_med)\\n    print(f\\\"  C=C0 plim: {plim_C0_med}\\\")\\n    print(f\\\"  τ bias: {plim_C0_med[1] - tau_med:+.6f}\\\")\\n\\n    # --- Test collider plim ---\\n    print(\\\"\\\\n[4] Collider DAG plim (precomputing moments...)\\\")\\n    st = precomp_collider()\\n    plim_I_col = plim_collider(np.eye(K), st)\\n    print(f\\\"  C=I plim:    {plim_I_col}\\\")\\n    print(f\\\"  True tau:    {COLLIDER_PARAMS['tau']}\\\")\\n    # Collider: even with C=I, controlling for A biases tau (collider bias)\\n    tau_no_ctrl = st['E_TY'] / st['E_T2']\\n    print(f\\\"  τ (no ctrl): {tau_no_ctrl:.6f}\\\")\\n    print(f\\\"  τ (ctrl A):  {plim_I_col[1]:.6f}\\\")\\n\\n    plim_C0_col = plim_collider(C0, st)\\n    print(f\\\"  C=C0 plim:   {plim_C0_col}\\\")\\n    print(f\\\"  τ bias from misclass: {plim_C0_col[1] - plim_I_col[1]:+.6f}\\\")\\n\\n    # --- Test compute_asv ---\\n    print(\\\"\\\\n[5] compute_asv — Confounding DAG\\\")\\n    result = compute_asv(\\n        plim_func=plim_confounding,\\n        plim_kwargs=dict(p_A=p_A, alpha=alpha_cf, beta_T=beta_T,\\n                         beta_A=beta_A, sigma_T=sigma_T),\\n        C0=C0,\\n        param=param,\\n        tau_index=1,\\n    )\\n    print(f\\\"  τ baseline (C=I): {result['tau_baseline']:.6f}\\\")\\n    print(f\\\"  ASV (sign flip):  {result['asv']}\\\")\\n    print(f\\\"  τ range: [{result['tau_curve'].min():.4f}, {result['tau_curve'].max():.4f}]\\\")\\n\\n    print(\\\"\\\\n[6] compute_asv — Mediation DAG\\\")\\n    result_med = compute_asv(\\n        plim_func=plim_mediation,\\n        plim_kwargs=dict(beta=beta_med, tau=tau_med),\\n        C0=C0,\\n        param=param,\\n        tau_index=1,\\n    )\\n    print(f\\\"  τ baseline (C=I): {result_med['tau_baseline']:.6f}\\\")\\n    print(f\\\"  ASV (sign flip):  {result_med['asv']}\\\")\\n    print(f\\\"  τ range: [{result_med['tau_curve'].min():.4f}, {result_med['tau_curve'].max():.4f}]\\\")\\n\\n    print(\\\"\\\\n[7] compute_asv — Collider DAG\\\")\\n    result_col = compute_asv(\\n        plim_func=plim_collider,\\n        plim_kwargs=dict(precomp=st),\\n        C0=C0,\\n        param=param,\\n        tau_index=1,\\n    )\\n    print(f\\\"  τ baseline (C=I): {result_col['tau_baseline']:.6f}\\\")\\n    print(f\\\"  ASV (sign flip):  {result_col['asv']}\\\")\\n    print(f\\\"  τ range: [{result_col['tau_curve'].min():.4f}, {result_col['tau_curve'].max():.4f}]\\\")\\n\\n    # --- Summary ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"Scaffold OK. Waiting for:\\\")\\n    print(\\\"  1. C(δ) parameterization selection (Director decision)\\\")\\n    print(\\\"  2. MC coverage + Type I/II implementation\\\")\\n    print(\\\"=\\\" * 70)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "c43c111b-5e42-402e-9a23-e3444fb40961",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nplan_004: Annotation Sensitivity Values (ASV) framework\\\\nClaim 2 核心实验：ASV 表达式推导 + 形式证明验证 + MC coverage\\\\n\\\\n输入：DAG topology + reference confusion matrix C₀ + downstream estimate\\\\n输出：ASV value + sensitivity curve + coverage validation\\\\n\\\\n三个拓扑：\\\\n  - Confounding: A -> T, A -> Y, T -> Y  (closed-form plim)\\\\n  - Mediation:   T -> A -> Y             (closed-form plim, from plan_001)\\\\n  - Collider:    T -> A <- Y             (precomputed moments, from plan_001)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nfrom abc import ABC, abstractmethod\\\\n\\\\n\\\\n# ============================================================================\\\\n# Utilities (from plan_001)\\\\n# ============================================================================\\\\n\\\\ndef softmax(x):\\\\n    e = np.exp(x - x.max())\\\\n    return e / e.sum()\\\\n\\\\n\\\\ndef p_cat(t, g, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"P(A|T=t) via softmax(g + d*t).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return softmax(g + d * t)\\\\n\\\\n\\\\ndef generate_Astar(A, C, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sample A* from confusion matrix C given true labels A.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probs = C[:, A]\\\\n    cum = np.cumsum(probs, axis=0)\\\\n    u = rng.uniform(size=len(A))\\\\n    return (u >= cum[0]).astype(int) + (u >= cum[1]).astype(int)\\\\n\\\\n\\\\ndef softmax_sample(logits, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized K=3 categorical sampling from logit matrix.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    exp_l = np.exp(logits - logits.max(axis=1, keepdims=True))\\\\n    probs = exp_l / exp_l.sum(axis=1, keepdims=True)\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=logits.shape[0])\\\\n    return (u >= cum[:, 0]).astype(int) + (u >= cum[:, 1]).astype(int)\\\\n\\\\n\\\\ndef check_column_stochastic(C, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Verify C is column-stochastic: non-negative, each column sums to 1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    assert np.all(C >= -tol), f\\\\\\\"Negative entries in C: min={C.min()}\\\\\\\"\\\\n    col_sums = C.sum(axis=0)\\\\n    assert np.allclose(col_sums, 1.0, atol=tol), f\\\\\\\"Column sums != 1: {col_sums}\\\\\\\"\\\\n\\\\n\\\\n# ============================================================================\\\\n# C(δ) Parameterization Interface (pluggable)\\\\n# ============================================================================\\\\n\\\\nclass ConfusionParameterization(ABC):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Abstract base for C(δ) parameterization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    @abstractmethod\\\\n    def __call__(self, C0: np.ndarray, delta: float) -> np.ndarray:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Given reference C₀ and scalar δ, return C(δ).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        pass\\\\n\\\\n    @abstractmethod\\\\n    def delta_range(self) -> tuple[float, float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Valid range for δ.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        pass\\\\n\\\\n\\\\nclass LinearInterpolation(ConfusionParameterization):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"C(δ) = (1-δ)I + δC₀.  Placeholder — will be replaced after Director 选定.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __call__(self, C0, delta):\\\\n        K = C0.shape[0]\\\\n        C_d = (1 - delta) * np.eye(K) + delta * C0\\\\n        return C_d\\\\n\\\\n    def delta_range(self):\\\\n        return (0.0, 1.0)\\\\n\\\\n\\\\n# ============================================================================\\\\n# DAG 1: CONFOUNDING — A -> T, A -> Y, T -> Y  (closed-form)\\\\n#\\\\n# DGP:\\\\n#   A ~ Cat(p_A),  K=3\\\\n#   T | A=k ~ N(sigma_T[k], 1)\\\\n#   Y = alpha + beta_T * T + beta_A[0]*I(A=1) + beta_A[1]*I(A=2) + eps_Y\\\\n#   A* | A ~ Cat(C[:, A])\\\\n#\\\\n# Researcher regression:  Y ~ 1 + T + I(A*=1) + I(A*=2)\\\\n#\\\\n# plim = E[Z'Z]^{-1} E[Z'X] b\\\\n#   where Z = (1, T, D*_1, D*_2),  X = (1, T, D_1, D_2)\\\\n#   b = (alpha, beta_T, beta_A[0], beta_A[1])\\\\n# ============================================================================\\\\n\\\\ndef plim_confounding(C, p_A, alpha, beta_T, beta_A, sigma_T):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Confounding DAG closed-form plim.\\\\n\\\\n    Args:\\\\n        C: K×K confusion matrix (column-stochastic)\\\\n        p_A: K-vector, marginal P(A=k)\\\\n        alpha: intercept in Y equation\\\\n        beta_T: causal effect of T on Y (= tau)\\\\n        beta_A: 2-vector [beta_{A=1}, beta_{A=2}], effect of A dummies on Y\\\\n        sigma_T: K-vector, E[T|A=k] for k=0,1,...,K-1\\\\n\\\\n    Returns: 4-vector [alpha_hat, tau_hat, beta_A1_hat, beta_A2_hat]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mu = sigma_T\\\\n    ET = np.sum(p_A * mu)\\\\n    ET2 = np.sum(p_A * (mu**2 + 1))  # E[T^2] = sum_k p_k*(mu_k^2 + Var(eps_T))\\\\n\\\\n    q = C @ p_A                # E[D*_j] = P(A*=j)\\\\n    qt = C @ (p_A * mu)        # E[D*_j * T]\\\\n\\\\n    EZZ = np.array([\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 8981 字符] ...\\\\n\\\\n0, 0.5)\\\\n    C_1 = param(C0, 1.0)\\\\n    assert np.allclose(C_0, np.eye(K)), \\\\\\\"C(0) should be I\\\\\\\"\\\\n    assert np.allclose(C_1, C0), \\\\\\\"C(1) should be C0\\\\\\\"\\\\n    check_column_stochastic(C_half)\\\\n    print(f\\\\\\\"  C(0) = I  ✓\\\\\\\")\\\\n    print(f\\\\\\\"  C(0.5) col-stochastic  ✓\\\\\\\")\\\\n    print(f\\\\\\\"  C(1) = C0  ✓\\\\\\\")\\\\n    print(f\\\\\\\"  δ range: {param.delta_range()}\\\\\\\")\\\\n\\\\n    # --- Test confounding plim ---\\\\n    print(\\\\\\\"\\\\\\\\n[2] Confounding DAG plim\\\\\\\")\\\\n    p_A = np.array([0.4, 0.35, 0.25])\\\\n    alpha_cf = 0.5\\\\n    beta_T = 1.0\\\\n    beta_A = np.array([0.8, -0.3])\\\\n    sigma_T = np.array([0.0, 1.0, -0.5])\\\\n\\\\n    plim_I = plim_confounding(np.eye(K), p_A, alpha_cf, beta_T, beta_A, sigma_T)\\\\n    true_b = np.array([alpha_cf, beta_T, beta_A[0], beta_A[1]])\\\\n    print(f\\\\\\\"  C=I plim:  {plim_I}\\\\\\\")\\\\n    print(f\\\\\\\"  True b:    {true_b}\\\\\\\")\\\\n    assert np.allclose(plim_I, true_b, atol=1e-10), \\\\\\\"C=I should recover true params\\\\\\\"\\\\n    print(f\\\\\\\"  C=I recovers true params  ✓\\\\\\\")\\\\n\\\\n    plim_C0 = plim_confounding(C0, p_A, alpha_cf, beta_T, beta_A, sigma_T)\\\\n    print(f\\\\\\\"  C=C0 plim: {plim_C0}\\\\\\\")\\\\n    print(f\\\\\\\"  τ bias: {plim_C0[1] - beta_T:+.6f}\\\\\\\")\\\\n\\\\n    # --- Test mediation plim ---\\\\n    print(\\\\\\\"\\\\\\\\n[3] Mediation DAG plim\\\\\\\")\\\\n    beta_med = np.array([0.0, 1.0, -0.5])\\\\n    tau_med = 0.5\\\\n\\\\n    plim_I_med = plim_mediation(np.eye(K), beta_med, tau_med)\\\\n    true_b_med = np.array([beta_med[0], tau_med, beta_med[1], beta_med[2]])\\\\n    print(f\\\\\\\"  C=I plim:  {plim_I_med}\\\\\\\")\\\\n    print(f\\\\\\\"  True b:    {true_b_med}\\\\\\\")\\\\n    assert np.allclose(plim_I_med, true_b_med, atol=1e-10), \\\\\\\"C=I should recover true params\\\\\\\"\\\\n    print(f\\\\\\\"  C=I recovers true params  ✓\\\\\\\")\\\\n\\\\n    plim_C0_med = plim_mediation(C0, beta_med, tau_med)\\\\n    print(f\\\\\\\"  C=C0 plim: {plim_C0_med}\\\\\\\")\\\\n    print(f\\\\\\\"  τ bias: {plim_C0_med[1] - tau_med:+.6f}\\\\\\\")\\\\n\\\\n    # --- Test collider plim ---\\\\n    print(\\\\\\\"\\\\\\\\n[4] Collider DAG plim (precomputing moments...)\\\\\\\")\\\\n    st = precomp_collider()\\\\n    plim_I_col = plim_collider(np.eye(K), st)\\\\n    print(f\\\\\\\"  C=I plim:    {plim_I_col}\\\\\\\")\\\\n    print(f\\\\\\\"  True tau:    {COLLIDER_PARAMS['tau']}\\\\\\\")\\\\n    # Collider: even with C=I, controlling for A biases tau (collider bias)\\\\n    tau_no_ctrl = st['E_TY'] / st['E_T2']\\\\n    print(f\\\\\\\"  τ (no ctrl): {tau_no_ctrl:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  τ (ctrl A):  {plim_I_col[1]:.6f}\\\\\\\")\\\\n\\\\n    plim_C0_col = plim_collider(C0, st)\\\\n    print(f\\\\\\\"  C=C0 plim:   {plim_C0_col}\\\\\\\")\\\\n    print(f\\\\\\\"  τ bias from misclass: {plim_C0_col[1] - plim_I_col[1]:+.6f}\\\\\\\")\\\\n\\\\n    # --- Test compute_asv ---\\\\n    print(\\\\\\\"\\\\\\\\n[5] compute_asv — Confounding DAG\\\\\\\")\\\\n    result = compute_asv(\\\\n        plim_func=plim_confounding,\\\\n        plim_kwargs=dict(p_A=p_A, alpha=alpha_cf, beta_T=beta_T,\\\\n                         beta_A=beta_A, sigma_T=sigma_T),\\\\n        C0=C0,\\\\n        param=param,\\\\n        tau_index=1,\\\\n    )\\\\n    print(f\\\\\\\"  τ baseline (C=I): {result['tau_baseline']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  ASV (sign flip):  {result['asv']}\\\\\\\")\\\\n    print(f\\\\\\\"  τ range: [{result['tau_curve'].min():.4f}, {result['tau_curve'].max():.4f}]\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n[6] compute_asv — Mediation DAG\\\\\\\")\\\\n    result_med = compute_asv(\\\\n        plim_func=plim_mediation,\\\\n        plim_kwargs=dict(beta=beta_med, tau=tau_med),\\\\n        C0=C0,\\\\n        param=param,\\\\n        tau_index=1,\\\\n    )\\\\n    print(f\\\\\\\"  τ baseline (C=I): {result_med['tau_baseline']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  ASV (sign flip):  {result_med['asv']}\\\\\\\")\\\\n    print(f\\\\\\\"  τ range: [{result_med['tau_curve'].min():.4f}, {result_med['tau_curve'].max():.4f}]\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n[7] compute_asv — Collider DAG\\\\\\\")\\\\n    result_col = compute_asv(\\\\n        plim_func=plim_collider,\\\\n        plim_kwargs=dict(precomp=st),\\\\n        C0=C0,\\\\n        param=param,\\\\n        tau_index=1,\\\\n    )\\\\n    print(f\\\\\\\"  τ baseline (C=I): {result_col['tau_baseline']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  ASV (sign flip):  {result_col['asv']}\\\\\\\")\\\\n    print(f\\\\\\\"  τ range: [{result_col['tau_curve'].min():.4f}, {result_col['tau_curve'].max():.4f}]\\\\\\\")\\\\n\\\\n    # --- Summary ---\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Scaffold OK. Waiting for:\\\\\\\")\\\\n    print(\\\\\\\"  1. C(δ) parameterization selection (Director decision)\\\\\\\")\\\\n    print(\\\\\\\"  2. MC coverage + Type I/II implementation\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nplan_004: Annotation Sensitivity Values (ASV) framework\\nClaim 2 核心实验：ASV 表达式推导 + 形式证明验证 + MC coverage\\n\\n输入：DAG topology + reference confusion matrix C₀ + downstream estimate\\n输出：ASV value + sensitivity curve + coverage validation\\n\\n三个拓扑：\\n  - Confounding: A -> T, A -> Y, T -> Y  (closed-form plim)\\n  - Mediation:   T -> A -> Y             (closed-form plim, from plan_001)\\n  - Collider:    T -> A <- Y             (precomputed moments, from plan_001)\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom abc import ABC, abstractmethod\\n\\n\\n# ============================================================================\\n# Utilities (from plan_001)\\n# ============================================================================\\n\\ndef softmax(x):\\n    e = np.exp(x - x.max())\\n    return e / e.sum()\\n\\n\\ndef p_cat(t, g, d):\\n    \\\"\\\"\\\"P(A|T=t) via softmax(g + d*t).\\\"\\\"\\\"\\n    return softmax(g + d * t)\\n\\n\\ndef generate_Astar(A, C, rng):\\n    \\\"\\\"\\\"Sample A* from confusion matrix C given true labels A.\\\"\\\"\\\"\\n    probs = C[:, A]\\n    cum = np.cumsum(probs, axis=0)\\n    u = rng.uniform(size=len(A))\\n    return (u >= cum[0]).astype(int) + (u >= cum[1]).astype(int)\\n\\n\\ndef softmax_sample(logits, rng):\\n    \\\"\\\"\\\"Vectorized K=3 categorical sampling from logit matrix.\\\"\\\"\\\"\\n    exp_l = np.exp(logits - logits.max(axis=1, keepdims=True))\\n    probs = exp_l / exp_l.sum(axis=1, keepdims=True)\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=logits.shape[0])\\n    return (u >= cum[:, 0]).astype(int) + (u >= cum[:, 1]).astype(int)\\n\\n\\ndef check_column_stochastic(C, tol=1e-6):\\n    \\\"\\\"\\\"Verify C is column-stochastic: non-negative, each column sums to 1.\\\"\\\"\\\"\\n    assert np.all(C >= -tol), f\\\"Negative entries in C: min={C.min()}\\\"\\n    col_sums = C.sum(axis=0)\\n    assert np.allclose(col_sums, 1.0, atol=tol), f\\\"Column sums != 1: {col_sums}\\\"\\n\\n\\n# ============================================================================\\n# C(δ) Parameterization Interface (pluggable)\\n# ============================================================================\\n\\nclass ConfusionParameterization(ABC):\\n    \\\"\\\"\\\"Abstract base for C(δ) parameterization.\\\"\\\"\\\"\\n\\n    @abstractmethod\\n    def __call__(self, C0: np.ndarray, delta: float) -> np.ndarray:\\n        \\\"\\\"\\\"Given reference C₀ and scalar δ, return C(δ).\\\"\\\"\\\"\\n        pass\\n\\n    @abstractmethod\\n    def delta_range(self) -> tuple[float, float]:\\n        \\\"\\\"\\\"Valid range for δ.\\\"\\\"\\\"\\n        pass\\n\\n\\nclass LinearInterpolation(ConfusionParameterization):\\n    \\\"\\\"\\\"C(δ) = (1-δ)I + δC₀.  Placeholder — will be replaced after Director 选定.\\\"\\\"\\\"\\n\\n    def __call__(self, C0, delta):\\n        K = C0.shape[0]\\n        C_d = (1 - delta) * np.eye(K) + delta * C0\\n        return C_d\\n\\n    def delta_range(self):\\n        return (0.0, 1.0)\\n\\n\\n# ============================================================================\\n# DAG 1: CONFOUNDING — A -> T, A -> Y, T -> Y  (closed-form)\\n#\\n# DGP:\\n#   A ~ Cat(p_A),  K=3\\n#   T | A=k ~ N(sigma_T[k], 1)\\n#   Y = alpha + beta_T * T + beta_A[0]*I(A=1) + beta_A[1]*I(A=2) + eps_Y\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + I(A*=1) + I(A*=2)\\n#\\n# plim = E[Z'Z]^{-1} E[Z'X] b\\n#   where Z = (1, T, D*_1, D*_2),  X = (1, T, D_1, D_2)\\n#   b = (alpha, beta_T, beta_A[0], beta_A[1])\\n# ============================================================================\\n\\ndef plim_confounding(C, p_A, alpha, beta_T, beta_A, sigma_T):\\n    \\\"\\\"\\\"\\n    Confounding DAG closed-form plim.\\n\\n    Args:\\n        C: K×K confusion matrix (column-stochastic)\\n        p_A: K-vector, marginal P(A=k)\\n        alpha: intercept in Y equation\\n        beta_T: causal effect of T on Y (= tau)\\n        beta_A: 2-vector [beta_{A=1}, beta_{A=2}], effect of A dummies on Y\\n        sigma_T: K-vector, E[T|A=k] for k=0,1,...,K-1\\n\\n    Returns: 4-vector [alpha_hat, tau_hat, beta_A1_hat, beta_A2_hat]\\n    \\\"\\\"\\\"\\n    mu = sigma_T\\n    ET = np.sum(p_A * mu)\\n    ET2 = np.sum(p_A * (mu**2 + 1))  # E[T^2] = sum_k p_k*(mu_k^2 + Var(eps_T))\\n\\n    q = C @ p_A                # E[D*_j] = P(A*=j)\\n    qt = C @ (p_A * mu)        # E[D*_j * T]\\n\\n    EZZ = np.array([\\n  \\n\\n... [截断: 输出过长，省略 8981 字符] ...\\n\\n0, 0.5)\\n    C_1 = param(C0, 1.0)\\n    assert np.allclose(C_0, np.eye(K)), \\\"C(0) should be I\\\"\\n    assert np.allclose(C_1, C0), \\\"C(1) should be C0\\\"\\n    check_column_stochastic(C_half)\\n    print(f\\\"  C(0) = I  ✓\\\")\\n    print(f\\\"  C(0.5) col-stochastic  ✓\\\")\\n    print(f\\\"  C(1) = C0  ✓\\\")\\n    print(f\\\"  δ range: {param.delta_range()}\\\")\\n\\n    # --- Test confounding plim ---\\n    print(\\\"\\\\n[2] Confounding DAG plim\\\")\\n    p_A = np.array([0.4, 0.35, 0.25])\\n    alpha_cf = 0.5\\n    beta_T = 1.0\\n    beta_A = np.array([0.8, -0.3])\\n    sigma_T = np.array([0.0, 1.0, -0.5])\\n\\n    plim_I = plim_confounding(np.eye(K), p_A, alpha_cf, beta_T, beta_A, sigma_T)\\n    true_b = np.array([alpha_cf, beta_T, beta_A[0], beta_A[1]])\\n    print(f\\\"  C=I plim:  {plim_I}\\\")\\n    print(f\\\"  True b:    {true_b}\\\")\\n    assert np.allclose(plim_I, true_b, atol=1e-10), \\\"C=I should recover true params\\\"\\n    print(f\\\"  C=I recovers true params  ✓\\\")\\n\\n    plim_C0 = plim_confounding(C0, p_A, alpha_cf, beta_T, beta_A, sigma_T)\\n    print(f\\\"  C=C0 plim: {plim_C0}\\\")\\n    print(f\\\"  τ bias: {plim_C0[1] - beta_T:+.6f}\\\")\\n\\n    # --- Test mediation plim ---\\n    print(\\\"\\\\n[3] Mediation DAG plim\\\")\\n    beta_med = np.array([0.0, 1.0, -0.5])\\n    tau_med = 0.5\\n\\n    plim_I_med = plim_mediation(np.eye(K), beta_med, tau_med)\\n    true_b_med = np.array([beta_med[0], tau_med, beta_med[1], beta_med[2]])\\n    print(f\\\"  C=I plim:  {plim_I_med}\\\")\\n    print(f\\\"  True b:    {true_b_med}\\\")\\n    assert np.allclose(plim_I_med, true_b_med, atol=1e-10), \\\"C=I should recover true params\\\"\\n    print(f\\\"  C=I recovers true params  ✓\\\")\\n\\n    plim_C0_med = plim_mediation(C0, beta_med, tau_med)\\n    print(f\\\"  C=C0 plim: {plim_C0_med}\\\")\\n    print(f\\\"  τ bias: {plim_C0_med[1] - tau_med:+.6f}\\\")\\n\\n    # --- Test collider plim ---\\n    print(\\\"\\\\n[4] Collider DAG plim (precomputing moments...)\\\")\\n    st = precomp_collider()\\n    plim_I_col = plim_collider(np.eye(K), st)\\n    print(f\\\"  C=I plim:    {plim_I_col}\\\")\\n    print(f\\\"  True tau:    {COLLIDER_PARAMS['tau']}\\\")\\n    # Collider: even with C=I, controlling for A biases tau (collider bias)\\n    tau_no_ctrl = st['E_TY'] / st['E_T2']\\n    print(f\\\"  τ (no ctrl): {tau_no_ctrl:.6f}\\\")\\n    print(f\\\"  τ (ctrl A):  {plim_I_col[1]:.6f}\\\")\\n\\n    plim_C0_col = plim_collider(C0, st)\\n    print(f\\\"  C=C0 plim:   {plim_C0_col}\\\")\\n    print(f\\\"  τ bias from misclass: {plim_C0_col[1] - plim_I_col[1]:+.6f}\\\")\\n\\n    # --- Test compute_asv ---\\n    print(\\\"\\\\n[5] compute_asv — Confounding DAG\\\")\\n    result = compute_asv(\\n        plim_func=plim_confounding,\\n        plim_kwargs=dict(p_A=p_A, alpha=alpha_cf, beta_T=beta_T,\\n                         beta_A=beta_A, sigma_T=sigma_T),\\n        C0=C0,\\n        param=param,\\n        tau_index=1,\\n    )\\n    print(f\\\"  τ baseline (C=I): {result['tau_baseline']:.6f}\\\")\\n    print(f\\\"  ASV (sign flip):  {result['asv']}\\\")\\n    print(f\\\"  τ range: [{result['tau_curve'].min():.4f}, {result['tau_curve'].max():.4f}]\\\")\\n\\n    print(\\\"\\\\n[6] compute_asv — Mediation DAG\\\")\\n    result_med = compute_asv(\\n        plim_func=plim_mediation,\\n        plim_kwargs=dict(beta=beta_med, tau=tau_med),\\n        C0=C0,\\n        param=param,\\n        tau_index=1,\\n    )\\n    print(f\\\"  τ baseline (C=I): {result_med['tau_baseline']:.6f}\\\")\\n    print(f\\\"  ASV (sign flip):  {result_med['asv']}\\\")\\n    print(f\\\"  τ range: [{result_med['tau_curve'].min():.4f}, {result_med['tau_curve'].max():.4f}]\\\")\\n\\n    print(\\\"\\\\n[7] compute_asv — Collider DAG\\\")\\n    result_col = compute_asv(\\n        plim_func=plim_collider,\\n        plim_kwargs=dict(precomp=st),\\n        C0=C0,\\n        param=param,\\n        tau_index=1,\\n    )\\n    print(f\\\"  τ baseline (C=I): {result_col['tau_baseline']:.6f}\\\")\\n    print(f\\\"  ASV (sign flip):  {result_col['asv']}\\\")\\n    print(f\\\"  τ range: [{result_col['tau_curve'].min():.4f}, {result_col['tau_curve'].max():.4f}]\\\")\\n\\n    # --- Summary ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"Scaffold OK. Waiting for:\\\")\\n    print(\\\"  1. C(δ) parameterization selection (Director decision)\\\")\\n    print(\\\"  2. MC coverage + Type I/II implementation\\\")\\n    print(\\\"=\\\" * 70)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T12:20:53.041Z_
+
+<details><summary>↩ Tool result · `toolu_01BjW4KhU5RoajNTQ2NcBSkY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0557}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "714b8c3a-e9e7-4c75-a36c-dce46f5b2ce0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0557}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0557}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The scaffold code was truncated. Let me get the full file - I need to see the complete code to understand what's already implemented. Let me also check the file size and read it in sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "ed45acd0-fd27-40fb-826c-7274f1f1901b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkwbTMECaDNUQE5vpKaiiq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4309,
+      "cache_read_input_tokens": 27547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+文件被截断了，让我分段读取完整代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "5c8273f3-1f13-4b57-89e9-9ecaaf02eda2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkwbTMECaDNUQE5vpKaiiq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4309,
+      "cache_read_input_tokens": 27547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CZctVFbkZeGuEoWo2QfjtG`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "wc -l /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "0d549723-d277-42b2-a97e-381d458fa3fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkwbTMECaDNUQE5vpKaiiq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4309,
+      "cache_read_input_tokens": 27547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T12:21:04.407Z_
+
+<details><summary>↩ Tool result · `toolu_01CZctVFbkZeGuEoWo2QfjtG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"507 /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "52158b4a-74c7-41d5-b3b0-9eb6b1a68020",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"507 /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"507 /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013yfoWRGBN5WpfUX4bKycxu`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -250 /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "ace133ba-a86f-4287-91d2-492ed4540b4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6Vniw61uqitYVm5auGGyV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 31856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EhTa3MvKaVroAqCGfhkSzm`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "tail -n +251 /home/sonny/causal_annot_error_attrib/plan_004_asv_framework.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "ea00a7e6-0b76-4850-bee1-6249f542edb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6Vniw61uqitYVm5auGGyV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 31856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T12:21:08.833Z_
+
+<details><summary>↩ Tool result · `toolu_013yfoWRGBN5WpfUX4bKycxu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nplan_004: Annotation Sensitivity Values (ASV) framework\\nClaim 2 核心实验：ASV 表达式推导 + 形式证明验证 + MC coverage\\n\\n输入：DAG topology + reference confusion matrix C₀ + downstream estimate\\n输出：ASV value + sensitivity curve + coverage validation\\n\\n三个拓扑：\\n  - Confounding: A -> T, A -> Y, T -> Y  (closed-form plim)\\n  - Mediation:   T -> A -> Y             (closed-form plim, from plan_001)\\n  - Collider:    T -> A <- Y             (precomputed moments, from plan_001)\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom abc import ABC, abstractmethod\\n\\n\\n# ============================================================================\\n# Utilities (from plan_001)\\n# ============================================================================\\n\\ndef softmax(x):\\n    e = np.exp(x - x.max())\\n    return e / e.sum()\\n\\n\\ndef p_cat(t, g, d):\\n    \\\"\\\"\\\"P(A|T=t) via softmax(g + d*t).\\\"\\\"\\\"\\n    return softmax(g + d * t)\\n\\n\\ndef generate_Astar(A, C, rng):\\n    \\\"\\\"\\\"Sample A* from confusion matrix C given true labels A.\\\"\\\"\\\"\\n    probs = C[:, A]\\n    cum = np.cumsum(probs, axis=0)\\n    u = rng.uniform(size=len(A))\\n    return (u >= cum[0]).astype(int) + (u >= cum[1]).astype(int)\\n\\n\\ndef softmax_sample(logits, rng):\\n    \\\"\\\"\\\"Vectorized K=3 categorical sampling from logit matrix.\\\"\\\"\\\"\\n    exp_l = np.exp(logits - logits.max(axis=1, keepdims=True))\\n    probs = exp_l / exp_l.sum(axis=1, keepdims=True)\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=logits.shape[0])\\n    return (u >= cum[:, 0]).astype(int) + (u >= cum[:, 1]).astype(int)\\n\\n\\ndef check_column_stochastic(C, tol=1e-6):\\n    \\\"\\\"\\\"Verify C is column-stochastic: non-negative, each column sums to 1.\\\"\\\"\\\"\\n    assert np.all(C >= -tol), f\\\"Negative entries in C: min={C.min()}\\\"\\n    col_sums = C.sum(axis=0)\\n    assert np.allclose(col_sums, 1.0, atol=tol), f\\\"Column sums != 1: {col_sums}\\\"\\n\\n\\n# ============================================================================\\n# C(δ) Parameterization Interface (pluggable)\\n# ============================================================================\\n\\nclass ConfusionParameterization(ABC):\\n    \\\"\\\"\\\"Abstract base for C(δ) parameterization.\\\"\\\"\\\"\\n\\n    @abstractmethod\\n    def __call__(self, C0: np.ndarray, delta: float) -> np.ndarray:\\n        \\\"\\\"\\\"Given reference C₀ and scalar δ, return C(δ).\\\"\\\"\\\"\\n        pass\\n\\n    @abstractmethod\\n    def delta_range(self) -> tuple[float, float]:\\n        \\\"\\\"\\\"Valid range for δ.\\\"\\\"\\\"\\n        pass\\n\\n\\nclass LinearInterpolation(ConfusionParameterization):\\n    \\\"\\\"\\\"C(δ) = (1-δ)I + δC₀.  Placeholder — will be replaced after Director 选定.\\\"\\\"\\\"\\n\\n    def __call__(self, C0, delta):\\n        K = C0.shape[0]\\n        C_d = (1 - delta) * np.eye(K) + delta * C0\\n        return C_d\\n\\n    def delta_range(self):\\n        return (0.0, 1.0)\\n\\n\\n# ============================================================================\\n# DAG 1: CONFOUNDING — A -> T, A -> Y, T -> Y  (closed-form)\\n#\\n# DGP:\\n#   A ~ Cat(p_A),  K=3\\n#   T | A=k ~ N(sigma_T[k], 1)\\n#   Y = alpha + beta_T * T + beta_A[0]*I(A=1) + beta_A[1]*I(A=2) + eps_Y\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + I(A*=1) + I(A*=2)\\n#\\n# plim = E[Z'Z]^{-1} E[Z'X] b\\n#   where Z = (1, T, D*_1, D*_2),  X = (1, T, D_1, D_2)\\n#   b = (alpha, beta_T, beta_A[0], beta_A[1])\\n# ============================================================================\\n\\ndef plim_confounding(C, p_A, alpha, beta_T, beta_A, sigma_T):\\n    \\\"\\\"\\\"\\n    Confounding DAG closed-form plim.\\n\\n    Args:\\n        C: K×K confusion matrix (column-stochastic)\\n        p_A: K-vector, marginal P(A=k)\\n        alpha: intercept in Y equation\\n        beta_T: causal effect of T on Y (= tau)\\n        beta_A: 2-vector [beta_{A=1}, beta_{A=2}], effect of A dummies on Y\\n        sigma_T: K-vector, E[T|A=k] for k=0,1,...,K-1\\n\\n    Returns: 4-vector [alpha_hat, tau_hat, beta_A1_hat, beta_A2_hat]\\n    \\\"\\\"\\\"\\n    mu = sigma_T\\n    ET = np.sum(p_A * mu)\\n    ET2 = np.sum(p_A * (mu**2 + 1))  # E[T^2] = sum_k p_k*(mu_k^2 + Var(eps_T))\\n\\n    q = C @ p_A                # E[D*_j] = P(A*=j)\\n    qt = C @ (p_A * mu)        # E[D*_j * T]\\n\\n    EZZ = np.array([\\n  \\n\\n... [截断: 输出过长，省略 184 字符] ...\\n\\n    ET,            p_A[1],          p_A[2]         ],\\n        [ET,   ET2,           p_A[1]*mu[1],    p_A[2]*mu[2]   ],\\n        [q[1], qt[1],         C[1,1]*p_A[1],   C[1,2]*p_A[2]  ],\\n        [q[2], qt[2],         C[2,1]*p_A[1],   C[2,2]*p_A[2]  ]])\\n\\n    b = np.array([alpha, beta_T, beta_A[0], beta_A[1]])\\n    return np.linalg.solve(EZZ, EZX @ b)\\n\\n\\n# ============================================================================\\n# DAG 2: MEDIATION — T -> A -> Y  (closed-form, ported from plan_001)\\n#\\n# DGP:\\n#   T ~ Bern(0.5)\\n#   A | T ~ Cat(softmax(gamma + delta*T))\\n#   Y = beta[0] + beta[1]*D_1 + beta[2]*D_2 + tau*T + eps\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + D*_1 + D*_2\\n# ============================================================================\\n\\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\\nDELTA_MED = np.array([0.0, 0.8, -0.6])\\n\\n\\ndef plim_mediation(C, beta, tau, gamma=GAMMA_MED, delta=DELTA_MED):\\n    \\\"\\\"\\\"\\n    Mediation DAG closed-form plim (from plan_001_mediation_frontdoor.py).\\n\\n    Args:\\n        C: K×K confusion matrix\\n        beta: 3-vector [beta_0, beta_1, beta_2]\\n        tau: direct effect of T on Y\\n        gamma: 3-vector, softmax intercepts for P(A|T)\\n        delta: 3-vector, softmax slopes for P(A|T)\\n\\n    Returns: 4-vector [beta_0_hat, tau_hat, beta_1_hat, beta_2_hat]\\n    \\\"\\\"\\\"\\n    p0, p1 = p_cat(0, gamma, delta), p_cat(1, gamma, delta)\\n    q0, q1 = C @ p0, C @ p1\\n    pm = .5 * (p0 + p1)\\n    qm = .5 * (q0 + q1)\\n\\n    EZZ = np.array([\\n        [1,      .5,        qm[1],      qm[2]     ],\\n        [.5,     .5,        .5*q1[1],   .5*q1[2]  ],\\n        [qm[1],  .5*q1[1],  qm[1],      0         ],\\n        [qm[2],  .5*q1[2],  0,          qm[2]     ]])\\n\\n    EZX = np.array([\\n        [1,      .5,        pm[1],            pm[2]           ],\\n        [.5,     .5,        .5*p1[1],         .5*p1[2]        ],\\n        [qm[1],  .5*q1[1],  C[1,1]*pm[1],    C[1,2]*pm[2]   ],\\n        [qm[2],  .5*q1[2],  C[2,1]*pm[1],    C[2,2]*pm[2]   ]])\\n\\n    b = np.array([beta[0], tau, beta[1], beta[2]])\\n    return np.linalg.solve(EZZ, EZX @ b)\\n\\n\\n# ============================================================================\\n# DAG 3: COLLIDER — T -> A <- Y  (precomputed moments, from plan_001)\\n#\\n# DGP:\\n#   T ~ N(0,1)\\n#   Y = tau*T + eps\\n#   A | T,Y ~ Cat(softmax([0, g1+dT*T+dY*Y, g2+dT2*T+dY2*Y]))\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + D*_1 + D*_2\\n#\\n# No closed form due to softmax(T,Y) coupling.\\n# Use precomputed sufficient statistics (like plan_001 front-door approach):\\n#   E[D_k], E[D_k*T], E[D_k*Y]  from large sample,\\n#   then for any C:  E[D*_j * f] = sum_k C[j,k] * E[D_k * f]\\n# ============================================================================\\n\\nCOLLIDER_PARAMS = dict(tau=1.0, g1=0.0, g2=0.0,\\n                       dT=0.5, dY=0.8, dT2=-0.3, dY2=0.6)\\n\\n\\ndef precomp_collider(params=COLLIDER_PARAMS, N=2_000_000, seed=999):\\n    \\\"\\\"\\\"Pre-compute sufficient statistics for collider DAG plim.\\n\\n    Run once, then pass result to plim_collider for fast evaluation at any C.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    T = rng.normal(0, 1, N)\\n    eps = rng.normal(0, 1, N)\\n    Y = params['tau'] * T + eps\\n    logits = np.column_stack([\\n        np.zeros(N),\\n        params['g1'] + params['dT'] * T + params['dY'] * Y,\\n        params['g2'] + params['dT2'] * T + params['dY2'] * Y,\\n    ])\\n    A = softmax_sample(logits, rng)\\n\\n    K = 3\\n    DM = np.zeros((N, K))\\n    for k in range(K):\\n        DM[:, k] = (A == k).astype(float)\\n\\n    return dict(\\n        E_T=T.mean(), E_T2=(T**2).mean(),\\n        E_Y=Y.mean(), E_TY=(T*Y).mean(),\\n        E_DM=DM.mean(0),\\n        E_DM_T=(DM * T[:, None]).mean(0),\\n        E_DM_Y=(DM * Y[:, None]).mean(0),\\n    )\\n\\n\\ndef plim_collider(C, precomp):\\n    \\\"\\\"\\\"\\n    Collider DAG plim from precomputed moments.\\n\\n    Args:\\n        C: K×K confusion matrix\\n        precomp: dict from precomp_collider()\\n\\n    Returns: 4-vector [intercept_hat, tau_hat, beta_1_hat, beta_2_hat]\\n    \\\"\\\"\\\"\\n    ds = C @ precomp['E_DM']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "8808e4ea-0f51-4a69-8eea-87877b18f22c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nplan_004: Annotation Sensitivity Values (ASV) framework\\\\nClaim 2 核心实验：ASV 表达式推导 + 形式证明验证 + MC coverage\\\\n\\\\n输入：DAG topology + reference confusion matrix C₀ + downstream estimate\\\\n输出：ASV value + sensitivity curve + coverage validation\\\\n\\\\n三个拓扑：\\\\n  - Confounding: A -> T, A -> Y, T -> Y  (closed-form plim)\\\\n  - Mediation:   T -> A -> Y             (closed-form plim, from plan_001)\\\\n  - Collider:    T -> A <- Y             (precomputed moments, from plan_001)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nfrom abc import ABC, abstractmethod\\\\n\\\\n\\\\n# ============================================================================\\\\n# Utilities (from plan_001)\\\\n# ============================================================================\\\\n\\\\ndef softmax(x):\\\\n    e = np.exp(x - x.max())\\\\n    return e / e.sum()\\\\n\\\\n\\\\ndef p_cat(t, g, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"P(A|T=t) via softmax(g + d*t).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return softmax(g + d * t)\\\\n\\\\n\\\\ndef generate_Astar(A, C, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sample A* from confusion matrix C given true labels A.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    probs = C[:, A]\\\\n    cum = np.cumsum(probs, axis=0)\\\\n    u = rng.uniform(size=len(A))\\\\n    return (u >= cum[0]).astype(int) + (u >= cum[1]).astype(int)\\\\n\\\\n\\\\ndef softmax_sample(logits, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized K=3 categorical sampling from logit matrix.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    exp_l = np.exp(logits - logits.max(axis=1, keepdims=True))\\\\n    probs = exp_l / exp_l.sum(axis=1, keepdims=True)\\\\n    cum = np.cumsum(probs, axis=1)\\\\n    u = rng.uniform(size=logits.shape[0])\\\\n    return (u >= cum[:, 0]).astype(int) + (u >= cum[:, 1]).astype(int)\\\\n\\\\n\\\\ndef check_column_stochastic(C, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Verify C is column-stochastic: non-negative, each column sums to 1.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    assert np.all(C >= -tol), f\\\\\\\"Negative entries in C: min={C.min()}\\\\\\\"\\\\n    col_sums = C.sum(axis=0)\\\\n    assert np.allclose(col_sums, 1.0, atol=tol), f\\\\\\\"Column sums != 1: {col_sums}\\\\\\\"\\\\n\\\\n\\\\n# ============================================================================\\\\n# C(δ) Parameterization Interface (pluggable)\\\\n# ============================================================================\\\\n\\\\nclass ConfusionParameterization(ABC):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Abstract base for C(δ) parameterization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    @abstractmethod\\\\n    def __call__(self, C0: np.ndarray, delta: float) -> np.ndarray:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Given reference C₀ and scalar δ, return C(δ).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        pass\\\\n\\\\n    @abstractmethod\\\\n    def delta_range(self) -> tuple[float, float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Valid range for δ.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        pass\\\\n\\\\n\\\\nclass LinearInterpolation(ConfusionParameterization):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"C(δ) = (1-δ)I + δC₀.  Placeholder — will be replaced after Director 选定.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __call__(self, C0, delta):\\\\n        K = C0.shape[0]\\\\n        C_d = (1 - delta) * np.eye(K) + delta * C0\\\\n        return C_d\\\\n\\\\n    def delta_range(self):\\\\n        return (0.0, 1.0)\\\\n\\\\n\\\\n# ============================================================================\\\\n# DAG 1: CONFOUNDING — A -> T, A -> Y, T -> Y  (closed-form)\\\\n#\\\\n# DGP:\\\\n#   A ~ Cat(p_A),  K=3\\\\n#   T | A=k ~ N(sigma_T[k], 1)\\\\n#   Y = alpha + beta_T * T + beta_A[0]*I(A=1) + beta_A[1]*I(A=2) + eps_Y\\\\n#   A* | A ~ Cat(C[:, A])\\\\n#\\\\n# Researcher regression:  Y ~ 1 + T + I(A*=1) + I(A*=2)\\\\n#\\\\n# plim = E[Z'Z]^{-1} E[Z'X] b\\\\n#   where Z = (1, T, D*_1, D*_2),  X = (1, T, D_1, D_2)\\\\n#   b = (alpha, beta_T, beta_A[0], beta_A[1])\\\\n# ============================================================================\\\\n\\\\ndef plim_confounding(C, p_A, alpha, beta_T, beta_A, sigma_T):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Confounding DAG closed-form plim.\\\\n\\\\n    Args:\\\\n        C: K×K confusion matrix (column-stochastic)\\\\n        p_A: K-vector, marginal P(A=k)\\\\n        alpha: intercept in Y equation\\\\n        beta_T: causal effect of T on Y (= tau)\\\\n        beta_A: 2-vector [beta_{A=1}, beta_{A=2}], effect of A dummies on Y\\\\n        sigma_T: K-vector, E[T|A=k] for k=0,1,...,K-1\\\\n\\\\n    Returns: 4-vector [alpha_hat, tau_hat, beta_A1_hat, beta_A2_hat]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mu = sigma_T\\\\n    ET = np.sum(p_A * mu)\\\\n    ET2 = np.sum(p_A * (mu**2 + 1))  # E[T^2] = sum_k p_k*(mu_k^2 + Var(eps_T))\\\\n\\\\n    q = C @ p_A                # E[D*_j] = P(A*=j)\\\\n    qt = C @ (p_A * mu)        # E[D*_j * T]\\\\n\\\\n    EZZ = np.array([\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 184 字符] ...\\\\n\\\\n    ET,            p_A[1],          p_A[2]         ],\\\\n        [ET,   ET2,           p_A[1]*mu[1],    p_A[2]*mu[2]   ],\\\\n        [q[1], qt[1],         C[1,1]*p_A[1],   C[1,2]*p_A[2]  ],\\\\n        [q[2], qt[2],         C[2,1]*p_A[1],   C[2,2]*p_A[2]  ]])\\\\n\\\\n    b = np.array([alpha, beta_T, beta_A[0], beta_A[1]])\\\\n    return np.linalg.solve(EZZ, EZX @ b)\\\\n\\\\n\\\\n# ============================================================================\\\\n# DAG 2: MEDIATION — T -> A -> Y  (closed-form, ported from plan_001)\\\\n#\\\\n# DGP:\\\\n#   T ~ Bern(0.5)\\\\n#   A | T ~ Cat(softmax(gamma + delta*T))\\\\n#   Y = beta[0] + beta[1]*D_1 + beta[2]*D_2 + tau*T + eps\\\\n#   A* | A ~ Cat(C[:, A])\\\\n#\\\\n# Researcher regression:  Y ~ 1 + T + D*_1 + D*_2\\\\n# ============================================================================\\\\n\\\\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\\\\nDELTA_MED = np.array([0.0, 0.8, -0.6])\\\\n\\\\n\\\\ndef plim_mediation(C, beta, tau, gamma=GAMMA_MED, delta=DELTA_MED):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Mediation DAG closed-form plim (from plan_001_mediation_frontdoor.py).\\\\n\\\\n    Args:\\\\n        C: K×K confusion matrix\\\\n        beta: 3-vector [beta_0, beta_1, beta_2]\\\\n        tau: direct effect of T on Y\\\\n        gamma: 3-vector, softmax intercepts for P(A|T)\\\\n        delta: 3-vector, softmax slopes for P(A|T)\\\\n\\\\n    Returns: 4-vector [beta_0_hat, tau_hat, beta_1_hat, beta_2_hat]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p0, p1 = p_cat(0, gamma, delta), p_cat(1, gamma, delta)\\\\n    q0, q1 = C @ p0, C @ p1\\\\n    pm = .5 * (p0 + p1)\\\\n    qm = .5 * (q0 + q1)\\\\n\\\\n    EZZ = np.array([\\\\n        [1,      .5,        qm[1],      qm[2]     ],\\\\n        [.5,     .5,        .5*q1[1],   .5*q1[2]  ],\\\\n        [qm[1],  .5*q1[1],  qm[1],      0         ],\\\\n        [qm[2],  .5*q1[2],  0,          qm[2]     ]])\\\\n\\\\n    EZX = np.array([\\\\n        [1,      .5,        pm[1],            pm[2]           ],\\\\n        [.5,     .5,        .5*p1[1],         .5*p1[2]        ],\\\\n        [qm[1],  .5*q1[1],  C[1,1]*pm[1],    C[1,2]*pm[2]   ],\\\\n        [qm[2],  .5*q1[2],  C[2,1]*pm[1],    C[2,2]*pm[2]   ]])\\\\n\\\\n    b = np.array([beta[0], tau, beta[1], beta[2]])\\\\n    return np.linalg.solve(EZZ, EZX @ b)\\\\n\\\\n\\\\n# ============================================================================\\\\n# DAG 3: COLLIDER — T -> A <- Y  (precomputed moments, from plan_001)\\\\n#\\\\n# DGP:\\\\n#   T ~ N(0,1)\\\\n#   Y = tau*T + eps\\\\n#   A | T,Y ~ Cat(softmax([0, g1+dT*T+dY*Y, g2+dT2*T+dY2*Y]))\\\\n#   A* | A ~ Cat(C[:, A])\\\\n#\\\\n# Researcher regression:  Y ~ 1 + T + D*_1 + D*_2\\\\n#\\\\n# No closed form due to softmax(T,Y) coupling.\\\\n# Use precomputed sufficient statistics (like plan_001 front-door approach):\\\\n#   E[D_k], E[D_k*T], E[D_k*Y]  from large sample,\\\\n#   then for any C:  E[D*_j * f] = sum_k C[j,k] * E[D_k * f]\\\\n# ============================================================================\\\\n\\\\nCOLLIDER_PARAMS = dict(tau=1.0, g1=0.0, g2=0.0,\\\\n                       dT=0.5, dY=0.8, dT2=-0.3, dY2=0.6)\\\\n\\\\n\\\\ndef precomp_collider(params=COLLIDER_PARAMS, N=2_000_000, seed=999):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pre-compute sufficient statistics for collider DAG plim.\\\\n\\\\n    Run once, then pass result to plim_collider for fast evaluation at any C.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    T = rng.normal(0, 1, N)\\\\n    eps = rng.normal(0, 1, N)\\\\n    Y = params['tau'] * T + eps\\\\n    logits = np.column_stack([\\\\n        np.zeros(N),\\\\n        params['g1'] + params['dT'] * T + params['dY'] * Y,\\\\n        params['g2'] + params['dT2'] * T + params['dY2'] * Y,\\\\n    ])\\\\n    A = softmax_sample(logits, rng)\\\\n\\\\n    K = 3\\\\n    DM = np.zeros((N, K))\\\\n    for k in range(K):\\\\n        DM[:, k] = (A == k).astype(float)\\\\n\\\\n    return dict(\\\\n        E_T=T.mean(), E_T2=(T**2).mean(),\\\\n        E_Y=Y.mean(), E_TY=(T*Y).mean(),\\\\n        E_DM=DM.mean(0),\\\\n        E_DM_T=(DM * T[:, None]).mean(0),\\\\n        E_DM_Y=(DM * Y[:, None]).mean(0),\\\\n    )\\\\n\\\\n\\\\ndef plim_collider(C, precomp):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Collider DAG plim from precomputed moments.\\\\n\\\\n    Args:\\\\n        C: K×K confusion matrix\\\\n        precomp: dict from precomp_collider()\\\\n\\\\n    Returns: 4-vector [intercept_hat, tau_hat, beta_1_hat, beta_2_hat]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ds = C @ precomp['E_DM']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nplan_004: Annotation Sensitivity Values (ASV) framework\\nClaim 2 核心实验：ASV 表达式推导 + 形式证明验证 + MC coverage\\n\\n输入：DAG topology + reference confusion matrix C₀ + downstream estimate\\n输出：ASV value + sensitivity curve + coverage validation\\n\\n三个拓扑：\\n  - Confounding: A -> T, A -> Y, T -> Y  (closed-form plim)\\n  - Mediation:   T -> A -> Y             (closed-form plim, from plan_001)\\n  - Collider:    T -> A <- Y             (precomputed moments, from plan_001)\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom abc import ABC, abstractmethod\\n\\n\\n# ============================================================================\\n# Utilities (from plan_001)\\n# ============================================================================\\n\\ndef softmax(x):\\n    e = np.exp(x - x.max())\\n    return e / e.sum()\\n\\n\\ndef p_cat(t, g, d):\\n    \\\"\\\"\\\"P(A|T=t) via softmax(g + d*t).\\\"\\\"\\\"\\n    return softmax(g + d * t)\\n\\n\\ndef generate_Astar(A, C, rng):\\n    \\\"\\\"\\\"Sample A* from confusion matrix C given true labels A.\\\"\\\"\\\"\\n    probs = C[:, A]\\n    cum = np.cumsum(probs, axis=0)\\n    u = rng.uniform(size=len(A))\\n    return (u >= cum[0]).astype(int) + (u >= cum[1]).astype(int)\\n\\n\\ndef softmax_sample(logits, rng):\\n    \\\"\\\"\\\"Vectorized K=3 categorical sampling from logit matrix.\\\"\\\"\\\"\\n    exp_l = np.exp(logits - logits.max(axis=1, keepdims=True))\\n    probs = exp_l / exp_l.sum(axis=1, keepdims=True)\\n    cum = np.cumsum(probs, axis=1)\\n    u = rng.uniform(size=logits.shape[0])\\n    return (u >= cum[:, 0]).astype(int) + (u >= cum[:, 1]).astype(int)\\n\\n\\ndef check_column_stochastic(C, tol=1e-6):\\n    \\\"\\\"\\\"Verify C is column-stochastic: non-negative, each column sums to 1.\\\"\\\"\\\"\\n    assert np.all(C >= -tol), f\\\"Negative entries in C: min={C.min()}\\\"\\n    col_sums = C.sum(axis=0)\\n    assert np.allclose(col_sums, 1.0, atol=tol), f\\\"Column sums != 1: {col_sums}\\\"\\n\\n\\n# ============================================================================\\n# C(δ) Parameterization Interface (pluggable)\\n# ============================================================================\\n\\nclass ConfusionParameterization(ABC):\\n    \\\"\\\"\\\"Abstract base for C(δ) parameterization.\\\"\\\"\\\"\\n\\n    @abstractmethod\\n    def __call__(self, C0: np.ndarray, delta: float) -> np.ndarray:\\n        \\\"\\\"\\\"Given reference C₀ and scalar δ, return C(δ).\\\"\\\"\\\"\\n        pass\\n\\n    @abstractmethod\\n    def delta_range(self) -> tuple[float, float]:\\n        \\\"\\\"\\\"Valid range for δ.\\\"\\\"\\\"\\n        pass\\n\\n\\nclass LinearInterpolation(ConfusionParameterization):\\n    \\\"\\\"\\\"C(δ) = (1-δ)I + δC₀.  Placeholder — will be replaced after Director 选定.\\\"\\\"\\\"\\n\\n    def __call__(self, C0, delta):\\n        K = C0.shape[0]\\n        C_d = (1 - delta) * np.eye(K) + delta * C0\\n        return C_d\\n\\n    def delta_range(self):\\n        return (0.0, 1.0)\\n\\n\\n# ============================================================================\\n# DAG 1: CONFOUNDING — A -> T, A -> Y, T -> Y  (closed-form)\\n#\\n# DGP:\\n#   A ~ Cat(p_A),  K=3\\n#   T | A=k ~ N(sigma_T[k], 1)\\n#   Y = alpha + beta_T * T + beta_A[0]*I(A=1) + beta_A[1]*I(A=2) + eps_Y\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + I(A*=1) + I(A*=2)\\n#\\n# plim = E[Z'Z]^{-1} E[Z'X] b\\n#   where Z = (1, T, D*_1, D*_2),  X = (1, T, D_1, D_2)\\n#   b = (alpha, beta_T, beta_A[0], beta_A[1])\\n# ============================================================================\\n\\ndef plim_confounding(C, p_A, alpha, beta_T, beta_A, sigma_T):\\n    \\\"\\\"\\\"\\n    Confounding DAG closed-form plim.\\n\\n    Args:\\n        C: K×K confusion matrix (column-stochastic)\\n        p_A: K-vector, marginal P(A=k)\\n        alpha: intercept in Y equation\\n        beta_T: causal effect of T on Y (= tau)\\n        beta_A: 2-vector [beta_{A=1}, beta_{A=2}], effect of A dummies on Y\\n        sigma_T: K-vector, E[T|A=k] for k=0,1,...,K-1\\n\\n    Returns: 4-vector [alpha_hat, tau_hat, beta_A1_hat, beta_A2_hat]\\n    \\\"\\\"\\\"\\n    mu = sigma_T\\n    ET = np.sum(p_A * mu)\\n    ET2 = np.sum(p_A * (mu**2 + 1))  # E[T^2] = sum_k p_k*(mu_k^2 + Var(eps_T))\\n\\n    q = C @ p_A                # E[D*_j] = P(A*=j)\\n    qt = C @ (p_A * mu)        # E[D*_j * T]\\n\\n    EZZ = np.array([\\n  \\n\\n... [截断: 输出过长，省略 184 字符] ...\\n\\n    ET,            p_A[1],          p_A[2]         ],\\n        [ET,   ET2,           p_A[1]*mu[1],    p_A[2]*mu[2]   ],\\n        [q[1], qt[1],         C[1,1]*p_A[1],   C[1,2]*p_A[2]  ],\\n        [q[2], qt[2],         C[2,1]*p_A[1],   C[2,2]*p_A[2]  ]])\\n\\n    b = np.array([alpha, beta_T, beta_A[0], beta_A[1]])\\n    return np.linalg.solve(EZZ, EZX @ b)\\n\\n\\n# ============================================================================\\n# DAG 2: MEDIATION — T -> A -> Y  (closed-form, ported from plan_001)\\n#\\n# DGP:\\n#   T ~ Bern(0.5)\\n#   A | T ~ Cat(softmax(gamma + delta*T))\\n#   Y = beta[0] + beta[1]*D_1 + beta[2]*D_2 + tau*T + eps\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + D*_1 + D*_2\\n# ============================================================================\\n\\nGAMMA_MED = np.array([0.0, 0.5, -0.3])\\nDELTA_MED = np.array([0.0, 0.8, -0.6])\\n\\n\\ndef plim_mediation(C, beta, tau, gamma=GAMMA_MED, delta=DELTA_MED):\\n    \\\"\\\"\\\"\\n    Mediation DAG closed-form plim (from plan_001_mediation_frontdoor.py).\\n\\n    Args:\\n        C: K×K confusion matrix\\n        beta: 3-vector [beta_0, beta_1, beta_2]\\n        tau: direct effect of T on Y\\n        gamma: 3-vector, softmax intercepts for P(A|T)\\n        delta: 3-vector, softmax slopes for P(A|T)\\n\\n    Returns: 4-vector [beta_0_hat, tau_hat, beta_1_hat, beta_2_hat]\\n    \\\"\\\"\\\"\\n    p0, p1 = p_cat(0, gamma, delta), p_cat(1, gamma, delta)\\n    q0, q1 = C @ p0, C @ p1\\n    pm = .5 * (p0 + p1)\\n    qm = .5 * (q0 + q1)\\n\\n    EZZ = np.array([\\n        [1,      .5,        qm[1],      qm[2]     ],\\n        [.5,     .5,        .5*q1[1],   .5*q1[2]  ],\\n        [qm[1],  .5*q1[1],  qm[1],      0         ],\\n        [qm[2],  .5*q1[2],  0,          qm[2]     ]])\\n\\n    EZX = np.array([\\n        [1,      .5,        pm[1],            pm[2]           ],\\n        [.5,     .5,        .5*p1[1],         .5*p1[2]        ],\\n        [qm[1],  .5*q1[1],  C[1,1]*pm[1],    C[1,2]*pm[2]   ],\\n        [qm[2],  .5*q1[2],  C[2,1]*pm[1],    C[2,2]*pm[2]   ]])\\n\\n    b = np.array([beta[0], tau, beta[1], beta[2]])\\n    return np.linalg.solve(EZZ, EZX @ b)\\n\\n\\n# ============================================================================\\n# DAG 3: COLLIDER — T -> A <- Y  (precomputed moments, from plan_001)\\n#\\n# DGP:\\n#   T ~ N(0,1)\\n#   Y = tau*T + eps\\n#   A | T,Y ~ Cat(softmax([0, g1+dT*T+dY*Y, g2+dT2*T+dY2*Y]))\\n#   A* | A ~ Cat(C[:, A])\\n#\\n# Researcher regression:  Y ~ 1 + T + D*_1 + D*_2\\n#\\n# No closed form due to softmax(T,Y) coupling.\\n# Use precomputed sufficient statistics (like plan_001 front-door approach):\\n#   E[D_k], E[D_k*T], E[D_k*Y]  from large sample,\\n#   then for any C:  E[D*_j * f] = sum_k C[j,k] * E[D_k * f]\\n# ============================================================================\\n\\nCOLLIDER_PARAMS = dict(tau=1.0, g1=0.0, g2=0.0,\\n                       dT=0.5, dY=0.8, dT2=-0.3, dY2=0.6)\\n\\n\\ndef precomp_collider(params=COLLIDER_PARAMS, N=2_000_000, seed=999):\\n    \\\"\\\"\\\"Pre-compute sufficient statistics for collider DAG plim.\\n\\n    Run once, then pass result to plim_collider for fast evaluation at any C.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    T = rng.normal(0, 1, N)\\n    eps = rng.normal(0, 1, N)\\n    Y = params['tau'] * T + eps\\n    logits = np.column_stack([\\n        np.zeros(N),\\n        params['g1'] + params['dT'] * T + params['dY'] * Y,\\n        params['g2'] + params['dT2'] * T + params['dY2'] * Y,\\n    ])\\n    A = softmax_sample(logits, rng)\\n\\n    K = 3\\n    DM = np.zeros((N, K))\\n    for k in range(K):\\n        DM[:, k] = (A == k).astype(float)\\n\\n    return dict(\\n        E_T=T.mean(), E_T2=(T**2).mean(),\\n        E_Y=Y.mean(), E_TY=(T*Y).mean(),\\n        E_DM=DM.mean(0),\\n        E_DM_T=(DM * T[:, None]).mean(0),\\n        E_DM_Y=(DM * Y[:, None]).mean(0),\\n    )\\n\\n\\ndef plim_collider(C, precomp):\\n    \\\"\\\"\\\"\\n    Collider DAG plim from precomputed moments.\\n\\n    Args:\\n        C: K×K confusion matrix\\n        precomp: dict from precomp_collider()\\n\\n    Returns: 4-vector [intercept_hat, tau_hat, beta_1_hat, beta_2_hat]\\n    \\\"\\\"\\\"\\n    ds = C @ precomp['E_DM']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T12:21:08.853Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EhTa3MvKaVroAqCGfhkSzm`</summary>
+
+```text
+Not connected
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "63b4857a-fcbe-46a1-95ba-66fb75f9b76d",
+  "uuid": "818288c6-4e5b-4a03-ada1-503f50cff0bc",
+  "tool_use_result": "Error: Not connected"
+}
+```
+
+</details>
+
+---

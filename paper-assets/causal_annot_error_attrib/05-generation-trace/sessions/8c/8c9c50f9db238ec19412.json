@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c9c50f9db238ec19412",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 dag taxonomy scaffold",
+  "task_key": "worker_code_plan001-dag-taxonomy-scaffold_20260520T091608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-dag-taxonomy-scaffold_20260520T091608_result.json",
+    "occurrence": 1,
+    "bytes": 128,
+    "sha256": "c3d147b80ccf079de95592c1ff0b62091f860a12542af00d094a1444a9ce076b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件创建成功，dry-run 通过。4 个 DAG 均输出 `[SCAFFOLD]` 占位消息后正常退出，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-dag-taxonomy-scaffold.md"
+}

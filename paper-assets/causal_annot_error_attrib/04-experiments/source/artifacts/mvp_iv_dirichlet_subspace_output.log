@@ -1,0 +1,47 @@
+=====================================================================================
+Dirichlet Subspace Analysis: IV Wald Estimator Sign-Flip / Amplification
+=====================================================================================
+DGP: gen_iv() with DEFAULT_PARAMS['iv'] (Z~N(0,1), U~N(0,1), K=3)
+  dZ = [ 0.   1.  -0.5]
+  dU = [0.  0.8 0.6]
+  beta = [ 0.   1.  -0.5]
+Precomputed (N=2,000,000):
+  RF = 0.304007
+  FS = [-0.03823094  0.21538803 -0.17715709]
+  tau_true (Wald, C=I) = 1.411438
+Samples per subspace: 100,000
+
+    Subspace  N_valid    Viol%  SignFlip%     Amp%  WorstSev    Time
+--------------------------------------------------------------------
+        full  100,000  100.00%     51.67%   48.34% 106206.38    0.0s
+   diag>=0.5  100,000  100.00%      0.00%  100.00%     28.58    0.0s
+   diag>=0.7  100,000  100.00%      0.00%  100.00%      2.37    0.0s
+   diag>=0.9  100,000  100.00%      0.00%  100.00%      1.24    0.0s
+
+=====================================================================================
+Worst-case C per subspace (max |tau_biased / tau_true|, conditional on violation)
+=====================================================================================
+
+full: severity=106206.381, tau_biased=149903.7011 (tau_true=1.4114)
+  [0.026  0.604  0.547]
+  [0.006  0.139  0.167]
+  [0.968  0.257  0.286]
+
+diag>=0.5: severity=28.578, tau_biased=40.3364 (tau_true=1.4114)
+  [0.522  0.351  0.005]
+  [0.421  0.515  0.493]
+  [0.057  0.134  0.502]
+
+diag>=0.7: severity=2.369, tau_biased=3.3434 (tau_true=1.4114)
+  [0.727  0.284  0.000]
+  [0.263  0.713  0.297]
+  [0.010  0.003  0.703]
+
+diag>=0.9: severity=1.239, tau_biased=1.7484 (tau_true=1.4114)
+  [0.911  0.031  0.002]
+  [0.086  0.901  0.096]
+  [0.003  0.068  0.902]
+
+Total runtime: 1.3s
+
+Wrote: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/iv_dirichlet_subspace_results.json

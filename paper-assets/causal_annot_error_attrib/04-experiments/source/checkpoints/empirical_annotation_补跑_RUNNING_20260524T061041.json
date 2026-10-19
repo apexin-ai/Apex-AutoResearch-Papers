@@ -1,0 +1,24 @@
+{
+  "exp_id": "empirical_annotation_补跑",
+  "project": "causal_annot_error_attrib",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:09:55.599Z",
+    "updated_at": "2026-05-24T06:10:41.659Z",
+    "hypothesis": "Adding qwen2.5-7b annotations (3 prompt configs × HumAID/VAST/CivilComments) completes 36/36 model×dataset×prompt coverage for rebuttal readiness",
+    "spec": {
+      "command": "OpenRouter API annotation via artifacts/annotate.py",
+      "server": "home-1x5090",
+      "data_path": "/home/sonny/causal_annot_error_attrib/results/",
+      "data_count": "4500 samples (qwen2.5-7b × 3 prompts × HumAID; also regenerated VAST qwen2.5-7b ZS npz)",
+      "model_name": "qwen2.5-7b (via OpenRouter)",
+      "seed": "N/A"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T06:10:41.703614+00:00",
+  "trigger": "update_registry"
+}

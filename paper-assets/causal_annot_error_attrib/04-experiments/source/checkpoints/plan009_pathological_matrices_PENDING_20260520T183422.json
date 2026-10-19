@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan009_pathological_matrices",
+  "project": "causal_annot_error_attrib",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:10:16.587Z",
+    "updated_at": "2026-05-20T18:34:22.135Z",
+    "hypothesis": "病态混淆矩阵（near-permutation、rank-deficient、block-diagonal）在 7 个 DAG 拓扑下的灾难性偏差具有可预测的结构性条件：spectral gap、diagonal dominance ratio、effective rank 和 condition number 是偏差严重程度的强预测因子，且存在明确的 threshold 将\"安全区\"和\"灾难区\"分隔。这些结构性特征可为 practitioner 提供混淆矩阵质量的诊断指标。",
+    "parent": "plan001_dag_taxonomy"
+  },
+  "timestamp": "2026-05-20T18:34:22.195224+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0cb47f3f11860d3f9fa7",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "paper missing refs r5",
+  "task_key": "worker_paper_missing_refs_r5_20260522T172225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_missing_refs_r5_20260522T172225.jsonl",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "89be73b6e120dd89fb462bfab6bd0b0888e70aeafc1df442c30b3315a05728cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T17:22:43.477292+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_missing_refs_r5_20260522T172225"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-missing-refs-r5.md"
+}

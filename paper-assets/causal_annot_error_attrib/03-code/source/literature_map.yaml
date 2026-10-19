@@ -1,0 +1,432 @@
+papers:
+  wood_doughty2018:
+    title: "Challenges of Using Text Classifiers for Causal Inference"
+    authors: ["Wood-Doughty, Z.", "Shpitser, I.", "Dredze, M."]
+    year: 2018
+    venue: "EMNLP"
+    category: "causal-text-classification"
+    role: "foundation"
+    relevance: "First to apply DAG reasoning to text classifier measurement error; no formal bias theorems or identifiability conditions; binary only. Direct predecessor — our work extends to multi-class with formal bias expressions."
+    abstract: "Applies causal DAG reasoning to analyze how text classifier errors propagate to downstream causal estimates. Proposes matrix adjustment correction but notes severe instability."
+    semantic_scholar_id: "33af8451a46a9592689d5aa1270ec73b7779c954"
+    arxiv_id: "1810.00956"
+    verified: true
+    added_by: "director"
+
+  teblunthuis2024:
+    title: "Misclassification in Automated Content Analysis Causes Bias in Regression. Can We Fix It? Yes We Can!"
+    authors: ["TeBlunthuis, N.", "Hase, V.", "Chan, C."]
+    year: 2024
+    venue: "Communication Methods and Measures"
+    doi: "10.1080/19312458.2023.2293713"
+    category: "causal-text-classification"
+    role: "foundation"
+    relevance: "Most complete binary treatment: 4 DAG scenarios (differential/non-differential × IV/DV), testable conditions, MLA method. But binary only, single classifier. Our work generalizes to multi-class K×K confusion matrices."
+    abstract: "Provides four DAG scenarios for text classifier measurement error with likelihood ratio tests and Maximum Likelihood Adjustment (MLA) correction for binary classification."
+    semantic_scholar_id: "3a1c75323195aca8e9d5432b3cbee4a7d112696e"
+    arxiv_id: "2307.06483"
+    verified: true
+    added_by: "director"
+
+  hernan_cole2009:
+    title: "Invited Commentary: Causal Diagrams and Measurement Bias"
+    authors: ["Hernán, M.A.", "Cole, S.R."]
+    year: 2009
+    venue: "American Journal of Epidemiology"
+    doi: "10.1093/aje/kwp293"
+    category: "measurement-error-epidemiology"
+    role: "foundation"
+    relevance: "Formalizes starred-node DAGs with differential/non-differential and independent/dependent error taxonomy. Core theoretical foundation for our DAG-based framework."
+    abstract: "Formalizes the use of causal DAGs for reasoning about measurement bias, introducing starred-node notation and taxonomy of error types."
+    semantic_scholar_id: "7f8190de6ee7bef4fbdeef6ba8a6c2da50ef2eaa"
+    verified: true
+    added_by: "director"
+
+  vanderweele_li2019:
+    title: "Simple Sensitivity Analysis for Differential Measurement Error"
+    authors: ["VanderWeele, T.J.", "Li, Y."]
+    year: 2019
+    venue: "American Journal of Epidemiology"
+    doi: "10.1093/aje/kwz133"
+    category: "sensitivity-analysis"
+    role: "foundation"
+    relevance: "Provides sensitivity bounds for differential measurement error using risk ratios, but only for binary exposure/outcome. Our ASV framework extends this to multi-class confusion matrices."
+    abstract: "Develops simple sensitivity analysis techniques for differential measurement error in binary exposure/outcome settings using risk ratios."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  vanderweele_ding2017:
+    title: "Sensitivity Analysis in Observational Research: Introducing the E-Value"
+    authors: ["VanderWeele, T.J.", "Ding, P."]
+    year: 2017
+    venue: "Annals of Internal Medicine"
+    doi: "10.7326/M16-2607"
+    category: "sensitivity-analysis"
+    role: "foundation"
+    relevance: "Introduces E-values for unmeasured confounding — the sensitivity analysis paradigm our ASVs mirror for annotation-induced bias."
+    abstract: "Proposes the E-value as an interpretable sensitivity analysis measure for unmeasured confounding in observational studies."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  brenner1993:
+    title: "Bias due to non-differential misclassification of polytomous confounders"
+    authors: ["Brenner, H."]
+    year: 1993
+    venue: "Journal of Clinical Epidemiology"
+    doi: "10.1016/0895-4356(93)90009-P"
+    category: "measurement-error-epidemiology"
+    role: "foundation"
+    relevance: "Key result: non-differential misclassification of polytomous confounders can bias in EITHER direction — breaks the binary 'toward null' guarantee. Core motivation for our multi-class taxonomy."
+    abstract: "Analyzes bias from non-differential misclassification of polytomous confounders, showing bias can go in either direction unlike the binary case."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  veirod_laake2001:
+    title: "Exposure misclassification: bias in category specific Poisson regression coefficients"
+    authors: ["Veierød, M.B.", "Laake, P."]
+    year: 2001
+    venue: "Statistics in Medicine"
+    doi: "10.1002/sim.712"
+    category: "measurement-error-epidemiology"
+    role: "foundation"
+    relevance: "Derives bias expressions for multi-category exposure misclassification in Poisson regression — bias depends on ALL true coefficients weighted by full misclassification matrix. We extend from regression-only to full DAG-based causal framework."
+    abstract: "Proves that multi-category exposure misclassification produces bias depending on all true category-specific coefficients weighted by the full misclassification probability matrix."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  baumann2025:
+    title: "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation"
+    authors: ["Baumann, M.", "Röttger, P.", "Urman, A.", "Wendsjö, S.", "Plaza-del-Arco, F.M.", "Gruber, N.", "Hovy, D."]
+    year: 2025
+    venue: "arXiv"
+    arxiv_id: "2509.08825"
+    category: "llm-annotation-quality"
+    role: "direct-competitor"
+    relevance: "Strongest empirical motivation: 37 tasks, 21 studies, 13M labels, 18 models — 31% incorrect downstream conclusions with SOTA LLMs. Coins 'LLM hacking'. Diagnoses the problem we solve."
+    abstract: "Demonstrates across 37 annotation tasks from 21 published social science studies that approximately 31% of hypotheses yield incorrect conclusions with SOTA LLMs, rising to 50% for smaller models."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  lee_wood_doughty2024:
+    title: "Controlling for Unobserved Confounding with Large Language Model Classification of Patient Smoking Status"
+    authors: ["Lee, S.", "Wood-Doughty, Z."]
+    year: 2024
+    venue: "AIM-FM Workshop, NeurIPS 2024"
+    arxiv_id: "2411.03004"
+    category: "causal-text-classification"
+    role: "direct-competitor"
+    relevance: "Extends Wood-Doughty (2018) to categorical + LLM classifiers on MIMIC clinical data. Uses LLM to predict smoking status from clinical notes with measurement error correction. But covers only 1 DAG topology (unobserved confounding), no bias taxonomy, no sensitivity analysis. Key differentiation target."
+    abstract: "Uses a large language model trained on clinical notes to predict patient smoking status, then applies measurement error correction on the categorical predicted smoking status to estimate the causal effect of transthoracic echocardiography on mortality in the MIMIC dataset."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  gligoric2025:
+    title: "Can Unconfident LLM Annotations Be Used for Confident Conclusions?"
+    authors: ["Gligorić, K.", "Zrnić, T.", "Lee, S.Y.", "Candès, E.J.", "Jurafsky, D."]
+    year: 2025
+    venue: "NAACL 2025"
+    arxiv_id: "2408.15204"
+    category: "correction-methods"
+    role: "method-component"
+    relevance: "Notes correlated errors bias estimates, proposes DSL/PPI corrections. One of the correction methods our guidance framework evaluates."
+    abstract: "Investigates when LLM annotations with varying confidence can still yield valid downstream conclusions, proposing design-based supervised learning and prediction-powered inference corrections."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  messing2026:
+    title: "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking"
+    authors: ["Messing, S."]
+    year: 2026
+    venue: "arXiv"
+    arxiv_id: "2604.11581"
+    category: "llm-annotation-quality"
+    role: "background"
+    relevance: "Decomposes LLM pipeline variance via linear mixed models (item-judge interaction dominates at 44%). Explicitly excludes causal identification — the gap we fill."
+    abstract: "Decomposes variance in LLM annotation pipelines using linear mixed models, finding item-judge interaction dominates at 44%, but excludes causal identification."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  kim_garg2025:
+    title: "Correlated Errors in Large Language Models"
+    authors: ["Kim, J.", "Garg, S.", "Peng, Y.", "Garg, N."]
+    year: 2025
+    venue: "ICML"
+    arxiv_id: "2506.07962"
+    category: "llm-annotation-quality"
+    role: "background"
+    relevance: "Shows models agree 60% when both err, larger models have highly correlated errors across architectures. Undermines ensemble-as-fix assumption — strengthens case that error STRUCTURE analysis (our contribution) is irreplaceable."
+    abstract: "Demonstrates that LLM errors are highly correlated across models, with 60% agreement when both err, challenging independence assumptions in ensemble methods."
+    semantic_scholar_id: ""
+    verified: true
+    added_by: "director"
+
+  keith_jensen_oconnor2020:
+    title: "Text and Causal Inference: A Review of Using Text to Remove Confounding from Causal Estimates"
+    authors: ["Keith, K.A.", "Jensen, D.D.", "O'Connor, B.T."]
+    year: 2020
+    venue: "ACL"
+    doi: "10.18653/v1/2020.acl-main.474"
+    arxiv_id: "2005.00649"
+    category: "causal-text-classification"
+    role: "background"
+    relevance: "First systematic review of text+causal inference methods; catalogs approaches for using text classifiers and embeddings to remove confounding. Frames the research agenda our work contributes to — classifier measurement error is identified as a key open challenge."
+    abstract: "Reviews methods for using text to measure and adjust for confounders in causal inference, providing the first systematic categorization of approaches and identifying persistent open challenges including measurement error from imperfect text classifiers."
+    semantic_scholar_id: "79c5a02c387c90202e66d7a36942a94e0dba8c70"
+    verified: true
+    added_by: "worker"
+
+  chen_bhattacharya_keith2024:
+    title: "Proximal Causal Inference With Text Data"
+    authors: ["Chen, J.M.", "Bhattacharya, R.", "Keith, K.A."]
+    year: 2024
+    venue: "NeurIPS"
+    arxiv_id: "2401.06687"
+    category: "causal-text-classification"
+    role: "direct-competitor"
+    relevance: "Uses zero-shot NLP models as proxies for unmeasured confounders in proximal causal inference; proves identification conditions under NLP measurement error. Demonstrates on MIMIC-III clinical notes. Complementary to our work — they handle the unmeasured-confounder DAG topology with text proxies; we provide the multi-class error taxonomy across all DAG topologies."
+    abstract: "Proposes proximal causal inference using two instances of pre-treatment text data with zero-shot models as proxies in the proximal g-formula; proves identification conditions and evaluates on synthetic and semi-synthetic MIMIC-III settings with low-bias estimates."
+    semantic_scholar_id: "767a958be729bc8aa64511b516b18aaa5f40445c"
+    verified: true
+    added_by: "worker"
+
+  yang_adomavicius2018:
+    title: "Mind the Gap: Accounting for Measurement Error and Misclassification in Variables Generated via Data Mining"
+    authors: ["Yang, M.", "Adomavicius, G.", "Burtch, G.", "Ren, Y."]
+    year: 2018
+    venue: "Information Systems Research"
+    doi: "10.1287/isre.2017.0727"
+    category: "causal-text-classification"
+    role: "foundation"
+    relevance: "Formalizes the two-stage pipeline problem (data mining/ML → econometric analysis) and proves that measurement error and misclassification in ML-generated variables systematically bias downstream regression. Directly analogous to our text classifier → causal estimation pipeline; provides the IS-domain theoretical foundation we extend to NLP+causal DAGs."
+    abstract: "Shows that variables generated from first-stage data mining models inevitably contain measurement error or misclassification, and these errors introduce systematic biases into second-stage econometric estimations, threatening statistical inference validity."
+    semantic_scholar_id: "567e77bd87dca83fe303d523bafdc7e93f6d0548"
+    verified: true
+    added_by: "worker"
+
+  # ── measurement-error-epidemiology (gap-fill) ──
+
+  ogburn_vanderweele2012:
+    title: "On the Nondifferential Misclassification of a Binary Confounder"
+    authors: ["Ogburn, E.L.", "VanderWeele, T.J."]
+    year: 2012
+    venue: "Epidemiology"
+    doi: "10.1097/EDE.0b013e31824d1f63"
+    category: "measurement-error-epidemiology"
+    role: "foundation"
+    relevance: "Proves that for binary confounder under nondifferential misclassification, adjusted estimates lie between crude and true (no sign flip). Our multi-class result breaks this guarantee — key contrast."
+    abstract: "Provides analytic proof that odds ratios, risk ratios, and risk differences controlling for a nondifferentially misclassified binary confounder lie between the crude and true measures, absent qualitative interaction."
+    verified: true
+    added_by: "paper_agent"
+
+  edwards_lessler_naimi2021:
+    title: "An underappreciated misclassification mechanism: implications of nondifferential dependent misclassification of covariate and exposure"
+    authors: ["Edwards, J.K.", "Lessler, J.", "Naimi, A.I."]
+    year: 2021
+    venue: "Annals of Epidemiology"
+    doi: "10.1016/j.annepidem.2021.02.007"
+    category: "measurement-error-epidemiology"
+    role: "background"
+    relevance: "Shows that dependent misclassification (correlated errors in covariate and exposure) can bias in either direction even when nondifferential. Relevant to LLM settings where the same model annotates multiple variables."
+    abstract: "Demonstrates that when misclassification of covariate and exposure are nondifferential but dependent, adjustment can either decrease or increase bias, challenging assumptions about error independence."
+    verified: true
+    added_by: "paper_agent"
+
+  gustafson2004:
+    title: "Measurement Error and Misclassification in Statistics and Epidemiology: Impacts and Bayesian Adjustments"
+    authors: ["Gustafson, P."]
+    year: 2004
+    venue: "Chapman & Hall/CRC"
+    isbn: "978-1-58488-335-7"
+    category: "measurement-error-epidemiology"
+    role: "background"
+    relevance: "Comprehensive reference on measurement error impacts and Bayesian correction methods in epidemiology. Provides the statistical foundations for our bias expressions and sensitivity analysis framework."
+    abstract: "Textbook covering impacts of measurement error and misclassification on statistical analyses in epidemiology, with Bayesian adjustment methods."
+    verified: true
+    added_by: "paper_agent"
+
+  # ── sensitivity-analysis (gap-fill) ──
+
+  ding_vanderweele2016:
+    title: "Sensitivity Analysis Without Assumptions"
+    authors: ["Ding, P.", "VanderWeele, T.J."]
+    year: 2016
+    venue: "Epidemiology"
+    doi: "10.1097/EDE.0000000000000457"
+    arxiv_id: "1507.03984"
+    category: "sensitivity-analysis"
+    role: "foundation"
+    relevance: "Derives assumption-free sensitivity bounds for unmeasured confounding. Precursor to the E-value; our ASV framework parallels this approach for annotation-induced bias."
+    abstract: "Develops sensitivity analysis techniques for unmeasured confounding without distributional assumptions, deriving sharp bounds for causal effects."
+    verified: true
+    added_by: "paper_agent"
+
+  smith_vanderweele2021:
+    title: "Multiple-bias Sensitivity Analysis Using Bounds"
+    authors: ["Smith, L.H.", "Mathur, M.B.", "VanderWeele, T.J."]
+    year: 2021
+    venue: "Epidemiology"
+    doi: "10.1097/EDE.0000000000001380"
+    arxiv_id: "2005.02908"
+    category: "sensitivity-analysis"
+    role: "background"
+    relevance: "Extends sensitivity analysis to handle multiple biases simultaneously (confounding + selection + misclassification). Our work focuses on misclassification alone but across DAG topologies — complementary scope."
+    abstract: "Derives bounds for total composite bias from confounding, selection, and differential misclassification, enabling joint sensitivity analysis for multiple bias sources."
+    verified: true
+    added_by: "paper_agent"
+
+  rosenbaum2002:
+    title: "Observational Studies"
+    authors: ["Rosenbaum, P.R."]
+    year: 2002
+    venue: "Springer"
+    doi: "10.1007/978-1-4757-3692-2"
+    category: "sensitivity-analysis"
+    role: "background"
+    relevance: "Foundational text on sensitivity analysis for observational studies. Establishes the conceptual framework (how much bias would be needed to alter conclusions?) that our ASV approach adapts for annotation error."
+    abstract: "Comprehensive treatment of design and analysis of observational studies, including sensitivity analysis for hidden bias from unmeasured confounders."
+    verified: true
+    added_by: "paper_agent"
+
+  # ── llm-annotation-quality (gap-fill) ──
+
+  stolwijk_boukes_trilling2025:
+    title: "Are generative AI text annotations systematically biased?"
+    authors: ["Stolwijk, S.B.", "Boukes, M.", "Trilling, D."]
+    year: 2025
+    venue: "arXiv"
+    arxiv_id: "2512.08404"
+    category: "llm-annotation-quality"
+    role: "background"
+    relevance: "Shows LLM annotations differ from manual in prevalence and yield substantively different downstream results; LLMs overlap more with each other than with humans. Supports our claim that error structure (not just accuracy) matters."
+    abstract: "Finds that generative LLM annotations perform adequately on F1 but differ from manual annotations in prevalence, yield different downstream results, and display systematic bias by overlapping more with each other than with human annotations."
+    verified: true
+    added_by: "paper_agent"
+
+  cheng_mayya_sedoc2024:
+    title: "To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation"
+    authors: ["Cheng, X.", "Mayya, R.", "Sedoc, J."]
+    year: 2024
+    venue: "arXiv"
+    arxiv_id: "2412.14461"
+    category: "llm-annotation-quality"
+    role: "background"
+    relevance: "Decomposes LLM annotation measurement error into four sources (guideline/baseline/prompt/model-induced). Complementary to our DAG-topology decomposition — they decompose error sources, we decompose error propagation paths."
+    abstract: "Proposes SILICON methodology to systematically reduce measurement error from LLM annotation by decomposing it into guideline-induced, baseline-induced, prompt-induced, and model-induced error."
+    verified: true
+    added_by: "paper_agent"
+
+  audinet2025:
+    title: "Benchmarking Debiasing Methods for LLM-based Parameter Estimates"
+    authors: ["Audinet de Pieuchon, N.", "Daoud, A.", "Jerzak, C.T.", "Johansson, M.", "Johansson, R."]
+    year: 2025
+    venue: "EMNLP 2025"
+    arxiv_id: "2506.09627"
+    category: "llm-annotation-quality"
+    role: "direct-competitor"
+    relevance: "Benchmarks DSL/PPI debiasing for LLM annotations across datasets. Finds bias-variance tradeoff at debiasing-method level. Does not consider DAG topology or multi-class confusion structure — the gap we fill."
+    abstract: "Evaluates DSL and PPI debiasing methods for LLM-based parameter estimates, finding DSL often outperforms PPI on bias reduction but with less consistent performance across datasets."
+    verified: true
+    added_by: "paper_agent"
+
+  # ── correction-methods (gap-fill) ──
+
+  angelopoulos2023:
+    title: "Prediction-powered inference"
+    authors: ["Angelopoulos, A.N.", "Bates, S.", "Fannjiang, C.", "Jordan, M.I.", "Zrnić, T."]
+    year: 2023
+    venue: "Science"
+    doi: "10.1126/science.adi6000"
+    category: "correction-methods"
+    role: "foundation"
+    relevance: "Foundational PPI framework for valid inference combining ML predictions with small labeled sets. One of two main correction paradigms (with DSL) our guidance framework evaluates against DAG topology."
+    abstract: "Proposes prediction-powered inference for computing provably valid confidence intervals for means, quantiles, and regression coefficients using ML predictions supplemented by experimental data."
+    verified: true
+    added_by: "paper_agent"
+
+  egami_hinck_stewart_wei2023:
+    title: "Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models"
+    authors: ["Egami, N.", "Hinck, M.", "Stewart, B.M.", "Wei, H."]
+    year: 2023
+    venue: "NeurIPS 2023"
+    arxiv_id: "2306.04746"
+    category: "correction-methods"
+    role: "foundation"
+    relevance: "Proposes DSL for valid downstream inference with LLM surrogates. Proves direct use of LLM labels biases estimates even at 80-90% accuracy. The other main correction paradigm our guidance framework evaluates."
+    abstract: "Demonstrates that direct use of LLM-predicted surrogate labels in downstream analyses leads to substantial bias and invalid confidence intervals, and proposes design-based supervised learning guaranteeing asymptotic unbiasedness."
+    verified: true
+    added_by: "paper_agent"
+
+  zrnic_candes2024:
+    title: "Cross-prediction-powered inference"
+    authors: ["Zrnić, T.", "Candès, E.J."]
+    year: 2024
+    venue: "PNAS"
+    doi: "10.1073/pnas.2322083121"
+    category: "correction-methods"
+    role: "background"
+    relevance: "Extends PPI to cross-fitting setting, improving efficiency. Relevant as a correction method variant in our guidance framework."
+    abstract: "Extends prediction-powered inference to a cross-prediction setting that improves statistical efficiency by using all available data for both prediction and inference."
+    verified: true
+    added_by: "paper_agent"
+
+  # ── causal-inference-methodology (gap-fill) ──
+
+  pearl2009:
+    title: "Causality: Models, Reasoning and Inference"
+    authors: ["Pearl, J."]
+    year: 2009
+    venue: "Cambridge University Press"
+    isbn: "978-0-521-89560-6"
+    category: "causal-inference-methodology"
+    role: "foundation"
+    relevance: "Foundational text defining the DAG-based causal framework our work builds on. Front-door criterion, do-calculus, and identification theory are all from this source."
+    abstract: "Comprehensive treatment of causal inference using directed acyclic graphs, structural equation models, and the do-calculus for causal effect identification."
+    verified: true
+    added_by: "paper_agent"
+
+  greenland2003:
+    title: "Quantifying Biases in Causal Models: Classical Confounding vs Collider-Stratification Bias"
+    authors: ["Greenland, S."]
+    year: 2003
+    venue: "Epidemiology"
+    doi: "10.1097/01.EDE.0000042804.12056.6C"
+    category: "causal-inference-methodology"
+    role: "foundation"
+    relevance: "Quantifies collider-stratification bias relative to classical confounding. Directly relevant to our collider topology analysis where conditioning on a misclassified collider introduces spurious associations."
+    abstract: "Compares and quantifies classical confounding bias with collider-stratification bias in causal DAGs, showing conditions under which each dominates."
+    verified: true
+    added_by: "paper_agent"
+
+  angrist_imbens1995:
+    title: "Two-Stage Least Squares Estimation of Average Causal Effects in Models with Variable Treatment Intensity"
+    authors: ["Angrist, J.D.", "Imbens, G.W."]
+    year: 1995
+    venue: "Journal of the American Statistical Association"
+    doi: "10.1080/01621459.1995.10476535"
+    category: "causal-inference-methodology"
+    role: "background"
+    relevance: "Foundational IV estimation framework. Our IV topology analysis shows how annotation error in the instrument propagates through 2SLS, creating bias amplification unique to the IV setting."
+    abstract: "Extends LATE framework to variable treatment intensity settings using two-stage least squares, establishing conditions for consistent estimation of average causal effects."
+    verified: true
+    added_by: "paper_agent"
+
+  bellemare_bloem2024:
+    title: "The Paper of How: Estimating Treatment Effects Using the Front-Door Criterion"
+    authors: ["Bellemare, M.F.", "Bloem, J.R.", "Wexler, N."]
+    year: 2024
+    venue: "Oxford Bulletin of Economics and Statistics"
+    doi: "10.1111/obes.12598"
+    category: "causal-inference-methodology"
+    role: "background"
+    relevance: "Practical guide to front-door estimation. Our front-door topology analysis builds on this to show how mediator misclassification affects front-door-based causal estimates."
+    abstract: "Provides practical guidance for estimating treatment effects using the front-door criterion, with applications demonstrating identification in settings where back-door adjustment fails."
+    verified: true
+    added_by: "paper_agent"

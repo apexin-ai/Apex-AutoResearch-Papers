@@ -1,0 +1,11 @@
+Wrote /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan012_case_study/case_study_results.json
+
+=== Point-estimate scenarios ===
+[     best] diag~0.90  bias_auto=-12.8%  mag_ASV=0.7871914609739826  sf_ASV=6.430953969312875
+[realistic] diag~0.80  bias_auto=-27.8%  mag_ASV=0.3735823882588393  sf_ASV=3.1787858572381595
+[     weak] diag~0.70  bias_auto=-43.1%  mag_ASV=0.244607516121859  sf_ASV=2.139203913720258
+
+=== Monte-Carlo over Dirichlet(diag) anchored matrices ===
+diag=0.90  |bias|_mean=13.1%  |bias|_p95=34.7%  sign-flip rate (delta<=1) = 0.0%  median sf_ASV=None
+diag=0.80  |bias|_mean=26.7%  |bias|_p95=56.2%  sign-flip rate (delta<=1) = 0.0%  median sf_ASV=None
+diag=0.70  |bias|_mean=43.2%  |bias|_p95=74.2%  sign-flip rate (delta<=1) = 0.6%  median sf_ASV=0.9262679189657766

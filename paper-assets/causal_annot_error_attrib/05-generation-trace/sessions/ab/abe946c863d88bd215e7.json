@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abe946c863d88bd215e7",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "analysis plan006 zero matrix filter v2",
+  "task_key": "worker_analysis_plan006_zero_matrix_filter_v2_20260521T021534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006_zero_matrix_filter_v2_20260521T021534_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "b3c6752cea8c42b02e9d97af5a2e1bb8babab7e3e0bcfec125e4fd2f716a4a37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Both files written.\n\n**Key findings**:\n- **12 zero-matrix configs dropped** (API-402 artifacts): all civil_comments non-qwen2.5-7b configs (6), all vast qwen3 (3) + vast deepseek few-shot (2), humaid qwen3 few-shot-5 (1).\n- **18 valid configs / 126 scenarios** remain (was 30/210).\n- **ASV-unsafe (magnitude): 95/126 = 75.4%** — nearly 2× the previously reported 43.8% (old denominator silently included zero-matrix nulls as \"safe\").\n- **Per-K bias**: K=2 mean|bias%|=0.37 / IV=1.17; K=3 = 0.65 / IV=2.53; K=10 = 0.12 / IV=0.30.\n- **Sign flips: 0** across all 126 scenarios.\n- **VAST 7B vs others**: qwen2.5-7b mean|bias%|=0.735 vs llama4+deepseek=0.593 (ratio 1.24). 7B-vs-235B comparison **infeasible on VAST** (all qwen3 configs zero-matrix).\n- **VAST class-2 recall collapsed everywhere** (0.04–0.25), confirming third-class issue is universal across LLM × prompt.\n\nOutputs:\n- `artifacts/plan006_full_filtered_stats.json`\n- `artifacts/plan006_full_filtered_stats.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan006-zero-matrix-filter-v2.md"
+}

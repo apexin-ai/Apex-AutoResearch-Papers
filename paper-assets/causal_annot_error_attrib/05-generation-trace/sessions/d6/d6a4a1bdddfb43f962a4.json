@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "d6a4a1bdddfb43f962a4",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "math lambda bound w3",
+  "task_key": "worker_math_lambda_bound_w3_20260522T152106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_math_lambda_bound_w3_20260522T152106.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "f6e98e03e2c8ef05f4df552af1b789970ed8b3ef319a805affc7f6064a729ad5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:21:16.960136+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 23, 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_math_lambda_bound_w3_20260522T152106"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/math-lambda-bound-w3.md"
+}

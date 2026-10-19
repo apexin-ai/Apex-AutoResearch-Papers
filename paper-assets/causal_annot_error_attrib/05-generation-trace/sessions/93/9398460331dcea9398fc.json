@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9398460331dcea9398fc",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan003 deepseek key fix",
+  "task_key": "worker_code_plan003-deepseek-key-fix_20260520T112252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-deepseek-key-fix_20260520T112252_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "5697ba7f02028cfbd356d8880bd60fc888656f98a10485a4fe819aa998d455e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Part 都完成。\n\n### 结果汇总\n\n**Part 1 — DeepSeek API 配置**：无需修复。`annotate.py` 中三个模型已统一使用 `OPENROUTER_API_KEY` + `http://47.94.22.126/v1` 端点，DeepSeek 模型ID 为 `deepseek/deepseek-chat`。plan_003 进程安全继续运行（当前进度：1/27，humaid/llama4/zero-shot，100/1500 样本）。\n\n**Part 2 — Mediation C6 bug 修复**：已将第38行 `6_diff_base` 从与 C1 相同的 `[[.80,.10,.10],[.10,.80,.10],[.10,.10,.80]]` 改为 differential 矩阵 `[[.85,.15,.05],[.075,.70,.05],[.075,.15,.90]]`。验证通过：\n- 全部 4 个 block（mediation×2 + front-door×2）的 theory-MC 匹配均为 `ALL MATCH`\n- `6_diff_base` 的系数结果与 `1_sym_high` 不同，确认 C6 已生效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-deepseek-key-fix.md"
+}

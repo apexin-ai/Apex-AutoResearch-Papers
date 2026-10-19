@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87d050d82b388b0c09a0",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp w4 symmetry analysis",
+  "task_key": "worker_exp_w4_symmetry_analysis_20260523T190010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_w4_symmetry_analysis_20260523T190010_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "bf874975a3a7c6515353510fa4d3b76a9d1f75ac086495de488811609388cd28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Summary (25 matrices, dedup across 4 files):**\n\n| 指标 | 值 |\n|------|-----|\n| d_rel min | 0.0147 |\n| d_rel median | 0.1604 |\n| d_rel mean | 0.1858 |\n| d_rel max | 0.3809 |\n| near-symmetric (d_rel < 5%) | 6/25 |\n| near-symmetric (d_rel < 10%) | 9/25 |\n| diag_mean range | [0.4533, 0.8086] |\n\n**按 dataset 分层的规律很清晰：**\n\n- **CivilComments (K=2):** 全部 7 个矩阵 d_rel ∈ [0.015, 0.065]，高度近似对称，Theorem 2 的 symmetric C₀ 假设成立\n- **HumAID (K=10):** 8 个矩阵 d_rel ∈ [0.095, 0.170]，中等偏离，DeepSeek 系列更接近对称\n- **VAST (K=3):** 全部 10 个矩阵 d_rel ∈ [0.295, 0.381]，显著不对称，Theorem 2 的对称假设不适用\n\n结论：Theorem 2 (symmetric C₀) 对 K=2 二分类任务高度适用（6/7 < 5%），对多分类任务（尤其 VAST 三分类）偏离显著，需要 Theorem 1 的一般形式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-w4-symmetry-analysis.md"
+}

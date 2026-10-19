@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0",
+  "session_id": "965d99c4812fcdf7d45a",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/crosscoder-behavioral-circuit-transplant",
+                "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4bf6745c-552d-4863-bb21-e5fe3c9706d1",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod-0510-projects-crosscoder-behavioral-circuit-transplant/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778435400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a3dacabc-c0ee-4e2e-b33d-c05b74658efd",
+                "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by confirming the GPU is available, then read the existing reference code files to understand the codebase before writing the experiment script.",
+              "signature": "EtkCClkIDRgCKkCu6AkqUtv4Zzlk9LZVrkLWiiTyDMJgQMUMCxwaf6sZNqFFozstPJxCdaIRKgmScFTK68kRYUQ5Q5ocRpyUjgTuMg9jbGF1ZGUtb3B1cy00LTY4ABIMSEau8dvcpa6xHA3yGgybbUWS9fvy0LqOJLkiMAXZkhbIvuPPTGTLvVRJuaFC6CssQJeOQyVqOlbiAOuUA1y9xJbbPMIulg+Mc0mABCqtAfDTWeNwoCEHNTxgxG8Q+UkpktjlT66htkjIV0cldDXjx6W2QMROFYnPyQ7Qlz77PzWrwGz7jodaBlr6GGLZdftOolCupi0dy87in/E5nEGxWceNI6e+t6mz/pVTPlnwDhrd4h0a3CTtsHFky+7XuL5uMhwpSA7pZq846o3J4cVRBTs7nDVp+4oIdCw3bB9H3DMrek1CN+kGPMfABBOKlZX+5suf2R384x2iPoKtGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "8e8d1e2a-aa8e-4d50-bdea-f0980e2cb431",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XYC6ZXMXfoXJrVEtWutJMD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12916,
+                "cache_read_input_tokens": 11804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12916
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先确认 GPU 状态，同时读取参考代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "731db127-df5b-43aa-94a1-8b7c951bd549",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XYC6ZXMXfoXJrVEtWutJMD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12916,
+                "cache_read_input_tokens": 11804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12916
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EKwBKiUm1nmF8TGd8uKtoE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "24194745-579e-4dd0-baf3-e5a8cdf6801a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XYC6ZXMXfoXJrVEtWutJMD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12916,
+                "cache_read_input_tokens": 11804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12916
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T15:35:04.678Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01EKwBKiUm1nmF8TGd8uKtoE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "784b5037-d0ad-41a4-a6c8-4561cc6724cf",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XiAA6FdQRJWJcTTSASoBNi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "nvidia-smi --query-gpu=name,memory.total,memory.used,driver_version --format=csv,noheader",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "1eb4f1fe-29a9-4b6d-90d9-ed1b8beb6650",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019c5SYc3TN5xh7sPhFAEc82",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1348,
+                "cache_read_input_tokens": 24720,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1348
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qo5r71xFnbwR8smG4xuzxg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cat /home/sonny/crosscoder-bct/mvp_experiment.py",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "07e1af78-7ea4-409d-871c-246f2f4e3510",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019c5SYc3TN5xh7sPhFAEc82",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1348,
+                "cache_read_input_tokens": 24720,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1348
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0168nSQk9d35CXf2zp5rhL7s",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cat /home/sonny/crosscoder-bct/mvp_a003v2_bias_injection.py",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "8fc00590-ff52-4979-817c-dfb5bc1e406b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019c5SYc3TN5xh7sPhFAEc82",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1348,
+                "cache_read_input_tokens": 24720,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1348
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T15:35:16.402Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XiAA6FdQRJWJcTTSASoBNi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NVIDIA GeForce RTX 5090, 32607 MiB, 0 MiB, 570.211.01\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "a2298a05-54cb-49e5-8087-9a76a86f390c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NVIDIA GeForce RTX 5090, 32607 MiB, 0 MiB, 570.211.01\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"NVIDIA GeForce RTX 5090, 32607 MiB, 0 MiB, 570.211.01\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.11}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T15:35:17.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qo5r71xFnbwR8smG4xuzxg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMVP-A: Crosscoder-Guided Rank-1 Weight Surgery\\\\n\\\\n方向：Donor=pythia-70m-step143000(强) → Target=pythia-70m-step1000(弱)\\\\n目标：通过 crosscoder 识别 donor-exclusive features，rank-1 手术使 target 获得 donor 的部分能力\\\\n\\\\nGates:\\\\n  1. Crosscoder 收敛（reconstruction loss 稳定下降）\\\\n  2. 识别 ≥1 个 donor-exclusive feature（ratio > 3.0）\\\\n  3. Rank-1 手术后 feature 激活向 donor 方向移动 ≥50%\\\\n  4. 全局 perplexity 不恶化 >5%\\\\n  5. Donor-advantage tokens 上 target loss 下降 ≥10%\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\nimport json\\\\nimport time\\\\n\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\n\\\\nfrom transformer_lens import HookedTransformer\\\\nfrom datasets import load_dataset\\\\n\\\\nDEVICE = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\nLAYER = 4\\\\nD_MODEL = 512\\\\nN_FEATURES = 4 * D_MODEL  # 2048\\\\nL1_LAMBDA = 1e-3\\\\nN_EPOCHS = 20\\\\nBATCH_SIZE = 512\\\\nLR = 1e-3\\\\nSEQ_LEN = 128\\\\nN_TRAIN = 1500\\\\nN_VAL = 500\\\\nEXCLUSIVITY_RATIO = 3.0\\\\nMIN_ACT = 0.01\\\\nSEED = 42\\\\nDONOR_ADVANTAGE_THRESHOLD = 1.0  # nats\\\\n\\\\ntorch.manual_seed(SEED)\\\\nnp.random.seed(SEED)\\\\n\\\\nprint(f\\\\\\\"Device: {DEVICE}\\\\\\\")\\\\nprint(f\\\\\\\"Config: layer={LAYER}, d_model={D_MODEL}, n_features={N_FEATURES}\\\\\\\")\\\\nprint(f\\\\\\\"Direction: Donor=step143000(strong) -> Target=step1000(weak)\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== Step 1: 加载模型 =====\\\\nprint(\\\\\\\"\\\\\\\\n[Step 1] Loading models...\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\ncache_dir = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\n\\\\ndonor_model = HookedTransformer.from_pretrained(\\\\n    \\\\\\\"EleutherAI/pythia-70m\\\\\\\",\\\\n    cache_dir=cache_dir\\\\n).to(DEVICE)\\\\ndonor_model.eval()\\\\nprint(\\\\\\\"  Donor (step143000, strong) loaded\\\\\\\")\\\\n\\\\ntarget_model = HookedTransformer.from_pretrained(\\\\n    \\\\\\\"EleutherAI/pythia-70m\\\\\\\",\\\\n    checkpoint_value=1000,\\\\n    cache_dir=cache_dir\\\\n).to(DEVICE)\\\\ntarget_model.eval()\\\\nprint(\\\\\\\"  Target (step1000, weak) loaded\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== Step 2: 准备数据 =====\\\\nprint(\\\\\\\"\\\\\\\\n[Step 2] Loading dataset...\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\ntry:\\\\n    dataset = load_dataset(\\\\n        \\\\\\\"monology/pile-uncopyrighted\\\\\\\",\\\\n        split=\\\\\\\"train\\\\\\\",\\\\n        streaming=True,\\\\n        trust_remote_code=True,\\\\n        cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\"\\\\n    )\\\\n    texts = []\\\\n    for item in dataset:\\\\n        text = item.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if len(text) > 50:\\\\n            texts.append(text[:512])\\\\n        if len(texts) >= 2000:\\\\n            break\\\\nexcept Exception as e:\\\\n    print(f\\\\\\\"  Pile failed ({e}), falling back to wikitext...\\\\\\\")\\\\n    dataset = load_dataset(\\\\n        \\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-103-v1\\\\\\\",\\\\n        split=\\\\\\\"train\\\\\\\",\\\\n        cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\"\\\\n    )\\\\n    texts = [t for t in dataset[\\\\\\\"text\\\\\\\"] if len(t) > 50][:2000]\\\\n    texts = [t[:512] for t in texts]\\\\n\\\\ntrain_texts = texts[:N_TRAIN]\\\\nval_texts = texts[N_TRAIN:N_TRAIN + N_VAL]\\\\nprint(f\\\\\\\"  Train: {len(train_texts)}, Val: {len(val_texts)}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== Step 3: 收集激活 =====\\\\ndef collect_activations(model, texts, batch_size=4):\\\\n    all_acts = []\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        for i in range(0, len(texts), batch_size):\\\\n            batch = texts[i:i+batch_size]\\\\n            tokens_list = []\\\\n            for t in batch:\\\\n                toks = model.to_tokens(t)[:, :SEQ_LEN]\\\\n                if toks.shape[1] < SEQ_LEN:\\\\n                    pad = torch.zeros(1, SEQ_LEN - toks.shape[1], dtype=toks.dtype, device=DEVICE)\\\\n                    toks = torch.cat([toks, pad], dim=1)\\\\n                tokens_list.append(toks)\\\\n            tokens = torch.cat(tokens_list, dim=0)\\\\n            _, cache = model.run_with_cache(\\\\n                tokens,\\\\n                names_filter=f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\",\\\\n                return_type=None\\\\n            )\\\\n            acts = cache[f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\"]\\\\n            acts = acts.reshape(-1, D_MODEL)\\\\n            all_acts.append(acts.cpu())\\\\n            if (i // batch_size) % 100 == 0:\\\\n                print(f\\\\\\\"    batch {i//batch_size}/{len(texts)//batch_size}\\\\\\\")\\\\n                sys.stdout.flush()\\\\n    return torch.cat(all_acts, dim=0)\\\\n\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n[Step 3] Collecting activations...\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\nprint(\\\\\\\"  Don\\\\n\\\\n... [截断: 输出过长，省略 13752 字符] ...\\\\n\\\\n    da_loss_pre = 0\\\\n    da_loss_post = 0\\\\n    da_loss_donor = 0\\\\n    da_improvement = 0\\\\n    gate5a_pass = False\\\\n    gate5b_pass = True\\\\n    nda_worsening = 0\\\\n\\\\nprint(f\\\\\\\"  Gate 5: {'PASS' if gate5_pass else 'FAIL'}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== 最终报告 =====\\\\noverall_pass = gate1_pass and gate2_pass and gate3_pass and gate4_pass and gate5_pass\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\nprint(\\\\\\\"MVP FINAL REPORT\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nprint(f\\\\\\\"Experiment: mvp-A-001\\\\\\\")\\\\nprint(f\\\\\\\"Donor:  EleutherAI/pythia-70m step143000 (strong)\\\\\\\")\\\\nprint(f\\\\\\\"Target: EleutherAI/pythia-70m step1000 (weak)\\\\\\\")\\\\nprint(f\\\\\\\"Layer:  {LAYER}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 1] Crosscoder Training:\\\\\\\")\\\\nprint(f\\\\\\\"    recon_loss: {loss_history[0]:.6f} -> {loss_history[-1]:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"    L0: {l0_history[-1]:.1f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate1_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 2] Donor-Exclusive Features:\\\\\\\")\\\\nprint(f\\\\\\\"    Found: {len(exclusive_indices)} features\\\\\\\")\\\\nfor rank, feat_idx in enumerate(top10_features[:10]):\\\\n    fi = feat_idx.item()\\\\n    print(f\\\\\\\"    {rank+1:2d}. feat[{fi:4d}] ratio={ratio[fi]:.2f} donor={mean_act_donor[fi]:.6f} target={mean_act_target[fi]:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate2_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 3] Activation Movement (feature k={k}):\\\\\\\")\\\\nprint(f\\\\\\\"    s_t={s_t:.6f}, s_d_norm={s_d_norm:.6f}, after={mean_act_after_k:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"    Movement ratio: {move_ratio:.4f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate3_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 4] Perplexity:\\\\\\\")\\\\nprint(f\\\\\\\"    Before: {ppl_before:.2f}, After: {ppl_after:.2f}, Ratio: {ppl_ratio:.4f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate4_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 5] Behavioral Improvement:\\\\\\\")\\\\nprint(f\\\\\\\"    Donor-advantage tokens: {n_donor_advantage}/{n_total_tokens}\\\\\\\")\\\\nif n_donor_advantage > 0:\\\\n    print(f\\\\\\\"    DA loss: donor={da_loss_donor:.4f}, pre={da_loss_pre:.4f}, post={da_loss_post:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    DA improvement: {da_improvement*100:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"    Non-DA worsening: {nda_worsening*100:.2f}%\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate5_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Overall] MVP: {'PASS' if overall_pass else 'FAIL'}\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nsys.stdout.flush()\\\\n\\\\nresults = {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mvp-A-001\\\\\\\",\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"donor=step143000(strong) -> target=step1000(weak)\\\\\\\",\\\\n    \\\\\\\"gate1_pass\\\\\\\": bool(gate1_pass),\\\\n    \\\\\\\"gate2_pass\\\\\\\": bool(gate2_pass),\\\\n    \\\\\\\"gate3_pass\\\\\\\": bool(gate3_pass),\\\\n    \\\\\\\"gate4_pass\\\\\\\": bool(gate4_pass),\\\\n    \\\\\\\"gate5_pass\\\\\\\": bool(gate5_pass),\\\\n    \\\\\\\"overall_pass\\\\\\\": bool(overall_pass),\\\\n    \\\\\\\"crosscoder_final_recon_loss\\\\\\\": loss_history[-1],\\\\n    \\\\\\\"crosscoder_final_l0\\\\\\\": l0_history[-1],\\\\n    \\\\\\\"loss_history\\\\\\\": loss_history,\\\\n    \\\\\\\"l0_history\\\\\\\": l0_history,\\\\n    \\\\\\\"n_exclusive_features\\\\\\\": len(exclusive_indices),\\\\n    \\\\\\\"top10_features\\\\\\\": [\\\\n        {\\\\n            \\\\\\\"rank\\\\\\\": r + 1,\\\\n            \\\\\\\"feature_idx\\\\\\\": top10_features[r].item(),\\\\n            \\\\\\\"ratio\\\\\\\": ratio[top10_features[r]].item(),\\\\n            \\\\\\\"donor_act\\\\\\\": mean_act_donor[top10_features[r]].item(),\\\\n            \\\\\\\"target_act\\\\\\\": mean_act_target[top10_features[r]].item()\\\\n        }\\\\n        for r in range(min(10, len(top10_features)))\\\\n    ],\\\\n    \\\\\\\"ratio_histogram\\\\\\\": ratio_histogram,\\\\n    \\\\\\\"surgery_feature_k\\\\\\\": k,\\\\n    \\\\\\\"s_t\\\\\\\": s_t,\\\\n    \\\\\\\"s_d_norm\\\\\\\": s_d_norm,\\\\n    \\\\\\\"mean_act_after_k\\\\\\\": mean_act_after_k,\\\\n    \\\\\\\"movement_ratio\\\\\\\": move_ratio,\\\\n    \\\\\\\"ppl_before\\\\\\\": ppl_before,\\\\n    \\\\\\\"ppl_after\\\\\\\": ppl_after,\\\\n    \\\\\\\"ppl_ratio\\\\\\\": ppl_ratio,\\\\n    \\\\\\\"n_donor_advantage_tokens\\\\\\\": n_donor_advantage,\\\\n    \\\\\\\"n_total_tokens\\\\\\\": n_total_tokens,\\\\n    \\\\\\\"gate5_details\\\\\\\": {\\\\n        \\\\\\\"da_loss_donor\\\\\\\": da_loss_donor if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"da_loss_pre\\\\\\\": da_loss_pre if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"da_loss_post\\\\\\\": da_loss_post if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"da_improvement\\\\\\\": da_improvement if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"nda_worsening\\\\\\\": nda_worsening if n_donor_advantage > 0 else None,\\\\n    }\\\\n}\\\\n\\\\nwith open(\\\\\\\"/home/sonny/crosscoder-bct/results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\nResults saved to /home/sonny/crosscoder-bct/results.json\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "3c61a57e-5fb0-4b09-a5f6-1a5f3cd77f29",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMVP-A: Crosscoder-Guided Rank-1 Weight Surgery\\\\n\\\\n方向：Donor=pythia-70m-step143000(强) → Target=pythia-70m-step1000(弱)\\\\n目标：通过 crosscoder 识别 donor-exclusive features，rank-1 手术使 target 获得 donor 的部分能力\\\\n\\\\nGates:\\\\n  1. Crosscoder 收敛（reconstruction loss 稳定下降）\\\\n  2. 识别 ≥1 个 donor-exclusive feature（ratio > 3.0）\\\\n  3. Rank-1 手术后 feature 激活向 donor 方向移动 ≥50%\\\\n  4. 全局 perplexity 不恶化 >5%\\\\n  5. Donor-advantage tokens 上 target loss 下降 ≥10%\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\nimport json\\\\nimport time\\\\n\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\n\\\\nfrom transformer_lens import HookedTransformer\\\\nfrom datasets import load_dataset\\\\n\\\\nDEVICE = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\nLAYER = 4\\\\nD_MODEL = 512\\\\nN_FEATURES = 4 * D_MODEL  # 2048\\\\nL1_LAMBDA = 1e-3\\\\nN_EPOCHS = 20\\\\nBATCH_SIZE = 512\\\\nLR = 1e-3\\\\nSEQ_LEN = 128\\\\nN_TRAIN = 1500\\\\nN_VAL = 500\\\\nEXCLUSIVITY_RATIO = 3.0\\\\nMIN_ACT = 0.01\\\\nSEED = 42\\\\nDONOR_ADVANTAGE_THRESHOLD = 1.0  # nats\\\\n\\\\ntorch.manual_seed(SEED)\\\\nnp.random.seed(SEED)\\\\n\\\\nprint(f\\\\\\\"Device: {DEVICE}\\\\\\\")\\\\nprint(f\\\\\\\"Config: layer={LAYER}, d_model={D_MODEL}, n_features={N_FEATURES}\\\\\\\")\\\\nprint(f\\\\\\\"Direction: Donor=step143000(strong) -> Target=step1000(weak)\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== Step 1: 加载模型 =====\\\\nprint(\\\\\\\"\\\\\\\\n[Step 1] Loading models...\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\ncache_dir = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\n\\\\ndonor_model = HookedTransformer.from_pretrained(\\\\n    \\\\\\\"EleutherAI/pythia-70m\\\\\\\",\\\\n    cache_dir=cache_dir\\\\n).to(DEVICE)\\\\ndonor_model.eval()\\\\nprint(\\\\\\\"  Donor (step143000, strong) loaded\\\\\\\")\\\\n\\\\ntarget_model = HookedTransformer.from_pretrained(\\\\n    \\\\\\\"EleutherAI/pythia-70m\\\\\\\",\\\\n    checkpoint_value=1000,\\\\n    cache_dir=cache_dir\\\\n).to(DEVICE)\\\\ntarget_model.eval()\\\\nprint(\\\\\\\"  Target (step1000, weak) loaded\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== Step 2: 准备数据 =====\\\\nprint(\\\\\\\"\\\\\\\\n[Step 2] Loading dataset...\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\ntry:\\\\n    dataset = load_dataset(\\\\n        \\\\\\\"monology/pile-uncopyrighted\\\\\\\",\\\\n        split=\\\\\\\"train\\\\\\\",\\\\n        streaming=True,\\\\n        trust_remote_code=True,\\\\n        cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\"\\\\n    )\\\\n    texts = []\\\\n    for item in dataset:\\\\n        text = item.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if len(text) > 50:\\\\n            texts.append(text[:512])\\\\n        if len(texts) >= 2000:\\\\n            break\\\\nexcept Exception as e:\\\\n    print(f\\\\\\\"  Pile failed ({e}), falling back to wikitext...\\\\\\\")\\\\n    dataset = load_dataset(\\\\n        \\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-103-v1\\\\\\\",\\\\n        split=\\\\\\\"train\\\\\\\",\\\\n        cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\"\\\\n    )\\\\n    texts = [t for t in dataset[\\\\\\\"text\\\\\\\"] if len(t) > 50][:2000]\\\\n    texts = [t[:512] for t in texts]\\\\n\\\\ntrain_texts = texts[:N_TRAIN]\\\\nval_texts = texts[N_TRAIN:N_TRAIN + N_VAL]\\\\nprint(f\\\\\\\"  Train: {len(train_texts)}, Val: {len(val_texts)}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== Step 3: 收集激活 =====\\\\ndef collect_activations(model, texts, batch_size=4):\\\\n    all_acts = []\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        for i in range(0, len(texts), batch_size):\\\\n            batch = texts[i:i+batch_size]\\\\n            tokens_list = []\\\\n            for t in batch:\\\\n                toks = model.to_tokens(t)[:, :SEQ_LEN]\\\\n                if toks.shape[1] < SEQ_LEN:\\\\n                    pad = torch.zeros(1, SEQ_LEN - toks.shape[1], dtype=toks.dtype, device=DEVICE)\\\\n                    toks = torch.cat([toks, pad], dim=1)\\\\n                tokens_list.append(toks)\\\\n            tokens = torch.cat(tokens_list, dim=0)\\\\n            _, cache = model.run_with_cache(\\\\n                tokens,\\\\n                names_filter=f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\",\\\\n                return_type=None\\\\n            )\\\\n            acts = cache[f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\"]\\\\n            acts = acts.reshape(-1, D_MODEL)\\\\n            all_acts.append(acts.cpu())\\\\n            if (i // batch_size) % 100 == 0:\\\\n                print(f\\\\\\\"    batch {i//batch_size}/{len(texts)//batch_size}\\\\\\\")\\\\n                sys.stdout.flush()\\\\n    return torch.cat(all_acts, dim=0)\\\\n\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n[Step 3] Collecting activations...\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\nprint(\\\\\\\"  Don\\\\n\\\\n... [截断: 输出过长，省略 13752 字符] ...\\\\n\\\\n    da_loss_pre = 0\\\\n    da_loss_post = 0\\\\n    da_loss_donor = 0\\\\n    da_improvement = 0\\\\n    gate5a_pass = False\\\\n    gate5b_pass = True\\\\n    nda_worsening = 0\\\\n\\\\nprint(f\\\\\\\"  Gate 5: {'PASS' if gate5_pass else 'FAIL'}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n\\\\n# ===== 最终报告 =====\\\\noverall_pass = gate1_pass and gate2_pass and gate3_pass and gate4_pass and gate5_pass\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\nprint(\\\\\\\"MVP FINAL REPORT\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nprint(f\\\\\\\"Experiment: mvp-A-001\\\\\\\")\\\\nprint(f\\\\\\\"Donor:  EleutherAI/pythia-70m step143000 (strong)\\\\\\\")\\\\nprint(f\\\\\\\"Target: EleutherAI/pythia-70m step1000 (weak)\\\\\\\")\\\\nprint(f\\\\\\\"Layer:  {LAYER}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 1] Crosscoder Training:\\\\\\\")\\\\nprint(f\\\\\\\"    recon_loss: {loss_history[0]:.6f} -> {loss_history[-1]:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"    L0: {l0_history[-1]:.1f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate1_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 2] Donor-Exclusive Features:\\\\\\\")\\\\nprint(f\\\\\\\"    Found: {len(exclusive_indices)} features\\\\\\\")\\\\nfor rank, feat_idx in enumerate(top10_features[:10]):\\\\n    fi = feat_idx.item()\\\\n    print(f\\\\\\\"    {rank+1:2d}. feat[{fi:4d}] ratio={ratio[fi]:.2f} donor={mean_act_donor[fi]:.6f} target={mean_act_target[fi]:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate2_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 3] Activation Movement (feature k={k}):\\\\\\\")\\\\nprint(f\\\\\\\"    s_t={s_t:.6f}, s_d_norm={s_d_norm:.6f}, after={mean_act_after_k:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"    Movement ratio: {move_ratio:.4f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate3_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 4] Perplexity:\\\\\\\")\\\\nprint(f\\\\\\\"    Before: {ppl_before:.2f}, After: {ppl_after:.2f}, Ratio: {ppl_ratio:.4f}\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate4_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Gate 5] Behavioral Improvement:\\\\\\\")\\\\nprint(f\\\\\\\"    Donor-advantage tokens: {n_donor_advantage}/{n_total_tokens}\\\\\\\")\\\\nif n_donor_advantage > 0:\\\\n    print(f\\\\\\\"    DA loss: donor={da_loss_donor:.4f}, pre={da_loss_pre:.4f}, post={da_loss_post:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    DA improvement: {da_improvement*100:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"    Non-DA worsening: {nda_worsening*100:.2f}%\\\\\\\")\\\\nprint(f\\\\\\\"    Result: {'PASS' if gate5_pass else 'FAIL'}\\\\\\\")\\\\nprint()\\\\nprint(f\\\\\\\"[Overall] MVP: {'PASS' if overall_pass else 'FAIL'}\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nsys.stdout.flush()\\\\n\\\\nresults = {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mvp-A-001\\\\\\\",\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"donor=step143000(strong) -> target=step1000(weak)\\\\\\\",\\\\n    \\\\\\\"gate1_pass\\\\\\\": bool(gate1_pass),\\\\n    \\\\\\\"gate2_pass\\\\\\\": bool(gate2_pass),\\\\n    \\\\\\\"gate3_pass\\\\\\\": bool(gate3_pass),\\\\n    \\\\\\\"gate4_pass\\\\\\\": bool(gate4_pass),\\\\n    \\\\\\\"gate5_pass\\\\\\\": bool(gate5_pass),\\\\n    \\\\\\\"overall_pass\\\\\\\": bool(overall_pass),\\\\n    \\\\\\\"crosscoder_final_recon_loss\\\\\\\": loss_history[-1],\\\\n    \\\\\\\"crosscoder_final_l0\\\\\\\": l0_history[-1],\\\\n    \\\\\\\"loss_history\\\\\\\": loss_history,\\\\n    \\\\\\\"l0_history\\\\\\\": l0_history,\\\\n    \\\\\\\"n_exclusive_features\\\\\\\": len(exclusive_indices),\\\\n    \\\\\\\"top10_features\\\\\\\": [\\\\n        {\\\\n            \\\\\\\"rank\\\\\\\": r + 1,\\\\n            \\\\\\\"feature_idx\\\\\\\": top10_features[r].item(),\\\\n            \\\\\\\"ratio\\\\\\\": ratio[top10_features[r]].item(),\\\\n            \\\\\\\"donor_act\\\\\\\": mean_act_donor[top10_features[r]].item(),\\\\n            \\\\\\\"target_act\\\\\\\": mean_act_target[top10_features[r]].item()\\\\n        }\\\\n        for r in range(min(10, len(top10_features)))\\\\n    ],\\\\n    \\\\\\\"ratio_histogram\\\\\\\": ratio_histogram,\\\\n    \\\\\\\"surgery_feature_k\\\\\\\": k,\\\\n    \\\\\\\"s_t\\\\\\\": s_t,\\\\n    \\\\\\\"s_d_norm\\\\\\\": s_d_norm,\\\\n    \\\\\\\"mean_act_after_k\\\\\\\": mean_act_after_k,\\\\n    \\\\\\\"movement_ratio\\\\\\\": move_ratio,\\\\n    \\\\\\\"ppl_before\\\\\\\": ppl_before,\\\\n    \\\\\\\"ppl_after\\\\\\\": ppl_after,\\\\n    \\\\\\\"ppl_ratio\\\\\\\": ppl_ratio,\\\\n    \\\\\\\"n_donor_advantage_tokens\\\\\\\": n_donor_advantage,\\\\n    \\\\\\\"n_total_tokens\\\\\\\": n_total_tokens,\\\\n    \\\\\\\"gate5_details\\\\\\\": {\\\\n        \\\\\\\"da_loss_donor\\\\\\\": da_loss_donor if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"da_loss_pre\\\\\\\": da_loss_pre if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"da_loss_post\\\\\\\": da_loss_post if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"da_improvement\\\\\\\": da_improvement if n_donor_advantage > 0 else None,\\\\n        \\\\\\\"nda_worsening\\\\\\\": nda_worsening if n_donor_advantage > 0 else None,\\\\n    }\\\\n}\\\\n\\\\nwith open(\\\\\\\"/home/sonny/crosscoder-bct/results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\nResults saved to /home/sonny/crosscoder-bct/results.json\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nMVP-A: Crosscoder-Guided Rank-1 Weight Surgery\\n\\n方向：Donor=pythia-70m-step143000(强) → Target=pythia-70m-step1000(弱)\\n目标：通过 crosscoder 识别 donor-exclusive features，rank-1 手术使 target 获得 donor 的部分能力\\n\\nGates:\\n  1. Crosscoder 收敛（reconstruction loss 稳定下降）\\n  2. 识别 ≥1 个 donor-exclusive feature（ratio > 3.0）\\n  3. Rank-1 手术后 feature 激活向 donor 方向移动 ≥50%\\n  4. 全局 perplexity 不恶化 >5%\\n  5. Donor-advantage tokens 上 target loss 下降 ≥10%\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport torch\\nimport torch.nn as nn\\nimport numpy as np\\nimport json\\nimport time\\n\\nos.environ[\\\"HF_HOME\\\"] = \\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\"\\n\\nfrom transformer_lens import HookedTransformer\\nfrom datasets import load_dataset\\n\\nDEVICE = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\nLAYER = 4\\nD_MODEL = 512\\nN_FEATURES = 4 * D_MODEL  # 2048\\nL1_LAMBDA = 1e-3\\nN_EPOCHS = 20\\nBATCH_SIZE = 512\\nLR = 1e-3\\nSEQ_LEN = 128\\nN_TRAIN = 1500\\nN_VAL = 500\\nEXCLUSIVITY_RATIO = 3.0\\nMIN_ACT = 0.01\\nSEED = 42\\nDONOR_ADVANTAGE_THRESHOLD = 1.0  # nats\\n\\ntorch.manual_seed(SEED)\\nnp.random.seed(SEED)\\n\\nprint(f\\\"Device: {DEVICE}\\\")\\nprint(f\\\"Config: layer={LAYER}, d_model={D_MODEL}, n_features={N_FEATURES}\\\")\\nprint(f\\\"Direction: Donor=step143000(strong) -> Target=step1000(weak)\\\")\\nsys.stdout.flush()\\n\\n\\n# ===== Step 1: 加载模型 =====\\nprint(\\\"\\\\n[Step 1] Loading models...\\\")\\nsys.stdout.flush()\\n\\ncache_dir = \\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\"\\n\\ndonor_model = HookedTransformer.from_pretrained(\\n    \\\"EleutherAI/pythia-70m\\\",\\n    cache_dir=cache_dir\\n).to(DEVICE)\\ndonor_model.eval()\\nprint(\\\"  Donor (step143000, strong) loaded\\\")\\n\\ntarget_model = HookedTransformer.from_pretrained(\\n    \\\"EleutherAI/pythia-70m\\\",\\n    checkpoint_value=1000,\\n    cache_dir=cache_dir\\n).to(DEVICE)\\ntarget_model.eval()\\nprint(\\\"  Target (step1000, weak) loaded\\\")\\nsys.stdout.flush()\\n\\n\\n# ===== Step 2: 准备数据 =====\\nprint(\\\"\\\\n[Step 2] Loading dataset...\\\")\\nsys.stdout.flush()\\n\\ntry:\\n    dataset = load_dataset(\\n        \\\"monology/pile-uncopyrighted\\\",\\n        split=\\\"train\\\",\\n        streaming=True,\\n        trust_remote_code=True,\\n        cache_dir=\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\"\\n    )\\n    texts = []\\n    for item in dataset:\\n        text = item.get(\\\"text\\\", \\\"\\\")\\n        if len(text) > 50:\\n            texts.append(text[:512])\\n        if len(texts) >= 2000:\\n            break\\nexcept Exception as e:\\n    print(f\\\"  Pile failed ({e}), falling back to wikitext...\\\")\\n    dataset = load_dataset(\\n        \\\"wikitext\\\", \\\"wikitext-103-v1\\\",\\n        split=\\\"train\\\",\\n        cache_dir=\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\"\\n    )\\n    texts = [t for t in dataset[\\\"text\\\"] if len(t) > 50][:2000]\\n    texts = [t[:512] for t in texts]\\n\\ntrain_texts = texts[:N_TRAIN]\\nval_texts = texts[N_TRAIN:N_TRAIN + N_VAL]\\nprint(f\\\"  Train: {len(train_texts)}, Val: {len(val_texts)}\\\")\\nsys.stdout.flush()\\n\\n\\n# ===== Step 3: 收集激活 =====\\ndef collect_activations(model, texts, batch_size=4):\\n    all_acts = []\\n    model.eval()\\n    with torch.no_grad():\\n        for i in range(0, len(texts), batch_size):\\n            batch = texts[i:i+batch_size]\\n            tokens_list = []\\n            for t in batch:\\n                toks = model.to_tokens(t)[:, :SEQ_LEN]\\n                if toks.shape[1] < SEQ_LEN:\\n                    pad = torch.zeros(1, SEQ_LEN - toks.shape[1], dtype=toks.dtype, device=DEVICE)\\n                    toks = torch.cat([toks, pad], dim=1)\\n                tokens_list.append(toks)\\n            tokens = torch.cat(tokens_list, dim=0)\\n            _, cache = model.run_with_cache(\\n                tokens,\\n                names_filter=f\\\"blocks.{LAYER}.hook_resid_post\\\",\\n                return_type=None\\n            )\\n            acts = cache[f\\\"blocks.{LAYER}.hook_resid_post\\\"]\\n            acts = acts.reshape(-1, D_MODEL)\\n            all_acts.append(acts.cpu())\\n            if (i // batch_size) % 100 == 0:\\n                print(f\\\"    batch {i//batch_size}/{len(texts)//batch_size}\\\")\\n                sys.stdout.flush()\\n    return torch.cat(all_acts, dim=0)\\n\\n\\nprint(\\\"\\\\n[Step 3] Collecting activations...\\\")\\nsys.stdout.flush()\\n\\nprint(\\\"  Don\\n\\n... [截断: 输出过长，省略 13752 字符] ...\\n\\n    da_loss_pre = 0\\n    da_loss_post = 0\\n    da_loss_donor = 0\\n    da_improvement = 0\\n    gate5a_pass = False\\n    gate5b_pass = True\\n    nda_worsening = 0\\n\\nprint(f\\\"  Gate 5: {'PASS' if gate5_pass else 'FAIL'}\\\")\\nsys.stdout.flush()\\n\\n\\n# ===== 最终报告 =====\\noverall_pass = gate1_pass and gate2_pass and gate3_pass and gate4_pass and gate5_pass\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*60)\\nprint(\\\"MVP FINAL REPORT\\\")\\nprint(\\\"=\\\"*60)\\nprint(f\\\"Experiment: mvp-A-001\\\")\\nprint(f\\\"Donor:  EleutherAI/pythia-70m step143000 (strong)\\\")\\nprint(f\\\"Target: EleutherAI/pythia-70m step1000 (weak)\\\")\\nprint(f\\\"Layer:  {LAYER}\\\")\\nprint()\\nprint(f\\\"[Gate 1] Crosscoder Training:\\\")\\nprint(f\\\"    recon_loss: {loss_history[0]:.6f} -> {loss_history[-1]:.6f}\\\")\\nprint(f\\\"    L0: {l0_history[-1]:.1f}\\\")\\nprint(f\\\"    Result: {'PASS' if gate1_pass else 'FAIL'}\\\")\\nprint()\\nprint(f\\\"[Gate 2] Donor-Exclusive Features:\\\")\\nprint(f\\\"    Found: {len(exclusive_indices)} features\\\")\\nfor rank, feat_idx in enumerate(top10_features[:10]):\\n    fi = feat_idx.item()\\n    print(f\\\"    {rank+1:2d}. feat[{fi:4d}] ratio={ratio[fi]:.2f} donor={mean_act_donor[fi]:.6f} target={mean_act_target[fi]:.6f}\\\")\\nprint(f\\\"    Result: {'PASS' if gate2_pass else 'FAIL'}\\\")\\nprint()\\nprint(f\\\"[Gate 3] Activation Movement (feature k={k}):\\\")\\nprint(f\\\"    s_t={s_t:.6f}, s_d_norm={s_d_norm:.6f}, after={mean_act_after_k:.6f}\\\")\\nprint(f\\\"    Movement ratio: {move_ratio:.4f}\\\")\\nprint(f\\\"    Result: {'PASS' if gate3_pass else 'FAIL'}\\\")\\nprint()\\nprint(f\\\"[Gate 4] Perplexity:\\\")\\nprint(f\\\"    Before: {ppl_before:.2f}, After: {ppl_after:.2f}, Ratio: {ppl_ratio:.4f}\\\")\\nprint(f\\\"    Result: {'PASS' if gate4_pass else 'FAIL'}\\\")\\nprint()\\nprint(f\\\"[Gate 5] Behavioral Improvement:\\\")\\nprint(f\\\"    Donor-advantage tokens: {n_donor_advantage}/{n_total_tokens}\\\")\\nif n_donor_advantage > 0:\\n    print(f\\\"    DA loss: donor={da_loss_donor:.4f}, pre={da_loss_pre:.4f}, post={da_loss_post:.4f}\\\")\\n    print(f\\\"    DA improvement: {da_improvement*100:.2f}%\\\")\\n    print(f\\\"    Non-DA worsening: {nda_worsening*100:.2f}%\\\")\\nprint(f\\\"    Result: {'PASS' if gate5_pass else 'FAIL'}\\\")\\nprint()\\nprint(f\\\"[Overall] MVP: {'PASS' if overall_pass else 'FAIL'}\\\")\\nprint(\\\"=\\\"*60)\\nsys.stdout.flush()\\n\\nresults = {\\n    \\\"exp_id\\\": \\\"mvp-A-001\\\",\\n    \\\"direction\\\": \\\"donor=step143000(strong) -> target=step1000(weak)\\\",\\n    \\\"gate1_pass\\\": bool(gate1_pass),\\n    \\\"gate2_pass\\\": bool(gate2_pass),\\n    \\\"gate3_pass\\\": bool(gate3_pass),\\n    \\\"gate4_pass\\\": bool(gate4_pass),\\n    \\\"gate5_pass\\\": bool(gate5_pass),\\n    \\\"overall_pass\\\": bool(overall_pass),\\n    \\\"crosscoder_final_recon_loss\\\": loss_history[-1],\\n    \\\"crosscoder_final_l0\\\": l0_history[-1],\\n    \\\"loss_history\\\": loss_history,\\n    \\\"l0_history\\\": l0_history,\\n    \\\"n_exclusive_features\\\": len(exclusive_indices),\\n    \\\"top10_features\\\": [\\n        {\\n            \\\"rank\\\": r + 1,\\n            \\\"feature_idx\\\": top10_features[r].item(),\\n            \\\"ratio\\\": ratio[top10_features[r]].item(),\\n            \\\"donor_act\\\": mean_act_donor[top10_features[r]].item(),\\n            \\\"target_act\\\": mean_act_target[top10_features[r]].item()\\n        }\\n        for r in range(min(10, len(top10_features)))\\n    ],\\n    \\\"ratio_histogram\\\": ratio_histogram,\\n    \\\"surgery_feature_k\\\": k,\\n    \\\"s_t\\\": s_t,\\n    \\\"s_d_norm\\\": s_d_norm,\\n    \\\"mean_act_after_k\\\": mean_act_after_k,\\n    \\\"movement_ratio\\\": move_ratio,\\n    \\\"ppl_before\\\": ppl_before,\\n    \\\"ppl_after\\\": ppl_after,\\n    \\\"ppl_ratio\\\": ppl_ratio,\\n    \\\"n_donor_advantage_tokens\\\": n_donor_advantage,\\n    \\\"n_total_tokens\\\": n_total_tokens,\\n    \\\"gate5_details\\\": {\\n        \\\"da_loss_donor\\\": da_loss_donor if n_donor_advantage > 0 else None,\\n        \\\"da_loss_pre\\\": da_loss_pre if n_donor_advantage > 0 else None,\\n        \\\"da_loss_post\\\": da_loss_post if n_donor_advantage > 0 else None,\\n        \\\"da_improvement\\\": da_improvement if n_donor_advantage > 0 else None,\\n        \\\"nda_worsening\\\": nda_worsening if n_donor_advantage > 0 else None,\\n    }\\n}\\n\\nwith open(\\\"/home/sonny/crosscoder-bct/results.json\\\", \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(\\\"\\\\nResults saved to /home/sonny/crosscoder-bct/results.json\\\")\\nsys.stdout.flush()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T15:35:19.102Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0168nSQk9d35CXf2zp5rhL7s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nmvp-A-003 v2: Residual Stream Bias Injection — corrected feature selection\\\\n\\\\nCorrections:\\\\n- Feature selection uses score=ratio*donor_act (not just ratio)\\\\n- Top-5 high score features tested separately\\\\n- alpha sweep [0.1, 0.5, 1.0, 2.0, 5.0]\\\\n- Gate 1 adds L0 range check\\\\n\\\\nDirection: Donor=step143000(strong) -> Target=step1000(weak)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\n\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\n\\\\nfrom transformer_lens import HookedTransformer\\\\nfrom datasets import load_dataset\\\\n\\\\nDEVICE = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\nLAYER = 4\\\\nD_MODEL = 512\\\\nN_FEATURES = 2048\\\\nL1_LAMBDA = 1e-3\\\\nN_EPOCHS = 20\\\\nBATCH_SIZE = 512\\\\nLR = 1e-3\\\\nSEQ_LEN = 128\\\\nN_TRAIN = 1500\\\\nN_VAL = 500\\\\nSEED = 42\\\\nALPHAS = [0.1, 0.5, 1.0, 2.0, 5.0]\\\\nTOP_K_FEATURES = 5\\\\n\\\\ntorch.manual_seed(SEED)\\\\nnp.random.seed(SEED)\\\\nprint(f\\\\\\\"Device: {DEVICE}\\\\\\\")\\\\nprint(f\\\\\\\"Experiment: mvp-A-003 v2 (Bias Injection, corrected feature selection)\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Models =====\\\\nprint(\\\\\\\"\\\\\\\\n[1] Loading models...\\\\\\\")\\\\nsys.stdout.flush()\\\\ncache_dir = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\ndonor_model = HookedTransformer.from_pretrained(\\\\\\\"EleutherAI/pythia-70m\\\\\\\", cache_dir=cache_dir).to(DEVICE)\\\\ndonor_model.eval()\\\\nprint(\\\\\\\"  Donor (step143000) loaded\\\\\\\")\\\\ntarget_model = HookedTransformer.from_pretrained(\\\\\\\"EleutherAI/pythia-70m\\\\\\\", checkpoint_value=1000, cache_dir=cache_dir).to(DEVICE)\\\\ntarget_model.eval()\\\\nprint(\\\\\\\"  Target (step1000) loaded\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Data =====\\\\nprint(\\\\\\\"\\\\\\\\n[2] Loading data...\\\\\\\")\\\\nsys.stdout.flush()\\\\ntry:\\\\n    dataset = load_dataset(\\\\\\\"monology/pile-uncopyrighted\\\\\\\", split=\\\\\\\"train\\\\\\\", streaming=True, trust_remote_code=True, cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\")\\\\n    texts = []\\\\n    for item in dataset:\\\\n        text = item.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if len(text) > 50:\\\\n            texts.append(text[:512])\\\\n        if len(texts) >= 2000:\\\\n            break\\\\nexcept Exception as e:\\\\n    print(f\\\\\\\"  Pile failed ({e}), fallback to wikitext\\\\\\\")\\\\n    dataset = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-103-v1\\\\\\\", split=\\\\\\\"train\\\\\\\", cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\")\\\\n    texts = [t for t in dataset[\\\\\\\"text\\\\\\\"] if len(t) > 50][:2000]\\\\n    texts = [t[:512] for t in texts]\\\\ntrain_texts = texts[:N_TRAIN]\\\\nval_texts = texts[N_TRAIN:N_TRAIN + N_VAL]\\\\nprint(f\\\\\\\"  Train: {len(train_texts)}, Val: {len(val_texts)}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Activations =====\\\\ndef collect_activations(model, texts, batch_size=4):\\\\n    all_acts = []\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        for i in range(0, len(texts), batch_size):\\\\n            batch = texts[i:i+batch_size]\\\\n            tl = []\\\\n            for t in batch:\\\\n                toks = model.to_tokens(t)[:, :SEQ_LEN]\\\\n                if toks.shape[1] < SEQ_LEN:\\\\n                    toks = torch.cat([toks, torch.zeros(1, SEQ_LEN-toks.shape[1], dtype=toks.dtype, device=DEVICE)], dim=1)\\\\n                tl.append(toks)\\\\n            tokens = torch.cat(tl, dim=0)\\\\n            _, cache = model.run_with_cache(tokens, names_filter=f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\", return_type=None)\\\\n            all_acts.append(cache[f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\"].reshape(-1, D_MODEL).cpu())\\\\n    return torch.cat(all_acts, dim=0)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n[3] Collecting activations...\\\\\\\")\\\\nsys.stdout.flush()\\\\ndonor_train_acts = collect_activations(donor_model, train_texts)\\\\ntarget_train_acts = collect_activations(target_model, train_texts)\\\\ndonor_val_acts = collect_activations(donor_model, val_texts)\\\\ntarget_val_acts = collect_activations(target_model, val_texts)\\\\nprint(f\\\\\\\"  Done. Train={donor_train_acts.shape}, Val={donor_val_acts.shape}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Crosscoder =====\\\\nclass SparseCrosscoder(nn.Module):\\\\n    def __init__(self, d, n_features):\\\\n        super().__init__()\\\\n        self.encoder = nn.Linear(d, n_features, bias=True)\\\\n        self.decoder_donor = nn.Linear(n_features, d, bias=True)\\\\n        self.decoder_target = nn.Linear(n_features, d, bias=True)\\\\n        self.relu = nn.ReLU()\\\\n        nn.init.kaim\\\\n\\\\n... [截断: 输出过长，省略 7007 字符] ...\\\\n\\\\na_after = fp.mean(0)[feat_idx].item()\\\\n        move = (ma_after - feat_s_t) / (feat_s_d - feat_s_t + 1e-8)\\\\n        g3 = move >= 0.5\\\\n\\\\n        # Gate 4\\\\n        ppl_a = compute_ppl(tm, val_texts)\\\\n        ppl_r = ppl_a / ppl_before\\\\n        g4 = ppl_r <= 1.05\\\\n\\\\n        # Gate 5\\\\n        post_losses = compute_per_token_loss(tm, val_texts)\\\\n        if n_da > 0:\\\\n            da_pre_mean = target_pre_losses[da_mask].mean().item()\\\\n            da_post_mean = post_losses[da_mask].mean().item()\\\\n            da_imp = (da_pre_mean - da_post_mean) / (da_pre_mean + 1e-8)\\\\n            nda_pre_mean = target_pre_losses[~da_mask].mean().item()\\\\n            nda_post_mean = post_losses[~da_mask].mean().item()\\\\n            nda_worse = (nda_post_mean - nda_pre_mean) / (nda_pre_mean + 1e-8)\\\\n            g5a = da_imp >= 0.10\\\\n            g5b = nda_worse <= 0.03\\\\n            g5 = g5a and g5b\\\\n        else:\\\\n            da_imp, nda_worse, g5, g5a, g5b = 0, 0, False, False, True\\\\n\\\\n        handle.remove()\\\\n        del tm; torch.cuda.empty_cache()\\\\n\\\\n        res = {\\\\\\\"alpha\\\\\\\": alpha, \\\\\\\"movement\\\\\\\": move, \\\\\\\"ppl_ratio\\\\\\\": ppl_r,\\\\n               \\\\\\\"da_imp\\\\\\\": da_imp, \\\\\\\"nda_worse\\\\\\\": nda_worse,\\\\n               \\\\\\\"g3\\\\\\\": bool(g3), \\\\\\\"g4\\\\\\\": bool(g4), \\\\\\\"g5\\\\\\\": bool(g5), \\\\\\\"all\\\\\\\": bool(g3 and g4 and g5)}\\\\n        feature_alpha_results.append(res)\\\\n        status = \\\\\\\"PASS_ALL\\\\\\\" if res[\\\\\\\"all\\\\\\\"] else (\\\\\\\"G3ok\\\\\\\" if g3 else \\\\\\\"\\\\\\\")\\\\n        print(f\\\\\\\"    a={alpha:.1f}: move={move*100:.1f}% ppl_r={ppl_r:.4f} DA_down={da_imp*100:.1f}% {status}\\\\\\\")\\\\n        sys.stdout.flush()\\\\n\\\\n    all_feature_results.append({\\\\n        \\\\\\\"feature_idx\\\\\\\": feat_idx, \\\\\\\"rank\\\\\\\": feat_rank+1,\\\\n        \\\\\\\"ratio\\\\\\\": feat_ratio, \\\\\\\"donor_act\\\\\\\": feat_s_d, \\\\\\\"target_act\\\\\\\": feat_s_t, \\\\\\\"score\\\\\\\": feat_score,\\\\n        \\\\\\\"alpha_results\\\\\\\": feature_alpha_results,\\\\n        \\\\\\\"best_movement\\\\\\\": max(r[\\\\\\\"movement\\\\\\\"] for r in feature_alpha_results),\\\\n        \\\\\\\"any_g3_pass\\\\\\\": any(r[\\\\\\\"g3\\\\\\\"] for r in feature_alpha_results),\\\\n        \\\\\\\"any_all_pass\\\\\\\": any(r[\\\\\\\"all\\\\\\\"] for r in feature_alpha_results),\\\\n    })\\\\n\\\\n# ===== Summary =====\\\\nany_g3 = any(fr[\\\\\\\"any_g3_pass\\\\\\\"] for fr in all_feature_results)\\\\nany_all = any(fr[\\\\\\\"any_all_pass\\\\\\\"] for fr in all_feature_results)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\nprint(\\\\\\\"MVP-A-003 v2 SUMMARY\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nprint(f\\\\\\\"Gate 1: {'PASS' if gate1_pass else 'FAIL'} (loss={loss_hist[-1]:.6f}, L0={l0_hist[-1]:.1f}, expected FAIL for this exp)\\\\\\\")\\\\nprint(f\\\\\\\"\\\\\\\\nTop-5 features (by score=ratio*donor_act):\\\\\\\")\\\\nprint(f\\\\\\\"{'Rank':>4} {'Feat':>6} {'ratio':>7} {'donor':>8} {'score':>8} {'best_move%':>10} {'G3?':>4}\\\\\\\")\\\\nfor fr in all_feature_results:\\\\n    print(f\\\\\\\"{fr['rank']:>4} {fr['feature_idx']:>6} {fr['ratio']:>7.2f} {fr['donor_act']:>8.4f} {fr['score']:>8.2f} {fr['best_movement']*100:>9.1f}% {'Y' if fr['any_g3_pass'] else 'N':>4}\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nH2 Verdict: {'CONFIRMED -- bias injection on strong features works' if any_g3 else 'NOT CONFIRMED -- bias injection still fails even with strong features'}\\\\\\\")\\\\nprint(f\\\\\\\"Any feature x alpha passes all gates: {'YES' if any_all else 'NO'}\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nsys.stdout.flush()\\\\n\\\\n# Save\\\\nresults = {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mvp-A-003\\\\\\\",\\\\n    \\\\\\\"version\\\\\\\": \\\\\\\"v2_corrected_feature_selection\\\\\\\",\\\\n    \\\\\\\"gate1_pass\\\\\\\": bool(gate1_pass), \\\\\\\"gate1_note\\\\\\\": \\\\\\\"Expected FAIL (L0 too high, this exp tests surgery site)\\\\\\\",\\\\n    \\\\\\\"crosscoder\\\\\\\": {\\\\\\\"L1_LAMBDA\\\\\\\": L1_LAMBDA, \\\\\\\"final_loss\\\\\\\": loss_hist[-1], \\\\\\\"final_l0\\\\\\\": l0_hist[-1]},\\\\n    \\\\\\\"n_da_tokens\\\\\\\": n_da, \\\\\\\"n_total_tokens\\\\\\\": n_total, \\\\\\\"ppl_before\\\\\\\": ppl_before,\\\\n    \\\\\\\"feature_results\\\\\\\": all_feature_results,\\\\n    \\\\\\\"any_gate3_pass\\\\\\\": any_g3, \\\\\\\"any_all_pass\\\\\\\": any_all,\\\\n    \\\\\\\"h2_confirmed\\\\\\\": any_g3,\\\\n    \\\\\\\"ratio_histogram\\\\\\\": ratio_histogram,\\\\n    \\\\\\\"top10_table\\\\\\\": [\\\\n        {\\\\\\\"rank\\\\\\\": r+1, \\\\\\\"feat\\\\\\\": top10[r].item(), \\\\\\\"ratio\\\\\\\": ratio[top10[r]].item(),\\\\n         \\\\\\\"donor_act\\\\\\\": mean_d[top10[r]].item(), \\\\\\\"target_act\\\\\\\": mean_t[top10[r]].item(),\\\\n         \\\\\\\"score\\\\\\\": score[top10[r]].item()}\\\\n        for r in range(min(10, len(top10)))\\\\n    ],\\\\n    \\\\\\\"loss_history\\\\\\\": loss_hist, \\\\\\\"l0_history\\\\\\\": l0_hist,\\\\n}\\\\nwith open(\\\\\\\"/home/sonny/crosscoder-bct/results_a003v2.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\nSaved: /home/sonny/crosscoder-bct/results_a003v2.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61cc91fa-1f0e-488f-bdde-22e57c4adfa4",
+            "uuid": "f30205ec-26f4-47a0-b7c0-6707f5f2612d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nmvp-A-003 v2: Residual Stream Bias Injection — corrected feature selection\\\\n\\\\nCorrections:\\\\n- Feature selection uses score=ratio*donor_act (not just ratio)\\\\n- Top-5 high score features tested separately\\\\n- alpha sweep [0.1, 0.5, 1.0, 2.0, 5.0]\\\\n- Gate 1 adds L0 range check\\\\n\\\\nDirection: Donor=step143000(strong) -> Target=step1000(weak)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\n\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\n\\\\nfrom transformer_lens import HookedTransformer\\\\nfrom datasets import load_dataset\\\\n\\\\nDEVICE = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\nLAYER = 4\\\\nD_MODEL = 512\\\\nN_FEATURES = 2048\\\\nL1_LAMBDA = 1e-3\\\\nN_EPOCHS = 20\\\\nBATCH_SIZE = 512\\\\nLR = 1e-3\\\\nSEQ_LEN = 128\\\\nN_TRAIN = 1500\\\\nN_VAL = 500\\\\nSEED = 42\\\\nALPHAS = [0.1, 0.5, 1.0, 2.0, 5.0]\\\\nTOP_K_FEATURES = 5\\\\n\\\\ntorch.manual_seed(SEED)\\\\nnp.random.seed(SEED)\\\\nprint(f\\\\\\\"Device: {DEVICE}\\\\\\\")\\\\nprint(f\\\\\\\"Experiment: mvp-A-003 v2 (Bias Injection, corrected feature selection)\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Models =====\\\\nprint(\\\\\\\"\\\\\\\\n[1] Loading models...\\\\\\\")\\\\nsys.stdout.flush()\\\\ncache_dir = \\\\\\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\\\\\"\\\\ndonor_model = HookedTransformer.from_pretrained(\\\\\\\"EleutherAI/pythia-70m\\\\\\\", cache_dir=cache_dir).to(DEVICE)\\\\ndonor_model.eval()\\\\nprint(\\\\\\\"  Donor (step143000) loaded\\\\\\\")\\\\ntarget_model = HookedTransformer.from_pretrained(\\\\\\\"EleutherAI/pythia-70m\\\\\\\", checkpoint_value=1000, cache_dir=cache_dir).to(DEVICE)\\\\ntarget_model.eval()\\\\nprint(\\\\\\\"  Target (step1000) loaded\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Data =====\\\\nprint(\\\\\\\"\\\\\\\\n[2] Loading data...\\\\\\\")\\\\nsys.stdout.flush()\\\\ntry:\\\\n    dataset = load_dataset(\\\\\\\"monology/pile-uncopyrighted\\\\\\\", split=\\\\\\\"train\\\\\\\", streaming=True, trust_remote_code=True, cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\")\\\\n    texts = []\\\\n    for item in dataset:\\\\n        text = item.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if len(text) > 50:\\\\n            texts.append(text[:512])\\\\n        if len(texts) >= 2000:\\\\n            break\\\\nexcept Exception as e:\\\\n    print(f\\\\\\\"  Pile failed ({e}), fallback to wikitext\\\\\\\")\\\\n    dataset = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-103-v1\\\\\\\", split=\\\\\\\"train\\\\\\\", cache_dir=\\\\\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\\\\\")\\\\n    texts = [t for t in dataset[\\\\\\\"text\\\\\\\"] if len(t) > 50][:2000]\\\\n    texts = [t[:512] for t in texts]\\\\ntrain_texts = texts[:N_TRAIN]\\\\nval_texts = texts[N_TRAIN:N_TRAIN + N_VAL]\\\\nprint(f\\\\\\\"  Train: {len(train_texts)}, Val: {len(val_texts)}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Activations =====\\\\ndef collect_activations(model, texts, batch_size=4):\\\\n    all_acts = []\\\\n    model.eval()\\\\n    with torch.no_grad():\\\\n        for i in range(0, len(texts), batch_size):\\\\n            batch = texts[i:i+batch_size]\\\\n            tl = []\\\\n            for t in batch:\\\\n                toks = model.to_tokens(t)[:, :SEQ_LEN]\\\\n                if toks.shape[1] < SEQ_LEN:\\\\n                    toks = torch.cat([toks, torch.zeros(1, SEQ_LEN-toks.shape[1], dtype=toks.dtype, device=DEVICE)], dim=1)\\\\n                tl.append(toks)\\\\n            tokens = torch.cat(tl, dim=0)\\\\n            _, cache = model.run_with_cache(tokens, names_filter=f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\", return_type=None)\\\\n            all_acts.append(cache[f\\\\\\\"blocks.{LAYER}.hook_resid_post\\\\\\\"].reshape(-1, D_MODEL).cpu())\\\\n    return torch.cat(all_acts, dim=0)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n[3] Collecting activations...\\\\\\\")\\\\nsys.stdout.flush()\\\\ndonor_train_acts = collect_activations(donor_model, train_texts)\\\\ntarget_train_acts = collect_activations(target_model, train_texts)\\\\ndonor_val_acts = collect_activations(donor_model, val_texts)\\\\ntarget_val_acts = collect_activations(target_model, val_texts)\\\\nprint(f\\\\\\\"  Done. Train={donor_train_acts.shape}, Val={donor_val_acts.shape}\\\\\\\")\\\\nsys.stdout.flush()\\\\n\\\\n# ===== Crosscoder =====\\\\nclass SparseCrosscoder(nn.Module):\\\\n    def __init__(self, d, n_features):\\\\n        super().__init__()\\\\n        self.encoder = nn.Linear(d, n_features, bias=True)\\\\n        self.decoder_donor = nn.Linear(n_features, d, bias=True)\\\\n        self.decoder_target = nn.Linear(n_features, d, bias=True)\\\\n        self.relu = nn.ReLU()\\\\n        nn.init.kaim\\\\n\\\\n... [截断: 输出过长，省略 7007 字符] ...\\\\n\\\\na_after = fp.mean(0)[feat_idx].item()\\\\n        move = (ma_after - feat_s_t) / (feat_s_d - feat_s_t + 1e-8)\\\\n        g3 = move >= 0.5\\\\n\\\\n        # Gate 4\\\\n        ppl_a = compute_ppl(tm, val_texts)\\\\n        ppl_r = ppl_a / ppl_before\\\\n        g4 = ppl_r <= 1.05\\\\n\\\\n        # Gate 5\\\\n        post_losses = compute_per_token_loss(tm, val_texts)\\\\n        if n_da > 0:\\\\n            da_pre_mean = target_pre_losses[da_mask].mean().item()\\\\n            da_post_mean = post_losses[da_mask].mean().item()\\\\n            da_imp = (da_pre_mean - da_post_mean) / (da_pre_mean + 1e-8)\\\\n            nda_pre_mean = target_pre_losses[~da_mask].mean().item()\\\\n            nda_post_mean = post_losses[~da_mask].mean().item()\\\\n            nda_worse = (nda_post_mean - nda_pre_mean) / (nda_pre_mean + 1e-8)\\\\n            g5a = da_imp >= 0.10\\\\n            g5b = nda_worse <= 0.03\\\\n            g5 = g5a and g5b\\\\n        else:\\\\n            da_imp, nda_worse, g5, g5a, g5b = 0, 0, False, False, True\\\\n\\\\n        handle.remove()\\\\n        del tm; torch.cuda.empty_cache()\\\\n\\\\n        res = {\\\\\\\"alpha\\\\\\\": alpha, \\\\\\\"movement\\\\\\\": move, \\\\\\\"ppl_ratio\\\\\\\": ppl_r,\\\\n               \\\\\\\"da_imp\\\\\\\": da_imp, \\\\\\\"nda_worse\\\\\\\": nda_worse,\\\\n               \\\\\\\"g3\\\\\\\": bool(g3), \\\\\\\"g4\\\\\\\": bool(g4), \\\\\\\"g5\\\\\\\": bool(g5), \\\\\\\"all\\\\\\\": bool(g3 and g4 and g5)}\\\\n        feature_alpha_results.append(res)\\\\n        status = \\\\\\\"PASS_ALL\\\\\\\" if res[\\\\\\\"all\\\\\\\"] else (\\\\\\\"G3ok\\\\\\\" if g3 else \\\\\\\"\\\\\\\")\\\\n        print(f\\\\\\\"    a={alpha:.1f}: move={move*100:.1f}% ppl_r={ppl_r:.4f} DA_down={da_imp*100:.1f}% {status}\\\\\\\")\\\\n        sys.stdout.flush()\\\\n\\\\n    all_feature_results.append({\\\\n        \\\\\\\"feature_idx\\\\\\\": feat_idx, \\\\\\\"rank\\\\\\\": feat_rank+1,\\\\n        \\\\\\\"ratio\\\\\\\": feat_ratio, \\\\\\\"donor_act\\\\\\\": feat_s_d, \\\\\\\"target_act\\\\\\\": feat_s_t, \\\\\\\"score\\\\\\\": feat_score,\\\\n        \\\\\\\"alpha_results\\\\\\\": feature_alpha_results,\\\\n        \\\\\\\"best_movement\\\\\\\": max(r[\\\\\\\"movement\\\\\\\"] for r in feature_alpha_results),\\\\n        \\\\\\\"any_g3_pass\\\\\\\": any(r[\\\\\\\"g3\\\\\\\"] for r in feature_alpha_results),\\\\n        \\\\\\\"any_all_pass\\\\\\\": any(r[\\\\\\\"all\\\\\\\"] for r in feature_alpha_results),\\\\n    })\\\\n\\\\n# ===== Summary =====\\\\nany_g3 = any(fr[\\\\\\\"any_g3_pass\\\\\\\"] for fr in all_feature_results)\\\\nany_all = any(fr[\\\\\\\"any_all_pass\\\\\\\"] for fr in all_feature_results)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\nprint(\\\\\\\"MVP-A-003 v2 SUMMARY\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nprint(f\\\\\\\"Gate 1: {'PASS' if gate1_pass else 'FAIL'} (loss={loss_hist[-1]:.6f}, L0={l0_hist[-1]:.1f}, expected FAIL for this exp)\\\\\\\")\\\\nprint(f\\\\\\\"\\\\\\\\nTop-5 features (by score=ratio*donor_act):\\\\\\\")\\\\nprint(f\\\\\\\"{'Rank':>4} {'Feat':>6} {'ratio':>7} {'donor':>8} {'score':>8} {'best_move%':>10} {'G3?':>4}\\\\\\\")\\\\nfor fr in all_feature_results:\\\\n    print(f\\\\\\\"{fr['rank']:>4} {fr['feature_idx']:>6} {fr['ratio']:>7.2f} {fr['donor_act']:>8.4f} {fr['score']:>8.2f} {fr['best_movement']*100:>9.1f}% {'Y' if fr['any_g3_pass'] else 'N':>4}\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nH2 Verdict: {'CONFIRMED -- bias injection on strong features works' if any_g3 else 'NOT CONFIRMED -- bias injection still fails even with strong features'}\\\\\\\")\\\\nprint(f\\\\\\\"Any feature x alpha passes all gates: {'YES' if any_all else 'NO'}\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*60)\\\\nsys.stdout.flush()\\\\n\\\\n# Save\\\\nresults = {\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"mvp-A-003\\\\\\\",\\\\n    \\\\\\\"version\\\\\\\": \\\\\\\"v2_corrected_feature_selection\\\\\\\",\\\\n    \\\\\\\"gate1_pass\\\\\\\": bool(gate1_pass), \\\\\\\"gate1_note\\\\\\\": \\\\\\\"Expected FAIL (L0 too high, this exp tests surgery site)\\\\\\\",\\\\n    \\\\\\\"crosscoder\\\\\\\": {\\\\\\\"L1_LAMBDA\\\\\\\": L1_LAMBDA, \\\\\\\"final_loss\\\\\\\": loss_hist[-1], \\\\\\\"final_l0\\\\\\\": l0_hist[-1]},\\\\n    \\\\\\\"n_da_tokens\\\\\\\": n_da, \\\\\\\"n_total_tokens\\\\\\\": n_total, \\\\\\\"ppl_before\\\\\\\": ppl_before,\\\\n    \\\\\\\"feature_results\\\\\\\": all_feature_results,\\\\n    \\\\\\\"any_gate3_pass\\\\\\\": any_g3, \\\\\\\"any_all_pass\\\\\\\": any_all,\\\\n    \\\\\\\"h2_confirmed\\\\\\\": any_g3,\\\\n    \\\\\\\"ratio_histogram\\\\\\\": ratio_histogram,\\\\n    \\\\\\\"top10_table\\\\\\\": [\\\\n        {\\\\\\\"rank\\\\\\\": r+1, \\\\\\\"feat\\\\\\\": top10[r].item(), \\\\\\\"ratio\\\\\\\": ratio[top10[r]].item(),\\\\n         \\\\\\\"donor_act\\\\\\\": mean_d[top10[r]].item(), \\\\\\\"target_act\\\\\\\": mean_t[top10[r]].item(),\\\\n         \\\\\\\"score\\\\\\\": score[top10[r]].item()}\\\\n        for r in range(min(10, len(top10)))\\\\n    ],\\\\n    \\\\\\\"loss_history\\\\\\\": loss_hist, \\\\\\\"l0_history\\\\\\\": l0_hist,\\\\n}\\\\nwith open(\\\\\\\"/home/sonny/crosscoder-bct/results_a003v2.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"\\\\\\\\nSaved: /home/sonny/crosscoder-bct/results_a003v2.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nmvp-A-003 v2: Residual Stream Bias Injection — corrected feature selection\\n\\nCorrections:\\n- Feature selection uses score=ratio*donor_act (not just ratio)\\n- Top-5 high score features tested separately\\n- alpha sweep [0.1, 0.5, 1.0, 2.0, 5.0]\\n- Gate 1 adds L0 range check\\n\\nDirection: Donor=step143000(strong) -> Target=step1000(weak)\\n\\\"\\\"\\\"\\n\\nimport os, sys, json\\nimport torch\\nimport torch.nn as nn\\nimport numpy as np\\n\\nos.environ[\\\"HF_HOME\\\"] = \\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\"\\n\\nfrom transformer_lens import HookedTransformer\\nfrom datasets import load_dataset\\n\\nDEVICE = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\nLAYER = 4\\nD_MODEL = 512\\nN_FEATURES = 2048\\nL1_LAMBDA = 1e-3\\nN_EPOCHS = 20\\nBATCH_SIZE = 512\\nLR = 1e-3\\nSEQ_LEN = 128\\nN_TRAIN = 1500\\nN_VAL = 500\\nSEED = 42\\nALPHAS = [0.1, 0.5, 1.0, 2.0, 5.0]\\nTOP_K_FEATURES = 5\\n\\ntorch.manual_seed(SEED)\\nnp.random.seed(SEED)\\nprint(f\\\"Device: {DEVICE}\\\")\\nprint(f\\\"Experiment: mvp-A-003 v2 (Bias Injection, corrected feature selection)\\\")\\nsys.stdout.flush()\\n\\n# ===== Models =====\\nprint(\\\"\\\\n[1] Loading models...\\\")\\nsys.stdout.flush()\\ncache_dir = \\\"/home/sonny/ssd2/sonny.fu/.hf_cache\\\"\\ndonor_model = HookedTransformer.from_pretrained(\\\"EleutherAI/pythia-70m\\\", cache_dir=cache_dir).to(DEVICE)\\ndonor_model.eval()\\nprint(\\\"  Donor (step143000) loaded\\\")\\ntarget_model = HookedTransformer.from_pretrained(\\\"EleutherAI/pythia-70m\\\", checkpoint_value=1000, cache_dir=cache_dir).to(DEVICE)\\ntarget_model.eval()\\nprint(\\\"  Target (step1000) loaded\\\")\\nsys.stdout.flush()\\n\\n# ===== Data =====\\nprint(\\\"\\\\n[2] Loading data...\\\")\\nsys.stdout.flush()\\ntry:\\n    dataset = load_dataset(\\\"monology/pile-uncopyrighted\\\", split=\\\"train\\\", streaming=True, trust_remote_code=True, cache_dir=\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\")\\n    texts = []\\n    for item in dataset:\\n        text = item.get(\\\"text\\\", \\\"\\\")\\n        if len(text) > 50:\\n            texts.append(text[:512])\\n        if len(texts) >= 2000:\\n            break\\nexcept Exception as e:\\n    print(f\\\"  Pile failed ({e}), fallback to wikitext\\\")\\n    dataset = load_dataset(\\\"wikitext\\\", \\\"wikitext-103-v1\\\", split=\\\"train\\\", cache_dir=\\\"/home/sonny/ssd2/sonny.fu/pile_cache\\\")\\n    texts = [t for t in dataset[\\\"text\\\"] if len(t) > 50][:2000]\\n    texts = [t[:512] for t in texts]\\ntrain_texts = texts[:N_TRAIN]\\nval_texts = texts[N_TRAIN:N_TRAIN + N_VAL]\\nprint(f\\\"  Train: {len(train_texts)}, Val: {len(val_texts)}\\\")\\nsys.stdout.flush()\\n\\n# ===== Activations =====\\ndef collect_activations(model, texts, batch_size=4):\\n    all_acts = []\\n    model.eval()\\n    with torch.no_grad():\\n        for i in range(0, len(texts), batch_size):\\n            batch = texts[i:i+batch_size]\\n            tl = []\\n            for t in batch:\\n                toks = model.to_tokens(t)[:, :SEQ_LEN]\\n                if toks.shape[1] < SEQ_LEN:\\n                    toks = torch.cat([toks, torch.zeros(1, SEQ_LEN-toks.shape[1], dtype=toks.dtype, device=DEVICE)], dim=1)\\n                tl.append(toks)\\n            tokens = torch.cat(tl, dim=0)\\n            _, cache = model.run_with_cache(tokens, names_filter=f\\\"blocks.{LAYER}.hook_resid_post\\\", return_type=None)\\n            all_acts.append(cache[f\\\"blocks.{LAYER}.hook_resid_post\\\"].reshape(-1, D_MODEL).cpu())\\n    return torch.cat(all_acts, dim=0)\\n\\nprint(\\\"\\\\n[3] Collecting activations...\\\")\\nsys.stdout.flush()\\ndonor_train_acts = collect_activations(donor_model, train_texts)\\ntarget_train_acts = collect_activations(target_model, train_texts)\\ndonor_val_acts = collect_activations(donor_model, val_texts)\\ntarget_val_acts = collect_activations(target_model, val_texts)\\nprint(f\\\"  Done. Train={donor_train_acts.shape}, Val={donor_val_acts.shape}\\\")\\nsys.stdout.flush()\\n\\n# ===== Crosscoder =====\\nclass SparseCrosscoder(nn.Module):\\n    def __init__(self, d, n_features):\\n        super().__init__()\\n        self.encoder = nn.Linear(d, n_features, bias=True)\\n        self.decoder_donor = nn.Linear(n_features, d, bias=True)\\n        self.decoder_target = nn.Linear(n_features, d, bias=True)\\n        self.relu = nn.ReLU()\\n        nn.init.kaim\\n\\n... [截断: 输出过长，省略 7007 字符] ...\\n\\na_after = fp.mean(0)[feat_idx].item()\\n        move = (ma_after - feat_s_t) / (feat_s_d - feat_s_t + 1e-8)\\n        g3 = move >= 0.5\\n\\n        # Gate 4\\n        ppl_a = compute_ppl(tm, val_texts)\\n        ppl_r = ppl_a / ppl_before\\n        g4 = ppl_r <= 1.05\\n\\n        # Gate 5\\n        post_losses = compute_per_token_loss(tm, val_texts)\\n        if n_da > 0:\\n            da_pre_mean = target_pre_losses[da_mask].mean().item()\\n            da_post_mean = post_losses[da_mask].mean().item()\\n            da_imp = (da_pre_mean - da_post_mean) / (da_pre_mean + 1e-8)\\n            nda_pre_mean = target_pre_losses[~da_mask].mean().item()\\n            nda_post_mean = post_losses[~da_mask].mean().item()\\n            nda_worse = (nda_post_mean - nda_pre_mean) / (nda_pre_mean + 1e-8)\\n            g5a = da_imp >= 0.10\\n            g5b = nda_worse <= 0.03\\n            g5 = g5a and g5b\\n        else:\\n            da_imp, nda_worse, g5, g5a, g5b = 0, 0, False, False, True\\n\\n        handle.remove()\\n        del tm; torch.cuda.empty_cache()\\n\\n        res = {\\\"alpha\\\": alpha, \\\"movement\\\": move, \\\"ppl_ratio\\\": ppl_r,\\n               \\\"da_imp\\\": da_imp, \\\"nda_worse\\\": nda_worse,\\n               \\\"g3\\\": bool(g3), \\\"g4\\\": bool(g4), \\\"g5\\\": bool(g5), \\\"all\\\": bool(g3 and g4 and g5)}\\n        feature_alpha_results.append(res)\\n        status = \\\"PASS_ALL\\\" if res[\\\"all\\\"] else (\\\"G3ok\\\" if g3 else \\\"\\\")\\n        print(f\\\"    a={alpha:.1f}: move={move*100:.1f}% ppl_r={ppl_r:.4f} DA_down={da_imp*100:.1f}% {status}\\\")\\n        sys.stdout.flush()\\n\\n    all_feature_results.append({\\n        \\\"feature_idx\\\": feat_idx, \\\"rank\\\": feat_rank+1,\\n        \\\"ratio\\\": feat_ratio, \\\"donor_act\\\": feat_s_d, \\\"target_act\\\": feat_s_t, \\\"score\\\": feat_score,\\n        \\\"alpha_results\\\": feature_alpha_results,\\n        \\\"best_movement\\\": max(r[\\\"movement\\\"] for r in feature_alpha_results),\\n        \\\"any_g3_pass\\\": any(r[\\\"g3\\\"] for r in feature_alpha_results),\\n        \\\"any_all_pass\\\": any(r[\\\"all\\\"] for r in feature_alpha_results),\\n    })\\n\\n# ===== Summary =====\\nany_g3 = any(fr[\\\"any_g3_pass\\\"] for fr in all_feature_results)\\nany_all = any(fr[\\\"any_all_pass\\\"] for fr in all_feature_results)\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*60)\\nprint(\\\"MVP-A-003 v2 SUMMARY\\\")\\nprint(\\\"=\\\"*60)\\nprint(f\\\"Gate 1: {'PASS' if gate1_pass else 'FAIL'} (loss={loss_hist[-1]:.6f}, L0={l0_hist[-1]:.1f}, expected FAIL for this exp)\\\")\\nprint(f\\\"\\\\nTop-5 features (by score=ratio*donor_act):\\\")\\nprint(f\\\"{'Rank':>4} {'Feat':>6} {'ratio':>7} {'donor':>8} {'score':>8} {'best_move%':>10} {'G3?':>4}\\\")\\nfor fr in all_feature_results:\\n    print(f\\\"{fr['rank']:>4} {fr['feature_idx']:>6} {fr['ratio']:>7.2f} {fr['donor_act']:>8.4f} {fr['score']:>8.2f} {fr['best_movement']*100:>9.1f}% {'Y' if fr['any_g3_pass'] else 'N':>4}\\\")\\n\\nprint(f\\\"\\\\nH2 Verdict: {'CONFIRMED -- bias injection on strong features works' if any_g3 else 'NOT CONFIRMED -- bias injection still fails even with strong features'}\\\")\\nprint(f\\\"Any feature x alpha passes all gates: {'YES' if any_all else 'NO'}\\\")\\nprint(\\\"=\\\"*60)\\nsys.stdout.flush()\\n\\n# Save\\nresults = {\\n    \\\"exp_id\\\": \\\"mvp-A-003\\\",\\n    \\\"version\\\": \\\"v2_corrected_feature_selection\\\",\\n    \\\"gate1_pass\\\": bool(gate1_pass), \\\"gate1_note\\\": \\\"Expected FAIL (L0 too high, this exp tests surgery site)\\\",\\n    \\\"crosscoder\\\": {\\\"L1_LAMBDA\\\": L1_LAMBDA, \\\"final_loss\\\": loss_hist[-1], \\\"final_l0\\\": l0_hist[-1]},\\n    \\\"n_da_tokens\\\": n_da, \\\"n_total_tokens\\\": n_total, \\\"ppl_before\\\": ppl_before,\\n    \\\"feature_results\\\": all_feature_results,\\n    \\\"any_gate3_pass\\\": any_g3, \\\"any_all_pass\\\": any_all,\\n    \\\"h2_confirmed\\\": any_g3,\\n    \\\"ratio_histogram\\\": ratio_histogram,\\n    \\\"top10_table\\\": [\\n        {\\\"rank\\\": r+1, \\\"feat\\\": top10[r].item(), \\\"ratio\\\": ratio[top10[r]].item(),\\n         \\\"donor_act\\\": mean_d[top10[r]].item(), \\\"target_act\\\": mean_t[top10[r]].item(),\\n         \\\"score\\\": score[top10[r]].item()}\\n        for r in range(min(10, len(top10)))\\n    ],\\n    \\\"loss_history\\\": loss_hist, \\\"l0_history\\\": l0_hist,\\n}\\nwith open(\\\"/home/sonny/crosscoder-bct/results_a003v2.json\\\", \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(\\\"\\\\nSaved: /home/sonny/crosscoder-bct/results_a003v2.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        }
+      ]
+    }
+  ]
+}

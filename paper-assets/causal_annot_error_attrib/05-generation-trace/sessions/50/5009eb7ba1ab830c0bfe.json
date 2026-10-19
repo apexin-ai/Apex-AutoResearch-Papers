@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "5009eb7ba1ab830c0bfe",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "audit tex number consistency 20260521T181547 retry1",
+  "task_key": "worker_audit_tex_number_consistency_20260521T181547_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_tex_number_consistency_20260521T181547_retry1.log",
+    "occurrence": 1,
+    "bytes": 799286,
+    "sha256": "30048f0c8e4af4f1326b84eed6c0f1a7982e030bd57e927c6c16fbba91cd370c"
+  },
+  "statistics": {
+    "messages": 375,
+    "user_turns": 0,
+    "tool_calls": 153,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 153,
+      "tool_result": 153,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 375,
+      "chunks": [
+        {
+          "path": "5009eb7ba1ab830c0bfe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5009eb7ba1ab830c0bfe-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5009eb7ba1ab830c0bfe-part-0003.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-tex-number-consistency-20260521t181547-retry1.md"
+}

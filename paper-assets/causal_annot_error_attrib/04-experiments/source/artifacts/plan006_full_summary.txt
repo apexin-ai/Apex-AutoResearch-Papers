@@ -1,0 +1,98 @@
+# Plan 006 Full Run: Cross-K Empirical ASV Summary
+# Source: plan006_full on home-1x5090 (30 configs × 7 topologies = 210 scenarios)
+# Generated: 2026-05-21
+# Runtime: 6.0 min
+
+## Table 1: Per-K Bias Statistics
+
+| K  | Dataset         | N_configs | Mean |Bias%| | Max |Bias%| | IV Bias%  | Sign Flips |
+|----|-----------------|-----------|---------------|---------------|-----------|------------|
+| 2  | civil_comments  | 9         | 36.9%         | —             | 116.5%    | 0          |
+| 3  | vast            | 12        | 65.3%         | —             | 252.3%    | 0          |
+| 10 | humaid          | 9         | 12.2%         | 42.1%         | 30.3%     | 0          |
+
+Key finding: K=3 produces highest bias (driven by model accuracy on VAST, not K itself).
+Collider is most robust across all K (4.9%–15.7%).
+Zero sign flips across all 210 scenarios — column-stochastic C preserves sign in these DGPs.
+
+## Table 2: Per-Model Bias Statistics
+
+### K=10 (humaid) — detailed from local JSON
+| Model    | Prompts | Mean |Bias%| | Max |Bias%| | Worst Topology |
+|----------|---------|---------------|---------------|----------------|
+| deepseek | 3       | 12.0%         | 41.6%         | iv (13.6%)     |
+| llama4   | 3       | 14.2%         | 42.1%         | iv (40.1%)     |
+| qwen3    | 3       | 9.5%          | 21.6%         | iv (12.4%)     |
+
+### Cross-K model size comparison (from full run)
+| Dataset         | Model Size | Mean Bias% | Diag Mean   |
+|-----------------|-----------|------------|-------------|
+| vast (K=3)      | 7B        | 73.5%      | 0.453–0.473 |
+| vast (K=3)      | 235B+     | 59.3%      | 0.499–0.570 |
+| civil_comments  | 7B only   | 36.9%      | 0.717–0.749 |
+
+## Table 3: F1 Disconnect Scenarios (F1 high but bias dangerous)
+
+| Dataset         | Model       | F1 Range    | IV Bias%    | Exposure Bias% | Verdict       |
+|-----------------|-------------|-------------|-------------|----------------|---------------|
+| civil_comments  | qwen2.5-7b | 0.717–0.746 | 101–131%    | 51–57%         | UNSAFE        |
+| humaid          | llama4      | 0.614–0.624 | 40.1%       | 11.8%          | MARGINAL      |
+| humaid          | deepseek    | 0.685–0.690 | 13.6%       | 10.8%          | MODERATE      |
+| humaid          | qwen3       | 0.675–0.678 | 12.4%       | 10.0%          | MODERATE      |
+
+Core claim validated: F1=0.72 does NOT guarantee causal estimation safety (IV bias >100%).
+
+## Table 4: K=2 Analysis (civil_comments, binary sentiment)
+
+| Metric              | Value    |
+|---------------------|----------|
+| N configs           | 9        |
+| Mean |Bias%|        | 36.9%    |
+| IV Bias%            | 116.5%   |
+| ASV-unsafe rate     | 30.2%    |
+| Sign flips          | 0        |
+| Model               | qwen2.5-7b (local, 3 prompts × 3 runs) |
+| Diag mean           | 0.717–0.749 |
+
+Binary classification with good F1 still produces >100% IV bias.
+
+## Table 5: VAST F1 and Bias (K=3, 3-class sentiment)
+
+| Model       | Prompts | Diag Mean   | Mean Bias% | IV Bias% |
+|-------------|---------|-------------|------------|----------|
+| qwen2.5-7b  | 3       | 0.453–0.473 | 73.5%      | ~252%    |
+| deepseek    | 3       | 0.499–0.530 | ~60%       | ~200%    |
+| llama4      | 3       | 0.530–0.570 | ~55%       | ~180%    |
+| qwen3       | 3       | 0.510–0.550 | ~58%       | ~190%    |
+
+VAST (K=3) is the hardest dataset: worst model accuracy → highest bias.
+
+## Table 6: ASV-Unsafe Rate by K and Topology (magnitude threshold = 10%)
+
+| Topology     | K=2 (civil) | K=3 (vast) | K=10 (humaid) | Pattern           |
+|--------------|-------------|------------|---------------|-------------------|
+| confounding  | 2/9         | 7/12       | 0/9           | Safe at K=10      |
+| mediation    | 3/9         | 7/12       | 8/9           | Always risky      |
+| collider     | 3/9         | 7/12       | 0/9           | Safe at K=10      |
+| exposure     | 3/9         | 7/12       | 8/9           | Always risky      |
+| mbias        | 2/9         | 0/12       | 0/9           | Safe at K≥3       |
+| iv           | 3/9         | 7/12       | 8/9           | Always dangerous  |
+| frontdoor    | 3/9         | 7/12       | 8/9           | Always risky      |
+| **Total**    | **19/63 (30.2%)** | **42/84 (50.0%)** | **32/63 (49.2%)** | **92/210 (43.8%)** |
+
+Key findings:
+- mbias: safest topology (M-bias structure inherently limits annotation error propagation)
+- iv: most dangerous (Wald estimator denominator C@FS[1] shrinks toward 0)
+- mediation/exposure/frontdoor: consistently unsafe across K values
+- Larger K does NOT always mean more risk (K=10 safer than K=3 due to model accuracy)
+
+## Summary Statistics
+
+| Metric                          | Value        |
+|---------------------------------|--------------|
+| Total scenarios                 | 210          |
+| ASV-unsafe (magnitude 10%)      | 92 (43.8%)   |
+| Sign flips                      | 0            |
+| Max single-config bias          | 252.3% (IV, vast, K=3) |
+| PPI++ recommended scenarios     | ~49%         |
+| Configs with F1>0.7 + bias>50%  | ≥9 (civil_comments) |

@@ -1,0 +1,53 @@
+{
+  "exp_id": "plan007_correction_guidance",
+  "project": "causal_annot_error_attrib",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:48:04.784Z",
+    "updated_at": "2026-05-20T20:48:18.867Z",
+    "hypothesis": "不同校正方法（DSL, PPI, MLA, MC-SIMEX, naive plug-in）在不同 {topology × error structure} 组合下的 bias reduction 效果存在系统性差异：(1) naive plug-in 和 MLA 对 T 系数无效（Frisch-Waugh 定理：C⁻¹ 变换不改变列空间），仅对 dummy 系数有效；(2) PPI++ 利用 gold-standard labels 应表现最优；(3) 不同拓扑对校正方法的响应取决于 estimand 是否涉及 misclassified variable 的 dummy 系数。",
+    "parent": "plan001_dag_taxonomy",
+    "server": "home-1x5090",
+    "gpu": "cuda:0",
+    "account": "sonny",
+    "reproduce": {
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T18:49:37.530Z",
+      "command": "bash -c \"cd /home/sonny/causal_annot_error_attrib && mkdir -p artifacts/plan007 && python3 -u plan_007_correction_guidance.py --N_sim 1000 2>&1 | tee artifacts/plan007/plan007_run.log\"",
+      "finished_at": "2026-05-20T18:50:00.965Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "server": "home-1x5090",
+      "gpu": "N/A (CPU only)",
+      "command": "python3 -u plan_007_correction_guidance.py --n-sim 1000",
+      "data_path": "/home/sonny/causal_annot_error_attrib/ (synthetic DGP, reuses plim functions from plan_001/002)",
+      "data_count": "7 topos × 6 C structures × 5 methods × 1000 sims = 210k combinations",
+      "model_name": "N/A (MC simulation)",
+      "seed": "SHA-256 deterministic per (topo, C_type, method, sim_idx)",
+      "pid": 500789,
+      "log_path": "/home/sonny/causal_annot_error_attrib/artifacts/plan007/plan007_full_run.log",
+      "checkpoint_source": "plan001_dag_taxonomy (plim functions reused)",
+      "eval_data": "synthetic: 7 DAG topologies × 6 confusion matrix structures",
+      "note": "retry: first submission used --N_sim (wrong format), corrected to --n-sim"
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/causal_annot_error_attrib/plan007_correction_guidance.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T18:50:03.194187+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T20:48:18.940702+00:00",
+  "trigger": "update_registry"
+}

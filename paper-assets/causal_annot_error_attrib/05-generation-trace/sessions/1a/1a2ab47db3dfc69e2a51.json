@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a2ab47db3dfc69e2a51",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan003 fix streaming parallel",
+  "task_key": "worker_code_plan003-fix-streaming-parallel_20260520T135707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-fix-streaming-parallel_20260520T135707_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "5a3520151390ae71756adfb82c382563c49a1fb2b9874cd16411e73e0db36dd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **修复 annotate.py**：`annotate_batch` 新增 `output_path` 参数，每条 sample 完成后立即 append 到 JSONL（streaming write）。`run_single` 传入 `output_path`。原有的 resume 机制（`load_existing_results`）自动兼容——进程重启时读取已有 JSONL 行数跳过已完成的 sample。\n2. **`--model` 参数已内置**，无需修改。\n3. **杀掉 4 个旧进程**（2 组 `--all` 互相冲突，且无 streaming write）。\n4. **3 路并行重启**：llama4(438497), qwen3(438843), deepseek(439116)，各写独立 JSONL，不冲突。\n5. **streaming write 已验证生效**：llama4 已写 12 行，qwen3 5 行，deepseek 4 行。\n\n每个进程跑 9 个组合（3 datasets × 3 prompts），1500 samples/组合，预计 ~0.5s/sample × 13500 ≈ 1.9 小时/进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-fix-streaming-parallel.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d2c912bee40d52c7268",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "analysis plan009 pathological matrices",
+  "task_key": "worker_analysis_plan009_pathological_matrices_20260520T185124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan009_pathological_matrices_20260520T185124_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "4a06b8f4dbbcc0e814192fa53d77cf53d31e8f1c48e58f1889c527367715fb40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/plan009/plan009_analysis.md` 并注册。\n\n核心结论：\n\n**7 个拓扑分为 3 个风险层级：**\n- **低风险** (mbias)：即使最病态的 C，bias < 0.04\n- **中风险** (confounding/mediation/collider/frontdoor)：bias 有界（0.1–0.31），catastrophic fraction = 0%，矩阵特征可预测 bias（R² = 0.70–0.77）\n- **高风险** (exposure/IV)：无论 C 质量如何都灾难性——exposure 的 |bias| ≈ τ（结构性识别失败），IV 的 Wald 估计器爆炸（near-perm ε=0.01 时 cat=61–73%，rank-deficient 时 bias 达百万级）\n\n**关于 4 个假设：**\n1. 病态 C 产生可预测的灾难性偏差 → **部分成立**，风险等级由拓扑决定而非 C 特征\n2. 矩阵特征是强预测因子 → **拓扑依赖**，5/7 拓扑 R² > 0.6，exposure/IV 失败\n3. 存在安全/灾难阈值 → **不成立**，分界由拓扑决定，不存在 C 特征上的阈值\n4. 特征可作为诊断指标 → **部分成立**，condition_number 是最一致的预测因子（5/5 拓扑显著），但需要拓扑特定的诊断标准"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan009-pathological-matrices.md"
+}

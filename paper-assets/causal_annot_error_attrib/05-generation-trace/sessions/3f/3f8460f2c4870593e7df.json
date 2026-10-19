@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f8460f2c4870593e7df",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "exp empirical annotations",
+  "task_key": "worker_exp_empirical____annotations_20260524T054948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_empirical____annotations_20260524T054948_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "8ed44d7be4855a1dbb397a007d5edf7e3f58e72b6c32b074f753cc8c2209663d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All gaps filled. Here's the final summary:\n\n**Completed**: 36/36 `.jsonl` files + 36/36 `.npz` confusion matrices across all 3 datasets × 4 models × 3 prompts.\n\n**What was done this session:**\n\n| Task | Status |\n|------|--------|\n| qwen2.5-7b × humaid × zero-shot | 1500 samples, 56.4% acc, 99.8% coverage |\n| qwen2.5-7b × humaid × few-shot-3 | 1500 samples, 64.0% acc, 99.6% coverage |\n| qwen2.5-7b × humaid × few-shot-5 | 1500 samples, 64.5% acc, 99.8% coverage |\n| VAST qwen2.5-7b zero-shot `.npz` | Regenerated (48.0% acc, 99.9% coverage) |\n\n**Previously reported issues resolved:**\n- qwen3 HumAID 402 errors — false alarm, data was clean (402 was a sample index, not HTTP error)\n- All datasets (HumAID K=10, VAST K=3, CivilComments K=2) now have complete annotations for all 4 models (deepseek, llama4, qwen3, qwen2.5-7b) × 3 prompt strategies."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-empirical-annotations.md"
+}

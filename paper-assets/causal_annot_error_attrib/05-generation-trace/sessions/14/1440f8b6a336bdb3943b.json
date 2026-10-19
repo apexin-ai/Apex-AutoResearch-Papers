@@ -1,0 +1,768 @@
+{
+  "schema_version": "1.0",
+  "id": "1440f8b6a336bdb3943b",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "code q3 ppi gold ratio",
+  "task_key": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_q3_ppi_gold_ratio_20260523T044639.jsonl",
+    "occurrence": 1,
+    "bytes": 27548,
+    "sha256": "720023a7b828802e6aaa27354ed5721366c91d6bc4b87207c0b958bd903dbed6"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "assistant": 2,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T04:46:48.886957+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T04:49:29.257043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T04:49:29.257757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tEmpirical Correction Validation — HumAID K=10\n4\t\n5\tLoads 8 valid HumAID confusion matrices from asv_empirical_results.json,\n6\tgenerates synthetic MC data using plan_006's K=10 DGP for each of 7 topologies,\n7\truns all 5 correction methods (PPI++, naive plug-in, DSL, MC-SIMEX, MLA),\n8\tand reports empirical bias reduction per topology × method.\n9\t\n10\tInput:  artifacts/plan006/asv_empirical_results.json\n11\tOutput: artifacts/ppi_empirical_validation.json\n12\t\n13\tDependencies: numpy, annot_sensitivity (local package)\n14\t\"\"\"\n15\t\n16\timport sys\n17\timport os\n18\timport json\n19\timport time\n20\timport numpy as np\n21\t\n22\tPROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n23\tsys.path.insert(0, PROJECT_ROOT)\n24\t\n25\tfrom annot_sensitivity.correction import (\n26\t    correct_ppi, correct_naive_plugin, correct_dsl, correct_mcsimex, correct_mla\n27\t)\n28\tfrom annot_sensitivity.utils import misclassify, make_dummies, ols, ols_with_se\n29\t\n30\t# ── Plan 006 DGP Infrastructure (K-general) ────────────────────────\n31\t\n32\t_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7, 0.9, -0.4, 0.6]\n33\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n34\t_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n35\t_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n36\t_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2, 0.15, -0.1, 0.05]\n37\t_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n38\t_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2, 0.15, -0.1, 0.05]\n39\t\n40\t\n41\tdef softmax_rows(logits):\n42\t    e = np.exp(logits - logits.max(axis=1, keepdims=True))\n43\t    return e / e.sum(axis=1, keepdims=True)\n44\t\n45\t\n46\tdef sample_cat(probs, rng):\n47\t    cum = np.cumsum(probs, axis=1)\n48\t    u = rng.uniform(size=probs.shape[0])[:, None]\n49\t    return (u >= cum[:, :-1]).sum(axis=1).astype(int)\n50\t\n51\t\n52\tdef make_p_A(K):\n53\t    if K == 2:\n54\t        return np.array([0.55, 0.45])\n55\t    elif K == 3:\n56\t  \n…[truncated 21905 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T04:49:29.258088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/correction.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T04:49:29.258435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Correction methods and recommendation engine for annotation-error bias.\n2\t\n3\tFive correction methods:\n4\t  - naive_plugin: C^{-1} correction of dummy indicators\n5\t  - dsl: EM-based joint estimation of regression params and C\n6\t  - ppi: PPI++ combining gold-standard and full-sample estimates\n7\t  - mcsimex: MC-SIMEX extrapolation to lambda=-1\n8\t  - mla: Matrix-based label adjustment via D*_full @ C^{-1}\n9\t\n10\tKey finding (FWL theorem): naive_plugin and mla correct dummy coefficients\n11\tbut NOT the treatment coefficient in regressions with a separate treatment T.\n12\t\"\"\"\n13\t\n14\timport numpy as np\n15\tfrom .utils import ols, ols_with_se, make_dummies, make_full_dummies, misclassify\n16\t\n17\tMETHODS = [\"naive_plugin\", \"dsl\", \"ppi\", \"mcsimex\", \"mla\"]\n18\t\n19\t_EM_MAX_ITER = 100\n20\t_EM_TOL = 1e-6\n21\t_SIMEX_LAMBDAS = [0.5, 1.0, 1.5, 2.0]\n22\t_SIMEX_B = 50\n23\t\n24\t\n25\tdef correct_naive_plugin(X_other, Y, Astar, C, tau_idx=1):\n26\t    \"\"\"Correct using C^{-1} applied per-observation to dummy indicators.\n27\t\n28\t    Args:\n29\t        X_other: (N, p) non-A regressors (includes intercept)\n30\t        Y: (N,) outcome\n31\t        Astar: (N,) misclassified labels\n32\t        C: (K, K) confusion matrix\n33\t        tau_idx: index of target coefficient in full design\n34\t\n35\t    Returns:\n36\t        (tau_hat, se, success) tuple\n37\t    \"\"\"\n38\t    cond = np.linalg.cond(C)\n39\t    if cond > 1e12:\n40\t        return np.nan, np.nan, False\n41\t    try:\n42\t        C_inv = np.linalg.inv(C)\n43\t    except np.linalg.LinAlgError:\n44\t        return np.nan, np.nan, False\n45\t    D_corrected = C_inv[:, Astar].T[:, 1:]\n46\t    X = np.column_stack([X_other, D_corrected])\n47\t    try:\n48\t        beta, se = ols_with_se(X, Y)\n49\t        return float(beta[tau_idx]), float(se[tau_idx]), True\n50\t    except Exception:\n51\t        return np.nan, np.nan, False\n52\t\n53\t\n54\tdef correct_dsl(X_other, Y, Astar, A_gold, gold_mask, tau_idx=1):\n55\t    \"\"\"EM-based joint estimation of regression params and C.\n56\t\n57\t    Args:\n58\t        X_ot\n…[truncated 1531 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T04:49:29.258782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def correct_ppi",
+              "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/correction.py",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T04:49:29.259050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "138:def correct_ppi(X_other, Y, Astar, A_gold, gold_mask, tau_idx=1, rng=None):"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T04:49:29.259349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/correction.py",
+              "offset": "138",
+              "limit": "90"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T04:49:29.259658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "138\tdef correct_ppi(X_other, Y, Astar, A_gold, gold_mask, tau_idx=1, rng=None):\n139\t    \"\"\"PPI++ with bootstrap lambda tuning.\n140\t\n141\t    Args:\n142\t        X_other: (N, p) non-A regressors (includes intercept)\n143\t        Y: (N,) outcome\n144\t        Astar: (N,) misclassified labels\n145\t        A_gold: (N,) gold-standard labels\n146\t        gold_mask: (N,) boolean mask for gold-standard observations\n147\t        tau_idx: index of target coefficient\n148\t        rng: numpy random Generator\n149\t\n150\t    Returns:\n151\t        (tau_hat, se, success) tuple\n152\t    \"\"\"\n153\t    if rng is None:\n154\t        rng = np.random.default_rng()\n155\t    K = int(max(Astar.max(), A_gold[gold_mask].max())) + 1\n156\t    gold_idx = np.where(gold_mask)[0]\n157\t    n_gold = len(gold_idx)\n158\t\n159\t    D_g_true = make_dummies(A_gold[gold_mask], K)\n160\t    X_g_true = np.column_stack([X_other[gold_mask], D_g_true])\n161\t    D_g_star = make_dummies(Astar[gold_mask], K)\n162\t    X_g_star = np.column_stack([X_other[gold_mask], D_g_star])\n163\t    D_all_star = make_dummies(Astar, K)\n164\t    X_all_star = np.column_stack([X_other, D_all_star])\n165\t\n166\t    try:\n167\t        b_g_true = ols(X_g_true, Y[gold_mask])\n168\t        b_g_star = ols(X_g_star, Y[gold_mask])\n169\t        b_all_star = ols(X_all_star, Y)\n170\t    except Exception:\n171\t        return np.nan, np.nan, False\n172\t\n173\t    n_boot = 50\n174\t    tau_true_boot = np.zeros(n_boot)\n175\t    tau_rect_boot = np.zeros(n_boot)\n176\t    for b in range(n_boot):\n177\t        idx = rng.choice(gold_idx, size=n_gold, replace=True)\n178\t        try:\n179\t            bt = ols(\n180\t                np.column_stack([X_other[idx], make_dummies(A_gold[idx], K)]),\n181\t                Y[idx],\n182\t            )\n183\t            bs = ols(\n184\t                np.column_stack([X_other[idx], make_dummies(Astar[idx], K)]),\n185\t                Y[idx],\n186\t            )\n187\t            tau_true_boot[b] = bt[tau_idx]\n188\t            tau_rect_boot[b] = bs[tau_idx] - bt[tau_idx]\n189\t       \n…[truncated 1449 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T04:49:29.260021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def (misclassify|make_dummies)",
+              "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/annot_sensitivity/utils.py",
+              "output_mode": "content",
+              "-n": "True",
+              "-A": "15"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T04:49:29.260318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "27:def misclassify(A, C, rng):\n28-    \"\"\"Apply misclassification: A*_i ~ Cat(C[:, A_i]).\n29-\n30-    Args:\n31-        A: (N,) true labels in {0, ..., K-1}\n32-        C: (K, K) column-stochastic confusion matrix\n33-        rng: numpy random Generator\n34-\n35-    Returns:\n36-        (N,) misclassified labels\n37-    \"\"\"\n38-    K = C.shape[0]\n39-    probs = C[:, A]\n40-    cum = np.cumsum(probs, axis=0)\n41-    u = rng.uniform(size=len(A))\n42-    result = np.zeros(len(A), dtype=int)\n--\n48:def make_dummies(A, K=None):\n49-    \"\"\"Create K-1 dummy variables (reference category 0).\n50-\n51-    Args:\n52-        A: (N,) categorical labels in {0, ..., K-1}\n53-        K: number of categories (inferred from A if None)\n54-\n55-    Returns:\n56-        (N, K-1) dummy matrix\n57-    \"\"\"\n58-    if K is None:\n59-        K = int(A.max()) + 1\n60-    N = len(A)\n61-    D = np.zeros((N, K - 1))\n62-    for j in range(K - 1):\n63-        D[:, j] = (A == j + 1).astype(float)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T04:49:29.260719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_gold_ratio_sensitivity.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"\nPPI++ Gold Label Ratio Sensitivity — K=3 synthetic confusion matrices.\n\nFor each (topology, gold_fraction, confusion matrix, rep):\n  1. Generate synthetic data via the K=3 DGP from compute_ppi_empirical.py.\n  2. Misclassify A -> A* using C.\n  3. Run PPI++ correction at the given gold fraction.\n  4. Accumulate (tau_hat - tau_true) for RMSE aggregation.\n\nOutputs RMSE and RMSE reduction (vs naive plug-in / naive Wald) per\n(topology x gold_fraction) to artifacts/ppi_gold_ratio_results.json.\n\"\"\"\n\nimport json\nimport os\nimport sys\nimport time\n\nimport numpy as np\n\nPROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, PROJECT_ROOT)\n\nfrom annot_sensitivity.correction import correct_ppi  # noqa: E402\nfrom annot_sensitivity.utils import make_dummies, misclassify  # noqa: E402\n\nfrom compute_ppi_empirical import (  # noqa: E402\n    GEN_FNS,\n    compute_tau_true,\n    make_dgp_params,\n    ppi_wald,\n    wald_est,\n)\n\n\nK = 3\nN_SAMPLES = 10_000\nN_REPS = 100\nGOLD_FRACTIONS = [0.05, 0.10, 0.20, 0.50, 1.00]\nTOPOLOGIES = ['exposure', 'confounding', 'iv', 'mediation']\nN_CONFUSIONS = 5\nMIN_DIAG = 0.6\nSEED = 20260523\n\n\ndef sample_confusion_matrix(K, rng, min_diag=MIN_DIAG, max_tries=200):\n    \"\"\"Dirichlet-sampled column-stochastic confusion matrix with diag >= min_diag.\n\n    Each column j is drawn from Dirichlet(alpha) where alpha gives the diagonal\n    entry a larger weight, then rejection-sampled to enforce C[j, j] >= min_diag.\n    \"\"\"\n    for _ in range(max_tries):\n        C = np.zeros((K, K))\n        ok = True\n        for j in range(K):\n            alpha = np.ones(K)\n            alpha[j] = 6.0\n            col = rng.dirichlet(alpha)\n            if col[j] < min_diag:\n                ok = False\n                break\n            C[:, j] = col\n        if ok:\n            return C\n    raise RuntimeError(f\"Could not sample CM with diag>={min_diag} after {max_tries} tries\")\n\n\ndef naive_estimate(topology, first_var, Y, Astar, K):\n    if topology == 'iv':\n        return wald_est(first_var, Y, Astar, k=1)\n    if topology == 'exposure':\n        N = len(Y)\n        D_star = make_dummies(Astar, K)\n        X = np.column_stack([np.ones(N), D_star])\n        try:\n            beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n            return float(beta[1])\n        except Exception:\n            return np.nan\n    # confounding, mediation\n    T = first_var\n    N = len(Y)\n    D_star = make_dummies(Astar, K)\n    X = np.column_stack([np.ones(N), T, D_star])\n    try:\n        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n        return float(beta[1])\n    except Exception:\n        return np.nan\n\n\ndef ppi_estimate(topology, first_var, Y, A, Astar, gold_mask, rng, K):\n    N = len(Y)\n    if topology == 'iv':\n        tau, ok = ppi_wald(first_var, Y, A, Astar, gold_mask, k=1, rng=rng)\n        return (float(tau), True) if ok and np.isfinite(tau) else (np.nan, False)\n    if topology == 'exposure':\n        X_other = np.ones((N, 1))\n        tau_idx = 1\n    else:  # confounding, mediation\n        T = first_var\n        X_other = np.column_stack([np.ones(N), T])\n        tau_idx = 1\n    tau, _, ok = correct_ppi(X_other, Y, Astar, A, gold_mask, tau_idx=tau_idx, rng=rng)\n    if ok and np.isfinite(tau):\n        return float(tau), True\n    return np.nan, False\n\n\ndef run_one_rep(topology, params, C, tau_true, gold_frac, rng):\n    first_var, Y, A = GEN_FNS[topology](K, N_SAMPLES, params[topology], rng)\n    Astar = misclassify(A, C, rng)\n\n    N = len(Y)\n    n_gold = min(N, max(int(round(N * gold_frac)), 50))\n    gold_idx = rng.choice(N, size=n_gold, replace=False)\n    gold_mask = np.zeros(N, dtype=bool)\n    gold_mask[gold_idx] = True\n\n    naive = naive_estimate(topology, first_var, Y, Astar, K)\n    ppi, ppi_ok = ppi_estimate(topology, first_var, Y, A, Astar, gold_mask, rng, K)\n\n    naive_err = naive - tau_true if np.isfinite(naive) else np.nan\n    ppi_err = ppi - tau_true if ppi_ok else np.nan\n    return naive_err, ppi_err\n\n\ndef main():\n    t_start = time.time()\n    print(\"=\" * 72)\n    print(\"PPI++ Gold Label Ratio Sensitivity\")\n    print(\"=\" * 72)\n    print(f\"K={K}, N={N_SAMPLES}, n_reps={N_REPS}, n_cms={N_CONFUSIONS}\")\n    print(f\"gold_fractions={GOLD_FRACTIONS}\")\n    print(f\"topologies={TOPOLOGIES}\")\n\n    rng_master = np.random.default_rng(SEED)\n    params = make_dgp_params(K)\n\n    print(\"\\nComputing tau_true for each topology (N=500k)...\")\n    tau_true = {}\n    for topo in TOPOLOGIES:\n        tau_true[topo] = float(compute_tau_true(K, topo, params))\n        print(f\"  {topo:12s}: tau_true = {tau_true[topo]:+.6f}\")\n\n    print(\"\\nSampling confusion matrices...\")\n    confusion_matrices = []\n    for ci in range(N_CONFUSIONS):\n        C = sample_confusion_matrix(K, rng_master, MIN_DIAG)\n        confusion_matrices.append(C)\n        diag = np.diag(C)\n        print(f\"  CM[{ci}] diag = [{diag[0]:.3f}, {diag[1]:.3f}, {diag[2]:.3f}]\")\n\n    results = {topo: {} for topo in TOPOLOGIES}\n\n    total_conditions = len(TOPOLOGIES) * len(GOLD_FRACTIONS)\n    cond_idx = 0\n    for topo in TOPOLOGIES:\n        print(f\"\\n--- Topology: {topo} (tau_true={tau_true[topo]:+.4f}) ---\")\n        for gf in GOLD_FRACTIONS:\n            cond_idx += 1\n            naive_errs = []\n            ppi_errs = []\n            t_cond = time.time()\n            for ci, C in enumerate(confusion_matrices):\n                for rep in range(N_REPS):\n                    seed_rep = int(rng_master.integers(0, 2**31))\n                    rng_rep = np.random.default_rng(seed_rep)\n                    naive_err, ppi_err = run_one_rep(\n                        topo, params, C, tau_true[topo], gf, rng_rep\n                    )\n                    if np.isfinite(naive_err):\n                        naive_errs.append(naive_err)\n                    if np.isfinite(ppi_err):\n                        ppi_errs.append(ppi_err)\n\n            naive_arr = np.asarray(naive_errs)\n            ppi_arr = np.asarray(ppi_errs)\n            naive_rmse = float(np.sqrt(np.mean(naive_arr ** 2))) if naive_arr.size else None\n            ppi_rmse = float(np.sqrt(np.mean(ppi_arr ** 2))) if ppi_arr.size else None\n            if naive_rmse is not None and ppi_rmse is not None and naive_rmse > 1e-12:\n                reduction = 1.0 - ppi_rmse / naive_rmse\n            else:\n                reduction = None\n\n            results[topo][f\"{gf:.2f}\"] = {\n                'naive_rmse': naive_rmse,\n                'ppi_rmse': ppi_rmse,\n                'rmse_reduction': float(reduction) if reduction is not None else None,\n                'naive_mean_bias': float(naive_arr.mean()) if naive_arr.size else None,\n                'ppi_mean_bias': float(ppi_arr.mean()) if ppi_arr.size else None,\n                'n_naive_valid': int(naive_arr.size),\n                'n_ppi_valid': int(ppi_arr.size),\n            }\n\n            elapsed = time.time() - t_cond\n            red_str = f\"{100 * reduction:+6.1f}%\" if reduction is not None else \"  N/A \"\n            print(f\"  gold={gf:0.2f}  naive_rmse={naive_rmse:.5f}  \"\n                  f\"ppi_rmse={ppi_rmse:.5f}  reduction={red_str}  \"\n                  f\"[{cond_idx}/{total_conditions}, {elapsed:.1f}s]\")\n\n    output = {\n        'meta': {\n            'K': K,\n            'N': N_SAMPLES,\n            'n_reps': N_REPS,\n            'n_confusion_matrices': N_CONFUSIONS,\n            'min_diag': MIN_DIAG,\n            'gold_fractions': GOLD_FRACTIONS,\n            'topologies': TOPOLOGIES,\n            'seed': SEED,\n            'aggregation': 'RMSE pooled across confusion matrices and reps',\n        },\n        'tau_true': tau_true,\n        'confusion_matrices': [C.tolist() for C in confusion_matrices],\n        'results': results,\n    }\n\n    out_path = os.path.join(PROJECT_ROOT, 'artifacts', 'ppi_gold_ratio_results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    print(\"\\n\" + \"=\" * 72)\n    print(\"SUMMARY (RMSE reduction vs naive, %)\")\n    print(\"=\" * 72)\n    header = f\"{'topology':14s}\" + \"\".join(\n        [f\"  gold={gf:0.2f}\" for gf in GOLD_FRACTIONS]\n    )\n    print(header)\n    print(\"-\" * len(header))\n    for topo in TOPOLOGIES:\n        row = f\"{topo:14s}\"\n        for gf in GOLD_FRACTIONS:\n            r = results[topo][f\"{gf:.2f}\"]['rmse_reduction']\n            row += f\"  {100*r:+7.1f}%\" if r is not None else \"    N/A  \"\n        print(row)\n\n    print(f\"\\nSaved to: {out_path}\")\n    print(f\"Total runtime: {time.time() - t_start:.1f}s\")\n\n\nif __name__ == '__main__':\n    main()\n"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T04:49:29.261268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_gold_ratio_sensitivity.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T04:49:29.261555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "timeout 30 python -c \"\nimport sys, os\nsys.path.insert(0, 'artifacts')\nfrom artifacts.ppi_gold_ratio_sensitivity import sample_confusion_matrix, run_one_rep\nfrom artifacts.compute_ppi_empirical import make_dgp_params, compute_tau_true\nimport numpy as np\nrng = np.random.default_rng(0)\nC = sample_confusion_matrix(3, rng)\nprint('CM diag:', np.diag(C))\nparams = make_dgp_params(3)\ntau = compute_tau_true(3, 'exposure', params, N_large=50_000)\nprint('tau_exposure:', tau)\nne, pe = run_one_rep('exposure', params, C, tau, 0.10, np.random.default_rng(1))\nprint('naive_err, ppi_err:', ne, pe)\nne, pe = run_one_rep('iv', params, C, compute_tau_true(3, 'iv', params, N_large=50_000), 0.10, np.random.default_rng(2))\nprint('iv naive_err, ppi_err:', ne, pe)\n\"\n"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T04:49:29.261815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\ntimeout: failed to execute process: No such file or directory (os error 2)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T04:49:29.262056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "which python && python --version"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T04:49:29.262280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T04:49:29.262512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "command -v python3 && python3 --version"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T04:49:29.262746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/usr/bin/python3\nPython 3.14.4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T04:49:29.262984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T04:49:29.263228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T04:49:29.263460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'Smoke-test the script with reduced reps to validate end-to-end', 'activeForm': 'Smoke-testing the script with reduced reps', 'status': 'in_progress'}, {'content': 'Run full ppi_gold_ratio_sensitivity.py', 'activeForm': 'Running full ppi_gold_ratio_sensitivity.py', 'status': 'pending'}, {'content': 'Validate output JSON structure', 'activeForm': 'Validating output JSON structure', 'status': 'pending'}]"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T04:49:29.263754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T04:49:29.264013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport sys\nsys.path.insert(0, '.')\nsys.path.insert(0, 'artifacts')\nimport numpy as np\nfrom artifacts.ppi_gold_ratio_sensitivity import sample_confusion_matrix, run_one_rep\nfrom artifacts.compute_ppi_empirical import make_dgp_params, compute_tau_true\n\nrng = np.random.default_rng(0)\nC = sample_confusion_matrix(3, rng)\nprint('CM diag:', np.diag(C))\nparams = make_dgp_params(3)\nfor topo in ['exposure','confounding','iv','mediation']:\n    tau = compute_tau_true(3, topo, params, N_large=50_000)\n    ne, pe = run_one_rep(topo, params, C, tau, 0.10, np.random.default_rng(1))\n    print(f'{topo:12s} tau_true={tau:+.4f}  naive_err={ne:+.4f}  ppi_err={pe:+.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T04:49:29.264313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CM diag: [0.71287122 0.92191474 0.65445746]\nexposure     tau_true=+1.0090  naive_err=-0.0044  ppi_err=+0.0571\nconfounding  tau_true=+2.0057  naive_err=+0.1386  ppi_err=+0.0150\niv           tau_true=+0.6693  naive_err=+0.1005  ppi_err=-0.1781\nmediation    tau_true=+0.4857  naive_err=+0.1303  ppi_err=+0.0738"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T04:49:29.264647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "nohup python3 artifacts/ppi_gold_ratio_sensitivity.py > artifacts/ppi_gold_ratio_sensitivity.log 2>&1 &\necho \"PID=$!\"",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T04:49:29.264951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: b2n5l0nhm. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-prod-0510-projects-causal-annot-error-attrib/4179d0ff-b064-4632-a172-e9d49d94cd27/tasks/b2n5l0nhm.output"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T04:49:29.265215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 3 && pgrep -f ppi_gold_ratio_sensitivity.py && tail -20 artifacts/ppi_gold_ratio_sensitivity.log"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T04:49:29.265493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "991071\n991356\n991357"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T04:49:29.265736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat artifacts/ppi_gold_ratio_sensitivity.log"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T04:49:29.265974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T04:49:29.266277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "checking ppi_gold_ratio_sensitivity progress (in-cache window)",
+              "prompt": "/loop check the PPI gold-ratio sensitivity job progress"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T04:49:29.266577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 04:53:00 (in 230s)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T04:49:29.266904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pgrep -f ppi_gold_ratio_sensitivity.py >/dev/null && echo RUNNING || echo DONE; wc -l artifacts/ppi_gold_ratio_sensitivity.log; tail -30 artifacts/ppi_gold_ratio_sensitivity.log"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T04:49:29.267152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "RUNNING\n0 artifacts/ppi_gold_ratio_sensitivity.log"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T04:49:29.267441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la artifacts/ppi_gold_ratio_results.json 2>/dev/null || echo \"no output yet\""
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T04:49:29.267668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "no output yet"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T04:49:29.267970+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background job running, log is still buffered. Waiting for progress."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_q3_ppi_gold_ratio_20260523T044639"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/conversations/code-q3-ppi-gold-ratio.md"
+}

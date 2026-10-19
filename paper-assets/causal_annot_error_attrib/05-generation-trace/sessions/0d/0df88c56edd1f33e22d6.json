@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0df88c56edd1f33e22d6",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code nohup check extract round2",
+  "task_key": "worker_code_nohup_check_extract_round2_20260522T103513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nohup_check_extract_round2_20260522T103513_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "8657880f7e7c877f5363ac4328c5695f3614ee6ed8d3c97513c12f702c0d618d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n**进程状态**: `compute_all_tasks.py` 已结束（不再运行），未找到 nohup.out 日志。\n\n**5 个新完成的配置**（已保存到 `artifacts/plan011_new_cms_round2.json`）：\n\n| 配置 | K | Accuracy | n |\n|------|---|----------|---|\n| humaid/deepseek_zero-shot | 10 | 0.6760 | 1500 |\n| vast/deepseek_zero-shot | 3 | 0.5040 | 1500 |\n| vast/llama4_few-shot-3 | 3 | 0.5007 | 1500 |\n| vast/qwen2.5-7b_few-shot-3 | 3 | 0.4613 | 1500 |\n| vast/qwen2.5-7b_few-shot-5 | 3 | 0.4647 | 1500 |\n\n**未完成的配置**（有 jsonl 但无 npz，或 jsonl 为空/不完整）：\n- civil_comments: deepseek_few-shot-3 (665B), deepseek_zero-shot (0B), llama4_* (全0B), qwen3_few-shot-3/5/zero-shot (有 jsonl 无 npz)\n- humaid: deepseek_few-shot-3/5 (有 jsonl 无 npz), llama4_few-shot-3/5 (有 jsonl 无 npz), qwen3_few-shot-3 (有 jsonl 无 npz), qwen3_few-shot-5 (0B)\n- vast: llama4_few-shot-5 (280KB 不完整), qwen2.5-7b_zero-shot (有 jsonl 无 npz), qwen3_few-shot-3/5 (0B)\n\n进程似乎在处理到部分配置时就终止了，大量 CC 和部分 VAST/HumAID 配置未生成 npz。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nohup-check-extract-round2.md"
+}

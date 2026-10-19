@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9420950b0227c79ded58",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper figure fig3 asv ranking",
+  "task_key": "worker_paper_figure_fig3_asv_ranking_20260520T154842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_asv_ranking_20260520T154842_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "873d27bd279bfe30d5b91e5026a56c908d430311b7fb1a7e4b51e6114445520c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册 (`art_20260520_8051a6`)。\n\n**输出文件**:\n- PDF: `figures/paper/fig3_asv_ranking.pdf` (45K, 矢量)\n- PNG: `figures/paper/fig3_asv_ranking.png` (253K, 300 DPI)\n- 脚本: `figures/paper/gen_fig3.py`\n\n**设计要点**:\n- 三面板 forest plot：Magnitude ASV（范围条）| Significance Power（棒棒糖图）| 右侧数值列（含 sign-flip 标记）\n- 7 个拓扑按综合脆弱性排序，Exposure 斜体标注为仅 sign-flip 拓扑\n- 浅橙色 fragile zone 背景带（magnitude < 0.3, power < 50%）\n- M-bias 用绿色箭头 + ∞ 标记免疫状态\n- 排序不一致一目了然：Front-door 在 magnitude 最脆弱但 significance power 100%；Collider 反之"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-asv-ranking.md"
+}

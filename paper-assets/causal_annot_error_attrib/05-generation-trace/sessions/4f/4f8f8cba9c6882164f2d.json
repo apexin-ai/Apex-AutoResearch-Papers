@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f8f8cba9c6882164f2d",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan003 annotation pipeline",
+  "task_key": "worker_code_plan003-annotation-pipeline_20260520T095152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-annotation-pipeline_20260520T095152_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "254f70ef3c23d3189529f37ed93f92b23327c6c1fcadce17a6c199b8cc31449a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`annotate.py` 已创建并通过验证。文件位于 `/home/sonny/causal_annot_error_attrib/annotate.py`。\n\n核心功能：\n- **3 模型** (Llama4 Maverick, Qwen3 235B, DeepSeek Chat) × **3 数据集** (HumAID K=11, VAST K=3, Civil Comments K=2) × **3 prompt** (zero-shot, few-shot-3, few-shot-5)\n- API key 从 `OPENROUTER_API_KEY` 环境变量读取\n- 0.5s rate limiting + 指数退避重试（429/5xx/超时）\n- 断点续传：已有结果的样本自动跳过\n- 多层 label 解析：JSON → 正则 pattern → 精确子串匹配 → fuzzy matching\n- 输出 JSONL（逐条记录）+ column-stochastic 混淆矩阵 C 的 npz 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-annotation-pipeline.md"
+}

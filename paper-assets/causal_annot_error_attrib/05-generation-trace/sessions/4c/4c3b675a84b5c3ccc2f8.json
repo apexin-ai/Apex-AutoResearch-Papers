@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c3b675a84b5c3ccc2f8",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops anon repo push v3",
+  "task_key": "worker_ops_anon_repo_push_v3_20260524T020724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon_repo_push_v3_20260524T020724_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "d104849581e7055418db7f161ca44aa59027819be2ecccf2d4a8a4b77cf9c29c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Anonymous repo pushed: commit `164d9bb` on `main`. 8 files updated (all `docs/paper/` .tex files + main.pdf)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-push-v3.md"
+}

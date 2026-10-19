@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b374cc8154af9e34aa",
+  "project": "causal_annot_error_attrib",
+  "kind": "history",
+  "title": "agent / loop_1_1779386118.md",
+  "task_key": "loop_1_1779386118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779386118.md",
+    "occurrence": 1,
+    "bytes": 3931,
+    "sha256": "e04970a52f263db6e638ccdd6016e09dbdf77255d5d5a56515497b9dcb905288"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-21T17:54:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **不要修改 experiments.tex §5.5 的 PPI++ 数字**——Director 明确指示等 n_sim=1000 结果出来后再改，Reviewer 正在核实\n- API key `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8` 只能通过 `http://47.94.22.126/v1` 使用，且**只有 home-1x5090 能连通该 IP**（本机 AWS 172.31.x.x 无法路由到阿里云中国 IP）\n- GPU（home-1x5090 5090）当前空闲是正常的——Director 明确说本阶段不需要 GPU，不派新实验\n- Case study 段落已写入 experiments.tex，导致 main text 从 8 页溢出到 9 页（AAAI 限制 8 页），page fitting 待 Director 决定\n\n### 2. 🖥️ 基础设施快照\n- **本地**: AWS EC2 172.31.2.28, 项目根 `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/`\n- **远程**: home-1x5090, SSH `ssh implicit5638.xyfu.me`, 账户 sonny, 项目 `/home/sonny/causal_annot_error_attrib/`\n- **活跃进程**:\n  - PID 814069 (本地): `python3 plan_007_correction_guidance.py --n-sim 1000` — 独立 nohup, 日志 `/tmp/plan007_nsim1000.log`, 预计 ~3.3h (启动 13:47 UTC), 输出到 `artifacts/plan007/correction_guidance_results.json`\n  - PID 712156 (home-1x5090): VAST frontier annotation nohup — 9 configs (llama4 done, qwen3 running, deepseek pending), 预计 3-5h 总时间 (启动 ~11:55 UTC)\n- **已产出**: `artifacts/plan007_rmse_correction_results.json` (n_sim=200 快速版, 已注册), `artifacts/ppi_empirical_validation.json` (K=10 PPI++ 完整结果)\n- **Cron**: 0 active\n\n### 3. 📊 当前状态\n刚做完：\n- n_sim=200 快速版 RMSE 数据提取完成并汇报 Director（PPI++ grand mean: bias_red 78.6% vs rmse_red 46.4%）\n- VAST 标注在 home-1x5090 后台运行中（API 余额已恢复）\n- Case study 段落（Lee & Wood-Doughty 2024）已写入 experiments.tex 并编译通过\n- Plan011 frontier annotation Worker 取消（proxy 不可达），改为 SSH 到 home-1x5090 执行\n\nRegistry: 14 实验全部 DONE (13 success, 1 failed=plan003 API 402)。无 RUNNING/PREPARING。\n\n等待中：\n- n_sim=1000 完成 → 提取精确 RMSE 数字 → 汇报 Director → 等指示修改论文\n- VAST 标注完成 → 跑 compute_results.py → 注册 confusion matrices\n- Director 决定 API 问题后 CivilComments 标注\n- Dream re-review 等系统恢复\n\n### 4. 📋 待办\n- **PID 814069 退出** → 读 `artifacts/plan007/correction_guidance_results.json` → 提取 n_sim=1000 RMSE 数据 → 生成更新版 `plan007_rmse_correction_results.json` → 汇报 Director 精确数字\n- **PID 712156 退出（SSH 检查）** → spawn worker 跑 `compute_results.py` on home-1x5090 → 拉回 confusion matrices → register_artifact\n- **Director 批准修改论文数字** → spawn worker 修改 experiments.tex §5.5（用 RMSE reduction 替换或并列报告 bias reduction）\n- **API proxy 恢复 / 获得 sk-or-v1-* key** → 在 home-1x5090 补跑 CivilComments frontier (9 configs)\n- **Dream 系统恢复** → 触发 re-dream\n\n### 5. 🎯 战略上下文\n- **核心发现**: 论文的 correction guidance 度量（bias reduction）系统性膨胀 PPI++（93.8% → RMSE 46.4%）。这是数据诚信问题，必须在提交前修正\n- **Frontdoor MC-SIMEX**: 论文写 +8.7% 但真实 mean = -55.7%。原因是 `near_permutation` C structure 导致灾难性 -751%，拖低整体均值。5/6 C structures 正向\n- **PPI++ K=10 empirical**: compute_ppi_empirical.py 的 grand mean 39.0% vs 论文声称 95.5%——这是**不同度量 + 不同 DGP**造成的。K=10 PPI++ 在 IV 上是 -79.2%（10% gold Wald 估计方差太大）\n- **易错点**: 不要混淆 plan_007（K=3 合成 C, 210 configs）和 compute_ppi_empirical.py（K=10 真实 HumAID C, 56 configs）的数字——它们是不同实验\n- **AAAI 2027 deadline**: abstract 2026-07-21, paper 2026-07-28 (~68 天)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779386118.md"
+}

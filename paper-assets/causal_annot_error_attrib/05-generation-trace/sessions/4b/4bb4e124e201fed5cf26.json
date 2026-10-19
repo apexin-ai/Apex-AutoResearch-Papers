@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bb4e124e201fed5cf26",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "audit final data check",
+  "task_key": "worker_audit_final_data_check_20260524T043115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final_data_check_20260524T043115_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "4f2f8f4f3295d6550dd06ad63b86531d5354de4cb9d0ffea615577e7be211fa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All audit agents have completed. The Experiments agent confirmed all numbers match — no additional issues beyond the 3 already fixed.\n\nThe audit is complete. Here's the final summary:\n\n---\n\n## Audit Complete: 38 numbers verified, 3 mismatches fixed\n\n### Fixes applied\n\n| # | File | Line | Issue | Fix |\n|---|------|------|-------|-----|\n| 1 | `conclusion.tex` | 8 | \"deviation grows with K (0.003 at K=3, 0.060 at K=7)\" — reversed direction, wrong values | → \"reaches 0.056 for exposure but empirically decreases with K\" |\n| 2 | `appendix_proofs.tex` | 315 | \"exclusively under p_max/p_min > 300\" — 4/5 counterexamples have ratio < 50 | → \"predominantly under class imbalance\" |\n| 3 | `appendix_proofs.tex` | 795 | Near-permutation 35.3% — source is 35.38%, rounds to 35.4% | → 35.4% |\n\n### Match summary\n\n- **Abstract**: 6/6 match\n- **Introduction**: 9/9 match\n- **Method**: 5/5 match\n- **Experiments**: 18/18 match (including Table 1 cells)\n- **Limitations**: 3/3 match (after fix)\n- **Appendix**: 5/5 match (after fixes)\n- **Cross-location**: 18/18 consistent\n\n**Compilation: clean, no errors.**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-final-data-check.md"
+}

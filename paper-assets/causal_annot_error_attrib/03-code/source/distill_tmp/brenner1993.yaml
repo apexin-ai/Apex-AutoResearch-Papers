@@ -1,0 +1,25 @@
+paper_key: "brenner1993"
+title: "Bias due to non-differential misclassification of polytomous confounders"
+venue: "Journal of Clinical Epidemiology 1993"
+full_text_available: false
+
+research:
+  baselines: ["unadjusted estimates", "correctly-classified confounder adjustment"]
+  metrics:
+    - {name: "residual confounding bias", direction: "lower_better"}
+    - {name: "odds ratio bias", direction: "lower_better"}
+  datasets:
+    - {name: "simulation studies with polytomous confounders", size: "N/A"}
+  ablation_dimensions: ["number of confounder categories", "misclassification rate", "differential vs non-differential"]
+  training_recipe: "N/A (simulation/analytical)"
+  method_family: "misclassification bias analysis for categorical variables"
+
+positioning:
+  core_claim: "Non-differential misclassification of polytomous (multi-category) confounders can bias in any direction, unlike the binary case where bias is typically toward the null"
+  key_results: "Demonstrates bias away from null is possible with polytomous misclassification"
+  limitations: ["limited to confounder misclassification", "simulation-based rather than closed-form"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

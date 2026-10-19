@@ -1,0 +1,27 @@
+{
+  "exp_id": "empirical_humaid_k10_analysis",
+  "project": "causal_annot_error_attrib",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:09:57.894Z",
+    "updated_at": "2026-05-24T06:10:57.008Z",
+    "hypothesis": "Empirical LLM confusion matrices on HumAID K=10 reproduce the topology-dependent bias ranking from Dirichlet simulation, with IV highest and collider lowest",
+    "spec": {
+      "command": "7-topology analytical plim bias + ASV + sign-flip analysis",
+      "server": "local",
+      "data_path": "artifacts/empirical_humaid_k10_results.json",
+      "data_count": "8 configs × 7 topologies = 56 scenarios",
+      "model_name": "deepseek/llama4/qwen3 × ZS/FS-3/FS-5",
+      "seed": "N/A"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "artifacts/empirical_humaid_k10_results.json",
+    "log_path": "logs/workers/worker_exp_empirical_humaid_analysis_20260524T054924.log",
+    "completed_at": "2026-05-24T06:10:57.008Z"
+  },
+  "timestamp": "2026-05-24T06:10:57.056640+00:00",
+  "trigger": "update_registry"
+}

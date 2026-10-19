@@ -1,0 +1,12 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We characterized how multi-class annotation errors interact with causal DAG topology: at $K{\geq}3$, exposure and IV can reverse treatment effect signs while five topologies preserve them. ASVs provide a topology-dependent vulnerability ranking; matrix-based corrections are provably ineffective for four topologies (FWL invariance). Practitioners should identify the topology first: for exposure, PPI++ reduces bias from ${\sim}61\%$ to ${<}1\%$ (Table~\ref{tab:e2e-real-cm}); for IV, topology-agnostic correction can amplify bias ($-$139\% in our demo; Table~\ref{tab:e2e-demo}). High $F_1$ does not guarantee low causal bias; topology assessment must precede downstream inference.
+
+The practical workflow we recommend is: (1)~draw the DAG and locate the annotated variable, (2)~compute ASVs to quantify vulnerability, (3)~apply Algorithm~\ref{alg:correction} for topology-aware method selection, and (4)~report ASV confidence intervals alongside effect estimates. This pipeline requires only a gold-label subsample and the confusion matrix---resources already available in most LLM annotation workflows.
+
+Our framework opens several directions. Extending the analysis to \emph{differential} misclassification---where error rates depend on $Y$ or covariates---would cover settings where annotator difficulty correlates with outcome severity. Nonlinear identification strategies (matching, doubly robust estimation) break the FWL invariance that underlies our correction routing; characterizing which topologies remain tractable under nonlinear models is an important next step. Proving Conjecture~\ref{conj:monotone} for general $K$ would place the ASV framework on exact rather than $\varepsilon$-approximate foundations.
+
+\section*{Limitations}
+
+Our closed-form results assume linear SEMs with proportional effects ($f{=}\lambda g$); sign preservation empirically holds at 97.3\% under non-proportional effects (Appendix~\ref{sec:proportional_real_matrices}), but recommendations do not directly extend to nonlinear models (matching, doubly-robust). The framework assumes a known DAG with non-differential misclassification (Appendix~\ref{sec:nondiff_stress},~\ref{sec:realistic_epsilon}); DAG misspecification under measurement error may compound bias. ASV computation requires gold labels for $C^{-1}$; error propagation under small gold-label budgets ($<$500) and general $K{\geq}3$ envelope monotonicity (Conjecture~\ref{conj:monotone}) remain open.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b813442fd6462126cc77",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code exp e asv stability",
+  "task_key": "worker_code_exp_e_asv_stability_20260522T112928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_e_asv_stability_20260522T112928_result.json",
+    "occurrence": 1,
+    "bytes": 1559,
+    "sha256": "11d393f1dee9f949f16279c18ea2f5d6f05d6a0f0d68bed5c84337392a4f424d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs are in order. Here's a summary of the Exp-E results:\n\n**Outputs produced:**\n- `artifacts/exp_e_asv_stability.py` — self-contained script\n- `artifacts/exp_e_asv_stability_results.json` — full results with per-C₀ detail\n- `artifacts/exp_e_asv_stability_table.tex` — LaTeX table\n\n**Key findings:**\n\n| | Confounding | Exposure | IV |\n|---|---|---|---|\n| Alt. large β=[0,1.0,-0.5] | 0.348 | **0.090** | 0.203 |\n| Same-sign β=[0,0.5,0.3] | ∞ | 0.223 | **0.203** |\n| Alt. small β=[0,0.2,-0.1] | ∞ | **0.090** | 0.203 |\n\n1. **Confounding is always most robust** — bias on τ from annotation error is small because T has independent variation (σ_T). For same-sign/small DGPs, the max OVB is <10% of τ, so the threshold is never reached.\n\n2. **Ranking partially stable**: Exposure < IV < Confounding holds for alternating-sign β (2/3 configs). For same-sign β, IV and exposure swap because same-sign misclassification causes less bias.\n\n3. **IV ASV is invariant to β** (0.203 for all DGPs) — the Wald estimator's relative bias depends only on the first-stage distortion C@FS, which cancels out the effect magnitude.\n\n4. **Exposure alternating = exposure small** (0.090 for both) — the exposure plim is linear in β, so relative bias is scale-invariant. Only the sign structure matters.\n\n5. **Sign-flip ASV is invariant** (≈2.223 for all DGPs) — occurs at the uniform confusion boundary where all coefficients hit zero. A universal property of symmetric C₀ matrices in the exposure model."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-e-asv-stability.md"
+}

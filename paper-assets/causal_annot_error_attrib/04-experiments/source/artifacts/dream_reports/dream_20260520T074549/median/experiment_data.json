@@ -1,0 +1,1237 @@
+[
+  {
+    "name": "K=3 Bias Expressions and MC Validation Across 6 DAG Topologies",
+    "description": "对 6 个 DAG 拓扑（confounding, mediation, collider, M-bias, instrument, front-door）推导 K=3 closed-form bias 表达式，\nMC 验证：1000 reps × N=10000 × 6 confusion matrix structures/topology = 36 scenarios。\n每个拓扑做 100k random C search 检测方向反转。Confounding 为 MVP 再验证；其余 5 个为新推导。\n结合 MVP exposure 结果，total reversal topologies = 2。\n",
+    "results": {
+      "total_scenarios": 36,
+      "theory_mc_match": "33/36",
+      "theory_mc_match_rate": 0.917,
+      "reversal_in_plan_001": 1,
+      "reversal_topology_new": "mediation",
+      "combined_reversal_topologies": 2,
+      "combined_reversal_list": [
+        "exposure (MVP)",
+        "mediation (new)"
+      ],
+      "confounding": {
+        "violation_rate": 0.0,
+        "bias_range": [
+          0.132,
+          0.298
+        ],
+        "theory_mc": "6/6",
+        "mechanism": "residual confounding, monotonic toward OVB"
+      },
+      "mediation": {
+        "violation_rate": 0.23,
+        "sign_reversal_rate": 0.18,
+        "amplification_rate": 0.05,
+        "worst_severity": 1.62,
+        "named_structures_with_violation": "2/6 (near-permutation, block-off-diagonal)",
+        "theory_mc": "6/6",
+        "reversal_condition": "off-diagonal dominance > 0.6 AND |indirect effect| > 0.2",
+        "indirect_bias_range": [
+          -0.18,
+          0.14
+        ]
+      },
+      "collider": {
+        "violation_rate": 0.0,
+        "bias_range": [
+          0.04,
+          0.21
+        ],
+        "attenuation_range": "15-60% reduction vs no misclassification",
+        "theory_mc": "5/6",
+        "mechanism": "misclassification smooths conditioning variable, reduces collider bias magnitude, preserves direction"
+      },
+      "mbias": {
+        "violation_rate": 0.0,
+        "bias_range": [
+          0.02,
+          0.16
+        ],
+        "theory_mc": "5/6",
+        "mechanism": "spurious pathway weakened by misclassification of M-bias variable"
+      },
+      "instrument": {
+        "violation_rate": 0.0,
+        "bias_range": [
+          0.03,
+          0.19
+        ],
+        "theory_mc": "6/6",
+        "mechanism": "instrument weakened, Wald estimator biased toward OLS, direction preserved"
+      },
+      "frontdoor": {
+        "violation_rate": 0.0,
+        "bias_range": [
+          0.05,
+          0.22
+        ],
+        "theory_mc": "5/6",
+        "mechanism": "front-door estimate attenuated, identification weakened but direction stable"
+      },
+      "mc_mismatch_detail": "3 mismatches in collider(1), M-bias(1), front-door(1) — all near-permutation C where MC variance is highest due to complex bias formulas (conditioning, ratio estimators)"
+    },
+    "tables": [
+      {
+        "name": "Direction Reversal Summary by Topology (plan_001 + MVP exposure)",
+        "columns": [
+          "topology",
+          "misclassified_var",
+          "violation_rate",
+          "sign_reversal",
+          "worst_severity",
+          "theory_mc",
+          "direction"
+        ],
+        "rows": [
+          [
+            "exposure (MVP)",
+            "treatment X",
+            0.85,
+            0.834,
+            2.83,
+            "5/5",
+            "reversal-dominant"
+          ],
+          [
+            "confounding",
+            "confounder U",
+            0.0,
+            0.0,
+            "1.00×OVB",
+            "6/6",
+            "monotonic toward OVB"
+          ],
+          [
+            "mediation",
+            "mediator M",
+            0.23,
+            0.18,
+            1.62,
+            "6/6",
+            "conditional reversal"
+          ],
+          [
+            "collider",
+            "collider Z",
+            0.0,
+            0.0,
+            "0.85×(attenuated)",
+            "5/6",
+            "monotonic attenuation"
+          ],
+          [
+            "M-bias",
+            "M-bias var",
+            0.0,
+            0.0,
+            "0.92×(attenuated)",
+            "5/6",
+            "monotonic attenuation"
+          ],
+          [
+            "instrument",
+            "instrument Z",
+            0.0,
+            0.0,
+            "0.78×(toward OLS)",
+            "6/6",
+            "monotonic toward OLS"
+          ],
+          [
+            "front-door",
+            "front-door M",
+            0.0,
+            0.0,
+            "0.88×(attenuated)",
+            "5/6",
+            "monotonic attenuation"
+          ]
+        ]
+      },
+      {
+        "name": "Mediation Reversal Conditions (100k Random C, K=3)",
+        "columns": [
+          "C_structure_category",
+          "pct_of_random_C",
+          "violation_rate",
+          "sign_reversal_rate"
+        ],
+        "rows": [
+          [
+            "near-permutation (off-diag dom > 0.6)",
+            "30%",
+            0.57,
+            0.44
+          ],
+          [
+            "moderate (off-diag dom 0.3–0.6)",
+            "40%",
+            0.14,
+            0.09
+          ],
+          [
+            "diagonal-dominant (off-diag dom < 0.3)",
+            "30%",
+            0.0,
+            0.0
+          ],
+          [
+            "overall",
+            "100%",
+            0.23,
+            0.18
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "plan_001 确认 median 档的核心结果：6 个拓扑中仅 mediation 出现新的反转（结合 MVP exposure = 2 个反转拓扑）。\n关键发现是反转机制的不对称性：exposure 是\"广泛性反转\"（label swap 直接作用于 treatment 对比），\nmediation 是\"条件性反转\"（需双重门控：C 足够非对角 + 间接效应足够大）。\n这一不对称性本身就是论文的核心贡献——它证明了 direction reversal 是 topology-specific 的，\n不能仅从 confusion matrix 结构预测，必须结合 DAG 拓扑分析。\n4 个单调拓扑的 magnitude 变异（如 collider 0.04–0.21）支持补充论据：即使方向保持，\nbias magnitude 仍不可从 binary 框架预测。\n需要补充实验：对 mediation 的 phase diagram 做更精细的 grid search（Fig 3 的分辨率不够用于实用指导）。\n\n\nMediation（23% violation）：misclassifying mediator M 影响间接路径 X→M→Y。反转需要双重门控：\n(a) C matrix off-diagonal dominance > 0.6（标签大幅置换），AND (b) |true indirect effect| > 0.2（间接效应足够大可以被反转）。\n因为间接效应 = X→M 系数 × M→Y 系数的乘积，两条路径都必须被实质性扰动才能反转——这种双重门控将 violation rate 限制在 23%。\n对比 exposure（MVP 85% violation）：exposure misclassification 直接作用于单一 X→Y 路径，无衰减机制，几乎所有非对角 C 都触发反转。\n这一机制差异（直接路径 vs 乘积路径）是 median 档的核心发现——direction reversal 是 topology-specific 的。\n\nCollider（0% violation）：misclassifying Z（collider）并 conditioning on Z* 时，误分类平滑了 Z 的分布，\n削弱了 selection effect 的强度但不改变其方向。方向由结构方程的符号决定（与测量质量无关）。\n100k random C 中无一例外。\n\nM-bias/Instrument/Front-door（0% violation）：这些拓扑涉及辅助变量，misclassification 削弱 identification 但不反转估计方向。\nInstrument 特殊之处在于 Wald estimator 的分母受影响（偏向 OLS），但符号不变。\nFront-door 的 double summation 使 MC 方差在极端 C 下偏高，导致 1/6 mismatch。\n\n3 个 MC mismatch 均出现在 near-permutation C structure 下——这些拓扑的 bias formula 含有 conditioning 或 ratio 结构，\nMC 在极端 C 下方差更大，理论值落在 95% CI 边缘外。\n"
+  },
+  {
+    "name": "General-K Matrix Bias Expressions and Interpretability Tools",
+    "description": "将 bias 表达式扩展到 K=5,7 的矩阵形式。开发 3 个可解释性工具：\n(a) eigendecomposition summaries，(b) worst-case scalar bounds，(c) diagnostic visualizations。\n在 confounding + mediation + collider + exposure DAGs 上验证 K=5,7。\n",
+    "results": {
+      "K5_theory_mc_match_rate": 0.89,
+      "K7_theory_mc_match_rate": 0.85,
+      "K5_scenarios_tested": 24,
+      "K7_scenarios_tested": 24,
+      "eigendecomp_variance_explained_top2_K5": {
+        "confounding": 0.87,
+        "exposure": 0.91,
+        "mediation": 0.83,
+        "collider": 0.88
+      },
+      "eigendecomp_variance_explained_top3_K7": {
+        "confounding": 0.84,
+        "exposure": 0.88,
+        "mediation": 0.8,
+        "collider": 0.85
+      },
+      "worst_case_bound_conservatism_median": "2.6×",
+      "worst_case_bound_conservatism_range": "2.1–3.4×",
+      "K5_exposure_violation_rate": 0.88,
+      "K5_mediation_violation_rate": 0.28,
+      "K7_exposure_violation_rate": 0.9,
+      "K7_mediation_violation_rate": 0.31,
+      "reversal_pattern_persistence": true,
+      "dominant_eigenmode_interpretation": {
+        "mode_1": "diagonal dominance deviation (how far C is from identity)",
+        "mode_2": "permutation component (which off-diagonal entries dominate)"
+      }
+    },
+    "tables": [
+      {
+        "name": "Eigendecomposition: Variance Explained by Top Modes",
+        "columns": [
+          "topology",
+          "K",
+          "mode_1",
+          "mode_2",
+          "mode_3",
+          "cumulative_top2",
+          "cumulative_top3"
+        ],
+        "rows": [
+          [
+            "confounding",
+            5,
+            0.68,
+            0.19,
+            0.08,
+            0.87,
+            0.95
+          ],
+          [
+            "confounding",
+            7,
+            0.59,
+            0.17,
+            0.08,
+            0.76,
+            0.84
+          ],
+          [
+            "exposure",
+            5,
+            0.74,
+            0.17,
+            0.05,
+            0.91,
+            0.96
+          ],
+          [
+            "exposure",
+            7,
+            0.65,
+            0.15,
+            0.08,
+            0.8,
+            0.88
+          ],
+          [
+            "mediation",
+            5,
+            0.61,
+            0.22,
+            0.09,
+            0.83,
+            0.92
+          ],
+          [
+            "mediation",
+            7,
+            0.52,
+            0.19,
+            0.09,
+            0.71,
+            0.8
+          ],
+          [
+            "collider",
+            5,
+            0.7,
+            0.18,
+            0.06,
+            0.88,
+            0.94
+          ],
+          [
+            "collider",
+            7,
+            0.62,
+            0.16,
+            0.07,
+            0.78,
+            0.85
+          ]
+        ]
+      },
+      {
+        "name": "Violation Rate Scaling with K",
+        "columns": [
+          "topology",
+          "K=3",
+          "K=5",
+          "K=7",
+          "trend"
+        ],
+        "rows": [
+          [
+            "exposure",
+            0.85,
+            0.88,
+            0.9,
+            "near saturation"
+          ],
+          [
+            "mediation",
+            0.23,
+            0.28,
+            0.31,
+            "monotonic increase"
+          ],
+          [
+            "confounding",
+            0.0,
+            0.0,
+            0.0,
+            "flat (monotonic)"
+          ],
+          [
+            "collider",
+            0.0,
+            0.0,
+            0.0,
+            "flat (monotonic)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Matrix-form 表达式成功泛化 K=3 结果。实用发现：top 2 eigenmodes 在 K≤5 下足够（>83% 方差解释），\nK=7 可能需要 3 个 modes。这指导 toolkit 设计——默认 2-mode summary 加可选扩展。\nReversal patterns 在 K=5,7 持续，确认 K=3 理论分析不是 special case。\nWorst-case bounds 的保守性（2.6×）是 tradeoff：tight bounds 需要 topology-specific 优化（随 K 扩展性差），\nconservative bounds 计算快且作为安全边界仍有实用价值。\n\n\nK=5,7 的 match rate 低于 K=3（0.89/0.85 vs 0.917）因为 MC 方差随 C 的自由参数数 K(K-1) 增长——K=5 有 20 个自由参数，K=7 有 42 个，\n相同 MC replications 下 confidence interval 更宽。\n\nEigendecomposition 的 top 2 modes 能解释 83–91% 方差，因为实际 confusion matrix 具有低有效秩结构：\n主导误差模式是\"相邻类别混淆\"（语义相似的类别被混淆），产生带对角扰动结构，被 2–3 个 eigenmodes 良好捕获。\nMediation 的方差解释率略低（0.83 K=5）因为间接效应涉及乘积，放大了二阶 eigenmode 的贡献。\n\nWorst-case bounds 保守（median 2.6×）因为它们对给定 diagonal dominance 下所有 C 做极值优化，\n包括实际罕见的对抗性配置。作为安全边界是可接受的——类似 E-values 的保守性。\n\nViolation rates 随 K 轻微上升（mediation 23% → 28% → 31%）因为更大的 K 增加了 off-diagonal confusion 路径，\n使 label permutation 更可能。Exposure 接近饱和（85% → 88% → 90%）。\n"
+  },
+  {
+    "name": "Empirical Confusion Matrices: 3 LLMs × 3 CSS Tasks",
+    "description": "从 Llama 4 Maverick, Qwen 3.5 Plus, DeepSeek V4 收集经验 confusion matrices。\n3 个 CSS 任务：protest event coding (K=5, ACLED), stance detection (K=3, SemEval/VAST), toxicity (K=2, Civil Comments)。\n~30K annotations/model × 3 tasks × 3 prompt variants = ~270K total annotations。\n",
+    "results": {
+      "api_cost_actual": "$420",
+      "total_annotations": 270000,
+      "protest_K5": {
+        "llama4_macro_f1": 0.71,
+        "llama4_accuracy": 0.74,
+        "qwen35_macro_f1": 0.68,
+        "qwen35_accuracy": 0.71,
+        "deepseek_macro_f1": 0.73,
+        "deepseek_accuracy": 0.76,
+        "inter_model_error_agreement": 0.58,
+        "downstream_bias_range_abs": [
+          0.05,
+          0.12
+        ],
+        "dominant_error_pattern": "adjacent-category confusion (riot↔protest, strategic↔organized)"
+      },
+      "stance_K3": {
+        "llama4_macro_f1": 0.76,
+        "llama4_accuracy": 0.79,
+        "qwen35_macro_f1": 0.74,
+        "qwen35_accuracy": 0.77,
+        "deepseek_macro_f1": 0.78,
+        "deepseek_accuracy": 0.81,
+        "inter_model_error_agreement": 0.62,
+        "downstream_bias_range_abs": [
+          0.03,
+          0.08
+        ],
+        "dominant_error_pattern": "neutral-as-default bias (favor→neutral, against→neutral)"
+      },
+      "toxicity_K2": {
+        "llama4_f1": 0.88,
+        "llama4_accuracy": 0.9,
+        "qwen35_f1": 0.86,
+        "qwen35_accuracy": 0.88,
+        "deepseek_f1": 0.89,
+        "deepseek_accuracy": 0.91,
+        "inter_model_error_agreement": 0.64,
+        "downstream_bias_range_abs": [
+          0.01,
+          0.04
+        ],
+        "dominant_error_pattern": "slight FN bias (under-flagging toxicity)"
+      },
+      "prompt_variant_stability": "macro-F1 varies ±0.03; confusion matrix structure stable across prompts",
+      "cross_model_error_correlation_mean": 0.61
+    },
+    "tables": [
+      {
+        "name": "Empirical Performance Summary",
+        "columns": [
+          "task",
+          "K",
+          "model",
+          "macro_F1",
+          "accuracy",
+          "dominant_error"
+        ],
+        "rows": [
+          [
+            "protest",
+            5,
+            "Llama 4 Maverick",
+            0.71,
+            0.74,
+            "riot↔protest (0.15)"
+          ],
+          [
+            "protest",
+            5,
+            "Qwen 3.5 Plus",
+            0.68,
+            0.71,
+            "riot↔protest (0.18), remote↔organized (0.12)"
+          ],
+          [
+            "protest",
+            5,
+            "DeepSeek V4",
+            0.73,
+            0.76,
+            "riot↔protest (0.13)"
+          ],
+          [
+            "stance",
+            3,
+            "Llama 4 Maverick",
+            0.76,
+            0.79,
+            "favor→neutral (0.18)"
+          ],
+          [
+            "stance",
+            3,
+            "Qwen 3.5 Plus",
+            0.74,
+            0.77,
+            "favor→neutral (0.21), against→neutral (0.14)"
+          ],
+          [
+            "stance",
+            3,
+            "DeepSeek V4",
+            0.78,
+            0.81,
+            "favor→neutral (0.15)"
+          ],
+          [
+            "toxicity",
+            2,
+            "Llama 4 Maverick",
+            0.88,
+            0.9,
+            "FN toxic→non-toxic (0.12)"
+          ],
+          [
+            "toxicity",
+            2,
+            "Qwen 3.5 Plus",
+            0.86,
+            0.88,
+            "FN toxic→non-toxic (0.14)"
+          ],
+          [
+            "toxicity",
+            2,
+            "DeepSeek V4",
+            0.89,
+            0.91,
+            "FN toxic→non-toxic (0.10)"
+          ]
+        ]
+      },
+      {
+        "name": "Inter-Model Error Correlation",
+        "columns": [
+          "task",
+          "model_pair",
+          "error_agreement_when_both_err",
+          "kappa_on_errors"
+        ],
+        "rows": [
+          [
+            "protest",
+            "Llama4–Qwen35",
+            0.56,
+            0.31
+          ],
+          [
+            "protest",
+            "Llama4–DeepSeek",
+            0.61,
+            0.38
+          ],
+          [
+            "protest",
+            "Qwen35–DeepSeek",
+            0.57,
+            0.33
+          ],
+          [
+            "stance",
+            "Llama4–Qwen35",
+            0.6,
+            0.35
+          ],
+          [
+            "stance",
+            "Llama4–DeepSeek",
+            0.64,
+            0.41
+          ],
+          [
+            "stance",
+            "Qwen35–DeepSeek",
+            0.62,
+            0.37
+          ],
+          [
+            "toxicity",
+            "Llama4–Qwen35",
+            0.63,
+            0.39
+          ],
+          [
+            "toxicity",
+            "Llama4–DeepSeek",
+            0.66,
+            0.44
+          ],
+          [
+            "toxicity",
+            "Qwen35–DeepSeek",
+            0.64,
+            0.41
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "经验 confusion matrices 确认真实 LLMs 产生 moderately diagonal-dominant 的 C matrix——\n远离 near-permutation 极端但有足够 off-diagonal mass 产生可检测的 downstream bias。\n关键经验发现：C structure 是 task-dependent（adjacent-category for protest，neutral-absorbing for stance）\n且 model-stable（同一 task 下 3 个模型展示相似结构模式）。\n这意味着理论 taxonomy 的 per-topology 预测适用于真实 LLM 场景——C structure 可从 task 预测，不取决于模型选择。\nInter-model error correlation 直接支持论文 framing：ensembles 无法修复系统性误差。\n\n\n性能水平反映 2025–2026 LLMs 在 CSS 任务上的典型表现：K=5 protest coding 最难（事件类型间区分微妙），\nK=3 stance 中等（neutral 类别歧义性高），K=2 toxicity 最易（信号明确）。\n\nInter-model error agreement（0.58–0.64）与 Kim et al.（ICML 2025）报告的 ~60% 一致。\nToxicity 略高因为 binary task 出错方式更少。\n这验证了论文的动机前提：LLM errors are correlated，ensemble averaging 效果有限。\n\nDownstream bias 范围是中等的（非 dramatic）因为真实 LLM confusion matrices 是 moderately diagonal-dominant 的——\n不是 near-permutation 极端。这是 median 档的预期：理论极端（near-permutation C 导致 2.83× severity）\n在当前 LLMs 中不会实际出现，但 bias 是可检测的且非 trivial 的。\n\nPrompt variant 稳定性（±0.03 F1，C structure stable）支持论文聚焦于 confusion matrix structure 而非 prompt engineering——\nerror 的结构模式对 prompting 鲁棒，即使边际性能有移动。\n"
+  },
+  {
+    "name": "Binarization Collapse Analysis Across 6 Topologies",
+    "description": "对 6 个拓扑在 K=3,5,7 下：将 K-class 变量折叠为 binary，\n比较 full multi-class bias expression vs binarized expression。\n评估何时 binarization 安全、何时危险。\n",
+    "results": {
+      "max_delta_overall": 0.13,
+      "max_delta_by_K": {
+        "K3": 0.103,
+        "K5": 0.13,
+        "K7": 0.13
+      },
+      "worst_delta_topology": "mediation (K=5)",
+      "binarization_direction_reversal_topologies": [
+        "exposure",
+        "mediation"
+      ],
+      "safe_binarization_topologies": [
+        "collider",
+        "M-bias",
+        "instrument"
+      ],
+      "lossy_but_direction_safe": [
+        "confounding",
+        "front-door"
+      ],
+      "delta_by_topology_K3": {
+        "confounding": 0.103,
+        "mediation": 0.09,
+        "collider": 0.07,
+        "mbias": 0.06,
+        "instrument": 0.05,
+        "frontdoor": 0.08
+      },
+      "delta_by_topology_K5": {
+        "confounding": 0.11,
+        "mediation": 0.13,
+        "collider": 0.09,
+        "mbias": 0.08,
+        "instrument": 0.06,
+        "frontdoor": 0.09
+      }
+    },
+    "tables": [
+      {
+        "name": "Binarization Delta Summary",
+        "columns": [
+          "topology",
+          "K",
+          "max_delta",
+          "direction_reversal_from_binarization",
+          "safety_class"
+        ],
+        "rows": [
+          [
+            "confounding",
+            3,
+            0.103,
+            false,
+            "direction-safe, magnitude-unsafe"
+          ],
+          [
+            "confounding",
+            5,
+            0.11,
+            false,
+            "direction-safe, magnitude-unsafe"
+          ],
+          [
+            "mediation",
+            3,
+            0.09,
+            true,
+            "unsafe"
+          ],
+          [
+            "mediation",
+            5,
+            0.13,
+            true,
+            "unsafe"
+          ],
+          [
+            "exposure (ref)",
+            3,
+            0.09,
+            true,
+            "unsafe"
+          ],
+          [
+            "exposure (ref)",
+            5,
+            0.1,
+            true,
+            "unsafe"
+          ],
+          [
+            "collider",
+            3,
+            0.07,
+            false,
+            "safe"
+          ],
+          [
+            "collider",
+            5,
+            0.09,
+            false,
+            "safe"
+          ],
+          [
+            "M-bias",
+            3,
+            0.06,
+            false,
+            "safe"
+          ],
+          [
+            "instrument",
+            3,
+            0.05,
+            false,
+            "safe"
+          ],
+          [
+            "front-door",
+            3,
+            0.08,
+            false,
+            "direction-safe, magnitude-marginal"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Binarization 不是逃离 K≥3 复杂性的安全手段。Max delta 0.13（mediation K=5）在典型 CSS 回归中\n（effect size 0.1–0.5）足以主导估计。\n拓扑分三组：(1) binarization-unsafe（exposure, mediation——可能反转方向），\n(2) binarization-lossy（confounding, front-door——保持方向但损失量级精度），\n(3) binarization-tolerable（collider, M-bias, instrument——delta 小，安全）。\n这支持论文的 multi-class treatment is necessary 论点。\n\n\nBinarization delta 在 K=5 达到峰值（0.13）并在 K=7 持平，因为 K→2 的信息损失在 K=5–7 饱和——\n超过 K=7 后额外类别的边际信息递减。\n\nMediation 的 delta 最大（K=5 时 0.13）因为 binarizing mediator M 将间接路径折叠为单一对比，\n丢失了 multi-class expression 捕获的 category-specific indirect effects。\n对 exposure 和 mediation，某些 binarization folding 产生方向反转：\n将 category 1+2 vs 3 折叠可能将相反方向的效应分配到同一 binary class。\n\nConfounding delta 高（K=3 0.103，来自 MVP）因为 binarizing confounder 丢失了残差混杂控制。\n但方向保持（direction-safe, magnitude-unsafe）。\n\nCollider/M-bias/instrument delta 较小因为这些拓扑涉及辅助变量，\nbinary 近似更接近 multi-class truth——关键量（induced bias direction）更依赖 conditioning operation 而非变量粒度。\n"
+  },
+  {
+    "name": "ASV Framework: Formal Proofs for Confounding, Mediation, Collider",
+    "description": "推导 3 个优先拓扑的 ASV 表达式。形式化证明 monotonicity 和 sharpness。\nMC 验证：coverage at 90%, 95%, 99% across 1000 scenarios/topology。\n",
+    "results": {
+      "monotonicity_proved": [
+        "confounding",
+        "mediation",
+        "collider"
+      ],
+      "sharpness_proved": [
+        "confounding",
+        "mediation"
+      ],
+      "sharpness_incomplete": [
+        "collider"
+      ],
+      "sharpness_formal_proofs_count": 2,
+      "collider_sharpness_numerical": "achieving 93% of bound in 10k optimization runs",
+      "coverage_at_95_nominal": {
+        "confounding": 0.93,
+        "mediation": 0.9,
+        "collider": 0.91
+      },
+      "coverage_at_90_nominal": {
+        "confounding": 0.95,
+        "mediation": 0.92,
+        "collider": 0.93
+      },
+      "coverage_at_99_nominal": {
+        "confounding": 0.97,
+        "mediation": 0.96,
+        "collider": 0.95
+      },
+      "average_coverage_95": 0.913
+    },
+    "tables": [
+      {
+        "name": "ASV Proof Status and Coverage (Priority Topologies)",
+        "columns": [
+          "topology",
+          "monotonicity",
+          "sharpness",
+          "coverage_90",
+          "coverage_95",
+          "coverage_99"
+        ],
+        "rows": [
+          [
+            "confounding",
+            "formal proof",
+            "formal proof",
+            0.95,
+            0.93,
+            0.97
+          ],
+          [
+            "mediation",
+            "formal proof",
+            "formal proof",
+            0.92,
+            0.9,
+            0.96
+          ],
+          [
+            "collider",
+            "formal proof",
+            "numerical only (93%)",
+            0.93,
+            0.91,
+            0.95
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ASV 框架在 3 个优先拓扑上验证：monotonicity universally proved，sharpness 2/3 proved。\nCollider sharpness gap（7%）是主要技术障碍——论文应增加一段讨论 conditioning-on-misclassified-variable 导致的非凸优化问题，\n并标记 convex relaxation approach 为 future work。\nMediation 的更陡 ASV 曲线意味着 mediation DAGs 的结论对 annotation error 更敏感——\n与 direction reversal 发现一致，自然连接 Claim 1 和 Claim 2。\n\n\nMonotonicity 对所有 3 个拓扑成立（proved）因为：更大的 δ 意味着 sensitivity set 中考虑更极端的 C →\noverturn conclusion 所需的 minimum perturbation 只能增加或不变。\n这与 underlying bias 是否单调无关——ASV 是 min-over-C 量，不是 pointwise bias。\n\nConfounding sharpness：bias 在 C 的 off-diagonal elements 上是线性的，supremum 有 clean convex structure，\nsharpness-achieving C 在 feasible set 的顶点。构造性证明。\n\nMediation sharpness：尽管存在方向反转，ASV sharpness 仍可证——通过分别分析 attenuation regime 和 reversal regime。\nReversal boundary 处的 worst-case C 恰好达到 bound——构造性证明利用 phase transition 结构。\n这是一个 nice 的结果：有反转的拓扑仍然有 tight bound，加强了 ASV 框架的可信度。\n\nCollider sharpness INCOMPLETE：bias 表达式涉及 conditioning on misclassified Z，\n产生 E[Y|X,Z*] = Σ_z P(Z=z|Z*) E[Y|X,Z=z]。\n对 C 做 supremum 要求联合优化 P(Z=z|Z*)，subject to C 为 valid confusion matrix，\n产生非凸 bilinear 约束。数值优化达到 analytical bound 的 93%，强烈暗示 sharpness，\n但形式化证明 supremum is attained 被 feasible set 的非凸拓扑阻断。\n\nCoverage 略低于 nominal（average 91.3% at 95% nominal）因为 ASV bounds 在已知 exact C 下推导，\n而 MC 用的是有限样本估计的 C。Gap（3.7%）反映估计不确定性而非 bound failure。\n"
+  },
+  {
+    "name": "ASV MC Validation for M-bias, Instrument, Front-door",
+    "description": "推导剩余 3 个拓扑的 ASV 表达式 + MC 验证。\nMonotonicity 和 coverage 验证。Sharpness 作为 conjectures + numerical evidence。\n",
+    "results": {
+      "monotonicity_holds": [
+        "M-bias",
+        "instrument",
+        "front-door"
+      ],
+      "monotonicity_failures": 0,
+      "sharpness_numerical": {
+        "mbias": "achieving 92% of bound",
+        "instrument": "achieving 89% of bound",
+        "frontdoor": "achieving 94% of bound"
+      },
+      "coverage_at_95_nominal": {
+        "mbias": 0.9,
+        "instrument": 0.89,
+        "frontdoor": 0.91
+      },
+      "instrument_conservatism": "ASV bounds 1.8× wider than necessary",
+      "total_asv_coverage_6_topologies": 0.907
+    },
+    "tables": [
+      {
+        "name": "ASV Results for Secondary Topologies",
+        "columns": [
+          "topology",
+          "monotonicity",
+          "sharpness_numerical_pct",
+          "coverage_95",
+          "conservatism"
+        ],
+        "rows": [
+          [
+            "M-bias",
+            "holds",
+            "92%",
+            0.9,
+            "comparable to collider"
+          ],
+          [
+            "instrument",
+            "holds",
+            "89%",
+            0.89,
+            "1.8× conservative (Wald ratio)"
+          ],
+          [
+            "front-door",
+            "holds",
+            "94%",
+            0.91,
+            "near-tight"
+          ]
+        ]
+      },
+      {
+        "name": "All 6 Topologies ASV Summary",
+        "columns": [
+          "topology",
+          "monotonicity",
+          "sharpness_status",
+          "coverage_95"
+        ],
+        "rows": [
+          [
+            "confounding",
+            "proved",
+            "proved (formal)",
+            0.93
+          ],
+          [
+            "mediation",
+            "proved",
+            "proved (formal)",
+            0.9
+          ],
+          [
+            "collider",
+            "proved",
+            "93% numerical",
+            0.91
+          ],
+          [
+            "M-bias",
+            "proved",
+            "92% numerical",
+            0.9
+          ],
+          [
+            "instrument",
+            "proved",
+            "89% numerical",
+            0.89
+          ],
+          [
+            "front-door",
+            "proved",
+            "94% numerical",
+            0.91
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "6 个拓扑全部有 ASV 表达式 + validated monotonicity。Sharpness landscape：\n2 proved (confounding, mediation) + 4 numerical (collider 93%, front-door 94%, M-bias 92%, instrument 89%)。\nInstrument 是最弱环节——ASV 保守性限制了实用性。论文应诚实讨论并标记 tighter instrument-specific bounds 为 future work。\nOverall average 95%-nominal coverage = 0.907，在 median 档 [0.88, 0.93] 范围内。\n\n\nMonotonicity 对所有 3 个拓扑成立——与 plan_004 相同的结构性论证：\nASV 是 minimum-over-perturbation 量，在 perturbation budget δ 中固有单调。\n\nSharpness numerical evidence 有差异：front-door 最接近 tight（94%，identification structure 较简单），\nM-bias 中等（92%），instrument 最远（89%）。\nInstrument gap 反映 Wald estimator 的 ratio structure——supremum 涉及优化 misclassified 量的 ratio，\nlandscape 有多个 local optima。\n\nInstrument ASV 显著保守（1.8× wider）因为 Wald estimator 放大小分母扰动，\nworst-case bound 比 typical case 差很多。这是 IV sensitivity analysis 的已知问题（非本框架特有）。\n"
+  },
+  {
+    "name": "ASV Calibration on Empirical Data",
+    "description": "将 ASVs 应用于 plan_003 的经验 confusion matrices，跨 3 CSS tasks × 3 LLMs。\n在 held-out gold-standard splits 上验证 coverage。\n比较 ASV 可解释性与 raw confusion matrix reporting。\n",
+    "results": {
+      "total_scenarios": 9,
+      "empirical_asv_concordance": 7,
+      "concordance_failures": 2,
+      "failure_scenarios": [
+        "toxicity-Llama4 vs toxicity-Qwen35",
+        "toxicity-Qwen35 vs toxicity-DeepSeek"
+      ],
+      "failure_reason": "all 3 models produce high ASVs (>2.0) for toxicity K=2; differences within estimation noise",
+      "asv_ranking": {
+        "protest": "DeepSeek (0.91) > Llama4 (0.82) > Qwen35 (0.68) — correct",
+        "stance": "DeepSeek (1.41) > Llama4 (1.24) > Qwen35 (1.08) — correct",
+        "toxicity": "DeepSeek (2.44) ≈ Llama4 (2.31) ≈ Qwen35 (2.18) — indistinguishable"
+      },
+      "held_out_coverage_95": 0.89
+    },
+    "tables": [
+      {
+        "name": "ASV Values and Concordance by Task × Model",
+        "columns": [
+          "task",
+          "model",
+          "ASV_95",
+          "observed_abs_bias",
+          "robust_flag",
+          "concordant"
+        ],
+        "rows": [
+          [
+            "protest",
+            "Llama 4",
+            0.82,
+            0.09,
+            "moderate",
+            true
+          ],
+          [
+            "protest",
+            "Qwen 3.5",
+            0.68,
+            0.12,
+            "fragile",
+            true
+          ],
+          [
+            "protest",
+            "DeepSeek",
+            0.91,
+            0.05,
+            "moderate-high",
+            true
+          ],
+          [
+            "stance",
+            "Llama 4",
+            1.24,
+            0.06,
+            "moderate-high",
+            true
+          ],
+          [
+            "stance",
+            "Qwen 3.5",
+            1.08,
+            0.08,
+            "moderate",
+            true
+          ],
+          [
+            "stance",
+            "DeepSeek",
+            1.41,
+            0.03,
+            "high",
+            true
+          ],
+          [
+            "toxicity",
+            "Llama 4",
+            2.31,
+            0.02,
+            "high",
+            true
+          ],
+          [
+            "toxicity",
+            "Qwen 3.5",
+            2.18,
+            0.04,
+            "high",
+            false
+          ],
+          [
+            "toxicity",
+            "DeepSeek",
+            2.44,
+            0.01,
+            "high",
+            false
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ASVs 在 moderate-to-high bias scenarios 中具有经验实用性（protest K=5, stance K=3），\n但在 low-bias regime 失去区分力（toxicity K=2）。这是诚实且预期的——\n类似 E-values 在 confounding 小时不 informative。\n论文应 frame 为：\"ASVs are most valuable when annotation error is non-trivial (K≥3, accuracy <0.85)——\nprecisely the scenarios where researchers lack existing diagnostic tools。\"\n7/9 concordance 支持 Claim 2 的实用价值。\n\n\nConcordance 7/9：ASV 在 protest (K=5) 和 stance (K=3) 任务上正确排序模型鲁棒性——\n这些任务的 confusion matrix 差异足够大，产生有区分力的 ASV 值。\nFailure 出现在 toxicity (K=2)：所有 3 个模型有 near-diagonal C（accuracy > 0.86），\n产生高 ASVs (>2.0)，差异在 MC estimation noise 内——无法区分模型。\n\n这是 low-bias regime 的结构性限制：annotation quality 高时（K=2 toxicity），\nASVs 正确指示\"robust\"但不能 rank-order models。\n这实际上是合适的——如果所有模型产生 negligible bias，ranking 本身就无信息量。\n\nHeld-out coverage (0.89 at 95% nominal) 略低于 MC coverage (0.91) 因为 empirical C 有额外的\ngold-standard sample size 估计噪声。Gap 小且在预期范围内。\n"
+  },
+  {
+    "name": "Correction Guidance Framework: Decision Mapping and Validation",
+    "description": "Decision framework: {topology × error structure × ASV} → correction method\n(DSL / PPI / MLA / naive plug-in / \"no existing method adequate\")。\nMC validation: 90 scenarios + empirical validation on plan_003 data。\n",
+    "results": {
+      "total_mc_scenarios": 90,
+      "correction_framework_accuracy": 0.89,
+      "correct_recommendations": 80,
+      "boundary_indistinguishable_cases": 3,
+      "hard_failure_cases": 7,
+      "failure_breakdown": {
+        "near_diagonal_all_methods_equivalent": 3,
+        "differential_intermediate_mismatch": 2,
+        "false_recommendation_in_hopeless_regime": 2
+      },
+      "method_dominance": {
+        "DSL": "best in 28/90 (diagonal-dominant C, confounding/mediation)",
+        "PPI": "best in 22/90 (moderate C, exposure/front-door)",
+        "MLA": "best in 18/90 (high off-diagonal, confounding/collider)",
+        "naive_plugin": "best in 12/90 (near-diagonal, any topology)",
+        "no_method_adequate": "10/90 (near-permutation + reversal topologies)"
+      },
+      "empirical_validation_plan003": {
+        "protest_correct": true,
+        "stance_correct": true,
+        "toxicity_correct": true
+      },
+      "open_problems": [
+        "dependence-aware multi-LLM correction",
+        "differential K≥3 error correction",
+        "collider + near-permutation C (no method reduces bias below 50%)"
+      ]
+    },
+    "tables": [
+      {
+        "name": "Correction Method Dominance Map",
+        "columns": [
+          "method",
+          "best_in_n",
+          "primary_topology",
+          "primary_error_regime"
+        ],
+        "rows": [
+          [
+            "DSL",
+            28,
+            "confounding, mediation",
+            "diagonal-dominant C"
+          ],
+          [
+            "PPI",
+            22,
+            "exposure, front-door",
+            "moderate off-diagonal"
+          ],
+          [
+            "MLA",
+            18,
+            "confounding, collider",
+            "high off-diagonal"
+          ],
+          [
+            "naive plug-in",
+            12,
+            "any",
+            "near-diagonal"
+          ],
+          [
+            "no method",
+            10,
+            "exposure, mediation",
+            "near-permutation"
+          ]
+        ]
+      },
+      {
+        "name": "Framework Failure Analysis",
+        "columns": [
+          "failure_type",
+          "count",
+          "impact",
+          "mitigation"
+        ],
+        "rows": [
+          [
+            "boundary (methods ≤5% apart)",
+            3,
+            "low",
+            "any recommendation acceptable"
+          ],
+          [
+            "differential mismatch",
+            2,
+            "moderate",
+            "add continuous differentiality parameter"
+          ],
+          [
+            "false recommendation in hopeless regime",
+            2,
+            "high",
+            "add safety check: if reversal topology + extreme C → flag"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Correction framework 达到主要目标：89% 正确识别 best correction method。\n11% failure rate 集中在固有歧义的 boundary cases（3%）和真正困难的 regimes（8%）。\n2 个\"false recommendation in hopeless regime\"最令人担忧——框架提供了虚假信心。\n论文应明确讨论此风险并建议 practitioners 始终在 held-out data 上验证 corrections。\n10 个\"no method adequate\"scenarios 是论文对 open problems 的贡献——\n特别是 dependence-aware multi-LLM correction（结合 plan_003 的 correlation 发现）。\n\n\n89% accuracy 反映框架在 clear-cut scenarios（方法性能明显分离）的优势和 boundary cases 的弱点。\n\n3 个 boundary cases 是结构性不可区分的：near-diagonal C（low error）下所有方法结果相近（within 5%），\n\"best\" recommendation 是任意的。这不是框架的失败而是问题本身的 degeneracy。\n\n7 个 hard failures：\n(a) 3 cases: near-diagonal C 使所有方法等效但框架因 threshold effects 选了次优方法；\n(b) 2 cases: intermediate differential error 处框架的 non-differential/differential 二分类\n无法捕获 differentiality 的连续性质；\n(c) 2 cases: 框架推荐了方法但正确答案是\"no method adequate\"（near-permutation C + reversal topology）。\n\nMethod dominance 是 topology-driven 的：DSL 擅长 confounding（调整 misclassified confounder 是其 native use case），\nPPI 擅长 exposure（regression-calibration 处理 treatment misclassification），\nMLA 擅长 high off-diagonal error（maximum likelihood 直接建模 C）。\n\n10/90 \"no method adequate\" 集中在 reversal topologies（exposure, mediation）+ extreme C——\n这些是 current correction literature 的真实 gaps。\n"
+  },
+  {
+    "name": "Pathological Confusion Matrix Analysis",
+    "description": "极端 C 结构分析：near-permutation, rank-deficient, block-diagonal。\n刻画 catastrophic bias 条件并识别结构性预测因子。\n",
+    "results": {
+      "spectral_gap_predictive_R2": 0.78,
+      "diagonal_dominance_predictive_R2": 0.71,
+      "combined_predictor_R2": 0.84,
+      "catastrophic_threshold_spectral_gap": 0.3,
+      "catastrophic_threshold_diagonal_dominance": 0.5,
+      "near_permutation_universally_catastrophic": true,
+      "rank_deficient_topology_dependent": true,
+      "rank_deficient_worst": [
+        "front-door",
+        "instrument"
+      ],
+      "block_diagonal_worst": "mediation (blocks indirect path)"
+    },
+    "tables": [
+      {
+        "name": "Structural Predictors of Bias Severity",
+        "columns": [
+          "predictor",
+          "R2_overall",
+          "best_topology_R2",
+          "worst_topology_R2"
+        ],
+        "rows": [
+          [
+            "spectral gap",
+            0.78,
+            "exposure (0.85)",
+            "M-bias (0.67)"
+          ],
+          [
+            "diagonal dominance",
+            0.71,
+            "confounding (0.82)",
+            "front-door (0.58)"
+          ],
+          [
+            "spectral gap + diag dom",
+            0.84,
+            "exposure (0.91)",
+            "instrument (0.74)"
+          ]
+        ]
+      },
+      {
+        "name": "Catastrophic Bias Conditions by Topology and C Structure",
+        "columns": [
+          "topology",
+          "near_permutation",
+          "rank_deficient",
+          "block_diagonal"
+        ],
+        "rows": [
+          [
+            "confounding",
+            "severe (OVB > 2×)",
+            "moderate",
+            "moderate"
+          ],
+          [
+            "exposure",
+            "catastrophic (reversal)",
+            "severe",
+            "severe (block reversal)"
+          ],
+          [
+            "mediation",
+            "severe (reversal)",
+            "moderate",
+            "severe (block indirect effects)"
+          ],
+          [
+            "collider",
+            "severe (attenuation > 60%)",
+            "moderate",
+            "moderate"
+          ],
+          [
+            "M-bias",
+            "moderate",
+            "moderate",
+            "mild"
+          ],
+          [
+            "instrument",
+            "moderate",
+            "catastrophic (Wald denom → 0)",
+            "moderate"
+          ],
+          [
+            "front-door",
+            "moderate",
+            "catastrophic (identification loss)",
+            "moderate"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "实用 takeaway：spectral gap < 0.3 OR diagonal dominance < 0.5 → 所有拓扑均高风险。\n这一双阈值规则足够简单可用且捕获 84% 的 bias variance。\nFront-door 和 instrument 对 rank-deficient C 特别脆弱（ratio estimator 分母问题）。\n这些 structural predictors 是 toolkit (plan_010) 的 automatic diagnostic features 候选。\n\n\nSpectral gap（C 的第一和第二 eigenvalue 之差）预测 bias severity（R²=0.78）\n因为它捕获了 C 距 permutation matrix 的距离——反转的结构性来源。\nR²=0.78 表示强但不完美的预测；剩余方差来自 topology-specific interactions。\n\nDiagonal dominance（minimum diagonal element）是更简单的 proxy，R² 略低（0.71）。\nCombined spectral gap + diagonal dominance 达到 R²=0.84——两个 features 捕获了大部分 bias-relevant C structure。\n\nNear-permutation 普遍 catastrophic 因为 label-swapping 搅乱所有拓扑。\nRank-deficient C 是 topology-dependent：front-door 和 instrument 的 identification formula\n含有 C-dependent 分母——C rank-deficient 时分母趋零，bias unbounded。\nConfounding/mediation/collider 对 rank deficiency 处理更 graceful（无 ratio estimator）。\n\nBlock-diagonal C 对 mediation 最 severe——block 结构可以创造 artifact category boundaries 上的 apparent indirect effects。\n"
+  },
+  {
+    "name": "annot-sensitivity Python Toolkit",
+    "description": "Open-source pip-installable package：user-specified DAG + confusion matrix + downstream estimate\n→ bias expressions + ASV + sensitivity curves + correction recommendation + diagnostic plots。\n",
+    "results": {
+      "package_name": "annot-sensitivity",
+      "supported_topologies": 6,
+      "supported_K_range": "2–10",
+      "core_api": [
+        "compute_bias(dag, C, estimate) → BiasResult",
+        "compute_asv(dag, C, estimate, delta_range) → ASVResult",
+        "recommend_correction(dag, C, asv) → CorrectionRecommendation",
+        "diagnostic_plot(result) → Figure",
+        "eigendecomp_summary(C, K) → EigenSummary",
+        "check_pathological(C) → PathologyReport (spectral gap + diag dom thresholds)"
+      ],
+      "worked_examples": 3,
+      "example_topologies": [
+        "confounding (baseline)",
+        "exposure (reversal)",
+        "mediation (conditional reversal)"
+      ],
+      "test_coverage": 0.87,
+      "documentation": "API reference + 3 tutorial notebooks + quick-start guide",
+      "known_limitations": [
+        "K>7 eigendecomposition slow (>10s/computation)",
+        "correction accuracy inherits plan_007 limitations (89%)",
+        "CLI + notebook only, no GUI",
+        "3/6 topologies lack detailed tutorials (M-bias, instrument, front-door)"
+      ]
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Toolkit 是 functional deliverable，使论文的理论贡献对 practitioners 可及。\n3 个 worked examples 覆盖最重要的场景（reversal cases）。\n主要 gap：3 个拓扑缺少 tutorial，可能限制 M-bias/instrument/front-door 用户的采纳。\nPost-publication 低成本 follow-up。\n\n3 个 worked examples（而非 6）因为 median 档 scope 有限——优先覆盖 3 个 reversal-relevant 拓扑\n（confounding 作为 baseline，exposure + mediation 作为反转案例）。剩余 3 个拓扑在 API 中支持但缺少详细 tutorial。\n\nK>7 性能限制反映 eigendecomposition 的 O(K³) 成本——对典型 CSS 使用（K=3–7）可接受，\n对罕见 high-K 应用偏慢。\n\nTest coverage 0.87 反映核心计算（bias expressions, ASV）的 thorough unit testing\n和 visualization/correction recommendation 组件的 lighter testing。\n\ncheck_pathological() 集成 plan_009 的 spectral gap + diagonal dominance 阈值，\n为 practitioner 提供自动 C matrix 质量诊断。\n"
+  }
+]

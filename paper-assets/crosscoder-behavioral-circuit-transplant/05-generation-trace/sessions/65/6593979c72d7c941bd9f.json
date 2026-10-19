@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6593979c72d7c941bd9f",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "kind": "result",
+  "title": "code mvp A 002",
+  "task_key": "worker_code_mvp-A-002_20260510T153450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-A-002_20260510T153450_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "a8e22b91334961a9abb910057a584a4af71e8046b295338df7f6dbcaaa6f11a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mvp-A-002 实验完成（56 秒），结果已保存并注册。\n\n## 结果摘要\n\n| Gate | 结果 | 值 |\n|------|------|-----|\n| Gate 1 | **FAIL** | L0=515.1（目标 20-100），recon 降 98.9% |\n| Gate 2 | PASS | 130 个 exclusive features |\n| Gate 3 (Rank-1) | **FAIL** | movement=0.00%（encoder 对 donor-exclusive feature 投影近零） |\n| Gate 4 (Rank-1) | PASS | ppl ratio=1.001 |\n| Gate 5 (Rank-1) | **FAIL** | DA improvement=-0.01% |\n| Part 2 Bias | **ALL FAIL** | 所有 feature×alpha 组合 DA improvement 为负 |\n\n**H1 NOT VERIFIED, H3 NOT VERIFIED**\n\n## 核心问题\n\n**L1 正则化用了 `.mean()` 而非 `.sum()`**，导致 per-feature 惩罚极弱（有效 L1≈0.1/(batch×n_features)≈1e-7）。即使 L1_λ 从 5e-2 提升到 1e-1，L0 只从 582→515，远未达到目标 20-100。要实现真正的高稀疏度，需要：\n1. 改用 sum-based L1（`fd.abs().sum(-1).mean()`）\n2. 或采用 TopK 激活替代 ReLU+L1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-a-002.md"
+}

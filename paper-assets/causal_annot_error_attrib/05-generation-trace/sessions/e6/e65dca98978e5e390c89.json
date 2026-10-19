@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e65dca98978e5e390c89",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops s3 upload retry",
+  "task_key": "worker_ops_s3-upload-retry_20260525T205626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-upload-retry_20260525T205626_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "bd0684cba9b5183c9683ef5dfa2373cf96e917d913ae54e9a00da22c82bd4701"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "上传成功。\n\n| 项目 | 值 |\n|------|-----|\n| **Tarball 路径** | `/tmp/causal_annot_error_attrib-final-20260525-134910.tar.gz` |\n| **Tarball 大小** | 471,616,410 bytes (449.8 MB) |\n| **S3 URI** | `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/causal_annot_error_attrib/project-archive/causal_annot_error_attrib-final-20260525-134910.tar.gz` |\n| **上传速率** | 11.4 MB/s |\n| **状态** | 成功（`upload_file` 无异常，耗时 39.4s） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-upload-retry.md"
+}

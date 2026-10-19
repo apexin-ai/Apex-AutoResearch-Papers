@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp-A-002",
+  "project": "crosscoder-behavioral-circuit-transplant",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-10T13:24:29.045Z",
+    "updated_at": "2026-05-10T15:51:56.665Z",
+    "spec": {
+      "hypothesis": "H1: 稀疏度不足——L1_λ=1e-3 导致 L0=457，提高到 5e-2 使 L0∈[20,80] 后 rank-1 手术可产生有效激活移动",
+      "model_name": "EleutherAI/pythia-70m",
+      "server": "home-1x5090",
+      "data_path": "monology/pile-uncopyrighted",
+      "data_count": 2000,
+      "seed": 42,
+      "description": "MVP-A-002: 重训 crosscoder L1_λ=5e-2 目标 L0∈[20,80]，同样 Gates 1-5 评估，手术公式不变",
+      "parent": "mvp-A-001",
+      "donor_checkpoint": "step143000",
+      "target_checkpoint": "step1000",
+      "command": "source /home/sonny/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/home/sonny/ssd2/sonny.fu/.hf_cache && cd /home/sonny/crosscoder-bct && python3 mvp_A002_experiment.py"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-10T15:51:56.674250+00:00",
+  "trigger": "update_registry"
+}

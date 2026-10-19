@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6779b6b932a1e41fd2b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan002 rng fix",
+  "task_key": "worker_code_plan002-rng-fix_20260520T160418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-rng-fix_20260520T160418_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "ef34ae9f6f56005413c72c9da7edfdb280b78bf63d1538c98c7a813ba617decc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。两次运行数值完全一致，确定性已验证。\n\n**修改内容：**\n- 两个文件都新增了 `_det_seed(topo_name, K, tag, base_seed=42)` 函数，用 SHA-256 从 `(topo|K|tag|seed)` 生成确定性 32-bit 种子\n- 所有 `gen_random_C` 调用点的 seed 从 `seed=SEED` / `seed=SEED + int(thr * 1000)` 改为 `seed=_det_seed(topo, K, 'random')` / `seed=_det_seed(topo_name, K, f'wc_{thr}')`\n- 每个 (topology, K, threshold) 组合现在有独立的确定性种子，不受调用顺序影响\n\n**Worst-case bounds 表（7 topo × K={3,5,7} × threshold={0.5, 0.7, 0.9}）：**\n\n| Topology | K | WC(d≥0.5) | WC(d≥0.7) | WC(d≥0.9) |\n|---|---|---|---|---|\n| confounding | 3 | 0.2993 | 0.2744 | 0.1614 |\n| confounding | 5 | 0.2462 | 0.2156 | 0.1107 |\n| confounding | 7 | 0.2264 | 0.1859 | 0.0933 |\n| mediation | 3 | 0.3032 | 0.2510 | 0.1223 |\n| mediation | 5 | 0.2396 | 0.1832 | 0.0867 |\n| mediation | 7 | 0.1879 | 0.1421 | 0.0607 |\n| collider | 3 | 0.1256 | 0.1064 | 0.0503 |\n| collider | 5 | 0.1306 | 0.1087 | 0.0477 |\n| collider | 7 | 0.1131 | 0.0826 | 0.0352 |\n| exposure | 3 | 1.1438 | 0.7092 | 0.2726 |\n| exposure | 5 | 0.8784 | 0.5782 | 0.2097 |\n| exposure | 7 | 0.7441 | 0.4913 | 0.1853 |\n| mbias | 3 | 0.0287 | 0.0226 | 0.0106 |\n| mbias | 5 | 0.0487 | 0.0374 | 0.0154 |\n| mbias | 7 | 0.0449 | 0.0319 | 0.0133 |\n| iv | 3 | 14.0463 | 1.6444 | 0.2993 |\n| iv | 5 | 9.6932 | 2.1036 | 0.4053 |\n| iv | 7 | 8.2204 | 1.8132 | 0.3605 |\n| frontdoor | 3 | 0.2966 | 0.2604 | 0.1407 |\n| frontdoor | 5 | 0.2507 | 0.2066 | 0.1057 |\n| frontdoor | 7 | 0.2119 | 0.1646 | 0.0785 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-rng-fix.md"
+}

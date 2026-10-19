@@ -1,0 +1,25 @@
+paper_key: "vanderweele_ding2017"
+title: "Sensitivity Analysis in Observational Research: Introducing the E-Value"
+venue: "Annals of Internal Medicine 2017"
+full_text_available: false
+
+research:
+  baselines: ["Rosenbaum sensitivity analysis", "Cornfield conditions"]
+  metrics:
+    - {name: "E-value (minimum confounding strength to explain away effect)", direction: "higher_better"}
+    - {name: "risk ratio", direction: "N/A"}
+  datasets:
+    - {name: "illustrative examples from published observational studies", size: "N/A"}
+  ablation_dimensions: ["unmeasured confounding strength", "prevalence of confounder"]
+  training_recipe: "N/A (analytical)"
+  method_family: "sensitivity analysis for unmeasured confounding"
+
+positioning:
+  core_claim: "Introduces the E-value as a simple, intuitive metric for assessing vulnerability of causal estimates to unmeasured confounding"
+  key_results: "Single-number summary (E-value) that requires no assumptions about confounders"
+  limitations: ["addresses confounding not measurement error directly", "assumes no effect modification by confounder"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

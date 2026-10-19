@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "abfb3546ad6ed9196723",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "math epsilon sensitivity w9",
+  "task_key": "worker_math_epsilon_sensitivity_w9_20260522T152145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_math_epsilon_sensitivity_w9_20260522T152145.jsonl",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "e2110a092bcf2168d5a4f0dfd2ca6377f94e4d74f1d25603c73366628794776b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:21:52.550767+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 23, 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_math_epsilon_sensitivity_w9_20260522T152145"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/math-epsilon-sensitivity-w9.md"
+}

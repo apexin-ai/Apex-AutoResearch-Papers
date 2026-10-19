@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88cc1720396969df4b96",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code structured nondiff",
+  "task_key": "worker_code_structured_nondiff_20260523T143234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_structured_nondiff_20260523T143234_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "d38e0dcc3e38f62580f905f6cda2ac2f3effc03b72c19ddd46150d50dbea4db6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three outputs generated correctly. Key results:\n\n**Sensitivity ranking** (mean relative deviation across ε):\n1. **M-bias** — 13.1% (dominant; small nondiff bias makes relative deviation large, up to 42% at ε=0.10)\n2. **Collider** — 1.6%\n3. **Mediation** — 1.4%\n4. **Front-door** — 0.8%\n5. **Exposure** — 0.6%\n6. **IV** — 0.5%\n7. **Confounding** — 0.4%\n\nCounter to the initial prediction that exposure and IV would be most sensitive — they're actually quite robust. M-bias dominates because its non-differential bias is very small (~0.009), so even modest absolute perturbation from Y-dependent violation produces large relative deviation. The absolute bias changes across all topologies are small (no sign flips at any ε level), confirming that moderate violations of the non-differential assumption don't qualitatively alter the bias structure.\n\nProduced:\n- `artifacts/structured_nondiff_violation.py` — experiment script\n- `artifacts/structured_nondiff_violation_results.json` — full results\n- `artifacts/structured_nondiff_violation_table.tex` — LaTeX table"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-structured-nondiff.md"
+}

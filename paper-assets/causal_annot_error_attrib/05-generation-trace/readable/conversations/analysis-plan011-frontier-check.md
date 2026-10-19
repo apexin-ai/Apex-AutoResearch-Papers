@@ -1,0 +1,1146 @@
+# analysis plan011 frontier check
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_analysis_plan011_frontier_check_20260521T110109.jsonl`
+- **Structured JSON:** [`d4c860e11f11954c232c.json`](../../sessions/d4/d4c860e11f11954c232c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T11:03:30.230423+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/ 2>/dev/null",
+  "description": "List local plan011 artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/ 2>/dev/null",
+    "description": "List local plan011 artifacts"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T11:03:30.230750+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T11:03:30.230922+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T11:03:30.231053+00:00_
+
+total 24
+drwxr-xr-x  5 ubuntu ubuntu 4096 May 21 10:06 .
+drwxr-xr-x 16 ubuntu ubuntu 4096 May 21 09:57 ..
+-rw-r--r--  1 ubuntu ubuntu 2520 May 21 10:06 STATUS.md
+drwxr-xr-x  4 ubuntu ubuntu 4096 May 21 09:57 data
+drwxr-xr-x  4 ubuntu ubuntu 4096 May 21 09:57 results
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 21 10:05 scripts
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T11:03:30.231196+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/STATUS.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/STATUS.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T11:03:30.231358+00:00_
+
+1	# plan011 Frontier Annotations — Status
+2	
+3	## Blocker
+4	API key `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8` returns **HTTP 401 "Missing
+5	Authentication header" / "401 Unauthorized"** on every endpoint probed:
+6	
+7	| Endpoint                                         | Result               |
+8	|--------------------------------------------------|----------------------|
+9	| `https://openrouter.ai/api/v1/chat/completions`  | 401 (Missing Auth)   |
+10	| `https://gpu.aet.cit.tum.de/api/v1/chat/completions` | 401 Unauthorized |
+11	| `https://gpu.aet.cit.tum.de/openai/v1/chat/completions` | 401            |
+12	| `https://gpu.aet.cit.tum.de/ollama/v1/chat/completions` | 401            |
+13	| `http://47.94.22.126/v1/chat/completions` (old)  | timeout / unreachable |
+14	
+15	The TUM gateway (`gpu.aet.cit.tum.de` runs Open WebUI v0.9.4) recognises the
+16	request format but rejects the bearer token. OpenRouter rejects the `tum_*`
+17	prefix outright (real OR keys are `sk-or-v1-...`).
+18	
+19	The key is either expired, malformed, or intended for a different gateway URL.
+20	
+21	## What is ready
+22	- `data/vast/test.jsonl` — 1000 deduped samples from VAST test (333 Con / 333 Pro / 333 Neutral roughly), each with `text`, `topic`, `label`, `label_name`.
+23	- `data/civil_comments/test.jsonl` — 1000 samples balanced 500 toxic / 500 non-toxic from `google/civil_comments` test split.
+24	- `scripts/prepare_data.py` — reproducible data prep (HF + GitHub fallback for VAST).
+25	- `scripts/annotate_frontier.py` — annotation pipeline. Supports:
+26	  - `--smoke` (1 API call to verify auth)
+27	  - `--dataset {vast,civil_comments,all} --model {llama4,qwen3,deepseek,all}`
+28	  - Streaming JSONL write + resume by `idx`
+29	  - 30-s wait × 5 retries on 402/429/5xx
+30	  - Aborts after 20 consecutive failures (avoids burning credit on auth errors)
+31	- `scripts/compute_results.py` — confusion matrix + macro F1 + bias + magnitude-ASV
+32	  across 7 topologies for K=2 / K=3. Imports the K-general pi
+…[truncated 639 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T11:03:30.231505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -laR /home/sonny/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "ls -laR /home/sonny/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T11:03:30.231635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/causal_annot_error_attrib/results/ -name \"*.jsonl\" -newer /home/sonny/causal_annot_error_attrib/results/ -mtime -7 -type f",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "find /home/sonny/causal_annot_error_attrib/results/ -name \"*.jsonl\" -newer /home/sonny/causal_annot_error_attrib/results/ -mtime -7 -type f",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T11:03:30.231761+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T11:03:30.231892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T11:03:30.232045+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "wc -l /home/sonny/causal_annot_error_attrib/results/vast/*.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/*.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/*.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "wc -l /home/sonny/causal_annot_error_attrib/results/vast/*.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/*.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/*.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T11:03:30.232181+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -lhS /home/sonny/causal_annot_error_attrib/results/vast/ /home/sonny/causal_annot_error_attrib/results/civil_comments/ /home/sonny/causal_annot_error_attrib/results/humaid/",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "ls -lhS /home/sonny/causal_annot_error_attrib/results/vast/ /home/sonny/causal_annot_error_attrib/results/civil_comments/ /home/sonny/causal_annot_error_attrib/results/humaid/",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T11:03:30.232344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl\\n    1498 /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl\\n    1500 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl\\n     420 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl\\n    1500 /home/sonny/causa
+…[truncated 887 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T11:03:30.232519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/civil_comments/:\\ntotal 6.3M\\n-rw-rw-r-- 1 sonny sonny 812K May 20 15:27 llama4_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny 812K May 20 15:45 llama4_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny 811K May 20 15:10 llama4_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 804K May 20 15:55 deepseek_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny 803K May 20 15:37 deepseek_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 708K May 20 18:20 qwen2.5-7b_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny 707K May 20 18:19 qwen2.5-7b_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny 706K May 20 18:18 qwen2.5-7b_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 227K May 20 15:55 qwen3_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 18:19 qwen2.5-7b_few-shot-3_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 18:20 qwen2.5-7b_few-shot-5_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 18:18 qwen2.5-7b_zero-shot_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 15:37 deepseek_zero-shot_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 15:27 llama4_few-shot-3_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 15:45 llama4_few-shot-5_confusion_matrix.npz\\n-rw-rw-r-- 1 sonny sonny 2.4K May 20 15:10 llama4_zero-shot_confusion_matrix.npz\\n\\n/home/sonny/causal_annot_error_attrib/results/humaid/:\\ntotal 5.4M\\n-rw-rw-r-- 1 sonny sonny 617K May 20 14:57 qwen3_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny 598K May 20 11:02 llama4_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny 598K May 20 12:21 llama4_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny 596K May 20 09:28 llama4_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 596K May 20 10:05 deepseek_zero-shot.jsonl\\n-rw-rw-r-- 1 sonny sonny 595K May 20 11:46 deepseek_few-shot-3.jsonl\\n-rw-rw-r-- 1 sonny sonny 594K May 20 13:25 deepseek_few-shot-5.jsonl\\n-rw-rw-r-- 1 sonny sonny 591K May 20 14:39 qwen3_few-shot-3.jsonl\\n-rw-rw-r
+…[truncated 2847 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T11:03:30.232722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -3 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -3 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T11:03:30.232931+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -3 /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -3 /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T11:03:30.233086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"idx\\\": 0, \\\"text\\\": \\\"check their papers\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"qwen/qwen3-235b-a22b\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\"}\\n{\\\"idx\\\": 1, \\\"text\\\": \\\"Technological improvements!\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"qwen/qwen3-235b-a22b\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\"}\\n{\\\"idx\\\": 2, \\\"text\\\": \\\"Another frustrated juvenile response, naked.\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"qwen/qwen3-235b-a22b\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T11:03:30.233300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"idx\\\": 0, \\\"text\\\": \\\"Who is the mayor of N.Y. to assume he has the authority to dole out to illegal immigrants an almost carte blanche sure fire way to be on our sovereign soil, and all they had to do was break our laws by crossing our borders by getting here. If there ever was a way to encourage more of the same acts of disobedience for others to follow this surely would be it. If I was a border patrol agent sworn to serve and protect the citizens of these United States I would consider New York's mayor an enemy to their very cause, and an enemy to all those citizens who are here legally.\\\", \\\"gold_label\\\": \\\"con\\\", \\\"pred_label\\\": \\\"con\\\", \\\"raw_response\\\": \\\"{\\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"}\\\", \\\"model\\\": \\\"meta-llama/llama-4-maverick\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": null, \\\"topic\\\": \\\"immigrant\\\"}\\n{\\\"idx\\\": 1, \\\"text\\\": \\\"Who is the mayor of N.Y. to assume he has the authority to dole out to illegal immigrants an almost carte blanche sure fire way to be on our sovereign soil, and all they had to do was break our laws by crossing our borders by getting here. If there ever was a way to encourage more of the same acts of disobedience for others to follow this surely would be it. If I was a border patrol agent sworn to serve and protect the citizens of these United States I would consider New York's mayor an enemy to their very cause, and an enemy to all those citizens who are here legally.\\\", \\\"gold_label\\\": \\\"con\\\", \\\"pred_label\\\": \\\"con\\\", \\\"raw_response\\\": \\\"{\\\\\\\"label\\\\\\\": \\\\\\\"con\\\\\\\"}\\\", \\\"model\\\": \\\"meta-llama/llama-4-maverick\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": null, \\\"topic\\\": \\\"all immigrants\\\"}\\n{\\\"idx\\\": 2, \\\"text\\\": \\\"Ginsburg's statement has no bearing on the separations of powers nor upon how she will con
+…[truncated 1100 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T11:03:30.233462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/causal_annot_error_attrib/results/ -name \"*.log\" -type f",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "find /home/sonny/causal_annot_error_attrib/results/ -name \"*.log\" -type f",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T11:03:30.233588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T11:03:30.233733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen3_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T11:03:30.233856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"420\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T11:03:30.233969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T11:03:30.234098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/vast/llama4_zero-shot.jsonl:4\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_zero-shot.jsonl:500\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_zero-shot.jsonl:1\\n/home/sonny/causal_annot_error_attrib/results/humaid/llama4_zero-shot.jsonl:0\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_zero-shot.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl:0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T11:03:30.234279+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -2 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -2 /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T11:03:30.234422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"idx\\\": 0, \\\"text\\\": \\\"check their papers\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"meta-llama/llama-4-maverick\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\"}\\n{\\\"idx\\\": 1, \\\"text\\\": \\\"Technological improvements!\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"meta-llama/llama-4-maverick\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T11:03:30.234545+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -2 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -2 /home/sonny/causal_annot_error_attrib/results/vast/qwen3_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T11:03:30.234660+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -2 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -2 /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_zero-shot.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T11:03:30.234798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"idx\\\": 0, \\\"text\\\": \\\"Who is the mayor of N.Y. to assume he has the authority to dole out to illegal immigrants an almost carte blanche sure fire way to be on our sovereign soil, and all they had to do was break our laws by crossing our borders by getting here. If there ever was a way to encourage more of the same acts of disobedience for others to follow this surely would be it. If I was a border patrol agent sworn to serve and protect the citizens of these United States I would consider New York's mayor an enemy to their very cause, and an enemy to all those citizens who are here legally.\\\", \\\"gold_label\\\": \\\"con\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"qwen/qwen3-235b-a22b\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\", \\\"topic\\\": \\\"immigrant\\\"}\\n{\\\"idx\\\": 1, \\\"text\\\": \\\"Who is the mayor of N.Y. to assume he has the authority to dole out to illegal immigrants an almost carte blanche sure fire way to be on our sovereign soil, and all they had to do was break our laws by crossing our borders by getting here. If there ever was a way to encourage more of the same acts of disobedience for others to follow this surely would be it. If I was a border patrol agent sworn to serve and protect the citizens of these United States I would consider New York's mayor an enemy to their very cause, and an enemy to all those citizens who are here legally.\\\", \\\"gold_label\\\": \\\"con\\\", \\\"pred_label\\\": null, \\\"raw_response\\\": \\\"\\\", \\\"model\\\": \\\"qwen/qwen3-235b-a22b\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": \\\"HTTP 402: 402 Client Error: Payment Required for url: http://47.94.22.126/v1/chat/completions\\\", \\\"topic\\\": \\\"all immigrants\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"er
+…[truncated 57 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T11:03:30.234959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"idx\\\": 0, \\\"text\\\": \\\"check their papers\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": \\\"toxic\\\", \\\"raw_response\\\": \\\"{\\\\\\\"label\\\\\\\": \\\\\\\"toxic\\\\\\\"}\\\", \\\"model\\\": \\\"qwen2.5-7b-local\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": null}\\n{\\\"idx\\\": 1, \\\"text\\\": \\\"Technological improvements!\\\", \\\"gold_label\\\": \\\"non_toxic\\\", \\\"pred_label\\\": \\\"non_toxic\\\", \\\"raw_response\\\": \\\"{\\\\\\\"label\\\\\\\": \\\\\\\"non_toxic\\\\\\\"}\\\", \\\"model\\\": \\\"qwen2.5-7b-local\\\", \\\"prompt_type\\\": \\\"zero-shot\\\", \\\"error\\\": null}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T11:03:30.235115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T11:03:30.235279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-3.jsonl:0\\n/home/sonny/causal_annot_error_attrib/results/vast/llama4_few-shot-5.jsonl:1154\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-3.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/vast/deepseek_few-shot-5.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-3.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen3_few-shot-5.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-3.jsonl:0\\n/home/sonny/causal_annot_error_attrib/results/vast/qwen2.5-7b_few-shot-5.jsonl:0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T11:03:30.235403+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T11:03:30.235525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-3.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/llama4_few-shot-5.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/deepseek_few-shot-3.jsonl:1498\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-3.jsonl:0\\n/home/sonny/causal_annot_error_attrib/results/civil_comments/qwen2.5-7b_few-shot-5.jsonl:0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T11:03:30.235640+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-5.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "grep -c '\"pred_label\": null' /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-3.jsonl /home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-5.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T11:03:30.235767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/causal_annot_error_attrib/results/humaid/deepseek_zero-shot.jsonl:0\\n/home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-3.jsonl:155\\n/home/sonny/causal_annot_error_attrib/results/humaid/deepseek_few-shot-5.jsonl:263\\n/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_zero-shot.jsonl:0\\n/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-3.jsonl:77\\n/home/sonny/causal_annot_error_attrib/results/humaid/qwen3_few-shot-5.jsonl:1500\\n/home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-3.jsonl:2\\n/home/sonny/causal_annot_error_attrib/results/humaid/llama4_few-shot-5.jsonl:29\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-21T11:03:30.235950+00:00_
+
+## Plan011 Frontier Annotations 状态总结
+
+### 根因
+API 端点 `http://47.94.22.126` **余额耗尽 (HTTP 402)**，导致大量标注失败。humaid 最先跑、完成度最高；vast 跑到一半断了；civil_comments 几乎全军覆没。
+
+### 可用数据一览（parse rate ≥ 80%）
+
+| Dataset | Model | 可用 prompt configs | 备注 |
+|---------|-------|-------------------|------|
+| **humaid** | llama4 | zero/3/5-shot ✓ | 100%/99.9%/98.1% |
+| **humaid** | deepseek | zero/3-shot ✓ | 100%/89.7%（5-shot 82.5% 勉强可用）|
+| **humaid** | qwen3 | zero/3-shot ✓ | 100%/94.9%（5-shot 全 402）|
+| **vast** | llama4 | zero/3-shot ✓ | 99.7%/100%（5-shot 仅 23%）|
+| **vast** | qwen2.5-7b | zero/3/5-shot ✓ | 99.9%~100%（本地模型，后补）|
+| **civil_comments** | qwen2.5-7b | zero/3/5-shot ✓ | 100%（本地模型，后补）|
+
+**vast** 的 deepseek/qwen3 全部 402 失败。**civil_comments** 的 llama4/deepseek/qwen3 全部 402 失败。**humaid 缺 qwen2.5-7b**。
+
+### 统计
+- 理论组合：3 datasets × 4 models × 3 prompts = **36 configs**
+- 可用（≥80%）：**15 configs**（42%）
+- 完全失败：**18 configs**（全 402）
+- 部分失败：**3 configs**
+
+### 产出文件
+远程 `/home/sonny/causal_annot_error_attrib/results/` 下有 JSONL + confusion matrix (.npz)。本地 `artifacts/plan011_frontier_annotations/` 有脚本和 STATUS.md（记录了 TUM API key 401 的 blocker，但实际跑通了部分任务用的是另一个端点）。
+
+### 恢复建议
+需要充值 `47.94.22.126` API 余额或切换到新端点，重跑 vast (deepseek/qwen3 全部, llama4 5-shot) + civil_comments (llama4/deepseek/qwen3 全部) + humaid (qwen2.5-7b)，共约 21 configs。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_plan011_frontier_check_20260521T110109"
+}
+```
+
+</details>
+
+---

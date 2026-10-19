@@ -1,0 +1,52 @@
+{
+  "counterexample": {
+    "K": 2,
+    "p": [
+      0.5,
+      0.5
+    ],
+    "g": [
+      0.0,
+      1.0
+    ],
+    "C0": [
+      [
+        0.0,
+        1.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "description": "V_B(delta) = (delta-0.5)^2, increases on (0.5, 1]"
+  },
+  "sufficient_condition": "C0[j,j] >= 1/K for all j",
+  "proof_strategy": "convexity of V_B + V_B'(1) <= 0 under diagonal condition",
+  "numerical_results": {
+    "2": {
+      "violations_unrestricted": 49479,
+      "violations_diag_ge_1K": 0,
+      "worst_unrestricted": 0.10928268067315905,
+      "worst_diag_ge_1K": 0.0
+    },
+    "3": {
+      "violations_unrestricted": 60930,
+      "violations_diag_ge_1K": 586,
+      "worst_unrestricted": 0.08434306374218448,
+      "worst_diag_ge_1K": 0.0036610898848079554
+    },
+    "5": {
+      "violations_unrestricted": 68964,
+      "violations_diag_ge_1K": 206,
+      "worst_unrestricted": 0.06803824942010372,
+      "worst_diag_ge_1K": 0.00511700767868728
+    },
+    "7": {
+      "violations_unrestricted": 72609,
+      "violations_diag_ge_1K": 38,
+      "worst_unrestricted": 0.05884869216233324,
+      "worst_diag_ge_1K": 0.003652564702263661
+    }
+  }
+}

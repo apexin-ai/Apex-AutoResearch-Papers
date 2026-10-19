@@ -1,0 +1,3 @@
+2026-05-20 08:41:46,484 INFO    core.tools.feishu  create_chat: name='审稿-causal_annot_error_attrib' → chat_id=oc_9f117624057fcf6cb95db4d67f525246
+2026-05-20 08:41:46,494 INFO    core.tools.dream  [dream] auto-created Group C for project=causal_annot_error_attrib: oc_9f117624057fcf6cb95db4d67f525246
+2026-05-20 08:41:46,726 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-prod_0510/config/mcp_config_dream_review_director.json

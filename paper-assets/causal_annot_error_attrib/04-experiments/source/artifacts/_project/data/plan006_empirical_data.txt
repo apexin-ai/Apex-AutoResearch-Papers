@@ -1,0 +1,196 @@
+# Plan 006 Empirical Validation Data
+## Extracted: 2026-05-20
+## Source: /home/sonny/causal_annot_error_attrib/artifacts/plan006/
+## NOTE: Raw JSON could not be read directly — ssh_read_only unavailable outside spawned workers.
+##       Data below reconstructed from worker_code_plan006-humaid-run result (completed 2026-05-20T23:07).
+
+### 1. Directory Contents (from worker report)
+
+| File                              | Size  |
+|-----------------------------------|-------|
+| asv_empirical_results.json        | 119K  |
+| f1_vs_bias.png                    | 171K  |
+| asv_heatmap.png                   | 72K   |
+| plan006_humaid_run.log            | 2.9K  |
+
+### 2. Run Metadata
+
+- Runtime: 2.9 minutes
+- Dataset: HumAID (K=10, 10-class classification)
+- Models: Llama 4 Maverick, Qwen 3 235B, DeepSeek Chat V3
+- Prompts: zero-shot, few-shot-3, few-shot-5
+- Combinations: 3 models x 3 prompts = 9 (8 usable; qwen3/few-shot-5 failed)
+- DAG topologies: confounding, mediation, collider, M-bias, exposure, IV, frontdoor
+
+### 3. Confusion Matrix Summary
+
+| Model    | Prompt      | mean_diag | min_diag | Worst Confusion     |
+|----------|-------------|-----------|----------|---------------------|
+| llama4   | zero-shot   | 0.671     | 0.426    | C[6,0]=0.370        |
+| llama4   | few-shot-3  | 0.676     | 0.407    | C[6,0]=0.407        |
+| llama4   | few-shot-5  | 0.688     | 0.415    | C[6,0]=0.396        |
+| qwen3    | zero-shot   | 0.715     | 0.340    | C[6,5]=0.252        |
+| qwen3    | few-shot-3  | 0.706     | 0.393    | C[6,5]=0.298        |
+| qwen3    | few-shot-5  | **0.000** | 0.000    | **ALL ZERO (FAILED)** |
+| deepseek | zero-shot   | 0.724     | 0.294    | C[8,7]=0.228        |
+| deepseek | few-shot-3  | 0.725     | 0.385    | C[6,0]=0.250        |
+| deepseek | few-shot-5  | 0.724     | 0.374    | C[8,7]=0.268        |
+
+Notes:
+- DeepSeek best overall (diag ~0.724), Llama4 worst (diag ~0.671-0.688)
+- Class 6 ("other_relevant_information") is the main confusion target across all models
+- qwen3/few-shot-5: coverage=0, n_valid=0 — annotation completely failed (API 402)
+
+### 4. F1 vs Downstream Bias
+
+- Macro F1 range: 0.614–0.690
+- Baumann check (F1>0.93 with |bias|>0.05): **0%** — no high-F1 cases exist (K=10 is hard)
+- 0 sign flips across all model-topology combinations
+
+Maximum bias by topology:
+| Topology     | Max |bias| Range |
+|--------------|---------------------|
+| IV           | 12.4%–42.1%        |
+| exposure     | 9.0%–17.4%         |
+| mediation    | 10.7%–14.8%        |
+| frontdoor    | 10.7%–14.8%        |
+| mbias        | 5.1%–6.5%          |
+| confounding  | 4.9%–6.2%          |
+| collider     | 4.1%–5.6%          |
+
+### 5. ASV Values
+
+| ASV Type      | Non-None | Range         |
+|---------------|----------|---------------|
+| magnitude     | 32/63    | 0.307–1.114   |
+| significance  | 2/63     | 1.681–1.704   |
+| sign_flip     | 0/63     | —             |
+
+Magnitude ASV by topology (only 4 topologies trigger):
+- mediation: 0.62–0.90
+- exposure: 0.65–1.11
+- IV: 0.31–0.83
+- frontdoor: 0.62–0.91
+- confounding/collider/mbias: bias never exceeds 10% threshold → no magnitude ASV
+
+### 6. Type I / Type II Error
+
+| Topology     | T1 Range (before) | T1 After ASV Filter | Power (before) | ASV Status |
+|--------------|-------------------|---------------------|----------------|------------|
+| confounding  | 1.000             | 1.000 (safe)        | 1.000          | safe       |
+| mbias        | 0.611–0.746       | same (safe)         | 1.000          | safe       |
+| mediation    | 0.429–0.716       | 0 (unsafe)          | 1.000          | unsafe     |
+| collider     | 0.111–0.217       | same (safe)         | 1.000          | safe       |
+| exposure     | 0.040–0.061       | 0 (unsafe)          | 1.000          | unsafe     |
+| frontdoor    | 0.041–0.059       | 0 (unsafe)          | 1.000          | unsafe     |
+| IV           | 0.035–0.050       | 0 (unsafe)          | 0.754–0.785    | unsafe     |
+
+- ASV-unsafe: 31/63 (49.2%)
+- Confounding Type I = 100% (fully inflated, expected at K=10)
+- ASV filter overly conservative: unsafe topologies → power drops to 0
+
+### 7. Inter-Model Error Correlation (HumAID, excluding qwen3/few-shot-5)
+
+| Prompt     | Pair              | Agreement | Kappa | Error Corr |
+|------------|-------------------|-----------|-------|------------|
+| zero-shot  | llama4-qwen3      | 0.485     | 0.417 | 0.121      |
+| zero-shot  | llama4-deepseek   | 0.485     | 0.419 | 0.074      |
+| zero-shot  | qwen3-deepseek    | 0.559     | 0.491 | 0.085      |
+| few-shot-3 | llama4-qwen3      | 0.490     | 0.420 | 0.157      |
+| few-shot-3 | llama4-deepseek   | 0.465     | 0.392 | 0.056      |
+| few-shot-3 | qwen3-deepseek    | 0.507     | 0.433 | 0.051      |
+
+- Agreement: 0.465–0.559
+- Kappa: 0.392–0.491 (fair to moderate)
+- Error correlation: 0.051–0.157 (low — models make relatively independent errors)
+
+### 8. Full Mock Calibration Data (3 datasets × 3 models × 3 prompts × 7 topologies)
+
+Source: plan_006_asv_empirical.py --mock (N_precomp=500K, n_sim=500)
+Mock diagonal ranges: civil_comments(K=2) 0.85-0.95, vast(K=3) 0.70-0.90, humaid(K=10) 0.60-0.85
+27 confusion matrices, 189 scenarios total.
+
+#### 8a. Per-Topology Bias (all 27 matrices)
+  Topology       |bias| range              mean       median     sign_flips
+  confounding    [0.085, 0.244]            0.1646     0.1627     0
+  mediation      [0.047, 0.220]            0.1181     0.1023     0
+  collider       [0.041, 0.079]            0.0596     0.0607     0
+  exposure       [0.144, 0.454]            0.2977     0.2953     0
+  mbias          [0.004, 0.039]            0.0207     0.0214     0
+  iv             [0.077, 0.932]            0.3499     0.3866     0
+  frontdoor      [0.047, 0.228]            0.1210     0.1000     0
+
+#### 8b. ASV Unsafe (mock)
+  confounding:  7/27  (25.9%)
+  mediation:   26/27  (96.3%)
+  collider:     0/27  ( 0.0%)
+  exposure:    27/27  (100.0%)
+  mbias:        0/27  ( 0.0%)
+  iv:          27/27  (100.0%)
+  frontdoor:   26/27  (96.3%)
+  Total: 113/189 (59.8%) → PPI++ recommended
+
+#### 8c. ASV Values (mock)
+  magnitude:      n=173 non-None (16 None), min=0.134, median=0.582, max=3.763, mean=0.928
+  sign_flip:      n=41 non-None (148 None), min=1.956, median=3.646, max=7.218, mean=3.881
+  significance:   n=21 non-None (168 None), min=1.836, median=2.883, max=6.798, mean=3.602
+
+#### 8d. Type I/II per Topology (mock)
+  Topology      type1_before  type1_after  power_before  power_after
+  confounding   1.0000        0.7407       1.0000        0.7407
+  mediation     0.8244        0.0122       1.0000        0.0370
+  collider      0.3746        0.3746       1.0000        1.0000
+  exposure      0.0479        0.0000       1.0000        0.0000
+  mbias         0.4093        0.4093       1.0000        1.0000
+  iv            0.0444        0.0000       0.8359        0.0000
+  frontdoor     0.0499        0.0017       1.0000        0.0370
+
+#### 8e. Per-Dataset × Topology Breakdown (mock)
+
+  civil_comments (K=2):
+    confounding:  mean|bias|=0.109, range=[0.085, 0.129]
+    mediation:    mean|bias|=0.065, range=[0.047, 0.079]
+    collider:     mean|bias|=0.065, range=[0.049, 0.079]
+    exposure:     mean|bias|=0.197, range=[0.144, 0.250]
+    mbias:        mean|bias|=0.021, range=[0.016, 0.026]
+    iv:           mean|bias|=0.117, range=[0.077, 0.156]
+    frontdoor:    mean|bias|=0.063, range=[0.047, 0.076]
+
+  vast (K=3):
+    confounding:  mean|bias|=0.221, range=[0.189, 0.244]
+    mediation:    mean|bias|=0.189, range=[0.149, 0.220]
+    collider:     mean|bias|=0.065, range=[0.049, 0.075]
+    exposure:     mean|bias|=0.357, range=[0.271, 0.446]
+    mbias:        mean|bias|=0.006, range=[0.004, 0.008]
+    iv:           mean|bias|=0.360, range=[0.219, 0.501]
+    frontdoor:    mean|bias|=0.203, range=[0.169, 0.228]
+
+  humaid (K=10):
+    confounding:  mean|bias|=0.164, range=[0.153, 0.179]
+    mediation:    mean|bias|=0.100, range=[0.087, 0.112]
+    collider:     mean|bias|=0.049, range=[0.041, 0.061]
+    exposure:     mean|bias|=0.339, range=[0.265, 0.454]
+    mbias:        mean|bias|=0.035, range=[0.032, 0.039]
+    iv:           mean|bias|=0.573, range=[0.360, 0.932]
+    frontdoor:    mean|bias|=0.097, range=[0.087, 0.108]
+
+#### 8f. Inter-Model Error Correlation (mock)
+  Error correlations near zero across all 27 pairs (range: -0.084 to 0.047)
+  → Supports non-differential misclassification assumption
+
+#### 8g. F1 vs Bias Disconnect (mock)
+  F1>0.85 with |bias|>0.10: 21 disconnect cases (all civil_comments, exposure/iv topologies)
+  → Even high-F1 annotators produce substantial downstream causal bias
+
+#### 8h. DGP True Parameters (at identity C)
+  K= 2: confounding=1.998, mediation=0.500, collider=0.841, exposure=1.001, mbias=0.443, iv=0.478, frontdoor=0.500
+  K= 3: confounding=2.000, mediation=0.501, collider=0.886, exposure=1.003, mbias=0.510, iv=0.669, frontdoor=0.500
+  K=10: confounding=2.003, mediation=0.495, collider=0.899, exposure=1.006, mbias=0.442, iv=1.173, frontdoor=0.500
+
+### 9. Anomalies / Deviations from Expectations
+
+1. qwen3/few-shot-5 全零 — annotation completely failed, must exclude
+2. confounding T1=100% — high but theoretically expected (K=10 amplifies confounding)
+3. ASV filter overly conservative — unsafe topologies get power=0 (should have gradient decay)
+4. 0 sign flips — K=10 diagonal dominance still sufficient to preserve sign
+5. IV bias up to 42% — known Wald estimator fragility to measurement error

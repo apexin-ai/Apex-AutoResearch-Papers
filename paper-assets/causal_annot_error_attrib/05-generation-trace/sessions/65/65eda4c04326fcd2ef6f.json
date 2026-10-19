@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65eda4c04326fcd2ef6f",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code local inference setup",
+  "task_key": "worker_code_local_inference_setup_20260521T010835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_local_inference_setup_20260521T010835_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "9306b2c90bcb17800744c4cc40915668f99702086c614fbf775a00696cc0b3d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 标注结果\n\n| Dataset | Prompt | Samples | Parse Rate | Accuracy | Diag Avg |\n|---|---|---|---|---|---|\n| civil_comments | zero-shot | 1500 | 100% | 74.2% | 0.717 |\n| civil_comments | few-shot-3 | 1500 | 100% | 68.9% | 0.730 |\n| civil_comments | few-shot-5 | 1500 | 100% | 73.9% | 0.749 |\n| vast | zero-shot | 1500 | 99.9% | 48.0% | 0.473 |\n| vast | few-shot-3 | 1500 | 100% | 46.1% | 0.453 |\n| vast | few-shot-5 | 1500 | 100% | 46.5% | 0.459 |\n\n### 执行摘要\n\n- **模型**: Qwen2.5-7B-Instruct（本地，RTX 5090）\n- **方案**: vLLM 的 flash_attn 与 RTX 5090 (sm_120/Blackwell) 不兼容，改用 transformers + `model.generate()` 批量推理（batch_size=8）\n- **产出**: 6 个 JSONL + 6 个 confusion matrix NPZ，在 `results/{civil_comments,vast}/qwen2.5-7b_*.{jsonl,npz}`\n- **model_key**: `qwen2.5-7b`，output 中 model 字段为 `qwen2.5-7b-local`\n- **代码修改**: 服务器上的 `annotate.py` 已添加 `--local-model` 参数 + `LocalAnnotationPipeline` 类，与现有 API 标注完全兼容"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-local-inference-setup.md"
+}

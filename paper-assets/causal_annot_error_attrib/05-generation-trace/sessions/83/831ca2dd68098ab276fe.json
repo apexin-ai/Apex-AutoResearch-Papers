@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "831ca2dd68098ab276fe",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra plan003 output audit",
+  "task_key": "worker_infra_plan003-output-audit_20260520T135325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan003-output-audit_20260520T135325_result.json",
+    "occurrence": 1,
+    "bytes": 1994,
+    "sha256": "11824e3db04efa2aa290b66087557df3e6b98b96867d6891a691047938a4151d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整代码已读取，结论如下：\n\n## 写入模式：**逐组合**，非逐 sample\n\n关键代码路径：\n\n1. **`annotate_batch`** (L350): 所有 sample 结果积累在内存 list 中，batch 完成后才 return\n2. **`run_single`** (L524): 调 `annotate_batch` 拿到全部结果后，才调一次 `save_results`\n3. **`save_results`** (L499): 此时才 `mkdir` + 写 JSONL + 写 NPZ\n\n即：每个 (dataset × model × prompt) 组合的 1500 个 sample 全部标注完，才写一次磁盘。中途无 checkpoint。\n\n## 输出路径\n\n`results/{dataset}/{model}_{prompt}.jsonl` + `results/{dataset}/{model}_{prompt}_confusion_matrix.npz`\n\n代码有 resume 机制（`load_existing_results` L485），但只从已写完的 JSONL 文件加载——组合内中断无法 resume。\n\n## 当前状态：**PID 401208 已不存在，results/ 目录不存在**\n\n进程已终止，且没有任何输出文件。如果它确实跑到了第一个组合的 1000/1500，**这 1000 条结果全部丢失**。\n\n## 数据丢失风险：**高**\n\n- 每组合 1500 样本 × 0.5s delay ≈ 12.5 分钟/组合，27 组合 ≈ 5.6 小时（纯 API 时间）\n- 中间任何中断（进程 kill、SSH 断开、API 持续 5xx）= 该组合全部重来\n- 没有逐 sample 落盘，没有 checkpoint\n\n## 修复方案\n\n在 `annotate_batch` 中加 **streaming write**——每个 sample 完成后立即 append 到 JSONL：\n\n```python\ndef annotate_batch(self, samples, config, prompt_type, batch_delay=0.5, output_path=None):\n    # ...\n    for i, sample in enumerate(samples):\n        # ... annotate_single ...\n        results.append(result)\n        if output_path:\n            with open(output_path, \"a\") as f:\n                f.write(json.dumps(result, ensure_ascii=False) + \"\\n\")\n        # ...\n```\n\n这样配合已有的 `load_existing_results` resume 逻辑，即使中断也只丢当前 1 条。混淆矩阵仍在组合完成后计算，不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan003-output-audit.md"
+}

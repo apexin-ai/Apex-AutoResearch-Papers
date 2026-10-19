@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "f0f089f8e5ce60f6cc59",
+  "project": "causal_annot_error_attrib",
+  "kind": "worker",
+  "title": "ops formula italic fix",
+  "task_key": "worker_ops_formula_italic_fix_20260524T073015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_formula_italic_fix_20260524T073015.log",
+    "occurrence": 1,
+    "bytes": 3754949,
+    "sha256": "8667d7ad6743e4ec90d8700f9e31d5089a306cb811aa62b32c9de87fff294ce1"
+  },
+  "statistics": {
+    "messages": 305,
+    "user_turns": 0,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 120,
+      "tool_result": 120
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 305,
+      "chunks": [
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0002.json",
+          "message_count": 60
+        },
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0003.json",
+          "message_count": 23
+        },
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0004.json",
+          "message_count": 25
+        },
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0005.json",
+          "message_count": 28
+        },
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0006.json",
+          "message_count": 44
+        },
+        {
+          "path": "f0f089f8e5ce60f6cc59-part-0007.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-formula-italic-fix.md"
+}

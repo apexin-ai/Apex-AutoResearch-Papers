@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c5c57f1d5ea8495336b",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "audit sf2 proportional effects",
+  "task_key": "worker_audit_sf2_proportional_effects_20260523T175614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_sf2_proportional_effects_20260523T175614_result.json",
+    "occurrence": 1,
+    "bytes": 1937,
+    "sha256": "a04fe2f785ee7365f92d12c5babd192527d38943114c4a41e8a49da88bf8e64e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 97.3% 精确来源\n\n**文件**: `artifacts/exp_proportional_real_matrices_results.json`  \n**JSON path**: `.non_proportional.sign_preservation_rate`  \n**精确值**: `0.9730434782608696` (= 1119/1150)\n\n### 性质判定：**半 empirical，半 synthetic**\n\n实验设计（见 `exp_proportional_real_matrices.py`）：\n- **Confusion matrices**: 23 个**真实** LLM 混淆矩阵（civil_comments/humaid/vast × deepseek/qwen/llama4），✓ empirical\n- **DGP 参数 (f, g)**: `f ~ N(0,1)` 独立于 `g`（`non_proportional` 组），✗ synthetic\n- 50 seeds × 23 matrices = 1150 samples\n\n### 关键问题：措辞与数据不匹配\n\nmethod.tex L97 写的是：\n> \"97.3% of empirical LLM configurations **satisfy the condition**\"\n\n实际测的是 `sign_preservation_rate`（`sign(τ_direct) == sign(τ_total)`），即**即使 f≠λg（non-proportional），monotonicity 仍以 97.3% 概率保持 sign preservation**。\n\n这是一个 **robustness 指标**，不是\"满足 proportional effects 条件\"。纸面含义 vs 实际含义有两层错位：\n\n1. **\"satisfy the condition\"** 暗示 proportional effects (f=λg) 成立 → 实际测的是 sign preservation（不需要 f=λg）\n2. **\"empirical LLM configurations\"** 暗示 f 和 g 来自真实 LLM 任务 → 实际上只有 C 是 empirical，f/g 是随机生成的\n\n### 建议修正文本\n\n当前（method.tex L97）：\n```\nbut 97.3\\% of empirical LLM configurations satisfy the condition\n```\n\n建议改为（选一）：\n\n**方案 A**（准确描述 sign preservation robustness）：\n```\nbut sign preservation holds in 97.3\\% of non-proportional configurations \ntested with 23 empirical LLM confusion matrices\n```\n\n**方案 B**（更简洁）：\n```\nbut monotonicity is empirically robust: 97.3\\% sign preservation rate \neven under non-proportional effects across 23 LLM confusion matrices\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-sf2-proportional-effects.md"
+}

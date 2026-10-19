@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f18ae625f1129ed6f1c",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper research cluster causal text classification",
+  "task_key": "worker_paper_research_cluster_causal_text_classification_20260520T155937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster_causal_text_classification_20260520T155937_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "a2c9f54b643b38d95033885b1c375696b2d78b3006e2666c2c6625a4a5d56aac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 papers in causal-text-classification, all verified=true.\n\n**Summary of changes to `literature_map.yaml`:**\n\n**Verified existing 3 papers:**\n- `wood_doughty2018` — added S2 ID (`33af8451...`), ArXiv ID (`1810.00956`), set verified=true\n- `teblunthuis2024` — added S2 ID (`3a1c7532...`), ArXiv ID (`2307.06483`), DOI (`10.1080/19312458.2023.2293713`), set verified=true\n- `lee_wood_doughty2024` — **fixed incorrect title** (was \"Categorical Variables and Measurement Error...\" → actual: \"Controlling for Unobserved Confounding with Large Language Model Classification of Patient Smoking Status\"), updated venue to \"AIM-FM Workshop, NeurIPS 2024\", updated abstract, set verified=true\n\n**Added 3 new papers:**\n1. `keith_jensen_oconnor2020` — \"Text and Causal Inference: A Review...\" (ACL 2020) — first systematic review of text+causal inference; identifies classifier ME as open challenge\n2. `chen_bhattacharya_keith2024` — \"Proximal Causal Inference With Text Data\" (NeurIPS 2024) — uses zero-shot NLP proxies for unmeasured confounders with identification proofs\n3. `yang_adomavicius2018` — \"Mind the Gap: Accounting for Measurement Error and Misclassification in Variables Generated via Data Mining\" (ISR 2018) — formalizes how ML-generated variable errors bias downstream regression; direct theoretical predecessor to our NLP+causal pipeline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster-causal-text-classification.md"
+}

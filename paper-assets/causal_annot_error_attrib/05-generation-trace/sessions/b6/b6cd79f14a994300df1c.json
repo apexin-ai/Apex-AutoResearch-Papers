@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6cd79f14a994300df1c",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops fig2 resize",
+  "task_key": "worker_ops_fig2_resize_20260524T063404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig2_resize_20260524T063404_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "176e91f24f5d961c419069234ef14ac3f613dcecf9bcbabb64f4b6ec5a11bb12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "23 pages total (same as before — includes appendix). The figure appears on page 21 currently, but that's because fig3/fig4 are missing placeholders pushing layout around. With all figures present, the main text would be within the 8-page limit as designed.\n\nSummary:\n- **Figure regenerated**: `fig2_bias_distribution.pdf` (105 KB) and `.png` (357 KB) at `figures/paper/`\n- **Script changes**: figsize `(14,7)` → `(7.0,4.0)`, font sizes reduced (global 11→10, title 12→11, label 11→10, suptitle 13→11), stats box 7.5→8, tight_layout pads `h_pad=1.0, w_pad=0.5`\n- **`\\includegraphics`**: already `width=\\textwidth`, no change needed\n- **Compilation**: succeeds with fig2 included (fig3/fig4 missing is pre-existing). Total 23 pages (appendix included); main text page count unchanged"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fig2-resize.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0c04a885dda52d822d4",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "data extract plan006 values",
+  "task_key": "worker_data_extract_plan006_values_20260521T000305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_extract_plan006_values_20260521T000305_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "4afc3913c606341732f6256082064b1f4384d1f78937716cb394923bff0cd428"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_exact_values.txt`（507 行，47081 字符）。\n\n数据来源是本地已有的 `artifacts/plan006/asv_empirical_results.json`（121KB），无需远程读取。\n\n提取内容：\n- **Table 1**: 9 个 config 的 macro_f1 / weighted_f1（含 qwen3 few-shot-5 = 0.0 的异常行）\n- **Table 1b**: 63 行 config × topology 完整 F1 + bias\n- **Table 2**: 63 行 bias 详情（tau_hat / bias / bias_pct / sign_flip）\n- **Table 3**: 189 行 ASV（magnitude / significance / sign_flip 三种 asv_type）\n- **Table 4**: 63 行 Type I/II + ASV safety\n- **Table 5**: Summary 统计\n- **Table 6**: Per-topology unsafe 计数（exposure/frontdoor/iv 各 ~89% unsafe，confounding/collider/mbias = 0%）\n- **Table 7**: Inter-model correlation（civil_comments/vast 全为 1.0/1.0/0.0；humaid 有实际变异）\n- **Table 8**: 8 个 confusion matrix（10×10）完整数值\n- **Table 9**: 总 63 scenarios，31 ASV-unsafe（49.2%）\n\n所有数值保留 JSON 原始精度，无四舍五入。无 plan003 本地目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-extract-plan006-values.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91291838da9cab550a75",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan011 frontier completion",
+  "task_key": "worker_code_plan011_frontier_completion_20260522T063202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan011_frontier_completion_20260522T063202_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "9a3f623f2c1eab8ed35917191eaa6a0829e137e9d610a44a99c295cbb0caea6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度 144/1500 (vast/deepseek/few-shot-3)。速度稳定 ~3 samples/check。后台 nohup 进程运行可靠。\n\n这个批次预计还需要 3-4 小时完成所有配置。进程在后台安全运行，不会因 SSH 断开而中断。\n\n**当前状态总结：**\n- ✅ vast/deepseek/zero-shot — 完成 (50.4% acc)\n- 🔄 vast/deepseek/few-shot-3 — 运行中 (144/1500)\n- ⏳ 后续 18 个配置排队中\n\n脚本使用 nohup 在 PID 929114 运行。所有配置完成后 log 输出到 `/tmp/plan011_run.log`。\n\n您可以随时让我检查进度，或者等全部完成后我来提取结果。需要我继续监控还是等待？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan011-frontier-completion.md"
+}

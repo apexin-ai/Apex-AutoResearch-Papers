@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aa557cfa2d77f82b266",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan001 collider mbias iv fix",
+  "task_key": "worker_code_plan001-collider-mbias-iv-fix_20260520T102055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-collider-mbias-iv-fix_20260520T102055_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "359124446133d69c7fd3e6248f9cc2791142c8a420ff24d000a36c54c0e6c9ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结修复结果：\n\n### Warning 1: C6 copy-paste bug — 已修复\n- `C6_DIFF_BASE` → `C6_DIFFERENTIAL = [[0.85, 0.15, 0.05], [0.075, 0.70, 0.05], [0.075, 0.15, 0.90]]`\n- Column-stochastic 验证通过，每列 sum = 1\n- C6 结果已不同于 C1（collider: C6 bias=-0.0465 vs C1=-0.0506）\n\n### Warning 2: 新增 misclass_amplifies metric — 已实现\n- 新增 baseline: `theory_collider(np.eye(3))` / `theory_mbias(np.eye(3))` 计算真实 A 控制时的偏差\n- Named C 表新增 `Bias_trueA` 和 `Amplif` 列\n- Random search 新增 `misclass_amplifies_rate`（`|bias(A*)| > |bias(trueA)|` 的比例）\n- 保留了原有 `ctrl_worse_rate`\n\n### 关键发现\n| DAG | ctrl_worse_rate | misclass_amplifies_rate | 解读 |\n|---|---|---|---|\n| Collider | 85.4% | **0.0%** | 误分类从不放大 collider bias（总是衰减） |\n| M-bias | 62.7% | **29.2%** | ~29% 的随机 C 使误分类放大了 M-bias |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-collider-mbias-iv-fix.md"
+}

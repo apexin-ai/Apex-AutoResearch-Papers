@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d114ffa6756e08cc4a3c",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan002 extend 7topo",
+  "task_key": "worker_code_plan002-extend-7topo_20260520T153526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-extend-7topo_20260520T153526_result.json",
+    "occurrence": 1,
+    "bytes": 2740,
+    "sha256": "e5cb2ddd4de61b1dd6462fb3767eb32ea94df2b661bd6269744f8aed1bb0ebae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。20 秒跑完 7 拓扑 × 3 个 K 值 = 21 组实验，GPU RTX 5090。\n\n## K=3 回归测试\n\n| Metric | plan_001 参考值 | 本次结果 | 匹配 |\n|--------|---------------|---------|------|\n| M-bias τ_sflip | 0% | 0.0% | ✓ |\n| M-bias violation | 53.2% | 58.4% | ≈ (N_large 差异) |\n| M-bias amplif | 10.4% | 8.9% | ≈ |\n| IV 极端 | 是 | τ_sflip=52.6%, max_bias=10.9M | ✓ |\n| Front-door violation | ≈100% | 100.0% | ✓ |\n| Front-door amplif | ≈100% | 100.0% | ✓ |\n| Front-door τ_sflip | 0% | 0.0% | ✓ |\n\n## 完整 7 拓扑 × K={3,5,7} 对比表\n\n| Topology | K | τ_spec_sflip | all_sflip | violation | amplif | WC_d90 |\n|----------|---|-------------|-----------|-----------|--------|--------|\n| confounding | 3 | 0.0% | 99.3% | 100.0% | 100.0% | 0.1615 |\n| confounding | 5 | 0.0% | 100.0% | 100.0% | 100.0% | 0.1130 |\n| confounding | 7 | 0.0% | 100.0% | 100.0% | 100.0% | 0.0920 |\n| mediation | 3 | 0.0% | 83.8% | 100.0% | 100.0% | 0.1231 |\n| mediation | 5 | 0.0% | 96.6% | 100.0% | 100.0% | 0.0847 |\n| mediation | 7 | 0.0% | 100.0% | 100.0% | 100.0% | 0.0602 |\n| collider | 3 | 0.0% | 66.6% | 100.0% | 100.0% | 0.0482 |\n| collider | 5 | 0.0% | 95.5% | 100.0% | 100.0% | 0.0462 |\n| collider | 7 | 0.0% | 99.2% | 100.0% | 100.0% | 0.0358 |\n| exposure | 3 | 99.0% | 99.0% | 100.0% | 99.9% | 0.2532 |\n| exposure | 5 | 100.0% | 100.0% | 100.0% | 99.8% | 0.2185 |\n| exposure | 7 | 100.0% | 100.0% | 100.0% | 99.9% | 0.1942 |\n| **mbias** | **3** | **0.0%** | 66.7% | 58.4% | 8.9% | 0.0106 |\n| **mbias** | **5** | **0.0%** | 95.4% | 100.0% | 0.0% | 0.0155 |\n| **mbias** | **7** | **0.0%** | 99.2% | 100.0% | 0.0% | 0.0132 |\n| **iv** | **3** | **52.6%** | 52.6% | 100.0% | 100.0% | 0.3061 |\n| **iv** | **5** | **51.4%** | 51.4% | 100.0% | 100.0% | 0.4376 |\n| **iv** | **7** | **52.3%** | 52.3% | 100.0% | 100.0% | 0.3766 |\n| **frontdoor** | **3** | **0.0%** | 83.6% | 100.0% | 100.0% | 0.1425 |\n| **frontdoor** | **5** | **0.0%** | 96.7% | 100.0% | 100.0% | 0.1025 |\n| **frontdoor** | **7** | **0.0%** | 99.3% | 100.0% | 100.0% | 0.0757 |\n\n## 论文可 claim 的结论\n\n**τ_specific_sign_flip 在 K={3,5,7} 下全部 STABLE**：\n- **5/7 拓扑 (confounding, mediation, collider, mbias, frontdoor)**: τ_sign_flip = 0.0% across all K — misclassification never flips the treatment effect sign\n- **IV**: ~52% sign flip (K-invariant) — Wald estimator is fragile regardless of K\n- **Exposure**: ~100% sign flip — direct treatment effect estimand is structurally sensitive\n\n输出文件：\n- 脚本: `/home/sonny/causal_annot_error_attrib/plan_002_k57_extended_7topo.py`\n- 日志: `/home/sonny/causal_annot_error_attrib/plan002_7topo_run.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-extend-7topo.md"
+}

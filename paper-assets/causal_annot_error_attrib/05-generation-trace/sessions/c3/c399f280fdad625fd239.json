@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c399f280fdad625fd239",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "paper phase2 text changes",
+  "task_key": "worker_paper_phase2_text_changes_20260522T113012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phase2_text_changes_20260522T113012_result.json",
+    "occurrence": 1,
+    "bytes": 1583,
+    "sha256": "865dd7c4c9d84339f3ff7d86fe6f20063192a03e9c0f543efff6a86bf6301a6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The abstract text is correct — `pdftotext` just splits the line differently. All 8 modifications are verified.\n\nSummary of all changes:\n\n**MF1** (method.tex): Conjecture 1 verification updated to \"10,000 random matrices per topology and K ∈ {3,5,7} with zero violations; adversarial search found no counterexamples\"\n\n**MF2** (abstract.tex): \"five topologies never produce sign reversal\" → \"five topologies show no sign reversal across extensive numerical verification (proven analytically for confounding and collider via sufficient conditions; Appendix A)\"\n\n**SF2** (related_work.tex + references.bib): Added Feder et al. 2022 TACL citation with text-as-treatment/text-as-confounder taxonomy description; added `\\cite{cheng_mayya_sedoc2024}` inline\n\n**SF6** (conclusion.tex): Added DGP-independent sentence about the three core structural results\n\n**M2** (method.tex → appendix_proofs.tex): Moved binarization collapse method + results to Appendix B.1 (`\\label{app:binarization}`); left one-liner in method.tex; removed experiments subsection 4.3\n\n**M5** (experiments.tex): Added \"Complete ASV values across all topologies and error structures are reported in Appendix B\" after N-sensitivity paragraph\n\n**V1-V3** (appendix_proofs.tex → main.tex): Moved DAG taxonomy figure to main text (page 6, `figure*[t]`)\n\n**M4** (appendix_proofs.tex): Added Notation section (Appendix C) with symbol table at end of appendix\n\nCompilation: 0 errors, 0 undefined references, 20 pages total, main text ≤ 8 pages (Limitations starts page 9)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-phase2-text-changes.md"
+}

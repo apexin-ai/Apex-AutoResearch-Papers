@@ -1,0 +1,975 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "fig1_dag_taxonomy.pdf",
+      "caption": "Seven canonical DAG topologies with starred-node annotation~\\cite{hernan_cole2009}. $A$ (latent) $\\to$ $A^*$ (observed) via a dashed measurement edge; the causal role of $A$ varies: treatment (exposur",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "main.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure*",
+      "image_path": "fig2_bias_distribution.pdf",
+      "caption": "Bias distributions under 100{,}000 random $K{=}3$ confusion matrices (uniform Dirichlet; realistic-accuracy results in Section~\\ref{sec:taxonomy_results}). Red = sign reversal. Exposure: 83.4\\% sign r",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "method.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure*",
+      "image_path": "fig3_asv_ranking.pdf",
+      "caption": "ASV vulnerability ranking across topologies. Three ASV types (magnitude, significance, sign-flip) reveal a topology-dependent spectrum from IV (maximally fragile) to M-bias (immune, ASV $= \\infty$).",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure*",
+      "image_path": "fig5_f1_vs_bias.pdf",
+      "caption": "Topology determines downstream causal bias, not $F_1$. HumAID $K{=}10$ (56 points): within $F_1$ range 0.614--0.690, bias varies $10{\\times}$ (IV 42.1\\% vs.\\ collider $<$5.6\\%).",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure*",
+      "image_path": "fig7_dirichlet_overlay.pdf",
+      "caption": "Empirical LLM confusion matrices overlaid on theoretical violation-rate curves (exposure, left; IV, right). Theoretical curves are derived from $K{=}3$ Dirichlet random matrices; empirical points are ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_proofs.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure*",
+      "image_path": "fig4_binarization.pdf",
+      "caption": "Binarization collapse $\\Delta$ across topologies. Collapsing $K{=}3$ annotations to binary introduces additional bias varying $>$150$\\times$ from M-bias (0.006) to IV (0.926).",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_proofs.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure*",
+      "image_path": "fig6_asv_heatmap.pdf",
+      "caption": "ASV magnitude ranges across topologies for HumAID ($K{=}10$). Left: magnitude ASV ($\\delta^*$) range across 8 LLM configurations; lower values indicate greater fragility. ``Safe'' topologies never exc",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_proofs.tex"
+    },
+    {
+      "number": "A.4",
+      "env_type": "figure*",
+      "image_path": "exp_c_bootstrap_figure.pdf",
+      "caption": "Bootstrap distribution of magnitude ASV $\\delta^*$ ($B{=}1{,}000$) for HumAID DeepSeek zero-shot ($K{=}10$). Dashed line: point estimate; shaded: 95\\% CI.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_proofs.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "5",
+      "status": "optimized",
+      "tool": "",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "6",
+      "status": "optimized",
+      "tool": "",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "7",
+      "status": "optimized",
+      "tool": "",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "8",
+      "status": "optimized",
+      "tool": "",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.3",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/_latex_iso_41vujgqq/main.pdf"
+    },
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:proportional_real_matrices} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:med_bias} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:q} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:asv_diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:k3VB} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:lotc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{rem:k3_vs_general} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:fwl_logistic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:fwl} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:ppi_gold_ratio} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:D} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{rem:k3_general} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bias_expressions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:k3q} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:adversarial_monotonicity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:exposure} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bov} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bbar} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:R} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{rem:evalue} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:lambda_def} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:vb_ratio} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:c_robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bias_decomp} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:iv_dirichlet_subspace} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:e2e_demo} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:dd_condition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:asv_case_study} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:correction_k} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{find:med_sign} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:dVB} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:fwl_logistic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:asv_grid} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:sensitivity_comparison} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:mediation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:y_stratified} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bbar_col} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:notation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:nondiff_stress} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{find:fd_sign} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:sign_determinants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:ct} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:fd_decomp} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:confounding} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:notation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:c_robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:frontdoor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:k3dVB} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bias_conf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:plim_conf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:cy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:ppi_gold_ratio} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:convex} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:nondiff_verify} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:bootstrap_asv} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:realistic_epsilon} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:k3mu} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{prop:exp_counter} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bias_col} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:764"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:809"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:841"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:883"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:972"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1018"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1054"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1163"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1188"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1217"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1244"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1273"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1298"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1321"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1384"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1407"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1432"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1459"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1483"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1506"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_proofs.tex:1527"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "conjecture_dgp_sensitivity_table.tex:3"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "e2e_demo_table.tex:2"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "e2e_real_cm_table.tex:2"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "exp_a_stress_test_table.tex:1"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "exp_e_asv_stability_table.tex:1"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:26"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 93 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_proofs.tex",
+          "role": "other",
+          "num_numbers": 721,
+          "num_cites": 3
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 6,
+          "num_cites": 0
+        },
+        {
+          "file": "conjecture_dgp_sensitivity_table.tex",
+          "role": "other",
+          "num_numbers": 92,
+          "num_cites": 0
+        },
+        {
+          "file": "e2e_demo_table.tex",
+          "role": "other",
+          "num_numbers": 24,
+          "num_cites": 0
+        },
+        {
+          "file": "e2e_real_cm_table.tex",
+          "role": "other",
+          "num_numbers": 52,
+          "num_cites": 0
+        },
+        {
+          "file": "exp_a_stress_test_table.tex",
+          "role": "other",
+          "num_numbers": 200,
+          "num_cites": 0
+        },
+        {
+          "file": "exp_e_asv_stability_table.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 55,
+          "num_cites": 8
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 16,
+          "num_cites": 9
+        },
+        {
+          "file": "k3_symmetric_proof.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 14
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 52
+        }
+      ],
+      "critical": [
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 93.6 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 97.3 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 0.056 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 1.5 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.6, but result section reports 0.61. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.6, but result section reports 0.614. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.6, but result section reports 0.69. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.6, but result section reports 0.690. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'stefanski_carroll1985' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\geq"
+            ],
+            "appendix_proofs": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\beta",
+              "\\big",
+              "\\bigl",
+              "\\bigr",
+              "\\boldsymbol",
+              "\\cdot",
+              "\\cdots",
+              "\\checkmark",
+              "\\delta",
+              "\\det",
+              "\\dot",
+              "\\dots",
+              "\\ell",
+              "\\emptyset",
+              "\\epsilon",
+              "\\equiv",
+              "\\eta",
+              "\\gamma",
+              "\\geq",
+              "\\gets",
+              "\\gg",
+              "\\hat",
+              "\\iff",
+              "\\in",
+              "\\infty",
+              "\\kappa",
+              "\\lambda",
+              "\\ldots",
+              "\\leftarrow",
+              "\\leq",
+              "\\lesssim",
+              "\\log",
+              "\\mapsto",
+              "\\max",
+              "\\mid",
+              "\\min",
+              "\\mu",
+              "\\neq",
+              "\\notin",
+              "\\operatorname",
+              "\\overline",
+              "\\perp",
+              "\\pi",
+              "\\pm",
+              "\\propto",
+              "\\rho",
+              "\\setminus",
+              "\\sigma",
+              "\\sim",
+              "\\tau",
+              "\\textsc",
+              "\\tfrac",
+              "\\tilde",
+              "\\times",
+              "\\to",
+              "\\top",
+              "\\uparrow",
+              "\\varepsilon",
+              "\\xi"
+            ],
+            "conclusion": [
+              "\\alpha",
+              "\\delta",
+              "\\geq",
+              "\\in",
+              "\\lambda",
+              "\\propto",
+              "\\varepsilon"
+            ],
+            "conjecture_dgp_sensitivity_table": [
+              "\\beta",
+              "\\ldots",
+              "\\max",
+              "\\sigma",
+              "\\tau",
+              "\\varepsilon"
+            ],
+            "e2e_demo_table": [
+              "\\delta",
+              "\\pm"
+            ],
+            "e2e_real_cm_table": [
+              "\\tau"
+            ],
+            "exp_a_stress_test_table": [
+              "\\hat",
+              "\\overline",
+              "\\tau",
+              "\\times",
+              "\\varepsilon"
+            ],
+            "exp_e_asv_stability_table": [
+              "\\beta",
+              "\\boldsymbol",
+              "\\delta",
+              "\\in",
+              "\\infty"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\approx",
+              "\\delta",
+              "\\geq",
+              "\\hat",
+              "\\infty",
+              "\\leq",
+              "\\min",
+              "\\rho",
+              "\\tau",
+              "\\times",
+              "\\varepsilon"
+            ],
+            "introduction": [
+              "\\Delta",
+              "\\bar",
+              "\\beta",
+              "\\geq",
+              "\\gg",
+              "\\infty",
+              "\\rho",
+              "\\times",
+              "\\varepsilon"
+            ],
+            "k3_symmetric_proof": [
+              "\\Lambda",
+              "\\bar",
+              "\\bigl",
+              "\\bigr",
+              "\\delta",
+              "\\ell",
+              "\\geq",
+              "\\in",
+              "\\lambda",
+              "\\leq",
+              "\\mapsto",
+              "\\mid",
+              "\\neq",
+              "\\operatorname",
+              "\\sigma",
+              "\\sim",
+              "\\tfrac",
+              "\\to",
+              "\\top",
+              "\\varepsilon"
+            ],
+            "method": [
+              "\\alpha",
+              "\\beta",
+              "\\boldsymbol",
+              "\\cdot",
+              "\\delta",
+              "\\epsilon",
+              "\\eta",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\infty",
+              "\\lambda",
+              "\\leq",
+              "\\mid",
+              "\\min",
+              "\\neq",
+              "\\operatorname",
+              "\\pi",
+              "\\tau",
+              "\\tfrac",
+              "\\times",
+              "\\to",
+              "\\varepsilon"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 4,
+        "warning": 5,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/_figure_backups/20260524_142455",
+  "error": "",
+  "timestamp": "2026-05-24T14:44:07.816448+00:00"
+}

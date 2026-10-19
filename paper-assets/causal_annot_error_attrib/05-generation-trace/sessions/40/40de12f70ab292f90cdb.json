@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40de12f70ab292f90cdb",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "math w3 lambda corrected",
+  "task_key": "worker_math_w3_lambda_corrected_20260522T152717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_math_w3_lambda_corrected_20260522T152717_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "71571282b43ba7210974be9bcd0fccddaee78e318383c56a2d2243e8d4ba4137"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Consistency confirmed. Here's a summary of what changed and why:\n\n**Problem**: The appendix's \"Relation to DGP-level sign preservation\" paragraph (old line 398) stated that λ(C) ∈ [0,1] is \"independent of τ\\_dir\" and \"statistically decoupled from DGP-level sign preservation\". While technically correct (under proportional effects, λ ∈ [0,1] is unconditional), this directly contradicted method.tex line 45 which says \"λ(C) ∈ [0,1] under the sign preservation condition sign(τ\\_dir) = sign(τ\\_total)\".\n\n**Three edits made** (all in `appendix_proofs.tex`):\n\n1. **Line 398 — Replaced \"Relation to DGP-level sign preservation\" paragraph** with \"Sign preservation\" paragraph that correctly frames the relationship: λ(C) ∈ [0,1] ensures the estimator stays between τ\\_dir and τ\\_total; combined with sign(τ\\_dir) = sign(τ\\_total), this guarantees sign preservation; under proportional effects, λ ∈ [0,1] is automatic, so sign preservation reduces to the single sign condition — matching method.tex.\n\n2. **Line 430 — Updated proportional verification bullet** to explicitly connect to sign preservation: \"Sign preservation of τ̂\\_dir therefore reduces to sign(τ\\_dir) = sign(τ\\_total).\"\n\n3. **Removed the \"Tagging each... decoupled\" paragraph** (old line 433) that claimed λ ∈ [0,1] is \"statistically decoupled\" from sign preservation. The underlying data remains in `verify_lambda_bound_results.json`.\n\nNo changes to the proposition's mathematical content, proof, V\\_B/V diagnostic paragraph, or verification script — all of which were already correct."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/math-w3-lambda-corrected.md"
+}

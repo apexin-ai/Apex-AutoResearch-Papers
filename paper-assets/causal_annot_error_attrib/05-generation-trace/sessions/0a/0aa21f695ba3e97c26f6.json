@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "0aa21f695ba3e97c26f6",
+  "project": "causal_annot_error_attrib",
+  "kind": "conversation",
+  "title": "code c estimation robustness",
+  "task_key": "worker_code_c_estimation_robustness_20260523T145144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_c_estimation_robustness_20260523T145144.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "a7cb4f07f85e2a30da3e586691fdc9c09320840658bb189e38e63df0bd74876f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T14:51:55.111833+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_c_estimation_robustness_20260523T145144"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/code-c-estimation-robustness.md"
+}

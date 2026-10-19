@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56904567f145773f8be3",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "ops anon repo push v2",
+  "task_key": "worker_ops_anon_repo_push_v2_20260524T000105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon_repo_push_v2_20260524T000105_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "15b6f166468694f8955a49595c123453c5b28282bad0a9281d213d3f5b93fb17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Commit `ab83291` pushed to `origin/main`. 4 files synced: abstract.tex, conclusion.tex, introduction.tex, main.pdf."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-push-v2.md"
+}

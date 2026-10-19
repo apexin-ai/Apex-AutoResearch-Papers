@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ec61418b6c53a8f499a",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "code plan009 pathological matrices",
+  "task_key": "worker_code_plan009-pathological-matrices_20260520T161006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-pathological-matrices_20260520T161006_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "589a6891e049ad411483a49a034237ba4d8d42ba7a87ba35545130f3582e0383"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6:40pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan009-pathological-matrices.md"
+}

@@ -1,0 +1,20 @@
+% Empirical Validation Section Draft
+% Data sources:
+%   - artifacts/empirical_humaid_k10_results.json (8 LLM configs, HumAID K=10)
+%   - artifacts/within_topo_f1_bias_results.json (cross-dataset F1-bias correlations)
+% Replaces the placeholder at experiments.tex lines 107--111.
+
+\subsection{Empirical Validation}
+\label{sec:empirical}
+
+\paragraph{Setup.}
+We evaluate the bias taxonomy on confusion matrices estimated from production LLM annotation of the HumAID disaster response classification task ($K{=}10$). Eight annotator configurations span three frontier models (DeepSeek-Chat, Llama-4-Maverick, Qwen3-235B) under two to three prompting strategies (zero-shot, few-shot-3, few-shot-5), with macro-$F_1$ scores ranging from 0.614 to 0.690. For each configuration, we extract the empirical $10{\times}10$ confusion matrix and compute the analytical probability limit of $\hat{\tau}$ under all seven DAG topologies, using the same structural parameters as the Dirichlet simulation in Section~\ref{sec:taxonomy_results}. All bias quantities are closed-form rather than Monte Carlo estimates.
+
+\paragraph{Topology ranking matches simulation.}
+The empirical topology ranking by mean absolute bias percentage closely mirrors the Dirichlet prior results. IV remains the most vulnerable topology (mean $|\text{bias}_\%|{=}30.3\%$, max $42.2\%$), followed by front-door ($13.2\%$) and mediation ($13.0\%$). Collider remains the most robust ($4.9\%$). The full ranking is IV $>$ front-door $\approx$ mediation $>$ exposure ($12.4\%$) $>$ M-bias ($6.0\%$) $>$ confounding ($5.7\%$) $>$ collider. This consistency across random Dirichlet priors and empirical LLM confusion matrices indicates that topology-level vulnerability ordering is a structural property of the DAG rather than an artifact of the error distribution.
+
+\paragraph{$F_1$ does not predict causal bias.}
+Across the eight HumAID configurations, the Spearman correlation between macro-$F_1$ and absolute downstream bias is $\rho{=}{-}0.156$, a weak negative association. Per-topology decomposition across three datasets (HumAID, VAST, CivilComments; 23 configurations, 161 topology-configuration pairs) reveals sharply heterogeneous patterns: IV shows strong negative correlation ($\rho{=}{-}0.700$, $p{<}0.001$) and mediation follows ($\rho{=}{-}0.565$, $p{=}0.005$), but M-bias exhibits a significant \emph{positive} correlation ($\rho{=}{+}0.867$, $p{<}0.001$) and collider shows no significant relationship ($\rho{=}{+}0.310$, $p{=}0.150$). These opposing directions cancel in aggregation. The practical implication is that improving annotator $F_1$ cannot be assumed to reduce downstream causal bias without knowledge of the causal topology.
+
+\paragraph{Sign flips validate safe/fragile partition.}
+No primary causal parameter sign reversal was observed across any topology or model configuration (0/56 scenarios). However, individual category coefficients in the exposure topology exhibited sign reversal in 7/8 configurations, consistent with the theoretical prediction that $K{\geq}3$ exposure permits cross-category contamination of secondary coefficients (Proposition~\ref{prop:signflip}). Zero secondary sign flips occur across all five non-exposure, non-IV topologies for all eight configurations. IV produces zero sign flips with empirical LLM confusion matrices, in contrast to the 52.6\% rate under Dirichlet$(1,1,1)$ priors; this discrepancy arises because production classifiers yield diagonal-dominant confusion matrices (diagonal entries 0.29--0.97 for HumAID $K{=}10$), preventing the first-stage sign reversal that drives IV instability under random matrices. These results confirm the safe/fragile partition at $K{=}10$ with real-world annotation quality. Full per-configuration results are reported in Appendix~\ref{app:empirical_details}.

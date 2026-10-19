@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efa17ec4e3770a67b3ed",
+  "project": "causal_annot_error_attrib",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3893,
+    "sha256": "6dd55eab0e57840ec2109d3f18cefd00de4e38e21997ebadb6b89fc90c49a0c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T10:48:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- home-1x5090 上 sonny 账户**无权访问 `/root/miniconda3/`**。提交命令必须用 `python3`（系统路径）或绝对路径 `/usr/bin/python3`，**禁止** `source /root/miniconda3/...`\n- `submit_training_job` 的 command 如果用 `| tee`，**必须加 `set -o pipefail`**，否则 tee 掩盖退出码导致 cron 误判 clean exit（本 session plan009 被坑两次）\n- plan009 脚本 `plan_009_pathological_matrices.py` **没有 `--device` 参数**，只接受 `--M/--N/--K/--topos/--dry-run`。GPU 由 `CUDA_VISIBLE_DEVICES` 环境变量控制（submit_training_job 自动注入）\n- plan003 的 3 个标注进程（llama4/qwen3/deepseek）是 nohup 启动的，**不是 submit_training_job 管理的**，没有 cron 监控。需要手动 SSH 检查 PID 存活和进度\n\n### 2. 🖥️ 基础设施快照\n- 服务器：home-1x5090，账户 sonny，工作目录 `/home/sonny/causal_annot_error_attrib/`\n- Python：`/usr/bin/python3` (3.10.12)，torch 2.10.0+cu128，**不用 conda**\n- GPU：1× RTX 5090，当前 plan009 retry#2 可能正在用 cuda:0\n- 数据集：`/home/sonny/causal_annot_error_attrib/data/`（humaid.jsonl, vast.jsonl, civil_comments.jsonl）\n- API endpoint：`http://47.94.22.126/v1`（Llama4/Qwen3/DeepSeek），key=OPENROUTER_API_KEY\n- 活跃进程：\n  - plan003 标注：PID 438497(llama4), 438843(qwen3), 439116(deepseek) — nohup，无 cron 监控\n  - plan009 retry#2：Worker `worker_fix_plan009_pathological_matrices_r2_20260520T184507` 刚派出重提交，PID 待确认\n- 磁盘：`/` 318G/1.1T 可用(69%)，`/home/sonny/ssd2` 481G/2.0T 可用(75%)\n\n### 3. 📊 当前状态\n- **刚做完**：plan009 连续失败两次的诊断修复（#1 conda权限 → #2 --device 参数错误），已派 Worker 第二次重提交\n- **等待中**：\n  - Worker `worker_fix_plan009_pathological_matrices_r2` 回调 → 确认 plan009 是否成功启动\n  - plan003 RUNNING（3 路并行 LLM 标注），qwen3 最慢约 5/21 17:00 UTC 完成，无 cron 需手动查\n- **Registry 状态**：plan009 ANALYZING（等 retry#2 覆盖），plan003 RUNNING，其余 9 个 DONE(success)\n\n### 4. 📋 待办\n- Worker plan009 回调到达 → 检查是否真正启动（tail log 看输出不是 argparse error）→ 成功则等 cron 完成回调分析结果\n- plan009 如果 retry#2 仍失败 → 停止自动修复，汇报 Director 让人工介入（已达自主修复上限）\n- plan009 成功完成 → on-experiment-done 流程：提取 metrics（spectral gap/diagonal dominance/effective rank threshold）、更新 registry、report.md、汇报 Director\n- plan003 预计 5/21 完成 → 手动 SSH 检查 3 个 PID 是否存活 + 进度 → 完成后解锁 plan006 + plan007\n- plan003 完成 → 并行启动 plan006（ASV 实证验证）+ plan007（correction guidance MC 框架）\n\n### 5. 🎯 战略上下文\n- **核心方向**：多分类 LLM 标注误差在 7 种 DAG 拓扑下的偏差传播 + ASV 灵敏度框架，目标 AAAI 2027（DDL 7/28，~68 天）\n- **关键发现链**：5/7 拓扑 τ_sign_flip=0% 结构性保证；exposure(83%) 和 IV(52%) 危险；ASV 三维排序；K-scaling 稳定；binarization collapse 147x 差异\n- **决策链**：D002(exposure优先) → D003(checkpoint gate) → D004(Version A成立) → D005-D008(ASV参数化) → D009(多维ASV排序) → D010(5/7修正) → D011(6→7拓扑)\n- **关键瓶颈**：plan003 是 Claim 2(ASV实证) 和 Claim 3(correction guidance) 的唯一阻塞项\n- **易错点**：\n  - τ_true 必须用 plim(C=I) 而非 DGP 参数（IV plim(I)=0.6598≠β₁=0.5）\n  - plan003 没有 cron 监控，容易忘记检查——必须主动 SSH 查进度\n  - 之前 plan002 有 RNG ordering artifact，被 SHA-256 deterministic seed 修复——新实验如涉及随机采样注意同样问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "406a58ec0069fe2889fa",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "writing formula dedup v2",
+  "task_key": "worker_writing_formula_dedup_v2_20260524T064704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_formula_dedup_v2_20260524T064704_result.json",
+    "occurrence": 1,
+    "bytes": 2124,
+    "sha256": "e80139313524df3afab44b046ba38846e5c4eb0a186395f99fd96789581da625"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation results:\n- **0 undefined references**\n- **0 errors**\n- 36 pages total; appendix starts page 12\n- Conclusion (Section 5) starts on page 9 — main text exceeds 8 pages by ~1 page (limitations don't count per EMNLP rules, but conclusion does)\n\n## Summary\n\n### 1. Formula de-duplication\n\n**No formulas removed.** After systematically comparing all labeled equations in `method.tex` (3 equations: `eq:confounding`, `eq:exposure`, `eq:mediation`) and `experiments.tex` (0 equations) against the entire `appendix_proofs.tex` (19+ labeled equations), **no meaningful duplication exists**:\n\n| Appendix equation | Closest main-text match | Relationship | Action |\n|---|---|---|---|\n| `eq:plim_conf` (scalar FWL form) | `eq:confounding` (matrix form) | Different representation | Keep — different math form |\n| `eq:med_bias` (R(C)/D(C) form) | `eq:mediation` (lambda form) | Same result, different parameterization | Keep — already cross-references `\\eqref{eq:mediation}` |\n| `eq:fwl`, `eq:bias_decomp`, `eq:R`, `eq:D` | No main-text equation | Proof-internal Lemma | Keep — proof derivation steps |\n| `eq:bias_conf`, `eq:lotc`, `eq:convex`, `eq:bov`, `eq:bbar` | Inline mentions in main text | Formal definitions for proofs | Keep — needed by proofs |\n| `eq:dVB`, `eq:dd_condition` | Not in main text | Monotonicity proof steps | Keep — appendix-only |\n| `eq:bias_col`, `eq:bbar_col`, `eq:fd_decomp` | Paragraph descriptions in main text | Formal derivations | Keep — different content |\n| `eq:lambda_def`, `eq:vb_ratio` | Not in main text | Mediation leakage analysis | Keep — appendix-only |\n\nEvery appendix formula is either a different mathematical form, a proof derivation step, or a definition unique to the proof infrastructure. The appendix correctly cross-references main-text equations where relevant (e.g., `\\eqref{eq:mediation}` at lines 438, 445, 473, 488).\n\n### 2. Compilation\n\n- 0 undefined references\n- 0 errors\n- Main text: conclusion starts on page 9 (exceeds 8-page limit by ~1 page; limitations excluded per EMNLP rules but conclusion counts)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-formula-dedup-v2.md"
+}

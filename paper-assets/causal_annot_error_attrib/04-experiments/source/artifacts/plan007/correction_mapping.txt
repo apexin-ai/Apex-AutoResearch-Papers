@@ -1,0 +1,55 @@
+Optimal Correction Method: {topology x C_structure} -> best method
+Criterion: max bias_reduction_pct (tie-break: min RMSE)
+================================================================================
+
+Topology       C Structure          Best Method       BiasRed%     RMSE
+-------------------------------------------------------------------
+confounding    mild_uniform         ppi                100.0%   0.0334
+confounding    moderate_uniform     ppi                 99.9%   0.0330
+confounding    severe_uniform       ppi                 98.8%   0.0338
+confounding    asymmetric           ppi                 99.4%   0.0338
+confounding    near_permutation     ppi                 99.2%   0.0323
+confounding    realistic_llm        ppi                 98.7%   0.0336
+
+mediation      mild_uniform         ppi                 97.7%   0.0740
+mediation      moderate_uniform     ppi                 97.8%   0.0796
+mediation      severe_uniform       ppi                 99.7%   0.0813
+mediation      asymmetric           ppi                 99.8%   0.0783
+mediation      near_permutation     ppi                 99.5%   0.0782
+mediation      realistic_llm        ppi                 98.3%   0.0810
+
+collider       mild_uniform         ppi                 95.6%   0.0305
+collider       moderate_uniform     ppi                 98.6%   0.0308
+collider       severe_uniform       ppi                 98.9%   0.0297
+collider       asymmetric           ppi                 98.2%   0.0294
+collider       near_permutation     ppi                 92.5%   0.0310
+collider       realistic_llm        ppi                 98.0%   0.0295
+
+exposure       mild_uniform         ppi                 97.2%   0.0816
+exposure       moderate_uniform     ppi                 98.5%   0.0910
+exposure       severe_uniform       ppi                 99.3%   0.1005
+exposure       asymmetric           ppi                100.0%   0.0843
+exposure       near_permutation     ppi                 99.2%   0.1277
+exposure       realistic_llm        ppi                 98.7%   0.0897
+
+mbias          mild_uniform         ppi                 62.5%   0.0299
+mbias          moderate_uniform     ppi                 98.7%   0.0294
+mbias          severe_uniform       ppi                 93.3%   0.0308
+mbias          asymmetric           mcsimex             91.3%   0.0148
+mbias          near_permutation     ppi                 69.9%   0.0301
+mbias          realistic_llm        mla                  0.0%   0.0144
+
+iv             mild_uniform         ppi                 99.6%   0.1188
+iv             moderate_uniform     ppi                 99.6%   0.1359
+iv             severe_uniform       ppi                 99.4%   0.1472
+iv             asymmetric           ppi                 98.6%   0.1267
+iv             near_permutation     ppi                 99.9%   0.1959
+iv             realistic_llm        ppi                 99.8%   0.1342
+
+frontdoor      mild_uniform         ppi                 99.7%   0.1280
+frontdoor      moderate_uniform     ppi                 99.8%   0.1429
+frontdoor      severe_uniform       ppi                 99.5%   0.1437
+frontdoor      asymmetric           ppi                 99.3%   0.1331
+frontdoor      near_permutation     ppi                 98.1%   0.1980
+frontdoor      realistic_llm        ppi                 99.5%   0.1363
+

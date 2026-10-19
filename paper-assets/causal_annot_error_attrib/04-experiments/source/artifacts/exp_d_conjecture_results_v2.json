@@ -1,0 +1,584 @@
+{
+  "method": "analytic_plim",
+  "gh_quadrature_points": 100,
+  "mono_tol": 1e-12,
+  "random_verification": {
+    "confounding": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8467,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.01086810865728216,
+        "tau_true": 2.0
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 8063,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.005825013346442809,
+        "tau_true": 1.9999999999999998
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7892,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.0034082229756147164,
+        "tau_true": 2.0
+      }
+    },
+    "mediation": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8236,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.012726505679608646,
+        "tau_true": 0.5
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 7905,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.0065598588622944876,
+        "tau_true": 0.49999999999999983
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7893,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.0040332631090529425,
+        "tau_true": 0.4999999999999996
+      }
+    },
+    "collider": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8683,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.004606180170102059,
+        "tau_true": 1.0
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 7669,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0034316669468731353,
+        "tau_true": 1.0
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7570,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.002491098787699819,
+        "tau_true": 1.0
+      }
+    },
+    "exposure": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 485,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.055567041313488996,
+        "tau_true": 1.0000000000000002
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 205,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.05121055325737478,
+        "tau_true": 1.0000000000000002
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 77,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.021928244727854262,
+        "tau_true": 0.9999999999999998
+      }
+    },
+    "mbias": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 9791,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0015474283680341205,
+        "tau_true": 1.0
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 7783,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0014386231201501953,
+        "tau_true": 1.0
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7399,
+        "nan_curves": 0,
+        "direction": "non-inc",
+        "worst_violation_magnitude": 0.0008775222889561007,
+        "tau_true": 1.0
+      }
+    },
+    "iv": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 7433,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 2466085.7260094993,
+        "tau_true": 1.333120530897266
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 6015,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 1315009.2588172748,
+        "tau_true": 1.9114375708768654
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 5711,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 5481030.861738394,
+        "tau_true": 2.0409089629546364
+      }
+    },
+    "frontdoor": {
+      "K3": {
+        "n_tested": 10000,
+        "violations": 8429,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.01307166903449175,
+        "tau_true": 0.5
+      },
+      "K5": {
+        "n_tested": 10000,
+        "violations": 8079,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.006291871500388346,
+        "tau_true": 0.49999999999999994
+      },
+      "K7": {
+        "n_tested": 10000,
+        "violations": 7899,
+        "nan_curves": 0,
+        "direction": "non-dec",
+        "worst_violation_magnitude": 0.003641870803524405,
+        "tau_true": 0.5
+      }
+    }
+  },
+  "adversarial_search": {
+    "confounding": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.009781039201619227,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.014755856830761034,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "mediation": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.010534893741626042,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.010875476213587556,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "collider": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.00030552585951969333,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.0011443531536633003,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "exposure": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.003864347544026268,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.005393984754724663,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "mbias": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.0017080912306270523,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.0018772543101670865,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "iv": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": 9.663546088957395e-30,
+        "found_counterexample": false,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -26.64443041894075,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    },
+    "frontdoor": {
+      "K3": {
+        "n_starts": 500,
+        "best_objective": -0.006059828484311289,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      },
+      "K5": {
+        "n_starts": 500,
+        "best_objective": -0.012316386926386522,
+        "found_counterexample": true,
+        "delta_pairs": [
+          [
+            0.0,
+            0.2
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.1,
+            0.3
+          ],
+          [
+            0.2,
+            0.5
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ]
+      }
+    }
+  },
+  "summary": "141684 violations across 210,000 random tests + 13 counterexamples found by adversarial search (analytic plim, MONO_TOL=1e-12)"
+}

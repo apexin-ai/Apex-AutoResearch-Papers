@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5fb5ff21858f6f7b2ec",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "research trace 283x claim",
+  "task_key": "worker_research_trace-283x-claim_20260520T183534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_trace-283x-claim_20260520T183534_result.json",
+    "occurrence": 1,
+    "bytes": 2024,
+    "sha256": "3bb5050839382dcf8d3b1b88563c8bc7d5aafe7cef241ab7fead826a569c5879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the exact source. Here's the full trace:\n\n## 结论\n\n### 2.83× 的精确计算\n\n来源：`mvp_exposure_dag.py` 第 294-298 行\n\n```python\nseverity = max(\n    abs(plim[1] / beta[1]),  # |γ₁/β₁|\n    abs(plim[2] / beta[2]),  # |γ₂/β₂|\n)\n```\n\nDGP 设定 `beta = [0.0, 1.0, -0.5]`。对 worst-case C 矩阵（log 第 38-41 行）：\n\n| 系数 | β (真值) | γ̂ (估计) | \\|γ̂/β\\| | 类型 |\n|------|---------|----------|---------|------|\n| β₁ | 1.0 | -0.838 | **0.838** | SIGN_REVERSAL |\n| β₂ | -0.5 | -1.4138 | **2.83** | AMPLIFICATION |\n\n**2.83× 来自 β₂ = -0.5 → γ̂₂ = -1.4138**，即 |-1.4138 / -0.5| = 2.8276 ≈ 2.83。这是第二个系数的 amplification，不是第一个系数的 sign reversal。\n\n### 问题所在\n\nD004 和 paper_framing.md 写的是：\n> β=1.0 → estimate=-0.84 (sign reversal + **2.83x** amplification)\n\n这把 β₁ 的 sign reversal（severity 0.84×）和 β₂ 的 amplification（severity 2.83×）混在一句话里，让读者以为 2.83× 描述的是 β₁=1.0 那个系数。Reviewer 指出 |-0.84/1.0| = 0.84 ≠ 2.83 完全正确。\n\n### 修正建议\n\nexperiments.tex 当前写法（第 20 行）：\n> The worst-case severity reaches 2.83× the true effect magnitude.\n\n这句话**本身不算错**——severity 定义为 max_k |γ̂_k/β_k|，确实是 2.83×。但不能和 \"β=1.0 → -0.84\" 放在一起暗示因果关系。修正方案：\n\n**方案 A**（拆开两个系数分别说）：\n> The worst-case confusion matrix simultaneously produces sign reversal on β₁ (1.0 → −0.84) and 2.83× amplification on β₂ (−0.5 → −1.41).\n\n**方案 B**（只保留可独立验证的数字）：\n> The worst-case severity—defined as max_k |γ̂_k / β_k|—reaches 2.83×, driven by amplification of the smaller coefficient (β₂ = −0.5 → γ̂₂ = −1.41).\n\nD004 和 paper_framing.md 也需要同步修正，避免 \"β=1.0 → 2.83x\" 这个误导性并列。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-trace-283x-claim.md"
+}

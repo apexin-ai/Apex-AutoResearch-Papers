@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc00cd8d61e572021eea",
+  "project": "causal_annot_error_attrib",
+  "kind": "result",
+  "title": "infra ssh test home 1x5090",
+  "task_key": "worker_infra_ssh-test-home-1x5090_20260520T084054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_ssh-test-home-1x5090_20260520T084054_result.json",
+    "occurrence": 1,
+    "bytes": 346,
+    "sha256": "a73900b97c05fd7cacfb0fd54ed9ae0c27dffc622f27705e318d39ff1a516a4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "测试结果：\n\n| 项目 | 结果 |\n|------|------|\n| SSH 连接 | **成功** |\n| hostname | `sonny-System-Product-Name` |\n| whoami | `sonny` |\n| Python3 版本 | `3.10.12` |\n| 内核 | `Linux 6.8.0-90-generic x86_64 (Ubuntu 22.04)` |\n| 项目目录 | `/home/sonny/causal_annot_error_attrib` 创建成功（空目录） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-ssh-test-home-1x5090.md"
+}
